@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/conveyal/scenario-editor#readme",
   "dependencies": {
-    "auth0-lock": "^9.2.2",
+    "auth0-lock": "^10.0.1",
     "bootstrap": "^3.3.6",
     "color": "^0.11.3",
     "debounce": "^1.0.0",

@@ -70,7 +70,7 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
-    "mastarm": "^0.8.0",
+    "mastarm": "^0.9.1",
     "react-addons-perf": "^15.2.1",
     "redux-devtools": "^3.3.1",
     "redux-logger": "^2.6.1",

@@ -2,8 +2,8 @@ exports[`Project renders correctly 1`] = `
 <div>
   <div
     className="ProjectTitle">
-    <i
-      className="fa fa-list fa-fw " />
+    <Icon
+      type="list" />
     <a
       onClick={[Function bound handleClick]}
       style={Object {}}>
@@ -15,8 +15,8 @@ exports[`Project renders correctly 1`] = `
       className="pull-right"
       onClick={[Function bound handleClick]}
       style={Object {}}>
-      <i
-        className="fa fa-pencil fa-fw " />
+      <Icon
+        type="pencil" />
     </a>
   </div>
   Project content

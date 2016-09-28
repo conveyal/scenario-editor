@@ -1,0 +1,60 @@
+exports[`ModificationGroup renders correctly 1`] = `
+<div
+  className="ModificationGroup">
+  <div
+    className="ModificationGroupTitle"
+    onClick={[Function anonymous]}
+    title="Hide modification group">
+    <Icon
+      type="chevron-down" />
+    <span>
+       
+      Test
+    </span>
+    <a
+      className="pull-right"
+      onClick={[Function anonymous]}
+      title="Create test">
+      <Icon
+        type="plus" />
+       Create
+    </a>
+  </div>
+  <div
+    className="ModificationTitles">
+    <ModificationTitle
+      active={true}
+      modification={
+        Object {
+          "bidirectional": false,
+          "id": "1234",
+          "name": "Test Modification",
+          "segments": Array [],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "dwellTime": 10,
+              "endTime": 57600,
+              "friday": true,
+              "headwaySecs": 900,
+              "monday": true,
+              "name": "Test timetable",
+              "saturday": false,
+              "speed": 40,
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true
+            }
+          ]
+        }
+      }
+      name="Test Modification"
+      projectId="1234"
+      replaceModification={[Function mockConstructor]}
+      scenarioId="1234"
+      showOnMap={false} />
+  </div>
+</div>
+`;

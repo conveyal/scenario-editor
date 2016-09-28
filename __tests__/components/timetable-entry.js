@@ -3,6 +3,10 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
+import { mockComponents } from '../../testUtils'
+
+jest.mock('../../lib/components/input', () => { return mockComponents(['Checkbox', 'Number', 'Text']) })
+
 import TimetableEntry from '../../lib/components/timetable-entry'
 
 describe('TimetableEntry', () => {

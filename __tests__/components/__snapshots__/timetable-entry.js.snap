@@ -2,125 +2,48 @@ exports[`TimetableEntry renders correctly 1`] = `
 <div>
   <div
     className="form-inline">
-    <div
-      className="checkbox">
-      <label>
-        <input
-          checked={true}
-          onChange={[Function onChange]}
-          type="checkbox" />
-         
-        Mon
-      </label>
-    </div>
-    <div
-      className="checkbox">
-      <label>
-        <input
-          checked={true}
-          onChange={[Function onChange]}
-          type="checkbox" />
-         
-        Tue
-      </label>
-    </div>
-    <div
-      className="checkbox">
-      <label>
-        <input
-          checked={true}
-          onChange={[Function onChange]}
-          type="checkbox" />
-         
-        Wed
-      </label>
-    </div>
-    <div
-      className="checkbox">
-      <label>
-        <input
-          checked={true}
-          onChange={[Function onChange]}
-          type="checkbox" />
-         
-        Thu
-      </label>
-    </div>
-    <div
-      className="checkbox">
-      <label>
-        <input
-          checked={true}
-          onChange={[Function onChange]}
-          type="checkbox" />
-         
-        Fri
-      </label>
-    </div>
-    <div
-      className="checkbox">
-      <label>
-        <input
-          checked={false}
-          onChange={[Function onChange]}
-          type="checkbox" />
-         
-        Sat
-      </label>
-    </div>
-    <div
-      className="checkbox">
-      <label>
-        <input
-          checked={false}
-          onChange={[Function onChange]}
-          type="checkbox" />
-         
-        Sun
-      </label>
-    </div>
+    <Checkbox
+      checked={true}
+      label="Mon"
+      onChange={[Function onChange]} />
+    <Checkbox
+      checked={true}
+      label="Tue"
+      onChange={[Function onChange]} />
+    <Checkbox
+      checked={true}
+      label="Wed"
+      onChange={[Function onChange]} />
+    <Checkbox
+      checked={true}
+      label="Thu"
+      onChange={[Function onChange]} />
+    <Checkbox
+      checked={true}
+      label="Fri"
+      onChange={[Function onChange]} />
+    <Checkbox
+      checked={false}
+      label="Sat"
+      onChange={[Function onChange]} />
+    <Checkbox
+      checked={false}
+      label="Sun"
+      onChange={[Function onChange]} />
   </div>
-  <div
-    className="form-group">
-    <label>
-      Frequency (minutes)
-    </label>
-    <input
-      className="form-control"
-      defaultValue={15}
-      name={undefined}
-      onChange={[Function anonymous]}
-      placeholder="Frequency (minutes)"
-      type="number"
-      value={15} />
-  </div>
-  <div
-    className="form-group">
-    <label>
-      Start time
-    </label>
-    <input
-      className="form-control"
-      defaultValue="08:00"
-      name={undefined}
-      onChange={[Function anonymous]}
-      placeholder="Start time"
-      type="time"
-      value="08:00" />
-  </div>
-  <div
-    className="form-group">
-    <label>
-      End time
-    </label>
-    <input
-      className="form-control"
-      defaultValue="16:00"
-      name={undefined}
-      onChange={[Function anonymous]}
-      placeholder="End time"
-      type="time"
-      value="16:00" />
-  </div>
+  <Number
+    label="Frequency (minutes)"
+    onChange={[Function anonymous]}
+    value={15} />
+  <Text
+    label="Start time"
+    onChange={[Function anonymous]}
+    type="time"
+    value="08:00" />
+  <Text
+    label="End time"
+    onChange={[Function anonymous]}
+    type="time"
+    value="16:00" />
 </div>
 `;

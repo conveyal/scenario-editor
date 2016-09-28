@@ -6,181 +6,49 @@ exports[`Timetable renders correctly 1`] = `
     <strong>
       Test timetable
     </strong>
-    <a
-      className="btn btn-danger btn-sm pull-right"
-      href="#"
-      onClick={[Function wrappedOnClick]}
-      target={undefined}
+    <Button
+      className="pull-right"
+      onClick={[Function mockConstructor]}
+      size="sm"
+      style="danger"
       title="Delete timetable">
-      <i
-        className="fa fa-close fa-fw " />
-    </a>
+      <Icon
+        type="close" />
+    </Button>
   </div>
   <div
     className="panel-body">
-    <div
-      className="form-group">
-      <input
-        className="form-control"
-        defaultValue="Test timetable"
-        name="Name"
-        onChange={[Function anonymous]}
-        placeholder="Name"
-        type="text"
-        value="Test timetable" />
-    </div>
-    <div>
-      <div
-        className="form-inline">
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={true}
-              onChange={[Function onChange]}
-              type="checkbox" />
-             
-            Mon
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={true}
-              onChange={[Function onChange]}
-              type="checkbox" />
-             
-            Tue
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={true}
-              onChange={[Function onChange]}
-              type="checkbox" />
-             
-            Wed
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={true}
-              onChange={[Function onChange]}
-              type="checkbox" />
-             
-            Thu
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={true}
-              onChange={[Function onChange]}
-              type="checkbox" />
-             
-            Fri
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={false}
-              onChange={[Function onChange]}
-              type="checkbox" />
-             
-            Sat
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={false}
-              onChange={[Function onChange]}
-              type="checkbox" />
-             
-            Sun
-          </label>
-        </div>
-      </div>
-      <div
-        className="form-group">
-        <label>
-          Frequency (minutes)
-        </label>
-        <input
-          className="form-control"
-          defaultValue={15}
-          name={undefined}
-          onChange={[Function anonymous]}
-          placeholder="Frequency (minutes)"
-          type="number"
-          value={15} />
-      </div>
-      <div
-        className="form-group">
-        <label>
-          Start time
-        </label>
-        <input
-          className="form-control"
-          defaultValue="08:00"
-          name={undefined}
-          onChange={[Function anonymous]}
-          placeholder="Start time"
-          type="time"
-          value="08:00" />
-      </div>
-      <div
-        className="form-group">
-        <label>
-          End time
-        </label>
-        <input
-          className="form-control"
-          defaultValue="16:00"
-          name={undefined}
-          onChange={[Function anonymous]}
-          placeholder="End time"
-          type="time"
-          value="16:00" />
-      </div>
-    </div>
-    <div
-      className="form-group">
-      <label>
-        Speed (km/h)
-      </label>
-      <input
-        className="form-control"
-        defaultValue={40}
-        name={undefined}
-        onChange={[Function anonymous]}
-        placeholder="Speed (km/h)"
-        type="number"
-        value={40} />
-    </div>
-    <div
-      className="form-group">
-      <label>
-        Dwell time (seconds)
-      </label>
-      <input
-        className="form-control"
-        defaultValue={10}
-        name={undefined}
-        onChange={[Function anonymous]}
-        placeholder="Dwell time (seconds)"
-        type="number"
-        value={10} />
-    </div>
+    <Text
+      name="Name"
+      onChange={[Function anonymous]}
+      value="Test timetable" />
+    <TimetableEntry
+      replaceTimetable={[Function mockConstructor]}
+      timetable={
+        Object {
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "saturday": false,
+          "speed": 40,
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true
+        }
+      } />
+    <Number
+      label="Speed (km/h)"
+      onChange={[Function anonymous]}
+      value={40} />
+    <Number
+      label="Dwell time (seconds)"
+      onChange={[Function anonymous]}
+      value={10} />
   </div>
 </section>
 `;

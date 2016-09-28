@@ -3,6 +3,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
+jest.mock('../../lib/components/icon', () => 'Icon')
+
 import Project from '../../lib/components/project'
 
 describe('Project', () => {

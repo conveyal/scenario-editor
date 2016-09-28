@@ -58,7 +58,7 @@ report:
   removeTripsOutside: All existing trips are removed.
   newFrequencies: New frequencies
   variant: Variant: %s
-  bundle: Using bundle "%s"
+  bundle: Using bundle: %s
   frequency:
     name: Name
     startTime: Start time

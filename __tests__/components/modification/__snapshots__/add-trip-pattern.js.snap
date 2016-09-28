@@ -1,0 +1,85 @@
+exports[`AddTripPattern renders correctly 1`] = `
+<div>
+  <Button
+    block={true}
+    onClick={[Function anonymous]}
+    style="warning">
+    <Icon
+      type="times-circle" />
+     Stop editing
+  </Button>
+  <Checkbox
+    defaultChecked={true}
+    label="Extend from end"
+    onChange={[Function anonymous]} />
+  <Checkbox
+    defaultChecked={true}
+    label="Follow streets"
+    onChange={[Function anonymous]} />
+  <Checkbox
+    defaultChecked={true}
+    label="Create stops automatically"
+    onChange={[Function anonymous]} />
+  <Number
+    label="Stop spacing (meters)"
+    onChange={[Function anonymous]}
+    value={400} />
+  <Checkbox
+    checked={false}
+    label="Bidirectional"
+    onChange={[Function anonymous]} />
+  <Timetable
+    index={1}
+    modification={
+      Object {
+        "bidirectional": false,
+        "id": "1234",
+        "segments": Array [],
+        "timetables": Array [
+          Object {
+            "dwellTime": 10,
+            "endTime": 57600,
+            "friday": true,
+            "headwaySecs": 900,
+            "monday": true,
+            "name": "Test timetable",
+            "saturday": false,
+            "speed": 40,
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true
+          }
+        ]
+      }
+    }
+    removeTimetable={[Function bound ]}
+    replaceTimetable={[Function bound ]}
+    timetable={
+      Object {
+        "dwellTime": 10,
+        "endTime": 57600,
+        "friday": true,
+        "headwaySecs": 900,
+        "monday": true,
+        "name": "Test timetable",
+        "saturday": false,
+        "speed": 40,
+        "startTime": 28800,
+        "sunday": false,
+        "thursday": true,
+        "tuesday": true,
+        "wednesday": true
+      }
+    } />
+  <Button
+    block={true}
+    onClick={[Function anonymous]}
+    style="success">
+    <Icon
+      type="plus" />
+     Add timetable
+  </Button>
+</div>
+`;

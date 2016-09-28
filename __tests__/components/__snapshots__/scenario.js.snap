@@ -3,8 +3,8 @@ exports[`Scenario renders correctly 1`] = `
   className="Scenario">
   <div
     className="ScenarioTitle">
-    <i
-      className="fa fa-code-fork fa-fw " />
+    <Icon
+      type="code-fork" />
     <a
       onClick={[Function bound handleClick]}
       style={Object {}}
@@ -18,31 +18,31 @@ exports[`Scenario renders correctly 1`] = `
       onClick={[Function bound handleClick]}
       style={Object {}}
       title="Edit scenario">
-      <i
-        className="fa fa-pencil fa-fw " />
+      <Icon
+        type="pencil" />
     </a>
     <a
       className="pull-right"
       onClick={[Function bound handleClick]}
       style={Object {}}
       title="Import shapefile">
-      <i
-        className="fa fa-globe fa-fw " />
+      <Icon
+        type="globe" />
     </a>
     <a
       className="pull-right"
       onClick={[Function bound handleClick]}
       style={Object {}}
       title="Import modifications from another scenario">
-      <i
-        className="fa fa-upload fa-fw " />
+      <Icon
+        type="upload" />
     </a>
     <a
       className="pull-right"
       onClick={[Function anonymous]}
       title="Show single point analysis">
-      <i
-        className="fa fa-crosshairs fa-fw " />
+      <Icon
+        type="crosshairs" />
     </a>
   </div>
 </div>

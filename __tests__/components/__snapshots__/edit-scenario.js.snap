@@ -1,4 +1,4 @@
-exports[`EditScenario renders correctly 1`] = `
+exports[`Component > EditScenario renders correctly 1`] = `
 <Panel>
   <Heading>
     Create new scenario

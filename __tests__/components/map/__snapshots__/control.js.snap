@@ -1,4 +1,4 @@
-exports[`Map > Control renders correctly 1`] = `
+exports[`Component > Map > Control renders correctly 1`] = `
 <div
   className="MapControl">
   <a

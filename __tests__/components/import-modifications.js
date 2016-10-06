@@ -1,27 +1,20 @@
-/* global describe, it, expect, jest */
+/* global jest */
 
-import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../testUtils'
+import { basicRenderTest, mockExports } from '../../testUtils/unitUtils'
 
 jest.mock('react-select', () => 'React-Select')
-jest.mock('../../lib/components/buttons', () => { return mockComponents(['Button']) })
-jest.mock('../../lib/components/panel', () => { return mockComponents(['Panel', 'Heading', 'Body']) })
+jest.mock('../../lib/components/buttons', () => { return mockExports(['Button']) })
+jest.mock('../../lib/components/panel', () => { return mockExports(['Panel', 'Heading', 'Body']) })
 
 import ImportModifications from '../../lib/components/import-modifications'
 
-describe('ImportModifications', () => {
-  it('renders correctly', () => {
-    const copyFromScenarioFn = jest.fn()
-    const tree = renderer.create(
-      <ImportModifications
-        copyFromScenario={copyFromScenarioFn}
-        toScenarioId='1'
-        variants={[]}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(copyFromScenarioFn).not.toBeCalled()
-  })
+basicRenderTest({
+  component: ImportModifications,
+  name: 'ImportModifications',
+  notToBeCalledFns: ['copyFromScenario'],
+  props: {
+    copyFromScenario: jest.fn(),
+    toScenarioId: '1',
+    variants: []
+  }
 })

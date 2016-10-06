@@ -1,4 +1,4 @@
-exports[`SelectPatterns renders correctly 1`] = `
+exports[`Component > SelectPatterns renders correctly 1`] = `
 <Group>
   <React-Select
     multi={true}

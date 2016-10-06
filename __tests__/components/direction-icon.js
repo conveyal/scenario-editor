@@ -1,26 +1,20 @@
-/* global describe, it, expect, jest */
+/* global jest */
 
-import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../testUtils'
+import { basicRenderTest, mockExports } from '../../testUtils/unitUtils'
 
 jest.mock('leaflet', () => { return { DivIcon: () => 'DivIcon', point: 'point' } })
-jest.mock('react-leaflet', () => { return mockComponents(['Marker']) })
+jest.mock('react-leaflet', () => { return mockExports(['Marker']) })
 
 import DirectionIcon from '../../lib/components/direction-icon'
 
-describe('DirectionIcon', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <DirectionIcon
-        bearing={123}
-        clickable
-        color='blue'
-        coordinates={[12, 34]}
-        iconSize={20}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
+basicRenderTest({
+  component: DirectionIcon,
+  name: 'DirectionIcon',
+  props: {
+    bearing: 123,
+    clickable: true,
+    color: 'blue',
+    coordinates: [12, 34],
+    iconSize: 20
+  }
 })

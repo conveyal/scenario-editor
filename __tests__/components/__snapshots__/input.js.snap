@@ -1,4 +1,4 @@
-exports[`Checkbox renders correctly 1`] = `
+exports[`Component > Checkbox renders correctly 1`] = `
 <div
   className="checkbox">
   <label>
@@ -11,7 +11,7 @@ exports[`Checkbox renders correctly 1`] = `
 </div>
 `;
 
-exports[`File renders correctly 1`] = `
+exports[`Component > File renders correctly 1`] = `
 <div
   className="form-group">
   <label>
@@ -27,12 +27,12 @@ exports[`File renders correctly 1`] = `
 </div>
 `;
 
-exports[`Group renders correctly 1`] = `
+exports[`Component > Group renders correctly 1`] = `
 <div
   className="form-group" />
 `;
 
-exports[`Input renders correctly 1`] = `
+exports[`Component > Input renders correctly 1`] = `
 <input
   className="form-control"
   name="someInput"
@@ -40,7 +40,7 @@ exports[`Input renders correctly 1`] = `
   value="" />
 `;
 
-exports[`Number renders correctly 1`] = `
+exports[`Component > Number renders correctly 1`] = `
 <div
   className="form-group">
   <input
@@ -52,7 +52,7 @@ exports[`Number renders correctly 1`] = `
 </div>
 `;
 
-exports[`Select renders correctly 1`] = `
+exports[`Component > Select renders correctly 1`] = `
 <div
   className="form-group">
   <label>
@@ -74,7 +74,7 @@ exports[`Select renders correctly 1`] = `
 </div>
 `;
 
-exports[`SelectMultiple renders correctly 1`] = `
+exports[`Component > SelectMultiple renders correctly 1`] = `
 <div
   className="form-group">
   <label>
@@ -97,7 +97,7 @@ exports[`SelectMultiple renders correctly 1`] = `
 </div>
 `;
 
-exports[`Text renders correctly 1`] = `
+exports[`Component > Text renders correctly 1`] = `
 <div
   className="form-group">
   <label>

@@ -1,30 +1,23 @@
-/* global describe, it, expect, jest */
+/* global jest */
 
-import React from 'react'
-import renderer from 'react-test-renderer'
+import { basicRenderTest } from '../../testUtils/unitUtils'
 
 jest.mock('../../lib/components/icon', () => 'Icon')
 
 import Scenario from '../../lib/components/scenario'
 
-describe('Scenario', () => {
-  it('renders correctly', () => {
-    const addComponentToMapFn = jest.fn()
-    const loadFn = jest.fn()
-    const tree = renderer.create(
-      <Scenario
-        addComponentToMap={addComponentToMapFn}
-        id='1234'
-        isLoaded={false}
-        load={loadFn}
-        name='Test'
-        projectId='Test1234'
-        >
-        Scenario content
-      </Scenario>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(addComponentToMapFn).not.toBeCalled()
-    expect(loadFn).toBeCalled()
-  })
+basicRenderTest({
+  children: 'Scenario content',
+  component: Scenario,
+  name: 'Scenario',
+  notToBeCalledFns: ['addComponentToMap'],
+  props: {
+    addComponentToMap: jest.fn(),
+    id: '1234',
+    isLoaded: false,
+    load: jest.fn(),
+    name: 'Test',
+    projectId: 'Test1234'
+  },
+  toBeCalledFns: ['load']
 })

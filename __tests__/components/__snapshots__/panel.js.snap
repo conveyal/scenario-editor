@@ -1,18 +1,18 @@
-exports[`Body renders correctly 1`] = `
+exports[`Component > Body renders correctly 1`] = `
 <div
   className="panel-body">
   Body text
 </div>
 `;
 
-exports[`Heading renders correctly 1`] = `
+exports[`Component > Heading renders correctly 1`] = `
 <div
   className="panel-heading clearfix ">
   Heading text
 </div>
 `;
 
-exports[`Panel renders correctly 1`] = `
+exports[`Component > Panel renders correctly 1`] = `
 <div
   className="panel panel-default">
   Panel text

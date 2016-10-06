@@ -1,4 +1,4 @@
-exports[`ModificationGroup renders correctly 1`] = `
+exports[`Component > Modification > ModificationGroup renders correctly 1`] = `
 <div
   className="ModificationGroup">
   <div

@@ -1,110 +1,70 @@
-/* global describe, it, expect */
+import React from 'React'
 
-import React from 'react'
-import renderer from 'react-test-renderer'
+import { basicRenderTest } from '../../testUtils/unitUtils'
 
 import { Checkbox, File, Group, Input, Number, Select, SelectMultiple, Text } from '../../lib/components/input'
 
-describe('Checkbox', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Checkbox
-        label='Do the thing?'
-        checked
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
+const mockOptions = [1, 2].map((n) => { return (<option key={n + ''} value={n + ''}>{n}</option>) })
 
-describe('File', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <File
-        label='Select files'
-        multiple
-        name='files'
-        value={undefined}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Group', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Group />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Input', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Input
-        name='someInput'
-        placeholder='Enter Text'
-        value=''
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Number', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Number
-        name='someNumber'
-        placeholder='Enter Number'
-        value={12345}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Select', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Select
-        label='Select an option'
-        value=''
-        >
-        <option key='1' value='1'>1</option>
-        <option key='2' value='2'>2</option>
-      </Select>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('SelectMultiple', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <SelectMultiple
-        label='Select multiple options'
-        value=''
-        >
-        <option key='1' value='1'>1</option>
-        <option key='2' value='2'>2</option>
-      </SelectMultiple>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Text', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Text
-        label='Enter text'
-        name='someText'
-        value='blah'
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
+basicRenderTest([
+  {
+    component: Checkbox,
+    name: 'Checkbox',
+    props: {
+      label: 'Do the thing?',
+      checked: true
+    }
+  }, {
+    component: File,
+    name: 'File',
+    props: {
+      label: 'Select files',
+      multiple: true,
+      name: 'files',
+      value: undefined
+    }
+  }, {
+    component: Group,
+    name: 'Group'
+  }, {
+    component: Input,
+    name: 'Input',
+    props: {
+      name: 'someInput',
+      placeholder: 'Enter Text',
+      value: ''
+    }
+  }, {
+    component: Number,
+    name: 'Number',
+    props: {
+      name: 'someNumber',
+      placeholder: 'Enter Number',
+      value: 12345
+    }
+  }, {
+    children: mockOptions,
+    component: Select,
+    name: 'Select',
+    props: {
+      label: 'Select an option',
+      value: ''
+    }
+  }, {
+    children: mockOptions,
+    component: SelectMultiple,
+    name: 'SelectMultiple',
+    props: {
+      label: 'Select multiple options',
+      value: ''
+    }
+  }, {
+    component: Text,
+    name: 'Text',
+    props: {
+      label: 'Enter text',
+      name: 'someText',
+      value: 'blah'
+    }
+  }
+])

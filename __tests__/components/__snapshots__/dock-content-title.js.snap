@@ -1,4 +1,4 @@
-exports[`Title renders correctly 1`] = `
+exports[`Component > Title renders correctly 1`] = `
 <h3
   className="DockContent-Title lead">
   Title text

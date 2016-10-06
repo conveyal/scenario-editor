@@ -1,4 +1,4 @@
-exports[`DirectionIcon renders correctly 1`] = `
+exports[`Component > DirectionIcon renders correctly 1`] = `
 <Marker
   clickable={true}
   icon={LeafletDirectionIcon {}}

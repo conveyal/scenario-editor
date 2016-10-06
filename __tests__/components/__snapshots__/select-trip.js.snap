@@ -1,4 +1,4 @@
-exports[`SelectTrip renders correctly 1`] = `
+exports[`Component > SelectTrip renders correctly 1`] = `
 <Group>
   <React-Select
     name="Trip"

@@ -11,9 +11,9 @@ import renderer from 'react-test-renderer'
  *   - children: Any children to render within the component
  *   - component (required): The component to render
  *   - name: How to classify the test in the `describe section`
- *   - notToBeCalledFns: An array of jest.fn()'s that will be asserted as not called during basic render test
+ *   - notToBeCalledFns: An array of String keys that map to property values that are jest.fn()'s that will be asserted as not called during basic render test
  *   - props (required): The props of the component to render
- *   - toBeCalledFns: An array of jest.fn()'s that will be asserted as called during basic render test
+ *   - toBeCalledFns: Same as `notToBeCalledFns` except they are asserted to be called
  */
 export function basicRenderTest (components) {
   // prepare components to be tested
@@ -24,6 +24,10 @@ export function basicRenderTest (components) {
   // run tests on each component
   components.forEach((component) => {
     const Component = component.component
+
+    if (typeof component.name !== 'string') {
+      throw new Error('Component name not provided in basicRenderTest cfg')
+    }
 
     describe(`Component > ${component.name}`, () => {
       it('renders correctly', () => {
@@ -38,16 +42,33 @@ export function basicRenderTest (components) {
 
         if (Array.isArray(component.toBeCalledFns)) {
           component.toBeCalledFns.forEach((fn) => {
-            expect(fn).toBeCalled()
+            expect(component.props[fn]).toBeCalled()
           })
         }
 
         if (Array.isArray(component.notToBeCalledFns)) {
           component.notToBeCalledFns.forEach((fn) => {
-            expect(fn).not.toBeCalled()
+            expect(component.props[fn]).not.toBeCalled()
           })
         }
       })
     })
   })
+}
+
+/**
+ * Creates a object to mock a module with multiple exports
+ *
+ * @param  {Array} components An array of Strings representing the named exports
+ * @return {Object}           A mock representation of the named exports
+ */
+export function mockExports (components) {
+  if (Array.isArray(components)) {
+    const mockedComponents = {}
+    for (let i = 0; i < components.length; i++) {
+      const name = components[i]
+      mockedComponents[name] = name
+    }
+    return mockedComponents
+  }
 }

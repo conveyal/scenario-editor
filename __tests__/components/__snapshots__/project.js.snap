@@ -1,4 +1,4 @@
-exports[`Project renders correctly 1`] = `
+exports[`Component > Project renders correctly 1`] = `
 <div>
   <div
     className="ProjectTitle">

@@ -1,32 +1,26 @@
-/* global describe, it, expect, jest */
+/* global jest */
 
-import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../testUtils'
+import { basicRenderTest, mockExports } from '../../testUtils/unitUtils'
 
 jest.mock('react-select', () => 'React-Select')
-jest.mock('../../lib/components/input', () => { return mockComponents(['Group']) })
+jest.mock('../../lib/components/input', () => { return mockExports(['Group']) })
 
 import SelectPatterns from '../../lib/components/select-patterns'
 
-describe('SelectPatterns', () => {
-  it('renders correctly', () => {
-    const onChangeFn = jest.fn()
-    const routePatterns = [
-      {
-        pattern_id: 1,
-        name: 'mock pattern',
-        trips: []
-      }
-    ]
-    const tree = renderer.create(
-      <SelectPatterns
-        onChange={onChangeFn}
-        routePatterns={routePatterns}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(onChangeFn).not.toBeCalled()
-  })
+const routePatterns = [
+  {
+    pattern_id: 1,
+    name: 'mock pattern',
+    trips: []
+  }
+]
+
+basicRenderTest({
+  component: SelectPatterns,
+  name: 'SelectPatterns',
+  notToBeCalledFns: ['onChange'],
+  props: {
+    onChange: jest.fn(),
+    routePatterns: routePatterns
+  }
 })

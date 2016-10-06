@@ -1,4 +1,4 @@
-exports[`FrequencyEntry renders correctly 1`] = `
+exports[`Component > FrequencyEntry renders correctly 1`] = `
 <div
   className="panel panel-default inner-panel"
   onFocus={[Function anonymous]}>

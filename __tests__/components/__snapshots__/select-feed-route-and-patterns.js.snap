@@ -1,4 +1,4 @@
-exports[`SelectFeedRouteAndPatterns renders correctly 1`] = `
+exports[`Component > SelectFeedRouteAndPatterns renders correctly 1`] = `
 <div>
   <SelectFeedAndRoutes
     feeds={Array []}

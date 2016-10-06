@@ -1,30 +1,23 @@
-/* global describe, it, expect */
-
-import React from 'react'
-import renderer from 'react-test-renderer'
+import { basicRenderTest } from '../../testUtils/unitUtils'
 
 import { Group, Button } from '../../lib/components/buttons'
 
-describe('Button', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Button
-        style='fabulous'
-        block
-        size='sm'
-        className='some-class'
-        target='_blank'
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Group', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Group justified />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
+basicRenderTest([
+  {
+    component: Button,
+    name: 'Button',
+    props: {
+      style: 'fabulous',
+      block: true,
+      size: 'sm',
+      className: 'some-class',
+      target: '_blank'
+    }
+  }, {
+    component: Group,
+    name: 'Group',
+    props: {
+      justified: true
+    }
+  }
+])

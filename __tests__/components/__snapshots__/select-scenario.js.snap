@@ -1,4 +1,4 @@
-exports[`SelectScenario renders correctly 1`] = `
+exports[`Component > SelectScenario renders correctly 1`] = `
 <Body>
   <Group>
     <React-Select

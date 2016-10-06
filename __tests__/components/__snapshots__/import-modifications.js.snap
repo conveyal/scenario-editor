@@ -1,4 +1,4 @@
-exports[`ImportModifications renders correctly 1`] = `
+exports[`Component > ImportModifications renders correctly 1`] = `
 <Panel>
   <Heading>
     Import modifications from another scenario

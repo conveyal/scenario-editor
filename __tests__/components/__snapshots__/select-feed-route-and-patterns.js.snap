@@ -1,0 +1,9 @@
+exports[`Component > SelectFeedRouteAndPatterns renders correctly 1`] = `
+<div>
+  <SelectFeedAndRoutes
+    feeds={Array []}
+    onChange={[Function anonymous]}
+    selectedFeed={undefined}
+    selectedRouteId={undefined} />
+</div>
+`;

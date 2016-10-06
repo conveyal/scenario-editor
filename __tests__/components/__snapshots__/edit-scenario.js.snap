@@ -1,0 +1,48 @@
+exports[`Component > EditScenario renders correctly 1`] = `
+<Panel>
+  <Heading>
+    Create new scenario
+  </Heading>
+  <Body>
+    <Text
+      name="Scenario name"
+      onChange={[Function onChange]}
+      value="Mock Scenario" />
+    <Group>
+      <React-Select
+        clearable={false}
+        onChange={[Function onChange]}
+        options={
+          Array [
+            Object {
+              "label": "B1",
+              "value": 1
+            },
+            Object {
+              "label": "B2",
+              "value": 2
+            }
+          ]
+        }
+        placeholder="Select a bundle..."
+        value={undefined} />
+    </Group>
+    <Button
+      block={true}
+      onClick={undefined}
+      style="success">
+      <Icon
+        type="plus" />
+       
+      Create a bundle
+    </Button>
+    <Button
+      block={true}
+      disabled={true}
+      onClick={[Function anonymous]}
+      style="success">
+      Create new scenario
+    </Button>
+  </Body>
+</Panel>
+`;

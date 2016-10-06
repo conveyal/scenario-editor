@@ -1,4 +1,4 @@
-exports[`Button renders correctly 1`] = `
+exports[`Component > Button renders correctly 1`] = `
 <a
   className="btn btn-fabulous btn-block btn-sm some-class"
   href="#"
@@ -6,7 +6,7 @@ exports[`Button renders correctly 1`] = `
   target="_blank" />
 `;
 
-exports[`Group renders correctly 1`] = `
+exports[`Component > Group renders correctly 1`] = `
 <div
   className="btn-group btn-group-justified" />
 `;

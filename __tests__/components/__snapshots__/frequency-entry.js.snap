@@ -1,0 +1,43 @@
+exports[`Component > FrequencyEntry renders correctly 1`] = `
+<div
+  className="panel panel-default inner-panel"
+  onFocus={[Function anonymous]}>
+  <div
+    className="panel-heading clearfix">
+    <strong>
+      mock timetable
+    </strong>
+    <Button
+      className="pull-right"
+      onClick={[Function mockConstructor]}
+      size="sm"
+      style="danger"
+      title="Delete frequency entry">
+      <Icon
+        type="close" />
+    </Button>
+  </div>
+  <div
+    className="panel-body">
+    <Text
+      name="Name"
+      onChange={[Function anonymous]}
+      value="mock timetable" />
+    <SelectTrip
+      feed={Object {}}
+      onChange={[Function anonymous]}
+      patternTrips="mockPatternTrips"
+      routes={Array []}
+      trip="mockSourceTrip" />
+    <TimetableEntry
+      replaceTimetable={[Function mockConstructor]}
+      timetable={
+        Object {
+          "name": "mock timetable",
+          "patternTrips": "mockPatternTrips",
+          "sourceTrip": "mockSourceTrip"
+        }
+      } />
+  </div>
+</div>
+`;

@@ -1,33 +1,11 @@
-/* global describe, it, expect */
+import { basicRenderTest } from '../../testUtils/unitUtils'
 
-import React from 'react'
-import renderer from 'react-test-renderer'
+const panelComps = require('../../lib/components/panel')
 
-import Panel, { Heading, Body } from '../../lib/components/panel'
-
-describe('Panel', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Panel>Panel text</Panel>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Heading', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Heading>Heading text</Heading>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('Body', () => {
-  it('renders correctly', () => {
-    const tree = renderer.create(
-      <Body>Body text</Body>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
+basicRenderTest(Object.keys(panelComps).map((comp) => {
+  return {
+    children: `${comp} text`,
+    component: panelComps[comp],
+    name: comp
+  }
+}))

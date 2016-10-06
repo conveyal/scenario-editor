@@ -1,0 +1,24 @@
+exports[`Component > SelectFeedAndRoutes renders correctly 1`] = `
+<div>
+  <Group>
+    <React-Select
+      clearable={false}
+      name="Feed"
+      onChange={[Function anonymous]}
+      options={
+        Array [
+          Object {
+            "label": 1,
+            "value": 1
+          },
+          Object {
+            "label": 2,
+            "value": 2
+          }
+        ]
+      }
+      placeholder="Select feed"
+      value={undefined} />
+  </Group>
+</div>
+`;

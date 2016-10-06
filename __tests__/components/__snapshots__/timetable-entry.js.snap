@@ -1,4 +1,4 @@
-exports[`TimetableEntry renders correctly 1`] = `
+exports[`Component > TimetableEntry renders correctly 1`] = `
 <div>
   <div
     className="form-inline">

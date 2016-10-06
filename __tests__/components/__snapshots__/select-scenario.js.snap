@@ -1,0 +1,27 @@
+exports[`Component > SelectScenario renders correctly 1`] = `
+<Body>
+  <Group>
+    <React-Select
+      onChange={[Function onChange]}
+      options={
+        Array [
+          Object {
+            "label": "S1",
+            "value": 1
+          },
+          Object {
+            "label": "S2",
+            "value": 2
+          }
+        ]
+      }
+      placeholder="Select a scenario..." />
+  </Group>
+  <Button
+    block={true}
+    onClick={[Function onClick]}
+    style="success">
+    Create a new scenario
+  </Button>
+</Body>
+`;

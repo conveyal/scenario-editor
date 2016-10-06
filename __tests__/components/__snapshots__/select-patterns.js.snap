@@ -1,0 +1,22 @@
+exports[`Component > SelectPatterns renders correctly 1`] = `
+<Group>
+  <React-Select
+    multi={true}
+    name="Patterns"
+    onChange={[Function anonymous]}
+    options={
+      Array [
+        Object {
+          "label": "mock pattern",
+          "value": 1
+        }
+      ]
+    }
+    placeholder="Select patterns"
+    value={
+      Array [
+        1
+      ]
+    } />
+</Group>
+`;

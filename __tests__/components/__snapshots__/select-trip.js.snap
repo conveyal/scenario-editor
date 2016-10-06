@@ -1,0 +1,17 @@
+exports[`Component > SelectTrip renders correctly 1`] = `
+<Group>
+  <React-Select
+    name="Trip"
+    onChange={[Function anonymous]}
+    options={
+      Array [
+        Object {
+          "label": "The Express , starting 03:26 (21 minute trip)",
+          "value": "abcd"
+        }
+      ]
+    }
+    placeholder="Select Trip"
+    value="abcd" />
+</Group>
+`;

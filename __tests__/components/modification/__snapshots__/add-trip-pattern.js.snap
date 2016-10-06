@@ -1,4 +1,4 @@
-exports[`AddTripPattern renders correctly 1`] = `
+exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
 <div>
   <Button
     block={true}

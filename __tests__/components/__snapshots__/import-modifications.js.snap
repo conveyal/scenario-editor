@@ -1,0 +1,24 @@
+exports[`Component > ImportModifications renders correctly 1`] = `
+<Panel>
+  <Heading>
+    Import modifications from another scenario
+  </Heading>
+  <Body>
+    <div
+      className="form-group">
+      <React-Select
+        onChange={[Function anonymous]}
+        options={undefined}
+        placeholder="Select a scenario..."
+        value={undefined} />
+    </div>
+    <Button
+      block={true}
+      disabled={true}
+      onClick={[Function anonymous]}
+      style="success">
+      Import modifications
+    </Button>
+  </Body>
+</Panel>
+`;

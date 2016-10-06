@@ -1,0 +1,11 @@
+exports[`Component > DirectionIcon renders correctly 1`] = `
+<Marker
+  clickable={true}
+  icon={LeafletDirectionIcon {}}
+  position={
+    Array [
+      34,
+      12
+    ]
+  } />
+`;

@@ -1,0 +1,13 @@
+exports[`Component > Modal renders correctly 1`] = `
+<ReactModal
+  isOpen={true}
+  onRequestClose={[Function mockConstructor]}
+  shouldCloseOnOverlayClick={true}
+  style={
+    Object {
+      "overlay": Object {
+        "zIndex": 2500
+      }
+    }
+  } />
+`;

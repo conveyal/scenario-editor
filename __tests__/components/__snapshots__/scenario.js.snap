@@ -1,4 +1,4 @@
-exports[`Scenario renders correctly 1`] = `
+exports[`Component > Scenario renders correctly 1`] = `
 <div
   className="Scenario">
   <div

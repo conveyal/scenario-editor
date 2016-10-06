@@ -1,4 +1,4 @@
-exports[`SelectStops renders correctly with no feed data 1`] = `
+exports[`Component > SelectStops renders correctly 1`] = `
 <div>
   <div
     className="form-group">

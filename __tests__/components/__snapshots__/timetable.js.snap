@@ -1,4 +1,4 @@
-exports[`Timetable renders correctly 1`] = `
+exports[`Component > Timetable renders correctly 1`] = `
 <section
   className="panel panel-default inner-panel">
   <div

@@ -1,0 +1,27 @@
+exports[`Component > SelectProject renders correctly 1`] = `
+<Body>
+  <Group>
+    <ReactSelect
+      onChange={[Function onChange]}
+      options={
+        Array [
+          Object {
+            "label": "P1",
+            "value": 1
+          },
+          Object {
+            "label": "P2",
+            "value": 2
+          }
+        ]
+      }
+      placeholder="Select a project..." />
+  </Group>
+  <Button
+    block={true}
+    onClick={[Function mockConstructor]}
+    style="success">
+    Create a new project
+  </Button>
+</Body>
+`;

@@ -1,31 +1,26 @@
-/* global describe, it, expect, jest */
-
-import React from 'react'
-import renderer from 'react-test-renderer'
+/* global jest */
 
 import { mockComponents } from '../../testUtils'
+import { basicRenderTest } from '../../testUtils/unitUtils'
 
-jest.mock('react-select', () => 'React-Select')
+jest.mock('react-select', () => 'ReactSelect')
 jest.mock('../../lib/components/buttons', () => { return mockComponents(['Button']) })
 jest.mock('../../lib/components/input', () => { return mockComponents(['Group']) })
 jest.mock('../../lib/components/panel', () => { return mockComponents(['Body']) })
 
 import SelectProject from '../../lib/components/select-project'
 
-describe('SelectProject', () => {
-  it('renders correctly', () => {
-    const createFn = jest.fn()
-    const mockProjects = [{ id: 1, name: 'P1' }, { id: 2, name: 'P2' }]
-    const pushFn = jest.fn()
-    const tree = renderer.create(
-      <SelectProject
-        create={createFn}
-        projects={mockProjects}
-        push={pushFn}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(createFn).not.toBeCalled()
-    expect(pushFn).not.toBeCalled()
-  })
+const createFn = jest.fn()
+const mockProjects = [{ id: 1, name: 'P1' }, { id: 2, name: 'P2' }]
+const pushFn = jest.fn()
+
+basicRenderTest({
+  component: SelectProject,
+  name: 'SelectProject',
+  notToBeCalledFns: [createFn, pushFn],
+  props: {
+    create: createFn,
+    projects: mockProjects,
+    push: pushFn
+  }
 })

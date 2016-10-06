@@ -1,5 +1,5 @@
-exports[`Modal renders correctly 1`] = `
-<React-Modal
+exports[`Component > Modal renders correctly 1`] = `
+<ReactModal
   isOpen={true}
   onRequestClose={[Function mockConstructor]}
   shouldCloseOnOverlayClick={true}
@@ -9,7 +9,5 @@ exports[`Modal renders correctly 1`] = `
         "zIndex": 2500
       }
     }
-  }>
-  Modal content
-</React-Modal>
+  } />
 `;

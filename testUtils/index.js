@@ -1,5 +1,5 @@
 export function mockComponents (components) {
-  if (components instanceof Array) {
+  if (Array.isArray(components)) {
     const mockedComponents = {}
     for (let i = 0; i < components.length; i++) {
       const name = components[i]

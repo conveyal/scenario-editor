@@ -1,21 +1,18 @@
-/* global describe, it, expect, jest */
+/* global jest */
 
-import React from 'react'
-import renderer from 'react-test-renderer'
+import { basicRenderTest } from '../../testUtils/unitUtils'
 
-jest.mock('react-modal', () => 'React-Modal')
+jest.mock('react-modal', () => 'ReactModal')
 
 import Modal from '../../lib/components/modal'
 
-describe('Modal', () => {
-  it('renders correctly', () => {
-    const onRequestCloseFn = jest.fn()
-    const tree = renderer.create(
-      <Modal onRequestClose={onRequestCloseFn}>
-        Modal content
-      </Modal>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(onRequestCloseFn).not.toBeCalled()
-  })
+const onRequestCloseFn = jest.fn()
+
+basicRenderTest({
+  component: Modal,
+  name: 'Modal',
+  notToBeCalledFns: [onRequestCloseFn],
+  props: {
+    onRequestClose: onRequestCloseFn
+  }
 })

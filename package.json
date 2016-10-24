@@ -25,7 +25,7 @@
   "homepage": "https://github.com/conveyal/scenario-editor#readme",
   "dependencies": {
     "auth0-js": "^7.1.0",
-    "auth0-lock": "^10.2.2",
+    "auth0-lock": "^10.5.0",
     "bootstrap": "^3.3.6",
     "browsochrones": "^0.7.1",
     "color": "^0.11.3",

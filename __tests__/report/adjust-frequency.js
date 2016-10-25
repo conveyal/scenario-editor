@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
 
-import { mockFeed, mockModification } from '../../test-utils/mock-data'
-import Leaflet from '../../test-utils/mock-leaflet'
+import { mockFeed, mockModification } from '../test-utils/mock-data'
+import Leaflet from '../test-utils/mock-leaflet'
 
 import AdjustFrequency from '../../lib/report/adjust-frequency'
 

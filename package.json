@@ -11,7 +11,9 @@
     "docs": "cd docs && mkdocs serve",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run build -- --serve --proxy http://localhost:7070/api",
-    "test": "mastarm lint && NODE_ENV=test mastarm test"
+    "pretest": "node __tests__/test-utils/setup-teardown.js setup",
+    "test": "mastarm lint && NODE_ENV=test mastarm test",
+    "posttest": "node __tests__/test-utils/setup-teardown.js teardown"
   },
   "repository": {
     "type": "git",
@@ -72,8 +74,10 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
+    "buffer-equal-constant-time": "^1.0.1",
     "enzyme": "^2.5.1",
     "enzyme-to-json": "^1.1.3",
+    "fs-extra": "^0.30.0",
     "lodash.assign": "^4.2.0",
     "lodash.uniqueid": "^4.0.1",
     "mastarm": "^1.3.0",
@@ -84,6 +88,7 @@
     "redux-devtools": "^3.3.1",
     "redux-logger": "^2.6.1",
     "redux-mock-store": "^1.2.1",
+    "rimraf": "^2.5.4",
     "semantic-release": "^4.3.5"
   }
 }

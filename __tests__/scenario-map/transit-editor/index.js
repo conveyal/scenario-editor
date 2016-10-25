@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
 
-import Leaflet from '../../../test-utils/mock-leaflet'
-import { mockFeed, mockModification, mockSegment, mockStops } from '../../../test-utils/mock-data.js'
+import Leaflet from '../../test-utils/mock-leaflet'
+import { mockFeed, mockModification, mockSegment, mockStops } from '../../test-utils/mock-data.js'
 
 import TransitEditor from '../../../lib/scenario-map/transit-editor/'
 

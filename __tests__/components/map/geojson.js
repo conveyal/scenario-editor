@@ -1,7 +1,7 @@
 /* global describe, it, expect */
 
 import { mount } from 'enzyme'
-import Leaflet from '../../../test-utils/mock-leaflet'
+import Leaflet from '../../test-utils/mock-leaflet'
 import React from 'react'
 import { Map } from 'react-leaflet'
 

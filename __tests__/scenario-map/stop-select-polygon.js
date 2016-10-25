@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
 
-import { mockStops, mockModification } from '../../test-utils/mock-data'
-import { drawMock } from '../../test-utils/mock-leaflet'
+import { mockStops, mockModification } from '../test-utils/mock-data'
+import { drawMock } from '../test-utils/mock-leaflet'
 
 import StopSelectPolygon from '../../lib/scenario-map/stop-select-polygon'
 

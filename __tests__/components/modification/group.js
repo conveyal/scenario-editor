@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
 
-import { mockModification } from '../../../test-utils/mock-data'
+import { mockModification } from '../../test-utils/mock-data'
 
 import ModificationGroup from '../../../lib/components/modification/group'
 

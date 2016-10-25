@@ -3,7 +3,7 @@
 import { mount } from 'enzyme'
 import React from 'react'
 
-import Leaflet from '../../test-utils/mock-leaflet'
+import Leaflet from '../test-utils/mock-leaflet'
 
 import MiniMap from '../../lib/report/mini-map'
 

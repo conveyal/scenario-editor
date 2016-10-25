@@ -1,3 +1,9 @@
+import multi from 'mastarm/react/store/multi'
+import configureStore from 'redux-mock-store'
+import promise from 'redux-promise'
+
+export const makeMockStore = configureStore([multi, promise])
+
 export const mockSegmentGeom = {
   type: 'LineString',
   coordinates: [
@@ -116,4 +122,71 @@ export const mockModification = {
   showOnMap: false,
   timetables: [mockTimetable],
   trips: ['abcd']
+}
+
+export const mockProject = {
+  bounds: {
+    north: 39,
+    east: -76,
+    south: 38,
+    west: -77
+  },
+  description: 'Project description',
+  id: '1',
+  name: 'Mock Project'
+}
+
+export const mockScenario = {
+  bundleId: '1',
+  id: '1',
+  name: 'Mock Scenario',
+  projectId: '1',
+  variants: ['Default']
+}
+
+export const mockStores = {
+  init: {
+    analysis: {
+      isFetchingIsochrone: false,
+      isochroneCutoff: 60
+    },
+    mapState: {
+      activeTrips: [],
+      center: {
+        lat: 38.8886,
+        lng: -77.043
+      },
+      components: [],
+      zoom: 12
+    },
+    network: {
+      error: null,
+      outstandingRequests: 0
+    },
+    project: {
+      currentProject: null,
+      projects: [],
+      projectsById: {}
+    },
+    routing: {
+      locationBeforeTransitions: null
+    },
+    scenario: {
+      bundles: [],
+      bundlesById: {},
+      currentBundle: null,
+      currentScenario: null,
+      feeds: [],
+      feedsById: {},
+      modifications: [],
+      modificationsById: {},
+      modificationsByType: {},
+      scenarios: [],
+      scenariosById: {},
+      variants: []
+    },
+    user: {
+      idToken: null
+    }
+  }
 }

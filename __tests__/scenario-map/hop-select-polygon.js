@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
 
-import { mockFeed, mockModification } from '../../test-utils/mock-data'
-import { drawMock } from '../../test-utils/mock-leaflet'
+import { mockFeed, mockModification } from '../test-utils/mock-data'
+import { drawMock } from '../test-utils/mock-leaflet'
 
 import HopSelectPolygon from '../../lib/scenario-map/hop-select-polygon'
 

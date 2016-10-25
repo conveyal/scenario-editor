@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
 
-import { mockFeed, mockModification } from '../../../test-utils/mock-data'
+import { mockFeed, mockModification } from '../../test-utils/mock-data'
 
 import AdjustDwellTime from '../../../lib/components/modification/adjust-dwell-time'
 

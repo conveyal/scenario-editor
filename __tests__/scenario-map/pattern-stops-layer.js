@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
 
-import { mockFeed, mockModification } from '../../test-utils/mock-data'
-import Leaflet from '../../test-utils/mock-leaflet'
+import { mockFeed, mockModification } from '../test-utils/mock-data'
+import Leaflet from '../test-utils/mock-leaflet'
 
 import PatternStopsLayer from '../../lib/scenario-map/pattern-stops-layer'
 

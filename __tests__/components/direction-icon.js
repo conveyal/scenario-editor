@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
 
-import Leaflet from '../../test-utils/mock-leaflet'
+import Leaflet from '../test-utils/mock-leaflet'
 
 import DirectionIcon from '../../lib/components/direction-icon'
 

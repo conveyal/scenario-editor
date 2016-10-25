@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
 
-import { mockMapState, mockModification } from '../../../test-utils/mock-data'
+import { mockMapState, mockModification } from '../../test-utils/mock-data'
 
 import AddTripPattern from '../../../lib/components/modification/add-trip-pattern'
 

@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
 
-import { mockSegment } from '../../test-utils/mock-data'
-import Leaflet from '../../test-utils/mock-leaflet'
+import { mockSegment } from '../test-utils/mock-data'
+import Leaflet from '../test-utils/mock-leaflet'
 
 import AddTripPatternLayer from '../../lib/scenario-map/add-trip-pattern-layer'
 

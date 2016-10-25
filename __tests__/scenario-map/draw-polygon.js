@@ -1,6 +1,6 @@
 /* global describe, it, jest */
 
-import { drawMock } from '../../test-utils/mock-leaflet'
+import { drawMock } from '../test-utils/mock-leaflet'
 
 import DrawPolygon from '../../lib/scenario-map/draw-polygon'
 

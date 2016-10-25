@@ -41,11 +41,12 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# Yarn lock file
-yarn.lock
-
 # Configurations
 configurations/*
 !configurations/default
 dist
 assets
+
+# Secret config files
+env.yml
+env.yml-original

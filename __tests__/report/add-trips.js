@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
 
-import { mockModification, mockSegment } from '../../test-utils/mock-data'
-import Leaflet from '../../test-utils/mock-leaflet'
+import { mockModification, mockSegment } from '../test-utils/mock-data'
+import Leaflet from '../test-utils/mock-leaflet'
 
 import AddTrips from '../../lib/report/add-trips'
 

@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
 
-import { mockFeed, mockTimetable } from '../../test-utils/mock-data'
+import { mockFeed, mockTimetable } from '../test-utils/mock-data'
 
 import FrequencyEntry from '../../lib/components/frequency-entry'
 

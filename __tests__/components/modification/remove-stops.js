@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
 
-import { mockFeed } from '../../../test-utils/mock-data'
+import { mockFeed } from '../../test-utils/mock-data'
 
 import RemoveStops from '../../../lib/components/modification/remove-stops'
 

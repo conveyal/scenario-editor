@@ -1,14 +1,16 @@
 sudo: false
 language: node_js
+cache:
+  directories:
+    - ~/.yarn-cache
 notifications:
   email: false
 node_js:
   - '6'
 before_install:
-  - npm i -g npm@^3
+  - npm i -g codecov
 install:
-  - npm i
-  - npm install -g codecov
+  - yarn
 before_script:
   - npm prune
 script:

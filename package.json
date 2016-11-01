@@ -29,7 +29,7 @@
     "auth0-js": "^7.1.0",
     "auth0-lock": "^10.2.2",
     "bootstrap": "^3.3.6",
-    "browsochrones": "^0.7.1",
+    "browsochrones": "^0.8.0",
     "color": "^0.11.3",
     "crc": "^3.4.0",
     "debug": "^2.2.0",

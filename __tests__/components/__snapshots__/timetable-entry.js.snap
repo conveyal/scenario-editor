@@ -168,7 +168,6 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
             value={15}>
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="Frequency (minutes)"
               type="number"
@@ -199,7 +198,6 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
             value="08:00">
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="Start time"
               type="time"
@@ -230,7 +228,6 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
             value="16:00">
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="End time"
               type="time"

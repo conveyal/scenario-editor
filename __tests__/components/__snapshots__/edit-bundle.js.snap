@@ -68,8 +68,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
               <a
                 className="btn btn-danger btn-block"
                 href="#"
-                onClick={[Function]}
-                target={undefined}>
+                onClick={[Function]}>
                 <Icon
                   type="trash">
                   <i

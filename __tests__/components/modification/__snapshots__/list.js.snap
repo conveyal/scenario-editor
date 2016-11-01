@@ -30,7 +30,6 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
               "name": "Test Scenario",
             }
           }
-          feeds={undefined}
           modifications={Array []}
           projectId="1"
           saveScenario={[Function]}

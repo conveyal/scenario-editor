@@ -33,11 +33,9 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                   type="file">
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Select Shapefile (zipped):"
-                    type="file"
-                    value={undefined} />
+                    type="file" />
                 </Input>
               </div>
             </Group>
@@ -51,8 +49,7 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
               className="btn btn-success btn-block"
               disabled={true}
               href="#"
-              onClick={[Function]}
-              target={undefined}>
+              onClick={[Function]}>
               Import
             </a>
           </Button>
@@ -63,8 +60,7 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
             <a
               className="btn btn-danger btn-block"
               href="#"
-              onClick={[Function]}
-              target={undefined}>
+              onClick={[Function]}>
               Cancel
             </a>
           </Button>

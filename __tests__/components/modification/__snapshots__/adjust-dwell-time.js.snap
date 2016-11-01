@@ -947,20 +947,17 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                   searchable={true}
                   simpleValue={false}
                   tabSelectsValue={true}
-                  value={undefined}
                   valueComponent={[Function]}
                   valueKey="value">
                   <div
-                    className="Select Select--single is-searchable"
-                    style={undefined}>
+                    className="Select Select--single is-searchable">
                     <div
                       className="Select-control"
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                       onTouchMove={[Function]}
-                      onTouchStart={[Function]}
-                      style={undefined}>
+                      onTouchStart={[Function]}>
                       <span
                         className="Select-multi-value-wrapper"
                         id="react-select-2--value">
@@ -972,8 +969,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                           aria-activedescendant="react-select-2--value"
                           aria-expanded="false"
                           aria-haspopup="false"
-                          aria-label={undefined}
-                          aria-labelledby={undefined}
                           aria-owns=""
                           className="Select-input"
                           minWidth="5px"
@@ -982,7 +977,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                           onFocus={[Function]}
                           required={false}
                           role="combobox"
-                          tabIndex={undefined}
                           value="">
                           <div
                             className="Select-input"
@@ -995,10 +989,7 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                               aria-activedescendant="react-select-2--value"
                               aria-expanded="false"
                               aria-haspopup="false"
-                              aria-label={undefined}
-                              aria-labelledby={undefined}
                               aria-owns=""
-                              className={undefined}
                               onBlur={[Function]}
                               onChange={[Function]}
                               onFocus={[Function]}
@@ -1010,7 +1001,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                                   "width": "5pxpx",
                                 }
                               }
-                              tabIndex={undefined}
                               value="" />
                             <div
                               style={
@@ -1092,16 +1082,14 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                   valueComponent={[Function]}
                   valueKey="value">
                   <div
-                    className="Select Select--single is-searchable"
-                    style={undefined}>
+                    className="Select Select--single is-searchable">
                     <div
                       className="Select-control"
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                       onTouchMove={[Function]}
-                      onTouchStart={[Function]}
-                      style={undefined}>
+                      onTouchStart={[Function]}>
                       <span
                         className="Select-multi-value-wrapper"
                         id="react-select-3--value">
@@ -1113,8 +1101,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                           aria-activedescendant="react-select-3--value"
                           aria-expanded="false"
                           aria-haspopup="false"
-                          aria-label={undefined}
-                          aria-labelledby={undefined}
                           aria-owns=""
                           className="Select-input"
                           minWidth="5px"
@@ -1123,7 +1109,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                           onFocus={[Function]}
                           required={false}
                           role="combobox"
-                          tabIndex={undefined}
                           value="">
                           <div
                             className="Select-input"
@@ -1136,10 +1121,7 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                               aria-activedescendant="react-select-3--value"
                               aria-expanded="false"
                               aria-haspopup="false"
-                              aria-label={undefined}
-                              aria-labelledby={undefined}
                               aria-owns=""
-                              className={undefined}
                               onBlur={[Function]}
                               onChange={[Function]}
                               onFocus={[Function]}
@@ -1151,7 +1133,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                                   "width": "5pxpx",
                                 }
                               }
-                              tabIndex={undefined}
                               value="" />
                             <div
                               style={
@@ -1304,16 +1285,14 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                 valueComponent={[Function]}
                 valueKey="value">
                 <div
-                  className="Select Select--multi is-searchable"
-                  style={undefined}>
+                  className="Select Select--multi is-searchable">
                   <div
                     className="Select-control"
                     onKeyDown={[Function]}
                     onMouseDown={[Function]}
                     onTouchEnd={[Function]}
                     onTouchMove={[Function]}
-                    onTouchStart={[Function]}
-                    style={undefined}>
+                    onTouchStart={[Function]}>
                     <span
                       className="Select-multi-value-wrapper"
                       id="react-select-4--value">
@@ -1325,8 +1304,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                         aria-activedescendant="react-select-4--value"
                         aria-expanded="false"
                         aria-haspopup="false"
-                        aria-label={undefined}
-                        aria-labelledby={undefined}
                         aria-owns=""
                         className="Select-input"
                         minWidth="5px"
@@ -1335,7 +1312,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                         onFocus={[Function]}
                         required={false}
                         role="combobox"
-                        tabIndex={undefined}
                         value="">
                         <div
                           className="Select-input"
@@ -1348,10 +1324,7 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                             aria-activedescendant="react-select-4--value"
                             aria-expanded="false"
                             aria-haspopup="false"
-                            aria-label={undefined}
-                            aria-labelledby={undefined}
                             aria-owns=""
-                            className={undefined}
                             onBlur={[Function]}
                             onChange={[Function]}
                             onFocus={[Function]}
@@ -1363,7 +1336,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
                                 "width": "5pxpx",
                               }
                             }
-                            tabIndex={undefined}
                             value="" />
                           <div
                             style={
@@ -1633,7 +1605,6 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
       <label
         className="radio-inline">
         <input
-          checked={undefined}
           onChange={[Function]}
           type="radio"
           value="scale" />
@@ -1648,24 +1619,18 @@ exports[`Component > Modification > AdjustDwellTime renders correctly 1`] = `
       </label>
     </div>
     <Number
-      onChange={[Function]}
-      value={undefined}>
+      onChange={[Function]}>
       <Group
-        onChange={[Function]}
-        value={undefined}>
+        onChange={[Function]}>
         <div
           className="form-group">
           <Input
             onChange={[Function]}
-            type="number"
-            value={undefined}>
+            type="number">
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
-              placeholder={undefined}
-              type="number"
-              value={undefined} />
+              type="number" />
           </Input>
         </div>
       </Group>

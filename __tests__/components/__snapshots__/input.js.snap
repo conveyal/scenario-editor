@@ -17,13 +17,11 @@ exports[`Component > File renders correctly 1`] = `
 <File
   label="Select files"
   multiple={true}
-  name="files"
-  value={undefined}>
+  name="files">
   <Group
     label="Select files"
     multiple={true}
-    name="files"
-    value={undefined}>
+    name="files">
     <div
       className="form-group">
       <label>
@@ -33,16 +31,14 @@ exports[`Component > File renders correctly 1`] = `
         label="Select files"
         multiple={true}
         name="files"
-        type="file"
-        value={undefined}>
+        type="file">
         <input
           className="form-control"
           multiple={true}
           name="files"
           onChange={[Function]}
           placeholder="Select files"
-          type="file"
-          value={undefined} />
+          type="file" />
       </Input>
     </div>
   </Group>

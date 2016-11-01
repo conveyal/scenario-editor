@@ -430,10 +430,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
           },
         ]
       }
-      onChange={[Function]}
-      routes={undefined}
-      selectedFeed={undefined}
-      trips={undefined}>
+      onChange={[Function]}>
       <div>
         <SelectFeedAndRoutes
           feeds={
@@ -576,9 +573,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
               },
             ]
           }
-          onChange={[Function]}
-          selectedFeed={undefined}
-          selectedRouteId={undefined}>
+          onChange={[Function]}>
           <div>
             <Group>
               <div
@@ -629,20 +624,17 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                   searchable={true}
                   simpleValue={false}
                   tabSelectsValue={true}
-                  value={undefined}
                   valueComponent={[Function]}
                   valueKey="value">
                   <div
-                    className="Select Select--single is-searchable"
-                    style={undefined}>
+                    className="Select Select--single is-searchable">
                     <div
                       className="Select-control"
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                       onTouchMove={[Function]}
-                      onTouchStart={[Function]}
-                      style={undefined}>
+                      onTouchStart={[Function]}>
                       <span
                         className="Select-multi-value-wrapper"
                         id="react-select-2--value">
@@ -654,8 +646,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                           aria-activedescendant="react-select-2--value"
                           aria-expanded="false"
                           aria-haspopup="false"
-                          aria-label={undefined}
-                          aria-labelledby={undefined}
                           aria-owns=""
                           className="Select-input"
                           minWidth="5px"
@@ -664,7 +654,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                           onFocus={[Function]}
                           required={false}
                           role="combobox"
-                          tabIndex={undefined}
                           value="">
                           <div
                             className="Select-input"
@@ -677,10 +666,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                               aria-activedescendant="react-select-2--value"
                               aria-expanded="false"
                               aria-haspopup="false"
-                              aria-label={undefined}
-                              aria-labelledby={undefined}
                               aria-owns=""
-                              className={undefined}
                               onBlur={[Function]}
                               onChange={[Function]}
                               onFocus={[Function]}
@@ -692,7 +678,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                                   "width": "5pxpx",
                                 }
                               }
-                              tabIndex={undefined}
                               value="" />
                             <div
                               style={
@@ -727,12 +712,10 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
     </SelectFeedRouteAndPatterns>
     <Number
       label="Speed (km/h):"
-      onChange={[Function]}
-      value={undefined}>
+      onChange={[Function]}>
       <Group
         label="Speed (km/h):"
-        onChange={[Function]}
-        value={undefined}>
+        onChange={[Function]}>
         <div
           className="form-group">
           <label>
@@ -741,15 +724,12 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
           <Input
             label="Speed (km/h):"
             onChange={[Function]}
-            type="number"
-            value={undefined}>
+            type="number">
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="Speed (km/h):"
-              type="number"
-              value={undefined} />
+              type="number" />
           </Input>
         </div>
       </Group>
@@ -757,13 +737,11 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
     <Number
       label="Dwell time (seconds):"
       onChange={[Function]}
-      step={1}
-      value={undefined}>
+      step={1}>
       <Group
         label="Dwell time (seconds):"
         onChange={[Function]}
-        step={1}
-        value={undefined}>
+        step={1}>
         <div
           className="form-group">
           <label>
@@ -773,16 +751,13 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
             label="Dwell time (seconds):"
             onChange={[Function]}
             step={1}
-            type="number"
-            value={undefined}>
+            type="number">
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="Dwell time (seconds):"
               step={1}
-              type="number"
-              value={undefined} />
+              type="number" />
           </Input>
         </div>
       </Group>
@@ -807,7 +782,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
             value={0}>
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="Length of segment (mins)"
               type="number"
@@ -823,8 +797,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       <a
         className="btn btn-warning btn-block"
         href="#"
-        onClick={[Function]}
-        target={undefined}>
+        onClick={[Function]}>
         <Icon
           type="pencil">
           <i
@@ -866,7 +839,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
             value={400}>
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="Stop spacing (meters)"
               type="number"

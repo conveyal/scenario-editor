@@ -203,8 +203,7 @@ exports[`Component > SelectTrip renders correctly 1`] = `
         valueComponent={[Function]}
         valueKey="value">
         <div
-          className="Select Select--single is-searchable has-value"
-          style={undefined}>
+          className="Select Select--single is-searchable has-value">
           <input
             disabled={false}
             name="Trip"
@@ -216,8 +215,7 @@ exports[`Component > SelectTrip renders correctly 1`] = `
             onMouseDown={[Function]}
             onTouchEnd={[Function]}
             onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            style={undefined}>
+            onTouchStart={[Function]}>
             <span
               className="Select-multi-value-wrapper"
               id="react-select-2--value">
@@ -233,9 +231,7 @@ exports[`Component > SelectTrip renders correctly 1`] = `
                   }
                 }>
                 <div
-                  className="Select-value"
-                  style={undefined}
-                  title={undefined}>
+                  className="Select-value">
                   <span
                     aria-selected="true"
                     className="Select-value-label"
@@ -249,8 +245,6 @@ exports[`Component > SelectTrip renders correctly 1`] = `
                 aria-activedescendant="react-select-2--value"
                 aria-expanded="false"
                 aria-haspopup="false"
-                aria-label={undefined}
-                aria-labelledby={undefined}
                 aria-owns=""
                 className="Select-input"
                 minWidth="5px"
@@ -259,7 +253,6 @@ exports[`Component > SelectTrip renders correctly 1`] = `
                 onFocus={[Function]}
                 required={false}
                 role="combobox"
-                tabIndex={undefined}
                 value="">
                 <div
                   className="Select-input"
@@ -272,10 +265,7 @@ exports[`Component > SelectTrip renders correctly 1`] = `
                     aria-activedescendant="react-select-2--value"
                     aria-expanded="false"
                     aria-haspopup="false"
-                    aria-label={undefined}
-                    aria-labelledby={undefined}
                     aria-owns=""
-                    className={undefined}
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
@@ -287,7 +277,6 @@ exports[`Component > SelectTrip renders correctly 1`] = `
                         "width": "5pxpx",
                       }
                     }
-                    tabIndex={undefined}
                     value="" />
                   <div
                     style={

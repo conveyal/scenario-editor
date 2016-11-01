@@ -426,7 +426,6 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
         ]
       }
       onChange={[Function]}
-      selectedFeed={undefined}
       selectedRouteId={null}>
       <div>
         <Group>
@@ -478,20 +477,17 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
               searchable={true}
               simpleValue={false}
               tabSelectsValue={true}
-              value={undefined}
               valueComponent={[Function]}
               valueKey="value">
               <div
-                className="Select Select--single is-searchable"
-                style={undefined}>
+                className="Select Select--single is-searchable">
                 <div
                   className="Select-control"
                   onKeyDown={[Function]}
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                   onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  style={undefined}>
+                  onTouchStart={[Function]}>
                   <span
                     className="Select-multi-value-wrapper"
                     id="react-select-2--value">
@@ -503,8 +499,6 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
                       aria-activedescendant="react-select-2--value"
                       aria-expanded="false"
                       aria-haspopup="false"
-                      aria-label={undefined}
-                      aria-labelledby={undefined}
                       aria-owns=""
                       className="Select-input"
                       minWidth="5px"
@@ -513,7 +507,6 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
                       onFocus={[Function]}
                       required={false}
                       role="combobox"
-                      tabIndex={undefined}
                       value="">
                       <div
                         className="Select-input"
@@ -526,10 +519,7 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
                           aria-activedescendant="react-select-2--value"
                           aria-expanded="false"
                           aria-haspopup="false"
-                          aria-label={undefined}
-                          aria-labelledby={undefined}
                           aria-owns=""
-                          className={undefined}
                           onBlur={[Function]}
                           onChange={[Function]}
                           onFocus={[Function]}
@@ -541,7 +531,6 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
                               "width": "5pxpx",
                             }
                           }
-                          tabIndex={undefined}
                           value="" />
                         <div
                           style={
@@ -573,14 +562,12 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
       </div>
     </SelectFeedAndRoutes>
     <Checkbox
-      checked={undefined}
       label="Retain existing scheduled trips at times without new frequencies specified"
       onChange={[Function]}>
       <div
         className="checkbox">
         <label>
           <input
-            checked={undefined}
             onChange={[Function]}
             type="checkbox" />
         </label>
@@ -593,8 +580,7 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
       <a
         className="btn btn-success btn-block"
         href="#"
-        onClick={[Function]}
-        target={undefined}>
+        onClick={[Function]}>
         <Icon
           type="plus">
           <i

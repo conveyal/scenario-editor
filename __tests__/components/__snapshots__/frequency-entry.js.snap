@@ -186,7 +186,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
           className="btn btn-danger btn-sm pull-right"
           href="#"
           onClick={[Function]}
-          target={undefined}
           title="Delete frequency entry">
           <Icon
             type="close">
@@ -346,16 +345,14 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
               valueComponent={[Function]}
               valueKey="value">
               <div
-                className="Select Select--multi is-searchable"
-                style={undefined}>
+                className="Select Select--multi is-searchable">
                 <div
                   className="Select-control"
                   onKeyDown={[Function]}
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                   onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  style={undefined}>
+                  onTouchStart={[Function]}>
                   <span
                     className="Select-multi-value-wrapper"
                     id="react-select-2--value">
@@ -367,8 +364,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       aria-activedescendant="react-select-2--value"
                       aria-expanded="false"
                       aria-haspopup="false"
-                      aria-label={undefined}
-                      aria-labelledby={undefined}
                       aria-owns=""
                       className="Select-input"
                       minWidth="5px"
@@ -377,7 +372,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       onFocus={[Function]}
                       required={false}
                       role="combobox"
-                      tabIndex={undefined}
                       value="">
                       <div
                         className="Select-input"
@@ -390,10 +384,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                           aria-activedescendant="react-select-2--value"
                           aria-expanded="false"
                           aria-haspopup="false"
-                          aria-label={undefined}
-                          aria-labelledby={undefined}
                           aria-owns=""
-                          className={undefined}
                           onBlur={[Function]}
                           onChange={[Function]}
                           onFocus={[Function]}
@@ -405,7 +396,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                               "width": "5pxpx",
                             }
                           }
-                          tabIndex={undefined}
                           value="" />
                         <div
                           style={
@@ -655,8 +645,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
               valueComponent={[Function]}
               valueKey="value">
               <div
-                className="Select Select--single is-searchable has-value"
-                style={undefined}>
+                className="Select Select--single is-searchable has-value">
                 <input
                   disabled={false}
                   name="Trip"
@@ -668,8 +657,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                   onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  style={undefined}>
+                  onTouchStart={[Function]}>
                   <span
                     className="Select-multi-value-wrapper"
                     id="react-select-3--value">
@@ -685,9 +673,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                         }
                       }>
                       <div
-                        className="Select-value"
-                        style={undefined}
-                        title={undefined}>
+                        className="Select-value">
                         <span
                           aria-selected="true"
                           className="Select-value-label"
@@ -701,8 +687,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       aria-activedescendant="react-select-3--value"
                       aria-expanded="false"
                       aria-haspopup="false"
-                      aria-label={undefined}
-                      aria-labelledby={undefined}
                       aria-owns=""
                       className="Select-input"
                       minWidth="5px"
@@ -711,7 +695,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       onFocus={[Function]}
                       required={false}
                       role="combobox"
-                      tabIndex={undefined}
                       value="">
                       <div
                         className="Select-input"
@@ -724,10 +707,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                           aria-activedescendant="react-select-3--value"
                           aria-expanded="false"
                           aria-haspopup="false"
-                          aria-label={undefined}
-                          aria-labelledby={undefined}
                           aria-owns=""
-                          className={undefined}
                           onBlur={[Function]}
                           onChange={[Function]}
                           onFocus={[Function]}
@@ -739,7 +719,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                               "width": "5pxpx",
                             }
                           }
-                          tabIndex={undefined}
                           value="" />
                         <div
                           style={
@@ -954,7 +933,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                   value={15}>
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Frequency (minutes)"
                     type="number"
@@ -985,7 +963,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                   value="08:00">
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Start time"
                     type="time"
@@ -1016,7 +993,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                   value="16:00">
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="End time"
                     type="time"

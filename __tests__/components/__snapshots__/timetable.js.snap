@@ -40,7 +40,6 @@ exports[`Component > Timetable renders correctly 1`] = `
           className="btn btn-danger btn-sm pull-right"
           href="#"
           onClick={[Function]}
-          target={undefined}
           title="Delete timetable">
           <Icon
             type="close">
@@ -247,7 +246,6 @@ exports[`Component > Timetable renders correctly 1`] = `
                   value={15}>
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Frequency (minutes)"
                     type="number"
@@ -278,7 +276,6 @@ exports[`Component > Timetable renders correctly 1`] = `
                   value="08:00">
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Start time"
                     type="time"
@@ -309,7 +306,6 @@ exports[`Component > Timetable renders correctly 1`] = `
                   value="16:00">
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="End time"
                     type="time"
@@ -340,7 +336,6 @@ exports[`Component > Timetable renders correctly 1`] = `
               value={40}>
               <input
                 className="form-control"
-                name={undefined}
                 onChange={[Function]}
                 placeholder="Speed (km/h)"
                 type="number"
@@ -369,7 +364,6 @@ exports[`Component > Timetable renders correctly 1`] = `
               value={10}>
               <input
                 className="form-control"
-                name={undefined}
                 onChange={[Function]}
                 placeholder="Dwell time (seconds)"
                 type="number"

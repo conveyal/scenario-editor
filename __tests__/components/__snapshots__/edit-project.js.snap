@@ -50,7 +50,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                   value="Test Scenario">
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Name"
                     type="text"
@@ -79,7 +78,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                   value="A test scenario">
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Description"
                     type="text"
@@ -145,16 +143,14 @@ exports[`Component > EditProject renders correctly 1`] = `
                     valueComponent={[Function]}
                     valueKey="value">
                     <div
-                      className="Select Select--single is-searchable"
-                      style={undefined}>
+                      className="Select Select--single is-searchable">
                       <div
                         className="Select-control"
                         onKeyDown={[Function]}
                         onMouseDown={[Function]}
                         onTouchEnd={[Function]}
                         onTouchMove={[Function]}
-                        onTouchStart={[Function]}
-                        style={undefined}>
+                        onTouchStart={[Function]}>
                         <span
                           className="Select-multi-value-wrapper"
                           id="react-select-2--value">
@@ -166,8 +162,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                             aria-activedescendant="react-select-2--value"
                             aria-expanded="false"
                             aria-haspopup="false"
-                            aria-label={undefined}
-                            aria-labelledby={undefined}
                             aria-owns=""
                             className="Select-input"
                             minWidth="5px"
@@ -176,7 +170,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                             onFocus={[Function]}
                             required={false}
                             role="combobox"
-                            tabIndex={undefined}
                             value="">
                             <div
                               className="Select-input"
@@ -189,10 +182,7 @@ exports[`Component > EditProject renders correctly 1`] = `
                                 aria-activedescendant="react-select-2--value"
                                 aria-expanded="false"
                                 aria-haspopup="false"
-                                aria-label={undefined}
-                                aria-labelledby={undefined}
                                 aria-owns=""
-                                className={undefined}
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
@@ -204,7 +194,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                                     "width": "5pxpx",
                                   }
                                 }
-                                tabIndex={undefined}
                                 value="" />
                               <div
                                 style={
@@ -280,7 +269,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                   <input
                     className="form-control"
                     disabled={true}
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="North bound"
                     type="text"
@@ -310,7 +298,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                   <input
                     className="form-control"
                     disabled={true}
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="South bound"
                     type="text"
@@ -340,7 +327,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                   <input
                     className="form-control"
                     disabled={true}
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="East bound"
                     type="text"
@@ -370,7 +356,6 @@ exports[`Component > EditProject renders correctly 1`] = `
                   <input
                     className="form-control"
                     disabled={true}
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="West bound"
                     type="text"
@@ -386,8 +371,7 @@ exports[`Component > EditProject renders correctly 1`] = `
             <a
               className="btn btn-success btn-block"
               href="#"
-              onClick={[Function]}
-              target={undefined}>
+              onClick={[Function]}>
               Save project
             </a>
           </Button>
@@ -398,8 +382,7 @@ exports[`Component > EditProject renders correctly 1`] = `
             <a
               className="btn btn-danger btn-block"
               href="#"
-              onClick={[Function]}
-              target={undefined}>
+              onClick={[Function]}>
               <Icon
                 type="trash">
                 <i

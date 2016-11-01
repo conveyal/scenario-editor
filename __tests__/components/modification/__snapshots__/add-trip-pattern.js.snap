@@ -58,8 +58,7 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
       <a
         className="btn btn-warning btn-block"
         href="#"
-        onClick={[Function]}
-        target={undefined}>
+        onClick={[Function]}>
         <Icon
           type="times-circle">
           <i
@@ -129,7 +128,6 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
             value={400}>
             <input
               className="form-control"
-              name={undefined}
               onChange={[Function]}
               placeholder="Stop spacing (meters)"
               type="number"
@@ -232,7 +230,6 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
               className="btn btn-danger btn-sm pull-right"
               href="#"
               onClick={[Function]}
-              target={undefined}
               title="Delete timetable">
               <Icon
                 type="close">
@@ -439,7 +436,6 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
                       value={15}>
                       <input
                         className="form-control"
-                        name={undefined}
                         onChange={[Function]}
                         placeholder="Frequency (minutes)"
                         type="number"
@@ -470,7 +466,6 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
                       value="08:00">
                       <input
                         className="form-control"
-                        name={undefined}
                         onChange={[Function]}
                         placeholder="Start time"
                         type="time"
@@ -501,7 +496,6 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
                       value="16:00">
                       <input
                         className="form-control"
-                        name={undefined}
                         onChange={[Function]}
                         placeholder="End time"
                         type="time"
@@ -532,7 +526,6 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
                   value={40}>
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Speed (km/h)"
                     type="number"
@@ -561,7 +554,6 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
                   value={10}>
                   <input
                     className="form-control"
-                    name={undefined}
                     onChange={[Function]}
                     placeholder="Dwell time (seconds)"
                     type="number"
@@ -580,8 +572,7 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
       <a
         className="btn btn-success btn-block"
         href="#"
-        onClick={[Function]}
-        target={undefined}>
+        onClick={[Function]}>
         <Icon
           type="plus">
           <i

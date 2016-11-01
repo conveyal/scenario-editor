@@ -65,8 +65,7 @@ exports[`Report > Reroute renders correctly 1`] = `
         Speed over new segment
       </th>
       <td>
-        <Speed
-          kmh={undefined}>
+        <Speed>
           <span>
             NaN km/h (NaN mph)
           </span>

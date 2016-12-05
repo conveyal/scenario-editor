@@ -28,7 +28,7 @@
     "@conveyal/gridualizer": "^1.4.0",
     "@conveyal/woonerf": "^0.4.0",
     "auth0-js": "^7.1.0",
-    "auth0-lock": "^10.2.2",
+    "auth0-lock": "^10.5.0",
     "bootstrap": "^3.3.6",
     "browsochrones": "^0.9.0",
     "chart.js": "^1.1.1",

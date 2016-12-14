@@ -40,7 +40,7 @@
     "d3": "^4.2.7",
     "debug": "^2.2.0",
     "deep-extend": "^0.4.1",
-    "flux-standard-action": "^0.6.1",
+    "flux-standard-action": "^1.0.0",
     "font-awesome": "^4.6.3",
     "http-errors": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",

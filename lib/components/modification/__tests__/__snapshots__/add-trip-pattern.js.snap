@@ -66,192 +66,235 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
       Bidirectional
     </label>
   </div>
-  <section
-    className="panel panel-default inner-panel">
-    <div
-      className="panel-heading clearfix">
-      <strong>
-        Test timetable
-      </strong>
-      <a
-        className="btn btn-danger btn-sm pull-right"
-        href="#"
+  <div>
+    <section
+      className="panel panel-default inner-panel">
+      <div
+        className="panel-heading clearfix"
         onClick={[Function]}
-        target={undefined}
-        title="Delete timetable">
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }>
         <i
-          className="fa fa-close fa-fw " />
-      </a>
-    </div>
-    <div
-      className="panel-body">
-      <div
-        className="form-group">
-        <input
-          className="form-control"
-          name="Name"
-          onChange={[Function]}
-          placeholder="Name"
-          type="text"
-          value="Test timetable" />
+          className="fa fa-chevron-down fa-fw " />
+        <strong>
+           
+          Test timetable
+        </strong>
       </div>
-      <div>
+      <div
+        className="panel-body">
         <div
-          className="form-inline">
+          className="form-group">
+          <input
+            className="form-control"
+            name="Name"
+            onChange={[Function]}
+            placeholder="Name"
+            type="text"
+            value="Test timetable" />
+        </div>
+        <div>
           <div
-            className="checkbox">
-            <label>
-              <input
-                checked={true}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Mon
-            </label>
+            className="form-inline">
+            <div
+              className="checkbox">
+              <label>
+                <input
+                  checked={true}
+                  onChange={[Function]}
+                  type="checkbox" />
+                 
+                Mon
+              </label>
+            </div>
+            <div
+              className="checkbox">
+              <label>
+                <input
+                  checked={true}
+                  onChange={[Function]}
+                  type="checkbox" />
+                 
+                Tue
+              </label>
+            </div>
+            <div
+              className="checkbox">
+              <label>
+                <input
+                  checked={true}
+                  onChange={[Function]}
+                  type="checkbox" />
+                 
+                Wed
+              </label>
+            </div>
+            <div
+              className="checkbox">
+              <label>
+                <input
+                  checked={true}
+                  onChange={[Function]}
+                  type="checkbox" />
+                 
+                Thu
+              </label>
+            </div>
+            <div
+              className="checkbox">
+              <label>
+                <input
+                  checked={true}
+                  onChange={[Function]}
+                  type="checkbox" />
+                 
+                Fri
+              </label>
+            </div>
+            <div
+              className="checkbox">
+              <label>
+                <input
+                  checked={false}
+                  onChange={[Function]}
+                  type="checkbox" />
+                 
+                Sat
+              </label>
+            </div>
+            <div
+              className="checkbox">
+              <label>
+                <input
+                  checked={false}
+                  onChange={[Function]}
+                  type="checkbox" />
+                 
+                Sun
+              </label>
+            </div>
           </div>
           <div
-            className="checkbox">
+            className="form-group">
             <label>
-              <input
-                checked={true}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Tue
+              Frequency (minutes)
             </label>
+            <input
+              className="form-control"
+              name={undefined}
+              onChange={[Function]}
+              placeholder="Frequency (minutes)"
+              type="number"
+              value={15} />
           </div>
           <div
-            className="checkbox">
+            className="form-group">
             <label>
-              <input
-                checked={true}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Wed
+              Start time
             </label>
+            <input
+              className="form-control"
+              name={undefined}
+              onChange={[Function]}
+              placeholder="Start time"
+              type="time"
+              value="08:00" />
           </div>
           <div
-            className="checkbox">
+            className="form-group">
             <label>
-              <input
-                checked={true}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Thu
+              End time
             </label>
-          </div>
-          <div
-            className="checkbox">
-            <label>
-              <input
-                checked={true}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Fri
-            </label>
-          </div>
-          <div
-            className="checkbox">
-            <label>
-              <input
-                checked={false}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Sat
-            </label>
-          </div>
-          <div
-            className="checkbox">
-            <label>
-              <input
-                checked={false}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Sun
-            </label>
+            <input
+              className="form-control"
+              name={undefined}
+              onChange={[Function]}
+              placeholder="End time"
+              type="time"
+              value="16:00" />
           </div>
         </div>
         <div
           className="form-group">
           <label>
-            Frequency (minutes)
+            Average Speed (km/h)
           </label>
           <input
             className="form-control"
             name={undefined}
             onChange={[Function]}
-            placeholder="Frequency (minutes)"
+            placeholder="Average Speed (km/h)"
             type="number"
-            value={15} />
+            value={40} />
+        </div>
+        <div>
+          <div
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+                "paddingBottom": "12px",
+              }
+            }>
+            <i
+              className="fa fa-chevron-right fa-fw " />
+             
+            <strong>
+              Set Individual Segment Speeds
+            </strong>
+             
+          </div>
         </div>
         <div
           className="form-group">
           <label>
-            Start time
+            Dwell time (seconds)
           </label>
           <input
             className="form-control"
             name={undefined}
             onChange={[Function]}
-            placeholder="Start time"
-            type="time"
-            value="08:00" />
+            placeholder="Dwell time (seconds)"
+            type="number"
+            value={10} />
         </div>
         <div
           className="form-group">
           <label>
-            End time
+            Travel time (mins)
           </label>
           <input
             className="form-control"
             name={undefined}
             onChange={[Function]}
-            placeholder="End time"
-            type="time"
-            value="16:00" />
+            placeholder="Travel time (mins)"
+            type="number"
+            value={0} />
         </div>
+        <a
+          className="btn btn-danger btn-block"
+          href="#"
+          onClick={[Function]}
+          target={undefined}
+          title="Delete timetable">
+          <i
+            className="fa fa-close fa-fw " />
+           Delete Timetable
+        </a>
       </div>
-      <div
-        className="form-group">
-        <label>
-          Speed (km/h)
-        </label>
-        <input
-          className="form-control"
-          name={undefined}
-          onChange={[Function]}
-          placeholder="Speed (km/h)"
-          type="number"
-          value={40} />
-      </div>
-      <div
-        className="form-group">
-        <label>
-          Dwell time (seconds)
-        </label>
-        <input
-          className="form-control"
-          name={undefined}
-          onChange={[Function]}
-          placeholder="Dwell time (seconds)"
-          type="number"
-          value={10} />
-      </div>
-    </div>
-  </section>
-  <a
-    className="btn btn-success btn-block"
-    href="#"
-    onClick={[Function]}
-    target={undefined}>
-    <i
-      className="fa fa-plus fa-fw " />
-     Add timetable
-  </a>
+    </section>
+    <a
+      className="btn btn-success btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}>
+      <i
+        className="fa fa-plus fa-fw " />
+       Add timetable
+    </a>
+  </div>
 </div>
 `;

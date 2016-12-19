@@ -38,26 +38,26 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
   <div
     className="form-group">
     <label>
-      Speed (km/h):
+      Speed (km/h)
     </label>
     <input
       className="form-control"
       name={undefined}
       onChange={[Function]}
-      placeholder="Speed (km/h):"
+      placeholder="Speed (km/h)"
       type="number"
       value={undefined} />
   </div>
   <div
     className="form-group">
     <label>
-      Dwell time (seconds):
+      Dwell time (seconds)
     </label>
     <input
       className="form-control"
       name={undefined}
       onChange={[Function]}
-      placeholder="Dwell time (seconds):"
+      placeholder="Dwell time (seconds)"
       step={1}
       type="number"
       value={undefined} />
@@ -65,13 +65,13 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
   <div
     className="form-group">
     <label>
-      Length of segment (mins)
+      Travel time (mins)
     </label>
     <input
       className="form-control"
       name={undefined}
       onChange={[Function]}
-      placeholder="Length of segment (mins)"
+      placeholder="Travel time (mins)"
       type="number"
       value={0} />
   </div>

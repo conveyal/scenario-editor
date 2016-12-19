@@ -7,15 +7,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
     <strong>
       Test timetable
     </strong>
-    <a
-      className="btn btn-danger btn-sm pull-right"
-      href="#"
-      onClick={[Function]}
-      target={undefined}
-      title="Delete frequency entry">
-      <i
-        className="fa fa-close fa-fw " />
-    </a>
   </div>
   <div
     className="panel-body">
@@ -257,6 +248,16 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
           value="16:00" />
       </div>
     </div>
+    <a
+      className="btn btn-danger btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}
+      title="Delete frequency entry">
+      <i
+        className="fa fa-close fa-fw " />
+       Delete frequency entry
+    </a>
   </div>
 </div>
 `;

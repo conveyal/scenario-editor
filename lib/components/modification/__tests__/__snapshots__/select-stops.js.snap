@@ -29,5 +29,6 @@ exports[`Component > SelectStops renders correctly with no feed data 1`] = `
       </a>
     </div>
   </div>
+  <ul />
 </div>
 `;

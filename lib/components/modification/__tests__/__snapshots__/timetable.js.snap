@@ -2,19 +2,19 @@ exports[`Component > Timetable renders correctly 1`] = `
 <section
   className="panel panel-default inner-panel">
   <div
-    className="panel-heading clearfix">
+    className="panel-heading clearfix"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }>
+    <i
+      className="fa fa-chevron-down fa-fw " />
     <strong>
+       
       Test timetable
     </strong>
-    <a
-      className="btn btn-danger btn-sm pull-right"
-      href="#"
-      onClick={[Function]}
-      target={undefined}
-      title="Delete timetable">
-      <i
-        className="fa fa-close fa-fw " />
-    </a>
   </div>
   <div
     className="panel-body">
@@ -152,15 +152,33 @@ exports[`Component > Timetable renders correctly 1`] = `
     <div
       className="form-group">
       <label>
-        Speed (km/h)
+        Average Speed (km/h)
       </label>
       <input
         className="form-control"
         name={undefined}
         onChange={[Function]}
-        placeholder="Speed (km/h)"
+        placeholder="Average Speed (km/h)"
         type="number"
         value={40} />
+    </div>
+    <div>
+      <div
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingBottom": "12px",
+          }
+        }>
+        <i
+          className="fa fa-chevron-right fa-fw " />
+         
+        <strong>
+          Set Individual Segment Speeds
+        </strong>
+         
+      </div>
     </div>
     <div
       className="form-group">
@@ -175,6 +193,29 @@ exports[`Component > Timetable renders correctly 1`] = `
         type="number"
         value={10} />
     </div>
+    <div
+      className="form-group">
+      <label>
+        Travel time (mins)
+      </label>
+      <input
+        className="form-control"
+        name={undefined}
+        onChange={[Function]}
+        placeholder="Travel time (mins)"
+        type="number"
+        value={0} />
+    </div>
+    <a
+      className="btn btn-danger btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}
+      title="Delete timetable">
+      <i
+        className="fa fa-close fa-fw " />
+       Delete Timetable
+    </a>
   </div>
 </section>
 `;

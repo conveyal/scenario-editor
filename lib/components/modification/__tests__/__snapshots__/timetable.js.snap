@@ -156,6 +156,17 @@ exports[`Component > Timetable renders correctly 1`] = `
           type="time"
           value="16:00" />
       </div>
+      <div
+        className="checkbox">
+        <label>
+          <input
+            checked={undefined}
+            onChange={[Function]}
+            type="checkbox" />
+           
+          Times are exact
+        </label>
+      </div>
     </div>
     <div>
       <div

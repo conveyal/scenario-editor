@@ -10,13 +10,13 @@ After uploading a bundle and creating a project, you will arrive at a screen tha
 
 A transport scenario is made up of many modifications, each of which represents a single operation on the transit network (for example adding a line, or adjusting
 the speed of an existing line). All modifications are listed in the left-hand bar. Each modification has an eye icon next to it, which controls whether it is currently
-displayed on the map. Clicking on the title of a modification will open it and allow you to edit it. To create a new modification of a particular type, 
+displayed on the map. Clicking on the title of a modification will open it and allow you to edit it. To create a new modification of a particular type,
 
 Oftentimes, there will be several scenarios that are very similar, differing only in a few minor aspects. In particular, one scenario is often
 a superset of another (for instance, there is a base scenario which involves building six new rail lines, and another scenario which additionally
 involves building four more). Instead of having to code each scenario separately, we support the concept of scenario variants. You can create variants
 by clicking the "Create" button under "Variants," and entering a name for each variant. The buttons to the right of a variant name allow, respectively, exporting the
-variant to Transport Analyst, viewing a printer-friendly summary of the modifications in the variant, and showing the variant on the map.	
+variant to Transport Analyst, viewing a printer-friendly summary of the modifications in the variant, and showing the variant on the map.
 
 <img src="../img/variant-editor.png" />
 
@@ -76,6 +76,22 @@ the alignment editor before doing this.) You will see this view:
 Here you can specify the days of service, span of service, frequency, speed and dwell time. You can add as many timetables as you need to specify different frequencies or speeds at
 different times of days.
 
+You can additionally choose whether the frequency entry represents an assumed headway, or represents the
+exact schedule, using the "Times are exact" checkbox. For example, consider an entry specifying that
+a particular pattern runs every 15 minutes from 9 AM until 7 PM. If the checkbox is left unchecked,
+the software will assume that vehicles depart the first stop on the route every 15 minutes between
+9 AM and 7 PM, but with no assumptions as to exactly when that will happen. For example, vehicles might
+leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities
+will be tested and averaged in order to get a complete picture of how different possible schedules
+might perform. This option should be chosen when a frequency is known but a schedule has not yet been
+written for a future system.
+
+In the rare case in which the complete schedule is known at the time of scenario creation, the "Times are exact"
+checkbox can be activated. In this case, a single schedule will be created, with the first departure
+at the start time, and then additional departures with exactly the specified frequency until (but not
+including) the end time. For example, in the scenario given above, the vehicles would be scheduled
+to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end time is not included).
+
 You can delete this or any modification using the red "Delete Modification" button.
 
 ## Remove trips
@@ -132,6 +148,22 @@ for all the service you want to retain, in both directions. The software will le
 will operate at the specified frequencies (e.g., if you have a ten-minute frequency and a 15-minute frequency overlapping, there will be one set of vehicles coming every ten minutes,
 and another, independent, set coming every 15).
 
+You can additionally choose whether the frequency entry represents an assumed headway, or represents the
+exact schedule, using the "Times are exact" checkbox. For example, consider an entry specifying that
+a particular pattern runs every 15 minutes from 9 AM until 7 PM. If the checkbox is left unchecked,
+the software will assume that vehicles depart the first stop on the route every 15 minutes between
+9 AM and 7 PM, but with no assumptions as to exactly when that will happen. For example, vehicles might
+leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities
+will be tested and averaged in order to get a complete picture of how different possible schedules
+might perform. This option should be chosen when a frequency is known but a schedule has not yet been
+written for a future system.
+
+In the rare case in which the complete schedule is known at the time of scenario creation, the "Times are exact"
+checkbox can be activated. In this case, a single schedule will be created, with the first departure
+at the start time, and then additional departures with exactly the specified frequency until (but not
+including) the end time. For example, in the scenario given above, the vehicles would be scheduled
+to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end time is not included).
+
 You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful
 when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
 
@@ -151,5 +183,3 @@ after that point will be rerouted. This can be used to extend routes, or to dive
 You can then edit the alignment and the intermediate stops by clicking on "Edit Alignment." This uses the same tools that are used when adding trip patterns.
 
 This modification is displayed on the map with the route being modified in gray, any segments that are being replaced in red, and the new segments in blue.
-
-

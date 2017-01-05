@@ -42,6 +42,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -87,6 +88,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -132,6 +134,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -182,6 +185,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "spectrogramData": null,
 }
 `;
@@ -227,6 +231,7 @@ Object {
     "minimumImprovementProbability": 0.95,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -273,6 +278,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -318,6 +324,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -369,6 +376,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -418,6 +426,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -463,6 +472,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -508,6 +518,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -554,6 +565,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -610,6 +622,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "spectrogramData": Array [
     "SCENARIO",
   ],
@@ -637,6 +650,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
 }
 `;
 
@@ -691,5 +705,60 @@ Object {
       "which": "PROBABILITY GRID",
     },
   },
+  "scenarioApplicationErrors": null,
+}
+`;
+
+exports[`reducers > analysis should handle show scenario application errors 1`] = `
+Object {
+  "active": false,
+  "comparisonInProgress": false,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "profileRequest": Object {
+    "accessModes": "WALK",
+    "bikeSafe": 1,
+    "bikeSlope": 1,
+    "bikeSpeed": 4.166666666666667,
+    "bikeTime": 1,
+    "bikeTrafficStress": 4,
+    "carSpeed": 20,
+    "date": "2016-12-20",
+    "directModes": "WALK",
+    "egressModes": "WALK",
+    "fromTime": 25200,
+    "maxBikeTime": 20,
+    "maxCarTime": 45,
+    "maxRides": 4,
+    "maxWalkTime": 20,
+    "minBikeTime": 10,
+    "minCarTime": 10,
+    "monteCarloDraws": 200,
+    "reachabilityThreshold": 0,
+    "streetTime": 90,
+    "suboptimalMinutes": 5,
+    "toTime": 32400,
+    "transitModes": "TRANSIT",
+    "walkSpeed": 1.3888888888888888,
+  },
+  "regional": Object {
+    "breaks": Array [],
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+  "scenarioApplicationErrors": Array [
+    Object {
+      "messages": Array [
+        "Headway is not greater than zero.",
+      ],
+      "modificationId": "Add Trip Pattern",
+      "title": "Error while applying the modification entitled \'Add Trip Pattern\'.",
+    },
+  ],
 }
 `;

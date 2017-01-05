@@ -41,6 +41,7 @@ Object {
       "percentile": 50,
       "probabilityGrid": null,
     },
+    "scenarioApplicationErrors": null,
   },
   "mapState": Object {
     "activeTrips": Array [],

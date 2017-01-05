@@ -125,3 +125,18 @@ Object {
   "type": "set profile request",
 }
 `;
+
+exports[`actions > analysis showScenarioApplicationErrors should work 1`] = `
+Object {
+  "payload": Array [
+    Object {
+      "messages": Array [
+        "Headway is not greater than zero.",
+      ],
+      "modificationId": "Add Trip Pattern",
+      "title": "Error while applying the modification entitled \'Add Trip Pattern\'.",
+    },
+  ],
+  "type": "show scenario application errors",
+}
+`;

@@ -112,6 +112,9 @@ analysis:
   gisExport: Export to GIS
   downloadRegional: Download %s
   downloadRegionalProbability: Download probability of improvement
+  extents: Analysis extents
+  showAdvanced: Show advanced options
+  hideAdvanced: Hide advanced options
   modes:
     walk: Walk
     bicycle: Bike

@@ -575,9 +575,9 @@ exports[`Routes should render 1`] = `
             }
             error=""
             errorMessage=""
-            feedsById={
-              Object {
-                "1": Object {
+            feeds={
+              Array [
+                Object {
                   "id": "1",
                   "routes": Array [
                     Object {
@@ -716,7 +716,7 @@ exports[`Routes should render 1`] = `
                     },
                   },
                 },
-              }
+              ]
             }
             hasError={false}
             hasScenario={false}

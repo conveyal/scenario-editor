@@ -7,7 +7,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
   <div
     className="panel-heading clearfix "
   >
-    Create a new grid
+    Upload new opportunity dataset
   </div>
   <div
     className="panel-body"
@@ -23,14 +23,14 @@ exports[`Component > EditBundle renders correctly 1`] = `
         <label
           htmlFor="name-input-0"
         >
-          Grid name
+          Opportunity dataset
         </label>
         <input
           className="form-control"
           id="name-input-0"
           name="Name"
           onChange={[Function]}
-          placeholder="Grid name"
+          placeholder="Opportunity dataset"
           type="text"
           value={undefined}
         />
@@ -41,7 +41,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
         <label
           htmlFor="files-input-1"
         >
-          Grid files
+          Select opportunity dataset
         </label>
         <input
           className="form-control"
@@ -49,7 +49,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
           multiple={true}
           name="files"
           onChange={[Function]}
-          placeholder="Grid files"
+          placeholder="Select opportunity dataset"
           type="file"
           value={undefined}
         />
@@ -58,7 +58,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
         className="btn btn-block btn-success"
         disabled={true}
         type="submit"
-        value="Create a new grid"
+        value="Upload new opportunity dataset"
       />
     </form>
   </div>
@@ -79,7 +79,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
         <div
           className="panel-heading clearfix "
         >
-          Create a new grid
+          Upload new opportunity dataset
         </div>
       </Heading>
       <Body>
@@ -92,17 +92,17 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
             onSubmit={[Function]}
           >
             <Text
-              label="Grid name"
+              label="Opportunity dataset"
               name="Name"
               onChange={[Function]}
-              placeholder="Grid name"
+              placeholder="Opportunity dataset"
             >
               <Group
                 id="name-input-4"
-                label="Grid name"
+                label="Opportunity dataset"
                 name="Name"
                 onChange={[Function]}
-                placeholder="Grid name"
+                placeholder="Opportunity dataset"
               >
                 <div
                   className="form-group"
@@ -110,14 +110,14 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                   <label
                     htmlFor="name-input-4"
                   >
-                    Grid name
+                    Opportunity dataset
                   </label>
                   <Input
                     id="name-input-4"
-                    label="Grid name"
+                    label="Opportunity dataset"
                     name="Name"
                     onChange={[Function]}
-                    placeholder="Grid name"
+                    placeholder="Opportunity dataset"
                     type="text"
                   >
                     <input
@@ -125,7 +125,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                       id="name-input-4"
                       name="Name"
                       onChange={[Function]}
-                      placeholder="Grid name"
+                      placeholder="Opportunity dataset"
                       type="text"
                     />
                   </Input>
@@ -133,14 +133,14 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
               </Group>
             </Text>
             <File
-              label="Grid files"
+              label="Select opportunity dataset"
               multiple={true}
               name="files"
               onChange={[Function]}
             >
               <Group
                 id="files-input-5"
-                label="Grid files"
+                label="Select opportunity dataset"
                 multiple={true}
                 name="files"
                 onChange={[Function]}
@@ -151,11 +151,11 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                   <label
                     htmlFor="files-input-5"
                   >
-                    Grid files
+                    Select opportunity dataset
                   </label>
                   <Input
                     id="files-input-5"
-                    label="Grid files"
+                    label="Select opportunity dataset"
                     multiple={true}
                     name="files"
                     onChange={[Function]}
@@ -167,7 +167,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                       multiple={true}
                       name="files"
                       onChange={[Function]}
-                      placeholder="Grid files"
+                      placeholder="Select opportunity dataset"
                       type="file"
                     />
                   </Input>
@@ -262,7 +262,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
               className="btn btn-block btn-success"
               disabled={true}
               type="submit"
-              value="Create a new grid"
+              value="Upload new opportunity dataset"
             />
           </form>
         </div>
@@ -286,7 +286,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
         <div
           className="panel-heading clearfix "
         >
-          Create a new grid
+          Upload new opportunity dataset
         </div>
       </Heading>
       <Body>
@@ -299,17 +299,17 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
             onSubmit={[Function]}
           >
             <Text
-              label="Grid name"
+              label="Opportunity dataset"
               name="Name"
               onChange={[Function]}
-              placeholder="Grid name"
+              placeholder="Opportunity dataset"
             >
               <Group
                 id="name-input-10"
-                label="Grid name"
+                label="Opportunity dataset"
                 name="Name"
                 onChange={[Function]}
-                placeholder="Grid name"
+                placeholder="Opportunity dataset"
               >
                 <div
                   className="form-group"
@@ -317,14 +317,14 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                   <label
                     htmlFor="name-input-10"
                   >
-                    Grid name
+                    Opportunity dataset
                   </label>
                   <Input
                     id="name-input-10"
-                    label="Grid name"
+                    label="Opportunity dataset"
                     name="Name"
                     onChange={[Function]}
-                    placeholder="Grid name"
+                    placeholder="Opportunity dataset"
                     type="text"
                   >
                     <input
@@ -332,7 +332,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                       id="name-input-10"
                       name="Name"
                       onChange={[Function]}
-                      placeholder="Grid name"
+                      placeholder="Opportunity dataset"
                       type="text"
                     />
                   </Input>
@@ -340,14 +340,14 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
               </Group>
             </Text>
             <File
-              label="Grid files"
+              label="Select opportunity dataset"
               multiple={true}
               name="files"
               onChange={[Function]}
             >
               <Group
                 id="files-input-11"
-                label="Grid files"
+                label="Select opportunity dataset"
                 multiple={true}
                 name="files"
                 onChange={[Function]}
@@ -358,11 +358,11 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                   <label
                     htmlFor="files-input-11"
                   >
-                    Grid files
+                    Select opportunity dataset
                   </label>
                   <Input
                     id="files-input-11"
-                    label="Grid files"
+                    label="Select opportunity dataset"
                     multiple={true}
                     name="files"
                     onChange={[Function]}
@@ -374,7 +374,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                       multiple={true}
                       name="files"
                       onChange={[Function]}
-                      placeholder="Grid files"
+                      placeholder="Select opportunity dataset"
                       type="file"
                     />
                   </Input>
@@ -385,7 +385,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
               className="btn btn-block btn-success"
               disabled={true}
               type="submit"
-              value="Create a new grid"
+              value="Upload new opportunity dataset"
             />
           </form>
         </div>

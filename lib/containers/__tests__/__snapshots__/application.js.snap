@@ -5,6 +5,39 @@ exports[`Container > Application renders correctly 1`] = `
   id="editor"
 >
   <div
+    className="Sidebar"
+  >
+    <a
+      className="Sidebar-logo"
+      onClick={[Function]}
+      style={Object {}}
+      title="Projects"
+    />
+    <div
+      className="Sidebar-bottom"
+    >
+      <div
+        className="Sidebar-navItem"
+        title="help"
+      >
+        <a
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <i
+            className="fa fa-question-circle fa-fw "
+          />
+          <span
+            className="Sidebar-navItem-text"
+          >
+             
+            help
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
     className="Fullscreen  "
   >
     <div
@@ -15,51 +48,6 @@ exports[`Container > Application renders correctly 1`] = `
   </div>
   <div
     className="ApplicationDock "
-  >
-    <div
-      className="ApplicationTitle"
-    >
-      <a
-        className="logo"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        analysis 
-      </a>
-      <span
-        className="badge"
-      >
-        beta
-      </span>
-      <div
-        className="pull-right"
-      >
-        <a
-          className="HelpLink"
-          href="http://docs.analysis.conveyal.com/"
-          target="_blank"
-        >
-          help
-        </a>
-         
-        <a
-          className="btn btn-default btn-xs"
-          href="#"
-          onClick={[Function]}
-          tabIndex={0}
-        >
-          Log in
-        </a>
-      </div>
-      <div
-        className="LoggedInAs"
-      >
-        Logged in as undefined
-      </div>
-    </div>
-    <div
-      className="InnerDock"
-    />
-  </div>
+  />
 </div>
 `;

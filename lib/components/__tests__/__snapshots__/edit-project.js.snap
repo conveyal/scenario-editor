@@ -5,11 +5,6 @@ exports[`Component > EditProject renders correctly 1`] = `
   className="panel panel-default"
 >
   <div
-    className="panel-heading clearfix "
-  >
-    Edit project
-  </div>
-  <div
     className="panel-body"
   >
     <div

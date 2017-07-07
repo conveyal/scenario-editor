@@ -2,13 +2,11 @@
 
 exports[`Component > Modification > ModificationsList renders correctly 1`] = `
 <div>
-  <div
-    className="ModificationGroup"
-  >
+  <div>
     <div
       className="DockTitle"
     >
-      Variants:
+      Variants
       <a
         className="pull-right"
         onClick={[Function]}
@@ -27,7 +25,7 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
   <div
     className="DockTitle"
   >
-    Modifications:
+    Modifications
     <a
       className="ShowOnMap pull-right active fa-btn"
       onClick={[Function]}
@@ -42,16 +40,20 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
   <div
     className="block"
   >
-    <input
-      aria-label="Search modifications"
-      className="form-control"
-      id="search-modifications-input-0"
-      name="Search modifications"
-      onChange={[Function]}
-      placeholder="Search modifications"
-      type="text"
-      value=""
-    />
+    <div
+      className="form-group"
+    >
+      <input
+        aria-label="Search modifications"
+        className="form-control"
+        id="search-modifications-input-0"
+        name="Search modifications"
+        onChange={[Function]}
+        placeholder="Search modifications"
+        type="text"
+        value=""
+      />
+    </div>
   </div>
   <div
     className="ModificationGroup"

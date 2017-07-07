@@ -9,11 +9,12 @@
     "build": "mastarm build lib/index.js:assets/index.js lib/styles.css:assets/index.css",
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
+    "flow": "mastarm flow",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prestart": "yarn",
     "start": "npm run build -- --serve --proxy http://localhost:7070/api",
     "pretest": "yarn",
-    "test": "mastarm lint && mastarm test --env test --config configurations/test"
+    "test": "mastarm lint && mastarm flow && mastarm test --env test --config configurations/test"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "browsochrones": "^1.0.0",
     "canvas": "^1.6.2",
     "chart.js": "^1.1.1",
+    "classnames": "^2.2.5",
     "compare-versions": "^3.0.1",
     "crc": "^3.4.0",
     "d3-color": "^1.0.2",
@@ -67,6 +69,7 @@
     "lodash.startcase": "^4.4.0",
     "lodash.sum": "^4.0.2",
     "moment": "^2.17.1",
+    "path-to-regexp": "^1.7.0",
     "react": "^15.4.2",
     "react-chartjs": "^0.8.0",
     "react-datetime": "^2.7.5",

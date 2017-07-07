@@ -251,7 +251,7 @@ Array [
     Object {
       "payload": Object {
         "args": Array [
-          "/projects/1/scenarios/1/modifications/1234",
+          "/scenarios/1/modifications/1234",
         ],
         "method": "push",
       },

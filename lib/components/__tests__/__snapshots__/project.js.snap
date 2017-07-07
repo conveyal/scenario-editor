@@ -1,70 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Project renders correctly 1`] = `
-<div>
-  <div
-    className="DockTitle"
-  >
-    Project:
-    <a
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <span>
-         
-        Test
-      </span>
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <i
-        className="fa fa-pencil fa-fw "
-      />
-    </a>
-  </div>
+<div
+  className="panel-body"
+>
+  Loading project...
 </div>
 `;
 
 exports[`Component > Project renders unsupported message correctly 1`] = `
-<div>
-  <div
-    className="DockTitle"
-  >
-    Project:
-    <a
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <span>
-         
-        Test
-      </span>
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <i
-        className="fa fa-pencil fa-fw "
-      />
-    </a>
-  </div>
-  <div
-    className="alert alert-danger"
-    role="alert"
-  >
-    The chosen analysis backend version of this project is outdated.
-     
-    <a
-      onClick={[Function]}
-      style={Object {}}
-    >
-      Edit project.
-    </a>
-  </div>
+<div
+  className="panel-body"
+>
+  Loading project...
 </div>
 `;

@@ -139,40 +139,11 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios/create",
+                        "path": "scenarios",
                       },
                       Object {
-                        "childRoutes": Array [
-                          Object {
-                            "component": [Function],
-                            "path": "edit",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "import-modifications",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "import-shapefile",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "modifications/:modificationId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/:variantId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/regional/:regionalAnalysisId",
-                          },
-                        ],
                         "component": [Function],
-                        "indexRoute": Object {
-                          "component": [Function],
-                        },
-                        "path": "scenarios/:scenarioId",
+                        "path": "scenarios/create",
                       },
                     ],
                     "component": [Function],
@@ -180,6 +151,47 @@ exports[`Routes should render 1`] = `
                       "component": [Function],
                     },
                     "path": "projects/:projectId",
+                  },
+                  Object {
+                    "childRoutes": Array [
+                      Object {
+                        "component": [Function],
+                        "path": "edit",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "import-modifications",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "import-shapefile",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "modifications/:modificationId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis/:variantId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis/regional/:regionalAnalysisId",
+                      },
+                    ],
+                    "component": [Function],
+                    "indexRoute": Object {
+                      "component": [Function],
+                    },
+                    "path": "scenarios/:scenarioId",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "*",
                   },
                 ],
                 "component": [Function],
@@ -225,40 +237,11 @@ exports[`Routes should render 1`] = `
                     },
                     Object {
                       "component": [Function],
-                      "path": "scenarios/create",
+                      "path": "scenarios",
                     },
                     Object {
-                      "childRoutes": Array [
-                        Object {
-                          "component": [Function],
-                          "path": "edit",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "import-modifications",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "import-shapefile",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "modifications/:modificationId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "analysis/:variantId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "analysis/regional/:regionalAnalysisId",
-                        },
-                      ],
                       "component": [Function],
-                      "indexRoute": Object {
-                        "component": [Function],
-                      },
-                      "path": "scenarios/:scenarioId",
+                      "path": "scenarios/create",
                     },
                   ],
                   "component": [Function],
@@ -266,6 +249,47 @@ exports[`Routes should render 1`] = `
                     "component": [Function],
                   },
                   "path": "projects/:projectId",
+                },
+                Object {
+                  "childRoutes": Array [
+                    Object {
+                      "component": [Function],
+                      "path": "edit",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "import-modifications",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "import-shapefile",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "modifications/:modificationId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "analysis",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "analysis/:variantId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "analysis/regional/:regionalAnalysisId",
+                    },
+                  ],
+                  "component": [Function],
+                  "indexRoute": Object {
+                    "component": [Function],
+                  },
+                  "path": "scenarios/:scenarioId",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "*",
                 },
               ],
               "component": [Function],
@@ -320,40 +344,11 @@ exports[`Routes should render 1`] = `
                     },
                     Object {
                       "component": [Function],
-                      "path": "scenarios/create",
+                      "path": "scenarios",
                     },
                     Object {
-                      "childRoutes": Array [
-                        Object {
-                          "component": [Function],
-                          "path": "edit",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "import-modifications",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "import-shapefile",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "modifications/:modificationId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "analysis/:variantId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "analysis/regional/:regionalAnalysisId",
-                        },
-                      ],
                       "component": [Function],
-                      "indexRoute": Object {
-                        "component": [Function],
-                      },
-                      "path": "scenarios/:scenarioId",
+                      "path": "scenarios/create",
                     },
                   ],
                   "component": [Function],
@@ -361,6 +356,47 @@ exports[`Routes should render 1`] = `
                     "component": [Function],
                   },
                   "path": "projects/:projectId",
+                },
+                Object {
+                  "childRoutes": Array [
+                    Object {
+                      "component": [Function],
+                      "path": "edit",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "import-modifications",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "import-shapefile",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "modifications/:modificationId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "analysis",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "analysis/:variantId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "analysis/regional/:regionalAnalysisId",
+                    },
+                  ],
+                  "component": [Function],
+                  "indexRoute": Object {
+                    "component": [Function],
+                  },
+                  "path": "scenarios/:scenarioId",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "*",
                 },
               ],
               "component": [Function],
@@ -424,40 +460,11 @@ exports[`Routes should render 1`] = `
                         },
                         Object {
                           "component": [Function],
-                          "path": "scenarios/create",
+                          "path": "scenarios",
                         },
                         Object {
-                          "childRoutes": Array [
-                            Object {
-                              "component": [Function],
-                              "path": "edit",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "import-modifications",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "import-shapefile",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "modifications/:modificationId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/:variantId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/regional/:regionalAnalysisId",
-                            },
-                          ],
                           "component": [Function],
-                          "indexRoute": Object {
-                            "component": [Function],
-                          },
-                          "path": "scenarios/:scenarioId",
+                          "path": "scenarios/create",
                         },
                       ],
                       "component": [Function],
@@ -465,6 +472,47 @@ exports[`Routes should render 1`] = `
                         "component": [Function],
                       },
                       "path": "projects/:projectId",
+                    },
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "component": [Function],
+                          "path": "edit",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "import-modifications",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "import-shapefile",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "modifications/:modificationId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis/:variantId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis/regional/:regionalAnalysisId",
+                        },
+                      ],
+                      "component": [Function],
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
+                      "path": "scenarios/:scenarioId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "*",
                     },
                   ],
                   "component": [Function],
@@ -510,40 +558,11 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios/create",
+                        "path": "scenarios",
                       },
                       Object {
-                        "childRoutes": Array [
-                          Object {
-                            "component": [Function],
-                            "path": "edit",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "import-modifications",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "import-shapefile",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "modifications/:modificationId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/:variantId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/regional/:regionalAnalysisId",
-                          },
-                        ],
                         "component": [Function],
-                        "indexRoute": Object {
-                          "component": [Function],
-                        },
-                        "path": "scenarios/:scenarioId",
+                        "path": "scenarios/create",
                       },
                     ],
                     "component": [Function],
@@ -551,6 +570,47 @@ exports[`Routes should render 1`] = `
                       "component": [Function],
                     },
                     "path": "projects/:projectId",
+                  },
+                  Object {
+                    "childRoutes": Array [
+                      Object {
+                        "component": [Function],
+                        "path": "edit",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "import-modifications",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "import-shapefile",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "modifications/:modificationId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis/:variantId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis/regional/:regionalAnalysisId",
+                      },
+                    ],
+                    "component": [Function],
+                    "indexRoute": Object {
+                      "component": [Function],
+                    },
+                    "path": "scenarios/:scenarioId",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "*",
                   },
                 ],
                 "component": [Function],
@@ -733,9 +793,8 @@ exports[`Routes should render 1`] = `
               ]
             }
             hasError={false}
-            hasScenario={false}
-            loadAllProjects={[Function]}
-            loadR5Versions={[Function]}
+            hasScenario={true}
+            loadProject={[Function]}
             location={
               Object {
                 "action": "POP",
@@ -747,12 +806,9 @@ exports[`Routes should render 1`] = `
                 "state": undefined,
               }
             }
-            login={[Function]}
-            logout={[Function]}
             mapComponents={Array []}
             outstandingRequests={0}
             params={Object {}}
-            projects={Array []}
             push={[Function]}
             route={
               Object {
@@ -781,40 +837,11 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios/create",
+                        "path": "scenarios",
                       },
                       Object {
-                        "childRoutes": Array [
-                          Object {
-                            "component": [Function],
-                            "path": "edit",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "import-modifications",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "import-shapefile",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "modifications/:modificationId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/:variantId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/regional/:regionalAnalysisId",
-                          },
-                        ],
                         "component": [Function],
-                        "indexRoute": Object {
-                          "component": [Function],
-                        },
-                        "path": "scenarios/:scenarioId",
+                        "path": "scenarios/create",
                       },
                     ],
                     "component": [Function],
@@ -822,6 +849,47 @@ exports[`Routes should render 1`] = `
                       "component": [Function],
                     },
                     "path": "projects/:projectId",
+                  },
+                  Object {
+                    "childRoutes": Array [
+                      Object {
+                        "component": [Function],
+                        "path": "edit",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "import-modifications",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "import-shapefile",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "modifications/:modificationId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis/:variantId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "analysis/regional/:regionalAnalysisId",
+                      },
+                    ],
+                    "component": [Function],
+                    "indexRoute": Object {
+                      "component": [Function],
+                    },
+                    "path": "scenarios/:scenarioId",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "*",
                   },
                 ],
                 "component": [Function],
@@ -885,40 +953,11 @@ exports[`Routes should render 1`] = `
                           },
                           Object {
                             "component": [Function],
-                            "path": "scenarios/create",
+                            "path": "scenarios",
                           },
                           Object {
-                            "childRoutes": Array [
-                              Object {
-                                "component": [Function],
-                                "path": "edit",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "import-modifications",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "import-shapefile",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "modifications/:modificationId",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "analysis/:variantId",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "analysis/regional/:regionalAnalysisId",
-                              },
-                            ],
                             "component": [Function],
-                            "indexRoute": Object {
-                              "component": [Function],
-                            },
-                            "path": "scenarios/:scenarioId",
+                            "path": "scenarios/create",
                           },
                         ],
                         "component": [Function],
@@ -926,6 +965,47 @@ exports[`Routes should render 1`] = `
                           "component": [Function],
                         },
                         "path": "projects/:projectId",
+                      },
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "component": [Function],
+                            "path": "edit",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "import-modifications",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "import-shapefile",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "modifications/:modificationId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis/:variantId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis/regional/:regionalAnalysisId",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "path": "scenarios/:scenarioId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "*",
                       },
                     ],
                     "component": [Function],
@@ -971,40 +1051,11 @@ exports[`Routes should render 1`] = `
                         },
                         Object {
                           "component": [Function],
-                          "path": "scenarios/create",
+                          "path": "scenarios",
                         },
                         Object {
-                          "childRoutes": Array [
-                            Object {
-                              "component": [Function],
-                              "path": "edit",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "import-modifications",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "import-shapefile",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "modifications/:modificationId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/:variantId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/regional/:regionalAnalysisId",
-                            },
-                          ],
                           "component": [Function],
-                          "indexRoute": Object {
-                            "component": [Function],
-                          },
-                          "path": "scenarios/:scenarioId",
+                          "path": "scenarios/create",
                         },
                       ],
                       "component": [Function],
@@ -1012,6 +1063,47 @@ exports[`Routes should render 1`] = `
                         "component": [Function],
                       },
                       "path": "projects/:projectId",
+                    },
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "component": [Function],
+                          "path": "edit",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "import-modifications",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "import-shapefile",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "modifications/:modificationId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis/:variantId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis/regional/:regionalAnalysisId",
+                        },
+                      ],
+                      "component": [Function],
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
+                      "path": "scenarios/:scenarioId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "*",
                     },
                   ],
                   "component": [Function],
@@ -1025,9 +1117,9 @@ exports[`Routes should render 1`] = `
                 },
               ]
             }
+            scenarioId="1"
             scenarioIsLoaded={false}
             setMapCenter={[Function]}
-            userIsLoggedIn={false}
             variants={
               Array [
                 "Default",
@@ -1038,6 +1130,71 @@ exports[`Routes should render 1`] = `
             <div
               id="editor"
             >
+              <Sidebar
+                currentPath="/"
+                outstandingRequests={0}
+                scenarioId="1"
+              >
+                <div
+                  className="Sidebar"
+                >
+                  <Link
+                    className="Sidebar-logo"
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    title="Projects"
+                    to="/"
+                  >
+                    <a
+                      className="Sidebar-logo"
+                      href="/"
+                      onClick={[Function]}
+                      style={Object {}}
+                      title="Projects"
+                    />
+                  </Link>
+                  <div
+                    className="Sidebar-bottom"
+                  >
+                    <SidebarNavItem
+                      href="http://docs.analysis.conveyal.com/"
+                      icon="question-circle"
+                      text="help"
+                    >
+                      <div
+                        className="Sidebar-navItem"
+                        title="help"
+                      >
+                        <Link
+                          onlyActiveOnIndex={false}
+                          style={Object {}}
+                          to="http://docs.analysis.conveyal.com/"
+                        >
+                          <a
+                            href="http://docs.analysis.conveyal.com/"
+                            onClick={[Function]}
+                            style={Object {}}
+                          >
+                            <Icon
+                              type="question-circle"
+                            >
+                              <i
+                                className="fa fa-question-circle fa-fw "
+                              />
+                            </Icon>
+                            <span
+                              className="Sidebar-navItem-text"
+                            >
+                               
+                              help
+                            </span>
+                          </a>
+                        </Link>
+                      </div>
+                    </SidebarNavItem>
+                  </div>
+                </div>
+              </Sidebar>
               <div
                 className="Fullscreen  "
               >
@@ -1445,70 +1602,245 @@ exports[`Routes should render 1`] = `
               <div
                 className="ApplicationDock "
               >
-                <div
-                  className="ApplicationTitle"
+                <Connect(SelectProject)
+                  location={
+                    Object {
+                      "action": "POP",
+                      "hash": "",
+                      "key": null,
+                      "pathname": "/",
+                      "query": Object {},
+                      "search": "",
+                      "state": undefined,
+                    }
+                  }
+                  params={Object {}}
+                  route={
+                    Object {
+                      "component": [Function],
+                    }
+                  }
+                  routeParams={Object {}}
+                  router={
+                    Object {
+                      "canGo": [Function],
+                      "createHref": [Function],
+                      "createKey": [Function],
+                      "createLocation": [Function],
+                      "createPath": [Function],
+                      "getCurrentLocation": [Function],
+                      "go": [Function],
+                      "goBack": [Function],
+                      "goForward": [Function],
+                      "isActive": [Function],
+                      "listen": [Function],
+                      "listenBefore": [Function],
+                      "location": Object {
+                        "action": "POP",
+                        "hash": "",
+                        "key": null,
+                        "pathname": "/",
+                        "query": Object {},
+                        "search": "",
+                        "state": undefined,
+                      },
+                      "params": Object {},
+                      "push": [Function],
+                      "replace": [Function],
+                      "routes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "component": [Function],
+                              "path": "projects/create",
+                            },
+                            Object {
+                              "childRoutes": Array [
+                                Object {
+                                  "component": [Function],
+                                  "path": "bundles/create",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "bundles/:bundleId/edit",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "grids/create",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "edit",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "scenarios",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "scenarios/create",
+                                },
+                              ],
+                              "component": [Function],
+                              "indexRoute": Object {
+                                "component": [Function],
+                              },
+                              "path": "projects/:projectId",
+                            },
+                            Object {
+                              "childRoutes": Array [
+                                Object {
+                                  "component": [Function],
+                                  "path": "edit",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "import-modifications",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "import-shapefile",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "modifications/:modificationId",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "analysis",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "analysis/:variantId",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "analysis/regional/:regionalAnalysisId",
+                                },
+                              ],
+                              "component": [Function],
+                              "indexRoute": Object {
+                                "component": [Function],
+                              },
+                              "path": "scenarios/:scenarioId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "*",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "path": "/",
+                        },
+                        Object {
+                          "component": [Function],
+                        },
+                      ],
+                      "setRouteLeaveHook": [Function],
+                      "transitionTo": [Function],
+                      "unsubscribe": [Function],
+                    }
+                  }
+                  routes={
+                    Array [
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "component": [Function],
+                            "path": "projects/create",
+                          },
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "bundles/create",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "bundles/:bundleId/edit",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "grids/create",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "edit",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "scenarios",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "scenarios/create",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": "projects/:projectId",
+                          },
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "edit",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "import-modifications",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "import-shapefile",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "modifications/:modificationId",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "analysis",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "analysis/:variantId",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "analysis/regional/:regionalAnalysisId",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": "scenarios/:scenarioId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "*",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "path": "/",
+                      },
+                      Object {
+                        "component": [Function],
+                      },
+                    ]
+                  }
                 >
-                  <Link
-                    className="logo"
-                    onlyActiveOnIndex={false}
-                    style={Object {}}
-                    to="/"
-                  >
-                    <a
-                      className="logo"
-                      href="/"
-                      onClick={[Function]}
-                      style={Object {}}
-                    >
-                      analysis 
-                    </a>
-                  </Link>
-                  <span
-                    className="badge"
-                  >
-                    beta
-                  </span>
-                  <div
-                    className="pull-right"
-                  >
-                    <a
-                      className="HelpLink"
-                      href="http://docs.analysis.conveyal.com/"
-                      target="_blank"
-                    >
-                      help
-                    </a>
-                     
-                    <LogInLogOut
-                      login={[Function]}
-                      logout={[Function]}
-                      userIsLoggedIn={false}
-                    >
-                      <Button
-                        className="btn-xs"
-                        onClick={[Function]}
-                      >
-                        <a
-                          className="btn btn-default btn-xs"
-                          href="#"
-                          onClick={[Function]}
-                          tabIndex={0}
-                        >
-                          Log in
-                        </a>
-                      </Button>
-                    </LogInLogOut>
-                  </div>
-                  <div
-                    className="LoggedInAs"
-                  >
-                    Logged in as undefined
-                  </div>
-                </div>
-                <div
-                  className="InnerDock"
-                >
-                  <Connect(SelectProject)
+                  <SelectProject
+                    loadAllProjects={[Function]}
                     location={
                       Object {
                         "action": "POP",
@@ -1521,6 +1853,8 @@ exports[`Routes should render 1`] = `
                       }
                     }
                     params={Object {}}
+                    projects={Array []}
+                    push={[Function]}
                     route={
                       Object {
                         "component": [Function],
@@ -1580,40 +1914,11 @@ exports[`Routes should render 1`] = `
                                   },
                                   Object {
                                     "component": [Function],
-                                    "path": "scenarios/create",
+                                    "path": "scenarios",
                                   },
                                   Object {
-                                    "childRoutes": Array [
-                                      Object {
-                                        "component": [Function],
-                                        "path": "edit",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "import-modifications",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "import-shapefile",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "modifications/:modificationId",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "analysis/:variantId",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "analysis/regional/:regionalAnalysisId",
-                                      },
-                                    ],
                                     "component": [Function],
-                                    "indexRoute": Object {
-                                      "component": [Function],
-                                    },
-                                    "path": "scenarios/:scenarioId",
+                                    "path": "scenarios/create",
                                   },
                                 ],
                                 "component": [Function],
@@ -1621,6 +1926,47 @@ exports[`Routes should render 1`] = `
                                   "component": [Function],
                                 },
                                 "path": "projects/:projectId",
+                              },
+                              Object {
+                                "childRoutes": Array [
+                                  Object {
+                                    "component": [Function],
+                                    "path": "edit",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": "import-modifications",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": "import-shapefile",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": "modifications/:modificationId",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": "analysis",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": "analysis/:variantId",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": "analysis/regional/:regionalAnalysisId",
+                                  },
+                                ],
+                                "component": [Function],
+                                "indexRoute": Object {
+                                  "component": [Function],
+                                },
+                                "path": "scenarios/:scenarioId",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "*",
                               },
                             ],
                             "component": [Function],
@@ -1666,40 +2012,11 @@ exports[`Routes should render 1`] = `
                                 },
                                 Object {
                                   "component": [Function],
-                                  "path": "scenarios/create",
+                                  "path": "scenarios",
                                 },
                                 Object {
-                                  "childRoutes": Array [
-                                    Object {
-                                      "component": [Function],
-                                      "path": "edit",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "import-modifications",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "import-shapefile",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "modifications/:modificationId",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "analysis/:variantId",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "analysis/regional/:regionalAnalysisId",
-                                    },
-                                  ],
                                   "component": [Function],
-                                  "indexRoute": Object {
-                                    "component": [Function],
-                                  },
-                                  "path": "scenarios/:scenarioId",
+                                  "path": "scenarios/create",
                                 },
                               ],
                               "component": [Function],
@@ -1707,6 +2024,47 @@ exports[`Routes should render 1`] = `
                                 "component": [Function],
                               },
                               "path": "projects/:projectId",
+                            },
+                            Object {
+                              "childRoutes": Array [
+                                Object {
+                                  "component": [Function],
+                                  "path": "edit",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "import-modifications",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "import-shapefile",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "modifications/:modificationId",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "analysis",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "analysis/:variantId",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "analysis/regional/:regionalAnalysisId",
+                                },
+                              ],
+                              "component": [Function],
+                              "indexRoute": Object {
+                                "component": [Function],
+                              },
+                              "path": "scenarios/:scenarioId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "*",
                             },
                           ],
                           "component": [Function],
@@ -1721,340 +2079,70 @@ exports[`Routes should render 1`] = `
                       ]
                     }
                   >
-                    <SelectProject
-                      location={
-                        Object {
-                          "action": "POP",
-                          "hash": "",
-                          "key": null,
-                          "pathname": "/",
-                          "query": Object {},
-                          "search": "",
-                          "state": undefined,
-                        }
-                      }
-                      params={Object {}}
-                      projects={Array []}
-                      push={[Function]}
-                      route={
-                        Object {
-                          "component": [Function],
-                        }
-                      }
-                      routeParams={Object {}}
-                      router={
-                        Object {
-                          "canGo": [Function],
-                          "createHref": [Function],
-                          "createKey": [Function],
-                          "createLocation": [Function],
-                          "createPath": [Function],
-                          "getCurrentLocation": [Function],
-                          "go": [Function],
-                          "goBack": [Function],
-                          "goForward": [Function],
-                          "isActive": [Function],
-                          "listen": [Function],
-                          "listenBefore": [Function],
-                          "location": Object {
-                            "action": "POP",
-                            "hash": "",
-                            "key": null,
-                            "pathname": "/",
-                            "query": Object {},
-                            "search": "",
-                            "state": undefined,
-                          },
-                          "params": Object {},
-                          "push": [Function],
-                          "replace": [Function],
-                          "routes": Array [
-                            Object {
-                              "childRoutes": Array [
-                                Object {
-                                  "component": [Function],
-                                  "path": "projects/create",
-                                },
-                                Object {
-                                  "childRoutes": Array [
-                                    Object {
-                                      "component": [Function],
-                                      "path": "bundles/create",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "bundles/:bundleId/edit",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "grids/create",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "edit",
-                                    },
-                                    Object {
-                                      "component": [Function],
-                                      "path": "scenarios/create",
-                                    },
-                                    Object {
-                                      "childRoutes": Array [
-                                        Object {
-                                          "component": [Function],
-                                          "path": "edit",
-                                        },
-                                        Object {
-                                          "component": [Function],
-                                          "path": "import-modifications",
-                                        },
-                                        Object {
-                                          "component": [Function],
-                                          "path": "import-shapefile",
-                                        },
-                                        Object {
-                                          "component": [Function],
-                                          "path": "modifications/:modificationId",
-                                        },
-                                        Object {
-                                          "component": [Function],
-                                          "path": "analysis/:variantId",
-                                        },
-                                        Object {
-                                          "component": [Function],
-                                          "path": "analysis/regional/:regionalAnalysisId",
-                                        },
-                                      ],
-                                      "component": [Function],
-                                      "indexRoute": Object {
-                                        "component": [Function],
-                                      },
-                                      "path": "scenarios/:scenarioId",
-                                    },
-                                  ],
-                                  "component": [Function],
-                                  "indexRoute": Object {
-                                    "component": [Function],
-                                  },
-                                  "path": "projects/:projectId",
-                                },
-                              ],
-                              "component": [Function],
-                              "indexRoute": Object {
-                                "component": [Function],
-                              },
-                              "path": "/",
-                            },
-                            Object {
-                              "component": [Function],
-                            },
-                          ],
-                          "setRouteLeaveHook": [Function],
-                          "transitionTo": [Function],
-                          "unsubscribe": [Function],
-                        }
-                      }
-                      routes={
-                        Array [
-                          Object {
-                            "childRoutes": Array [
-                              Object {
-                                "component": [Function],
-                                "path": "projects/create",
-                              },
-                              Object {
-                                "childRoutes": Array [
-                                  Object {
-                                    "component": [Function],
-                                    "path": "bundles/create",
-                                  },
-                                  Object {
-                                    "component": [Function],
-                                    "path": "bundles/:bundleId/edit",
-                                  },
-                                  Object {
-                                    "component": [Function],
-                                    "path": "grids/create",
-                                  },
-                                  Object {
-                                    "component": [Function],
-                                    "path": "edit",
-                                  },
-                                  Object {
-                                    "component": [Function],
-                                    "path": "scenarios/create",
-                                  },
-                                  Object {
-                                    "childRoutes": Array [
-                                      Object {
-                                        "component": [Function],
-                                        "path": "edit",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "import-modifications",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "import-shapefile",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "modifications/:modificationId",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "analysis/:variantId",
-                                      },
-                                      Object {
-                                        "component": [Function],
-                                        "path": "analysis/regional/:regionalAnalysisId",
-                                      },
-                                    ],
-                                    "component": [Function],
-                                    "indexRoute": Object {
-                                      "component": [Function],
-                                    },
-                                    "path": "scenarios/:scenarioId",
-                                  },
-                                ],
-                                "component": [Function],
-                                "indexRoute": Object {
-                                  "component": [Function],
-                                },
-                                "path": "projects/:projectId",
-                              },
-                            ],
-                            "component": [Function],
-                            "indexRoute": Object {
-                              "component": [Function],
-                            },
-                            "path": "/",
-                          },
-                          Object {
-                            "component": [Function],
-                          },
-                        ]
-                      }
+                    <div
+                      className="InnerDock"
                     >
                       <Body>
                         <div
                           className="panel-body"
                         >
+                          <div
+                            className="WelcomeTitle"
+                          >
+                            <p
+                              style={
+                                Object {
+                                  "textAlign": "center",
+                                }
+                              }
+                            >
+                              welcome to
+                            </p>
+                            <span
+                              className="logo"
+                              to="/"
+                            >
+                              conveyal analysis 
+                            </span>
+                            <span
+                              className="badge"
+                            >
+                              beta
+                            </span>
+                          </div>
                           <Group>
                             <div
                               className="form-group"
                             >
-                              <Select
-                                addLabelText="Add \\"{label}\\"?"
-                                arrowRenderer={[Function]}
-                                autosize={true}
-                                backspaceRemoves={true}
-                                backspaceToRemoveMessage="Press backspace to remove {label}"
-                                clearAllText="Clear all"
-                                clearRenderer={[Function]}
-                                clearValueText="Clear value"
-                                clearable={true}
-                                deleteRemoves={true}
-                                delimiter=","
-                                disabled={false}
-                                escapeClearsValue={true}
-                                filterOptions={[Function]}
-                                ignoreAccents={true}
-                                ignoreCase={true}
-                                inputProps={Object {}}
-                                isLoading={false}
-                                joinValues={false}
-                                labelKey="label"
-                                matchPos="any"
-                                matchProp="any"
-                                menuBuffer={0}
-                                menuRenderer={[Function]}
-                                multi={false}
-                                noResultsText="No results found"
-                                onBlurResetsInput={true}
-                                onChange={[Function]}
-                                onCloseResetsInput={true}
-                                openAfterFocus={false}
-                                optionComponent={[Function]}
-                                options={Array []}
-                                pageSize={5}
-                                placeholder="Select a project..."
-                                required={false}
-                                scrollMenuIntoView={true}
-                                searchable={true}
-                                simpleValue={false}
-                                tabSelectsValue={true}
-                                valueComponent={[Function]}
-                                valueKey="value"
+                              <Button
+                                block={true}
+                                onClick={[Function]}
+                                style="success"
                               >
-                                <div
-                                  className="Select Select--single is-searchable"
+                                <a
+                                  className="btn btn-success btn-block"
+                                  href="#"
+                                  onClick={[Function]}
+                                  tabIndex={0}
                                 >
-                                  <div
-                                    className="Select-control"
-                                    onKeyDown={[Function]}
-                                    onMouseDown={[Function]}
-                                    onTouchEnd={[Function]}
-                                    onTouchMove={[Function]}
-                                    onTouchStart={[Function]}
+                                  <Icon
+                                    type="cubes"
                                   >
-                                    <span
-                                      className="Select-multi-value-wrapper"
-                                      id="react-select-2--value"
-                                    >
-                                      <div
-                                        className="Select-placeholder"
-                                      >
-                                        Select a project...
-                                      </div>
-                                      <AutosizeInput
-                                        aria-activedescendant="react-select-2--value"
-                                        aria-expanded="false"
-                                        aria-haspopup="false"
-                                        aria-owns=""
-                                        className="Select-input"
-                                        minWidth="5"
-                                        onBlur={[Function]}
-                                        onChange={[Function]}
-                                        onFocus={[Function]}
-                                        required={false}
-                                        role="combobox"
-                                        value=""
-                                      />
-                                    </span>
-                                    <span
-                                      className="Select-arrow-zone"
-                                      onMouseDown={[Function]}
-                                    >
-                                      <span
-                                        className="Select-arrow"
-                                        onMouseDown={[Function]}
-                                      />
-                                    </span>
-                                  </div>
-                                </div>
-                              </Select>
+                                    <i
+                                      className="fa fa-cubes fa-fw "
+                                    />
+                                  </Icon>
+                                   
+                                  Create a new Project
+                                </a>
+                              </Button>
                             </div>
                           </Group>
-                          <Button
-                            block={true}
-                            onClick={[Function]}
-                            style="success"
-                          >
-                            <a
-                              className="btn btn-success btn-block"
-                              href="#"
-                              onClick={[Function]}
-                              tabIndex={0}
-                            >
-                              Create a new project
-                            </a>
-                          </Button>
                         </div>
                       </Body>
-                    </SelectProject>
-                  </Connect(SelectProject)>
-                </div>
+                    </div>
+                  </SelectProject>
+                </Connect(SelectProject)>
               </div>
             </div>
           </Application>

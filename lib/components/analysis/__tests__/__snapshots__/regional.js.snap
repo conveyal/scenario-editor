@@ -399,6 +399,12 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             >
               Minimum probability of change
             </label>
+            <output
+              className="pull-right"
+              htmlFor="minimum-probability-of-change-input-1"
+            >
+              0.55
+            </output>
             <input
               className="form-control"
               id="minimum-probability-of-change-input-1"
@@ -410,12 +416,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
               type="range"
               value={0.83}
             />
-            <output
-              className="pull-right"
-              htmlFor="minimum-probability-of-change-input-1"
-            >
-              0.55
-            </output>
           </div>
         </Group>
       </Slider>

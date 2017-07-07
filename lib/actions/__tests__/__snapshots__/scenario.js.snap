@@ -73,7 +73,7 @@ Array [
     Object {
       "payload": Object {
         "args": Array [
-          "/projects/1/scenarios/1",
+          "/scenarios/1",
         ],
         "method": "push",
       },
@@ -84,30 +84,48 @@ Array [
 `;
 
 exports[`actions > scenario deleteScenario should work 1`] = `
-Object {
-  "payload": Object {
-    "next": [Function],
-    "options": Object {
-      "method": "delete",
+Array [
+  Object {
+    "payload": Object {
+      "projectId": "1",
+      "scenarioId": "1",
     },
-    "url": "/api/scenario/1",
+    "type": "delete scenario",
   },
-  "type": "fetch",
-}
+  Object {
+    "payload": Object {
+      "next": [Function],
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/scenario/[object Object]",
+    },
+    "type": "fetch",
+  },
+]
 `;
 
 exports[`actions > scenario deleteScenario should work 2`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {
-        "method": "delete",
-      },
-      "url": "/api/scenario/1",
+      "projectId": "1",
+      "scenarioId": "1",
     },
-    "type": "increment outstanding fetches",
+    "type": "delete scenario",
   },
-  Promise {},
+  Array [
+    Object {
+      "payload": Object {
+        "options": Object {
+          "method": "delete",
+        },
+        "url": "/api/scenario/[object Object]",
+      },
+      "type": "increment outstanding fetches",
+    },
+    Promise {},
+  ],
 ]
 `;
 
@@ -118,25 +136,11 @@ Array [
       "options": Object {
         "method": "delete",
       },
-      "url": "/api/scenario/1",
+      "url": "/api/scenario/[object Object]",
     },
-    "type": "decrement outstanding fetches",
+    "type": "increment outstanding fetches",
   },
-  Array [
-    Object {
-      "payload": "1",
-      "type": "delete scenario",
-    },
-    Object {
-      "payload": Object {
-        "args": Array [
-          "/projects/1",
-        ],
-        "method": "push",
-      },
-      "type": "@@router/CALL_HISTORY_METHOD",
-    },
-  ],
+  Promise {},
 ]
 `;
 
@@ -180,6 +184,16 @@ Array [
       },
       "type": "set scenario",
     },
+    Array [
+      Object {
+        "payload": Object {
+          "options": Object {},
+          "url": "/api/bundle/1",
+        },
+        "type": "increment outstanding fetches",
+      },
+      Promise {},
+    ],
     Array [
       Object {
         "payload": Object {

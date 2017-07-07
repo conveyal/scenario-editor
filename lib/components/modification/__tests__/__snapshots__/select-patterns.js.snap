@@ -4,6 +4,11 @@ exports[`Component > SelectPatterns renders correctly 1`] = `
 <div
   className="form-group"
 >
+  <label
+    htmlFor="Patterns"
+  >
+    Select patterns
+  </label>
   <div
     className="Select Select--multi is-searchable has-value"
     style={undefined}

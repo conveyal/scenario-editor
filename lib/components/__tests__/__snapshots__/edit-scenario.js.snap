@@ -7,7 +7,7 @@ exports[`Component > EditScenario renders correctly 1`] = `
   <div
     className="panel-heading clearfix "
   >
-    Create new scenario
+    Create a new Scenario
   </div>
   <div
     className="panel-body"
@@ -82,7 +82,7 @@ exports[`Component > EditScenario renders correctly 1`] = `
       onClick={[Function]}
       tabIndex={0}
     >
-      Create new scenario
+      Create a new Scenario
     </a>
   </div>
 </div>

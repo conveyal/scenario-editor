@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > VariantEditor renders correctly 1`] = `
-<div
-  className="ModificationGroup"
->
+<div>
   <div
     className="DockTitle"
   >
-    Variants:
+    Variants
     <a
       className="pull-right"
       onClick={[Function]}

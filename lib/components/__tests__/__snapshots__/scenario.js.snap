@@ -2,52 +2,8 @@
 
 exports[`Component > Scenario renders correctly 1`] = `
 <div
-  className="Scenario"
+  className="panel-body"
 >
-  <div
-    className="DockTitle"
-  >
-    Scenario:
-    <a
-      onClick={[Function]}
-      style={Object {}}
-      title="Show scenario modifications"
-    >
-      <span>
-         
-        Test
-      </span>
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-      title="Edit scenario"
-    >
-      <i
-        className="fa fa-pencil fa-fw "
-      />
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-      title="Import shapefile"
-    >
-      <i
-        className="fa fa-globe fa-fw "
-      />
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-      title="Import modifications from another scenario"
-    >
-      <i
-        className="fa fa-upload fa-fw "
-      />
-    </a>
-  </div>
+  Loading scenario...
 </div>
 `;

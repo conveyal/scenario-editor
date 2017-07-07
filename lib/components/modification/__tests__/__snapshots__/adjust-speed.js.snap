@@ -7,6 +7,11 @@ exports[`Component > Modification > AdjustSpeed renders correctly 1`] = `
       <div
         className="form-group"
       >
+        <label
+          htmlFor="Feed"
+        >
+          Select feed and routes
+        </label>
         <div
           className="Select Select--single is-searchable"
           style={undefined}
@@ -48,18 +53,18 @@ exports[`Component > Modification > AdjustSpeed renders correctly 1`] = `
     className="form-group"
   >
     <label
-      htmlFor="scale-input-0"
+      htmlFor="scale-speed-by-input-0"
     >
-      Scale
+      Scale speed by
     </label>
     <input
       className="form-control"
-      id="scale-input-0"
+      id="scale-speed-by-input-0"
       min={0}
-      name="Scale"
+      name="Scale speed by"
       onChange={[Function]}
       onWheel={[Function]}
-      placeholder="Scale"
+      placeholder="Scale speed by"
       step="any"
       type="number"
       value={undefined}

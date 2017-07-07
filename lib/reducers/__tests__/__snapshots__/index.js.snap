@@ -4,7 +4,6 @@ exports[`reducers > root should have default state 1`] = `
 Object {
   "analysis": Object {
     "active": false,
-    "comparisonInProgress": false,
     "isFetchingIsochrone": false,
     "isochroneCutoff": 60,
     "profileRequest": Object {

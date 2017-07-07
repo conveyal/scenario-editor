@@ -38,6 +38,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
   scenarioApplicationErrors={Array []}
   scenarioId=""
   scenarioName=""
+  scenarios={Array []}
   selectRegionalAnalysis={[Function]}
   setActiveVariant={[Function]}
   setComparisonInProgress={[Function]}
@@ -47,68 +48,211 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
   setProfileRequest={[Function]}
   variantIndex={0}
   variantName=""
+  variants={Array []}
   workerVersion=""
 >
   <div>
     <div
-      className="DockTitle"
-    >
-      Variant: 
-      <span
-        className="pull-right"
-      >
-        <small />
-        <button
-          className="btn btn-link"
-          disabled={false}
-          onClick={[Function]}
-        >
-          Update results
-           
-          <Icon
-            className=""
-            type="refresh"
-          >
-            <i
-              className="fa fa-refresh fa-fw "
-            />
-          </Icon>
-        </button>
-      </span>
-    </div>
-    <div
       className="block"
     >
-      <Collapsible
-        defaultExpanded={false}
-        title="Analysis settings"
-      >
-        <div>
-          <div
-            aria-level={3}
-            role="heading"
+      <br />
+      <Group>
+        <div
+          className="form-group"
+        >
+          <Select
+            addLabelText="Add \\"{label}\\"?"
+            arrowRenderer={[Function]}
+            autosize={true}
+            backspaceRemoves={true}
+            backspaceToRemoveMessage="Press backspace to remove {label}"
+            clearAllText="Clear all"
+            clearRenderer={[Function]}
+            clearValueText="Clear value"
+            clearable={true}
+            deleteRemoves={true}
+            delimiter=","
+            disabled={false}
+            escapeClearsValue={true}
+            filterOptions={[Function]}
+            ignoreAccents={true}
+            ignoreCase={true}
+            inputProps={Object {}}
+            isLoading={false}
+            joinValues={false}
+            labelKey="label"
+            matchPos="any"
+            matchProp="any"
+            menuBuffer={0}
+            menuRenderer={[Function]}
+            multi={false}
+            noResultsText="No results found"
+            onBlurResetsInput={true}
+            onChange={[Function]}
+            onCloseResetsInput={true}
+            openAfterFocus={false}
+            optionComponent={[Function]}
+            options={Array []}
+            pageSize={5}
+            placeholder="Select..."
+            required={false}
+            scrollMenuIntoView={true}
+            searchable={true}
+            simpleValue={false}
+            tabSelectsValue={true}
+            value={0}
+            valueComponent={[Function]}
+            valueKey="value"
           >
-            <a
-              aria-expanded={false}
-              className="CollapsibleButton"
-              onClick={[Function]}
-              role="button"
-              tabIndex={0}
+            <div
+              className="Select Select--single is-searchable"
             >
-              <Icon
-                type="caret-right"
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
               >
-                <i
-                  className="fa fa-caret-right fa-fw "
-                />
-              </Icon>
-              <strong>
-                Analysis settings
-              </strong>
-            </a>
-          </div>
+                <span
+                  className="Select-multi-value-wrapper"
+                  id="react-select-2--value"
+                >
+                  <div
+                    className="Select-placeholder"
+                  >
+                    Select...
+                  </div>
+                  <AutosizeInput
+                    aria-activedescendant="react-select-2--value"
+                    aria-expanded="false"
+                    aria-haspopup="false"
+                    aria-owns=""
+                    className="Select-input"
+                    minWidth="5"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    role="combobox"
+                    value=""
+                  />
+                </span>
+                <span
+                  className="Select-arrow-zone"
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]}
+                  />
+                </span>
+              </div>
+            </div>
+          </Select>
         </div>
-      </Collapsible>
+      </Group>
+      <div>
+        <Group>
+          <div
+            className="form-group"
+          >
+            <Select
+              addLabelText="Add \\"{label}\\"?"
+              arrowRenderer={[Function]}
+              autosize={true}
+              backspaceRemoves={true}
+              backspaceToRemoveMessage="Press backspace to remove {label}"
+              clearAllText="Clear all"
+              clearRenderer={[Function]}
+              clearValueText="Clear value"
+              clearable={true}
+              deleteRemoves={true}
+              delimiter=","
+              disabled={false}
+              escapeClearsValue={true}
+              filterOptions={[Function]}
+              ignoreAccents={true}
+              ignoreCase={true}
+              inputProps={Object {}}
+              isLoading={false}
+              joinValues={false}
+              labelKey="label"
+              matchPos="any"
+              matchProp="any"
+              menuBuffer={0}
+              menuRenderer={[Function]}
+              multi={false}
+              name="Scenario"
+              noResultsText="No results found"
+              onBlurResetsInput={true}
+              onChange={[Function]}
+              onCloseResetsInput={true}
+              openAfterFocus={false}
+              optionComponent={[Function]}
+              options={Array []}
+              pageSize={5}
+              placeholder="Select comparison scenario..."
+              required={false}
+              scrollMenuIntoView={true}
+              searchable={true}
+              simpleValue={false}
+              tabSelectsValue={true}
+              value=""
+              valueComponent={[Function]}
+              valueKey="value"
+            >
+              <div
+                className="Select Select--single is-searchable"
+              >
+                <div
+                  className="Select-control"
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <span
+                    className="Select-multi-value-wrapper"
+                    id="react-select-3--value"
+                  >
+                    <div
+                      className="Select-placeholder"
+                    >
+                      Select comparison scenario...
+                    </div>
+                    <AutosizeInput
+                      aria-activedescendant="react-select-3--value"
+                      aria-expanded="false"
+                      aria-haspopup="false"
+                      aria-owns=""
+                      className="Select-input"
+                      minWidth="5"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      role="combobox"
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="Select-arrow-zone"
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="Select-arrow"
+                      onMouseDown={[Function]}
+                    />
+                  </span>
+                </div>
+              </div>
+            </Select>
+          </div>
+        </Group>
+      </div>
       <Group
         id="select-analysis-indicator"
       >
@@ -142,7 +286,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             menuBuffer={0}
             menuRenderer={[Function]}
             multi={false}
-            name="Indicator"
+            name="Opportunity dataset"
             noResultsText="No results found"
             onBlurResetsInput={true}
             onChange={[Function]}
@@ -151,7 +295,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             optionComponent={[Function]}
             options={Array []}
             pageSize={5}
-            placeholder="Select a grid..."
+            placeholder="Select an opportunity dataset..."
             required={false}
             scrollMenuIntoView={true}
             searchable={true}
@@ -160,7 +304,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             value=""
             valueComponent={[Function]}
             valueKey="value"
-            width={600}
           >
             <div
               className="Select Select--single is-searchable"
@@ -175,15 +318,15 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               >
                 <span
                   className="Select-multi-value-wrapper"
-                  id="react-select-2--value"
+                  id="react-select-4--value"
                 >
                   <div
                     className="Select-placeholder"
                   >
-                    Select a grid...
+                    Select an opportunity dataset...
                   </div>
                   <AutosizeInput
-                    aria-activedescendant="react-select-2--value"
+                    aria-activedescendant="react-select-4--value"
                     aria-expanded="false"
                     aria-haspopup="false"
                     aria-owns=""
@@ -211,47 +354,36 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           </Select>
         </div>
       </Group>
-      <Link
-        className="btn btn-success btn-block"
-        onlyActiveOnIndex={false}
-        style={Object {}}
-        to="/projects//grids/create"
+      <Collapsible
+        defaultExpanded={false}
+        title="Analysis settings"
       >
-        <a
-          className="btn btn-success btn-block"
-          onClick={[Function]}
-          style={Object {}}
-        >
-          <Icon
-            type="upload"
+        <div>
+          <div
+            aria-level={3}
+            role="heading"
           >
-            <i
-              className="fa fa-upload fa-fw "
-            />
-          </Icon>
-           Create a new grid
-        </a>
-      </Link>
-      <Checkbox
-        label="Compare to another scenario"
-        onChange={[Function]}
-      >
-        <div
-          className="checkbox"
-        >
-          <label
-            htmlFor="compare-to-another-scenario-input-0"
-          >
-            <input
-              id="compare-to-another-scenario-input-0"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Compare to another scenario
-          </label>
+            <a
+              aria-expanded={false}
+              className="CollapsibleButton"
+              onClick={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              <Icon
+                type="caret-right"
+              >
+                <i
+                  className="fa fa-caret-right fa-fw "
+                />
+              </Icon>
+              <strong>
+                Analysis settings
+              </strong>
+            </a>
+          </div>
         </div>
-      </Checkbox>
+      </Collapsible>
     </div>
     <div
       className="DockTitle"
@@ -261,27 +393,33 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
     <div
       className="block"
     >
-      <Button
-        block={true}
-        onClick={[Function]}
-        style="success"
-      >
-        <a
-          className="btn btn-success btn-block"
-          href="#"
-          onClick={[Function]}
-          tabIndex={0}
+      <Group>
+        <div
+          className="form-group"
         >
-          <Icon
-            type="plus"
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="success"
           >
-            <i
-              className="fa fa-plus fa-fw "
-            />
-          </Icon>
-          New regional analysis
-        </a>
-      </Button>
+            <a
+              className="btn btn-success btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              <Icon
+                type="plus"
+              >
+                <i
+                  className="fa fa-plus fa-fw "
+                />
+              </Icon>
+              New regional analysis
+            </a>
+          </Button>
+        </div>
+      </Group>
       <RegionalAnalysisSelector
         deleteRegionalAnalysis={[Function]}
         loadRegionalAnalyses={[Function]}

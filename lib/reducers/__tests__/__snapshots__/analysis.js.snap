@@ -3,7 +3,6 @@
 exports[`reducers > analysis should handle clear isochrone results 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochrone": null,
   "isochroneCutoff": 60,
@@ -51,7 +50,6 @@ Object {
 exports[`reducers > analysis should handle default state 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -97,7 +95,6 @@ Object {
 exports[`reducers > analysis should handle enter analysis mode 1`] = `
 Object {
   "active": true,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -143,7 +140,6 @@ Object {
 exports[`reducers > analysis should handle exit analysis mode 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "comparisonTravelTimeSurface": null,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
@@ -192,7 +188,6 @@ Object {
 exports[`reducers > analysis should handle set active regional analyses 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -238,7 +233,6 @@ exports[`reducers > analysis should handle set active variant 1`] = `
 Object {
   "active": false,
   "activeVariant": 21,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -284,7 +278,6 @@ Object {
 exports[`reducers > analysis should handle set comparison in progress 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": true,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -331,7 +324,6 @@ exports[`reducers > analysis should handle set comparison modifications 1`] = `
 Object {
   "active": false,
   "comparisonBundleId": "COMPARISON BUNDLE ID",
-  "comparisonInProgress": false,
   "comparisonModifications": Array [
     "MODIFICATIONS",
   ],
@@ -383,7 +375,6 @@ exports[`reducers > analysis should handle set comparison scenario 1`] = `
 Object {
   "active": false,
   "comparisonBundleId": "COMPARISON BUNDLE ID",
-  "comparisonInProgress": false,
   "comparisonModifications": null,
   "comparisonScenarioId": "COMPARISON SCENARIO ID",
   "comparisonVariant": 16,
@@ -432,7 +423,6 @@ Object {
 exports[`reducers > analysis should handle set isochrone cutoff 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 123,
   "profileRequest": Object {
@@ -478,7 +468,6 @@ Object {
 exports[`reducers > analysis should handle set isochrone fetch status 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": true,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -524,7 +513,6 @@ Object {
 exports[`reducers > analysis should handle set isochrone lonlat 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "isochroneLonLat": 123,
@@ -571,7 +559,6 @@ Object {
 exports[`reducers > analysis should handle set profile request 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -596,7 +583,6 @@ Object {
 exports[`reducers > analysis should handle set regional analysis grids 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {
@@ -651,7 +637,6 @@ Object {
 exports[`reducers > analysis should handle set scenario application errors 1`] = `
 Object {
   "active": false,
-  "comparisonInProgress": false,
   "isFetchingIsochrone": false,
   "isochroneCutoff": 60,
   "profileRequest": Object {

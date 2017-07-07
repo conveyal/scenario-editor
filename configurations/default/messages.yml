@@ -20,6 +20,15 @@ nav:
   openScenario: Open Scenario
   importShapefile: Import Shapefile
   selectBundle: Select Bundle
+  projects: Projects
+  projectSettings: Project Settings
+  scenarios: Scenarios
+  gtfsBundles: GTFS Bundles
+  opportunityDatasets: Opportunity Datasets
+  editScenario: Edit Scenario
+  analyzeScenario: Analyze Scenario
+  notConnectedToInternet: You are not connected to the internet
+  unfinishedRequests: You have unfinished requests. Are you sure you want to exit?
 phasing:
   phase: Phase
   atStop: Phase at stop
@@ -31,14 +40,19 @@ phasing:
   noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
   exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
 project:
-  createAction: Create a new project
-  createTitle: Create new project
+  welcome: welcome to
+  createAction: Create a new Project
+  goToExisting: or go to an existing project
+  goToProject: Go to Project
+  createTitle: Create a new Project
+  configure: Configure project settings
   deleteAction: DANGER: Delete this project
   deleteConfirmation: Are you sure you would like to delete this project? This will delete all scenarios and modifications associated with this project.
   editAction: Save project
   editTitle: Edit project
   versionOutdated: The chosen analysis backend version of this project is outdated.
   editProject: Edit project.
+  loadingProject: Loading project...
   r5Version: Analysis backend version
   latestReleaseVersionNotSelected: There is a more recent version of the analysis backend available.
     Changing backend versions may enable new features or increased performance, but may also cause
@@ -55,12 +69,21 @@ project:
     DONE: Done
   customOpenStreetMapData: Custom OpenStreetMap data in PBF format (optional)
 scenario:
-  createAction: Create new scenario
+  createAction: Create a new Scenario
   delete: Delete scenario
   deleteConfirmation: Are you sure you would like to delete this scenario?
   editAction: Save changes to scenario
   editTitle: Edit scenario
+  editName: Edit scenario name
+  importShapefile: Import shapefile
+  importModifications: Import modifications from another scenario
+  loading: Loading scenario...
+  loadingGTFS: Loading GTFS bundle & modifications...
   route: Route
+  uploadBundle: Upload new GTFS Bundle
+  uploadOpportunityDataset: Upload a new Opportunity Dataset
+  goToExisting: or go to an existing scenario
+  goToScenario: Go to Scenario
 transitEditor:
   startEdit: Edit route geometry
   stopEdit: Stop editing
@@ -89,6 +112,8 @@ modification:
     removeSeconds: Time savings per removed stop
   description: Description
   addDescription: Add description…
+  deleteModification: Delete Modification
+  copyModification: Copy Modification
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -106,15 +131,17 @@ analysis:
   linear: Linear scale
   travelTimePercentile: Percentile of travel time (reliability)
   accessibility: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
-  createGrid: Create a new grid
-  indicator: Indicator
+  createGrid: Upload new opportunity dataset
+  opportunityDataset: Opportunity dataset
+  selectOpportunityDataset: Select an opportunity dataset...
   cutoff: Travel time cutoff (minutes)
-  addGrid: Add grid
+  addGrid: Add opportunity dataset
   uploading: uploading...
-  gridName: Grid name
-  gridFiles: Grid files
+  gridName: Opportunity dataset
+  gridFiles: Select opportunity dataset
   latField: Latitude field
   lonField: Longitude field
+  travelTime: Travel time
   errorsInScenario: Errors were found in the scenario:
   warningsInScenario: Warnings were found applying the scenario
   errorsInModification: in modification %s
@@ -154,7 +181,7 @@ analysis:
     carPark: Automobile (park-and-ride)
     transit: Transit
   fetchStatus:
-    LOADING_GRID: Loading grid…
+    LOADING_GRID: Loading opportunity dataset…
     APPLYING_SCENARIO: Applying scenario…
     PERFORMING_ANALYSIS: Performing analysis…
     COMPUTING_ISOCHRONE: Computing isochrone…
@@ -167,6 +194,8 @@ analysis:
   bookmark: Bookmark
   createBookmark: Create bookmark
   bookmarkName: Bookmark name
+  selectComparisonScenario: Select comparison scenario...
+  selectComparisonScenarioVariant: Select comparison scenario variant...
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
@@ -193,6 +222,7 @@ report:
     stopsModified: Stops modified:
   adjustSpeed:
     scale: Scale speed by %sx
+    scaleLabel: Scale speed by
   patternLength: Length
   patternName: Pattern
   reroute:
@@ -209,6 +239,7 @@ report:
     removePatterns: Some patterns are removed:
   removeStops:
     allPatterns: All patterns are affected.
+    secondsSaved: Seconds saved %s
     somePatterns: Some patterns are affected:
     stopsRemoved: Stops removed:
   days:
@@ -230,3 +261,4 @@ report:
   addTrips:
     bidirectional: bidirectional
     unidirectional: unidirectional
+welcome: welcome to

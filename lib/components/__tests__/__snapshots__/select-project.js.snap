@@ -2,53 +2,86 @@
 
 exports[`Component > SelectProject renders correctly 1`] = `
 <div
-  className="panel-body"
+  className="InnerDock"
 >
   <div
-    className="form-group"
+    className="panel-body"
   >
     <div
-      className="Select Select--single is-searchable"
-      style={undefined}
+      className="WelcomeTitle"
     >
-      <div
-        className="Select-control"
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        style={undefined}
+      <p
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
       >
-        <span
-          className="Select-multi-value-wrapper"
-          id="react-select-2--value"
-        >
-          <div
-            className="Select-placeholder"
-          >
-            Select a project...
-          </div>
-        </span>
-        <span
-          className="Select-arrow-zone"
-          onMouseDown={[Function]}
-        >
-          <span
-            className="Select-arrow"
-            onMouseDown={[Function]}
-          />
-        </span>
-      </div>
+        welcome to
+      </p>
+      <span
+        className="logo"
+        to="/"
+      >
+        conveyal analysis 
+      </span>
+      <span
+        className="badge"
+      >
+        beta
+      </span>
+    </div>
+    <div
+      className="form-group"
+    >
+      <a
+        className="btn btn-success btn-block"
+        href="#"
+        onClick={[Function]}
+        tabIndex={0}
+      >
+        <i
+          className="fa fa-cubes fa-fw "
+        />
+         
+        Create a new Project
+      </a>
+    </div>
+    <div>
+      <p
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        or go to an existing project
+      </p>
+      <a
+        className="BlockLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="Go to Project"
+      >
+        <i
+          className="fa fa-cubes fa-fw "
+        />
+         
+        P1
+      </a>
+      <a
+        className="BlockLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="Go to Project"
+      >
+        <i
+          className="fa fa-cubes fa-fw "
+        />
+         
+        P2
+      </a>
     </div>
   </div>
-  <a
-    className="btn btn-success btn-block"
-    href="#"
-    onClick={[Function]}
-    tabIndex={0}
-  >
-    Create a new project
-  </a>
 </div>
 `;

@@ -24,12 +24,6 @@ Object {
 }
 `;
 
-exports[`actions > analysis setComparisonInProgress should work 1`] = `
-Object {
-  "type": "set comparison in progress",
-}
-`;
-
 exports[`actions > analysis setComparisonModifications should work 1`] = `
 Object {
   "type": "set comparison modifications",

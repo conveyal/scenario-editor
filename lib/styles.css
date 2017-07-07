@@ -7,6 +7,7 @@
 @import url(node_modules/react-select/dist/react-select.css);
 @import url(node_modules/react-datetime/css/react-datetime.css);
 @import url(lib/map.css);
+@import url(lib/sidebar.css);
 
 html,
 body,
@@ -63,8 +64,26 @@ ul, ol {
   line-height: 1.4;
 }
 
+.btn-primary {
+  background-color: #337ab7;
+  border-color: color(#337ab7 shade(20%));
+}
+
+.btn-primary:active, .btn-primary.active, .btn-primary:hover {
+  background-color: color(#337ab7 shade(20%));
+  border-color: color(#337ab7 shade(40%));
+}
+
 .form-group {
   margin-bottom: 12px;
+}
+
+.center {
+  text-align: center;
+}
+
+.danger {
+  color: red;
 }
 
 input[type="date"].form-control,
@@ -101,6 +120,15 @@ input[type="number"] {
   display: block;
 }
 
+.alert .CollapsibleButton {
+  padding-top: 12px;
+  padding-bottom: 0;
+}
+
+.alert ul {
+  margin-bottom: 0;
+}
+
 .checkbox {
   line-height: 20px;
   margin-top: 12px;
@@ -124,11 +152,12 @@ input[type="number"] {
   position: absolute;
   padding: 0px;
   right: 0;
-  left: 320px;
+  left: 360px;
 }
 
-.Fullscreen.hasActiveModification, .Fullscreen.analysisMode {
-  left: 640px;
+.Fullscreen.hasActiveModification,
+.Fullscreen.analysisMode {
+  left: 680px;
 }
 
 .Fullscreen > div {
@@ -140,29 +169,52 @@ input[type="number"] {
   position: absolute;
   width: 320px;
   top: 0;
-  left: 0;
+  left: 40px;
   height: 100%;
   border-right: 1px solid #ddd;
-  /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15); */
 }
 
-.ApplicationDock.analysisMode {
+.ApplicationDock.analysisMode,
+.ApplicationDock.analysisMode .InnerDock {
   width: 640px;
 }
 
 .ModificationDock {
-  left: 320px;
+  left: 360px;
 }
 
 .InnerDock {
-  position: relative;
+  position: absolute;
   height: 100%;
-  overflow-y: scroll;
-  padding-bottom: 80px;
+  overflow-y: auto;
+  padding-bottom: 45px;
+  width: 320px;
 }
 
 .Analysis, .ScenarioContent {
   min-height: 500px;
+}
+
+.BlockLink {
+  display: block;
+  border: 1px solid rgba(51, 122, 183, 0.4);
+  color: #337ab7;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  padding: 0 6px 0 12px;
+  line-height: 38px;
+  cursor: pointer;
+}
+
+.BlockLink:hover,
+.BlockLink:active {
+  border-color: rgba(35, 82, 124, 0.4);
+  color: #23527c;
+  text-decoration: none;
+}
+
+.BlockLink > a {
+  padding: 0 6px;
 }
 
 .InnerDock::-webkit-scrollbar {
@@ -186,60 +238,66 @@ input[type="number"] {
   padding: 0 12px;
 }
 
+.ApplicationDockTitle,
 .ModificationDockTitle {
   font-size: 14px;
-  padding: 6px 12px;
+  padding: 12px 9px 12px 12px;
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   z-index: 100;
 }
 
+.ApplicationDockTitle > a,
+.ModificationDockTitle > a {
+  display: inline-block;
+  padding: 0 3px;
+}
+
 .DockContent {
   position: relative;
 }
 
-.ApplicationTitle {
-  font-size: 14px;
-  padding: 12px 12px 6px;
-  border-bottom: 1px solid #ddd;
+.WelcomeTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
-.ApplicationTitle > .logo {
+.WelcomeTitle > .logo {
   font-family: "Gill Sans";
+  display: inline-block;
   letter-spacing: 0;
-  font-size: 20px;
-  padding-left: 26px;
-  background-image: url(https://s3-eu-west-1.amazonaws.com/analyst-logos/conveyal-128x128.png);
-  background-size: 20px;
-  line-height: 20px;
+  font-size: 26px;
+  padding-left: 32px;
+  padding-right: 6px;
+  background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
+  background-size: 26px;
+  line-height: 26px;
+  height: 26px;
   background-repeat: no-repeat;
   background-position: left center;
   font-weight: 100;
 }
 
-.ApplicationTitle > .badge {
+.WelcomeTitle > .badge {
   font-size: 10px;
   font-weight: normal;
   background-color: #337ab7;
-  margin-top: -2px;
+  margin-top: -6px;
   padding: 2px 7px 3px;
 }
 
 .DockTitle {
   margin: 0;
-  padding: 12px 12px 6px;
+  padding: 12px;
   font-size: 14px;
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd; */
 }
 
 .DockTitle a > .fa {
   padding: 6px 12px;
   margin-top: -6px;
-}
-
-.Scenario {
-  overflow: scroll;
 }
 
 .DockContent > .btn-group-justified > .btn {
@@ -254,7 +312,7 @@ input[type="number"] {
   border-right: none;
 }
 
-.alert, .panel {
+.panel, .panel-heading {
   border-radius: 0;
 }
 
@@ -263,9 +321,16 @@ input[type="number"] {
 }
 
 .panel {
+  border-top: none;
   border-left: none;
   border-right: none;
   margin-bottom: 0;
+  box-shadow: none;
+}
+
+.panel-default > .panel-heading {
+  background-color: #ddd;
+  border: none;
 }
 
 .panel-heading {
@@ -278,7 +343,7 @@ input[type="number"] {
 }
 
 .panel-body {
-  padding: 12px 6px 12px 12px;
+  padding: 12px;
 }
 
 .panel-body legend {
@@ -289,8 +354,8 @@ input[type="number"] {
 }
 
 .panel-body .inner-panel {
-  border: 1px solid #e5e5e5;
-  border-top: 2px solid #e5e5e5;
+  border: 1px solid #ddd;
+  border-top: 2px solid #ddd;
   margin-bottom: 12px;
 }
 
@@ -343,7 +408,7 @@ input[type="number"] {
 
 .ModificationTitle:hover,
 .ModificationTitle.active {
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 .ModificationTitle > .ShowOnMap {
@@ -383,16 +448,20 @@ input[type="number"] {
   padding-right: 42px;
 }
 
+.Select-menu-outer {
+  z-index: 3;
+}
+
 .Variants {
-  padding: 6px 12px;
+  padding: 0 12px;
 }
 
 .Variants-Variant {
   margin-bottom: 12px;
 }
 
-.ModificationGroup .Variants-Variant .form-control {
-  width: 99px;
+.Variants-Variant .form-control {
+  width: 140px;
 }
 
 .DirectionIcon {

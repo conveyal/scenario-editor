@@ -116,11 +116,9 @@ Object {
       "id": "1",
     },
   },
-  "currentBundle": Object {
-    "id": "1",
-  },
+  "currentBundle": "1",
   "currentScenario": Object {
-    "bundleId": "1",
+    "bundleId": undefined,
   },
 }
 `;

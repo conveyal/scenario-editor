@@ -1,0 +1,63 @@
+
+.Sidebar {
+  padding-top: 3px;
+  position: absolute;
+  width: 40px;
+  top: 0;
+  height: 100%;
+  background-color: #ddd;
+  color: #fff;
+}
+
+.Sidebar.expanded {
+  width: 120px;
+}
+
+.Sidebar-logo {
+  background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 65px;
+  margin-top: 2px;
+  display: block;
+}
+
+.Sidebar-spinner {
+  font-size: 18px;
+  padding: 22px 10px 20px;
+  color: #337ab7;
+  display: block;
+}
+
+.Sidebar-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.Sidebar-navItem {
+
+}
+
+.Sidebar-navItem > a,
+.Sidebar-navItem > span {
+  padding: 10px;
+  display: inline-block;
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+  width: 40px;
+}
+
+.Sidebar-navItem.active {
+  background-color: #fff;
+  border-left: 2px solid #337ab7;
+}
+
+.Sidebar-navItem-text {
+  display: none;
+}
+
+.expanded .Sidebar-navItem-text {
+  display: inline;
+}

@@ -123,6 +123,34 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
           className="ModificationDockTitle"
         >
           Test Modification
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Delete Modification"
+          >
+            <Icon
+              type="trash"
+            >
+              <i
+                className="fa fa-trash fa-fw "
+              />
+            </Icon>
+          </a>
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Copy Modification"
+          >
+            <Icon
+              type="copy"
+            >
+              <i
+                className="fa fa-copy fa-fw "
+              />
+            </Icon>
+          </a>
         </div>
         <div
           className="InnerDock"
@@ -165,27 +193,34 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   </div>
                 </Group>
               </Text>
-              <Button
-                onClick={[Function]}
-                style="link"
-              >
-                <a
-                  className="btn btn-link"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
+              <Group>
+                <div
+                  className="form-group"
                 >
-                  <Icon
-                    type="pencil"
+                  <Button
+                    block={true}
+                    onClick={[Function]}
+                    style="info"
                   >
-                    <i
-                      className="fa fa-pencil fa-fw "
-                    />
-                  </Icon>
-                   
-                  Add description…
-                </a>
-              </Button>
+                    <a
+                      className="btn btn-info btn-block"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                    >
+                      <Icon
+                        type="pencil"
+                      >
+                        <i
+                          className="fa fa-pencil fa-fw "
+                        />
+                      </Icon>
+                       
+                      Add description…
+                    </a>
+                  </Button>
+                </div>
+              </Group>
               <Connect(AddTripPattern)
                 modification={
                   Object {
@@ -1507,53 +1542,6 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   </div>
                 </div>
               </Variants>
-              <Button
-                block={true}
-                onClick={[Function]}
-                style="info"
-                title="Copy Modification"
-              >
-                <a
-                  className="btn btn-info btn-block"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Copy Modification"
-                >
-                  <Icon
-                    type="copy"
-                  >
-                    <i
-                      className="fa fa-copy fa-fw "
-                    />
-                  </Icon>
-                   Copy Modification
-                </a>
-              </Button>
-              <Button
-                block={true}
-                className="pull-right"
-                onClick={[Function]}
-                style="danger"
-                title="Delete Modification"
-              >
-                <a
-                  className="btn btn-danger btn-block pull-right"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Delete Modification"
-                >
-                  <Icon
-                    type="close"
-                  >
-                    <i
-                      className="fa fa-close fa-fw "
-                    />
-                  </Icon>
-                   Delete Modification
-                </a>
-              </Button>
             </div>
           </Body>
         </div>
@@ -1688,6 +1676,34 @@ exports[`Container > Modification Editor render the description if present 1`] =
           className="ModificationDockTitle"
         >
           Test Modification
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Delete Modification"
+          >
+            <Icon
+              type="trash"
+            >
+              <i
+                className="fa fa-trash fa-fw "
+              />
+            </Icon>
+          </a>
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Copy Modification"
+          >
+            <Icon
+              type="copy"
+            >
+              <i
+                className="fa fa-copy fa-fw "
+              />
+            </Icon>
+          </a>
         </div>
         <div
           className="InnerDock"
@@ -3083,53 +3099,6 @@ exports[`Container > Modification Editor render the description if present 1`] =
                   </div>
                 </div>
               </Variants>
-              <Button
-                block={true}
-                onClick={[Function]}
-                style="info"
-                title="Copy Modification"
-              >
-                <a
-                  className="btn btn-info btn-block"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Copy Modification"
-                >
-                  <Icon
-                    type="copy"
-                  >
-                    <i
-                      className="fa fa-copy fa-fw "
-                    />
-                  </Icon>
-                   Copy Modification
-                </a>
-              </Button>
-              <Button
-                block={true}
-                className="pull-right"
-                onClick={[Function]}
-                style="danger"
-                title="Delete Modification"
-              >
-                <a
-                  className="btn btn-danger btn-block pull-right"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Delete Modification"
-                >
-                  <Icon
-                    type="close"
-                  >
-                    <i
-                      className="fa fa-close fa-fw "
-                    />
-                  </Icon>
-                   Delete Modification
-                </a>
-              </Button>
             </div>
           </Body>
         </div>
@@ -3359,6 +3328,34 @@ exports[`Container > Modification Editor renders correctly 2`] = `
           className="ModificationDockTitle"
         >
           Test Modification
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Delete Modification"
+          >
+            <Icon
+              type="trash"
+            >
+              <i
+                className="fa fa-trash fa-fw "
+              />
+            </Icon>
+          </a>
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Copy Modification"
+          >
+            <Icon
+              type="copy"
+            >
+              <i
+                className="fa fa-copy fa-fw "
+              />
+            </Icon>
+          </a>
         </div>
         <div
           className="InnerDock"
@@ -3401,27 +3398,34 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                   </div>
                 </Group>
               </Text>
-              <Button
-                onClick={[Function]}
-                style="link"
-              >
-                <a
-                  className="btn btn-link"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
+              <Group>
+                <div
+                  className="form-group"
                 >
-                  <Icon
-                    type="pencil"
+                  <Button
+                    block={true}
+                    onClick={[Function]}
+                    style="info"
                   >
-                    <i
-                      className="fa fa-pencil fa-fw "
-                    />
-                  </Icon>
-                   
-                  Add description…
-                </a>
-              </Button>
+                    <a
+                      className="btn btn-info btn-block"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                    >
+                      <Icon
+                        type="pencil"
+                      >
+                        <i
+                          className="fa fa-pencil fa-fw "
+                        />
+                      </Icon>
+                       
+                      Add description…
+                    </a>
+                  </Button>
+                </div>
+              </Group>
               <Connect(AddTripPattern)
                 modification={
                   Object {
@@ -4743,53 +4747,6 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                   </div>
                 </div>
               </Variants>
-              <Button
-                block={true}
-                onClick={[Function]}
-                style="info"
-                title="Copy Modification"
-              >
-                <a
-                  className="btn btn-info btn-block"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Copy Modification"
-                >
-                  <Icon
-                    type="copy"
-                  >
-                    <i
-                      className="fa fa-copy fa-fw "
-                    />
-                  </Icon>
-                   Copy Modification
-                </a>
-              </Button>
-              <Button
-                block={true}
-                className="pull-right"
-                onClick={[Function]}
-                style="danger"
-                title="Delete Modification"
-              >
-                <a
-                  className="btn btn-danger btn-block pull-right"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Delete Modification"
-                >
-                  <Icon
-                    type="close"
-                  >
-                    <i
-                      className="fa fa-close fa-fw "
-                    />
-                  </Icon>
-                   Delete Modification
-                </a>
-              </Button>
             </div>
           </Body>
         </div>

@@ -6,6 +6,11 @@ exports[`Component > Modification > RemoveTrips renders correctly 1`] = `
     <div
       className="form-group"
     >
+      <label
+        htmlFor="Feed"
+      >
+        Select feed and routes
+      </label>
       <div
         className="Select Select--single is-searchable"
         style={undefined}
@@ -45,6 +50,11 @@ exports[`Component > Modification > RemoveTrips renders correctly 1`] = `
   <div
     className="form-group"
   >
+    <label
+      htmlFor="Patterns"
+    >
+      Select patterns
+    </label>
     <div
       className="Select Select--multi is-searchable"
       style={undefined}

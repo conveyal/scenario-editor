@@ -154,9 +154,18 @@ Object {
 `;
 
 exports[`actions > index > login / logout logout should work 1`] = `
-Object {
-  "type": "log out",
-}
+Array [
+  [Function],
+  Object {
+    "payload": Object {
+      "args": Array [
+        "/",
+      ],
+      "method": "push",
+    },
+    "type": "@@router/CALL_HISTORY_METHOD",
+  },
+]
 `;
 
 exports[`actions > index > user setActiveTrips should work 1`] = `

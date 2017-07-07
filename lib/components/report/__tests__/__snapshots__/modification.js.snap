@@ -5,6 +5,9 @@ exports[`Report > Modification renders correctly 1`] = `
   className="Report-Modification"
 >
   <h3>
+    (
+     / 
+    ) 
     Adjust dwell time
   </h3>
   <h2>

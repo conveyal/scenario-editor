@@ -21,7 +21,8 @@ First, you will select an existing project, or create one using the "create a ne
 <img src="../img/select-project.png" alt="selecting a project in scenario editor" />
 
 When creating a new project, you specify a name as well as geographic bounds, which will in the future be used to fetch appropriate OpenStreetMap
-and Census data. When done, click "Save Project."
+and Census data. When done, click "Save Project." It is also possible to upload custom OpenStreetMap
+in this view.
 
 <img src="../img/create-project.png" alt="creating a new project in scenario editor" />
 

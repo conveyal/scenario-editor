@@ -5,16 +5,17 @@ Object {
   "payload": Object {
     "next": [Function],
     "options": Object {
-      "body": Object {
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        },
-        "description": "Project description",
+      "body": FormData {
         "id": 1,
-        "name": "Mock Project",
+        Symbol(impl): FormDataImpl {
+          "_entries": Array [
+            Object {
+              "name": "project",
+              "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\"}",
+            },
+          ],
+          Symbol(wrapper): [Circular],
+        },
       },
       "method": "post",
     },
@@ -29,16 +30,17 @@ Array [
   Object {
     "payload": Object {
       "options": Object {
-        "body": Object {
-          "bounds": Object {
-            "east": -76,
-            "north": 39,
-            "south": 38,
-            "west": -77,
-          },
-          "description": "Project description",
+        "body": FormData {
           "id": 1,
-          "name": "Mock Project",
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "project",
+                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\"}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
         },
         "method": "post",
       },
@@ -55,16 +57,17 @@ Array [
   Object {
     "payload": Object {
       "options": Object {
-        "body": Object {
-          "bounds": Object {
-            "east": -76,
-            "north": 39,
-            "south": 38,
-            "west": -77,
-          },
-          "description": "Project description",
+        "body": FormData {
           "id": 1,
-          "name": "Mock Project",
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "project",
+                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\"}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
         },
         "method": "post",
       },
@@ -274,8 +277,16 @@ Array [
     "payload": Object {
       "next": [Function],
       "options": Object {
-        "body": Object {
-          "id": "1",
+        "body": FormData {
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "project",
+                "value": "{\\"id\\":\\"1\\"}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
         },
         "method": "put",
       },
@@ -298,8 +309,16 @@ Array [
     Object {
       "payload": Object {
         "options": Object {
-          "body": Object {
-            "id": "1",
+          "body": FormData {
+            Symbol(impl): FormDataImpl {
+              "_entries": Array [
+                Object {
+                  "name": "project",
+                  "value": "{\\"id\\":\\"1\\"}",
+                },
+              ],
+              Symbol(wrapper): [Circular],
+            },
           },
           "method": "put",
         },
@@ -317,8 +336,16 @@ Array [
   Object {
     "payload": Object {
       "options": Object {
-        "body": Object {
-          "id": "1",
+        "body": FormData {
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "project",
+                "value": "{\\"id\\":\\"1\\"}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
         },
         "method": "put",
       },

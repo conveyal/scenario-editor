@@ -46,12 +46,14 @@ project:
   showAllVersions: Show all analysis backend versions (advanced)
   showReleaseVersions: Show only release backend versions
   loadStatus:
+    UPLOADING_OSM: Uploading OpenStreetMap data…
     DOWNLOADING_OSM: Downloading OpenStreetMap data…
     DOWNLOADING_CENSUS: Downloading Census data…
     EXTRACTING_CENSUS_COLUMNS: Processing Census data…
     PROJECTING_CENSUS: Projecting Census data to project grid…
     STORING_CENSUS: Storing census data…
     DONE: Done
+  customOpenStreetMapData: Custom OpenStreetMap data in PBF format (optional)
 scenario:
   createAction: Create new scenario
   delete: Delete scenario
@@ -171,6 +173,10 @@ report:
   newFrequencies: New frequencies
   variant: Variant: %s
   bundle: Using bundle: %s
+  phasing:
+    phaseFromSeconds: Phase: %(time)s from %(timetable)s
+    phaseAtStop: at stop %s
+    phaseFromStop: from stop %s
   frequency:
     name: Name
     startTime: Start time

@@ -701,6 +701,20 @@ exports[`Routes should render 1`] = `
                       ],
                     },
                   },
+                  "stops": Array [
+                    Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  ],
                   "stopsById": Object {
                     "1": Object {
                       "stop_id": "1",

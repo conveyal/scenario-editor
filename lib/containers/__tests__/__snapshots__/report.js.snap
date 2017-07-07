@@ -10,6 +10,11 @@ exports[`Container > Report renders correctly 1`] = `
   >
     <div
       className="col-md-6 col-offset-2"
+      style={
+        Object {
+          "float": "none",
+        }
+      }
     >
       <h1>
         Mock Scenario

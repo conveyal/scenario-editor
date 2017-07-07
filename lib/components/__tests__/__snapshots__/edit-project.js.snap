@@ -199,6 +199,24 @@ exports[`Component > EditProject renders correctly 1`] = `
         value={4}
       />
     </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="custom-open-street-map-data-input-7"
+      >
+        Custom OpenStreetMap data in PBF format (optional)
+      </label>
+      <input
+        className="form-control"
+        id="custom-open-street-map-data-input-7"
+        name="customOpenStreetMapData"
+        onChange={[Function]}
+        placeholder="Custom OpenStreetMap data in PBF format (optional)"
+        type="file"
+        value={undefined}
+      />
+    </div>
     <a
       className="btn btn-success btn-block"
       disabled={false}

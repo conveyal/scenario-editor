@@ -136,6 +136,7 @@ analysis:
   # accessibility pre-formatted as string, don't use %d
   percentileOfAccessibility: %(name)s: %(percentage)d%% of %(weightByName)s can access at least %(accessibility)s %(accessToName)s
   createGrid: Upload new opportunity dataset
+  createGridTooltip: Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj)
   opportunityDataset: Opportunity dataset
   selectOpportunityDataset: Select an opportunity dataset...
   cutoff: Travel time cutoff (minutes)

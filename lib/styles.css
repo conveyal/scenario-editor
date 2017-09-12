@@ -603,3 +603,10 @@ input[type="number"] {
   margin-top: 6px;
   margin-bottom: 6px;
 }
+
+.help-tooltip {
+  max-width: 400px;
+  z-index: 1000 !important;
+  opacity: 100 !important;
+  background-color: #333 !important;
+}

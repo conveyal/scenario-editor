@@ -10,6 +10,7 @@ authentication:
   username: Logged in as %s
 bundle:
   create: Create a bundle
+  createBundleTooltip: Upload one or many GTFS feeds (.zip file with agency.txt, routes.txt, stops.txt, etc.).
   delete: Delete this bundle
   deleteConfirmation: Are you sure you would like to delete this bundle?
   edit: Edit bundle

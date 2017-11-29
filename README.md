@@ -1,4 +1,6 @@
 # Analysis UI
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fconveyal%2Fanalysis-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fconveyal%2Fanalysis-ui?ref=badge_shield)
+
 
 Conveyal's tools for editing land-use/transportation scenarios.
 
@@ -27,3 +29,7 @@ $ npm install && npm start
 ```
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fconveyal%2Fanalysis-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fconveyal%2Fanalysis-ui?ref=badge_large)

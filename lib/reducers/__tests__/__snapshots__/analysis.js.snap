@@ -1,49 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`reducers > analysis should handle clear isochrone results 1`] = `
-Object {
-  "active": false,
-  "isFetchingIsochrone": false,
-  "isochrone": null,
-  "isochroneLonLat": null,
-  "profileRequest": Object {
-    "accessModes": "WALK",
-    "bikeSpeed": 4.166666666666667,
-    "date": "2016-12-20",
-    "directModes": "WALK",
-    "egressModes": "WALK",
-    "fromTime": 25200,
-    "maxRides": 4,
-    "maxTripDurationMinutes": 60,
-    "monteCarloDraws": 200,
-    "percentiles": Array [
-      5,
-      25,
-      50,
-      75,
-      95,
-    ],
-    "toTime": 32400,
-    "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-    "travelTimePercentile": 50,
-    "variantIndex": 0,
-    "walkSpeed": 1.3888888888888888,
-  },
-  "projectApplicationErrors": null,
-  "regional": Object {
-    "_id": null,
-    "breaks": Array [],
-    "comparisonGrid": null,
-    "comparisonId": null,
-    "grid": null,
-    "minimumImprovementProbability": 0.95,
-    "percentile": 50,
-    "probabilityGrid": null,
-  },
-  "selectedBookmark": null,
-}
-`;
-
 exports[`reducers > analysis should handle default state 1`] = `
 Object {
   "active": false,
@@ -439,49 +395,6 @@ exports[`reducers > analysis should handle set isochrone fetch status 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": true,
-  "profileRequest": Object {
-    "accessModes": "WALK",
-    "bikeSpeed": 4.166666666666667,
-    "date": "2016-12-20",
-    "directModes": "WALK",
-    "egressModes": "WALK",
-    "fromTime": 25200,
-    "maxRides": 4,
-    "maxTripDurationMinutes": 60,
-    "monteCarloDraws": 200,
-    "percentiles": Array [
-      5,
-      25,
-      50,
-      75,
-      95,
-    ],
-    "toTime": 32400,
-    "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-    "travelTimePercentile": 50,
-    "variantIndex": 0,
-    "walkSpeed": 1.3888888888888888,
-  },
-  "projectApplicationErrors": null,
-  "regional": Object {
-    "_id": null,
-    "breaks": Array [],
-    "comparisonGrid": null,
-    "comparisonId": null,
-    "grid": null,
-    "minimumImprovementProbability": 0.95,
-    "percentile": 50,
-    "probabilityGrid": null,
-  },
-  "selectedBookmark": null,
-}
-`;
-
-exports[`reducers > analysis should handle set isochrone lonlat 1`] = `
-Object {
-  "active": false,
-  "isFetchingIsochrone": false,
-  "isochroneLonLat": 123,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,

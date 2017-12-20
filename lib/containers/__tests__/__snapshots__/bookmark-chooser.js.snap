@@ -27,8 +27,6 @@ exports[`Containers > Bookmark Chooser should render correctly 1`] = `
             "date": "2016-01-16",
             "directModes": "WALK",
             "egressModes": "WALK",
-            "fromLat": undefined,
-            "fromLon": undefined,
             "fromTime": 25200,
             "maxRides": 4,
             "maxTripDurationMinutes": 60,

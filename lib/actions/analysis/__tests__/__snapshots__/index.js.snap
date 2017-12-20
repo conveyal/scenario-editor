@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`actions > analysis clearIsochroneResults should work 1`] = `
-Object {
-  "type": "clear isochrone results",
-}
-`;
-
 exports[`actions > analysis enterAnalysisMode should work 1`] = `
 Object {
   "type": "enter analysis mode",

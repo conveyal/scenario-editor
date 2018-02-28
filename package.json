@@ -39,6 +39,8 @@
     "@turf/inside": "3.7.5",
     "@turf/line-distance": "3.7.5",
     "@turf/line-slice": "3.7.5",
+    "@turf/nearest-point-on-line": "^6.0.1",
+    "@turf/point-to-line-distance": "^5.1.5",
     "auth0-js": "^8.0.4",
     "auth0-lock": "^10.9.2",
     "bootstrap": "^3.3.6",

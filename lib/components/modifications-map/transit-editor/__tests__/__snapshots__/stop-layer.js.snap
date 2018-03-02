@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component > Transit-Editor > GTFSStopGridLayer renders correctly 1`] = `
+<div
+  className={undefined}
+  id={undefined}
+  style={undefined}
+/>
+`;
+
 exports[`Component > Transit-Editor > StopLayer renders correctly 1`] = `
 <div
   className={undefined}

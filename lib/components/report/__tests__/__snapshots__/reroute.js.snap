@@ -234,7 +234,7 @@ exports[`Report > Reroute renders correctly 1`] = `
         </th>
         <td>
           <span>
-            126.8 km (78.8 mi)
+            126.5 km (78.6 mi)
           </span>
         </td>
       </tr>
@@ -244,7 +244,7 @@ exports[`Report > Reroute renders correctly 1`] = `
         </th>
         <td>
           <span>
-            90.3 km (56.1 mi)
+            90 km (55.9 mi)
           </span>
         </td>
       </tr>
@@ -254,7 +254,7 @@ exports[`Report > Reroute renders correctly 1`] = `
         </th>
         <td>
           <span>
-            81.6 km (50.7 mi)
+            81.3 km (50.5 mi)
           </span>
         </td>
       </tr>
@@ -287,7 +287,7 @@ exports[`Report > Reroute renders correctly 1`] = `
           Stops added
         </th>
         <td>
-          302
+          31
         </td>
       </tr>
     </tbody>

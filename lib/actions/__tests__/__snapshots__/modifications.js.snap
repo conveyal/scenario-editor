@@ -89,10 +89,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
           ],
@@ -254,10 +253,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
         ],
@@ -443,10 +441,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
           ],
@@ -560,10 +557,9 @@ Object {
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
         ],
@@ -668,10 +664,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
           ],
@@ -778,10 +773,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
           ],
@@ -891,10 +885,9 @@ Object {
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
         ],
@@ -999,10 +992,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
           ],
@@ -1109,10 +1101,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
           ],

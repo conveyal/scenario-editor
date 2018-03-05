@@ -79,10 +79,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
             ]
           },
           "properties": {},
-          "spacing": "300.00000000",
+          "spacing": "3000.00000000",
           "stopAtEnd": false,
           "stopAtStart": false,
-          "toStopId": null,
           "type": "Feature"
         },
           ],
@@ -410,10 +409,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         ]
                       },
                       "properties": {},
-                      "spacing": "300.00000000",
+                      "spacing": "3000.00000000",
                       "stopAtEnd": false,
                       "stopAtStart": false,
-                      "toStopId": null,
                       "type": "Feature"
                     },
                       ],
@@ -463,7 +461,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   update={[Function]}
                   updateAndRetrieveFeedData={[Function]}
                 >
-                  <Connect(Component)
+                  <Connect(AddTripPattern)
                     modification={
                       Object {
                         "_id": "1234",
@@ -513,10 +511,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           ]
                         },
                         "properties": {},
-                        "spacing": "300.00000000",
+                        "spacing": "3000.00000000",
                         "stopAtEnd": false,
                         "stopAtStart": false,
-                        "toStopId": null,
                         "type": "Feature"
                       },
                         ],
@@ -566,7 +563,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     update={[Function]}
                     updateAndRetrieveFeedData={[Function]}
                   >
-                    <Component
+                    <AddTripPattern
                       allPhaseFromTimetableStops={Object {}}
                       dispatch={[Function]}
                       extendFromEnd={true}
@@ -637,10 +634,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             ]
                           },
                           "properties": {},
-                          "spacing": "300.00000000",
+                          "spacing": "3000.00000000",
                           "stopAtEnd": false,
                           "stopAtStart": false,
-                          "toStopId": null,
                           "type": "Feature"
                         },
                           ],
@@ -685,7 +681,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           ],
                         }
                       }
-                      numberOfStops={151}
+                      numberOfStops={16}
                       projectTimetables={Array []}
                       qualifiedStops={Array []}
                       segmentDistances={
@@ -762,10 +758,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 ]
                               },
                               "properties": {},
-                              "spacing": "300.00000000",
+                              "spacing": "3000.00000000",
                               "stopAtEnd": false,
                               "stopAtStart": false,
-                              "toStopId": null,
                               "type": "Feature"
                             },
                               ],
@@ -864,14 +859,14 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               label="Stop spacing (minimum is 50)"
                               onChange={[Function]}
                               units="meters"
-                              value={300}
+                              value={3000}
                             >
                               <Group
                                 id="stop-spacing-minimum-is-50-input-14"
                                 label="Stop spacing (minimum is 50)"
                                 onChange={[Function]}
                                 units="meters"
-                                value={300}
+                                value={3000}
                               >
                                 <div
                                   className="form-group"
@@ -889,7 +884,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                     onWheel={[Function]}
                                     type="number"
                                     units="meters"
-                                    value={300}
+                                    value={3000}
                                   >
                                     <div
                                       className="InputWithUnits"
@@ -902,7 +897,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         onWheel={[Function]}
                                         placeholder="meters"
                                         type="number"
-                                        value={300}
+                                        value={3000}
                                       />
                                       <span
                                         className="InputUnits"
@@ -956,7 +951,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               },
                             ]
                           }
-                          numberOfStops={151}
+                          numberOfStops={16}
                           projectTimetables={Array []}
                           qualifiedStops={Array []}
                           segmentDistances={
@@ -1032,7 +1027,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                   },
                                 ]
                               }
-                              numberOfStops={151}
+                              numberOfStops={16}
                               projectTimetables={Array []}
                               qualifiedStops={Array []}
                               remove={[Function]}
@@ -1111,8 +1106,8 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           </div>
                         </Timetables>
                       </div>
-                    </Component>
-                  </Connect(Component)>
+                    </AddTripPattern>
+                  </Connect(AddTripPattern)>
                 </ModificationType>
                 <Variants
                   activeVariants={
@@ -1227,10 +1222,9 @@ Array [
     ]
   },
   "properties": {},
-  "spacing": "300.00000000",
+  "spacing": "3000.00000000",
   "stopAtEnd": false,
   "stopAtStart": false,
-  "toStopId": null,
   "type": "Feature"
 },
       ],
@@ -1358,10 +1352,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
             ]
           },
           "properties": {},
-          "spacing": "300.00000000",
+          "spacing": "3000.00000000",
           "stopAtEnd": false,
           "stopAtStart": false,
-          "toStopId": null,
           "type": "Feature"
         },
           ],
@@ -1689,10 +1682,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         ]
                       },
                       "properties": {},
-                      "spacing": "300.00000000",
+                      "spacing": "3000.00000000",
                       "stopAtEnd": false,
                       "stopAtStart": false,
-                      "toStopId": null,
                       "type": "Feature"
                     },
                       ],
@@ -1742,7 +1734,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                   update={[Function]}
                   updateAndRetrieveFeedData={[Function]}
                 >
-                  <Connect(Component)
+                  <Connect(AddTripPattern)
                     modification={
                       Object {
                         "_id": "1234",
@@ -1792,10 +1784,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           ]
                         },
                         "properties": {},
-                        "spacing": "300.00000000",
+                        "spacing": "3000.00000000",
                         "stopAtEnd": false,
                         "stopAtStart": false,
-                        "toStopId": null,
                         "type": "Feature"
                       },
                         ],
@@ -1845,7 +1836,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     update={[Function]}
                     updateAndRetrieveFeedData={[Function]}
                   >
-                    <Component
+                    <AddTripPattern
                       allPhaseFromTimetableStops={Object {}}
                       dispatch={[Function]}
                       extendFromEnd={true}
@@ -1916,10 +1907,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             ]
                           },
                           "properties": {},
-                          "spacing": "300.00000000",
+                          "spacing": "3000.00000000",
                           "stopAtEnd": false,
                           "stopAtStart": false,
-                          "toStopId": null,
                           "type": "Feature"
                         },
                           ],
@@ -1964,7 +1954,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           ],
                         }
                       }
-                      numberOfStops={151}
+                      numberOfStops={16}
                       projectTimetables={Array []}
                       qualifiedStops={Array []}
                       segmentDistances={
@@ -2041,10 +2031,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 ]
                               },
                               "properties": {},
-                              "spacing": "300.00000000",
+                              "spacing": "3000.00000000",
                               "stopAtEnd": false,
                               "stopAtStart": false,
-                              "toStopId": null,
                               "type": "Feature"
                             },
                               ],
@@ -2143,14 +2132,14 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               label="Stop spacing (minimum is 50)"
                               onChange={[Function]}
                               units="meters"
-                              value={300}
+                              value={3000}
                             >
                               <Group
                                 id="stop-spacing-minimum-is-50-input-2"
                                 label="Stop spacing (minimum is 50)"
                                 onChange={[Function]}
                                 units="meters"
-                                value={300}
+                                value={3000}
                               >
                                 <div
                                   className="form-group"
@@ -2168,7 +2157,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                     onWheel={[Function]}
                                     type="number"
                                     units="meters"
-                                    value={300}
+                                    value={3000}
                                   >
                                     <div
                                       className="InputWithUnits"
@@ -2181,7 +2170,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                         onWheel={[Function]}
                                         placeholder="meters"
                                         type="number"
-                                        value={300}
+                                        value={3000}
                                       />
                                       <span
                                         className="InputUnits"
@@ -2235,7 +2224,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               },
                             ]
                           }
-                          numberOfStops={151}
+                          numberOfStops={16}
                           projectTimetables={Array []}
                           qualifiedStops={Array []}
                           segmentDistances={
@@ -2311,7 +2300,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                   },
                                 ]
                               }
-                              numberOfStops={151}
+                              numberOfStops={16}
                               projectTimetables={Array []}
                               qualifiedStops={Array []}
                               remove={[Function]}
@@ -2390,8 +2379,8 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           </div>
                         </Timetables>
                       </div>
-                    </Component>
-                  </Connect(Component)>
+                    </AddTripPattern>
+                  </Connect(AddTripPattern)>
                 </ModificationType>
                 <Variants
                   activeVariants={

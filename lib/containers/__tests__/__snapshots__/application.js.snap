@@ -253,67 +253,9 @@ exports[`Container > Application renders correctly 1`] = `
       id={undefined}
       style={undefined}
     >
-      <div
-        style={
-          Object {
-            "display": "none",
-          }
-        }
-      >
-        }
-        <div
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        >
-          <g
-            data={
-              {
-                "type": "FeatureCollection",
-                "features": [
-                  {
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                      "type": "LineString",
-                      "coordinates": [
-                        [
-                          "-122.02460000",
-                          "36.97070000"
-                        ],
-                        [
-                          "-122.02790000",
-                          "37.04900000"
-                        ],
-                        [
-                          "-121.97990000",
-                          "37.22990000"
-                        ],
-                        [
-                          "-121.94450000",
-                          "37.32400000"
-                        ],
-                        [
-                          "-121.93600000",
-                          "37.35300000"
-                        ],
-                        [
-                          "-121.92400000",
-                          "37.36500000"
-                        ]
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-            type="GeoJSON"
-          />
-          <g />
-        </div>
-      </div>
+      <g>
+        <g />
+      </g>
     </div>
   </div>
   <div

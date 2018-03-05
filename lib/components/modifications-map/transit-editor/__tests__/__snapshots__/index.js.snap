@@ -1,18 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
-<div
-  className={undefined}
-  id={undefined}
-  style={undefined}
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <g>
-    <g>
-      <g
-        data={
-          {
-            "type": "Feature",
-            "properties": {},
+  <Map
+    animate={false}
+    useFlyTo={false}
+  >
+    <div>
+      <TransitEditor
+        allowExtend={true}
+        extendFromEnd={true}
+        feeds={
+          Array [
+            Object {
+              "checksum": "MOCK",
+              "id": "1",
+              "routes": Array [
+                Object {
+                  "label": "mock-route-label",
+                  "patterns": Array [
+                    Object {
+                      "geometry": Object {
+                        "coordinates": Array [
+                          Array [
+                            -122.0246,
+                            36.9707,
+                          ],
+                          Array [
+                            -122.0279,
+                            37.049,
+                          ],
+                          Array [
+                            -121.9799,
+                            37.2299,
+                          ],
+                          Array [
+                            -121.9445,
+                            37.324,
+                          ],
+                          Array [
+                            -121.936,
+                            37.353,
+                          ],
+                          Array [
+                            -121.924,
+                            37.365,
+                          ],
+                        ],
+                        "type": "LineString",
+                      },
+                      "name": "Mock Pattern",
+                      "pattern_id": "mock-pattern-id",
+                      "stops": Array [
+                        Object {
+                          "stop_id": "1",
+                          "stop_lat": 36.9707,
+                          "stop_lon": -122.0246,
+                          "stop_name": "Santa Cruz",
+                        },
+                        Object {
+                          "stop_id": "2",
+                          "stop_lat": 37.049,
+                          "stop_lon": -122.0279,
+                          "stop_name": "Scotts Valley",
+                        },
+                      ],
+                      "trips": Array [
+                        Object {
+                          "duration": 1234,
+                          "end_time": 13579,
+                          "start_time": 12345,
+                          "trip_headsign": "To Downtown",
+                          "trip_id": "abcd",
+                          "trip_short_name": "The Express",
+                        },
+                      ],
+                    },
+                  ],
+                  "route_id": "route1",
+                },
+              ],
+              "stops": Array [
+                Object {
+                  "stop_id": "1",
+                  "stop_lat": 36.9707,
+                  "stop_lon": -122.0246,
+                  "stop_name": "Santa Cruz",
+                },
+                Object {
+                  "stop_id": "2",
+                  "stop_lat": 37.049,
+                  "stop_lon": -122.0279,
+                  "stop_name": "Scotts Valley",
+                },
+              ],
+              "stopsById": Object {
+                "1": Object {
+                  "stop_id": "1",
+                  "stop_lat": 36.9707,
+                  "stop_lon": -122.0246,
+                  "stop_name": "Santa Cruz",
+                },
+                "2": Object {
+                  "stop_id": "2",
+                  "stop_lat": 37.049,
+                  "stop_lon": -122.0279,
+                  "stop_name": "Scotts Valley",
+                },
+              },
+            },
+          ]
+        }
+        followRoad={true}
+        modification={
+          Object {
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
+            ],
+            "segments": Array [
+              {
+            "fromStopId": "1",
             "geometry": {
               "type": "LineString",
               "coordinates": [
@@ -41,2770 +170,497 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                   "37.36500000"
                 ]
               ]
+            },
+            "properties": {},
+            "spacing": "3000.00000000",
+            "stopAtEnd": false,
+            "stopAtStart": false,
+            "type": "Feature"
+          },
+            ],
+            "showOnMap": false,
+            "timetables": Array [
+              Object {
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
+            ],
+          }
+        }
+        spacing={0}
+        updateModification={[Function]}
+      >
+        <g>
+          <GTFSStopGridLayer
+            stops={
+              Array [
+                Object {
+                  "stop_id": "1:1",
+                  "stop_lat": 36.9707,
+                  "stop_lon": -122.0246,
+                  "stop_name": "Santa Cruz",
+                },
+                Object {
+                  "stop_id": "1:2",
+                  "stop_lat": 37.049,
+                  "stop_lon": -122.0279,
+                  "stop_name": "Scotts Valley",
+                },
+              ]
             }
-          }
-        }
-        type="GeoJSON"
-      />
-    </g>
-    <g>
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.9707,
-            "lon": -122.0246,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.9733955920068,
-            "lon": -122.02471360732596,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.976091184013605,
-            "lon": -122.02482721465192,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.97878677602041,
-            "lon": -122.02494082197788,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.9814823680272,
-            "lon": -122.02505442930384,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.984177960034,
-            "lon": -122.0251680366298,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.986873552040805,
-            "lon": -122.02528164395575,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.98956914404761,
-            "lon": -122.02539525128171,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.99226473605441,
-            "lon": -122.02550885860767,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.99496032806121,
-            "lon": -122.02562246593362,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.99765592006801,
-            "lon": -122.02573607325958,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.00035151207481,
-            "lon": -122.02584968058554,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.00304710408161,
-            "lon": -122.0259632879115,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.00574269608841,
-            "lon": -122.02607689523745,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.00843828809521,
-            "lon": -122.02619050256341,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.011133880102015,
-            "lon": -122.02630410988937,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.01382947210882,
-            "lon": -122.02641771721532,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.01652506411562,
-            "lon": -122.02653132454128,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.019220656122414,
-            "lon": -122.02664493186724,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.021916248129216,
-            "lon": -122.0267585391932,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.02461184013602,
-            "lon": -122.02687214651915,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.02730743214282,
-            "lon": -122.0269857538451,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.03000302414962,
-            "lon": -122.02709936117105,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.032698616156424,
-            "lon": -122.02721296849701,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.035394208163225,
-            "lon": -122.02732657582297,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.03808980017002,
-            "lon": -122.02744018314893,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.04078539217682,
-            "lon": -122.02755379047488,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.043480984183624,
-            "lon": -122.02766739780084,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.046176576190426,
-            "lon": -122.0277810051268,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.04887216819723,
-            "lon": -122.02789461245276,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.05151359890414,
-            "lon": -122.02723304175015,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.054152333278026,
-            "lon": -122.0265328800589,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.05679106765192,
-            "lon": -122.02583271836765,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.05942980202582,
-            "lon": -122.0251325566764,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.062068536399714,
-            "lon": -122.02443239498515,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.06470727077361,
-            "lon": -122.0237322332939,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.067346005147506,
-            "lon": -122.02303207160266,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.069984739521395,
-            "lon": -122.0223319099114,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.07262347389529,
-            "lon": -122.02163174822016,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.07526220826919,
-            "lon": -122.0209315865289,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.07790094264308,
-            "lon": -122.02023142483766,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.08053967701698,
-            "lon": -122.0195312631464,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.083178411390875,
-            "lon": -122.01883110145516,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.085817145764764,
-            "lon": -122.0181309397639,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.08845588013866,
-            "lon": -122.01743077807267,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.091094614512556,
-            "lon": -122.01673061638141,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.09373334888645,
-            "lon": -122.01603045469017,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.09637208326035,
-            "lon": -122.01533029299891,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.099010817634245,
-            "lon": -122.01463013130767,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.10164955200813,
-            "lon": -122.01392996961641,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.10428828638203,
-            "lon": -122.01322980792517,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.106927020755926,
-            "lon": -122.01252964623392,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.10956575512982,
-            "lon": -122.01182948454267,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.11220448950372,
-            "lon": -122.01112932285142,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.114843223877614,
-            "lon": -122.01042916116018,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.1174819582515,
-            "lon": -122.00972899946892,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.1201206926254,
-            "lon": -122.00902883777768,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.122759426999295,
-            "lon": -122.00832867608642,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.12539816137319,
-            "lon": -122.00762851439518,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.12803689574709,
-            "lon": -122.00692835270392,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.13067563012098,
-            "lon": -122.00622819101268,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.13331436449487,
-            "lon": -122.00552802932143,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.13595309886877,
-            "lon": -122.00482786763018,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.138591833242664,
-            "lon": -122.00412770593893,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.14123056761656,
-            "lon": -122.00342754424769,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.143869301990456,
-            "lon": -122.00272738255643,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.14650803636435,
-            "lon": -122.00202722086519,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.14914677073824,
-            "lon": -122.00132705917393,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.15178550511214,
-            "lon": -122.00062689748269,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.15442423948603,
-            "lon": -121.99992673579143,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.15706297385993,
-            "lon": -121.99922657410019,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.159701708233825,
-            "lon": -121.99852641240894,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.16234044260772,
-            "lon": -121.9978262507177,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.16497917698161,
-            "lon": -121.99712608902644,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.16761791135551,
-            "lon": -121.9964259273352,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.1702566457294,
-            "lon": -121.99572576564394,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.1728953801033,
-            "lon": -121.9950256039527,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.175534114477195,
-            "lon": -121.99432544226144,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.178172848851084,
-            "lon": -121.9936252805702,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.18081158322498,
-            "lon": -121.99292511887894,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.183450317598876,
-            "lon": -121.9922249571877,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.18608905197277,
-            "lon": -121.99152479549645,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.18872778634667,
-            "lon": -121.9908246338052,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.191366520720564,
-            "lon": -121.99012447211395,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.19400525509445,
-            "lon": -121.9894243104227,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.19664398946835,
-            "lon": -121.98872414873145,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.199282723842245,
-            "lon": -121.98802398704021,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.20192145821614,
-            "lon": -121.98732382534895,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.20456019259004,
-            "lon": -121.98662366365771,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.20719892696393,
-            "lon": -121.98592350196645,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.20983766133782,
-            "lon": -121.98522334027521,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.21247639571172,
-            "lon": -121.98452317858396,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.215115130085614,
-            "lon": -121.9838230168927,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.21775386445951,
-            "lon": -121.98312285520146,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.220392598833406,
-            "lon": -121.9824226935102,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.2230313332073,
-            "lon": -121.98172253181896,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.22567006758119,
-            "lon": -121.9810223701277,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.22830880195509,
-            "lon": -121.98032220843646,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.23092574247549,
-            "lon": -121.97951412025895,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.23350957833298,
-            "lon": -121.9785420927419,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.23609341419046,
-            "lon": -121.97757006522484,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.23867725004794,
-            "lon": -121.97659803770779,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.24126108590543,
-            "lon": -121.97562601019074,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.24384492176291,
-            "lon": -121.97465398267367,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.24642875762039,
-            "lon": -121.97368195515662,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.24901259347788,
-            "lon": -121.97270992763957,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.25159642933536,
-            "lon": -121.9717379001225,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.25418026519284,
-            "lon": -121.97076587260545,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.25676410105033,
-            "lon": -121.9697938450884,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.259347936907815,
-            "lon": -121.96882181757134,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.261931772765294,
-            "lon": -121.96784979005429,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.26451560862278,
-            "lon": -121.96687776253724,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.267099444480266,
-            "lon": -121.96590573502019,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.269683280337745,
-            "lon": -121.96493370750312,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.27226711619523,
-            "lon": -121.96396167998607,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.27485095205272,
-            "lon": -121.96298965246902,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.277434787910195,
-            "lon": -121.96201762495195,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.28001862376768,
-            "lon": -121.9610455974349,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.28260245962517,
-            "lon": -121.96007356991785,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.285186295482646,
-            "lon": -121.95910154240079,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.28777013134013,
-            "lon": -121.95812951488374,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.29035396719762,
-            "lon": -121.95715748736669,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.292937803055096,
-            "lon": -121.95618545984962,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.29552163891258,
-            "lon": -121.95521343233257,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.29810547477007,
-            "lon": -121.95424140481552,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.30068931062755,
-            "lon": -121.95326937729845,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.30327314648503,
-            "lon": -121.9522973497814,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.30585698234252,
-            "lon": -121.95132532226435,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.3084408182,
-            "lon": -121.95035329474729,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.31102465405748,
-            "lon": -121.94938126723024,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.31360848991497,
-            "lon": -121.94840923971319,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.31619232577245,
-            "lon": -121.94743721219612,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.318776161629934,
-            "lon": -121.94646518467907,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.32135999748742,
-            "lon": -121.94549315716202,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.3239438333449,
-            "lon": -121.94452112964497,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.32656963792242,
-            "lon": -121.94374683026412,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.32919637507553,
-            "lon": -121.94297692454683,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.331823112228655,
-            "lon": -121.94220701882954,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.33444984938177,
-            "lon": -121.94143711311224,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.337076586534884,
-            "lon": -121.94066720739495,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.339703323688006,
-            "lon": -121.93989730167766,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.34233006084112,
-            "lon": -121.93912739596037,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.344956797994236,
-            "lon": -121.93835749024308,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.34758353514735,
-            "lon": -121.93758758452579,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.35021027230047,
-            "lon": -121.9368176788085,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.35283700945359,
-            "lon": -121.9360477730912,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.35498037722311,
-            "lon": -121.9340196227769,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.35709176741842,
-            "lon": -121.93190823258159,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.35920315761372,
-            "lon": -121.92979684238628,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.36131454780903,
-            "lon": -121.92768545219099,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.36342593800434,
-            "lon": -121.92557406199568,
-          }
-        }
-        type="Marker"
-      />
-    </g>
-    <g>
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 36.9707,
-            "lon": -122.0246,
-          }
-        }
-        type="Marker"
-      />
-      <g
-        draggable={true}
-        icon={
-          FontawesomeIcon {
-            "callInitHooks": [Function],
-            "createIcon": [Function],
-            "createShadow": [Function],
-          }
-        }
-        onDragend={[Function]}
-        position={
-          Object {
-            "lat": 37.365,
-            "lon": -121.924,
-          }
-        }
-        type="Marker"
-      />
-    </g>
-  </g>
-</div>
+          />
+          <Polyline
+            onClick={[Function]}
+            positions={
+              Array [
+                Object {
+                  "lat": 36.9707,
+                  "lng": -122.0246,
+                },
+                Object {
+                  "lat": 37.049,
+                  "lng": -122.0279,
+                },
+                Object {
+                  "lat": 37.2299,
+                  "lng": -121.9799,
+                },
+                Object {
+                  "lat": 37.324,
+                  "lng": -121.9445,
+                },
+                Object {
+                  "lat": 37.353,
+                  "lng": -121.936,
+                },
+                Object {
+                  "lat": 37.365,
+                  "lng": -121.924,
+                },
+              ]
+            }
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 0,
+                "index": 0,
+                "lat": 36.9707,
+                "lon": -122.0246,
+                "stopId": "1",
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 3000,
+                "index": 0,
+                "lat": 36.99765592006801,
+                "lon": -122.02573607325958,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 6000,
+                "index": 0,
+                "lat": 37.02461184013602,
+                "lon": -122.02687214651915,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 9000,
+                "index": 0,
+                "lat": 37.05151359890414,
+                "lon": -122.02723304175015,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 12000,
+                "index": 0,
+                "lat": 37.07790094264308,
+                "lon": -122.02023142483766,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 15000,
+                "index": 0,
+                "lat": 37.10428828638203,
+                "lon": -122.01322980792517,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 18000,
+                "index": 0,
+                "lat": 37.13067563012098,
+                "lon": -122.00622819101268,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 21000,
+                "index": 0,
+                "lat": 37.15706297385993,
+                "lon": -121.99922657410019,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 24000,
+                "index": 0,
+                "lat": 37.183450317598876,
+                "lon": -121.9922249571877,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 27000,
+                "index": 0,
+                "lat": 37.20983766133782,
+                "lon": -121.98522334027521,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 30000,
+                "index": 0,
+                "lat": 37.23609341419046,
+                "lon": -121.97757006522484,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 33000,
+                "index": 0,
+                "lat": 37.261931772765294,
+                "lon": -121.96784979005429,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 36000,
+                "index": 0,
+                "lat": 37.28777013134013,
+                "lon": -121.95812951488374,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 39000,
+                "index": 0,
+                "lat": 37.31360848991497,
+                "lon": -121.94840923971319,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 42000,
+                "index": 0,
+                "lat": 37.339703323688006,
+                "lon": -121.93989730167766,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "autoCreated": true,
+                "distanceFromStart": 45000,
+                "index": 0,
+                "lat": 37.36342593800434,
+                "lon": -121.92557406199568,
+                "stopId": undefined,
+              }
+            }
+            color="#2389c9"
+            draggable={true}
+            fill={true}
+            fillColor="#fff"
+            fillOpacity={0.5}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            radius={4.066666666666666}
+            weight={1.3555555555555554}
+          />
+          <DraggableCircleMarker
+            center={
+              Object {
+                "lat": 36.9707,
+                "lon": -122.0246,
+              }
+            }
+            draggable={true}
+            fill={true}
+            fillColor="#2389c9"
+            fillOpacity={1}
+            onDragend={[Function]}
+            radius={4.066666666666666}
+            stroke={false}
+          >
+            <Popup />
+          </DraggableCircleMarker>
+          <DraggableCircleMarker
+            center={
+              Object {
+                "lat": 37.365,
+                "lon": -121.924,
+              }
+            }
+            draggable={true}
+            fill={true}
+            fillColor="#2389c9"
+            fillOpacity={1}
+            onDragend={[Function]}
+            radius={4.066666666666666}
+            stroke={false}
+          >
+            <Popup />
+          </DraggableCircleMarker>
+        </g>
+      </TransitEditor>
+    </div>
+  </Map>
+</Provider>
 `;

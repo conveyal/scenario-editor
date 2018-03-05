@@ -51,7 +51,7 @@ exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
         onWheel={[Function]}
         placeholder="meters"
         type="number"
-        value={300}
+        value={3000}
       />
       <span
         className="InputUnits"

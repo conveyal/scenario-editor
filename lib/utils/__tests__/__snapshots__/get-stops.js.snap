@@ -4,11 +4,6 @@ exports[`Project-Map > Transit-Editor > getStops works correctly for a point 1`]
 Array [
   Object {
     "autoCreated": false,
-    "bearing": false,
-    "center": Array [
-      -122.0246,
-      36.9707,
-    ],
     "distanceFromStart": 0,
     "index": 0,
     "lat": 36.9707,

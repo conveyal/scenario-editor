@@ -81,10 +81,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
             ]
           },
           "properties": {},
-          "spacing": "300.00000000",
+          "spacing": "3000.00000000",
           "stopAtEnd": false,
           "stopAtStart": false,
-          "toStopId": null,
           "type": "Feature"
         },
             ],

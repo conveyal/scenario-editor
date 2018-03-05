@@ -129,6 +129,13 @@ transitEditor:
   extendFromEnd: Extend from end
   fromStopLabel: Start of reroute/extension (existing stop on pattern)
   toStopLabel: End of reroute/extension (existing stop on pattern)
+  instructions: Click on the map to create a stop at that location. If "extend from end" is selected, the segment created will extend from the last stop created, otherwise, it will be extended from the first stop. Click on a segment to create a stop at that location. Click on a stop to delete it or change it into a control point. Control points can be used to help position the routes. Click an auto-created stop to turn it into a permanent stop.
+  instructionsTitle: Editing Instructions
+  existingStops: Existing stops from GTFS Feed.
+  newStopDescription: A new stop.
+  autocreatedStopDescription: An auto-created stop.
+  snappedStopDescription: A new stop snapped to an existing stop.
+  controlPointDescription: Control point for a segment.
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
   invalidShapefileType: Shapefile type must be LineString or MultiLineString

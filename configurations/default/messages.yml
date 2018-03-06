@@ -125,17 +125,17 @@ transitEditor:
   makeControlPoint: make control point
   deletePoint: delete
   stopSpacingMeters: Stop spacing
-  autoCreateStops: Create stops automatically
+  autoCreateStops: Auto-create stops
   extendFromEnd: Extend from end
   fromStopLabel: Start of reroute/extension (existing stop on pattern)
   toStopLabel: End of reroute/extension (existing stop on pattern)
-  instructions: Click on the map to create a stop at that location. If "extend from end" is selected, the segment created will extend from the last stop created, otherwise, it will be extended from the first stop. Click on a segment to create a stop at that location. Click on a stop to delete it or change it into a control point. Control points can be used to help position the routes. Click an auto-created stop to turn it into a permanent stop.
+  instructions: Click the map to add a new stop in a fixed location. To extend backward from the route's first stop, unselect "Extend from end". Click an existing segment to add a stop to it. Click on a stop to delete it or change it into a control point, which helps define the alignment. Click an auto-created stop to fix its location.
   instructionsTitle: Editing Instructions
-  existingStops: Existing stops from GTFS Feed.
-  newStopDescription: A new stop.
-  autocreatedStopDescription: An auto-created stop.
-  snappedStopDescription: A new stop snapped to an existing stop.
-  controlPointDescription: Control point for a segment.
+  existingStops: Existing stops from GTFS Feed
+  newStopDescription: New stop
+  autocreatedStopDescription: Auto-created stop
+  snappedStopDescription: New stop snapped to an existing stop
+  controlPointDescription: Control point for a segment
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
   invalidShapefileType: Shapefile type must be LineString or MultiLineString

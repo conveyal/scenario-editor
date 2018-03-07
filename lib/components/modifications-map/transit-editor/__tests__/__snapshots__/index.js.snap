@@ -242,7 +242,12 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
             }
           />
           <Polyline
+            color="#2389c9"
+            onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
+            onMouseout={[Function]}
+            onMouseover={[Function]}
             positions={
               Array [
                 Object {
@@ -271,9 +276,14 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 },
               ]
             }
+            weight={NaN}
           />
-          <DraggableCircleMarker
-            center={
+          <Marker
+            draggable={true}
+            onClick={[Function]}
+            onDragend={[Function]}
+            opacity={0.5}
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 0,
@@ -283,19 +293,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": "1",
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 0,
+                  "index": 0,
+                  "lat": 36.9707,
+                  "lon": -122.0246,
+                  "stopId": "1",
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 3000,
@@ -305,19 +329,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 3000,
+                  "index": 0,
+                  "lat": 36.99765592006801,
+                  "lon": -122.02573607325958,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 6000,
@@ -327,19 +365,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 6000,
+                  "index": 0,
+                  "lat": 37.02461184013602,
+                  "lon": -122.02687214651915,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 9000,
@@ -349,19 +401,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 9000,
+                  "index": 0,
+                  "lat": 37.05151359890414,
+                  "lon": -122.02723304175015,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 12000,
@@ -371,19 +437,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 12000,
+                  "index": 0,
+                  "lat": 37.07790094264308,
+                  "lon": -122.02023142483766,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 15000,
@@ -393,19 +473,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 15000,
+                  "index": 0,
+                  "lat": 37.10428828638203,
+                  "lon": -122.01322980792517,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 18000,
@@ -415,19 +509,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 18000,
+                  "index": 0,
+                  "lat": 37.13067563012098,
+                  "lon": -122.00622819101268,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 21000,
@@ -437,19 +545,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 21000,
+                  "index": 0,
+                  "lat": 37.15706297385993,
+                  "lon": -121.99922657410019,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 24000,
@@ -459,19 +581,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 24000,
+                  "index": 0,
+                  "lat": 37.183450317598876,
+                  "lon": -121.9922249571877,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 27000,
@@ -481,19 +617,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 27000,
+                  "index": 0,
+                  "lat": 37.20983766133782,
+                  "lon": -121.98522334027521,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 30000,
@@ -503,19 +653,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 30000,
+                  "index": 0,
+                  "lat": 37.23609341419046,
+                  "lon": -121.97757006522484,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 33000,
@@ -525,19 +689,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 33000,
+                  "index": 0,
+                  "lat": 37.261931772765294,
+                  "lon": -121.96784979005429,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 36000,
@@ -547,19 +725,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 36000,
+                  "index": 0,
+                  "lat": 37.28777013134013,
+                  "lon": -121.95812951488374,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 39000,
@@ -569,19 +761,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 39000,
+                  "index": 0,
+                  "lat": 37.31360848991497,
+                  "lon": -121.94840923971319,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 42000,
@@ -591,19 +797,33 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 42000,
+                  "index": 0,
+                  "lat": 37.339703323688006,
+                  "lon": -121.93989730167766,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
             onClick={[Function]}
             onDragend={[Function]}
             opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "autoCreated": true,
                 "distanceFromStart": 45000,
@@ -613,51 +833,79 @@ exports[`Component > Transit-Editor > TransitEditor renders correctly 1`] = `
                 "stopId": undefined,
               }
             }
-            color="#2389c9"
+            zIndexOffset={500}
+          >
+            <g
+              draggable={true}
+              onClick={[Function]}
+              onDragend={[Function]}
+              opacity={0.5}
+              position={
+                Object {
+                  "autoCreated": true,
+                  "distanceFromStart": 45000,
+                  "index": 0,
+                  "lat": 37.36342593800434,
+                  "lon": -121.92557406199568,
+                  "stopId": undefined,
+                }
+              }
+              type="Marker"
+              zIndexOffset={500}
+            />
+          </Marker>
+          <Marker
             draggable={true}
-            fill={true}
-            fillColor="#fff"
-            fillOpacity={0.5}
-            onClick={[Function]}
             onDragend={[Function]}
-            opacity={0.5}
-            radius={4.066666666666666}
-            weight={1.3555555555555554}
-          />
-          <DraggableCircleMarker
-            center={
+            position={
               Object {
                 "lat": 36.9707,
                 "lon": -122.0246,
               }
             }
-            draggable={true}
-            fill={true}
-            fillColor="#2389c9"
-            fillOpacity={1}
-            onDragend={[Function]}
-            radius={4.066666666666666}
-            stroke={false}
+            zIndexOffset={750}
           >
-            <Popup />
-          </DraggableCircleMarker>
-          <DraggableCircleMarker
-            center={
+            <g
+              draggable={true}
+              onDragend={[Function]}
+              position={
+                Object {
+                  "lat": 36.9707,
+                  "lon": -122.0246,
+                }
+              }
+              type="Marker"
+              zIndexOffset={750}
+            >
+              <Popup />
+            </g>
+          </Marker>
+          <Marker
+            draggable={true}
+            onDragend={[Function]}
+            position={
               Object {
                 "lat": 37.365,
                 "lon": -121.924,
               }
             }
-            draggable={true}
-            fill={true}
-            fillColor="#2389c9"
-            fillOpacity={1}
-            onDragend={[Function]}
-            radius={4.066666666666666}
-            stroke={false}
+            zIndexOffset={750}
           >
-            <Popup />
-          </DraggableCircleMarker>
+            <g
+              draggable={true}
+              onDragend={[Function]}
+              position={
+                Object {
+                  "lat": 37.365,
+                  "lon": -121.924,
+                }
+              }
+              type="Marker"
+              zIndexOffset={750}
+            >
+              <Popup />
+            </g>
+          </Marker>
         </g>
       </TransitEditor>
     </div>

@@ -19,16 +19,16 @@ exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
     className="checkbox"
   >
     <label
-      htmlFor="create-stops-automatically-input-0"
+      htmlFor="auto-create-stops-input-0"
     >
       <input
         defaultChecked={true}
-        id="create-stops-automatically-input-0"
+        id="auto-create-stops-input-0"
         onChange={[Function]}
         type="checkbox"
       />
        
-      Create stops automatically
+      Auto-create stops
     </label>
   </div>
   <div

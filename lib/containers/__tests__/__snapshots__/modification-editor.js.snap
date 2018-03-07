@@ -835,23 +835,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             </Button>
                             <Checkbox
                               defaultChecked={true}
-                              label="Create stops automatically"
+                              label="Auto-create stops"
                               onChange={[Function]}
                             >
                               <div
                                 className="checkbox"
                               >
                                 <label
-                                  htmlFor="create-stops-automatically-input-13"
+                                  htmlFor="auto-create-stops-input-13"
                                 >
                                   <input
                                     defaultChecked={true}
-                                    id="create-stops-automatically-input-13"
+                                    id="auto-create-stops-input-13"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
                                    
-                                  Create stops automatically
+                                  Auto-create stops
                                 </label>
                               </div>
                             </Checkbox>
@@ -2108,23 +2108,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             </Button>
                             <Checkbox
                               defaultChecked={true}
-                              label="Create stops automatically"
+                              label="Auto-create stops"
                               onChange={[Function]}
                             >
                               <div
                                 className="checkbox"
                               >
                                 <label
-                                  htmlFor="create-stops-automatically-input-1"
+                                  htmlFor="auto-create-stops-input-1"
                                 >
                                   <input
                                     defaultChecked={true}
-                                    id="create-stops-automatically-input-1"
+                                    id="auto-create-stops-input-1"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
                                    
-                                  Create stops automatically
+                                  Auto-create stops
                                 </label>
                               </div>
                             </Checkbox>

@@ -70,6 +70,7 @@ exports[`Routes should render 1`] = `
       <RouterContext
         components={
           Array [
+            undefined,
             [Function],
           ]
         }
@@ -114,8 +115,140 @@ exports[`Routes should render 1`] = `
             "replace": [Function],
             "routes": Array [
               Object {
-                "component": [Function],
+                "childRoutes": Array [
+                  Object {
+                    "onEnter": [Function],
+                    "path": "/logout",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/regions/create",
+                  },
+                  Object {
+                    "childRoutes": Array [
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "create",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": ":bundleId",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": "bundles",
+                          },
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "upload",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": "opportunities",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "edit",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "projects",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "projects/create",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "path": ":regionId",
+                      },
+                    ],
+                    "component": [Function],
+                    "path": "/regions",
+                  },
+                  Object {
+                    "childRoutes": Array [
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "component": [Function],
+                            "path": "edit",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "import-modifications",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "import-shapefile",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "modifications/:modificationId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis/:variantId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "regional",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "regional/:regionalAnalysisId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis/regional/:regionalAnalysisId",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "path": ":projectId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "*",
+                      },
+                    ],
+                    "component": [Function],
+                    "path": "/projects",
+                  },
+                ],
+                "indexRoute": Object {
+                  "component": [Function],
+                },
+                "onEnter": [Function],
                 "path": "/",
+              },
+              Object {
+                "component": [Function],
               },
             ],
             "setRouteLeaveHook": [Function],
@@ -126,8 +259,140 @@ exports[`Routes should render 1`] = `
         routes={
           Array [
             Object {
-              "component": [Function],
+              "childRoutes": Array [
+                Object {
+                  "onEnter": [Function],
+                  "path": "/logout",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "/regions/create",
+                },
+                Object {
+                  "childRoutes": Array [
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "component": [Function],
+                              "path": "create",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": ":bundleId",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "path": "bundles",
+                        },
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "component": [Function],
+                              "path": "upload",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "path": "opportunities",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "edit",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "projects",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "projects/create",
+                        },
+                      ],
+                      "component": [Function],
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
+                      "path": ":regionId",
+                    },
+                  ],
+                  "component": [Function],
+                  "path": "/regions",
+                },
+                Object {
+                  "childRoutes": Array [
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "component": [Function],
+                          "path": "edit",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "import-modifications",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "import-shapefile",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "modifications/:modificationId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis/:variantId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "regional",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "regional/:regionalAnalysisId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "analysis/regional/:regionalAnalysisId",
+                        },
+                      ],
+                      "component": [Function],
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
+                      "path": ":projectId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "*",
+                    },
+                  ],
+                  "component": [Function],
+                  "path": "/projects",
+                },
+              ],
+              "indexRoute": Object {
+                "component": [Function],
+              },
+              "onEnter": [Function],
               "path": "/",
+            },
+            Object {
+              "component": [Function],
             },
           ]
         }
@@ -148,7 +413,6 @@ exports[`Routes should render 1`] = `
           route={
             Object {
               "component": [Function],
-              "path": "/",
             }
           }
           routeParams={Object {}}
@@ -180,8 +444,140 @@ exports[`Routes should render 1`] = `
               "replace": [Function],
               "routes": Array [
                 Object {
-                  "component": [Function],
+                  "childRoutes": Array [
+                    Object {
+                      "onEnter": [Function],
+                      "path": "/logout",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/regions/create",
+                    },
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "childRoutes": Array [
+                                Object {
+                                  "component": [Function],
+                                  "path": "create",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": ":bundleId",
+                                },
+                              ],
+                              "component": [Function],
+                              "indexRoute": Object {
+                                "component": [Function],
+                              },
+                              "path": "bundles",
+                            },
+                            Object {
+                              "childRoutes": Array [
+                                Object {
+                                  "component": [Function],
+                                  "path": "upload",
+                                },
+                              ],
+                              "component": [Function],
+                              "indexRoute": Object {
+                                "component": [Function],
+                              },
+                              "path": "opportunities",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "edit",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "projects",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "projects/create",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "path": ":regionId",
+                        },
+                      ],
+                      "component": [Function],
+                      "path": "/regions",
+                    },
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "component": [Function],
+                              "path": "edit",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "import-modifications",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "import-shapefile",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "modifications/:modificationId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "analysis",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "analysis/:variantId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "regional",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "regional/:regionalAnalysisId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "analysis/regional/:regionalAnalysisId",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "path": ":projectId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "*",
+                        },
+                      ],
+                      "component": [Function],
+                      "path": "/projects",
+                    },
+                  ],
+                  "indexRoute": Object {
+                    "component": [Function],
+                  },
+                  "onEnter": [Function],
                   "path": "/",
+                },
+                Object {
+                  "component": [Function],
                 },
               ],
               "setRouteLeaveHook": [Function],
@@ -192,8 +588,140 @@ exports[`Routes should render 1`] = `
           routes={
             Array [
               Object {
-                "component": [Function],
+                "childRoutes": Array [
+                  Object {
+                    "onEnter": [Function],
+                    "path": "/logout",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/regions/create",
+                  },
+                  Object {
+                    "childRoutes": Array [
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "create",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": ":bundleId",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": "bundles",
+                          },
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "upload",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": "opportunities",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "edit",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "projects",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "projects/create",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "path": ":regionId",
+                      },
+                    ],
+                    "component": [Function],
+                    "path": "/regions",
+                  },
+                  Object {
+                    "childRoutes": Array [
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "component": [Function],
+                            "path": "edit",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "import-modifications",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "import-shapefile",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "modifications/:modificationId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis/:variantId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "regional",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "regional/:regionalAnalysisId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "analysis/regional/:regionalAnalysisId",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "path": ":projectId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "*",
+                      },
+                    ],
+                    "component": [Function],
+                    "path": "/projects",
+                  },
+                ],
+                "indexRoute": Object {
+                  "component": [Function],
+                },
+                "onEnter": [Function],
                 "path": "/",
+              },
+              Object {
+                "component": [Function],
               },
             ]
           }
@@ -246,7 +774,6 @@ exports[`Routes should render 1`] = `
             route={
               Object {
                 "component": [Function],
-                "path": "/",
               }
             }
             routeParams={Object {}}
@@ -278,8 +805,140 @@ exports[`Routes should render 1`] = `
                 "replace": [Function],
                 "routes": Array [
                   Object {
-                    "component": [Function],
+                    "childRoutes": Array [
+                      Object {
+                        "onEnter": [Function],
+                        "path": "/logout",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "/regions/create",
+                      },
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "childRoutes": Array [
+                                  Object {
+                                    "component": [Function],
+                                    "path": "create",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": ":bundleId",
+                                  },
+                                ],
+                                "component": [Function],
+                                "indexRoute": Object {
+                                  "component": [Function],
+                                },
+                                "path": "bundles",
+                              },
+                              Object {
+                                "childRoutes": Array [
+                                  Object {
+                                    "component": [Function],
+                                    "path": "upload",
+                                  },
+                                ],
+                                "component": [Function],
+                                "indexRoute": Object {
+                                  "component": [Function],
+                                },
+                                "path": "opportunities",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "edit",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "projects",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "projects/create",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": ":regionId",
+                          },
+                        ],
+                        "component": [Function],
+                        "path": "/regions",
+                      },
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "edit",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "import-modifications",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "import-shapefile",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "modifications/:modificationId",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "analysis",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "analysis/:variantId",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "regional",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "regional/:regionalAnalysisId",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "analysis/regional/:regionalAnalysisId",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "path": ":projectId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "*",
+                          },
+                        ],
+                        "component": [Function],
+                        "path": "/projects",
+                      },
+                    ],
+                    "indexRoute": Object {
+                      "component": [Function],
+                    },
+                    "onEnter": [Function],
                     "path": "/",
+                  },
+                  Object {
+                    "component": [Function],
                   },
                 ],
                 "setRouteLeaveHook": [Function],
@@ -290,8 +949,140 @@ exports[`Routes should render 1`] = `
             routes={
               Array [
                 Object {
-                  "component": [Function],
+                  "childRoutes": Array [
+                    Object {
+                      "onEnter": [Function],
+                      "path": "/logout",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/regions/create",
+                    },
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "childRoutes": Array [
+                                Object {
+                                  "component": [Function],
+                                  "path": "create",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": ":bundleId",
+                                },
+                              ],
+                              "component": [Function],
+                              "indexRoute": Object {
+                                "component": [Function],
+                              },
+                              "path": "bundles",
+                            },
+                            Object {
+                              "childRoutes": Array [
+                                Object {
+                                  "component": [Function],
+                                  "path": "upload",
+                                },
+                              ],
+                              "component": [Function],
+                              "indexRoute": Object {
+                                "component": [Function],
+                              },
+                              "path": "opportunities",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "edit",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "projects",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "projects/create",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "path": ":regionId",
+                        },
+                      ],
+                      "component": [Function],
+                      "path": "/regions",
+                    },
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "component": [Function],
+                              "path": "edit",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "import-modifications",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "import-shapefile",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "modifications/:modificationId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "analysis",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "analysis/:variantId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "regional",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "regional/:regionalAnalysisId",
+                            },
+                            Object {
+                              "component": [Function],
+                              "path": "analysis/regional/:regionalAnalysisId",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "path": ":projectId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "*",
+                        },
+                      ],
+                      "component": [Function],
+                      "path": "/projects",
+                    },
+                  ],
+                  "indexRoute": Object {
+                    "component": [Function],
+                  },
+                  "onEnter": [Function],
                   "path": "/",
+                },
+                Object {
+                  "component": [Function],
                 },
               ]
             }
@@ -386,6 +1177,23 @@ exports[`Routes should render 1`] = `
                   </Link>
                 </div>
               </div>
+              <p
+                className="center"
+              >
+                <a
+                  href="/logout"
+                >
+                  <Icon
+                    type="sign-out"
+                  >
+                    <i
+                      className="fa fa-sign-out fa-fw "
+                    />
+                  </Icon>
+                   
+                  Log out
+                </a>
+              </p>
             </div>
           </SelectRegion>
         </Connect(SelectRegion)>

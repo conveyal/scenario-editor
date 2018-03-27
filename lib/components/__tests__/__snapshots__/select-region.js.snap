@@ -58,5 +58,18 @@ exports[`Component > SelectRegion renders correctly 1`] = `
       </a>
     </div>
   </div>
+  <p
+    className="center"
+  >
+    <a
+      href="/logout"
+    >
+      <i
+        className="fa fa-sign-out fa-fw "
+      />
+       
+      Log out
+    </a>
+  </p>
 </div>
 `;

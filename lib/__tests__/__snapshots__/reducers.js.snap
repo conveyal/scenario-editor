@@ -78,8 +78,6 @@ Object {
     "currentRegionId": undefined,
     "regions": Array [],
   },
-  "user": Object {
-    "idToken": null,
-  },
+  "user": null,
 }
 `;

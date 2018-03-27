@@ -418,20 +418,7 @@ exports[`Component > Project should show export select dialogue 1`] = `
 </Project>
 `;
 
-exports[`Component > Project should show export select dialogue 2`] = `
-<ul>
-  <li>
-    <a
-      href=""
-      onClick={[Function]}
-      tabIndex={0}
-      target=""
-    >
-      Default
-    </a>
-  </li>
-</ul>
-`;
+exports[`Component > Project should show export select dialogue 2`] = `"<ul><li><a href=\\"\\" tabindex=\\"0\\" target=\\"\\">Default</a></li></ul>"`;
 
 exports[`Component > Project should show print select dialogue 1`] = `
 <Project
@@ -738,17 +725,4 @@ exports[`Component > Project should show print select dialogue 1`] = `
 </Project>
 `;
 
-exports[`Component > Project should show print select dialogue 2`] = `
-<ul>
-  <li>
-    <a
-      href="/reports/1/projects/1/variants/0"
-      onClick={[Function]}
-      tabIndex={0}
-      target="_blank"
-    >
-      Default
-    </a>
-  </li>
-</ul>
-`;
+exports[`Component > Project should show print select dialogue 2`] = `"<ul><li><a href=\\"/reports/1/projects/1/variants/0\\" tabindex=\\"0\\" target=\\"_blank\\">Default</a></li></ul>"`;

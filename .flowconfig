@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/auth0-lock/.*
+.*/node_modules/browsochrones/.*
 .*/node_modules/config-chain/.*
 .*/node_modules/npmconf/.*
 .*/node_modules/mapbox.js/docs/examples/.*

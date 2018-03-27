@@ -1,18 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`reducers > user should handle default state 1`] = `
-Object {
-  "idToken": null,
-}
-`;
-
-exports[`reducers > user should handle log out 1`] = `Object {}`;
-
-exports[`reducers > user should handle set id token 1`] = `
-Object {
-  "idToken": "mockToken",
-}
-`;
+exports[`reducers > user should handle default state 1`] = `null`;
 
 exports[`reducers > user should handle set user 1`] = `
 Object {

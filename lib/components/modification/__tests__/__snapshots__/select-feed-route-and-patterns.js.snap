@@ -12,7 +12,7 @@ exports[`Component > SelectFeedRouteAndPatterns renders empty correctly 1`] = `
         Select feed and routes
       </label>
       <div
-        className="Select Select--single is-searchable"
+        className="Select is-searchable Select--single"
         style={undefined}
       >
         <div
@@ -62,7 +62,7 @@ exports[`Component > SelectFeedRouteAndPatterns renders filled correctly 1`] = `
         Select feed and routes
       </label>
       <div
-        className="Select Select--single is-searchable has-value"
+        className="Select has-value is-searchable Select--single"
         style={undefined}
       >
         <input
@@ -115,7 +115,7 @@ exports[`Component > SelectFeedRouteAndPatterns renders filled correctly 1`] = `
       className="form-group"
     >
       <div
-        className="Select Select--single is-disabled is-searchable"
+        className="Select is-disabled is-searchable Select--single"
         style={undefined}
       >
         <div
@@ -138,9 +138,11 @@ exports[`Component > SelectFeedRouteAndPatterns renders filled correctly 1`] = `
             </div>
             <div
               aria-activedescendant="react-select-4--value"
+              aria-disabled="true"
               aria-expanded={false}
+              aria-label={undefined}
+              aria-labelledby={undefined}
               aria-owns=""
-              aria-readonly="true"
               className="Select-input"
               onBlur={[Function]}
               onFocus={[Function]}
@@ -177,7 +179,7 @@ exports[`Component > SelectFeedRouteAndPatterns renders filled correctly 1`] = `
       Select patterns
     </label>
     <div
-      className="Select Select--multi is-clearable is-searchable has-value"
+      className="Select has-value is-clearable is-searchable Select--multi"
       style={undefined}
     >
       <input

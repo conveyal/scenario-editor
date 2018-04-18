@@ -122,6 +122,18 @@ exports[`Routes should render 1`] = `
                   },
                   Object {
                     "component": [Function],
+                    "path": "/admin",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/admin/jobs",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/admin/workers",
+                  },
+                  Object {
+                    "component": [Function],
                     "path": "/regions/create",
                   },
                   Object {
@@ -259,6 +271,18 @@ exports[`Routes should render 1`] = `
                 Object {
                   "component": [Function],
                   "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "/admin",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "/admin/jobs",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "/admin/workers",
                 },
                 Object {
                   "component": [Function],
@@ -443,6 +467,18 @@ exports[`Routes should render 1`] = `
                     },
                     Object {
                       "component": [Function],
+                      "path": "/admin",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/admin/jobs",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/admin/workers",
+                    },
+                    Object {
+                      "component": [Function],
                       "path": "/regions/create",
                     },
                     Object {
@@ -580,6 +616,18 @@ exports[`Routes should render 1`] = `
                   Object {
                     "component": [Function],
                     "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/admin",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/admin/jobs",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "/admin/workers",
                   },
                   Object {
                     "component": [Function],
@@ -815,6 +863,18 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
+                        "path": "/admin",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "/admin/jobs",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "/admin/workers",
+                      },
+                      Object {
+                        "component": [Function],
                         "path": "/regions/create",
                       },
                       Object {
@@ -952,6 +1012,18 @@ exports[`Routes should render 1`] = `
                     Object {
                       "component": [Function],
                       "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/admin",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/admin/jobs",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "/admin/workers",
                     },
                     Object {
                       "component": [Function],

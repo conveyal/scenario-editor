@@ -16,7 +16,7 @@ exports[`analysis > bookmark renders correctly 1`] = `
       className="col-xs-6"
     >
       <div
-        className="Select Select--single is-searchable"
+        className="Select is-searchable Select--single"
         style={undefined}
       >
         <div

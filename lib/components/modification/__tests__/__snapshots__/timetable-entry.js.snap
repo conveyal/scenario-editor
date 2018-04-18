@@ -231,7 +231,7 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
         Phase at stop
       </label>
       <div
-        className="Select Select--single is-clearable is-searchable"
+        className="Select is-clearable is-searchable Select--single"
         style={undefined}
       >
         <div
@@ -252,24 +252,6 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
             >
               Phase at stop
             </div>
-          </span>
-          <span
-            aria-label="Clear value"
-            className="Select-clear-zone"
-            onMouseDown={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            title="Clear value"
-          >
-            <span
-              className="Select-clear"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&times;",
-                }
-              }
-            />
           </span>
           <span
             className="Select-arrow-zone"

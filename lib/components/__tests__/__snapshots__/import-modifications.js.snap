@@ -33,7 +33,6 @@ exports[`Component > ImportModifications renders correctly 1`] = `
           className="form-group"
         >
           <Select
-            addLabelText="Add \\"{label}\\"?"
             arrowRenderer={[Function]}
             autosize={true}
             backspaceRemoves={true}
@@ -42,6 +41,7 @@ exports[`Component > ImportModifications renders correctly 1`] = `
             clearRenderer={[Function]}
             clearValueText="Clear value"
             clearable={false}
+            closeOnSelect={true}
             deleteRemoves={true}
             delimiter=","
             disabled={false}
@@ -62,6 +62,8 @@ exports[`Component > ImportModifications renders correctly 1`] = `
             onBlurResetsInput={true}
             onChange={[Function]}
             onCloseResetsInput={true}
+            onSelectResetsInput={true}
+            openOnClick={true}
             optionComponent={[Function]}
             options={
               Array [
@@ -73,16 +75,19 @@ exports[`Component > ImportModifications renders correctly 1`] = `
             }
             pageSize={5}
             placeholder="Select a project…"
+            removeSelected={true}
             required={false}
+            rtl={false}
             scrollMenuIntoView={true}
             searchable={true}
             simpleValue={false}
             tabSelectsValue={true}
+            trimFilter={true}
             valueComponent={[Function]}
             valueKey="value"
           >
             <div
-              className="Select Select--single is-searchable"
+              className="Select is-searchable Select--single"
             >
               <div
                 className="Select-control"
@@ -101,12 +106,13 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                   >
                     Select a project…
                   </div>
-                  <mockConstructor
+                  <AutosizeInput
                     aria-activedescendant="react-select-2--value"
                     aria-expanded="false"
                     aria-haspopup="false"
                     aria-owns=""
                     className="Select-input"
+                    injectStyles={true}
                     minWidth="5"
                     onBlur={[Function]}
                     onChange={[Function]}

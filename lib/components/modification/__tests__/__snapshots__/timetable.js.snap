@@ -655,7 +655,6 @@ exports[`Component > Timetable renders correctly 2`] = `
                     Phase at stop
                   </label>
                   <Select
-                    addLabelText="Add \\"{label}\\"?"
                     arrowRenderer={[Function]}
                     autosize={true}
                     backspaceRemoves={true}
@@ -664,6 +663,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                     clearRenderer={[Function]}
                     clearValueText="Clear value"
                     clearable={true}
+                    closeOnSelect={true}
                     deleteRemoves={true}
                     delimiter=","
                     disabled={false}
@@ -685,21 +685,26 @@ exports[`Component > Timetable renders correctly 2`] = `
                     onBlurResetsInput={true}
                     onChange={[Function]}
                     onCloseResetsInput={true}
+                    onSelectResetsInput={true}
+                    openOnClick={true}
                     optionComponent={[Function]}
                     options={Array []}
                     pageSize={5}
                     placeholder="Phase at stop"
+                    removeSelected={true}
                     required={false}
+                    rtl={false}
                     scrollMenuIntoView={true}
                     searchable={true}
                     simpleValue={false}
                     tabSelectsValue={true}
+                    trimFilter={true}
                     value=""
                     valueComponent={[Function]}
                     valueKey="value"
                   >
                     <div
-                      className="Select Select--single is-clearable is-searchable"
+                      className="Select is-clearable is-searchable Select--single"
                     >
                       <div
                         className="Select-control"
@@ -718,12 +723,13 @@ exports[`Component > Timetable renders correctly 2`] = `
                           >
                             Phase at stop
                           </div>
-                          <mockConstructor
+                          <AutosizeInput
                             aria-activedescendant="react-select-2--value"
                             aria-expanded="false"
                             aria-haspopup="false"
                             aria-owns=""
                             className="Select-input"
+                            injectStyles={true}
                             minWidth="5"
                             onBlur={[Function]}
                             onChange={[Function]}
@@ -731,24 +737,6 @@ exports[`Component > Timetable renders correctly 2`] = `
                             required={false}
                             role="combobox"
                             value=""
-                          />
-                        </span>
-                        <span
-                          aria-label="Clear value"
-                          className="Select-clear-zone"
-                          onMouseDown={[Function]}
-                          onTouchEnd={[Function]}
-                          onTouchMove={[Function]}
-                          onTouchStart={[Function]}
-                          title="Clear value"
-                        >
-                          <span
-                            className="Select-clear"
-                            dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "&times;",
-                              }
-                            }
                           />
                         </span>
                         <span

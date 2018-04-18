@@ -659,3 +659,82 @@ label {
   position: relative;
   display: inline-block;
 }
+
+/** Admin Dashboard **/
+.AdminDashboard {
+  padding: 3rem;
+}
+
+/** Workers **/
+.WorkerDashboard {
+}
+
+.WorkerDashboard > .Workers {
+  display: flex;
+  width: 100%;
+  margin: -0.5rem 0 0 -0.5rem;
+}
+
+.Workers > .Worker {
+  width: 300px;
+  padding: 1rem;
+  background-color: #aab4bb;
+  color: #fff;
+  font-family: monospace;
+  margin: 0.5rem;
+}
+
+.Workers > .Worker.active {
+  background-color: #36c923;
+}
+
+.Workers > .Worker.stale {
+  background-color: #c9b623;
+}
+
+.Workers > .Worker.dead {
+  background-color: #c92336;
+}
+
+.WorkerBundles {
+  margin-top: 1rem;
+}
+
+.Worker > .Bottom {
+  margin-top: 1rem;
+  width: 276px;
+}
+
+.WorkerSparkline > span {
+  display: inline-block;
+}
+
+.Sparkline {
+  display: inline-block;
+  width: 190px;
+  text-align: center;
+  margin: 0 1rem 0 1rem;
+}
+
+.SparklineValue {
+  text-align: right;
+}
+
+/** Jobs **/
+
+.JobTable {
+  width: 100%;
+}
+
+.JobTable th {
+
+}
+
+.JobProgress-complete {
+  background-color: #36c923;
+}
+
+.JobProgress-delivered {
+  background-color: #2389c9;
+}
+

@@ -384,7 +384,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                     Compare to
                   </label>
                   <Select
-                    addLabelText="Add \\"{label}\\"?"
                     arrowRenderer={[Function]}
                     autosize={true}
                     backspaceRemoves={true}
@@ -393,6 +392,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                     clearRenderer={[Function]}
                     clearValueText="Clear value"
                     clearable={true}
+                    closeOnSelect={true}
                     deleteRemoves={true}
                     delimiter=","
                     disabled={false}
@@ -413,6 +413,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                     onBlurResetsInput={true}
                     onChange={[Function]}
                     onCloseResetsInput={true}
+                    onSelectResetsInput={true}
+                    openOnClick={true}
                     optionComponent={[Function]}
                     options={
                       Array [
@@ -424,17 +426,20 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                     }
                     pageSize={5}
                     placeholder="Select..."
+                    removeSelected={true}
                     required={false}
+                    rtl={false}
                     scrollMenuIntoView={true}
                     searchable={true}
                     simpleValue={false}
                     tabSelectsValue={true}
+                    trimFilter={true}
                     value="efgh"
                     valueComponent={[Function]}
                     valueKey="value"
                   >
                     <div
-                      className="Select Select--single is-clearable is-searchable has-value"
+                      className="Select has-value is-clearable is-searchable Select--single"
                     >
                       <div
                         className="Select-control"
@@ -453,6 +458,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                             id="react-select-4--value-item"
                             instancePrefix="react-select-4-"
                             onClick={null}
+                            placeholder="Select..."
                             value={
                               Object {
                                 "label": "ANALYSIS 2",
@@ -473,12 +479,13 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                               </span>
                             </div>
                           </Value>
-                          <mockConstructor
+                          <AutosizeInput
                             aria-activedescendant="react-select-4--value"
                             aria-expanded="false"
                             aria-haspopup="false"
                             aria-owns=""
                             className="Select-input"
+                            injectStyles={true}
                             minWidth="5"
                             onBlur={[Function]}
                             onChange={[Function]}
@@ -928,7 +935,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                       Aggregate results to
                     </label>
                     <Select
-                      addLabelText="Add \\"{label}\\"?"
                       arrowRenderer={[Function]}
                       autosize={true}
                       backspaceRemoves={true}
@@ -937,6 +943,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                       clearRenderer={[Function]}
                       clearValueText="Clear value"
                       clearable={true}
+                      closeOnSelect={true}
                       deleteRemoves={true}
                       delimiter=","
                       disabled={false}
@@ -958,6 +965,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                       onBlurResetsInput={true}
                       onChange={[Function]}
                       onCloseResetsInput={true}
+                      onSelectResetsInput={true}
+                      openOnClick={true}
                       optionComponent={[Function]}
                       options={
                         Array [
@@ -969,16 +978,19 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                       }
                       pageSize={5}
                       placeholder="Select..."
+                      removeSelected={true}
                       required={false}
+                      rtl={false}
                       scrollMenuIntoView={true}
                       searchable={true}
                       simpleValue={false}
                       tabSelectsValue={true}
+                      trimFilter={true}
                       valueComponent={[Function]}
                       valueKey="value"
                     >
                       <div
-                        className="Select Select--single is-clearable is-searchable"
+                        className="Select is-clearable is-searchable Select--single"
                       >
                         <div
                           className="Select-control"
@@ -997,12 +1009,13 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                             >
                               Select...
                             </div>
-                            <mockConstructor
+                            <AutosizeInput
                               aria-activedescendant="react-select-5--value"
                               aria-expanded="false"
                               aria-haspopup="false"
                               aria-owns=""
                               className="Select-input"
+                              injectStyles={true}
                               minWidth="5"
                               onBlur={[Function]}
                               onChange={[Function]}
@@ -1415,7 +1428,6 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                     Compare to
                   </label>
                   <Select
-                    addLabelText="Add \\"{label}\\"?"
                     arrowRenderer={[Function]}
                     autosize={true}
                     backspaceRemoves={true}
@@ -1424,6 +1436,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                     clearRenderer={[Function]}
                     clearValueText="Clear value"
                     clearable={true}
+                    closeOnSelect={true}
                     deleteRemoves={true}
                     delimiter=","
                     disabled={false}
@@ -1444,6 +1457,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                     onBlurResetsInput={true}
                     onChange={[Function]}
                     onCloseResetsInput={true}
+                    onSelectResetsInput={true}
+                    openOnClick={true}
                     optionComponent={[Function]}
                     options={
                       Array [
@@ -1455,17 +1470,20 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                     }
                     pageSize={5}
                     placeholder="Select..."
+                    removeSelected={true}
                     required={false}
+                    rtl={false}
                     scrollMenuIntoView={true}
                     searchable={true}
                     simpleValue={false}
                     tabSelectsValue={true}
+                    trimFilter={true}
                     value={null}
                     valueComponent={[Function]}
                     valueKey="value"
                   >
                     <div
-                      className="Select Select--single is-clearable is-searchable"
+                      className="Select is-clearable is-searchable Select--single"
                     >
                       <div
                         className="Select-control"
@@ -1484,12 +1502,13 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                           >
                             Select...
                           </div>
-                          <mockConstructor
+                          <AutosizeInput
                             aria-activedescendant="react-select-2--value"
                             aria-expanded="false"
                             aria-haspopup="false"
                             aria-owns=""
                             className="Select-input"
+                            injectStyles={true}
                             minWidth="5"
                             onBlur={[Function]}
                             onChange={[Function]}
@@ -1748,7 +1767,6 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                       Aggregate results to
                     </label>
                     <Select
-                      addLabelText="Add \\"{label}\\"?"
                       arrowRenderer={[Function]}
                       autosize={true}
                       backspaceRemoves={true}
@@ -1757,6 +1775,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                       clearRenderer={[Function]}
                       clearValueText="Clear value"
                       clearable={true}
+                      closeOnSelect={true}
                       deleteRemoves={true}
                       delimiter=","
                       disabled={false}
@@ -1778,6 +1797,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                       onBlurResetsInput={true}
                       onChange={[Function]}
                       onCloseResetsInput={true}
+                      onSelectResetsInput={true}
+                      openOnClick={true}
                       optionComponent={[Function]}
                       options={
                         Array [
@@ -1789,16 +1810,19 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                       }
                       pageSize={5}
                       placeholder="Select..."
+                      removeSelected={true}
                       required={false}
+                      rtl={false}
                       scrollMenuIntoView={true}
                       searchable={true}
                       simpleValue={false}
                       tabSelectsValue={true}
+                      trimFilter={true}
                       valueComponent={[Function]}
                       valueKey="value"
                     >
                       <div
-                        className="Select Select--single is-clearable is-searchable"
+                        className="Select is-clearable is-searchable Select--single"
                       >
                         <div
                           className="Select-control"
@@ -1817,12 +1841,13 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                             >
                               Select...
                             </div>
-                            <mockConstructor
+                            <AutosizeInput
                               aria-activedescendant="react-select-3--value"
                               aria-expanded="false"
                               aria-haspopup="false"
                               aria-owns=""
                               className="Select-input"
+                              injectStyles={true}
                               minWidth="5"
                               onBlur={[Function]}
                               onChange={[Function]}

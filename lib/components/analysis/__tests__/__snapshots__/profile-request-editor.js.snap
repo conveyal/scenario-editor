@@ -1277,7 +1277,6 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                       />
                     </Icon>
                     <Select
-                      addLabelText="Add \\"{label}\\"?"
                       arrowRenderer={[Function]}
                       autosize={true}
                       backspaceRemoves={true}
@@ -1286,6 +1285,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                       clearRenderer={[Function]}
                       clearValueText="Clear value"
                       clearable={false}
+                      closeOnSelect={true}
                       deleteRemoves={true}
                       delimiter=","
                       disabled={false}
@@ -1306,6 +1306,8 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                       onBlurResetsInput={true}
                       onChange={[Function]}
                       onCloseResetsInput={true}
+                      onSelectResetsInput={true}
+                      openOnClick={true}
                       optionComponent={[Function]}
                       options={
                         Array [
@@ -1325,17 +1327,20 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                       }
                       pageSize={5}
                       placeholder="Select..."
+                      removeSelected={true}
                       required={false}
+                      rtl={false}
                       scrollMenuIntoView={true}
                       searchable={true}
                       simpleValue={false}
                       tabSelectsValue={true}
+                      trimFilter={true}
                       value="v3.4.1"
                       valueComponent={[Function]}
                       valueKey="value"
                     >
                       <div
-                        className="Select Select--single is-searchable has-value"
+                        className="Select has-value is-searchable Select--single"
                       >
                         <div
                           className="Select-control"
@@ -1354,6 +1359,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                               id="react-select-2--value-item"
                               instancePrefix="react-select-2-"
                               onClick={null}
+                              placeholder="Select..."
                               value={
                                 Object {
                                   "label": <span
@@ -1390,12 +1396,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                                 </span>
                               </div>
                             </Value>
-                            <mockConstructor
+                            <AutosizeInput
                               aria-activedescendant="react-select-2--value"
                               aria-expanded="false"
                               aria-haspopup="false"
                               aria-owns=""
                               className="Select-input"
+                              injectStyles={true}
                               minWidth="5"
                               onBlur={[Function]}
                               onChange={[Function]}

@@ -13,7 +13,7 @@ exports[`Component > Modification > AdjustSpeed renders correctly 1`] = `
           Select feed and routes
         </label>
         <div
-          className="Select Select--single is-searchable"
+          className="Select is-searchable Select--single"
           style={undefined}
         >
           <div

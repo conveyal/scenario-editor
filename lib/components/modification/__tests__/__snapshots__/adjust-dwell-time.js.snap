@@ -13,7 +13,7 @@ exports[`Component > Modification > AdjustDwellTime renders empty correctly 1`] 
           Select feed and routes
         </label>
         <div
-          className="Select Select--single is-searchable"
+          className="Select is-searchable Select--single"
           style={undefined}
         >
           <div
@@ -153,7 +153,7 @@ exports[`Component > Modification > AdjustDwellTime renders with data correctly 
           Select feed and routes
         </label>
         <div
-          className="Select Select--single is-searchable"
+          className="Select is-searchable Select--single"
           style={undefined}
         >
           <div
@@ -197,7 +197,7 @@ exports[`Component > Modification > AdjustDwellTime renders with data correctly 
         Select patterns
       </label>
       <div
-        className="Select Select--multi is-clearable is-searchable has-value"
+        className="Select has-value is-clearable is-searchable Select--multi"
         style={undefined}
       >
         <input

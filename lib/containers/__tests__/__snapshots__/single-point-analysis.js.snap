@@ -285,7 +285,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       Scenario
                     </label>
                     <Select
-                      addLabelText="Add \\"{label}\\"?"
                       arrowRenderer={[Function]}
                       autosize={true}
                       backspaceRemoves={true}
@@ -294,6 +293,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       clearRenderer={[Function]}
                       clearValueText="Clear value"
                       clearable={false}
+                      closeOnSelect={true}
                       deleteRemoves={true}
                       delimiter=","
                       disabled={false}
@@ -314,6 +314,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       onBlurResetsInput={true}
                       onChange={[Function]}
                       onCloseResetsInput={true}
+                      onSelectResetsInput={true}
+                      openOnClick={true}
                       optionComponent={[Function]}
                       options={
                         Array [
@@ -325,16 +327,19 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       }
                       pageSize={5}
                       placeholder="Select..."
+                      removeSelected={true}
                       required={false}
+                      rtl={false}
                       scrollMenuIntoView={true}
                       searchable={true}
                       simpleValue={false}
                       tabSelectsValue={true}
+                      trimFilter={true}
                       valueComponent={[Function]}
                       valueKey="value"
                     >
                       <div
-                        className="Select Select--single is-searchable"
+                        className="Select is-searchable Select--single"
                       >
                         <div
                           className="Select-control"
@@ -353,12 +358,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             >
                               Select...
                             </div>
-                            <mockConstructor
+                            <AutosizeInput
                               aria-activedescendant="react-select-2--value"
                               aria-expanded="false"
                               aria-haspopup="false"
                               aria-owns=""
                               className="Select-input"
+                              injectStyles={true}
                               minWidth="5"
                               onBlur={[Function]}
                               onChange={[Function]}
@@ -411,7 +417,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         uploadStatuses={Array []}
                       >
                         <Select
-                          addLabelText="Add \\"{label}\\"?"
                           arrowRenderer={[Function]}
                           autosize={true}
                           backspaceRemoves={true}
@@ -420,6 +425,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           clearRenderer={[Function]}
                           clearValueText="Clear value"
                           clearable={false}
+                          closeOnSelect={true}
                           deleteRemoves={true}
                           delimiter=","
                           disabled={false}
@@ -440,6 +446,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           onBlurResetsInput={true}
                           onChange={[Function]}
                           onCloseResetsInput={true}
+                          onSelectResetsInput={true}
+                          openOnClick={true}
                           optionComponent={[Function]}
                           options={
                             Array [
@@ -451,16 +459,19 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           }
                           pageSize={5}
                           placeholder="Select..."
+                          removeSelected={true}
                           required={false}
+                          rtl={false}
                           scrollMenuIntoView={true}
                           searchable={true}
                           simpleValue={false}
                           tabSelectsValue={true}
+                          trimFilter={true}
                           valueComponent={[Function]}
                           valueKey="value"
                         >
                           <div
-                            className="Select Select--single is-searchable"
+                            className="Select is-searchable Select--single"
                           >
                             <div
                               className="Select-control"
@@ -479,12 +490,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 >
                                   Select...
                                 </div>
-                                <mockConstructor
+                                <AutosizeInput
                                   aria-activedescendant="react-select-3--value"
                                   aria-expanded="false"
                                   aria-haspopup="false"
                                   aria-owns=""
                                   className="Select-input"
+                                  injectStyles={true}
                                   minWidth="5"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -527,7 +539,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       Comparison Project
                     </label>
                     <Select
-                      addLabelText="Add \\"{label}\\"?"
                       arrowRenderer={[Function]}
                       autosize={true}
                       backspaceRemoves={true}
@@ -536,6 +547,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       clearRenderer={[Function]}
                       clearValueText="Clear value"
                       clearable={true}
+                      closeOnSelect={true}
                       deleteRemoves={true}
                       delimiter=","
                       disabled={false}
@@ -557,6 +569,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       onBlurResetsInput={true}
                       onChange={[Function]}
                       onCloseResetsInput={true}
+                      onSelectResetsInput={true}
+                      openOnClick={true}
                       optionComponent={[Function]}
                       options={
                         Array [
@@ -568,16 +582,19 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       }
                       pageSize={5}
                       placeholder="Select comparison project…"
+                      removeSelected={true}
                       required={false}
+                      rtl={false}
                       scrollMenuIntoView={true}
                       searchable={true}
                       simpleValue={false}
                       tabSelectsValue={true}
+                      trimFilter={true}
                       valueComponent={[Function]}
                       valueKey="value"
                     >
                       <div
-                        className="Select Select--single is-clearable is-searchable"
+                        className="Select is-clearable is-searchable Select--single"
                       >
                         <div
                           className="Select-control"
@@ -596,12 +613,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             >
                               Select comparison project…
                             </div>
-                            <mockConstructor
+                            <AutosizeInput
                               aria-activedescendant="react-select-4--value"
                               aria-expanded="false"
                               aria-haspopup="false"
                               aria-owns=""
                               className="Select-input"
+                              injectStyles={true}
                               minWidth="5"
                               onBlur={[Function]}
                               onChange={[Function]}
@@ -638,7 +656,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       Comparison Scenario
                     </label>
                     <Select
-                      addLabelText="Add \\"{label}\\"?"
                       arrowRenderer={[Function]}
                       autosize={true}
                       backspaceRemoves={true}
@@ -647,6 +664,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       clearRenderer={[Function]}
                       clearValueText="Clear value"
                       clearable={false}
+                      closeOnSelect={true}
                       deleteRemoves={true}
                       delimiter=","
                       disabled={true}
@@ -668,20 +686,25 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       onBlurResetsInput={true}
                       onChange={[Function]}
                       onCloseResetsInput={true}
+                      onSelectResetsInput={true}
+                      openOnClick={true}
                       optionComponent={[Function]}
                       options={Array []}
                       pageSize={5}
                       placeholder="Select comparison scenario…"
+                      removeSelected={true}
                       required={false}
+                      rtl={false}
                       scrollMenuIntoView={true}
                       searchable={true}
                       simpleValue={false}
                       tabSelectsValue={true}
+                      trimFilter={true}
                       valueComponent={[Function]}
                       valueKey="value"
                     >
                       <div
-                        className="Select Select--single is-disabled is-searchable"
+                        className="Select is-disabled is-searchable Select--single"
                       >
                         <div
                           className="Select-control"
@@ -702,9 +725,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             </div>
                             <div
                               aria-activedescendant="react-select-5--value"
+                              aria-disabled="true"
                               aria-expanded={false}
                               aria-owns=""
-                              aria-readonly="true"
                               className="Select-input"
                               onBlur={[Function]}
                               onFocus={[Function]}
@@ -1000,7 +1023,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           className="col-xs-6"
                         >
                           <Select
-                            addLabelText="Add \\"{label}\\"?"
                             arrowRenderer={[Function]}
                             autosize={true}
                             backspaceRemoves={true}
@@ -1009,6 +1031,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             clearRenderer={[Function]}
                             clearValueText="Clear value"
                             clearable={false}
+                            closeOnSelect={true}
                             deleteRemoves={true}
                             delimiter=","
                             disabled={false}
@@ -1029,20 +1052,25 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             onBlurResetsInput={true}
                             onChange={[Function]}
                             onCloseResetsInput={true}
+                            onSelectResetsInput={true}
+                            openOnClick={true}
                             optionComponent={[Function]}
                             options={Array []}
                             pageSize={5}
                             placeholder="Select..."
+                            removeSelected={true}
                             required={false}
+                            rtl={false}
                             scrollMenuIntoView={true}
                             searchable={true}
                             simpleValue={false}
                             tabSelectsValue={true}
+                            trimFilter={true}
                             valueComponent={[Function]}
                             valueKey="value"
                           >
                             <div
-                              className="Select Select--single is-searchable"
+                              className="Select is-searchable Select--single"
                             >
                               <div
                                 className="Select-control"
@@ -1061,12 +1089,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   >
                                     Select...
                                   </div>
-                                  <mockConstructor
+                                  <AutosizeInput
                                     aria-activedescendant="react-select-6--value"
                                     aria-expanded="false"
                                     aria-haspopup="false"
                                     aria-owns=""
                                     className="Select-input"
+                                    injectStyles={true}
                                     minWidth="5"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -2424,7 +2453,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   />
                                 </Icon>
                                 <Select
-                                  addLabelText="Add \\"{label}\\"?"
                                   arrowRenderer={[Function]}
                                   autosize={true}
                                   backspaceRemoves={true}
@@ -2433,6 +2461,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   clearRenderer={[Function]}
                                   clearValueText="Clear value"
                                   clearable={false}
+                                  closeOnSelect={true}
                                   deleteRemoves={true}
                                   delimiter=","
                                   disabled={false}
@@ -2453,6 +2482,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   onBlurResetsInput={true}
                                   onChange={[Function]}
                                   onCloseResetsInput={true}
+                                  onSelectResetsInput={true}
+                                  openOnClick={true}
                                   optionComponent={[Function]}
                                   options={
                                     Array [
@@ -2472,17 +2503,20 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   }
                                   pageSize={5}
                                   placeholder="Select..."
+                                  removeSelected={true}
                                   required={false}
+                                  rtl={false}
                                   scrollMenuIntoView={true}
                                   searchable={true}
                                   simpleValue={false}
                                   tabSelectsValue={true}
+                                  trimFilter={true}
                                   value="v3.4.1"
                                   valueComponent={[Function]}
                                   valueKey="value"
                                 >
                                   <div
-                                    className="Select Select--single is-searchable has-value"
+                                    className="Select has-value is-searchable Select--single"
                                   >
                                     <div
                                       className="Select-control"
@@ -2501,6 +2535,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                           id="react-select-7--value-item"
                                           instancePrefix="react-select-7-"
                                           onClick={null}
+                                          placeholder="Select..."
                                           value={
                                             Object {
                                               "label": <span
@@ -2537,12 +2572,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                             </span>
                                           </div>
                                         </Value>
-                                        <mockConstructor
+                                        <AutosizeInput
                                           aria-activedescendant="react-select-7--value"
                                           aria-expanded="false"
                                           aria-haspopup="false"
                                           aria-owns=""
                                           className="Select-input"
+                                          injectStyles={true}
                                           minWidth="5"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -2591,7 +2627,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       className="col-xs-6"
                     >
                       <Select
-                        addLabelText="Add \\"{label}\\"?"
                         arrowRenderer={[Function]}
                         autosize={true}
                         backspaceRemoves={true}
@@ -2600,6 +2635,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         clearRenderer={[Function]}
                         clearValueText="Clear value"
                         clearable={false}
+                        closeOnSelect={true}
                         deleteRemoves={true}
                         delimiter=","
                         disabled={false}
@@ -2620,6 +2656,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         onBlurResetsInput={true}
                         onChange={[Function]}
                         onCloseResetsInput={true}
+                        onSelectResetsInput={true}
+                        openOnClick={true}
                         optionComponent={[Function]}
                         options={
                           Array [
@@ -2631,17 +2669,20 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         }
                         pageSize={5}
                         placeholder="Select..."
+                        removeSelected={true}
                         required={false}
+                        rtl={false}
                         scrollMenuIntoView={true}
                         searchable={true}
                         simpleValue={false}
                         tabSelectsValue={true}
+                        trimFilter={true}
                         value="__REGION"
                         valueComponent={[Function]}
                         valueKey="value"
                       >
                         <div
-                          className="Select Select--single is-searchable has-value"
+                          className="Select has-value is-searchable Select--single"
                         >
                           <div
                             className="Select-control"
@@ -2660,6 +2701,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 id="react-select-8--value-item"
                                 instancePrefix="react-select-8-"
                                 onClick={null}
+                                placeholder="Select..."
                                 value={
                                   Object {
                                     "label": "Entire region",
@@ -2680,12 +2722,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   </span>
                                 </div>
                               </Value>
-                              <mockConstructor
+                              <AutosizeInput
                                 aria-activedescendant="react-select-8--value"
                                 aria-expanded="false"
                                 aria-haspopup="false"
                                 aria-owns=""
                                 className="Select-input"
+                                injectStyles={true}
                                 minWidth="5"
                                 onBlur={[Function]}
                                 onChange={[Function]}

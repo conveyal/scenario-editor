@@ -2,6 +2,13 @@
 
 exports[`reducers > root should have default state 1`] = `
 Object {
+  "admin": Object {
+    "jobs": Array [],
+    "workers": Array [],
+    "workersSortBy": Array [
+      "jvmStartTime",
+    ],
+  },
   "analysis": Object {
     "active": false,
     "isFetchingIsochrone": false,

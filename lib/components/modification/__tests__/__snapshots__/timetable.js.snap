@@ -8,9 +8,9 @@ exports[`Component > Timetable renders correctly 1`] = `
   numberOfStops={0}
   projectTimetables={Array []}
   qualifiedStops={Array []}
-  remove={[Function]}
+  remove={[MockFunction]}
   segmentDistances={Array []}
-  setMapState={[Function]}
+  setMapState={[MockFunction]}
   timetable={
     Object {
       "_id": "timetable-id",
@@ -43,7 +43,7 @@ exports[`Component > Timetable renders correctly 1`] = `
       "wednesday": true,
     }
   }
-  update={[Function]}
+  update={[MockFunction]}
 >
   <section
     className="panel panel-default inner-panel"
@@ -90,9 +90,9 @@ exports[`Component > Timetable renders correctly 2`] = `
   numberOfStops={0}
   projectTimetables={Array []}
   qualifiedStops={Array []}
-  remove={[Function]}
+  remove={[MockFunction]}
   segmentDistances={Array []}
-  setMapState={[Function]}
+  setMapState={[MockFunction]}
   timetable={
     Object {
       "_id": "timetable-id",
@@ -125,7 +125,7 @@ exports[`Component > Timetable renders correctly 2`] = `
       "wednesday": true,
     }
   }
-  update={[Function]}
+  update={[MockFunction]}
 >
   <section
     className="panel panel-default inner-panel"
@@ -234,7 +234,7 @@ exports[`Component > Timetable renders correctly 2`] = `
             "wednesday": true,
           }
         }
-        update={[Function]}
+        update={[MockFunction]}
       >
         <div>
           <Days
@@ -652,7 +652,7 @@ exports[`Component > Timetable renders correctly 2`] = `
             phaseFromTimetable=""
             phaseSeconds={300}
             timetableHeadway={900}
-            update={[Function]}
+            update={[MockFunction]}
           >
             <div>
               <Group
@@ -782,7 +782,7 @@ exports[`Component > Timetable renders correctly 2`] = `
         qualifiedStops={Array []}
         segmentDistances={Array []}
         segmentSpeeds={Array []}
-        update={[Function]}
+        update={[MockFunction]}
       >
         <div>
           <MinutesSeconds

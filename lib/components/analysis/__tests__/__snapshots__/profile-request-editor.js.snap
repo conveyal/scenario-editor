@@ -53,7 +53,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         "workerVersion": "v4.0.0",
       }
     }
-    setProfileRequest={[Function]}
+    setProfileRequest={[MockFunction]}
   >
     <div>
       <ModeSelector
@@ -61,7 +61,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         directModes="WALK"
         disabled={false}
         transitModes="BUS,TRAM,RAIL,SUBWAY"
-        update={[Function]}
+        update={[MockFunction]}
       >
         <div
           className="row"
@@ -1028,13 +1028,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                           Object {
                             "label": <span
                               style={
-                                    Object {
-                                          "textDecoration": "line-through",
-                                        }
+                                Object {
+                                  "textDecoration": "line-through",
+                                }
                               }
-                        >
+                            >
                               v4.1.1
-                        </span>,
+                            </span>,
                             "value": "v4.1.1",
                           },
                         ]
@@ -1078,13 +1078,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                                 Object {
                                   "label": <span
                                     style={
-                                        Object {
-                                            "textDecoration": "line-through",
-                                          }
+                                      Object {
+                                        "textDecoration": "line-through",
+                                      }
                                     }
-                                >
+                                  >
                                     v4.1.1
-                                </span>,
+                                  </span>,
                                   "value": "v4.1.1",
                                 }
                               }

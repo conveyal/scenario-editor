@@ -9,9 +9,9 @@ exports[`Project-Map > HopLayer renders correctly 1`] = `
   <g
     data={
       {
-        "type": "FeatureCollection",
-        "features": []
-      }
+  "type": "FeatureCollection",
+  "features": []
+}
     }
     type="GeoJSON"
   />

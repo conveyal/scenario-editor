@@ -61,7 +61,7 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
         </a>
       </span>
       <span
-        className="Tip Sidebar-navItem"
+        className="Tip Sidebar-navItem active"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseOut={[Function]}

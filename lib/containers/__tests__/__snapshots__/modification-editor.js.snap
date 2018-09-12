@@ -48,42 +48,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
           ],
           "segments": Array [
             {
-          "fromStopId": "1",
-          "geometry": {
-            "type": "LineString",
-            "coordinates": [
-              [
-                "-122.02460000",
-                "36.97070000"
-              ],
-              [
-                "-122.02790000",
-                "37.04900000"
-              ],
-              [
-                "-121.97990000",
-                "37.22990000"
-              ],
-              [
-                "-121.94450000",
-                "37.32400000"
-              ],
-              [
-                "-121.93600000",
-                "37.35300000"
-              ],
-              [
-                "-121.92400000",
-                "37.36500000"
-              ]
-            ]
-          },
-          "properties": {},
-          "spacing": "3000.00000000",
-          "stopAtEnd": false,
-          "stopAtStart": false,
-          "type": "Feature"
-        },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
           ],
           "showOnMap": false,
           "timetables": Array [
@@ -158,7 +158,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
           </Connect(ErrorModal)>
           <Connect(Sidebar)>
             <Sidebar
-              currentPath="blank"
+              currentPath="/"
               dispatch={[Function]}
               outstandingRequests={0}
               projectId="1"
@@ -277,17 +277,21 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     </Tip>
                   </SidebarNavItem>
                   <SidebarNavItem
-                    active={null}
+                    active={
+                      Array [
+                        "/",
+                      ]
+                    }
                     href="/regions/1"
                     icon="cubes"
                     text="Projects"
                   >
                     <Tip
-                      className="Sidebar-navItem"
+                      className="Sidebar-navItem active"
                       tip="Projects"
                     >
                       <span
-                        className="Tip Sidebar-navItem"
+                        className="Tip Sidebar-navItem active"
                         onBlur={[Function]}
                         onFocus={[Function]}
                         onMouseOut={[Function]}
@@ -757,42 +761,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               ],
                               "segments": Array [
                                 {
-                              "fromStopId": "1",
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              },
-                              "properties": {},
-                              "spacing": "3000.00000000",
-                              "stopAtEnd": false,
-                              "stopAtStart": false,
-                              "type": "Feature"
-                            },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                               ],
                               "showOnMap": false,
                               "timetables": Array [
@@ -1176,42 +1180,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 ],
                                 "segments": Array [
                                   {
-                              "fromStopId": "1",
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              },
-                              "properties": {},
-                              "spacing": "3000.00000000",
-                              "stopAtEnd": false,
-                              "stopAtStart": false,
-                              "type": "Feature"
-                            },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                 ],
                                 "showOnMap": false,
                                 "timetables": Array [
@@ -1271,42 +1275,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               segments={
                                 Array [
                                   {
-                                  "fromStopId": "1",
-                                  "geometry": {
-                                    "type": "LineString",
-                                    "coordinates": [
-                                      [
-                                        "-122.02460000",
-                                        "36.97070000"
-                                      ],
-                                      [
-                                        "-122.02790000",
-                                        "37.04900000"
-                                      ],
-                                      [
-                                        "-121.97990000",
-                                        "37.22990000"
-                                      ],
-                                      [
-                                        "-121.94450000",
-                                        "37.32400000"
-                                      ],
-                                      [
-                                        "-121.93600000",
-                                        "37.35300000"
-                                      ],
-                                      [
-                                        "-121.92400000",
-                                        "37.36500000"
-                                      ]
-                                    ]
-                                  },
-                                  "properties": {},
-                                  "spacing": "3000.00000000",
-                                  "stopAtEnd": false,
-                                  "stopAtStart": false,
-                                  "type": "Feature"
-                                },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                 ]
                               }
                             >
@@ -2096,42 +2100,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             ],
                             "segments": Array [
                               {
-                            "fromStopId": "1",
-                            "geometry": {
-                              "type": "LineString",
-                              "coordinates": [
-                                [
-                                  "-122.02460000",
-                                  "36.97070000"
-                                ],
-                                [
-                                  "-122.02790000",
-                                  "37.04900000"
-                                ],
-                                [
-                                  "-121.97990000",
-                                  "37.22990000"
-                                ],
-                                [
-                                  "-121.94450000",
-                                  "37.32400000"
-                                ],
-                                [
-                                  "-121.93600000",
-                                  "37.35300000"
-                                ],
-                                [
-                                  "-121.92400000",
-                                  "37.36500000"
-                                ]
-                              ]
-                            },
-                            "properties": {},
-                            "spacing": "3000.00000000",
-                            "stopAtEnd": false,
-                            "stopAtStart": false,
-                            "type": "Feature"
-                          },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                             ],
                             "showOnMap": false,
                             "timetables": Array [
@@ -2201,42 +2205,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               ],
                               "segments": Array [
                                 {
-                              "fromStopId": "1",
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              },
-                              "properties": {},
-                              "spacing": "3000.00000000",
-                              "stopAtEnd": false,
-                              "stopAtStart": false,
-                              "type": "Feature"
-                            },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                               ],
                               "showOnMap": false,
                               "timetables": Array [
@@ -2327,42 +2331,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 ],
                                 "segments": Array [
                                   {
-                                "fromStopId": "1",
-                                "geometry": {
-                                  "type": "LineString",
-                                  "coordinates": [
-                                    [
-                                      "-122.02460000",
-                                      "36.97070000"
-                                    ],
-                                    [
-                                      "-122.02790000",
-                                      "37.04900000"
-                                    ],
-                                    [
-                                      "-121.97990000",
-                                      "37.22990000"
-                                    ],
-                                    [
-                                      "-121.94450000",
-                                      "37.32400000"
-                                    ],
-                                    [
-                                      "-121.93600000",
-                                      "37.35300000"
-                                    ],
-                                    [
-                                      "-121.92400000",
-                                      "37.36500000"
-                                    ]
-                                  ]
-                                },
-                                "properties": {},
-                                "spacing": "3000.00000000",
-                                "stopAtEnd": false,
-                                "stopAtStart": false,
-                                "type": "Feature"
-                              },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                 ],
                                 "showOnMap": false,
                                 "timetables": Array [
@@ -2413,7 +2417,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             qualifiedStops={Array []}
                             segmentDistances={
                               Array [
-                                45.223652927700726,
+                                45.22365292770072,
                               ]
                             }
                             setMapState={[Function]}
@@ -2454,42 +2458,42 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                     ],
                                     "segments": Array [
                                       {
-                                    "fromStopId": "1",
-                                    "geometry": {
-                                      "type": "LineString",
-                                      "coordinates": [
-                                        [
-                                          "-122.02460000",
-                                          "36.97070000"
-                                        ],
-                                        [
-                                          "-122.02790000",
-                                          "37.04900000"
-                                        ],
-                                        [
-                                          "-121.97990000",
-                                          "37.22990000"
-                                        ],
-                                        [
-                                          "-121.94450000",
-                                          "37.32400000"
-                                        ],
-                                        [
-                                          "-121.93600000",
-                                          "37.35300000"
-                                        ],
-                                        [
-                                          "-121.92400000",
-                                          "37.36500000"
-                                        ]
-                                      ]
-                                    },
-                                    "properties": {},
-                                    "spacing": "3000.00000000",
-                                    "stopAtEnd": false,
-                                    "stopAtStart": false,
-                                    "type": "Feature"
-                                  },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                     ],
                                     "showOnMap": false,
                                     "timetables": Array [
@@ -2538,7 +2542,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 numberOfStops={16}
                                 segmentDistances={
                                   Array [
-                                    45.223652927700726,
+                                    45.22365292770072,
                                   ]
                                 }
                                 setMapState={[Function]}
@@ -2700,7 +2704,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 qualifiedStops={Array []}
                                 segmentDistances={
                                   Array [
-                                    45.223652927700726,
+                                    45.22365292770072,
                                   ]
                                 }
                                 setMapState={[Function]}
@@ -2808,7 +2812,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                     remove={[Function]}
                                     segmentDistances={
                                       Array [
-                                        45.223652927700726,
+                                        45.22365292770072,
                                       ]
                                     }
                                     setMapState={[Function]}
@@ -3105,42 +3109,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
           ],
           "segments": Array [
             {
-          "fromStopId": "1",
-          "geometry": {
-            "type": "LineString",
-            "coordinates": [
-              [
-                "-122.02460000",
-                "36.97070000"
-              ],
-              [
-                "-122.02790000",
-                "37.04900000"
-              ],
-              [
-                "-121.97990000",
-                "37.22990000"
-              ],
-              [
-                "-121.94450000",
-                "37.32400000"
-              ],
-              [
-                "-121.93600000",
-                "37.35300000"
-              ],
-              [
-                "-121.92400000",
-                "37.36500000"
-              ]
-            ]
-          },
-          "properties": {},
-          "spacing": "3000.00000000",
-          "stopAtEnd": false,
-          "stopAtStart": false,
-          "type": "Feature"
-        },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
           ],
           "showOnMap": false,
           "timetables": Array [
@@ -3215,7 +3219,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
           </Connect(ErrorModal)>
           <Connect(Sidebar)>
             <Sidebar
-              currentPath="blank"
+              currentPath="/"
               dispatch={[Function]}
               outstandingRequests={0}
               projectId="1"
@@ -3334,17 +3338,21 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     </Tip>
                   </SidebarNavItem>
                   <SidebarNavItem
-                    active={null}
+                    active={
+                      Array [
+                        "/",
+                      ]
+                    }
                     href="/regions/1"
                     icon="cubes"
                     text="Projects"
                   >
                     <Tip
-                      className="Sidebar-navItem"
+                      className="Sidebar-navItem active"
                       tip="Projects"
                     >
                       <span
-                        className="Tip Sidebar-navItem"
+                        className="Tip Sidebar-navItem active"
                         onBlur={[Function]}
                         onFocus={[Function]}
                         onMouseOut={[Function]}
@@ -3814,42 +3822,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               ],
                               "segments": Array [
                                 {
-                              "fromStopId": "1",
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              },
-                              "properties": {},
-                              "spacing": "3000.00000000",
-                              "stopAtEnd": false,
-                              "stopAtStart": false,
-                              "type": "Feature"
-                            },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                               ],
                               "showOnMap": false,
                               "timetables": Array [
@@ -4233,42 +4241,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 ],
                                 "segments": Array [
                                   {
-                              "fromStopId": "1",
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              },
-                              "properties": {},
-                              "spacing": "3000.00000000",
-                              "stopAtEnd": false,
-                              "stopAtStart": false,
-                              "type": "Feature"
-                            },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                 ],
                                 "showOnMap": false,
                                 "timetables": Array [
@@ -4328,42 +4336,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               segments={
                                 Array [
                                   {
-                                  "fromStopId": "1",
-                                  "geometry": {
-                                    "type": "LineString",
-                                    "coordinates": [
-                                      [
-                                        "-122.02460000",
-                                        "36.97070000"
-                                      ],
-                                      [
-                                        "-122.02790000",
-                                        "37.04900000"
-                                      ],
-                                      [
-                                        "-121.97990000",
-                                        "37.22990000"
-                                      ],
-                                      [
-                                        "-121.94450000",
-                                        "37.32400000"
-                                      ],
-                                      [
-                                        "-121.93600000",
-                                        "37.35300000"
-                                      ],
-                                      [
-                                        "-121.92400000",
-                                        "37.36500000"
-                                      ]
-                                    ]
-                                  },
-                                  "properties": {},
-                                  "spacing": "3000.00000000",
-                                  "stopAtEnd": false,
-                                  "stopAtStart": false,
-                                  "type": "Feature"
-                                },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                 ]
                               }
                             >
@@ -5153,42 +5161,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             ],
                             "segments": Array [
                               {
-                            "fromStopId": "1",
-                            "geometry": {
-                              "type": "LineString",
-                              "coordinates": [
-                                [
-                                  "-122.02460000",
-                                  "36.97070000"
-                                ],
-                                [
-                                  "-122.02790000",
-                                  "37.04900000"
-                                ],
-                                [
-                                  "-121.97990000",
-                                  "37.22990000"
-                                ],
-                                [
-                                  "-121.94450000",
-                                  "37.32400000"
-                                ],
-                                [
-                                  "-121.93600000",
-                                  "37.35300000"
-                                ],
-                                [
-                                  "-121.92400000",
-                                  "37.36500000"
-                                ]
-                              ]
-                            },
-                            "properties": {},
-                            "spacing": "3000.00000000",
-                            "stopAtEnd": false,
-                            "stopAtStart": false,
-                            "type": "Feature"
-                          },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                             ],
                             "showOnMap": false,
                             "timetables": Array [
@@ -5258,42 +5266,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               ],
                               "segments": Array [
                                 {
-                              "fromStopId": "1",
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              },
-                              "properties": {},
-                              "spacing": "3000.00000000",
-                              "stopAtEnd": false,
-                              "stopAtStart": false,
-                              "type": "Feature"
-                            },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                               ],
                               "showOnMap": false,
                               "timetables": Array [
@@ -5384,42 +5392,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 ],
                                 "segments": Array [
                                   {
-                                "fromStopId": "1",
-                                "geometry": {
-                                  "type": "LineString",
-                                  "coordinates": [
-                                    [
-                                      "-122.02460000",
-                                      "36.97070000"
-                                    ],
-                                    [
-                                      "-122.02790000",
-                                      "37.04900000"
-                                    ],
-                                    [
-                                      "-121.97990000",
-                                      "37.22990000"
-                                    ],
-                                    [
-                                      "-121.94450000",
-                                      "37.32400000"
-                                    ],
-                                    [
-                                      "-121.93600000",
-                                      "37.35300000"
-                                    ],
-                                    [
-                                      "-121.92400000",
-                                      "37.36500000"
-                                    ]
-                                  ]
-                                },
-                                "properties": {},
-                                "spacing": "3000.00000000",
-                                "stopAtEnd": false,
-                                "stopAtStart": false,
-                                "type": "Feature"
-                              },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                 ],
                                 "showOnMap": false,
                                 "timetables": Array [
@@ -5470,7 +5478,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             qualifiedStops={Array []}
                             segmentDistances={
                               Array [
-                                45.223652927700726,
+                                45.22365292770072,
                               ]
                             }
                             setMapState={[Function]}
@@ -5511,42 +5519,42 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                     ],
                                     "segments": Array [
                                       {
-                                    "fromStopId": "1",
-                                    "geometry": {
-                                      "type": "LineString",
-                                      "coordinates": [
-                                        [
-                                          "-122.02460000",
-                                          "36.97070000"
-                                        ],
-                                        [
-                                          "-122.02790000",
-                                          "37.04900000"
-                                        ],
-                                        [
-                                          "-121.97990000",
-                                          "37.22990000"
-                                        ],
-                                        [
-                                          "-121.94450000",
-                                          "37.32400000"
-                                        ],
-                                        [
-                                          "-121.93600000",
-                                          "37.35300000"
-                                        ],
-                                        [
-                                          "-121.92400000",
-                                          "37.36500000"
-                                        ]
-                                      ]
-                                    },
-                                    "properties": {},
-                                    "spacing": "3000.00000000",
-                                    "stopAtEnd": false,
-                                    "stopAtStart": false,
-                                    "type": "Feature"
-                                  },
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
                                     ],
                                     "showOnMap": false,
                                     "timetables": Array [
@@ -5595,7 +5603,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 numberOfStops={16}
                                 segmentDistances={
                                   Array [
-                                    45.223652927700726,
+                                    45.22365292770072,
                                   ]
                                 }
                                 setMapState={[Function]}
@@ -5757,7 +5765,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 qualifiedStops={Array []}
                                 segmentDistances={
                                   Array [
-                                    45.223652927700726,
+                                    45.22365292770072,
                                   ]
                                 }
                                 setMapState={[Function]}
@@ -5865,7 +5873,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                     remove={[Function]}
                                     segmentDistances={
                                       Array [
-                                        45.223652927700726,
+                                        45.22365292770072,
                                       ]
                                     }
                                     setMapState={[Function]}

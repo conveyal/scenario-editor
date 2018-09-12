@@ -11,9 +11,9 @@ exports[`Component > DirectionIcon renders correctly 1`] = `
       Object {
         "clickable": true,
         "icon": LeafletDirectionIcon {
-          "callInitHooks": [Function],
-          "createIcon": [Function],
-          "createShadow": [Function],
+          "callInitHooks": [MockFunction],
+          "createIcon": [MockFunction],
+          "createShadow": [MockFunction],
         },
         "position": Array [
           34,

@@ -25,7 +25,7 @@ error:
 authentication:
   logIn: Log in
   logOut: Log out
-  username: Logged in as %s
+  username: Logged in as %(username)
 bundle:
   name: Bundle Name
   create: Create GTFS bundle
@@ -59,7 +59,7 @@ phasing:
   fromStop: Phase from stop
   minutes: Phase minutes
   disabled: Phasing is disabled when a modification is bidirectional or a timetable uses exact times.
-  headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway)s minute headway does not equal this timetable's headway, which could cause unintended behavior.
+  headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway) minute headway does not equal this timetable's headway, which could cause unintended behavior.
   noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
   exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
 
@@ -212,16 +212,16 @@ opportunityDatasets:
   editName: Edit Dataset Name
 analysis:
   mode: Mode of travel
-  minutes: %s minutes
+  minutes: %(minutes) minutes
   squareRoot: Square root scale
   log: Logarithmic scale
   linear: Linear scale
   travelTimePercentile: Percentile of travel time (reliability)
   accessibility: Accessibility
-  accessibilityWithin: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
+  accessibilityWithin: %(name): %(number) %(indicator) within %(cutoff) minutes
   selectPercentileOfAccessibility: Percentile of accessibility
   # accessibility pre-formatted as string, don't use %d
-  percentileOfAccessibility: %(name)s: %(percentage)d%% of %(weightByName)s can access at least %(accessibility)s %(accessToName)s
+  percentileOfAccessibility: %(name): %(percentage)% of %(weightByName) can access at least %(accessibility) %(accessToName)
   createGrid: Upload a new opportunity dataset
   grid: Opportunity Dataset
   createGridTooltip: Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
@@ -237,7 +237,7 @@ analysis:
   travelTime: Travel time
   errorsInProject: Errors were found in the project:
   warningsInProject: Warnings were found applying the project
-  errorsInModification: in modification %s
+  errorsInModification: in modification %(id)
   minimumImprovementProbability: Minimum probability of change
   probabilityImprovement: Show areas with probability of change > %01.2f
   compare: Compare to another project
@@ -256,15 +256,15 @@ analysis:
   openRegionalAnalysis: Open regional analysis
   newRegionalAnalysis: New regional analysis # this begins the process of creating a regional analysis
   startRegionalAnalysis: Start regional analysis # once a regional analysis is named, this kicks it off
-  accessTo: %(opportunity)s within %(cutoff)d minutes (percentile %(percentile)d)
-  accessToInstantaneous: %(opportunity)s within %(cutoff)d minutes (average instantaneous accessibility)
-  comparisonAccessTo: compared with %(opportunity)s within %(cutoff)d minutes (percentile %(percentile)d)
-  comparisonAccessToInstantaneous: compared with %(opportunity)s within %(cutoff)d minutes (average instantaneous accessibility)
+  accessTo: %(opportunity) within %(cutoff) minutes (percentile %(percentile))
+  accessToInstantaneous: %(opportunity) within %(cutoff) minutes (average instantaneous accessibility)
+  comparisonAccessTo: compared with %(opportunity) within %(cutoff) minutes (percentile %(percentile))
+  comparisonAccessToInstantaneous: compared with %(opportunity) within %(cutoff) minutes (average instantaneous accessibility)
   compareTo: Compare to
   settingsFor: %s settings
   accessModes: Access modes
   gisExport: Export to GIS
-  downloadRegional: Download %s
+  downloadRegional: Download %(name)
   downloadRegionalProbability: Download probability of improvement
   modes:
     walk: Walk
@@ -285,11 +285,11 @@ analysis:
   aggregationAreaName: Aggregation area name
   aggregationAreaFiles: Select aggregation area files (.shp)
   # string not decimal, the number is preformatted
-  weightedAverageAccessibility: Weighted average accessibility: %s
+  weightedAverageAccessibility: Weighted average accessibility: %(weightedAverage)
   weightedAverageAccessibilityWarning: Weighted average accessibility may not be representative of the experience of users of the system; we recommend using the histogram and percentile measures above.
   refresh: Fetch results
   regionalBounds: Bounds of analysis
-  regionalBoundsSame: Same as %s
+  regionalBoundsSame: Same as %(name)
   regionalBoundsCustom: Custom
   regionalBoundsRegion: Entire region
   bookmark: Bookmark
@@ -301,12 +301,12 @@ report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
   newFrequencies: New frequencies
-  variant: Scenario: %s
-  bundle: Using bundle: %s
+  variant: Scenario: %(variant)
+  bundle: Using bundle: %(name)
   phasing:
-    phaseFromSeconds: Phase: %(time)s from %(timetable)s
-    phaseAtStop: at stop %s
-    phaseFromStop: from stop %s
+    phaseFromSeconds: Phase: %(time) from %(timetable)
+    phaseAtStop: at stop %(name)
+    phaseFromStop: from stop %(name)
   frequency:
     name: Name
     startTime: Start time
@@ -317,12 +317,12 @@ report:
     direction: Direction
     daysOfService: Days of service
   adjustDwellTime:
-    scale: Scale dwell times by %sx
-    set: Set dwell times to %s seconds
+    scale: Scale dwell times by %(scale)x
+    set: Set dwell times to %(seconds) seconds
     allStops: (all stops)
     stopsModified: Stops modified:
   adjustSpeed:
-    scale: Scale speed by %sx
+    scale: Scale speed by %(scale)x
     scaleLabel: Scale speed by
   patternLength: Length
   patternName: Pattern
@@ -340,7 +340,7 @@ report:
     removePatterns: Some patterns are removed:
   removeStops:
     allPatterns: All patterns are affected.
-    secondsSaved: Seconds saved %s
+    secondsSaved: Seconds saved %(seconds)
     somePatterns: Some patterns are affected:
     stopsRemoved: Stops removed:
   days:

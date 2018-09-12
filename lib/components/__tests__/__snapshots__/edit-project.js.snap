@@ -37,10 +37,10 @@ exports[`Component > EditProject renders correctly 1`] = `
         },
       ]
     }
-    close={[Function]}
-    create={[Function]}
-    deleteProject={[Function]}
-    goToCreateBundle={[Function]}
+    close={[MockFunction]}
+    create={[MockFunction]}
+    deleteProject={[MockFunction]}
+    goToCreateBundle={[MockFunction]}
     isEditing={false}
     name="Mock Project"
     project={
@@ -61,7 +61,7 @@ exports[`Component > EditProject renders correctly 1`] = `
       }
     }
     regionId="1"
-    save={[Function]}
+    save={[MockFunction]}
     variants={Array []}
   >
     <Application>
@@ -75,7 +75,7 @@ exports[`Component > EditProject renders correctly 1`] = `
         </Connect(ErrorModal)>
         <Connect(Sidebar)>
           <Sidebar
-            currentPath="blank"
+            currentPath="/"
             dispatch={[Function]}
             outstandingRequests={0}
             projectId="1"
@@ -194,17 +194,21 @@ exports[`Component > EditProject renders correctly 1`] = `
                   </Tip>
                 </SidebarNavItem>
                 <SidebarNavItem
-                  active={null}
+                  active={
+                    Array [
+                      "/",
+                    ]
+                  }
                   href="/regions/1"
                   icon="cubes"
                   text="Projects"
                 >
                   <Tip
-                    className="Sidebar-navItem"
+                    className="Sidebar-navItem active"
                     tip="Projects"
                   >
                     <span
-                      className="Tip Sidebar-navItem"
+                      className="Tip Sidebar-navItem active"
                       onBlur={[Function]}
                       onFocus={[Function]}
                       onMouseOut={[Function]}

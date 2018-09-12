@@ -15,7 +15,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
 >
   <AdvancedSettings
     disabled={false}
-    hideBoundsEditor={[Function]}
+    hideBoundsEditor={[MockFunction]}
     profileRequest={
       Object {
         "accessModes": "WALK",
@@ -63,8 +63,8 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       }
     }
     regionalAnalyses={Array []}
-    setProfileRequest={[Function]}
-    showBoundsEditor={[Function]}
+    setProfileRequest={[MockFunction]}
+    showBoundsEditor={[MockFunction]}
   >
     <section
       className="panel panel-default inner-panel advanced-panel"
@@ -118,7 +118,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
 >
   <AdvancedSettings
     disabled={false}
-    hideBoundsEditor={[Function]}
+    hideBoundsEditor={[MockFunction]}
     profileRequest={
       Object {
         "accessModes": "WALK",
@@ -166,8 +166,8 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
       }
     }
     regionalAnalyses={Array []}
-    setProfileRequest={[Function]}
-    showBoundsEditor={[Function]}
+    setProfileRequest={[MockFunction]}
+    showBoundsEditor={[MockFunction]}
   >
     <section
       className="panel panel-default inner-panel advanced-panel"
@@ -213,7 +213,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
             <EgressModeSelector
               disabled={false}
               egressModes="WALK"
-              update={[Function]}
+              update={[MockFunction]}
             >
               <Group
                 label="Egress Modes"

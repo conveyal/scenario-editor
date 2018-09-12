@@ -153,7 +153,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         "zoom": 9,
       }
     }
-    deleteAnalysis={[Function]}
+    deleteAnalysis={[MockFunction]}
     differenceGrid={
       Object {
         "contains": [Function],
@@ -167,7 +167,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         "zoom": 9,
       }
     }
-    fetch={[Function]}
+    fetch={[MockFunction]}
     grid={
       Object {
         "contains": [Function],
@@ -181,8 +181,18 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         "zoom": 9,
       }
     }
-    loadRegionalAnalyses={[Function]}
-    loadRegionalAnalysisGrids={[Function]}
+    loadRegionalAnalyses={[MockFunction]}
+    loadRegionalAnalysisGrids={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "_id": "abcd",
+            },
+          ],
+        ],
+      }
+    }
     minimumImprovementProbability={0.83}
     opportunityDatasets={
       Array [
@@ -323,11 +333,19 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
       ]
     }
     scenarioId="MOCK"
-    setActiveRegionalAnalysis={[Function]}
-    setAggregationArea={[Function]}
-    setAggregationWeights={[Function]}
-    setMinimumImprovementProbability={[Function]}
-    uploadAggregationArea={[Function]}
+    setActiveRegionalAnalysis={[MockFunction]}
+    setAggregationArea={[MockFunction]}
+    setAggregationWeights={[MockFunction]}
+    setMinimumImprovementProbability={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            0.55,
+          ],
+        ],
+      }
+    }
+    uploadAggregationArea={[MockFunction]}
   >
     <div>
       <Group
@@ -718,7 +736,15 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
       </div>
       <MinimumImprovementProbabilitySelector
         minimumImprovementProbability={0.83}
-        setMinimumImprovementProbability={[Function]}
+        setMinimumImprovementProbability={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                0.55,
+              ],
+            ],
+          }
+        }
       >
         <Slider
           format=".2f"
@@ -1142,8 +1168,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
         2000,
       ]
     }
-    deleteAnalysis={[Function]}
-    fetch={[Function]}
+    deleteAnalysis={[MockFunction]}
+    fetch={[MockFunction]}
     grid={
       Object {
         "contains": [Function],
@@ -1157,8 +1183,18 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
         "zoom": 9,
       }
     }
-    loadRegionalAnalyses={[Function]}
-    loadRegionalAnalysisGrids={[Function]}
+    loadRegionalAnalyses={[MockFunction]}
+    loadRegionalAnalysisGrids={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "_id": "abcd",
+            },
+          ],
+        ],
+      }
+    }
     minimumImprovementProbability={0.83}
     opportunityDatasets={
       Array [
@@ -1299,11 +1335,11 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
       ]
     }
     scenarioId="MOCK"
-    setActiveRegionalAnalysis={[Function]}
-    setAggregationArea={[Function]}
-    setAggregationWeights={[Function]}
-    setMinimumImprovementProbability={[Function]}
-    uploadAggregationArea={[Function]}
+    setActiveRegionalAnalysis={[MockFunction]}
+    setAggregationArea={[MockFunction]}
+    setAggregationWeights={[MockFunction]}
+    setMinimumImprovementProbability={[MockFunction]}
+    uploadAggregationArea={[MockFunction]}
   >
     <div>
       <Group

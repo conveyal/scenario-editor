@@ -14,7 +14,7 @@ exports[`Component > ImportModifications renders correctly 1`] = `
   }
 >
   <ImportModifications
-    copyFromProject={[Function]}
+    copyFromProject={[MockFunction]}
     projects={
       Array [
         Object {
@@ -34,7 +34,7 @@ exports[`Component > ImportModifications renders correctly 1`] = `
         },
       ]
     }
-    push={[Function]}
+    push={[MockFunction]}
     regionId="1"
     toProjectId="1"
     variants={Array []}
@@ -50,7 +50,7 @@ exports[`Component > ImportModifications renders correctly 1`] = `
         </Connect(ErrorModal)>
         <Connect(Sidebar)>
           <Sidebar
-            currentPath="blank"
+            currentPath="/"
             dispatch={[Function]}
             outstandingRequests={0}
             projectId="1"
@@ -169,17 +169,21 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                   </Tip>
                 </SidebarNavItem>
                 <SidebarNavItem
-                  active={null}
+                  active={
+                    Array [
+                      "/",
+                    ]
+                  }
                   href="/regions/1"
                   icon="cubes"
                   text="Projects"
                 >
                   <Tip
-                    className="Sidebar-navItem"
+                    className="Sidebar-navItem active"
                     tip="Projects"
                   >
                     <span
-                      className="Tip Sidebar-navItem"
+                      className="Tip Sidebar-navItem active"
                       onBlur={[Function]}
                       onFocus={[Function]}
                       onMouseOut={[Function]}

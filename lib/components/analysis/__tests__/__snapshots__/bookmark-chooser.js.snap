@@ -55,7 +55,7 @@ exports[`analysis > bookmark renders correctly 1`] = `
     >
       <a
         className="btn btn-success btn-block"
-        disabled={undefined}
+        disabled={false}
         href="#"
         onClick={[Function]}
         tabIndex={0}

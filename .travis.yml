@@ -11,7 +11,7 @@ language: node_js
 notifications:
   email: false
 node_js:
-  - '6'
+  - '8'
 script:
   - yarn test -- --coverage
   - codecov

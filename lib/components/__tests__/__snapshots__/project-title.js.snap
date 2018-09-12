@@ -71,7 +71,7 @@ exports[`Component > ProjectTitle renders correctly 1`] = `
 exports[`Component > ProjectTitle should show export select dialogue 1`] = `
 <ProjectTitle
   _id="1"
-  downloadScenario={[Function]}
+  downloadScenario={[MockFunction]}
   project={
     Object {
       "_id": "1",
@@ -270,7 +270,7 @@ exports[`Component > ProjectTitle should show export select dialogue 2`] = `"<ul
 exports[`Component > ProjectTitle should show print select dialogue 1`] = `
 <ProjectTitle
   _id="1"
-  downloadScenario={[Function]}
+  downloadScenario={[MockFunction]}
   project={
     Object {
       "_id": "1",

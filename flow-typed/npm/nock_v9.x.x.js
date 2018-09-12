@@ -1,5 +1,5 @@
-// flow-typed signature: 503ebcf814e9806dee53d5e219d04365
-// flow-typed version: ba5073b63e/nock_v9.x.x/flow_>=v0.31.x
+// flow-typed signature: 84ceb4b2ef91e1c229ab9f8b2991cb4a
+// flow-typed version: 61b2be7bf2/nock_v9.x.x/flow_>=v0.75.x
 
 import EventEmitter from "eventemitter";
 
@@ -29,8 +29,8 @@ declare class $npm$nock$Recorder {
     enable_reqheaders_recording?: boolean,
     logging?: (content: any) => any,
     use_separator: boolean
-  }): void,
-  play(): $npm$nock$RecordedCall[]
+  }): void;
+  play(): $npm$nock$RecordedCall[];
 }
 
 declare type $npm$nock$InterceptorOptions = {
@@ -41,13 +41,13 @@ declare type $npm$nock$InterceptorOptions = {
 };
 
 declare class $npm$nock$NockBack {
-  $call(path: string, cb: (cb: Function) => any): void,
-  fixtures: string,
-  setMode(mode: string): void
+  [[call]](path: string, cb: (cb: Function) => any): void;
+  fixtures: string;
+  setMode(mode: string): void;
 }
 
 declare class $npm$nock$Nock {
-  static $call(
+  static [[call]](
     url: string | RegExp,
     options?: {
       reqheaders?: Object,
@@ -55,29 +55,29 @@ declare class $npm$nock$Nock {
       filteringScope?: (scope: string) => boolean,
       allowUnmocked?: boolean
     }
-  ): $npm$nock$Nock,
-  static restore(): void,
-  static cleanAll(): void,
-  static disableNetConnect(): void,
-  static enableNetConnect(path?: $npm$nock$Path): void,
-  static load(path: string): $npm$nock$RecordedCall[],
+  ): $npm$nock$Nock;
+  static restore(): void;
+  static cleanAll(): void;
+  static disableNetConnect(): void;
+  static enableNetConnect(path?: $npm$nock$Path): void;
+  static load(path: string): $npm$nock$RecordedCall[];
   // TODO: type definitions
-  static definitions(path: string): any,
-  static define(nocks: any): any,
+  static definitions(path: string): any;
+  static define(nocks: any): any;
   static removeInterceptor(
     interceptor: $npm$nock$Nock | $Shape<$npm$nock$InterceptorOptions>
-  ): void,
-  static emitter: EventEmitter,
-  static recorder: $npm$nock$Recorder,
-  static back: $npm$nock$NockBack,
-  get(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this,
-  post(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this,
-  put(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this,
-  head(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this,
-  delete(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this,
-  patch(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this,
-  merge(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this,
-  query(query: Object | boolean | ((query: Object) => boolean)): this,
+  ): void;
+  static emitter: EventEmitter;
+  static recorder: $npm$nock$Recorder;
+  static back: $npm$nock$NockBack;
+  get(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this;
+  post(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this;
+  put(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this;
+  head(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this;
+  delete(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this;
+  patch(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this;
+  merge(path: $npm$nock$Path, parameter?: $npm$nock$Parameter): this;
+  query(query: Object | boolean | ((query: Object) => boolean)): this;
   reply(
     code: number,
     data?:
@@ -88,55 +88,55 @@ declare class $npm$nock$Nock {
         ) => mixed)
       | mixed,
     header?: Object
-  ): this,
+  ): this;
   reply(
     fn: (
       uri: string,
       body: mixed,
       cb: (error: ?Error, result: mixed) => any
     ) => mixed
-  ): this,
-  replyWithFile(code: number, path: string): this,
-  replyWithError(error: mixed): this,
+  ): this;
+  replyWithFile(code: number, path: string): this;
+  replyWithError(error: mixed): this;
   basicAuth(auth: {
     user: string,
     pass: string
-  }): this,
+  }): this;
   defaultReplyHeaders(header: {
     [key: string]: string | ((req: any, res: any, body: any) => any)
-  }): this,
-  replyContentLength(): this,
-  replyDate(date?: Date): this,
+  }): this;
+  replyContentLength(): this;
+  replyDate(date?: Date): this;
   intercept(
     path: $npm$nock$Path,
     verb: string,
     parameter?: $npm$nock$Parameter,
     options?: any
-  ): this,
-  times(number: number): this,
-  once(): this,
-  twice(): this,
-  thrice(): this,
-  delayBody(delay: number): this,
-  delayConnection(delay: number): this,
-  delay(delay: number | { head: number, body: number }): this,
-  socketDelay(delay: number): this,
-  filteringPath(path: RegExp, replace: string): this,
-  filteringPath(fn: (path: string) => string): this,
-  filteringRequestBody(body: RegExp, replace: string): this,
-  filteringRequestBody(fn: (path: string) => string): this,
-  matchHeader(header: string, value: mixed | ((value: mixed) => boolean)): this,
-  optionally(): this,
-  persist(): this,
+  ): this;
+  times(number: number): this;
+  once(): this;
+  twice(): this;
+  thrice(): this;
+  delayBody(delay: number): this;
+  delayConnection(delay: number): this;
+  delay(delay: number | { head: number, body: number }): this;
+  socketDelay(delay: number): this;
+  filteringPath(path: RegExp, replace: string): this;
+  filteringPath(fn: (path: string) => string): this;
+  filteringRequestBody(body: RegExp, replace: string): this;
+  filteringRequestBody(fn: (path: string) => string): this;
+  matchHeader(header: string, value: mixed | ((value: mixed) => boolean)): this;
+  optionally(): this;
+  persist(): this;
 
-  done(): void,
-  isDone(): boolean,
-  static isDone(): boolean,
-  pendingMocks(): string[],
-  static pendingMocks(): string[],
-  activeMocks(): string[],
-  static activeMocks(): string[],
-  log(logFn: Function): this
+  done(): void;
+  isDone(): boolean;
+  static isDone(): boolean;
+  pendingMocks(): string[];
+  static pendingMocks(): string[];
+  activeMocks(): string[];
+  static activeMocks(): string[];
+  log(logFn: Function): this;
 }
 
 declare module "nock" {

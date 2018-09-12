@@ -1,13 +1,15 @@
-// flow-typed signature: 9717252208987f3ac34d522928f89161
-// flow-typed version: 792f604e07/enzyme_v2.3.x/flow_>=v0.28.x <=v0.52.x
+// flow-typed signature: ac18e8756b9f77851123c33e78aaa670
+// flow-typed version: 792f604e07/enzyme_v2.3.x/flow_>=v0.53.x
+
+import * as React from "react";
 
 declare module "enzyme" {
   declare type PredicateFunction<T: Wrapper> = (
     wrapper: T,
     index: number
   ) => boolean;
-  declare type NodeOrNodes = React$Element<any> | Array<React$Element<any>>;
-  declare type EnzymeSelector = string | ReactClass<any> | Object;
+  declare type NodeOrNodes = React.Node | Array<React.Node>;
+  declare type EnzymeSelector = string | Class<React.Component<*, *>> | Object;
 
   // CheerioWrapper is a type alias for an actual cheerio instance
   // TODO: Reference correct type from cheerio's type declarations
@@ -19,12 +21,12 @@ declare module "enzyme" {
     filter(selector: EnzymeSelector): this,
     filterWhere(predicate: PredicateFunction<this>): this,
     contains(nodeOrNodes: NodeOrNodes): boolean,
-    containsMatchingElement(node: React$Element<any>): boolean,
+    containsMatchingElement(node: React.Node): boolean,
     containsAllMatchingElements(nodes: NodeOrNodes): boolean,
     containsAnyMatchingElements(nodes: NodeOrNodes): boolean,
     dive(option?: { context?: Object }): this,
     exists(): boolean,
-    matchesElement(node: React$Element<any>): boolean,
+    matchesElement(node: React.Node): boolean,
     hasClass(className: string): boolean,
     is(selector: EnzymeSelector): boolean,
     isEmpty(): boolean,
@@ -38,9 +40,9 @@ declare module "enzyme" {
     unmount(): this,
     text(): string,
     html(): string,
-    get(index: number): React$Element<any>,
-    getNode(): React$Element<any>,
-    getNodes(): Array<React$Element<any>>,
+    get(index: number): React.Node,
+    getNode(): React.Node,
+    getNodes(): Array<React.Node>,
     getDOMNode(): HTMLElement | HTMLInputElement,
     at(index: number): this,
     first(): this,
@@ -54,7 +56,7 @@ declare module "enzyme" {
     setState(state: {}, callback?: Function): this,
     setProps(props: {}): this,
     setContext(context: Object): this,
-    instance(): React$Component<*, *, *>,
+    instance(): React.Component<*, *>,
     update(): this,
     debug(options?: Object): string,
     type(): string | Function | null,
@@ -84,16 +86,17 @@ declare module "enzyme" {
   }
 
   declare export class ShallowWrapper extends Wrapper {
-    equals(node: React$Element<any>): boolean,
+    constructor(nodes: NodeOrNodes, root: any, options?: ?Object): ShallowWrapper;
+    equals(node: React.Node): boolean,
     shallow(options?: { context?: Object }): ShallowWrapper
   }
 
   declare export function shallow(
-    node: React$Element<any>,
+    node: React.Node,
     options?: { context?: Object }
   ): ShallowWrapper;
   declare export function mount(
-    node: React$Element<any>,
+    node: React.Node,
     options?: {
       context?: Object,
       attachTo?: HTMLElement,
@@ -101,7 +104,7 @@ declare module "enzyme" {
     }
   ): ReactWrapper;
   declare export function render(
-    node: React$Element<any>,
+    node: React.Node,
     options?: { context?: Object }
   ): CheerioWrapper;
 }

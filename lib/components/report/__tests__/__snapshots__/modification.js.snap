@@ -42,42 +42,42 @@ exports[`Report > Modification renders correctly 1`] = `
             <g
               data={
                 {
-                  "type": "FeatureCollection",
-                  "features": [
-                    {
-                      "type": "Feature",
-                      "geometry": {
-                        "type": "LineString",
-                        "coordinates": [
-                          [
-                            "-122.02460000",
-                            "36.97070000"
-                          ],
-                          [
-                            "-122.02790000",
-                            "37.04900000"
-                          ],
-                          [
-                            "-121.97990000",
-                            "37.22990000"
-                          ],
-                          [
-                            "-121.94450000",
-                            "37.32400000"
-                          ],
-                          [
-                            "-121.93600000",
-                            "37.35300000"
-                          ],
-                          [
-                            "-121.92400000",
-                            "37.36500000"
-                          ]
-                        ]
-                      }
-                    }
-                  ]
-                }
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            "-122.02460000",
+            "36.97070000"
+          ],
+          [
+            "-122.02790000",
+            "37.04900000"
+          ],
+          [
+            "-121.97990000",
+            "37.22990000"
+          ],
+          [
+            "-121.94450000",
+            "37.32400000"
+          ],
+          [
+            "-121.93600000",
+            "37.35300000"
+          ],
+          [
+            "-121.92400000",
+            "37.36500000"
+          ]
+        ]
+      }
+    }
+  ]
+}
               }
               type="GeoJSON"
             />
@@ -92,7 +92,7 @@ exports[`Report > Modification renders correctly 1`] = `
         </g>
       </div>
     </div>
-    Set dwell times to undefined seconds
+    Set dwell times to %(seconds) seconds
     <br />
     <i>
       Stops modified:

@@ -20,7 +20,7 @@ import getInitialAuth from 'lib/get-initial-auth'
 import msg from 'lib/message'
 import {routeTo} from 'lib/router'
 
-const EXTS = ['.json'] // later: csv, pbf, zip
+const EXTS = ['.geojson', '.json'] // later: csv, pbf, zip
 const TYPES = ['Lines', 'Points', 'Polygons']
 
 export default function UploadResource(p) {

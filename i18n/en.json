@@ -467,7 +467,7 @@
     }
   },
   "resources": {
-    "allowedFileTypes": "Accepts '.json' files.",
+    "allowedFileTypes": "Accepts '.json' and '.geojson' files.",
     "deleteAction": "Delete resources",
     "deleteConfirmation": "Are you sure? You cannot undo this action later.",
     "title": "Resources",

@@ -17,7 +17,7 @@ const env = {
   LOGROCKET: process.env.LOGROCKET,
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
 }
-console.log(env)
+
 module.exports = withMDX(
   withBundleAnalyzer({
     target: 'serverless',

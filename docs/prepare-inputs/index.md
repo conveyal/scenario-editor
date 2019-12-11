@@ -17,9 +17,22 @@ The OSM database contains a lot of other data besides the roads, paths, and publ
 
 Removing unneeded data will reduce the time and network bandwidth needed to the upload the file to Analysis, and will speed up the processing stages where the OSM data is converted into a routable street network. Several command line tools exist to filter OSM data. If you are familiar with the command line or comfortable experimenting with it, you may want to try [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis), [Osmium-Tool](https://wiki.openstreetmap.org/wiki/Osmium), or [OSMFilter](https://wiki.openstreetmap.org/wiki/Osmfilter). Osmium-Tool is extremely fast but is only straightforward to install on Linux and MacOS platforms. Osmosis is often slower at filtering but will also work on Windows as it's a multi-platform Java application. OSMFilter cannot work with PBF format files so we rarely use it. Below are some example commands for retaining only OSM data useful for accessibility analysis. You would need to replace `input.osm.pbf` with the OSM data file you downloaded.
 
-**Osmosis:** `osmosis --rb input.osm.pbf --tf reject-ways building=* --tf reject-ways waterway=* --tf reject-ways landuse=* --tf reject-ways natural=* --used-node --wb filtered.osm.pbf`
+**Osmosis:** 
+```
+osmosis \
+  --read-pbf input.osm.pbf \
+  --tf accept-ways highway=* public_transport=platform railway=platform park_ride=* \
+  --tf accept-relations type=restriction \
+  --used-node \
+  --write-pbf filtered.osm.pbf
+```
 
-**Osmium-Tool:** `osmium tags-filter input.osm.pbf w/highway w/public_transport=platform w/railway=platform w/park_ride=yes r/type=restriction -o filtered.osm.pbf`
+**Osmium-Tool:** 
+```
+osmium tags-filter input.osm.pbf \
+  w/highway w/public_transport=platform w/railway=platform w/park_ride r/type=restriction \
+  -o filtered.osm.pbf
+```
 
 ### Cropping OSM data
 
@@ -27,11 +40,25 @@ Services producing automated extracts of OSM data like [Geofabrik](http://downlo
 
 Performing accessibility analysis with excessively large OSM data can lead to significant increases in computation time and complexity. Therefore we strongly recommend cropping the OSM data if they cover an area significantly larger than your transportation network or opportunity data. Several command line tools are also able to perform these cropping operations: [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis) is a multi-platform Java tool that works on Windows, Linux, and MacOS but is relatively slow, [OSMConvert](https://wiki.openstreetmap.org/wiki/Osmconvert) is a fast tool pre-built for Windows and Linux and available on MacOS and Linux distributions as part of `osmctools` package. [Osmium-Tool](https://wiki.openstreetmap.org/wiki/Osmium) is a personal favorite that is extremely fast but only straightforward to install on Linux and MacOS platforms. Below are some example crop commands for these different tools:
 
-**Osmosis:** `osmosis --rb input.osm.pbf --bounding-box left=4.34 right=5.84 bottom=43.10 top=43.97 --wb cropped.osm.pbf`
+**Osmosis:** 
+```
+osmosis --read-pbf input.osm.pbf \
+  --bounding-box left=-79.63 bottom=43.61 right=-79.12 top=43.83 \
+  --write-pbf cropped.osm.pbf
+```
 
-**OsmConvert:** `osmconvert input.osm.pbf -b=-77.255859375,38.77764022307335,-76.81365966796875,39.02345139405933 --complete-ways -o=cropped.osm.pbf`
+**OsmConvert:** 
+```
+osmconvert input.osm.pbf \
+  -b=-79.63,43.61,-79.12,43.83 --complete-ways -o=cropped.osm.pbf
+```
 
-**Osmium:** `osmium extract --strategy complete_ways --bbox 2.25,48.81,2.42,48.91 input.osm.pbf -o cropped.osm.pbf`
+**Osmium-Tool:** 
+```
+osmium extract \
+  --strategy complete_ways --bbox -79.63,43.61,-79.12,43.83 \
+  input.osm.pbf -o cropped.osm.pbf
+```
 
 The latter two commands expect bounding boxes to be specified in the format `min_lon,min_lat,max_lon,max_lat`. We frequently find bounding boxes using the convenient [Klokantech bounding box tool](https://boundingbox.klokantech.com/). Selecting the "CSV" format in the lower left will give exactly the format expected by these tools. You can also adapt the bounding box values shown in the region setup panel of Analysis.
 

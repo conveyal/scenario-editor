@@ -15,29 +15,30 @@ exports[`upload should render without errors 1`] = `
 >
   <UploadOpportunityDataset>
     <H5>
-      <ForwardRef
+      <Heading
         as="h5"
         fontSize="14px"
         fontWeight="500"
         my="10px"
       >
-        <Styled(div)
+        <Box
           as="h5"
+          fontFamily="heading"
           fontSize="14px"
           fontWeight="500"
           lineHeight="shorter"
           my="10px"
         >
           <h5
-            className="css-18r09h"
+            className="css-t22lpo"
           >
             Upload a new opportunity dataset
           </h5>
-        </Styled(div)>
-      </ForwardRef>
+        </Box>
+      </Heading>
     </H5>
     <P>
-      <Styled(div)
+      <Box
         as="p"
         mb="10px"
       >
@@ -46,7 +47,7 @@ exports[`upload should render without errors 1`] = `
         >
           Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
         </p>
-      </Styled(div)>
+      </Box>
     </P>
     <form
       encType="multipart/form-data"

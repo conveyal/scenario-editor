@@ -246,7 +246,7 @@ exports[`Component > EditRegion 1`] = `
               rel="noopener noreferrer"
               target="_blank"
             >
-              <Styled(div)
+              <PseudoBox
                 _hover={
                   Object {
                     "color": "#185c86",
@@ -267,7 +267,7 @@ exports[`Component > EditRegion 1`] = `
                    
                   Learn more about spatial resolution here.
                 </a>
-              </Styled(div)>
+              </PseudoBox>
             </ForwardRef>
           </div>
           <Text

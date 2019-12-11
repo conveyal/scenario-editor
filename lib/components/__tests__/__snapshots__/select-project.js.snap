@@ -254,17 +254,17 @@ exports[`Component > SelectProject 1`] = `
         <Stack
           spacing={4}
         >
-          <ForwardRef
+          <Flex
             direction="column"
           >
-            <Styled(div)
+            <Box
               display="flex"
               flexDirection="column"
             >
               <div
                 className="css-j7qwjs"
               >
-                <Styled(div)
+                <Box
                   key=".0"
                   mb={4}
                   textAlign="center"
@@ -274,8 +274,8 @@ exports[`Component > SelectProject 1`] = `
                   >
                     or go to an existing project
                   </div>
-                </Styled(div)>
-                <Styled(div)
+                </Box>
+                <Box
                   className="list-group"
                   key=".1"
                   mb={null}
@@ -305,7 +305,7 @@ exports[`Component > SelectProject 1`] = `
                           }
                           passHref={true}
                         >
-                          <Styled(div)
+                          <PseudoBox
                             _hover={
                               Object {
                                 "color": "#185c86",
@@ -381,15 +381,15 @@ exports[`Component > SelectProject 1`] = `
                                 Mock Project
                               </span>
                             </a>
-                          </Styled(div)>
+                          </PseudoBox>
                         </Link>
                       </Link>
                     </ALink>
                   </div>
-                </Styled(div)>
+                </Box>
               </div>
-            </Styled(div)>
-          </ForwardRef>
+            </Box>
+          </Flex>
         </Stack>
       </div>
     </InnerDock>

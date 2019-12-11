@@ -15,7 +15,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
 >
   <EditBundle>
     <P>
-      <Styled(div)
+      <Box
         as="p"
         mb="10px"
       >
@@ -24,7 +24,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
         >
           Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
         </p>
-      </Styled(div)>
+      </Box>
     </P>
     <Group>
       <div
@@ -101,7 +101,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
     <P
       className="text-center"
     >
-      <Styled(div)
+      <Box
         as="p"
         className="text-center"
         mb="10px"
@@ -111,7 +111,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
         >
           or select an existing one
         </p>
-      </Styled(div)>
+      </Box>
     </P>
     <Group>
       <div

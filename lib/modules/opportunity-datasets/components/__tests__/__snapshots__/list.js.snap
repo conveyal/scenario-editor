@@ -173,7 +173,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
     <P
       className="text-center"
     >
-      <Styled(div)
+      <Box
         as="p"
         className="text-center"
         mb="10px"
@@ -183,7 +183,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
         >
           or select an existing one
         </p>
-      </Styled(div)>
+      </Box>
     </P>
     <Group>
       <div

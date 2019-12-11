@@ -100,7 +100,7 @@ exports[`Component > EditProject 1`] = `
               Bundle
             </label>
             <P>
-              <Styled(div)
+              <Box
                 as="p"
                 mb="10px"
               >
@@ -109,10 +109,10 @@ exports[`Component > EditProject 1`] = `
                 >
                   Mock Bundle
                 </p>
-              </Styled(div)>
+              </Box>
             </P>
             <P>
-              <Styled(div)
+              <Box
                 as="p"
                 mb="10px"
               >
@@ -123,7 +123,7 @@ exports[`Component > EditProject 1`] = `
                     Bundle cannot be changed once a project is created.
                   </em>
                 </p>
-              </Styled(div)>
+              </Box>
             </P>
           </div>
         </Group>

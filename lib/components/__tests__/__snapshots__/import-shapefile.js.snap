@@ -25,26 +25,27 @@ exports[`Component > ImportShapefile 1`] = `
       variants={Array []}
     >
       <H5>
-        <ForwardRef
+        <Heading
           as="h5"
           fontSize="14px"
           fontWeight="500"
           my="10px"
         >
-          <Styled(div)
+          <Box
             as="h5"
+            fontFamily="heading"
             fontSize="14px"
             fontWeight="500"
             lineHeight="shorter"
             my="10px"
           >
             <h5
-              className="css-18r09h"
+              className="css-t22lpo"
             >
               Route alignments from shapefile
             </h5>
-          </Styled(div)>
-        </ForwardRef>
+          </Box>
+        </Heading>
       </H5>
       <File
         label="Select Shapefile (zipped):"

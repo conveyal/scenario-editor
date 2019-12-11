@@ -113,7 +113,10 @@ exports[`create-region.render 1`] = `
               </FontAwesomeIcon>
             </Icon>
              
-            Set up a new region
+            <span>
+               
+              Set up a new region
+            </span>
           </legend>
           <Text
             label="Region Name*"
@@ -204,32 +207,33 @@ exports[`create-region.render 1`] = `
             </Group>
           </Text>
           <H5>
-            <ForwardRef
+            <Heading
               as="h5"
               fontSize="14px"
               fontWeight="500"
               my="10px"
             >
-              <Styled(div)
+              <Box
                 as="h5"
+                fontFamily="heading"
                 fontSize="14px"
                 fontWeight="500"
                 lineHeight="shorter"
                 my="10px"
               >
                 <h5
-                  className="css-18r09h"
+                  className="css-t22lpo"
                 >
                   Analysis bounds
                 </h5>
-              </Styled(div)>
-            </ForwardRef>
+              </Box>
+            </Heading>
           </H5>
           <div
             className="alert alert-warning"
           >
             <P>
-              <Styled(div)
+              <Box
                 as="p"
                 mb="10px"
               >
@@ -238,7 +242,7 @@ exports[`create-region.render 1`] = `
                 >
                   Bounds are snapped to points on our regular grid.
                 </p>
-              </Styled(div)>
+              </Box>
             </P>
             <a
               href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"

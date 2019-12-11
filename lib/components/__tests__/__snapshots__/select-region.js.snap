@@ -44,12 +44,12 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
       ]
     }
   >
-    <ForwardRef
+    <Flex
       alignItems="center"
       direction="column"
       mb={6}
     >
-      <Styled(div)
+      <Box
         alignItems="center"
         display="flex"
         flexDirection="column"
@@ -58,7 +58,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
         <div
           className="css-ok0jw2"
         >
-          <Styled(div)
+          <Box
             mb={6}
             mt={8}
           >
@@ -96,18 +96,18 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                 </div>
               </Logo>
             </div>
-          </Styled(div)>
+          </Box>
           <Stack
             spacing={4}
             textAlign="center"
             width="320px"
           >
-            <ForwardRef
+            <Flex
               direction="column"
               textAlign="center"
               width="320px"
             >
-              <Styled(div)
+              <Box
                 display="flex"
                 flexDirection="column"
                 textAlign="center"
@@ -116,7 +116,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                 <div
                   className="css-1xcka77"
                 >
-                  <Styled(div)
+                  <Box
                     key=".0"
                     mb={4}
                   >
@@ -130,8 +130,8 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                         )
                       </strong>
                     </div>
-                  </Styled(div)>
-                  <Styled(div)
+                  </Box>
+                  <Box
                     key=".1"
                     mb={4}
                   >
@@ -222,8 +222,8 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                         </Link>
                       </ButtonLink>
                     </div>
-                  </Styled(div)>
-                  <Styled(div)
+                  </Box>
+                  <Box
                     key=".2"
                     mb={4}
                   >
@@ -232,8 +232,8 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                     >
                       or go to an existing region
                     </div>
-                  </Styled(div)>
-                  <Styled(div)
+                  </Box>
+                  <Box
                     className="list-group"
                     key=".3"
                     mb={4}
@@ -261,7 +261,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                             }
                             passHref={true}
                           >
-                            <Styled(div)
+                            <PseudoBox
                               _hover={
                                 Object {
                                   "color": "#185c86",
@@ -337,13 +337,13 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                                   Mock Region
                                 </span>
                               </a>
-                            </Styled(div)>
+                            </PseudoBox>
                           </Link>
                         </Link>
                       </ALink>
                     </div>
-                  </Styled(div)>
-                  <Styled(div)
+                  </Box>
+                  <Box
                     key=".4"
                     mb={null}
                   >
@@ -366,7 +366,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                             }
                             passHref={true}
                           >
-                            <Styled(div)
+                            <PseudoBox
                               _hover={
                                 Object {
                                   "color": "#185c86",
@@ -439,19 +439,19 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                                  
                                 Log out
                               </a>
-                            </Styled(div)>
+                            </PseudoBox>
                           </Link>
                         </Link>
                       </ALink>
                     </div>
-                  </Styled(div)>
+                  </Box>
                 </div>
-              </Styled(div)>
-            </ForwardRef>
+              </Box>
+            </Flex>
           </Stack>
         </div>
-      </Styled(div)>
-    </ForwardRef>
+      </Box>
+    </Flex>
   </SelectRegion>
 </Provider>
 `;

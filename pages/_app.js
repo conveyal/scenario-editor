@@ -7,6 +7,7 @@ import React from 'react'
 import {Provider} from 'react-redux'
 
 import {setQueryString} from 'lib/actions'
+import {AuthContext} from 'lib/auth'
 import ChakraTheme from 'lib/chakra'
 import State from 'lib/components/state'
 import useRouteChanging from 'lib/hooks/use-route-changing'
@@ -17,12 +18,13 @@ const ErrorModal = dynamic(() => import('lib/components/error-modal'))
 const Map = dynamic(() => import('lib/components/map'), {ssr: false})
 const Sidebar = dynamic(() => import('lib/components/sidebar'))
 
+// Check if the passed in group matches the environment variable
+const isAdmin = user =>
+  user && user.accessGroup === process.env.ADMIN_ACCESS_GROUP
+
 // DEV Bar Style
-const DBStyle = {
-  outlineOffset: 0,
-  position: 'absolute',
-  zIndex: 1000,
-  width: '100%'
+function DevBar() {
+  return <Box className='DEV' mt='-4px' />
 }
 
 /**
@@ -72,19 +74,24 @@ export default withRedux(createStore)(
       const p = this.props
       return (
         <ChakraTheme>
-          <Provider store={p.store}>
-            <Head>
-              <title key='title'>Conveyal Analysis</title>
-            </Head>
-            <div className='DEV' style={DBStyle} />
-            <ErrorModal />
+          <AuthContext.Provider value={p.pageProps.user}>
+            <Provider store={p.store}>
+              <Head>
+                <title key='title'>Conveyal Analysis</title>
+                {isAdmin(p.pageProps.user) && (
+                  <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
+                )}
+              </Head>
+              <DevBar />
+              <ErrorModal />
 
-            {pathUsesMap(p.router.pathname) ? (
-              <ComponentWithMap {...p} />
-            ) : (
-              <p.Component {...p.pageProps} />
-            )}
-          </Provider>
+              {pathUsesMap(p.router.pathname) ? (
+                <ComponentWithMap {...p} />
+              ) : (
+                <p.Component {...p.pageProps} />
+              )}
+            </Provider>
+          </AuthContext.Provider>
         </ChakraTheme>
       )
     }

@@ -37,7 +37,7 @@ function AdminDashboard() {
       </Stack>
       <Box flex='1'>
         <Tabs isFitted>
-          <TabList mb='5'>
+          <TabList>
             <Tab>
               Jobs{' '}
               <Badge ml='2' rounded='full'>

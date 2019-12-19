@@ -17,7 +17,7 @@ After processing is complete, you can refresh the page and see dot-density maps 
 
 A [Comma Separated Value](https://en.wikipedia.org/wiki/Comma-separated_values) (CSV) file can be used to represent opportunities as point features. The CSV should have columns for latitude, longitude, and one or more associated opportunity counts. 
 
-In the following example, a CSV file represents the location of restaurants along with the number of restaurants (1 per point) and the estimated number of employees at each. Such a dataset could be used to represent either opportunities for work or for entertainment. 
+In the following example, a CSV file represents the location of restaurants along with the number of restaurants (1 per point) and the estimated number of employees at each. Such a dataset could be used to represent either opportunities for entertainment or for work. 
 
 ```csv
 lat,lon,restaurant_count,est_employees,name
@@ -37,7 +37,7 @@ You will be prompted for the names of the fields containing latitude and longitu
 
 A shapefile may represent opportunities as either points or polygons. Opportunity counts associated with polygons will be treated as though they are uniformly distributed within the given area. For the easiest experience, any numeric fields not representing opportunities (ID fields, etc) should be removed before uploading. As with CSV, text fields will be dropped - this includes fields which may look like numbers (e.g. `"1"`, `"NA"`) but are actually stored as text. If a field is not showing up after upload, ensure that it was actually stored as a numeric value rather than text. 
 
-Shapefiles should not be zipped. Select all of the files in the Shapefile when uploading (at the very least, `.shp`, `.shx`, `.dbf` and `.prj`). How you select multiple files depends on your browser and operating system, but generally will involve shift-clicking, control-clicking or command-clicking.
+Shapefiles should not be zipped; select all of the files in the Shapefile when uploading (at the very least, `.shp`, `.shx`, `.dbf` and `.prj`). How you select multiple files depends on your browser and operating system, but generally will involve shift-clicking, control-clicking or command-clicking.
 
 <figure>
   <img src="../img/upload-shapefile.png" />
@@ -48,12 +48,16 @@ Shapefiles should not be zipped. Select all of the files in the Shapefile when u
 
 Selecting an existing opportunity dataset from the dropdown menu will give you options to:
 
-- <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit dataset name</span>
-- <span class="btn btn-danger"><i class="fa fa-trash"></i> Delete this dataset</span>
-- <span class="btn btn-danger"><i class="fa fa-trash"></i> Delete entire dataset source</span> (e.g. all attributes from a shapefile)
+<span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit dataset name</span><br>
+<span class="btn btn-danger"><i class="fa fa-trash"></i> Delete this dataset</span><br> 
+<span class="btn btn-danger"><i class="fa fa-trash"></i> Delete entire dataset source</span> (e.g. all attributes from a shapefile)
 
-## LODES import
+## LODES dataset import
 
-For projects in the United States, Census block-level data on employment and workforce from [LODES](https://lehd.ces.census.gov/data/#lodes) can be fetched by clicking: <br><span class="btn btn-info"><i class="fa fa-group"></i> Fetch LODES</span>
+For projects in the United States, Census data from from the _Longitudinal Employer-Household Dynamics_ ([LEHD](https://lehd.ces.census.gov/)) Program can be imported automatically via the LODES data import function.
 
-The latest available year is 2015, though more recent data should be importable in the near future. 
+<span class="btn btn-info"><i class="fa fa-group"></i> Fetch LODES (2015)</span>
+
+The [LODES](https://lehd.ces.census.gov/data/#lodes) (_LEHD Origin-Destination Employment Statistics_) dataset provides block-level data on the home and work locations of employed people living in the US. These job and worker counts are made available both as totals and as counts disaggregated by industry, occupation, education level, etc.
+
+Note that due to various limitations in the LODES data, 2015 is the latest year made available for import at this time. Data in the 2016 release excludes federal employees and the 2017 release is missing data for Alaska and South Dakota. For more information, see the [LODES technical documentation](https://lehd.ces.census.gov/data/lodes/LODES7/LODESTechDoc7.4.pdf).

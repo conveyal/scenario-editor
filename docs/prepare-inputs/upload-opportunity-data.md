@@ -54,10 +54,10 @@ Selecting an existing opportunity dataset from the dropdown menu will give you o
 
 ## LODES dataset import
 
-For projects in the United States, Census data from from the _Longitudinal Employer-Household Dynamics_ ([LEHD](https://lehd.ces.census.gov/)) Program can be imported automatically via the LODES data import function.
+For projects in the United States, employment data from from the _Longitudinal Employer-Household Dynamics_ ([LEHD](https://lehd.ces.census.gov/)) Program can be imported with a one-click import function.
 
 <span class="btn btn-info"><i class="fa fa-group"></i> Fetch LODES (2015)</span>
 
-The [LODES](https://lehd.ces.census.gov/data/#lodes) (_LEHD Origin-Destination Employment Statistics_) dataset provides block-level data on the home and work locations of employed people living in the US. These job and worker counts are made available both as totals and as counts disaggregated by industry, occupation, education level, etc.
+The [LODES](https://lehd.ces.census.gov/data/#lodes) (_LEHD Origin-Destination Employment Statistics_) dataset provides block-level data on the home and work locations of employed people living in the US. These job and worker counts are made available both as totals and as counts disaggregated by industry, earnings, education level, etc.
 
-Note that due to various limitations in the LODES data, 2015 is the latest year made available for import at this time. Data in the 2016 release excludes federal employees and the 2017 release is missing data for Alaska and South Dakota. For more information, see the [LODES technical documentation](https://lehd.ces.census.gov/data/lodes/LODES7/LODESTechDoc7.4.pdf).
+Conveyal will update the LODES one-click import function after the Census Bureau addresses certain data limitations for more recent years. The current releases for 2016 and 2017 exclude federal employees, and the 2017 release is missing data for Alaska and South Dakota. For more information, see the [LODES technical documentation](https://lehd.ces.census.gov/data/lodes/LODES7/LODESTechDoc7.4.pdf).

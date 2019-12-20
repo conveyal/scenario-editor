@@ -9,3 +9,15 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v1
+        
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos

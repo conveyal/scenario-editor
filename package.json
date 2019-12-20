@@ -21,7 +21,7 @@
     "pretest": "yarn",
     "semantic-release": "semantic-release",
     "start": "next start",
-    "test": "yarn run lint && yarn run jest",
+    "test": "yarn run lint && yarn run jest && yarn run cypress run",
     "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "repository": {
@@ -127,6 +127,7 @@
     "enzyme-to-json": "^3.4.3",
     "eslint": "^6.6.0",
     "eslint-loader": "^3.0.2",
+    "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-jest": "^23.0.3",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.2.0",

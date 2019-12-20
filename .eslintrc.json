@@ -6,6 +6,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:cypress/recommended",
     "plugin:jest/recommended",
     "plugin:react/recommended"
   ],
@@ -21,7 +22,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["jest", "react", "react-hooks"],
+  "plugins": ["cypress", "jest", "react", "react-hooks"],
   "rules": {
     "no-console": 0,
     "no-debugger": "warn",

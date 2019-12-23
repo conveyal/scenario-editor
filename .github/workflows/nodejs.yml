@@ -1,9 +1,9 @@
-name: Node CI
+name: Build, Test, Deploy
 
 on: [push, pull_request]
 
 jobs:
-  test:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -12,13 +12,46 @@ jobs:
           node-version: 12.x
       - name: Install
         run: yarn install
-      - name: Next.js Build
-        run: yarn build
-      - name: ESLint
-        run: yarn lint
-      - name: Jest
-        env:
-          CI: true
-        run: yarn jest
-      - name: Check Format
-        run: yarn check-format
+
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - run: yarn build
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - run: yarn lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+    env:
+      CI: true
+    steps:
+      - run: yarn jest
+
+  prettier:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - run: yarn check-format
+
+  cypress:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: cypress-io/github-action@v1
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos

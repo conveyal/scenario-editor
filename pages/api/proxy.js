@@ -9,7 +9,10 @@ const proxy = httpProxy.createProxyServer({
 
 // Set the Authorization header
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  proxyReq.setHeader('X-Conveyal-Access-Group', options.accessGroup)
+  if (options.accessGroup && options.accessGroup !== 'undefined') {
+    proxyReq.setHeader('X-Conveyal-Access-Group', options.accessGroup)
+  }
+
   proxyReq.setHeader('Authorization', `bearer ${options.idToken}`)
 })
 

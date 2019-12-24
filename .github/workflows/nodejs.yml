@@ -5,8 +5,6 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      CI: true
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -26,6 +24,17 @@ jobs:
       - run: yarn build
       - run: yarn lint
       - run: yarn check-format
+      - run: yarn jest
+        env:
+          CI: true
+
+      - name: Deploy to now
+        id: now
+        run: |
+          yarn now
+          yarn run now --token $ZEIT_TOKEN
+        env:
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
 
       - uses: cypress-io/github-action@v1
       - uses: actions/upload-artifact@v1

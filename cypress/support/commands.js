@@ -24,4 +24,18 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import '@testing-library/cypress/add-commands'
+Cypress.Commands.add('login',function(){
+	// login through the GUI - this should be streamlined to use the API directly
+	cy.visit('/');
+	cy.get('input[placeholder="yours@example.com"]')
+		.type( Cypress.env('username') );
+	cy.get('input[placeholder="your password"]')
+		.type( Cypress.env('password') );
+	cy.contains('Log In').click();
+	cy.get('h1').contains('conveyal analysis');
+})
+
+Cypress.Commands.add('logout',function(){
+	cy.visit('/');
+	cy.contains('Log out').click();
+})

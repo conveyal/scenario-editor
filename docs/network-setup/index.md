@@ -1,15 +1,18 @@
-# Preparing baseline network
+# Preparing a baseline transport network
 
-Start by gathering [GTFS](../glossary.html#GTFS) files for the transit agencies whose service will be included in your scenarios. If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
+Accessibility calculations will be based on the transport network that is set up for your region. This includes scheduled transit services as well as the region's network of streets, sidewalks, bikeways, etc. Initially you will set up a baseline network describing your region's normal transit services. Later on you will likely want to compare alternative scenarios by creating modifications to the baseline network. 
 
 ## Setting up a new region
 
-From the initial login page, set up a new region by clicking
-<br><span class="btn btn-success"><i class="fa fa-plus"></i> Set up a new region</span>
+The **region** is a [bounding box](https://wiki.openstreetmap.org/wiki/Bounding_Box) defining the area to be used for accessibility calculations. It should generally cover the entire service area of the agency or agencies you will be working with. Opportunities and network components outside this area will generally not be considered.
 
-If any regions have already been created, they will be shown in a list below this button.
+The regions page, shown after you log in, provides a list of existing regions if any, and the option to create a new region. It is also accessible at any later point by clicking the globe icon (<i class="fa fa-globe"></i>). From the regions page, set up a new region by clicking:
 
-When setting up a new region, enter a name and specify boundaries by moving the bounding box on the map. You must also upload an appropriate OpenStreetMap (OSM) extract in this view, which will serve as the road layer of the transport network. OSM extracts can be downloaded from services such as [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/). Note that several formats exist for OSM data. We always use the PBF format because it is more compact and faster to process.
+<span class="btn btn-success"><i class="fa fa-plus"></i> Set up a new region</span>
+
+Start by using the search bar in the map to automatically locate your city or country by name. You can also manually enter coordinates or drag the points defining the bounding box on the map. Enter a name for the region and an optional description.
+
+You must also upload an appropriate [OpenStreetMap](https://www.openstreetmap.org) (OSM) extract at this point, which will serve as the street layer of the transport network. This will be used for any walking or biking segments of a trip as well as for some transfers between stops and stations. OSM extracts can be downloaded from services such as [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/). Note that while several formats exist for OSM data, we require the [PBF format](https://wiki.openstreetmap.org/wiki/PBF_Format) because it is more compact and faster to process. Your extract should cover your entire service area or region, but not extend unnecessarily far beyond it as that will impact processing time.
 
 ### Filtering OSM data
 
@@ -67,6 +70,8 @@ When creating a region, the panel will show an osmconvert command pre-filled wit
 Note that files larger than 500MB may be rejected on upload. Please contact us if you genuinely need to upload a file of this size, or need assistance in cropping and filtering OSM data.
 
 ## Uploading a GTFS bundle
+
+Start by gathering [GTFS](../glossary.html#GTFS) files for the transit agencies whose service will be included in your scenarios. If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
 
 On the main page for a region, upload your first bundle of GTFS feeds by clicking:
 <br><span class="btn btn-success"><i class="fa fa-database"></i> Upload a new GTFS Bundle</span>

@@ -1,8 +1,14 @@
 # Glossary
 
+Several terms have a special or specific meaning in the context of Conveyal Analysis. While we hope that their meaning is usually clear enough from the context, this glossary is provided for reference. 
+
 ### GTFS
 
-[General Transit Feed Specification](https://developers.google.com/transit/gtfs/), a format for transit network and schedule data. Most transit agencies produce GTFS feeds to power customer-facing trip planning applications, but they are also useful for analysis. Conveyal Analysis uses bundles of GTFS .zip files to build the transit layer of the baseline network.
+[General Transit Feed Specification](https://developers.google.com/transit/gtfs/), a format for transit network and schedule data. Most transit agencies produce GTFS feeds to power customer-facing trip planning applications, but they are also useful for analysis.
+
+### GTFS bundle
+
+A GTFS bundle is a grouped set of one or more GTFS packages associated with your region. A region can have multiple bundles and a bundle could include a single agency's GTFS or those of several adjacent or overlapping agencies. The bundle is used to represent the baseline transit service and as a starting point for some types of modifications. 
 
 ### routing engine
 
@@ -11,6 +17,26 @@
 ### transport network
 
 A routable network with transit and road layers, built by a specific version of R5. The transit layer is built from a GTFS bundle and the road layer is built from the OpenStreetMap network associated with a region.
+
+### baseline network
+
+The baseline network is the transport network (i.e. street network plus a GTFS bundle) without any associated modifications. It is a useful point of comparison during analysis and a starting point for most modifications. 
+
+### region
+
+The region is the rectangular area used for accessibility analysis. It should geographically contain any scheduled transit services and network modifications.
+
+### project
+
+A project is means of associating scenarios and modifications with a particular GTFS bundle. A project is associated with only one bundle which cannot be changed after it is created. 
+
+### modification
+
+A modification is an alteration of some kind made to scheduled transit services. e.g. the removal of a line, a rerouting, a new service etc. These must be applied in scenarios to be used in analysis. 
+
+### scenario
+
+A scenario is a set of modifications packaged together. For example you might create a scenario, called "proposed service cuts" in which several modifications reduce service separately on lines A, B and C. 
 
 ### trip pattern
 

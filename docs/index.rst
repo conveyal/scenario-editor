@@ -13,34 +13,30 @@ Contents
 =========
 
 .. toctree::
-    :maxdepth: 3
-    :caption: Setup
+    :caption: Network Setup
 
-    Baseline Network <prepare-inputs/index>
-    Opportunity Datasets <prepare-inputs/upload-opportunity-data>
+    Baseline Network <network-setup/index>
+    Opportunity Datasets <network-setup/upload-opportunity-data>
 
 
 .. toctree::
-    :maxdepth: 3
-    :caption: Edit
-    :glob:
+    :caption: Edit Network
 
     edit-scenario/index
+    edit-scenario/example
+    edit-scenario/usage
     edit-scenario/modifications
     edit-scenario/timetable
     edit-scenario/phasing
     edit-scenario/export
 
 .. toctree::
-    :maxdepth: 3
     :caption: Analyze
-    :glob:
 
     analysis/index
     analysis/regional
 
 .. toctree::
-    :maxdepth: 3
     :caption: Learn More
     :glob:
 

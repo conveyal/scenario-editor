@@ -1,12 +1,14 @@
 name: Deploy to Zeit Now
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   now:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: echo $PREVIEW_URL
+      - run: |
+          export CYPRESS_baseURL=$(now deploy --no-clipboard --token $ZEIT_TOKEN)
+          yarn run cypress run
         env:
-          PREVIEW_URL: $(now deploy --no-clipboard --token ${{ secrets.ZEIT_TOKEN }}
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}

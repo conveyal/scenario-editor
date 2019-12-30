@@ -1,17 +1,30 @@
 # Modification types
 
-At the top of the modification details panel, there are multiple actions for each modification, including:
+When creating a new modification, you have several different options, each explained in detail below. 
+
+* Add Trip Pattern
+* Adjust Dwell Time
+* Adjust Speed
+* Convert to Frequency
+* Remove Stops
+* Remove Trips
+* Reroute
+* Custom
+
+Across all modification types however the basic actions are consistent. 
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>
 <br><span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>
 <br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>
 <br><span class="ui-icon"><i class="fa fa-square"></i>Fit map to modification extents</span>
 
-Clicking the small blue back arrow saves your changes and take you back to the list of all modifications:
+The _copy_ command automatically creates a copy of the current modification with `(copy)` appended to the name. This copy can be found in the modification menu.
+The copy feature is useful for creating modifications that share common elements like adding a route with branches off a main trunk. 
+ 
+Clicking the small blue back arrow saves your changes and takes you back to the list of all modifications:
 <br><span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>
+<br>Changes are also automatically saved every 10 seconds.
 
-Changes are also automatically saved every 10 seconds. Each type of modification has additional options available, as detailed below.
-
-## Add trips
+## Add trip pattern
 
 The add trips modification allows you to add new [trip patterns](../glossary.html#trip-pattern) to your transport scenario. After creating the modification you will see this view:
 
@@ -53,7 +66,17 @@ Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_tim
 <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
-## Adjust frequency
+## Adjust speed
+
+Sometimes you will want to adjust the speed on a route, or a portion of it (for instance due to the addition of dedicated bus lanes, or an application of transit signal priority). As before, you will create the modification and select a feed, routes and patterns. If you want to modify only part of the route, you can use similar selection tools to those used in the remove stops (with new selection, add and remove buttons). The difference is that you are now selecting [hops](../glossary.html#hops). The selected segment will be shown on the map in purple. Finally, enter a scale, which is the factor to multiply the speed by. For instance, if you enter 2, vehicles will travel twice as fast between stops (this modification does not affect dwell times; to model changes in dwell time, see the adjust dwell time modification below).
+
+This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
+
+<figure>
+<img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
+</figure>
+
+## Convert to frequency
 
 Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency/convert to frequency modification. First, create a "convert to frequency" modification, and choose the feed and route you want to adjust:
 
@@ -66,16 +89,6 @@ You then create any number of frequency entries using [simple timetables](timeta
 You then [add details to each frequency entry](timetable.html). Repeat this process until you have created frequency entries for all the service you want to retain, in both directions.
 
 You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
-
-## Adjust speed
-
-Sometimes you will want to adjust the speed on a route, or a portion of it (for instance due to the addition of dedicated bus lanes, or an application of transit signal priority). As before, you will create the modification and select a feed, routes and patterns. If you want to modify only part of the route, you can use similar selection tools to those used in the remove stops (with new selection, add and remove buttons). The difference is that you are now selecting [hops](../glossary.html#hops). The selected segment will be shown on the map in purple. Finally, enter a scale, which is the factor to multiply the speed by. For instance, if you enter 2, vehicles will travel twice as fast between stops (this modification does not affect dwell times; to model changes in dwell time, see the adjust dwell time modification below).
-
-This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
-
-<figure>
-<img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
-</figure>
 
 ## Remove stops
 
@@ -127,3 +140,7 @@ For example, consider a baseline pattern passing through stops A -> B -> C -> D:
 - To detour this pattern so that it serves a stop Z between B and C, select B as the "start of reroute/extension", select C as the "end of reroute/extension", activate route editing, click on the new segment to add a stop, and drag the added stop to Z. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and B, and between C and D, are not affected.
 
 A reroute modification can apply to multiple patterns in a single direction as long as the patterns all contain the start and end stop in order; you will generally need to create one reroute modification for each direction of the route.
+
+## Custom modifications
+
+The custom modification type provides direct access to the JSON formatting options for modifications. More documentation on this feature will be coming soon. 

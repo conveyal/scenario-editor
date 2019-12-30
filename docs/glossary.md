@@ -40,7 +40,7 @@ A scenario is a set of modifications packaged together. For example you might cr
 
 ### trip pattern
 
-A sequence of stops visited by a transit vehicle. A trip pattern can have many trips, and a route consists of a one or more trip patterns.
+A trip pattern is a sequence of stops visited by a transit vehicle. A trip pattern can have many trips, and a route consists of a one or more trip patterns. A basic two-way route might consist of two trip patterns - e.g. one for inbound service, one outbound. Each might make stops on different sides of the street and/or in a different order. 
 
 ### trip
 

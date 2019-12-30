@@ -1,12 +1,12 @@
-name: Build, Test, Deploy
+name: Deploy to Zeit Now
 
 on: [push, pull_request]
 
 jobs:
-  test:
+  now:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: now --token $ZEIT_TOKEN
+      - run: echo $PREVIEW_URL
         env:
-          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          PREVIEW_URL: $(now deploy --no-clipboard --token ${{ secrets.ZEIT_TOKEN }}

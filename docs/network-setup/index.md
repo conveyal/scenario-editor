@@ -80,21 +80,21 @@ osmium tags-filter input.osm.pbf \
 
 ## Uploading a GTFS bundle
 
-Start by gathering [GTFS](../glossary.html#GTFS) files for the transit agencies whose service will be included in your scenarios. If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
+Start by gathering [GTFS](../glossary.html#GTFS) feeds for the transit agencies whose service will be included in your region. A _GTFS feed_ is a set of CSV files inside a `.zip` archive, and a _GTFS bundle_ is a set of one or more GTFS feeds. 
 
-On the main page for a region, upload your first bundle of GTFS feeds by clicking:
-<br><span class="btn btn-success"><i class="fa fa-database"></i> Upload a new GTFS Bundle</span>
+If you just created a new region, you will be prompted to upload a GTFS bundle. Otherwise, you can click the database icon (<i class="fa fa-database"></i>) on the sidebar to access your GTFS Bundles at any time. 
 
-You can also click this icon on the sidebar to access GTFS Bundles:
-<br><span class="ui-icon"><i class="fa fa-database"></i> GTFS Bundles</span>
+First you need to assign your new bundle a name. We recommend staying organized by basing the name on the time period and/or services included such as "TTC&GO - June 2019". Next choose one or more .zip files to upload. You can select multiple GTFS feeds in the file dialogue by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system). Finally, click the create button to confirm.
 
-This will take you to the GTFS Bundles page, where you can give the Bundle a name and choose .zip files to upload. If you have multiple GTFS feed .zip files, you can select them by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system).  Finally, click the create button to confirm.
+Again, note that files larger than 500MB may be rejected on upload. The largest GTFS feeds in regular use are below 400MB and most are much smaller than this. A larger file may indicate a problem. Please contact us if you genuinely need to upload a larger file.
 
-Again, note that files larger than 500MB may be rejected on upload. The largest GTFS in regular use are below 400MB so a larger file may indicate a problem. Please contact us if you genuinely need to upload a file of this size.
+If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
 
 ## Creating a Project
 
-Uploading and processing a bundle may take several minutes.  Once processing is complete, on the Projects page, click:
-<br><span class="btn btn-success"><i class="fa fa-plus"></i> Create new Project</span>
+Uploading and processing a GTFS bundle may take several minutes. Once processing is complete, you should be able to create a new _project_ based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then _Create new Project_. 
 
-This will take you to the Create new Project page, where you can give the Project a name, select a bundle to which the project will be associated, and click the create button to confirm. You are now ready to move on to [editing scenarios](../edit-scenario).
+A project is essentially a wrapper around a bundle which associates it with any scenarios and modifications you may create later on. The purpose of projects is to allow multiple users to work simultaneously on the same baseline network without stepping on each other's toes. Later on we'll cover how modifications can be shared between projects which are based on the same bundle. Once created, the bundle associated with a project cannot be changed. 
+
+Give the project a descriptive name, select a bundle to which the project will be associated, and click the create button to confirm. 
+You are now ready to move on to [editing scenarios](../edit-scenario).

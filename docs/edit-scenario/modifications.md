@@ -26,23 +26,29 @@ Clicking the small blue back arrow saves your changes and takes you back to the 
 
 ## Add trip pattern
 
-The add trips modification allows you to add new [trip patterns](../glossary.html#trip-pattern) to your transport scenario. After creating the modification you will see this view:
+The **add trip pattern** modification allows you to add new [trip patterns](../glossary.html#trip-pattern) to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel if the routing is different or the stops are in different locations. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars. 
+
+After creating a new modification you will see something like the view below.
 
 <figure>
-<img src="../img/new-add-trip-pattern.png" alt="a new add trips modification" />
+  <img src="../img/new-add-trip-pattern.png" alt="a new add trips modification" />
 </figure>
 
-You can set the mode (e.g. bus) and other route information at the top of the panel. The name and color of the modification can be exported to other tools (e.g. using Taui to publish [interactive accessibility sites](https://blog.conveyal.com/shaping-conversations-about-transit-with-interactive-isochrone-mapping-1d6530d6a8a4)).
-
+You can set the mode (e.g. bus) and add a description at the top of the panel. 
 To create an alignment for the modification (or to edit the alignment you've previously created), click
 <br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
 
-This will activate editing mode. In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.
+This will activate the map-based editing mode. In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.
+
+<figure>
+  <img src="../img/stop-edit-legend.png" alt="symbols for stops and control points"/>
+  <figcaption>Map symbols for stops and control points</figcaption>
+</figure>
 
 To insert a stop into the middle of an alignment, click any part of the alignment. Once created, any stop can be dragged to move it. Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. Similarly, control points can be converted back to stops or deleted by clicking on them. It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
 
 <figure>
-<img src="../img/make-stop.png" alt="make a new stop" />
+  <img src="../img/make-stop.png" alt="make a new stop" />
 </figure>
 
 Available options while editing an alignment include:
@@ -55,6 +61,8 @@ Available options while editing an alignment include:
 
 Once you have created an alignment, you need to specify when the routes run using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
 <br><span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
+
+The name and color of the modification can be exported to other tools (e.g. using Taui to publish [interactive accessibility sites](https://blog.conveyal.com/shaping-conversations-about-transit-with-interactive-isochrone-mapping-1d6530d6a8a4)).
 
 ## Adjust dwell time
 
@@ -144,3 +152,7 @@ A reroute modification can apply to multiple patterns in a single direction as l
 ## Custom modifications
 
 The custom modification type provides direct access to the JSON formatting options for modifications. More documentation on this feature will be coming soon. 
+
+# Using the map-based route editor
+
+

@@ -57,6 +57,7 @@ assets
 # Secret config files
 env.yml
 env.yml-original
+cypress.env.json
 
 # Next.js Build Directory
 .env

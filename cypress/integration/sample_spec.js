@@ -1,6 +1,6 @@
 describe('Sample status check', () => {
-  it('Loads production', () => {
-    cy.visit('https://analysis.conveyal.com')
+  it('Loads base url', () => {
+    cy.visit('/status')
     cy.screenshot()
   })
 })

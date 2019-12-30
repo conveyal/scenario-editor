@@ -12,36 +12,24 @@ The regions page, shown after you log in, provides a list of existing regions if
 
 Start by using the search bar in the map to automatically locate your city or country by name. You can also manually enter coordinates or drag the points defining the bounding box on the map. Enter a name for the region and an optional description.
 
-You must also upload an appropriate [OpenStreetMap](https://www.openstreetmap.org) (OSM) extract at this point, which will serve as the street layer of the transport network. This will be used for any walking or biking segments of a trip as well as for some transfers between stops and stations. OSM extracts can be downloaded from services such as [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/). Note that while several formats exist for OSM data, we require the [PBF format](https://wiki.openstreetmap.org/wiki/PBF_Format) because it is more compact and faster to process. Your extract should cover your entire service area or region, but not extend unnecessarily far beyond it as that will impact processing time.
+You must also upload an appropriate [OpenStreetMap](https://www.openstreetmap.org) (OSM) extract at this point, which will serve as the street layer of the transport network. This will be used for any walking or biking segments of a trip as well as for some transfers between stops and stations. Note that while several formats exist for OSM data, we require the [PBF format](https://wiki.openstreetmap.org/wiki/PBF_Format) because it is more compact and faster to process. Your extract should cover your entire service area or region, but not extend unnecessarily far beyond it as that may impact processing time.
 
-### Filtering OSM data
+The process of downloading and processing OSM data into an appropriate format is covered in the next section. For now, if all looks good with your region, you should be able to click the _Set up a new region_ button. After a bit of time for uploading and processing the OSM data, you should be prompted to upload a GTFS bundle.
 
-The OSM database contains a lot of other data besides the roads, paths, and public transportation platform data we need for accessibility analysis. As of this writing, according to [TagInfo](https://taginfo.openstreetmap.org/) 59% of the ways in OSM are buildings, and only 23% are roads or paths. Buildings frequently have more complex shapes than roads, and objects like waterways or political boundaries can be very large in size. It has been jokingly said that OSM should be renamed "OpenBuildingMap" rather than "OpenStreetMap".
+### Preparing the OSM data
 
-Removing unneeded data will reduce the time and network bandwidth needed to the upload the file to Analysis, and will speed up the processing stages where the OSM data is converted into a routable street network. Several command line tools exist to filter OSM data. If you are familiar with the command line or comfortable experimenting with it, you may want to try [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis), [Osmium-Tool](https://wiki.openstreetmap.org/wiki/Osmium), or [OSMFilter](https://wiki.openstreetmap.org/wiki/Osmfilter). Osmium-Tool is extremely fast but is only straightforward to install on Linux and MacOS platforms. Osmosis is often slower at filtering but will also work on Windows as it's a multi-platform Java application. OSMFilter cannot work with PBF format files so we rarely use it. Below are some example commands for retaining only OSM data useful for accessibility analysis. You would need to replace `input.osm.pbf` with the OSM data file you downloaded.
+#### Downloading 
 
-**Osmosis:** 
-```shell
-osmosis \
-  --read-pbf input.osm.pbf \
-  --tf accept-ways highway=* public_transport=platform railway=platform park_ride=* \
-  --tf accept-relations type=restriction \
-  --used-node \
-  --write-pbf filtered.osm.pbf
-```
+Extracts from the global OSM database can be downloaded in [many different ways](https://wiki.openstreetmap.org/wiki/Downloading_data). Some popular services like those provided by [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/) provide easy downloads for selected cities and regions. Be sure to download data covering your entire region - the predefined areas used by these sites may or may not align well with your region. You'll often need to download an extract for a country or region larger than your true analysis area, then crop it to the size you need. 
 
-**Osmium-Tool:** 
-```shell
-osmium tags-filter input.osm.pbf \
-  w/highway w/public_transport=platform w/railway=platform w/park_ride r/type=restriction \
-  -o filtered.osm.pbf
-```
+#### Cropping
 
-### Cropping OSM data
+Performing accessibility analysis with excessively large OSM data can lead to significant increases in computation time and complexity. We strongly recommend cropping the data if they cover an area significantly larger than your transportation network or opportunity data. Several command line tools are able to perform these cropping operations: 
+* [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis) is a multi-platform Java tool that works on Windows, Linux, and MacOS. 
+* [OSMConvert](https://wiki.openstreetmap.org/wiki/Osmconvert) is a fast tool pre-built for Windows and Linux and available on MacOS and Linux as part of the `osmctools` package. 
+* [Osmium-Tool](https://wiki.openstreetmap.org/wiki/Osmium) is a personal favorite that is extremely fast but only straightforward to install on Linux and MacOS platforms. 
 
-Services producing automated extracts of OSM data like [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/) are limited to predefined areas. You'll often need to download an extract for a country or region larger than your true analysis area, then cut it down to size. 
-
-Performing accessibility analysis with excessively large OSM data can lead to significant increases in computation time and complexity. Therefore we strongly recommend cropping the OSM data if they cover an area significantly larger than your transportation network or opportunity data. Several command line tools are also able to perform these cropping operations: [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis) is a multi-platform Java tool that works on Windows, Linux, and MacOS but is relatively slow, [OSMConvert](https://wiki.openstreetmap.org/wiki/Osmconvert) is a fast tool pre-built for Windows and Linux and available on MacOS and Linux distributions as part of `osmctools` package. [Osmium-Tool](https://wiki.openstreetmap.org/wiki/Osmium) is a personal favorite that is extremely fast but only straightforward to install on Linux and MacOS platforms. Below are some example crop commands for these different tools:
+Below are some example crop commands for these different tools. You'll need to replace `input.osm.pbf` with the name of your downloaded PBF file and change the coordinates of the area to clip to.
 
 **Osmosis:** 
 ```shell
@@ -68,6 +56,27 @@ The latter two commands expect bounding boxes to be specified in the format `min
 When creating a region, the panel will show an osmconvert command pre-filled with the current regional bouding box. If you have osmconvert installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
 
 Note that files larger than 500MB may be rejected on upload. Please contact us if you genuinely need to upload a file of this size, or need assistance in cropping and filtering OSM data.
+
+#### Filtering
+
+OpenStreetMap contains a lot of data besides the streets, paths, and platforms we need for accessibility analysis. As of this writing more than half of the ways in OSM are buildings, and slightly less than a quarter are roads or paths. Filtering out unneeded data will reduce your file size and speed the upload and processing by Analysis. As in the previous section, sample commands are provided below that will remove any unneccessary tags and should dramatically reduce the output file size. 
+
+**Osmosis:** 
+```shell
+osmosis \
+  --read-pbf input.osm.pbf \
+  --tf accept-ways highway=* public_transport=platform railway=platform park_ride=* \
+  --tf accept-relations type=restriction \
+  --used-node \
+  --write-pbf filtered.osm.pbf
+```
+
+**Osmium-Tool:** 
+```shell
+osmium tags-filter input.osm.pbf \
+  w/highway w/public_transport=platform w/railway=platform w/park_ride r/type=restriction \
+  -o filtered.osm.pbf
+```
 
 ## Uploading a GTFS bundle
 

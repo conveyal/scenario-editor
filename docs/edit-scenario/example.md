@@ -1,4 +1,4 @@
-# Getting started
+# A simple walkthrough
 
 To create a sample modification, follow this quick-start guide:
 

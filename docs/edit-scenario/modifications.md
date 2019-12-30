@@ -1,4 +1,4 @@
-# Modification details
+# Modification types
 
 At the top of the modification details panel, there are multiple actions for each modification, including:
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>

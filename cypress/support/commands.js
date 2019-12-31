@@ -24,18 +24,48 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login',function(){
-	// login through the GUI - this should be streamlined to use the API directly
-	cy.visit('/');
-	cy.get('input[placeholder="yours@example.com"]')
-		.type( Cypress.env('username') );
-	cy.get('input[placeholder="your password"]')
-		.type( Cypress.env('password') );
-	cy.contains('Log In').click();
-	cy.get('h1').contains('conveyal analysis');
+// Persist the user cookie across sessions
+Cypress.Cookies.defaults({
+  whitelist: ['user']
 })
 
-Cypress.Commands.add('logout',function(){
-	cy.visit('/');
-	cy.contains('Log out').click();
+Cypress.Commands.add('login', function() {
+  cy.getCookie('user').then(user => {
+    if (user) {
+      cy.log('cookie exists, skip getting a new one')
+      return
+    } else {
+      cy.log('cookie does not exists, logging in')
+    }
+
+    cy.request({
+      url: `https://${Cypress.env('authZeroDomain')}/oauth/ro`,
+      method: 'POST',
+      form: true,
+      body: {
+        client_id: Cypress.env('authZeroClientId'),
+        grant_type: 'password',
+        username: Cypress.env('username'),
+        password: Cypress.env('password'),
+        scope: 'openid email analyst',
+        connection: 'Username-Password-Authentication'
+      },
+      timeout: 5000
+    }).then(resp => {
+      expect(resp.status).to.eq(200)
+      expect(resp.body).to.have.property('id_token')
+
+      cy.setCookie(
+        'user',
+        encodeURIComponent(
+          JSON.stringify({
+            accessGroup: Cypress.env('accessGroup'),
+            expiresAt: new Date().getTime() + 3600,
+            email: Cypress.env('username'),
+            idToken: resp.body.id_token
+          })
+        )
+      )
+    })
+  })
 })

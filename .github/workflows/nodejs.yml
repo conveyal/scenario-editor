@@ -29,10 +29,10 @@ jobs:
       - run: yarn install
       - run: |
           export CYPRESS_baseURL=$(now deploy --no-clipboard --token $ZEIT_TOKEN)
-          yarn cypress run --env $CYPRESS_ENV
+          yarn cypress run --env $CYPRESS_GITHUB_ENV
 
         env:
-          CYPRESS_ENV: ${{ secrets.CYPRESS_ENV }}
+          CYPRESS_GITHUB_ENV: ${{ secrets.CYPRESS_GITHUB_ENV }}
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
 
       - uses: actions/upload-artifact@v1

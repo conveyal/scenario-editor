@@ -54,24 +54,22 @@ To insert a stop into the middle of an alignment, click any part of the alignmen
 Available options while editing an alignment include:
 
 - **Auto-create stops at set spacing**: Whether stops should be created automatically at a specified interval along the route.
-- **Bidirectional**: If this checkbox is checked, vehicles will travel in both directions along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval along the route, or if you will create all stops manually.
+- **Bidirectional**: If this checkbox is checked, vehicles will travel in both directions along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets or other aspects of the route that don't follow the same alignment in both directions). 
 - **Follow streets**: Make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street.
-- **Extend**: If this checkbox is checked, clicking on the map will extend the route by adding a new stop. If you wish to edit segments you already created, by adding stops or control points, it is often convenient to uncheck this option so that stray clicks do not extend the route from one if its termini.
+- **Extend**: If this checkbox is checked, clicking on the map will extend the route by adding a new stop. If you wish to edit segments you already created, by adding stops or control points, it is often convenient to uncheck this option so that stray clicks do not extend the route from one of its termini.
 - **Extend from end**: When "Extend" is enabled, this option allows you to specify whether new stops will be added moving forward from the last stop of the route or backward from the first stop of the route.
 
 Once you have created an alignment, you need to specify when the routes run using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
 <br><span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
-The name and color of the modification can be exported to other tools (e.g. using Taui to publish [interactive accessibility sites](https://blog.conveyal.com/shaping-conversations-about-transit-with-interactive-isochrone-mapping-1d6530d6a8a4)).
-
 ## Adjust dwell time
 
-You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular stop. As with the remove-stops modification, you can select a feed, route and optionally patterns. You can then use the map to select the affected stops (if you skip this step, all stops will have their dwell times adjusted). You can then choose to either enter a new dwell time (in seconds), or scale the existing dwell times (for instance, entering 2 would double exiting dwell times).
+You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular stop. As with the remove-stops modification, you can select a feed, route and optionally patterns. You can then use the map to select the affected stops (if you skip this step, all stops will have their dwell times adjusted). You can then choose to either enter a new dwell time (in seconds), or scale the existing dwell times (for instance, entering 2 would double existing dwell times).
 
 Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_time and departure_time values. For such feeds that do not represent dwell time explicitly, this modification type may not be immediately applicable.
 
 <figure>
-<img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
+  <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
 ## Adjust speed
@@ -81,7 +79,7 @@ Sometimes you will want to adjust the speed on a route, or a portion of it (for 
 This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
 
 <figure>
-<img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
+  <img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
 </figure>
 
 ## Convert to frequency
@@ -89,7 +87,7 @@ This modification does not take into account the possibility of increased freque
 Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency/convert to frequency modification. First, create a "convert to frequency" modification, and choose the feed and route you want to adjust:
 
 <figure>
-<img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
+  <img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
 </figure>
 
 You then create any number of frequency entries using [simple timetables](timetable.html). Typically, there will be at least two entries (one for each direction). Each frequency entry will follow one template trip, which determines the stop-to-stop travel times of the trips that are created with the given frequency.
@@ -100,7 +98,7 @@ You can choose to remove all existing trips on the route (the default) or choose
 
 ## Remove stops
 
-It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new Remove Stops modification, and select a feed, route, and patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.
+It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new _remove stops_ modification, and select a feed, route, and patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.
 
 You can also specify that you wish to remove a certain amount of time at each removed stop (in addition to the dwell time specified in the original feed, which is automatically removed). This could be used to account for acceleration and deceleration, and can also be used when the original feed does not specify dwell time. This feature is useful when testing the effects of stop consolidation.
 
@@ -109,28 +107,26 @@ When removing the beginning of a route, the dwell times at each stop are removed
 This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
 
 <figure>
-<img src="../img/remove-stops.png"  alt="Remove stops" />
+  <img src="../img/remove-stops.png"  alt="Remove stops" />
 </figure>
 
 ## Remove trips
 
-Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific patterns on a particular routes.
-In order to remove trips, create a new Remove Trips modification, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this
-route/pattern combination will be removed, and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active,
-so in this case implies that the trips will be removed from the selected variants.
+Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific patterns on a particular route.
+In order to remove trips, create a new _remove trips modification_, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this route/pattern combination will be removed and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active. In this case it implies that the trips will be removed from the selected variants.
 
 <figure>
-<img src="../img/remove-trips.png" alt="Remove trips" />
+  <img src="../img/remove-trips.png" alt="Remove trips" />
 </figure>
 
 ## Reroute
 
-This modification type can be used to represent detours and extensions. When creating a Reroute modification, you specify first select a feed, route, and patterns. Once patterns are selected, you then select a stop at which the reroute segments will start, or a stop at which the reroute segments will end, or both, by clicking
+This modification type can be used to represent detours and extensions. When creating a _reroute_ modification, you first select a feed, route, and trip patterns. Once trip patterns are selected, you then select a stop at which the reroute segments will start, or a stop at which the reroute segments will end, or both, by clicking
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
 <br> then clicking an existing stop on the baseline pattern.
 
 <figure>
-<img src="../img/reroute.png" alt="Rerouting" />
+  <img src="../img/reroute.png" alt="Rerouting" />
 </figure>
 
 Once a start or end stop is specified, you can add and modify segments by clicking

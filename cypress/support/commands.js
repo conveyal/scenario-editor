@@ -52,9 +52,6 @@ Cypress.Commands.add('login', function() {
       },
       timeout: 5000
     }).then(resp => {
-      expect(resp.status).to.eq(200)
-      expect(resp.body).to.have.property('id_token')
-
       cy.setCookie(
         'user',
         encodeURIComponent(

@@ -1,13 +1,13 @@
-describe('Login', () => {
+describe('Basic', () => {
   before(() => {
     cy.login()
   })
-  after(() => {
-    cy.logout()
-  })
 
-  it('Visit existing region', () => {
-    cy.contains('Nate - testing UI').click()
-    cy.get('legend').contains('Nate - testing UI')
+  it('should load the home page and go to the first region', function() {
+    cy.visit('/')
+    cy.get('a.list-group-item')
+      .first()
+      .click()
+    cy.get('legend')
   })
 })

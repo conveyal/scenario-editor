@@ -31,13 +31,18 @@ Cypress.Cookies.defaults({
 
 Cypress.Commands.add('login', function() {
   cy.getCookie('user').then(user => {
+    const inTenMinutes = Date.now() + 600 * 1000
+    const inOneHour = Date.now() + 3600 * 1000
+
     if (user) {
-      cy.log('cookie exists, skip getting a new one')
-      return
-    } else {
-      cy.log('cookie does not exists, logging in')
+      const value = JSON.parse(decodeURIComponent(user.value))
+      if (value.expiresAt > inTenMinutes) {
+        cy.log('valid cookie exists, skip getting a new one')
+        return
+      }
     }
 
+    cy.log('valid cookie does not exist, logging in ')
     cy.request({
       url: `https://${Cypress.env('authZeroDomain')}/oauth/ro`,
       method: 'POST',
@@ -57,11 +62,14 @@ Cypress.Commands.add('login', function() {
         encodeURIComponent(
           JSON.stringify({
             accessGroup: Cypress.env('accessGroup'),
-            expiresAt: new Date().getTime() + 3600,
+            expiresAt: inOneHour,
             email: Cypress.env('username'),
             idToken: resp.body.id_token
           })
-        )
+        ),
+        {
+          expiry: inOneHour
+        }
       )
     })
   })

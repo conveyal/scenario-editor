@@ -1,6 +1,6 @@
 name: Build, Test, Deploy
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
@@ -10,15 +10,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v1
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
       - run: yarn install
 
       - run: yarn build
@@ -28,23 +19,24 @@ jobs:
         env:
           CI: true
 
-      - name: Deploy to now
-        id: now
-        run: |
-          yarn now
-          yarn run now --token $ZEIT_TOKEN
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: yarn install
+      - run: |
+          export CYPRESS_baseURL=$(now deploy --no-clipboard --token $ZEIT_TOKEN)
+          yarn cypress run --env $CYPRESS_ENV
+
         env:
+          CYPRESS_ENV: ${{ secrets.CYPRESS_ENV }}
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
 
-      - uses: cypress-io/github-action@v1
       - uses: actions/upload-artifact@v1
         if: always()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-
-      - uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos

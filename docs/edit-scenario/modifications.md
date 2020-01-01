@@ -34,16 +34,23 @@ After creating a new modification you will see something like the view below.
   <img src="../img/new-add-trip-pattern.png" alt="a new add trips modification" />
 </figure>
 
-You can set the mode (e.g. bus) and add a description at the top of the panel. 
-To create an alignment for the modification (or to edit the alignment you've previously created), click
-<br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
+You can set the mode (e.g. bus) and add a description for the modification at the top of the panel. 
+To create an alignment for the (or to edit the alignment you've previously created), click
 
-This will activate the map-based editing mode. In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.
+<span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
+
+This will activate the map-based editing mode. You can stop and save your work at any time with:
+
+<span class="btn btn-warning"><i class="fa fa-stop-circle"></i> Stop editing</span>
+
+New route alignments are defined by by an ordered set of stops and control points. The actual route taken between these can either follow existing streets or can take a straight line between points. It is also possible to combine the two options in one route as when a bus runs on the street but then diverts into a planned busway which is not yet part of the street network. The distance between stops is used to estimate segment travel time on the new alignment so it can be important to as be as accurate with this as possible. 
 
 <figure>
   <img src="../img/stop-edit-legend.png" alt="symbols for stops and control points"/>
   <figcaption>Map symbols for stops and control points</figcaption>
 </figure>
+
+In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.
 
 To insert a stop into the middle of an alignment, click any part of the alignment. Once created, any stop can be dragged to move it. Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. Similarly, control points can be converted back to stops or deleted by clicking on them. It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
 
@@ -149,6 +156,9 @@ A reroute modification can apply to multiple patterns in a single direction as l
 
 The custom modification type provides direct access to the JSON formatting options for modifications. More documentation on this feature will be coming soon. 
 
-# Using the map-based route editor
+# Editing route geometry
+Two modification types make use of the map-based route geometry editing tool: [add trip pattern](#add-trip-pattern) and [reroute](#reroute). In either case, the goal is to define a new route alignment on the map, including any stops. For the _add trip pattern_ type, this is a freestanding route (or part of a route) while for _reroute_ it must connect at one or both ends to an existing service in your project's GTFS bundle. 
 
+<span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
 
+Clicking the button above will begin editing mode. 

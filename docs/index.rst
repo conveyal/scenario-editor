@@ -15,8 +15,8 @@ Contents
 .. toctree::
     :caption: Network Setup
 
-    Baseline Network <network-setup/index>
-    Opportunity Datasets <network-setup/upload-opportunity-data>
+    Baseline Network <prepare-inputs/index>
+    Opportunity Datasets <prepare-inputs/upload-opportunity-data>
 
 
 .. toctree::

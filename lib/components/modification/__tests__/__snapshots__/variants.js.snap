@@ -10,24 +10,26 @@ exports[`Components > Modification > Variants 1`] = `
     spacing={2}
   >
     <Checkbox
+      fontWeight="normal"
       isChecked={true}
       key="0-a"
       name="a"
       onChange={[Function]}
       value={0}
     >
-      0
+      1
       . 
       a
     </Checkbox>
     <Checkbox
+      fontWeight="normal"
       isChecked={false}
       key="1-b"
       name="b"
       onChange={[Function]}
       value={1}
     >
-      1
+      2
       . 
       b
     </Checkbox>

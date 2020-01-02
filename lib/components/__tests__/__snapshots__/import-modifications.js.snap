@@ -1,97 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > ImportModifications renders correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
+<ImportModifications
+  projectId="1"
+  projects={
+    Array [
+      Object {
+        "_id": "1",
+        "accessGroup": "accessGroupName",
+        "bundleId": "1",
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "name": "Mock Project",
+        "nonce": "12345",
+        "regionId": "1",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          "Default",
+        ],
+      },
+    ]
   }
+  regionId="1"
 >
-  <ImportModifications
-    projectId="1"
-    projects={
-      Array [
-        Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "bundleId": "1",
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "name": "Mock Project",
-          "nonce": "12345",
-          "regionId": "1",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            "Default",
-          ],
-        },
-      ]
-    }
-    regionId="1"
-  >
-    <H5>
-      <ForwardRef
+  <H5>
+    <Heading
+      as="h5"
+      fontSize="14px"
+      fontWeight="500"
+      my="10px"
+    >
+      <Box
         as="h5"
+        fontFamily="heading"
         fontSize="14px"
         fontWeight="500"
+        lineHeight="shorter"
         my="10px"
       >
-        <Styled(div)
-          as="h5"
-          fontSize="14px"
-          fontWeight="500"
-          lineHeight="shorter"
-          my="10px"
+        <h5
+          className="css-1rbv6ep"
         >
-          <h5
-            className="css-18r09h"
-          >
-            Route alignments from shapefile
-          </h5>
-        </Styled(div)>
-      </ForwardRef>
-    </H5>
-    <ButtonLink
-      block={true}
+          Route alignments from shapefile
+        </h5>
+      </Box>
+    </Heading>
+  </H5>
+  <ButtonLink
+    block={true}
+    name="Import"
+    projectId="1"
+    regionId="1"
+    style="success"
+    to="importShapefile"
+  >
+    <Link
       name="Import"
       projectId="1"
       regionId="1"
-      style="success"
       to="importShapefile"
     >
       <Link
-        name="Import"
-        projectId="1"
-        regionId="1"
-        to="importShapefile"
-      >
-        <Link
-          as="/regions/1/projects/1/import-shapefile?name=Import"
-          href={
-            Object {
-              "pathname": "/regions/[regionId]/projects/[projectId]/import-shapefile",
-              "query": Object {
-                "name": "Import",
-              },
-            }
+        as="/regions/1/projects/1/import-shapefile?name=Import"
+        href={
+          Object {
+            "pathname": "/regions/[regionId]/projects/[projectId]/import-shapefile",
+            "query": Object {
+              "name": "Import",
+            },
           }
-          passHref={true}
+        }
+        passHref={true}
+      >
+        <a
+          className="btn btn-success btn-block"
+          href="/regions/1/projects/1/import-shapefile?name=Import"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          tabIndex={0}
         >
-          <a
-            className="btn btn-success btn-block"
-            href="/regions/1/projects/1/import-shapefile?name=Import"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            tabIndex={0}
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "upload",
+                "prefix": "fas",
+              }
+            }
           >
-            <Icon
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
               icon={
                 Object {
                   "icon": Array [],
@@ -99,95 +101,108 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                   "prefix": "fas",
                 }
               }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
             >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "upload",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                swapOpacity={false}
-                symbol={false}
-                title=""
-                transform={null}
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
+                data-icon="upload"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
-                  data-icon="upload"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
+                <path
+                  fill="currentColor"
                   style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Import
-          </a>
-        </Link>
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           
+          Import
+        </a>
       </Link>
-    </ButtonLink>
-    <br />
-    <H5>
-      <ForwardRef
+    </Link>
+  </ButtonLink>
+  <br />
+  <H5>
+    <Heading
+      as="h5"
+      fontSize="14px"
+      fontWeight="500"
+      my="10px"
+    >
+      <Box
         as="h5"
+        fontFamily="heading"
         fontSize="14px"
         fontWeight="500"
+        lineHeight="shorter"
         my="10px"
       >
-        <Styled(div)
-          as="h5"
-          fontSize="14px"
-          fontWeight="500"
-          lineHeight="shorter"
-          my="10px"
+        <h5
+          className="css-1rbv6ep"
         >
-          <h5
-            className="css-18r09h"
-          >
-            Modifications from another project
-          </h5>
-        </Styled(div)>
-      </ForwardRef>
-    </H5>
-    <P>
-      <Styled(div)
-        as="p"
-        mb="10px"
-      >
-        <p
-          className="css-1r2f04i"
-        >
-          When importing from a project associated with a different bundle, only "Add Trips" modifications will be copied. If a modification uses an existing stop from the baseline GTFS, it will be replaced in the imported modification by a new stop at the same location.
-        </p>
-      </Styled(div)>
-    </P>
-    <div
-      className="form-group"
+          Modifications from another project
+        </h5>
+      </Box>
+    </Heading>
+  </H5>
+  <P>
+    <Box
+      as="p"
+      mb="10px"
     >
-      <S
+      <p
+        className="css-1r2f04i"
+      >
+        When importing from a project associated with a different bundle, only "Add Trips" modifications will be copied. If a modification uses an existing stop from the baseline GTFS, it will be replaced in the imported modification by a new stop at the same location.
+      </p>
+    </Box>
+  </P>
+  <div
+    className="form-group"
+  >
+    <S
+      getOptionLabel={[Function]}
+      getOptionValue={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "_id": "1",
+            "accessGroup": "accessGroupName",
+            "bundleId": "1",
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "name": "Mock Project",
+            "nonce": "12345",
+            "regionId": "1",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              "Default",
+            ],
+          },
+        ]
+      }
+      placeholder="Select a project…"
+    >
+      <ReactSelect
         getOptionLabel={[Function]}
         getOptionValue={[Function]}
         onChange={[Function]}
@@ -211,60 +226,48 @@ exports[`Component > ImportModifications renders correctly 1`] = `
           ]
         }
         placeholder="Select a project…"
+        styles={
+          Object {
+            "control": [Function],
+            "option": [Function],
+          }
+        }
       >
-        <ReactSelect
-          getOptionLabel={[Function]}
-          getOptionValue={[Function]}
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "_id": "1",
-                "accessGroup": "accessGroupName",
-                "bundleId": "1",
-                "createdAt": "2017-11-08T12:30:50.133Z",
-                "createdBy": "person@gmail.com",
-                "name": "Mock Project",
-                "nonce": "12345",
-                "regionId": "1",
-                "updatedAt": "2017-11-08T12:31:19.602Z",
-                "updatedBy": "person@gmail.com",
-                "variants": Array [
-                  "Default",
-                ],
-              },
-            ]
-          }
-          placeholder="Select a project…"
-          styles={
-            Object {
-              "control": [Function],
-              "option": [Function],
-            }
-          }
-        >
-          <div
-            className="ReactSelectMock"
-          />
-        </ReactSelect>
-      </S>
-    </div>
-    <Button
-      block={true}
+        <div
+          className="ReactSelectMock"
+        />
+      </ReactSelect>
+    </S>
+  </div>
+  <Button
+    block={true}
+    disabled={true}
+    name="Import"
+    onClick={[Function]}
+    style="success"
+  >
+    <a
+      className="btn btn-success btn-block"
       disabled={true}
+      href="#"
       name="Import"
       onClick={[Function]}
-      style="success"
+      tabIndex={0}
     >
-      <a
-        className="btn btn-success btn-block"
-        disabled={true}
-        href="#"
-        name="Import"
-        onClick={[Function]}
-        tabIndex={0}
+      <Icon
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "copy",
+            "prefix": "fas",
+          }
+        }
       >
-        <Icon
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={true}
+          flip={null}
           icon={
             Object {
               "icon": Array [],
@@ -272,54 +275,40 @@ exports[`Component > ImportModifications renders correctly 1`] = `
               "prefix": "fas",
             }
           }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
         >
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={true}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "copy",
-                "prefix": "fas",
-              }
-            }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-copy fa-w-NaN fa-fw "
+            data-icon="copy"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 undefined undefined"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-copy fa-w-NaN fa-fw "
-              data-icon="copy"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
+            <path
+              fill="currentColor"
               style={Object {}}
-              viewBox="0 0 undefined undefined"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </FontAwesomeIcon>
-        </Icon>
-         
-        Import
-      </a>
-    </Button>
-  </ImportModifications>
-</Provider>
+            />
+          </svg>
+        </FontAwesomeIcon>
+      </Icon>
+       
+      Import
+    </a>
+  </Button>
+</ImportModifications>
 `;

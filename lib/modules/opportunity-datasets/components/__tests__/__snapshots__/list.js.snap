@@ -1,49 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Opportunity Datasets > Components > List should render without errors 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <ListOpportunityDatasets>
-    <Group>
-      <div
-        className="form-group"
+<ListOpportunityDatasets>
+  <Group>
+    <div
+      className="form-group"
+    >
+      <ButtonLink
+        block={true}
+        style="success"
+        to="opportunitiesUpload"
       >
-        <ButtonLink
-          block={true}
-          style="success"
+        <Link
           to="opportunitiesUpload"
         >
           <Link
-            to="opportunitiesUpload"
-          >
-            <Link
-              as="/regions/undefined/opportunities/upload"
-              href={
-                Object {
-                  "pathname": "/regions/[regionId]/opportunities/upload",
-                  "query": Object {},
-                }
+            as="/regions/undefined/opportunities/upload"
+            href={
+              Object {
+                "pathname": "/regions/[regionId]/opportunities/upload",
+                "query": Object {},
               }
-              passHref={true}
+            }
+            passHref={true}
+          >
+            <a
+              className="btn btn-success btn-block"
+              href="/regions/undefined/opportunities/upload"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              tabIndex={0}
             >
-              <a
-                className="btn btn-success btn-block"
-                href="/regions/undefined/opportunities/upload"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                tabIndex={0}
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "plus",
+                    "prefix": "fas",
+                  }
+                }
               >
-                <Icon
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
                   icon={
                     Object {
                       "icon": Array [],
@@ -51,68 +52,68 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                       "prefix": "fas",
                     }
                   }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
                 >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={true}
-                    flip={null}
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "plus",
-                        "prefix": "fas",
-                      }
-                    }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    swapOpacity={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                    data-icon="plus"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                      data-icon="plus"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
+                    <path
+                      fill="currentColor"
                       style={Object {}}
-                      viewBox="0 0 undefined undefined"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
-                </Icon>
-                 
-                Upload a new dataset
-              </a>
-            </Link>
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+               
+              Upload a new dataset
+            </a>
           </Link>
-        </ButtonLink>
-        <Button
-          block={true}
+        </Link>
+      </ButtonLink>
+      <Button
+        block={true}
+        onClick={[Function]}
+        style="primary"
+      >
+        <a
+          className="btn btn-primary btn-block"
+          href="#"
           onClick={[Function]}
-          style="primary"
+          tabIndex={0}
         >
-          <a
-            className="btn btn-primary btn-block"
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "users",
+                "prefix": "fas",
+              }
+            }
           >
-            <Icon
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
               icon={
                 Object {
                   "icon": Array [],
@@ -120,88 +121,98 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                   "prefix": "fas",
                 }
               }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
             >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "users",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                swapOpacity={false}
-                symbol={false}
-                title=""
-                transform={null}
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-users fa-w-NaN fa-fw "
+                data-icon="users"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-users fa-w-NaN fa-fw "
-                  data-icon="users"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
+                <path
+                  fill="currentColor"
                   style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Fetch LODES (2015)
-          </a>
-        </Button>
-      </div>
-    </Group>
-    <P
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           
+          Fetch LODES (2015)
+        </a>
+      </Button>
+    </div>
+  </Group>
+  <P
+    className="text-center"
+  >
+    <Box
+      as="p"
       className="text-center"
+      mb="10px"
     >
-      <Styled(div)
-        as="p"
-        className="text-center"
-        mb="10px"
+      <p
+        className="text-center css-1r2f04i"
       >
-        <p
-          className="text-center css-1r2f04i"
+        or select an existing one
+      </p>
+    </Box>
+  </P>
+  <Group>
+    <div
+      className="form-group"
+    >
+      <Connect(OpportunityDatasetSelector)>
+        <OpportunityDatasetSelector
+          addOpportunityDataset={[Function]}
+          checkUploadStatus={[Function]}
+          clearStatus={[Function]}
+          deleteOpportunityDataset={[Function]}
+          deleteSourceSet={[Function]}
+          downloadLODES={[Function]}
+          downloadOpportunityDataset={[Function]}
+          editOpportunityDataset={[Function]}
+          loadOpportunityDataset={[Function]}
+          loadOpportunityDatasets={[Function]}
+          opportunityDatasets={
+            Array [
+              Object {
+                "_id": "Workers_total",
+                "name": "Workers total",
+                "sourceName": "lodes-data-2014",
+              },
+            ]
+          }
+          removeOpportunityDataset={[Function]}
+          setActiveOpportunityDataset={[Function]}
+          setOpportunityDatasets={[Function]}
+          updateOpportunityDataset={[Function]}
+          updateUploadStatuses={[Function]}
+          uploadOpportunityDataset={[Function]}
+          uploadStatuses={Array []}
         >
-          or select an existing one
-        </p>
-      </Styled(div)>
-    </P>
-    <Group>
-      <div
-        className="form-group"
-      >
-        <Connect(OpportunityDatasetSelector)>
-          <OpportunityDatasetSelector
-            addOpportunityDataset={[Function]}
-            checkUploadStatus={[Function]}
-            clearStatus={[Function]}
-            deleteOpportunityDataset={[Function]}
-            deleteSourceSet={[Function]}
-            downloadLODES={[Function]}
-            downloadOpportunityDataset={[Function]}
-            editOpportunityDataset={[Function]}
-            loadOpportunityDataset={[Function]}
-            loadOpportunityDatasets={[Function]}
-            opportunityDatasets={
+          <S
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            isClearable={true}
+            isDisabled={false}
+            onChange={[Function]}
+            options={
               Array [
                 Object {
                   "_id": "Workers_total",
@@ -210,15 +221,8 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                 },
               ]
             }
-            removeOpportunityDataset={[Function]}
-            setActiveOpportunityDataset={[Function]}
-            setOpportunityDatasets={[Function]}
-            updateOpportunityDataset={[Function]}
-            updateUploadStatuses={[Function]}
-            uploadOpportunityDataset={[Function]}
-            uploadStatuses={Array []}
           >
-            <S
+            <ReactSelect
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               isClearable={true}
@@ -233,38 +237,21 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                   },
                 ]
               }
+              styles={
+                Object {
+                  "control": [Function],
+                  "option": [Function],
+                }
+              }
             >
-              <ReactSelect
-                getOptionLabel={[Function]}
-                getOptionValue={[Function]}
-                isClearable={true}
-                isDisabled={false}
-                onChange={[Function]}
-                options={
-                  Array [
-                    Object {
-                      "_id": "Workers_total",
-                      "name": "Workers total",
-                      "sourceName": "lodes-data-2014",
-                    },
-                  ]
-                }
-                styles={
-                  Object {
-                    "control": [Function],
-                    "option": [Function],
-                  }
-                }
-              >
-                <div
-                  className="ReactSelectMock"
-                />
-              </ReactSelect>
-            </S>
-          </OpportunityDatasetSelector>
-        </Connect(OpportunityDatasetSelector)>
-      </div>
-    </Group>
-  </ListOpportunityDatasets>
-</Provider>
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </S>
+        </OpportunityDatasetSelector>
+      </Connect(OpportunityDatasetSelector)>
+    </div>
+  </Group>
+</ListOpportunityDatasets>
 `;

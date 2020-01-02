@@ -1,19 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > EditRegion 1`] = `
-<Provider
-  store={
+<Memo(ConnectedEditRegion)
+  region={
     Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
+      "_id": "1",
+      "accessGroup": "accessGroupName",
+      "bounds": Object {
+        "east": -76,
+        "north": 39,
+        "south": 38,
+        "west": -77,
+      },
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "description": "Region description",
+      "name": "Mock Region",
+      "nonce": "12345",
+      "opportunityDatasets": Array [
+        Object {
+          "_id": "Workers_total",
+          "name": "Workers total",
+          "sourceName": "lodes-data-2014",
+        },
+      ],
+      "statusCode": "DONE",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+    }
+  }
+  setMapChildren={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          [Function],
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
     }
   }
 >
-  <Memo(ConnectedEditRegion)
+  <EditRegion
+    dispatch={[Function]}
     region={
       Object {
         "_id": "1",
@@ -41,6 +74,35 @@ exports[`Component > EditRegion 1`] = `
         "updatedBy": "person@gmail.com",
       }
     }
+    router={
+      Router {
+        "_wrapApp": undefined,
+        "asPath": "as-path",
+        "clc": null,
+        "components": Object {
+          "/_app": Object {
+            "Component": undefined,
+          },
+          "page": Object {
+            "Component": undefined,
+            "err": undefined,
+            "props": undefined,
+          },
+        },
+        "events": Object {
+          "emit": [Function],
+          "off": [Function],
+          "on": [Function],
+        },
+        "isSsr": true,
+        "onPopState": [Function],
+        "pageLoader": undefined,
+        "pathname": "page",
+        "query": Object {},
+        "route": "page",
+        "sub": undefined,
+      }
+    }
     setMapChildren={
       [MockFunction] {
         "calls": Array [
@@ -57,435 +119,374 @@ exports[`Component > EditRegion 1`] = `
       }
     }
   >
-    <EditRegion
-      dispatch={[Function]}
-      region={
-        Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "bounds": Object {
-            "east": -76,
-            "north": 39,
-            "south": 38,
-            "west": -77,
-          },
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": "Region description",
-          "name": "Mock Region",
-          "nonce": "12345",
-          "opportunityDatasets": Array [
-            Object {
-              "_id": "Workers_total",
-              "name": "Workers total",
-              "sourceName": "lodes-data-2014",
-            },
-          ],
-          "statusCode": "DONE",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-        }
-      }
-      router={
-        Router {
-          "_wrapApp": undefined,
-          "asPath": "as-path",
-          "clc": null,
-          "components": Object {
-            "/_app": Object {
-              "Component": undefined,
-            },
-            "page": Object {
-              "Component": undefined,
-              "err": undefined,
-              "props": undefined,
-            },
-          },
-          "events": Object {
-            "emit": [Function],
-            "off": [Function],
-            "on": [Function],
-          },
-          "isSsr": true,
-          "onPopState": [Function],
-          "pageLoader": undefined,
-          "pathname": "page",
-          "query": Object {},
-          "route": "page",
-          "sub": undefined,
-        }
-      }
-      setMapChildren={
-        [MockFunction] {
-          "calls": Array [
-            Array [
-              [Function],
-            ],
-          ],
-          "results": Array [
-            Object {
-              "type": "return",
-              "value": undefined,
-            },
-          ],
-        }
-      }
+    <InnerDock
+      className="block"
     >
-      <InnerDock
-        className="block"
-      >
-        <div
-          className="InnerDock block"
-          style={
-            Object {
-              "height": 768,
-            }
+      <div
+        className="InnerDock block"
+        style={
+          Object {
+            "height": 768,
           }
+        }
+      >
+        <legend>
+          Edit region
+        </legend>
+        <Text
+          label="Region Name*"
+          name="Region Name"
+          onChange={[Function]}
+          value="Mock Region"
         >
-          <legend>
-            Edit region
-          </legend>
-          <Text
+          <Group
+            id="region-name-input-0"
             label="Region Name*"
             name="Region Name"
             onChange={[Function]}
             value="Mock Region"
           >
-            <Group
-              id="region-name-input-0"
-              label="Region Name*"
-              name="Region Name"
-              onChange={[Function]}
-              value="Mock Region"
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                className="control-label"
+                htmlFor="region-name-input-0"
               >
-                <label
-                  className="control-label"
-                  htmlFor="region-name-input-0"
-                >
-                  Region Name*
-                </label>
-                <Input
+                Region Name*
+              </label>
+              <Input
+                id="region-name-input-0"
+                label="Region Name*"
+                name="Region Name"
+                onChange={[Function]}
+                type="text"
+                value="Mock Region"
+              >
+                <input
+                  className="form-control"
                   id="region-name-input-0"
                   label="Region Name*"
                   name="Region Name"
                   onChange={[Function]}
+                  placeholder="Region Name*"
                   type="text"
                   value="Mock Region"
-                >
-                  <input
-                    className="form-control"
-                    id="region-name-input-0"
-                    label="Region Name*"
-                    name="Region Name"
-                    onChange={[Function]}
-                    placeholder="Region Name*"
-                    type="text"
-                    value="Mock Region"
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
+                />
+              </Input>
+            </div>
+          </Group>
+        </Text>
+        <Text
+          label="Description"
+          name="Description"
+          onChange={[Function]}
+          value="Region description"
+        >
+          <Group
+            id="description-input-1"
             label="Description"
             name="Description"
             onChange={[Function]}
             value="Region description"
           >
-            <Group
-              id="description-input-1"
-              label="Description"
-              name="Description"
-              onChange={[Function]}
-              value="Region description"
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                className="control-label"
+                htmlFor="description-input-1"
               >
-                <label
-                  className="control-label"
-                  htmlFor="description-input-1"
-                >
-                  Description
-                </label>
-                <Input
+                Description
+              </label>
+              <Input
+                id="description-input-1"
+                label="Description"
+                name="Description"
+                onChange={[Function]}
+                type="text"
+                value="Region description"
+              >
+                <input
+                  className="form-control"
                   id="description-input-1"
                   label="Description"
                   name="Description"
                   onChange={[Function]}
+                  placeholder="Description"
                   type="text"
                   value="Region description"
-                >
-                  <input
-                    className="form-control"
-                    id="description-input-1"
-                    label="Description"
-                    name="Description"
-                    onChange={[Function]}
-                    placeholder="Description"
-                    type="text"
-                    value="Region description"
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <div
-            className="alert alert-warning"
+                />
+              </Input>
+            </div>
+          </Group>
+        </Text>
+        <div
+          className="alert alert-warning"
+        >
+          <strong>
+            Analysis bounds
+            : 
+          </strong>
+          Bounds are snapped to points on our regular grid.
+          <ForwardRef
+            href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <strong>
-              Analysis bounds
-              : 
-            </strong>
-            Bounds are snapped to points on our regular grid.
-            <ForwardRef
+            <PseudoBox
+              _hover={
+                Object {
+                  "color": "#185c86",
+                }
+              }
+              as="a"
+              color="#2389c9"
               href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
               rel="noopener noreferrer"
               target="_blank"
             >
-              <Styled(div)
-                _hover={
-                  Object {
-                    "color": "#185c86",
-                  }
-                }
-                as="a"
-                color="#2389c9"
+              <a
+                className="css-khmg1f"
                 href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <a
-                  className="css-khmg1f"
-                  href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                   
-                  Learn more about spatial resolution here.
-                </a>
-              </Styled(div)>
-            </ForwardRef>
-          </div>
-          <Text
-            key="bound-North"
+                 
+                Learn more about spatial resolution here.
+              </a>
+            </PseudoBox>
+          </ForwardRef>
+        </div>
+        <Text
+          key="bound-North"
+          label="North bound"
+          name="North bound"
+          onChange={[Function]}
+          value={39}
+        >
+          <Group
+            id="north-bound-input-2"
             label="North bound"
             name="North bound"
             onChange={[Function]}
             value={39}
           >
-            <Group
-              id="north-bound-input-2"
-              label="North bound"
-              name="North bound"
-              onChange={[Function]}
-              value={39}
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                className="control-label"
+                htmlFor="north-bound-input-2"
               >
-                <label
-                  className="control-label"
-                  htmlFor="north-bound-input-2"
-                >
-                  North bound
-                </label>
-                <Input
+                North bound
+              </label>
+              <Input
+                id="north-bound-input-2"
+                label="North bound"
+                name="North bound"
+                onChange={[Function]}
+                type="text"
+                value={39}
+              >
+                <input
+                  className="form-control"
                   id="north-bound-input-2"
                   label="North bound"
                   name="North bound"
                   onChange={[Function]}
+                  placeholder="North bound"
                   type="text"
                   value={39}
-                >
-                  <input
-                    className="form-control"
-                    id="north-bound-input-2"
-                    label="North bound"
-                    name="North bound"
-                    onChange={[Function]}
-                    placeholder="North bound"
-                    type="text"
-                    value={39}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            key="bound-South"
+                />
+              </Input>
+            </div>
+          </Group>
+        </Text>
+        <Text
+          key="bound-South"
+          label="South bound"
+          name="South bound"
+          onChange={[Function]}
+          value={38}
+        >
+          <Group
+            id="south-bound-input-3"
             label="South bound"
             name="South bound"
             onChange={[Function]}
             value={38}
           >
-            <Group
-              id="south-bound-input-3"
-              label="South bound"
-              name="South bound"
-              onChange={[Function]}
-              value={38}
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                className="control-label"
+                htmlFor="south-bound-input-3"
               >
-                <label
-                  className="control-label"
-                  htmlFor="south-bound-input-3"
-                >
-                  South bound
-                </label>
-                <Input
+                South bound
+              </label>
+              <Input
+                id="south-bound-input-3"
+                label="South bound"
+                name="South bound"
+                onChange={[Function]}
+                type="text"
+                value={38}
+              >
+                <input
+                  className="form-control"
                   id="south-bound-input-3"
                   label="South bound"
                   name="South bound"
                   onChange={[Function]}
+                  placeholder="South bound"
                   type="text"
                   value={38}
-                >
-                  <input
-                    className="form-control"
-                    id="south-bound-input-3"
-                    label="South bound"
-                    name="South bound"
-                    onChange={[Function]}
-                    placeholder="South bound"
-                    type="text"
-                    value={38}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            key="bound-East"
+                />
+              </Input>
+            </div>
+          </Group>
+        </Text>
+        <Text
+          key="bound-East"
+          label="East bound"
+          name="East bound"
+          onChange={[Function]}
+          value={-76}
+        >
+          <Group
+            id="east-bound-input-4"
             label="East bound"
             name="East bound"
             onChange={[Function]}
             value={-76}
           >
-            <Group
-              id="east-bound-input-4"
-              label="East bound"
-              name="East bound"
-              onChange={[Function]}
-              value={-76}
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                className="control-label"
+                htmlFor="east-bound-input-4"
               >
-                <label
-                  className="control-label"
-                  htmlFor="east-bound-input-4"
-                >
-                  East bound
-                </label>
-                <Input
+                East bound
+              </label>
+              <Input
+                id="east-bound-input-4"
+                label="East bound"
+                name="East bound"
+                onChange={[Function]}
+                type="text"
+                value={-76}
+              >
+                <input
+                  className="form-control"
                   id="east-bound-input-4"
                   label="East bound"
                   name="East bound"
                   onChange={[Function]}
+                  placeholder="East bound"
                   type="text"
                   value={-76}
-                >
-                  <input
-                    className="form-control"
-                    id="east-bound-input-4"
-                    label="East bound"
-                    name="East bound"
-                    onChange={[Function]}
-                    placeholder="East bound"
-                    type="text"
-                    value={-76}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            key="bound-West"
+                />
+              </Input>
+            </div>
+          </Group>
+        </Text>
+        <Text
+          key="bound-West"
+          label="West bound"
+          name="West bound"
+          onChange={[Function]}
+          value={-77}
+        >
+          <Group
+            id="west-bound-input-5"
             label="West bound"
             name="West bound"
             onChange={[Function]}
             value={-77}
           >
-            <Group
-              id="west-bound-input-5"
-              label="West bound"
-              name="West bound"
-              onChange={[Function]}
-              value={-77}
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                className="control-label"
+                htmlFor="west-bound-input-5"
               >
-                <label
-                  className="control-label"
-                  htmlFor="west-bound-input-5"
-                >
-                  West bound
-                </label>
-                <Input
+                West bound
+              </label>
+              <Input
+                id="west-bound-input-5"
+                label="West bound"
+                name="West bound"
+                onChange={[Function]}
+                type="text"
+                value={-77}
+              >
+                <input
+                  className="form-control"
                   id="west-bound-input-5"
                   label="West bound"
                   name="West bound"
                   onChange={[Function]}
+                  placeholder="West bound"
                   type="text"
                   value={-77}
-                >
-                  <input
-                    className="form-control"
-                    id="west-bound-input-5"
-                    label="West bound"
-                    name="West bound"
-                    onChange={[Function]}
-                    placeholder="West bound"
-                    type="text"
-                    value={-77}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <div>
-            <em>
-              OSM updates have been temporarily disabled and will be moved to the bundle management page.
-            </em>
-          </div>
-          <br />
-          <Button
-            block={true}
+                />
+              </Input>
+            </div>
+          </Group>
+        </Text>
+        <div>
+          <em>
+            OSM updates have been temporarily disabled and will be moved to the bundle management page.
+          </em>
+        </div>
+        <br />
+        <Button
+          block={true}
+          disabled={true}
+          name="Save changes"
+          onClick={[Function]}
+          style="success"
+        >
+          <a
+            className="btn btn-success btn-block"
             disabled={true}
+            href="#"
             name="Save changes"
             onClick={[Function]}
-            style="success"
+            tabIndex={0}
           >
-            <a
-              className="btn btn-success btn-block"
-              disabled={true}
-              href="#"
-              name="Save changes"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              Save changes
-            </a>
-          </Button>
-          <Button
-            block={true}
+            Save changes
+          </a>
+        </Button>
+        <Button
+          block={true}
+          onClick={[Function]}
+          style="danger"
+        >
+          <a
+            className="btn btn-danger btn-block"
+            href="#"
             onClick={[Function]}
-            style="danger"
+            tabIndex={0}
           >
-            <a
-              className="btn btn-danger btn-block"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "trash",
+                  "prefix": "fas",
+                }
+              }
             >
-              <Icon
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
                 icon={
                   Object {
                     "icon": Array [],
@@ -493,57 +494,43 @@ exports[`Component > EditRegion 1`] = `
                     "prefix": "fas",
                   }
                 }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                swapOpacity={false}
+                symbol={false}
+                title=""
+                transform={null}
               >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
-                  icon={
-                    Object {
-                      "icon": Array [],
-                      "iconName": "trash",
-                      "prefix": "fas",
-                    }
-                  }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
+                  data-icon="trash"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
-                    data-icon="trash"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
+                  <path
+                    fill="currentColor"
                     style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="currentColor"
-                      style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-               
-              DANGER! Delete this region
-            </a>
-          </Button>
-        </div>
-      </InnerDock>
-    </EditRegion>
-  </Memo(ConnectedEditRegion)>
-</Provider>
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             
+            DANGER! Delete this region
+          </a>
+        </Button>
+      </div>
+    </InnerDock>
+  </EditRegion>
+</Memo(ConnectedEditRegion)>
 `;

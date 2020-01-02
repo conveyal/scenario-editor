@@ -13,9 +13,10 @@ describe('Set up a new region', () => {
     // try several selected region
     cy.fixture('regions.json').then(regions => {
       regions.forEach(region => {
-        // TODO not working - element hidden
-        cy.get('input#react-select-2-input').type(region.searchTerm)
-        cy.contains(region.foundName)
+        cy.get('input#react-select-2-input').focus()
+          .type('{selectall}{backspace}')
+          .type(region.searchTerm)
+        cy.contains(region.foundName).click({force:true})
       })
     })
   })

@@ -122,6 +122,7 @@
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "cypress": "^3.8.0",
+    "cypress-wait-until": "^1.6.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.3",

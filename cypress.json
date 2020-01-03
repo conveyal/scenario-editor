@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://analysis-staging.conveyal.com",
+  "baseUrl": "https://analysis-staging-git-tests.conveyal.now.sh/",
   "viewportWidth": 1400,
   "viewportHeight":900,
   "env": {

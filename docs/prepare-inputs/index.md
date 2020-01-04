@@ -1,10 +1,10 @@
 # Preparing a baseline transport network
 
-Accessibility calculations will be based on the transport network that is set up for your region. This includes scheduled transit services as well as the region's network of streets, sidewalks, bikeways, etc. Initially you will set up a baseline network describing your region's normal transit services. Later on you will likely want to compare alternative scenarios by creating modifications to the baseline network. 
+Accessibility calculations will be based on the :term:`transport network` that is set up for your :term:`region`. This includes scheduled transit services as well as the region's network of streets, sidewalks, bikeways, etc. Initially you will set up a :term:`baseline network` describing your region's normal transit services. Later on you will likely want to compare alternative :term:`scenarios<scenario>` by creating :term:`modifications<modification>` to the baseline network. 
 
 ## Setting up a new region
 
-The **region** is a [bounding box](https://wiki.openstreetmap.org/wiki/Bounding_Box) defining the area to be used for accessibility calculations. It should generally cover the entire service area of the agency or agencies you will be working with. Opportunities and network components outside this area will generally not be considered.
+The :term:`region` is a [bounding box](https://wiki.openstreetmap.org/wiki/Bounding_Box) defining the area to be used for accessibility calculations. It should generally cover the entire service area of the agency or agencies you will be working with. Opportunities and network components outside this area will generally not be considered.
 
 The regions page, shown after you log in, provides a list of existing regions if any, and the option to create a new region. It is also accessible at any later point by clicking the globe icon (<i class="fa fa-globe"></i>). From the regions page, set up a new region by clicking:
 

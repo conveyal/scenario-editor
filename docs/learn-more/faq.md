@@ -4,7 +4,7 @@
 
 Three steps need to take place when starting a new analysis.
 
-First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services.  For scalability, we start a "worker" server for each [transport network](../glossary.html#transport-network) being analyzed.  This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine.  
+First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services.  For scalability, we start a "worker" server for each :term:`transport network` being analyzed.  This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine. 
 
 Second, the worker server needs to set up a transport network.  The server checks whether the required transport network is already built and available for download from Amazon S3.  If it is, the server downloads it and proceeds to the next step.  If a pre-built network cannot be downloaded, the server downloads the required input files (OSM extract and GTFS bundle).  It will then build the transport network by combining the road and transit layers, which be a lengthy process (on the order of 10 minutes for large regions, and an hour for very large regions with dense networks).  To avoid having to repeat this step, the server will upload the built network to S3 for future use.
 

@@ -1,6 +1,6 @@
 # Overview of network editing
 
-After selecting a project, you will arrive at the modifications page, shown below. Each project has an expandable list of numbered **scenarios** followed by a list of **modifications** grouped by type. Each modification represents a single operation on the baseline [transport network](../glossary.html#transport-network) (for example adding a line, or adjusting the speed of an existing line) and can be [activated](#activating-modifications-in-scenarios) in multiple scenarios. Scenarios are a way of grouping isolated modifications into meaningful units representing changes to the broader network. For example, you could create a scenario representing each of several funding scenarios with one for service cuts, one for extended service and so on. 
+After selecting a project, you will arrive at the modifications page, shown below. Each project has an expandable list of numbered **scenarios** followed by a list of **modifications** grouped by type. Each modification represents a single operation on the :term:`baseline network` (for example adding a line, or adjusting the speed of an existing line) and can be [activated](#activating-modifications-in-scenarios) in multiple scenarios. Scenarios are a way of grouping isolated modifications into meaningful units representing changes to the broader network. For example, you could create a scenario representing each of several funding scenarios with one for service cuts, one for extended service and so on. 
 
 <figure>
   <img src="../img/create-scenario.png" />

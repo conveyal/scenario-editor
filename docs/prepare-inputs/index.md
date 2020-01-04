@@ -80,7 +80,7 @@ osmium tags-filter input.osm.pbf \
 
 ## Uploading a GTFS bundle
 
-Start by gathering [GTFS](../glossary.html#GTFS) feeds for the transit agencies whose service will be included in your region. A _GTFS feed_ is a set of CSV files inside a `.zip` archive, and a _GTFS bundle_ is a set of one or more GTFS feeds. 
+Start by gathering :term:`GTFS` feeds for the transit agencies whose service will be included in your region. A _GTFS feed_ is a set of CSV files inside a `.zip` archive, and a _GTFS bundle_ is a set of one or more GTFS feeds. 
 
 If you just created a new region, you will be prompted to upload a GTFS bundle. Otherwise, you can click the database icon (<i class="fa fa-database"></i>) on the sidebar to access your GTFS Bundles at any time. 
 

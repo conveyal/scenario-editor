@@ -157,7 +157,7 @@ A reroute modification can apply to multiple patterns in a single direction as l
 The custom modification type provides direct access to the JSON formatting options for modifications. More documentation on this feature will be coming soon. 
 
 # Editing route geometry
-Two modification types make use of the map-based route geometry editing tool: [add trip pattern](#add-trip-pattern) and [reroute](#reroute). In either case, the goal is to define a new route alignment on the map, including any stops. For the _add trip pattern_ type, this is a freestanding route (or part of a route) while for _reroute_ it must connect at one or both ends to an existing service in your project's GTFS bundle. 
+Two modification types make use of the map-based route geometry editing tool: [add trip pattern](#add-trip-pattern) and [reroute](#reroute). In either case, the goal is to define a new route alignment on the map, including any stops. For the _add trip pattern_ type, this is a freestanding route (or part of a route) while for _reroute_ it must connect at one or both ends to an existing service in your project's :term:`GTFS bundle`. 
 
 <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
 

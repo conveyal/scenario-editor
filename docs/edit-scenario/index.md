@@ -7,7 +7,7 @@ After selecting a project, you will arrive at the modifications page, shown belo
   <figcaption>Initial view in editing mode for an established project</figcaption>
 </figure>
 
-To prevent data conflicts, the system does not support multiple users or browser tabs editing the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them. Projects based on the same GTFS bundle can share modifications by [exporting](export.html) from one project and importing into another.
+To prevent data conflicts, the system does not support multiple users or browser tabs editing the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them. Projects based on the same :term:`GTFS bundle` can share modifications by [exporting](export.html) from one project and importing into another.
 
 ## Create a new modification
 

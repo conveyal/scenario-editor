@@ -24,16 +24,6 @@ Next to each added scenario are options to:
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span> the scenario
 <br><span class="ui-icon"><i class="fa fa-eye"></i>Show on the map</span> the modifications active in the scenario
 
-## Activating modifications in scenarios
-
-By default, each modification is active in all scenarios that exist when the modification is created.  You can change which scenarios a modification is active in by using the checkboxes corresponding to scenario numbers at the bottom of the modification detail panel.  
-
-<figure>
-  <img src="../img/scenario-chooser.png" />
-  <figcaption>Choosing the scenarios in which a modification is active</figcaption>
-</figure>
-
-
 ## Importing modifications
 
 To import modifications from another project or a shapefile, click

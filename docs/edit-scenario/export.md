@@ -1,3 +1,4 @@
+.. _export_mods:
 # Exporting modifications
 
 To see options for exporting scenarios from the top of the editing panel, click

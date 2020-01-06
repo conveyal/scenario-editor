@@ -2,14 +2,14 @@
 
 When creating a new modification, you have several different options, each explained in detail below. 
 
-* Add Trip Pattern
-* Adjust Dwell Time
-* Adjust Speed
-* Convert to Frequency
-* Remove Stops
-* Remove Trips
-* Reroute
-* Custom
+* `Add trip pattern`_
+* `Adjust Dwell Time`_
+* `Adjust Speed`_
+* `Convert to Frequency`_
+* `Remove Stops`_
+* `Remove Trips`_
+* `Reroute`_
+* `Custom`_
 
 Across all modification types however the basic actions are consistent. 
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>
@@ -152,6 +152,7 @@ For example, consider a baseline pattern passing through stops A -> B -> C -> D:
 
 A reroute modification can apply to multiple patterns in a single direction as long as the patterns all contain the start and end stop in order; you will generally need to create one reroute modification for each direction of the route.
 
+.. _custom:
 ## Custom modifications
 
 The custom modification type provides direct access to the JSON formatting options for modifications. More documentation on this feature will be coming soon. 

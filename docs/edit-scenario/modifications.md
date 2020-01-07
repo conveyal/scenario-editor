@@ -26,7 +26,7 @@ Clicking the small blue back arrow saves your changes and takes you back to the 
 
 ## Add trip pattern
 
-The **add trip pattern** modification allows you to add new [trip patterns](../glossary.html#trip-pattern) to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel if the routing is different or the stops are in different locations. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars. 
+The **add trip pattern** modification allows you to add new :term:`trip patterns<trip pattern>` to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel if the routing is different or the stops are in different locations. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars. 
 
 After creating a new modification you will see something like the view below.
 
@@ -81,7 +81,7 @@ Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_tim
 
 ## Adjust speed
 
-Sometimes you will want to adjust the speed on a route, or a portion of it (for instance due to the addition of dedicated bus lanes, or an application of transit signal priority). As before, you will create the modification and select a feed, routes and patterns. If you want to modify only part of the route, you can use similar selection tools to those used in the remove stops (with new selection, add and remove buttons). The difference is that you are now selecting [hops](../glossary.html#hops). The selected segment will be shown on the map in purple. Finally, enter a scale, which is the factor to multiply the speed by. For instance, if you enter 2, vehicles will travel twice as fast between stops (this modification does not affect dwell times; to model changes in dwell time, see the adjust dwell time modification below).
+Sometimes you will want to adjust the speed on a route, or a portion of it (for instance due to the addition of dedicated bus lanes, or an application of transit signal priority). As before, you will create the modification and select a feed, routes and patterns. If you want to modify only part of the route, you can use similar selection tools to those used in the remove stops (with new selection, add and remove buttons). The difference is that you are now selecting :term:`hops<hop>`. The selected segment will be shown on the map in purple. Finally, enter a scale, which is the factor to multiply the speed by. For instance, if you enter 2, vehicles will travel twice as fast between stops (this modification does not affect dwell times; to model changes in dwell time, see the adjust dwell time modification below).
 
 This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
 
@@ -138,7 +138,7 @@ This modification type can be used to represent detours and extensions. When cre
 
 Once a start or end stop is specified, you can add and modify segments by clicking
 <br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
-<br> then clicking on the map. Editing behavior is similar to editing mode for [adding trip patterns](#add-trips), with some options fixed:
+<br> then clicking on the map. Editing behavior is similar to editing mode for [adding trip patterns](#add-trip-pattern), with some options fixed:
 
 - If only the "start of reroute/extension" is set, new stops and segments will be added extending _forward_ from the selected stop on the baseline pattern ("Extend from end" turned on).
 - If only the "end of reroute/extension" is set, new stops and segments will be added extending _backward_ from the selected stop on the baseline pattern ("Extend from end" turned off).

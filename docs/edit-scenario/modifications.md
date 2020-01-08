@@ -24,6 +24,7 @@ Clicking the small blue back arrow saves your changes and takes you back to the 
 <br><span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>
 <br>Changes are also automatically saved every 10 seconds.
 
+.. _add_trip_pattern:
 ## Add trip pattern
 
 The **add trip pattern** modification allows you to add new :term:`trip patterns<trip pattern>` to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars. 
@@ -102,6 +103,7 @@ This modification does not take into account the possibility of increased freque
   <img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
 </figure>
 
+.. _convert_to_frequency:
 ## Convert to frequency
 
 Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency/convert to frequency modification. First, create a "convert to frequency" modification, and choose the feed and route you want to adjust:

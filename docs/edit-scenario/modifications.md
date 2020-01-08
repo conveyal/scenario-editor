@@ -26,48 +26,61 @@ Clicking the small blue back arrow saves your changes and takes you back to the 
 
 ## Add trip pattern
 
-The **add trip pattern** modification allows you to add new :term:`trip patterns<trip pattern>` to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel if the routing is different or the stops are in different locations. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars. 
+The **add trip pattern** modification allows you to add new :term:`trip patterns<trip pattern>` to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars. 
 
 After creating a new modification you will see something like the view below.
 
 <figure>
-  <img src="../img/new-add-trip-pattern.png" alt="a new add trips modification" />
+  <img src="../img/new-add-trip-pattern.png" alt="a new add trip patterns modification" />
+  <figcaption>Initial view of an add trip patterns modification</figcaption>
 </figure>
 
-You can set the mode (e.g. bus) and add a description for the modification at the top of the panel. 
-To create an alignment for the (or to edit the alignment you've previously created), click
+You can set the mode (e.g. bus) and add a description for the modification at the top of the panel. To create an alignment, or to edit the alignment you've previously created, click
 
 <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
 
-This will activate the map-based editing mode. You can stop and save your work at any time with:
+This will activate the map-based route editing mode. You can stop and save your work at any time with:
 
 <span class="btn btn-warning"><i class="fa fa-stop-circle"></i> Stop editing</span>
 
-New route alignments are defined by by an ordered set of stops and control points. The actual route taken between these can either follow existing streets or can take a straight line between points. It is also possible to combine the two options in one route as when a bus runs on the street but then diverts into a planned busway which is not yet part of the street network. The distance between stops is used to estimate segment travel time on the new alignment so it can be important to as be as accurate with this as possible. 
+New route alignments are defined by by an ordered set of stops and control points. The actual route taken between these can either follow existing streets or it can take a straight line between points. It is also possible to combine the two options in one route as when a bus runs on the street but then diverts into a planned busway which is not yet part of the street network. The distance between stops is used to estimate segment travel time on the new alignment so it can be important to as be as accurate with the alignment as possible. 
 
 <figure>
   <img src="../img/stop-edit-legend.png" alt="symbols for stops and control points"/>
   <figcaption>Map symbols for stops and control points</figcaption>
 </figure>
 
-In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.
+By default when you begin editing a new route, you can click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.
 
-To insert a stop into the middle of an alignment, click any part of the alignment. Once created, any stop can be dragged to move it. Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. Similarly, control points can be converted back to stops or deleted by clicking on them. It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
+Once created, any stop or control point can be moved by dragging it to a new location. Clicking on a stop gives you the option to delete it, or convert it to a *control point* through which the route will pass without stopping. Similarly, control points can be converted back to stops or deleted by clicking on them.
 
 <figure>
-  <img src="../img/make-stop.png" alt="make a new stop" />
+  <img src="../img/make-control-point.png" alt="convert a stop to a control point" />
+  <figcaption>Clicking on a stop or control point brings up options to convert or delete it.</figcaption>
 </figure>
 
-Available options while editing an alignment include:
+You can also insert a stop into the middle of an existing alignment. Simply hover over the any part of the line and you should see a new stop appear below your cursor. Click to add it at that location.
 
-- **Auto-create stops at set spacing**: Whether stops should be created automatically at a specified interval along the route.
-- **Bidirectional**: If this checkbox is checked, vehicles will travel in both directions along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets or other aspects of the route that don't follow the same alignment in both directions). 
-- **Follow streets**: Make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street.
-- **Extend**: If this checkbox is checked, clicking on the map will extend the route by adding a new stop. If you wish to edit segments you already created, by adding stops or control points, it is often convenient to uncheck this option so that stray clicks do not extend the route from one of its termini.
-- **Extend from end**: When "Extend" is enabled, this option allows you to specify whether new stops will be added moving forward from the last stop of the route or backward from the first stop of the route.
+On the panel to the left of the map there are a few options available while editing an alignment. These are described below. 
 
-Once you have created an alignment, you need to specify when the routes run using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
-<br><span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
+<figure>
+  <img src="../img/alignment-options.png" alt="alignment options" />
+  <figcaption>Alignment editing options and their default values</figcaption>
+</figure>
+
+- **Auto-create stops at set spacing**: Specifies whether stops should be created automatically at a specified interval along the route. When using this option, you will likely want to define your route alignment with control points rather than stops, however if stops are used new stops will not be added unless the gap between existing stops is sufficiently large. The stop spacing can easily be changed later.
+
+- **Bidirectional**: If this option is checked (the default value), vehicles will travel in both directions along the described geometry. If it is toggled off, vehicles will only travel in the direction the line is drawn. Directed alignments can be useful when there are [couplets](https://en.wikipedia.org/wiki/One-way_pair) or other aspects of the route that don't follow the same alignment in both directions. Directed alignments are also necessary for [phasing](phasing.html). 
+
+- **Follow streets**: This makes the route follow streets. The default is to connect stops or control points with a straight line. This only applies to segments that are actively being edited and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street. The length of each segment is used to estimate travel times between stops, so this feature is very useful for aproximating the length of bus/streetcar routes.
+
+- **Extend**: If this option is checked (the default), clicking on the map will extend the route forward from the end by adding a new stop in the direction the line was drawn. If you wish to edit segments you already created, by adding stops or control points, it is often convenient to uncheck this option so that stray clicks do not extend the route from one of its termini.
+
+- **Extend from end**: When *Extend* is enabled, this option allows you to specify whether new stops will be added moving forward from the last stop of the route (the default) or backward from the first stop of the route. When this option is *un*ticked, new stops will be added as extensions backwards from the beginning.
+
+Once you have created an alignment, you'll need to specify when the route runs using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
+
+<span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
 ## Adjust dwell time
 

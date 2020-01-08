@@ -1,17 +1,18 @@
 .. _phasing:
 # Phasing
 
-The phasing feature can be used to tie the schedules of two [add trip pattern](modifications.html#add-trip-pattern) or [convert to frequency](modifications.html#convert-to-frequency) modifications together. For example, if you are creating a [pulsed system](http://humantransit.org/2010/11/basics-finding-your-pulse.html) where buses run infrequently but are timed to meet at transfer points, you might want to specify that while you don't know the exact schedules of any of the lines, they will all meet at a central point at the same time. Alternately, you might have a [branching service](http://humantransit.org/2011/02/basics-branching-or-how-transit-is-like-a-river.html) where two lines share part of their alignment but then branch. If each branch runs every 30 minutes, you might want to write the schedules such that they provide service every 15 minutes on the shared alignment, rather than both coming at the same time.
+The phasing feature can be used to tie the timetables of two :ref:`add_trip_pattern` or :ref:`convert_to_frequency` modifications together. For example, if you are creating a [pulsed system](http://humantransit.org/2010/11/basics-finding-your-pulse.html) where buses run infrequently but are timed to meet at specific transfer points, you might want to specify that while you don't know the exact schedules of any of the lines, they will all meet at a central point at the same time. Alternately, you might have a [branching service](http://humantransit.org/2011/02/basics-branching-or-how-transit-is-like-a-river.html) where two lines share part of their alignment but then branch. If each branch runs every 30 minutes, you might want to write the schedules such that they provide service every 15 minutes on the shared alignment, rather than both coming at the same time.
 
 You can accomplish both of these things using the phasing settings. We implement this by allowing you to lock the departures on one timetable or frequency entry to those of another, saying that vehicles on one frequency entry depart a stop a certain number of minutes after vehicles on another frequency entry (generally on a different modification) depart a stop (the same one or a different, nearby one).
 
-The image below shows creating a pulse between two lines in Atlanta. This line on Memorial Drive is phased at the stop "Memorial Drive SE at Moreland Ave SE" from the stop "Moreland Ave SE at Memorial Drive SE" on the timetable "Weekday" in the
-"Moreland" modification, with a phase of three minutes. This means that vehicles running on this timetable (7 AM-10 PM every day) will depart the stop "Memorial Drive SE" will depart "Memorial Drive SE at Moreland Ave SE" three minutes after vehicles on the "Weekday" timetable of the Moreland route depart the stop "Memorial Drive SE at Moreland Ave SE."
+The image below shows the settings for a pulse between two lines in Atlanta. 
 
 <figure>
   <img src="../img/phase.png" alt="Phasing a route in Atlanta, Georgia, USA"/>
   <figcaption>Phasing fields</figcaption>
 </figure>
+
+This line on Memorial Drive is phased at the stop "Memorial Drive SE at Moreland Ave SE" from the stop "Moreland Ave SE at Memorial Drive SE" on the timetable "Weekday" in the "Moreland" modification, with a phase of three minutes. This means that vehicles running on this timetable (7 AM-10 PM every day) will depart the stop "Memorial Drive SE" will depart "Memorial Drive SE at Moreland Ave SE" three minutes after vehicles on the "Weekday" timetable of the Moreland route depart the stop "Memorial Drive SE at Moreland Ave SE."
 
 First, you select one of the stops on this line to phase at (the "phase at stop"). You then can select a modification (either an Add Trips modification or an Adjust Frequency modification) and frequency entry or timetable to phase from (the "phase from timetable"); the dropdown shows the name of the modification, as well as the name of the frequency entry and details about it. You can then choose the stop on the other modification where the phase should be applied (the "phase from stop").
 

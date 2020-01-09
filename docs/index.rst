@@ -26,11 +26,10 @@ Contents
 
     edit-scenario/index
     edit-scenario/modifications
-    edit-scenario/example
-    edit-scenario/usage
     edit-scenario/timetable
     edit-scenario/phasing
-    edit-scenario/export
+    edit-scenario/usage
+    edit-scenario/example
 
 .. toctree::
     :caption: Analyze Accessibility

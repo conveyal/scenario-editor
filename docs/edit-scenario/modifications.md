@@ -141,6 +141,7 @@ In order to remove trips, create a new _remove trips modification_, and select a
   <img src="../img/remove-trips.png" alt="Remove trips" />
 </figure>
 
+.. _reroute:
 ## Reroute
 
 This modification type can be used to represent detours and extensions. When creating a _reroute_ modification, you first select a feed, route, and trip patterns. Once trip patterns are selected, you then select a stop at which the reroute segments will start, or a stop at which the reroute segments will end, or both, by clicking

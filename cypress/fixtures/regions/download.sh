@@ -12,7 +12,7 @@ wget https://www.c-tran.com/images/Google/GoogleTransitUpload.zip -O portland/ct
 # download Portland OSM XML
 wget -O portland/streets.osm --post-file=portland/overpass-query.txt https://overpass-api.de/api/interpreter
 # convert to xml
-osmium cat portland/streets.osm -o portland/streets.osm.pbf
+osmium cat --overwrite portland/streets.osm -o portland/streets.osm.pbf
 rm portland/streets.osm
 
 
@@ -28,5 +28,5 @@ wget https://www.tankbus.org/Portals/tankbus/gtfs/tank-google-transit.zip -O cin
 # download Cincy OSM XML
 wget -O cincinnati/streets.osm --post-file=cincinnati/overpass-query.txt https://overpass-api.de/api/interpreter
 # convert to xml
-osmium cat cincinnati/streets.osm -o cincinnati/streets.osm.pbf
+osmium cat --overwrite cincinnati/streets.osm -o cincinnati/streets.osm.pbf
 rm cincinnati/streets.osm

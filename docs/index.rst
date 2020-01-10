@@ -28,6 +28,7 @@ Contents
     edit-scenario/modifications
     edit-scenario/timetable
     edit-scenario/phasing
+    edit-scenario/edit
     edit-scenario/usage
     edit-scenario/example
 

@@ -31,17 +31,14 @@ If multiple scenarios are being compared, the isochrone for the first scenario r
   <figcaption>Testing different scenarios, travel time cutoffs, and origins</figcaption>
 </figure>
 
-The modifications displayed on the map can be controlled in [editing mode](../edit-scenario/index.html#toggling-display-of-modifications-on-the-map).
+The modifications displayed on the map can be controlled in editing mode. (See: :ref:`toggle_mod_display`)
 
 If an [opportunity dataset](../prepare-inputs/upload-opportunity-data.html) is selected in the drop-down menu in the settings panel, the map will show gray dots representing the density of opportunities. For instance, if your selected opportunity data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities, and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents.
 
 ## Analysis panel
 
-The left panel has controls for the analysis and displays the accessibility afforded by the scenario.
-
-At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, or access to schools, or some other variable of interest represented in an Opportunity Dataset you uploaded.
-
-Additional scenarios can be selected for comparison. A "Baseline" scenario with no modifications (i.e. the unmodified GTFS bundle you uploaded) is automatically available for every project.
+The left panel has controls for the analysis and displays the access to opportunities afforded by the :term:`scenario`. At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, access to schools, or some other variable of interest represented in an :term:`opportunity dataset` you uploaded.
+Additional scenarios can be selected for comparison. A :term:`baseline<baseline network>` scenario with no modifications (i.e. the unmodified :term:`GTFS bundle` you uploaded) is automatically available for every project.
 
 ### Charts of accessibility results
 

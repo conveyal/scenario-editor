@@ -6,6 +6,7 @@ If one user will be responsible for analyses in your region, involving a relativ
 
 If multiple users will be involved in editing scenarios, or if you want to assess more than 10 different combinations of modifications, which would make the list of scenarios annoyingly long, we recommend dividing the modifications among different projects. For example, one team member could code rail scenarios in Project A, another team member could code bus scenarios in Project B. Modifications can be [imported](#importing-modifications-from-another-project) between projects that use the same :term:`GTFS bundle`; in this example, modifications from the two projects could combined in a third Project _C_.
 
+.. _toggle_mod_display:
 ## Toggling display of modifications
 
 In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click

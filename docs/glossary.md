@@ -42,3 +42,6 @@ Several terms have a special or specific meaning in the context of Conveyal Anal
 
    isochrone
       An `isochrone <https://en.wiktionary.org/wiki/isochrone#English>`_ is a boundary around a given origin point defined such that travel from the origin to any point on the boundary takes an equal amount of time. Conveyal Analysis calculates travel time over a departure window, so the travel time used is actually a selected percentile in a distribution of travel times. 
+
+   opportunity dataset
+      An opportunity dataset is a spatial dataset with one or more numeric fields representing a count of opportunities (destinations) at particular locations in your :term:`region`. See :ref:`upload_opportunities`.

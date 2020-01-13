@@ -39,3 +39,6 @@ Several terms have a special or specific meaning in the context of Conveyal Anal
 
    hop
       A portion of a trip consisting of a transit vehicle traveling between two consecutive stops.
+
+   isochrone
+      An `isochrone <https://en.wiktionary.org/wiki/isochrone#English>`_ is a boundary around a given origin point defined such that travel from the origin to any point on the boundary takes an equal amount of time. Conveyal Analysis calculates travel time over a departure window, so the travel time used is actually a selected percentile in a distribution of travel times. 

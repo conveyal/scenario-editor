@@ -1,15 +1,16 @@
 # Overview of analysis mode
 
-The main analysis page is for generating isochrones (travel time contours) from selected origins. To enter analysis mode, click this icon on the sidebar: <br><span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span>
+The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. To start an analysis, ensure a :term:`project` and :term:`scenario` are selected. 
 
-To start an analysis, ensure a project and scenario are selected. On the rest of the page, isochrone and accessibility results corresponding to this scenario will be shown in blue. You may also select a comparison project and scenario, which will be shown in red. To retrieve results for the origin marker shown on the map, move the marker or click:
-<br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
+To retrieve results for the origin marker shown on the map, you can either move the marker to a new location or click the *fetch results* button at the top. This will initialize a compute cluster which may take a minute to start up. 
+If this is your first time performing an analysis with a given :term:`bundle<gtfs bundle>`, it may take some time to build the network. This only needs to be done once for each bundle. 
+For more information, see :ref:`why_the_wait`
 
-Once a compute cluster has initialized (which may take [several minutes](../learn-more/faq.html#when-starting-an-analysis-why-does-the-initializing-cluster-message-persist-for-so-long) the first time you use a GTFS bundle), several components will be visible in the analysis mode.
+Once the compute cluster is initialized, you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a chart showing cumulative accessibility results at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red. 
 
 ## Isochrone map
 
-After the server computes and returns results, the map will show a blue isochrone, which represents the area reachable from the origin marker within a given travel time cutoff (the default is 60 minutes, and it is controlled by the slider in the left panel). To change the origin of the analysis, drag the marker to a new location.
+After the server computes and returns results, the map will show a blue :term:`isochrone`, which represents the area reachable from the origin marker within a given travel time cutoff (the default is 60 minutes, and it is controlled by the slider in the left panel). To change the origin of the analysis, drag the marker to a new location.
 
 If multiple scenarios are being compared, the isochrone for the first scenario remains blue, while the isochrone for the second is red. Thus, areas reachable under both scenarios are purple, areas reachable only under the first scenario are blue, and areas reachable only under the second scenario are red.
 
@@ -106,7 +107,7 @@ In other cases, the scenario may generate a warning, for instance if you remove 
 
 ### Starting a regional analysis
 
-The analysis interface also allows starting Regional Analyses, which involves repeating an accessibility calculation for every location in a regular grid. To start a regional analysis, first set the appropriate parameters using the controls in this view, and confirm that the isochrones and accessibility plots are as expected.
+The analysis interface also allows starting a *regional analysis*, which involves repeating an accessibility calculation for every location in a regular grid. To start a regional analysis, first set the appropriate parameters using the controls in this view, and confirm that the isochrones and accessibility plots are as expected.
 
 You can also choose geographic bounds for your regional analysis in the Advanced settings. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, make sure they have the same bounds.
 

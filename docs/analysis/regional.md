@@ -7,9 +7,7 @@ Upon selecting a completed regional analysis, you will see a screen like the fol
   <figcaption>Viewing a regional analysis</figcaption>
 </figure>
 
-The map shows the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis.
-
-Using the download button, you can save regional analysis results in a raster format (GEOTIFF). These saved files can be opened in GIS to conduct additional analyses or create custom maps. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
+The map shows the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis. Using the download button, you can save regional analysis results in a [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) raster format. These files can then be opened in a GIS to conduct additional analyses or create custom maps. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
 
 ## Comparing regional analyses
 

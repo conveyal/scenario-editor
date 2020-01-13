@@ -1,5 +1,6 @@
 # Frequently Asked Questions
 
+.. _why_the_wait:
 ### When starting an analysis, why does the "initializing cluster" message persist for so long?
 
 Three steps need to take place when starting a new analysis.

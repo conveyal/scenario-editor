@@ -10,9 +10,21 @@ Once the compute cluster is initialized, you should see an isochrone displayed i
 
 ## Isochrone map
 
-After the server computes and returns results, the map will show a blue :term:`isochrone`, which represents the area reachable from the origin marker within a given travel time cutoff (the default is 60 minutes, and it is controlled by the slider in the left panel). To change the origin of the analysis, drag the marker to a new location.
+After the server returns results, the map will show a blue :term:`isochrone`. 
+This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty. 
 
-If multiple scenarios are being compared, the isochrone for the first scenario remains blue, while the isochrone for the second is red. Thus, areas reachable under both scenarios are purple, areas reachable only under the first scenario are blue, and areas reachable only under the second scenario are red.
+The *time cutoff* slider controls the travel time threshold between a range of one minute and two hours. The slider for *travel time percentile* controls the portion of departures within the time window that have to meet the travel time threshold. 
+Reducing the travel time should smoothly decrease the size of the isochrone, as would increasing the travel time percentile. 
+The default values are 60 minutes and 50th percentile. This would mean that the default isochrone boundary is drawn where exactly half of trips in the selected departure window would take exactly one hour. 
+
+To change the origin of the analysis, drag the marker to a new location. Clicking on the map will display a box and whisker plot of the distribution of travel times from the origin to that location. For example, in the image below, the travel time varies between about 30 and 50 minutes depending on when one departs.
+
+<figure>
+  <img src="../img/destination-travel-time-distribution.png" />
+  <figcaption>The travel time distribution from an origin to a destination, with ticks at the following percentiles: 5,25,50,75,95</figcaption>
+</figure>
+
+If multiple scenarios are being compared, the isochrone for the first scenario remains blue while the isochrone for the second is red. Thus, areas reachable under both scenarios are purple, areas reachable only under the first scenario are blue, and areas reachable only under the second scenario are red.
 
 <figure>
   <img src="../img/seattle-isos.gif" />
@@ -22,13 +34,6 @@ If multiple scenarios are being compared, the isochrone for the first scenario r
 The modifications displayed on the map can be controlled in [editing mode](../edit-scenario/index.html#toggling-display-of-modifications-on-the-map).
 
 If an [opportunity dataset](../prepare-inputs/upload-opportunity-data.html) is selected in the drop-down menu in the settings panel, the map will show gray dots representing the density of opportunities. For instance, if your selected opportunity data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities, and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents.
-
-Clicking on the map will display the distribution of travel times from the origin to that location. For example, in the image below, the travel time varies between about 30 and 50 minutes depending on when one leaves.
-
-<figure>
-  <img src="../img/destination-travel-time-distribution.png" />
-  <figcaption>The travel time distribution from an origin to a destination</figcaption>
-</figure>
 
 ## Analysis panel
 

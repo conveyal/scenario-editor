@@ -3,6 +3,7 @@
 
 This is a summary of the accessibility indicators used in Conveyal Analysis. For more details, please see Conway, Matthew Wigginton, Andrew Byrd, and Marco van der Linden (2017). “[Evidence-Based Transit and Land Use Sketch Planning Using Interactive Accessibility Methods on Combined Schedule and Headway-Based Networks](http://trrjournalonline.trb.org/doi/abs/10.3141/2653-06)”
 
+.. _spatial_grid:
 ##Spatial resolution
 
 As a shared geographic foundation for regions, opportunity datasets, and accessibility indicators, Conveyal Analysis uses a regular grid of cells measuring approximately 300 meters by 300 meters. Large regions may contain more than a million such cells, reflecting a much finer resolution than typical regional travel demand models.

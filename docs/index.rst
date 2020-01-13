@@ -37,6 +37,7 @@ Contents
 
     analysis/index
     analysis/regional
+    analysis/configuration
 
 .. toctree::
     :caption: Learn More

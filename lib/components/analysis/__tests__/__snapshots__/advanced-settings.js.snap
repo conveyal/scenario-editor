@@ -234,6 +234,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
             disabled={false}
             key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
             rows={10}
+            spellCheck={false}
           />
           <br />
           <Button
@@ -1455,6 +1456,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                       disabled={false}
                       key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
                       rows={10}
+                      spellCheck={false}
                     />
                     <br />
                     <Button

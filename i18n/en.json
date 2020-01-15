@@ -171,7 +171,7 @@
     "showModifications": "Show modifications for this scenario on the map",
     "delete": "Delete this scenario",
     "deleteConfirmation": "Are you sure you want to delete this scenario? Proceeding will clear references to it from all modifications.",
-    "activeIn": "Active in scenario numbers",
+    "activeIn": "Active in scenarios",
     "export": "Select a scenario to download or share",
     "saveJson": "Raw scenario (.json)",
     "print": "Summary report",

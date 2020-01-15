@@ -1,6 +1,6 @@
-name: Node CI
+name: Build, Test, Deploy
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
@@ -10,15 +10,33 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Install
-        run: yarn install
-      - name: Next.js Build
-        run: yarn build
-      - name: ESLint
-        run: yarn lint
-      - name: Jest
+      - run: yarn install
+
+      - run: yarn build
+      - run: yarn lint
+      - run: yarn check-format
+      - run: yarn jest
         env:
           CI: true
-        run: yarn jest
-      - name: Check Format
-        run: yarn check-format
+
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: yarn install
+      - run: |
+          export CYPRESS_baseURL=$(now deploy --no-clipboard --token $ZEIT_TOKEN)
+          yarn cypress run --env $CYPRESS_GITHUB_ENV
+
+        env:
+          CYPRESS_GITHUB_ENV: ${{ secrets.CYPRESS_GITHUB_ENV }}
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots

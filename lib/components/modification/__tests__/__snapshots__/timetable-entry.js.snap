@@ -1,7 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > TimetableEntry renders correctly 1`] = `
-<Fragment>
+exports[`Component TimetableEntry snapshot(mount) 1`] = `
+<TimetableEntry
+  bidirectional={false}
+  modificationStops={Array []}
+  projectTimetables={Array []}
+  timetable={
+    Object {
+      "_id": "timetable-id",
+      "dwellTime": 10,
+      "dwellTimes": Array [
+        12,
+      ],
+      "endTime": 57600,
+      "exactTimes": false,
+      "friday": true,
+      "headwaySecs": 900,
+      "modificationId": "1234",
+      "modificationName": "Test Modification",
+      "monday": true,
+      "name": "Test timetable",
+      "patternTrips": Array [
+        "abcd",
+      ],
+      "phaseAtStop": "",
+      "phaseFromStop": "",
+      "phaseFromTimetable": "",
+      "phaseSeconds": 300,
+      "saturday": false,
+      "segmentSpeeds": Array [],
+      "sourceTrip": "abcd",
+      "startTime": 28800,
+      "sunday": false,
+      "thursday": true,
+      "tuesday": true,
+      "wednesday": true,
+    }
+  }
+  update={[MockFunction]}
+>
   <Days
     setDay={[Function]}
     timetable={
@@ -36,28 +73,347 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
         "wednesday": true,
       }
     }
-  />
+  >
+    <div
+      className="form-group"
+    >
+      <label>
+        Days active
+      </label>
+      <div
+        className="form-inline"
+      >
+        <Checkbox
+          checked={true}
+          key="monday-checkbox"
+          label="Mon"
+          onChange={[Function]}
+        >
+          <div
+            className="checkbox"
+          >
+            <label
+              htmlFor="mon-input-0"
+            >
+              <input
+                checked={true}
+                id="mon-input-0"
+                label="Mon"
+                onChange={[Function]}
+                type="checkbox"
+              />
+               
+              Mon
+            </label>
+          </div>
+        </Checkbox>
+        <Checkbox
+          checked={true}
+          key="tuesday-checkbox"
+          label="Tue"
+          onChange={[Function]}
+        >
+          <div
+            className="checkbox"
+          >
+            <label
+              htmlFor="tue-input-1"
+            >
+              <input
+                checked={true}
+                id="tue-input-1"
+                label="Tue"
+                onChange={[Function]}
+                type="checkbox"
+              />
+               
+              Tue
+            </label>
+          </div>
+        </Checkbox>
+        <Checkbox
+          checked={true}
+          key="wednesday-checkbox"
+          label="Wed"
+          onChange={[Function]}
+        >
+          <div
+            className="checkbox"
+          >
+            <label
+              htmlFor="wed-input-2"
+            >
+              <input
+                checked={true}
+                id="wed-input-2"
+                label="Wed"
+                onChange={[Function]}
+                type="checkbox"
+              />
+               
+              Wed
+            </label>
+          </div>
+        </Checkbox>
+        <Checkbox
+          checked={true}
+          key="thursday-checkbox"
+          label="Thu"
+          onChange={[Function]}
+        >
+          <div
+            className="checkbox"
+          >
+            <label
+              htmlFor="thu-input-3"
+            >
+              <input
+                checked={true}
+                id="thu-input-3"
+                label="Thu"
+                onChange={[Function]}
+                type="checkbox"
+              />
+               
+              Thu
+            </label>
+          </div>
+        </Checkbox>
+        <Checkbox
+          checked={true}
+          key="friday-checkbox"
+          label="Fri"
+          onChange={[Function]}
+        >
+          <div
+            className="checkbox"
+          >
+            <label
+              htmlFor="fri-input-4"
+            >
+              <input
+                checked={true}
+                id="fri-input-4"
+                label="Fri"
+                onChange={[Function]}
+                type="checkbox"
+              />
+               
+              Fri
+            </label>
+          </div>
+        </Checkbox>
+        <Checkbox
+          checked={false}
+          key="saturday-checkbox"
+          label="Sat"
+          onChange={[Function]}
+        >
+          <div
+            className="checkbox"
+          >
+            <label
+              htmlFor="sat-input-5"
+            >
+              <input
+                checked={false}
+                id="sat-input-5"
+                label="Sat"
+                onChange={[Function]}
+                type="checkbox"
+              />
+               
+              Sat
+            </label>
+          </div>
+        </Checkbox>
+        <Checkbox
+          checked={false}
+          key="sunday-checkbox"
+          label="Sun"
+          onChange={[Function]}
+        >
+          <div
+            className="checkbox"
+          >
+            <label
+              htmlFor="sun-input-6"
+            >
+              <input
+                checked={false}
+                id="sun-input-6"
+                label="Sun"
+                onChange={[Function]}
+                type="checkbox"
+              />
+               
+              Sun
+            </label>
+          </div>
+        </Checkbox>
+      </div>
+    </div>
+  </Days>
   <MinutesSeconds
     label="Frequency"
     onChange={[Function]}
     seconds={900}
-  />
+  >
+    <Group
+      className=""
+      label="Frequency"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label"
+          htmlFor="frequency-input-7"
+        >
+          Frequency
+        </label>
+        <Input
+          onChange={[Function]}
+          type="text"
+          units="hh:mm:ss"
+          value="00:15:00"
+        >
+          <div
+            className="InputWithUnits"
+          >
+            <input
+              className="form-control"
+              id="undefined-input-8"
+              onChange={[Function]}
+              type="text"
+              units="hh:mm:ss"
+              value="00:15:00"
+            />
+            <span
+              className="InputUnits"
+            >
+              hh:mm:ss
+            </span>
+          </div>
+        </Input>
+      </div>
+    </Group>
+  </MinutesSeconds>
   <TimePicker
     label="Start time"
     onChange={[Function]}
     value={28800}
-  />
+  >
+    <Group
+      className=""
+      label="Start time"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label"
+          htmlFor="start-time-input-9"
+        >
+          Start time
+        </label>
+        <Input
+          onChange={[Function]}
+          type="text"
+          units="hh:mm"
+          value="08:00"
+        >
+          <div
+            className="InputWithUnits"
+          >
+            <input
+              className="form-control"
+              id="undefined-input-10"
+              onChange={[Function]}
+              type="text"
+              units="hh:mm"
+              value="08:00"
+            />
+            <span
+              className="InputUnits"
+            >
+              hh:mm
+            </span>
+          </div>
+        </Input>
+      </div>
+    </Group>
+  </TimePicker>
   <TimePicker
     label="End time"
     onChange={[Function]}
     value={57600}
-  />
+  >
+    <Group
+      className=""
+      label="End time"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label"
+          htmlFor="end-time-input-11"
+        >
+          End time
+        </label>
+        <Input
+          onChange={[Function]}
+          type="text"
+          units="hh:mm"
+          value="16:00"
+        >
+          <div
+            className="InputWithUnits"
+          >
+            <input
+              className="form-control"
+              id="undefined-input-12"
+              onChange={[Function]}
+              type="text"
+              units="hh:mm"
+              value="16:00"
+            />
+            <span
+              className="InputUnits"
+            >
+              hh:mm
+            </span>
+          </div>
+        </Input>
+      </div>
+    </Group>
+  </TimePicker>
   <Checkbox
     checked={false}
     disabled={false}
     label="Times are exact"
     onChange={[Function]}
-  />
+  >
+    <div
+      className="checkbox"
+    >
+      <label
+        htmlFor="times-are-exact-input-13"
+      >
+        <input
+          checked={false}
+          disabled={false}
+          id="times-are-exact-input-13"
+          label="Times are exact"
+          onChange={[Function]}
+          type="checkbox"
+        />
+         
+        Times are exact
+      </label>
+    </div>
+  </Checkbox>
   <Phase
     availableTimetables={Array []}
     disabled={false}
@@ -68,6 +424,136 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
     phaseSeconds={300}
     timetableHeadway={900}
     update={[MockFunction]}
-  />
-</Fragment>
+  >
+    <H5>
+      <Heading
+        as="h5"
+        fontSize="14px"
+        fontWeight="500"
+        my="10px"
+      >
+        <Box
+          as="h5"
+          fontFamily="heading"
+          fontSize="14px"
+          fontWeight="500"
+          lineHeight="shorter"
+          my="10px"
+        >
+          <h5
+            className="css-1rbv6ep"
+          >
+            <span>
+              Phasing 
+            </span>
+            <a
+              href="http://docs.analysis.conveyal.com/en/latest/edit-scenario/phasing.html"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Learn more about phasing"
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "info-circle",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "info-circle",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-info-circle fa-w-NaN fa-fw "
+                    data-icon="info-circle"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+            </a>
+          </h5>
+        </Box>
+      </Heading>
+    </H5>
+    <Group
+      label="Phase at stop"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label"
+          htmlFor="phase-at-stop-input-14"
+        >
+          Phase at stop
+        </label>
+        <S
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          isClearable={true}
+          isDisabled={false}
+          name="Phase at stop"
+          onChange={[Function]}
+          options={Array []}
+          placeholder="Phase at stop"
+        >
+          <ReactSelect
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            isClearable={true}
+            isDisabled={false}
+            name="Phase at stop"
+            onChange={[Function]}
+            options={Array []}
+            placeholder="Phase at stop"
+            styles={
+              Object {
+                "control": [Function],
+                "option": [Function],
+              }
+            }
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </S>
+      </div>
+    </Group>
+  </Phase>
+</TimetableEntry>
 `;

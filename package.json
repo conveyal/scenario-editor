@@ -21,7 +21,7 @@
     "pretest": "yarn",
     "semantic-release": "semantic-release",
     "start": "next start",
-    "test": "yarn run lint && yarn run jest && yarn run cypress run",
+    "test": "yarn run lint && yarn run jest",
     "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "repository": {

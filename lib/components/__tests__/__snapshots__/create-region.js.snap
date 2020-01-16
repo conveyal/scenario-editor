@@ -103,7 +103,10 @@ exports[`create-region.render 1`] = `
             </FontAwesomeIcon>
           </Icon>
            
-          Set up a new region
+          <span>
+             
+            Set up a new region
+          </span>
         </legend>
         <Text
           label="Region Name*"

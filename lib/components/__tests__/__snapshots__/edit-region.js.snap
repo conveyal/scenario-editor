@@ -76,6 +76,7 @@ exports[`Component > EditRegion 1`] = `
     }
     router={
       Router {
+        "_getStaticData": [Function],
         "_wrapApp": undefined,
         "asPath": "as-path",
         "clc": null,
@@ -100,6 +101,7 @@ exports[`Component > EditRegion 1`] = `
         "pathname": "page",
         "query": Object {},
         "route": "page",
+        "sdc": Object {},
         "sub": undefined,
       }
     }

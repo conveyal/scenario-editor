@@ -44,8 +44,6 @@ export default class extends Document {
         <Head>
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
           <Stylesheets />
-          <link rel='stylesheet' href='/static/react-datetime.css' />
-          <link rel='stylesheet' href='/static/styles.css' />
         </Head>
         <body>
           <Main />

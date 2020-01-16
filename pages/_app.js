@@ -23,9 +23,16 @@ const isAdmin = user =>
   user && user.accessGroup === process.env.ADMIN_ACCESS_GROUP
 
 // DEV Bar Style
-function DevBar() {
-  return <Box className='DEV' mt='-4px' />
-}
+const DevBar = () => (
+  <Box
+    className='DEV'
+    mt='-4px'
+    position='absolute'
+    left='0'
+    right='0'
+    zIndex='10000'
+  />
+)
 
 /**
  * Function to check if the path needs the map.

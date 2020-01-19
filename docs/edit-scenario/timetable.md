@@ -1,3 +1,4 @@
+.. _timetables:
 # Timetables
 
 :ref:`add_trip_pattern` and :ref:`convert_to_frequency` modifications require simple timetables. By default, a newly added timetable or frequency entry will specify trips running every 10 minutes from 7 AM to 10 PM, every day of the week.

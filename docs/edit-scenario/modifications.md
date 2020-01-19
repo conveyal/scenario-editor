@@ -144,29 +144,24 @@ In order to remove trips, create a new _remove trips modification_, and select a
 .. _reroute:
 ## Reroute
 
-This modification type can be used to represent detours and extensions. When creating a _reroute_ modification, you first select a feed, route, and trip patterns. Once trip patterns are selected, you then select a stop at which the reroute segments will start, or a stop at which the reroute segments will end, or both, by clicking
+This modification type can be used to represent detours and extensions. When creating a _reroute_ modification, you first select a :term:`GTFS feed`, route, and :term:`trip patterns<trip pattern>`. Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
 <br> then clicking an existing stop on the baseline pattern.
 
 <figure>
   <img src="../img/reroute.png" alt="Rerouting" />
+  <figcaption>A trip pattern being extended from a selected stop at the end of the line.</figcaption>
 </figure>
 
-Once a start or end stop is specified, you can add and modify segments by clicking
-<br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
-<br> then clicking on the map. Editing behavior is similar to editing mode for [adding trip patterns](#add-trip-pattern), with some options fixed:
+Once a start or end stop is specified, you can add and modify segments by clicking the *Edit route geometry* button, then clicking on the map. Editing behavior is similar to editing mode for [adding trip patterns](#add-trip-pattern) though with some options fixed depending on whether the route is being extended in either direction, or if the reroute is happening in the middle of the alignment. 
 
-- If only the "start of reroute/extension" is set, new stops and segments will be added extending _forward_ from the selected stop on the baseline pattern ("Extend from end" turned on).
-- If only the "end of reroute/extension" is set, new stops and segments will be added extending _backward_ from the selected stop on the baseline pattern ("Extend from end" turned off).
-- If both are set, the new segment between the stops cannot be extended, but it can be modified by clicking on it to add stops and control points ("Extend" turned off).
+A reroute modification can apply to multiple trip patterns in a single direction as long as the patterns all contain the start and end stop in order; you will generally need to create one reroute modification for each direction of the route.
 
-For example, consider a baseline pattern passing through stops A -> B -> C -> D:
+A few examples should help to illustate how this modification works. Consider a baseline pattern passing through stops A -> B -> C -> D:
 
 - To reroute this pattern from C to another stop X instead of D, select C as the "start of reroute/extension," activate route editing, and click on stop X to add a segment from C -> X. Speeds and dwell times can be set on this added segment. Baseline speeds and dwell times between A and C are not affected.
 - To extend this pattern backward, to originate at a stop Y, select A as the "end of reroute/extension," activate route editing, and click on stop Y to add a segment from Y -> A. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and D are not affected.
 - To detour this pattern so that it serves a stop Z between B and C, select B as the "start of reroute/extension", select C as the "end of reroute/extension", activate route editing, click on the new segment to add a stop, and drag the added stop to Z. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and B, and between C and D, are not affected.
-
-A reroute modification can apply to multiple patterns in a single direction as long as the patterns all contain the start and end stop in order; you will generally need to create one reroute modification for each direction of the route.
 
 .. _custom:
 ## Custom modifications

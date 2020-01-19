@@ -5,6 +5,7 @@ Several terms have a special or specific meaning in the context of Conveyal Anal
 .. glossary:: :sorted:
 
    GTFS
+   GTFS feed
       `General Transit Feed Specification <https://developers.google.com/transit/gtfs/>`_, a format for transit network and schedule data. Most transit agencies produce **GTFS** feeds to power customer-facing trip planning applications, but they are also useful for analysis.
 
    GTFS bundle

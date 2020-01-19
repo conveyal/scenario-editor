@@ -1,73 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component WithContext(WithMap(HopSelectPolygon)) snapshot(shallow) 1`] = `
-<ContextProvider
-  value={
-    Object {
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "subscription": Subscription {
-        "handleChangeWrapper": [Function],
-        "listeners": Object {
-          "notify": [Function],
-        },
-        "onStateChange": [Function],
-        "parentSub": undefined,
-        "store": Object {
-          "clearActions": [Function],
-          "dispatch": [Function],
-          "getActions": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-        },
-        "unsubscribe": null,
-      },
-    }
-  }
->
-  <ContextProvider
-    value={
-      Router {
-        "_wrapApp": undefined,
-        "asPath": "as-path",
-        "clc": null,
-        "components": Object {
-          "/_app": Object {
-            "Component": undefined,
-          },
-          "page": Object {
-            "Component": undefined,
-            "err": undefined,
-            "props": undefined,
-          },
-        },
-        "events": Object {
-          "emit": [Function],
-          "off": [Function],
-          "on": [Function],
-        },
-        "isSsr": true,
-        "onPopState": [Function],
-        "pageLoader": undefined,
-        "pathname": "page",
-        "query": Object {},
-        "route": "page",
-        "sub": undefined,
-      }
-    }
-  >
-    <WithMap(HopSelectPolygon)
-      allStops={Array []}
-      hopStops={Array []}
-      selectHops={[MockFunction]}
-    />
-  </ContextProvider>
-</ContextProvider>
+<Map>
+  <HopSelectPolygon
+    allStops={Array []}
+    hopStops={Array []}
+    selectHops={[MockFunction]}
+  />
+</Map>
 `;

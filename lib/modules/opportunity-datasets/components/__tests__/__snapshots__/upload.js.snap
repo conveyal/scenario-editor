@@ -1,160 +1,162 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`upload should render without errors 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <UploadOpportunityDataset>
-    <H5>
-      <ForwardRef
+<UploadOpportunityDataset>
+  <H5>
+    <Heading
+      as="h5"
+      fontSize="14px"
+      fontWeight="500"
+      my="10px"
+    >
+      <Box
         as="h5"
+        fontFamily="heading"
         fontSize="14px"
         fontWeight="500"
+        lineHeight="shorter"
         my="10px"
       >
-        <Styled(div)
-          as="h5"
-          fontSize="14px"
-          fontWeight="500"
-          lineHeight="shorter"
-          my="10px"
+        <h5
+          className="css-1rbv6ep"
         >
-          <h5
-            className="css-18r09h"
-          >
-            Upload a new opportunity dataset
-          </h5>
-        </Styled(div)>
-      </ForwardRef>
-    </H5>
-    <P>
-      <Styled(div)
-        as="p"
-        mb="10px"
-      >
-        <p
-          className="css-1r2f04i"
-        >
-          Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
-        </p>
-      </Styled(div)>
-    </P>
-    <form
-      encType="multipart/form-data"
+          Upload a new opportunity dataset
+        </h5>
+      </Box>
+    </Heading>
+  </H5>
+  <P>
+    <Box
+      as="p"
+      mb="10px"
     >
-      <Text
+      <p
+        className="css-1r2f04i"
+      >
+        Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
+      </p>
+    </Box>
+  </P>
+  <form
+    encType="multipart/form-data"
+  >
+    <Text
+      label="Opportunity dataset*"
+      name="Name"
+      onChange={[Function]}
+      value=""
+    >
+      <Group
+        id="name-input-0"
         label="Opportunity dataset*"
         name="Name"
         onChange={[Function]}
         value=""
       >
-        <Group
-          id="name-input-0"
-          label="Opportunity dataset*"
-          name="Name"
-          onChange={[Function]}
-          value=""
+        <div
+          className="form-group"
         >
-          <div
-            className="form-group"
+          <label
+            className="control-label"
+            htmlFor="name-input-0"
           >
-            <label
-              className="control-label"
-              htmlFor="name-input-0"
-            >
-              Opportunity dataset*
-            </label>
-            <Input
+            Opportunity dataset*
+          </label>
+          <Input
+            id="name-input-0"
+            label="Opportunity dataset*"
+            name="Name"
+            onChange={[Function]}
+            type="text"
+            value=""
+          >
+            <input
+              className="form-control"
               id="name-input-0"
               label="Opportunity dataset*"
               name="Name"
               onChange={[Function]}
+              placeholder="Opportunity dataset*"
               type="text"
               value=""
-            >
-              <input
-                className="form-control"
-                id="name-input-0"
-                label="Opportunity dataset*"
-                name="Name"
-                onChange={[Function]}
-                placeholder="Opportunity dataset*"
-                type="text"
-                value=""
-              />
-            </Input>
-          </div>
-        </Group>
-      </Text>
-      <File
+            />
+          </Input>
+        </div>
+      </Group>
+    </Text>
+    <File
+      label="Select opportunity dataset*"
+      multiple={true}
+      name="files"
+      onChange={[Function]}
+    >
+      <Group
+        id="files-input-1"
         label="Select opportunity dataset*"
         multiple={true}
         name="files"
         onChange={[Function]}
       >
-        <Group
-          id="files-input-1"
-          label="Select opportunity dataset*"
-          multiple={true}
-          name="files"
-          onChange={[Function]}
+        <div
+          className="form-group"
         >
-          <div
-            className="form-group"
+          <label
+            className="control-label"
+            htmlFor="files-input-1"
           >
-            <label
-              className="control-label"
-              htmlFor="files-input-1"
-            >
-              Select opportunity dataset*
-            </label>
-            <Input
+            Select opportunity dataset*
+          </label>
+          <Input
+            id="files-input-1"
+            label="Select opportunity dataset*"
+            multiple={true}
+            name="files"
+            onChange={[Function]}
+            type="file"
+          >
+            <input
+              className="form-control"
               id="files-input-1"
               label="Select opportunity dataset*"
               multiple={true}
               name="files"
               onChange={[Function]}
+              placeholder="Select opportunity dataset*"
               type="file"
-            >
-              <input
-                className="form-control"
-                id="files-input-1"
-                label="Select opportunity dataset*"
-                multiple={true}
-                name="files"
-                onChange={[Function]}
-                placeholder="Select opportunity dataset*"
-                type="file"
-              />
-            </Input>
-          </div>
-        </Group>
-      </File>
-      <Button
-        className="btn btn-block btn-success"
+            />
+          </Input>
+        </div>
+      </Group>
+    </File>
+    <Button
+      className="btn btn-block btn-success"
+      disabled={true}
+      onClick={[Function]}
+      type="success"
+    >
+      <a
+        className="btn btn-default btn btn-block btn-success"
         disabled={true}
+        href="#"
         onClick={[Function]}
+        tabIndex={0}
         type="success"
       >
-        <a
-          className="btn btn-default btn btn-block btn-success"
-          disabled={true}
-          href="#"
-          onClick={[Function]}
-          tabIndex={0}
-          type="success"
+        <Icon
+          fixedWidth={true}
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "plus",
+              "prefix": "fas",
+            }
+          }
         >
-          <Icon
+          <FontAwesomeIcon
+            border={false}
+            className=""
             fixedWidth={true}
+            flip={null}
             icon={
               Object {
                 "icon": Array [],
@@ -162,55 +164,41 @@ exports[`upload should render without errors 1`] = `
                 "prefix": "fas",
               }
             }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
           >
-            <FontAwesomeIcon
-              border={false}
-              className=""
-              fixedWidth={true}
-              flip={null}
-              icon={
-                Object {
-                  "icon": Array [],
-                  "iconName": "plus",
-                  "prefix": "fas",
-                }
-              }
-              inverse={false}
-              listItem={false}
-              mask={null}
-              pull={null}
-              pulse={false}
-              rotation={null}
-              size={null}
-              spin={false}
-              swapOpacity={false}
-              symbol={false}
-              title=""
-              transform={null}
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+              data-icon="plus"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 undefined undefined"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                data-icon="plus"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
+              <path
+                fill="currentColor"
                 style={Object {}}
-                viewBox="0 0 undefined undefined"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </FontAwesomeIcon>
-          </Icon>
-           
-          Upload a new opportunity dataset
-        </a>
-      </Button>
-    </form>
-  </UploadOpportunityDataset>
-</Provider>
+              />
+            </svg>
+          </FontAwesomeIcon>
+        </Icon>
+         
+        Upload a new opportunity dataset
+      </a>
+    </Button>
+  </form>
+</UploadOpportunityDataset>
 `;

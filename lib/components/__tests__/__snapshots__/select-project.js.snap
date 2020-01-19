@@ -1,103 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > SelectProject 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <SelectProject
-    bundles={
-      Array [
-        Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "centerLat": 38.90124,
-          "centerLon": -77.015615,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "errorCode": "",
-          "feeds": Array [],
-          "name": "Mock Bundle",
-          "nonce": "12345",
-          "regionId": "1",
-          "serviceEnd": "2018-09-28",
-          "serviceStart": "2018-09-27",
-          "status": "DONE",
-          "totalFeeds": 0,
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-        },
-      ]
-    }
-    projects={
-      Array [
-        Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "bundleId": "1",
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "name": "Mock Project",
-          "nonce": "12345",
-          "regionId": "1",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            "Default",
-          ],
-        },
-      ]
-    }
-    region={
+<SelectProject
+  bundles={
+    Array [
       Object {
         "_id": "1",
         "accessGroup": "accessGroupName",
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        },
+        "centerLat": 38.90124,
+        "centerLon": -77.015615,
         "createdAt": "2017-11-08T12:30:50.133Z",
         "createdBy": "person@gmail.com",
-        "description": "Region description",
-        "name": "Mock Region",
+        "errorCode": "",
+        "feeds": Array [],
+        "name": "Mock Bundle",
         "nonce": "12345",
-        "opportunityDatasets": Array [
-          Object {
-            "_id": "Workers_total",
-            "name": "Workers total",
-            "sourceName": "lodes-data-2014",
-          },
-        ],
-        "statusCode": "DONE",
+        "regionId": "1",
+        "serviceEnd": "2018-09-28",
+        "serviceStart": "2018-09-27",
+        "status": "DONE",
+        "totalFeeds": 0,
         "updatedAt": "2017-11-08T12:31:19.602Z",
         "updatedBy": "person@gmail.com",
-      }
+      },
+    ]
+  }
+  projects={
+    Array [
+      Object {
+        "_id": "1",
+        "accessGroup": "accessGroupName",
+        "bundleId": "1",
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "name": "Mock Project",
+        "nonce": "12345",
+        "regionId": "1",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          "Default",
+        ],
+      },
+    ]
+  }
+  region={
+    Object {
+      "_id": "1",
+      "accessGroup": "accessGroupName",
+      "bounds": Object {
+        "east": -76,
+        "north": 39,
+        "south": 38,
+        "west": -77,
+      },
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "description": "Region description",
+      "name": "Mock Region",
+      "nonce": "12345",
+      "opportunityDatasets": Array [
+        Object {
+          "_id": "Workers_total",
+          "name": "Workers total",
+          "sourceName": "lodes-data-2014",
+        },
+      ],
+      "statusCode": "DONE",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
     }
+  }
+>
+  <InnerDock
+    className="block"
   >
-    <InnerDock
-      className="block"
-    >
-      <div
-        className="InnerDock block"
-        style={
-          Object {
-            "height": 768,
-          }
+    <div
+      className="InnerDock block"
+      style={
+        Object {
+          "height": 768,
         }
-      >
-        <legend>
-          <span>
-            <Icon
+      }
+    >
+      <legend>
+        <span>
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "map",
+                "prefix": "fas",
+              }
+            }
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
               icon={
                 Object {
                   "icon": Array [],
@@ -105,93 +106,93 @@ exports[`Component > SelectProject 1`] = `
                   "prefix": "fas",
                 }
               }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
             >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "map",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                swapOpacity={false}
-                symbol={false}
-                title=""
-                transform={null}
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-map fa-w-NaN fa-fw "
+                data-icon="map"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-map fa-w-NaN fa-fw "
-                  data-icon="map"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
+                <path
+                  fill="currentColor"
                   style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Mock Region
-          </span>
-        </legend>
-        <Status
-          code="DONE"
-        />
-        <Group>
-          <div
-            className="form-group"
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           
+          Mock Region
+        </span>
+      </legend>
+      <Status
+        code="DONE"
+      />
+      <Group>
+        <div
+          className="form-group"
+        >
+          <ButtonLink
+            block={true}
+            regionId="1"
+            style="success"
+            title="Create new Project"
+            to="projectCreate"
           >
-            <ButtonLink
-              block={true}
+            <Link
               regionId="1"
-              style="success"
               title="Create new Project"
               to="projectCreate"
             >
               <Link
-                regionId="1"
-                title="Create new Project"
-                to="projectCreate"
-              >
-                <Link
-                  as="/regions/1/create-project?title=Create new Project"
-                  href={
-                    Object {
-                      "pathname": "/regions/[regionId]/create-project",
-                      "query": Object {
-                        "title": "Create new Project",
-                      },
-                    }
+                as="/regions/1/create-project?title=Create new Project"
+                href={
+                  Object {
+                    "pathname": "/regions/[regionId]/create-project",
+                    "query": Object {
+                      "title": "Create new Project",
+                    },
                   }
-                  passHref={true}
+                }
+                passHref={true}
+              >
+                <a
+                  className="btn btn-success btn-block"
+                  href="/regions/1/create-project?title=Create new Project"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  tabIndex={0}
                 >
-                  <a
-                    className="btn btn-success btn-block"
-                    href="/regions/1/create-project?title=Create new Project"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    tabIndex={0}
+                  <Icon
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "plus",
+                        "prefix": "fas",
+                      }
+                    }
                   >
-                    <Icon
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={true}
+                      flip={null}
                       icon={
                         Object {
                           "icon": Array [],
@@ -199,133 +200,133 @@ exports[`Component > SelectProject 1`] = `
                           "prefix": "fas",
                         }
                       }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      swapOpacity={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
                     >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={true}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "plus",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        swapOpacity={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                        data-icon="plus"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 undefined undefined"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <svg
-                          aria-hidden="true"
-                          className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                          data-icon="plus"
-                          data-prefix="fas"
-                          focusable="false"
-                          role="img"
+                        <path
+                          fill="currentColor"
                           style={Object {}}
-                          viewBox="0 0 undefined undefined"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill="currentColor"
-                            style={Object {}}
-                          />
-                        </svg>
-                      </FontAwesomeIcon>
-                    </Icon>
-                     
-                    Create new Project
-                  </a>
-                </Link>
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </Icon>
+                   
+                  Create new Project
+                </a>
               </Link>
-            </ButtonLink>
-          </div>
-        </Group>
-        <Stack
-          spacing={4}
+            </Link>
+          </ButtonLink>
+        </div>
+      </Group>
+      <Stack
+        spacing={4}
+      >
+        <Flex
+          direction="column"
         >
-          <ForwardRef
-            direction="column"
+          <Box
+            display="flex"
+            flexDirection="column"
           >
-            <Styled(div)
-              display="flex"
-              flexDirection="column"
+            <div
+              className="css-j7qwjs"
             >
-              <div
-                className="css-j7qwjs"
+              <Box
+                key=".0"
+                mb={4}
+                textAlign="center"
               >
-                <Styled(div)
-                  key=".0"
-                  mb={4}
-                  textAlign="center"
+                <div
+                  className="css-wnycxj"
                 >
-                  <div
-                    className="css-3b2wtl"
-                  >
-                    or go to an existing project
-                  </div>
-                </Styled(div)>
-                <Styled(div)
-                  className="list-group"
-                  key=".1"
-                  mb={null}
+                  or go to an existing project
+                </div>
+              </Box>
+              <Box
+                className="list-group"
+                key=".1"
+                mb={null}
+              >
+                <div
+                  className="list-group css-0"
                 >
-                  <div
-                    className="list-group css-0"
+                  <ALink
+                    className="list-group-item"
+                    key="1"
+                    projectId="1"
+                    regionId="1"
+                    to="modifications"
                   >
-                    <ALink
-                      className="list-group-item"
-                      key="1"
+                    <Link
                       projectId="1"
                       regionId="1"
                       to="modifications"
                     >
                       <Link
-                        projectId="1"
-                        regionId="1"
-                        to="modifications"
+                        as="/regions/1/projects/1"
+                        href={
+                          Object {
+                            "pathname": "/regions/[regionId]/projects/[projectId]",
+                            "query": Object {},
+                          }
+                        }
+                        passHref={true}
                       >
-                        <Link
-                          as="/regions/1/projects/1"
-                          href={
+                        <PseudoBox
+                          _hover={
                             Object {
-                              "pathname": "/regions/[regionId]/projects/[projectId]",
-                              "query": Object {},
+                              "color": "#185c86",
                             }
                           }
-                          passHref={true}
+                          as="a"
+                          className="list-group-item"
+                          color="#2389c9"
+                          href="/regions/1/projects/1"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
-                          <Styled(div)
-                            _hover={
-                              Object {
-                                "color": "#185c86",
-                              }
-                            }
-                            as="a"
-                            className="list-group-item"
-                            color="#2389c9"
+                          <a
+                            className="list-group-item css-khmg1f"
                             href="/regions/1/projects/1"
                             onClick={[Function]}
                             onMouseEnter={[Function]}
                           >
-                            <a
-                              className="list-group-item css-khmg1f"
-                              href="/regions/1/projects/1"
-                              onClick={[Function]}
-                              onMouseEnter={[Function]}
-                            >
-                              <span>
-                                <Icon
+                            <span>
+                              <Icon
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "cube",
+                                    "prefix": "fas",
+                                  }
+                                }
+                              >
+                                <FontAwesomeIcon
+                                  border={false}
+                                  className=""
+                                  fixedWidth={true}
+                                  flip={null}
                                   icon={
                                     Object {
                                       "icon": Array [],
@@ -333,66 +334,52 @@ exports[`Component > SelectProject 1`] = `
                                       "prefix": "fas",
                                     }
                                   }
+                                  inverse={false}
+                                  listItem={false}
+                                  mask={null}
+                                  pull={null}
+                                  pulse={false}
+                                  rotation={null}
+                                  size={null}
+                                  spin={false}
+                                  swapOpacity={false}
+                                  symbol={false}
+                                  title=""
+                                  transform={null}
                                 >
-                                  <FontAwesomeIcon
-                                    border={false}
-                                    className=""
-                                    fixedWidth={true}
-                                    flip={null}
-                                    icon={
-                                      Object {
-                                        "icon": Array [],
-                                        "iconName": "cube",
-                                        "prefix": "fas",
-                                      }
-                                    }
-                                    inverse={false}
-                                    listItem={false}
-                                    mask={null}
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    swapOpacity={false}
-                                    symbol={false}
-                                    title=""
-                                    transform={null}
+                                  <svg
+                                    aria-hidden="true"
+                                    className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
+                                    data-icon="cube"
+                                    data-prefix="fas"
+                                    focusable="false"
+                                    role="img"
+                                    style={Object {}}
+                                    viewBox="0 0 undefined undefined"
+                                    xmlns="http://www.w3.org/2000/svg"
                                   >
-                                    <svg
-                                      aria-hidden="true"
-                                      className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
-                                      data-icon="cube"
-                                      data-prefix="fas"
-                                      focusable="false"
-                                      role="img"
+                                    <path
+                                      fill="currentColor"
                                       style={Object {}}
-                                      viewBox="0 0 undefined undefined"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        fill="currentColor"
-                                        style={Object {}}
-                                      />
-                                    </svg>
-                                  </FontAwesomeIcon>
-                                </Icon>
-                                 
-                                Mock Project
-                              </span>
-                            </a>
-                          </Styled(div)>
-                        </Link>
+                                    />
+                                  </svg>
+                                </FontAwesomeIcon>
+                              </Icon>
+                               
+                              Mock Project
+                            </span>
+                          </a>
+                        </PseudoBox>
                       </Link>
-                    </ALink>
-                  </div>
-                </Styled(div)>
-              </div>
-            </Styled(div)>
-          </ForwardRef>
-        </Stack>
-      </div>
-    </InnerDock>
-  </SelectProject>
-</Provider>
+                    </Link>
+                  </ALink>
+                </div>
+              </Box>
+            </div>
+          </Box>
+        </Flex>
+      </Stack>
+    </div>
+  </InnerDock>
+</SelectProject>
 `;

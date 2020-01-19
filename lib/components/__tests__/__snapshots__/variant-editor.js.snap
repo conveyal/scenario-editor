@@ -1,34 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > VariantEditor renders correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
+<Variants
+  createVariant={[MockFunction]}
+  deleteVariant={[MockFunction]}
+  editVariantName={[MockFunction]}
+  showVariant={[MockFunction]}
+  variants={Array []}
 >
-  <Variants
-    createVariant={[MockFunction]}
-    deleteVariant={[MockFunction]}
-    editVariantName={[MockFunction]}
-    showVariant={[MockFunction]}
-    variants={Array []}
+  <Collapsible
+    defaultExpanded={false}
+    heading={[Function]}
   >
-    <Collapsible
-      defaultExpanded={false}
-      heading={[Function]}
-    >
-      <Panel>
-        <div
-          className="panel panel-default"
+    <Panel>
+      <div
+        className="panel panel-default"
+      >
+        <Heading
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
         >
-          <Heading
+          <div
+            className="panel-heading clearfix "
             onClick={[Function]}
             style={
               Object {
@@ -36,20 +33,24 @@ exports[`Component > VariantEditor renders correctly 1`] = `
               }
             }
           >
-            <div
-              className="panel-heading clearfix "
-              onClick={[Function]}
-              style={
-                Object {
-                  "cursor": "pointer",
-                }
-              }
+            Scenarios
+            <span
+              className="pull-right"
             >
-              Scenarios
-              <span
-                className="pull-right"
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "caret-right",
+                    "prefix": "fas",
+                  }
+                }
               >
-                <Icon
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
                   icon={
                     Object {
                       "icon": Array [],
@@ -57,56 +58,42 @@ exports[`Component > VariantEditor renders correctly 1`] = `
                       "prefix": "fas",
                     }
                   }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
                 >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={true}
-                    flip={null}
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "caret-right",
-                        "prefix": "fas",
-                      }
-                    }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    swapOpacity={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-caret-right fa-w-NaN fa-fw "
+                    data-icon="caret-right"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-caret-right fa-w-NaN fa-fw "
-                      data-icon="caret-right"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
+                    <path
+                      fill="currentColor"
                       style={Object {}}
-                      viewBox="0 0 undefined undefined"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
-                </Icon>
-              </span>
-            </div>
-          </Heading>
-        </div>
-      </Panel>
-    </Collapsible>
-  </Variants>
-</Provider>
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+            </span>
+          </div>
+        </Heading>
+      </div>
+    </Panel>
+  </Collapsible>
+</Variants>
 `;

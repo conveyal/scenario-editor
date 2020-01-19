@@ -1,47 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component EditBundle snapshot(mount) 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <EditBundle>
-    <P>
-      <Styled(div)
-        as="p"
-        mb="10px"
+<EditBundle>
+  <P>
+    <Box
+      as="p"
+      mb="10px"
+    >
+      <p
+        className="css-1r2f04i"
       >
-        <p
-          className="css-1r2f04i"
-        >
-          Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
-        </p>
-      </Styled(div)>
-    </P>
-    <Group>
-      <div
-        className="form-group"
+        Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
+      </p>
+    </Box>
+  </P>
+  <Group>
+    <div
+      className="form-group"
+    >
+      <Button
+        block={true}
+        onClick={[Function]}
+        style="success"
       >
-        <Button
-          block={true}
+        <a
+          className="btn btn-success btn-block"
+          href="#"
           onClick={[Function]}
-          style="success"
+          tabIndex={0}
         >
-          <a
-            className="btn btn-success btn-block"
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "plus",
+                "prefix": "fas",
+              }
+            }
           >
-            <Icon
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
               icon={
                 Object {
                   "icon": Array [],
@@ -49,75 +50,90 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                   "prefix": "fas",
                 }
               }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
             >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "plus",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                swapOpacity={false}
-                symbol={false}
-                title=""
-                transform={null}
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                data-icon="plus"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                  data-icon="plus"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
+                <path
+                  fill="currentColor"
                   style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             Create a bundle
-          </a>
-        </Button>
-      </div>
-    </Group>
-    <P
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           Create a bundle
+        </a>
+      </Button>
+    </div>
+  </Group>
+  <P
+    className="text-center"
+  >
+    <Box
+      as="p"
       className="text-center"
+      mb="10px"
     >
-      <Styled(div)
-        as="p"
-        className="text-center"
-        mb="10px"
+      <p
+        className="text-center css-1r2f04i"
       >
-        <p
-          className="text-center css-1r2f04i"
-        >
-          or select an existing one
-        </p>
-      </Styled(div)>
-    </P>
-    <Group>
-      <div
-        className="form-group"
+        or select an existing one
+      </p>
+    </Box>
+  </P>
+  <Group>
+    <div
+      className="form-group"
+    >
+      <S
+        getOptionLabel={[Function]}
+        getOptionValue={[Function]}
+        onChange={[Function]}
+        options={
+          Array [
+            Object {
+              "_id": "1",
+              "accessGroup": "accessGroupName",
+              "centerLat": 38.90124,
+              "centerLon": -77.015615,
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "errorCode": "",
+              "feeds": Array [],
+              "name": "Mock Bundle",
+              "nonce": "12345",
+              "regionId": "1",
+              "serviceEnd": "2018-09-28",
+              "serviceStart": "2018-09-27",
+              "status": "DONE",
+              "totalFeeds": 0,
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
+            },
+          ]
+        }
       >
-        <S
+        <ReactSelect
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           onChange={[Function]}
@@ -144,48 +160,19 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
               },
             ]
           }
+          styles={
+            Object {
+              "control": [Function],
+              "option": [Function],
+            }
+          }
         >
-          <ReactSelect
-            getOptionLabel={[Function]}
-            getOptionValue={[Function]}
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "_id": "1",
-                  "accessGroup": "accessGroupName",
-                  "centerLat": 38.90124,
-                  "centerLon": -77.015615,
-                  "createdAt": "2017-11-08T12:30:50.133Z",
-                  "createdBy": "person@gmail.com",
-                  "errorCode": "",
-                  "feeds": Array [],
-                  "name": "Mock Bundle",
-                  "nonce": "12345",
-                  "regionId": "1",
-                  "serviceEnd": "2018-09-28",
-                  "serviceStart": "2018-09-27",
-                  "status": "DONE",
-                  "totalFeeds": 0,
-                  "updatedAt": "2017-11-08T12:31:19.602Z",
-                  "updatedBy": "person@gmail.com",
-                },
-              ]
-            }
-            styles={
-              Object {
-                "control": [Function],
-                "option": [Function],
-              }
-            }
-          >
-            <div
-              className="ReactSelectMock"
-            />
-          </ReactSelect>
-        </S>
-      </div>
-    </Group>
-  </EditBundle>
-</Provider>
+          <div
+            className="ReactSelectMock"
+          />
+        </ReactSelect>
+      </S>
+    </div>
+  </Group>
+</EditBundle>
 `;

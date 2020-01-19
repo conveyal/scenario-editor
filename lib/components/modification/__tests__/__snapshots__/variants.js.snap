@@ -2,28 +2,37 @@
 
 exports[`Components > Modification > Variants 1`] = `
 <Fragment>
-  <br />
   <H5>
-    Active in scenario numbers
+    Active in scenarios
   </H5>
-  <div
-    className="form-inline"
+  <Stack
+    mb={4}
+    spacing={2}
   >
     <Checkbox
-      checked={true}
-      key="variant-0-modification-1"
-      label={1}
+      fontWeight="normal"
+      isChecked={true}
+      key="0-a"
+      name="a"
       onChange={[Function]}
-      title="a"
-    />
+      value={0}
+    >
+      1
+      . 
+      a
+    </Checkbox>
     <Checkbox
-      checked={false}
-      key="variant-1-modification-1"
-      label={2}
+      fontWeight="normal"
+      isChecked={false}
+      key="1-b"
+      name="b"
       onChange={[Function]}
-      title="b"
-    />
-  </div>
-  <br />
+      value={1}
+    >
+      2
+      . 
+      b
+    </Checkbox>
+  </Stack>
 </Fragment>
 `;

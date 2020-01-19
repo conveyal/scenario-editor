@@ -1,146 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > EditProject 1`] = `
-<Provider
-  store={
+<EditProject
+  bundleName="Mock Bundle"
+  project={
     Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
+      "_id": "1",
+      "accessGroup": "accessGroupName",
+      "bundleId": "1",
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "name": "Mock Project",
+      "nonce": "12345",
+      "regionId": "1",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variants": Array [
+        "Default",
+      ],
     }
   }
 >
-  <EditProject
-    bundleName="Mock Bundle"
-    project={
-      Object {
-        "_id": "1",
-        "accessGroup": "accessGroupName",
-        "bundleId": "1",
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "name": "Mock Project",
-        "nonce": "12345",
-        "regionId": "1",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          "Default",
-        ],
-      }
-    }
+  <InnerDock
+    className="block"
   >
-    <InnerDock
-      className="block"
-    >
-      <div
-        className="InnerDock block"
-        style={
-          Object {
-            "height": 768,
-          }
+    <div
+      className="InnerDock block"
+      style={
+        Object {
+          "height": 768,
         }
+      }
+    >
+      <legend>
+        Edit project settings
+      </legend>
+      <Text
+        label="Project name"
+        onChange={[Function]}
+        value="Mock Project"
       >
-        <legend>
-          Edit project settings
-        </legend>
-        <Text
+        <Group
+          id="project-name-input-0"
           label="Project name"
           onChange={[Function]}
           value="Mock Project"
-        >
-          <Group
-            id="project-name-input-0"
-            label="Project name"
-            onChange={[Function]}
-            value="Mock Project"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                className="control-label"
-                htmlFor="project-name-input-0"
-              >
-                Project name
-              </label>
-              <Input
-                id="project-name-input-0"
-                label="Project name"
-                onChange={[Function]}
-                type="text"
-                value="Mock Project"
-              >
-                <input
-                  className="form-control"
-                  id="project-name-input-0"
-                  label="Project name"
-                  onChange={[Function]}
-                  placeholder="Project name"
-                  type="text"
-                  value="Mock Project"
-                />
-              </Input>
-            </div>
-          </Group>
-        </Text>
-        <Group
-          label="Bundle"
         >
           <div
             className="form-group"
           >
             <label
               className="control-label"
-              htmlFor="bundle-input-1"
+              htmlFor="project-name-input-0"
             >
-              Bundle
+              Project name
             </label>
-            <P>
-              <Styled(div)
-                as="p"
-                mb="10px"
-              >
-                <p
-                  className="css-1r2f04i"
-                >
-                  Mock Bundle
-                </p>
-              </Styled(div)>
-            </P>
-            <P>
-              <Styled(div)
-                as="p"
-                mb="10px"
-              >
-                <p
-                  className="css-1r2f04i"
-                >
-                  <em>
-                    Bundle cannot be changed once a project is created.
-                  </em>
-                </p>
-              </Styled(div)>
-            </P>
+            <Input
+              id="project-name-input-0"
+              label="Project name"
+              onChange={[Function]}
+              type="text"
+              value="Mock Project"
+            >
+              <input
+                className="form-control"
+                id="project-name-input-0"
+                label="Project name"
+                onChange={[Function]}
+                placeholder="Project name"
+                type="text"
+                value="Mock Project"
+              />
+            </Input>
           </div>
         </Group>
-        <Button
-          block={true}
-          disabled={true}
-          onClick={[Function]}
-          style="success"
+      </Text>
+      <Group
+        label="Bundle"
+      >
+        <div
+          className="form-group"
         >
-          <a
-            className="btn btn-success btn-block"
-            disabled={true}
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
+          <label
+            className="control-label"
+            htmlFor="bundle-input-1"
           >
-            <Icon
+            Bundle
+          </label>
+          <P>
+            <Box
+              as="p"
+              mb="10px"
+            >
+              <p
+                className="css-1r2f04i"
+              >
+                Mock Bundle
+              </p>
+            </Box>
+          </P>
+          <P>
+            <Box
+              as="p"
+              mb="10px"
+            >
+              <p
+                className="css-1r2f04i"
+              >
+                <em>
+                  Bundle cannot be changed once a project is created.
+                </em>
+              </p>
+            </Box>
+          </P>
+        </div>
+      </Group>
+      <Button
+        block={true}
+        disabled={true}
+        onClick={[Function]}
+        style="success"
+      >
+        <a
+          className="btn btn-success btn-block"
+          disabled={true}
+          href="#"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "save",
+                "prefix": "fas",
+              }
+            }
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
               icon={
                 Object {
                   "icon": Array [],
@@ -148,66 +149,66 @@ exports[`Component > EditProject 1`] = `
                   "prefix": "fas",
                 }
               }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
             >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "save",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                swapOpacity={false}
-                symbol={false}
-                title=""
-                transform={null}
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-save fa-w-NaN fa-fw "
+                data-icon="save"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-save fa-w-NaN fa-fw "
-                  data-icon="save"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
+                <path
+                  fill="currentColor"
                   style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Save project
-          </a>
-        </Button>
-        <Button
-          block={true}
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           
+          Save project
+        </a>
+      </Button>
+      <Button
+        block={true}
+        onClick={[Function]}
+        style="danger"
+      >
+        <a
+          className="btn btn-danger btn-block"
+          href="#"
           onClick={[Function]}
-          style="danger"
+          tabIndex={0}
         >
-          <a
-            className="btn btn-danger btn-block"
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "trash",
+                "prefix": "fas",
+              }
+            }
           >
-            <Icon
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
               icon={
                 Object {
                   "icon": Array [],
@@ -215,56 +216,42 @@ exports[`Component > EditProject 1`] = `
                   "prefix": "fas",
                 }
               }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
             >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "trash",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                swapOpacity={false}
-                symbol={false}
-                title=""
-                transform={null}
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
+                data-icon="trash"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
-                  data-icon="trash"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
+                <path
+                  fill="currentColor"
                   style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Delete project
-          </a>
-        </Button>
-      </div>
-    </InnerDock>
-  </EditProject>
-</Provider>
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           
+          Delete project
+        </a>
+      </Button>
+    </div>
+  </InnerDock>
+</EditProject>
 `;

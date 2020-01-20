@@ -277,6 +277,8 @@ input[type='range'].form-control {
 }
 
 .Legend {
+  border: 1px solid #ddd;
+  border-radius: 4px;
   list-style: none;
   padding-left: 0;
 }

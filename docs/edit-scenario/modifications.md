@@ -73,7 +73,8 @@ On the panel to the left of the map there are a few options available while edit
 
 - **Bidirectional**: If this option is checked (the default value), vehicles will travel in both directions along the described geometry. If it is toggled off, vehicles will only travel in the direction the line is drawn. Directed alignments can be useful when there are [couplets](https://en.wikipedia.org/wiki/One-way_pair) or other aspects of the route that don't follow the same alignment in both directions. Directed alignments are also necessary for [phasing](phasing.html). 
 
-- **Follow streets**: This makes the route follow streets. The default is to connect stops or control points with a straight line. This only applies to segments that are actively being edited and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street. The length of each segment is used to estimate travel times between stops, so this feature is very useful for aproximating the length of bus/streetcar routes.
+- **Follow streets**: 
+If this option is unchecked (the default value), stops and control points will be connected by straight lines. If it is checked, the route will follow streets. This setting only applies to segments that are actively being edited and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street. The length of each segment is used to estimate travel times between stops, so this feature is very useful for aproximating the length of bus/streetcar routes.
 
 - **Extend**: If this option is checked (the default), clicking on the map will extend the route forward from the end by adding a new stop in the direction the line was drawn. If you wish to edit segments you already created, by adding stops or control points, it is often convenient to uncheck this option so that stray clicks do not extend the route from one of its termini.
 

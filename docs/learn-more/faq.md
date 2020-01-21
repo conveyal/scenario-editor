@@ -15,7 +15,7 @@ By default, servers check for activity about every hour after starting up, and t
 
 ### How can I add more servers to a cluster to speed up regional analyses?
 
-To complete regional analyses quickly, we can clone hundreds of servers within a cluster for a transport network.  We haven't yet built the user interface to launch additional servers from within Conveyal Analysis, so for the moment, get in touch with us if you need to speed up analyses.
+To complete regional analyses quickly, we can clone hundreds of servers within a cluster for a transport network.  We haven't yet built the user interface to launch additional servers from within Conveyal Analysis, so for the moment, get in touch with your support team if you need to speed up analyses.
 
 ### Who can see and edit my projects?
 

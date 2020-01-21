@@ -31,6 +31,8 @@ Performing accessibility analysis with excessively large OSM data can lead to si
 
 Below are some example crop commands for these different tools. You'll need to replace `input.osm.pbf` with the name of your downloaded PBF file and change the coordinates of the area to clip to.
 
+When creating a region, the panel will show an osmconvert command pre-filled with the current regional bouding box. If you have osmconvert installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
+
 **Osmosis:** 
 ```shell
 osmosis --read-pbf input.osm.pbf \
@@ -53,9 +55,7 @@ osmium extract \
 
 The latter two commands expect bounding boxes to be specified in the format `min_lon,min_lat,max_lon,max_lat`. We frequently find bounding boxes using the convenient [Klokantech bounding box tool](https://boundingbox.klokantech.com/). Selecting the "CSV" format in the lower left will give exactly the format expected by these tools. You can also adapt the bounding box values shown in the region setup panel of Analysis.
 
-When creating a region, the panel will show an osmconvert command pre-filled with the current regional bouding box. If you have osmconvert installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
-
-Note that files larger than 500MB may be rejected on upload. Please contact us if you genuinely need to upload a file of this size, or need assistance in cropping and filtering OSM data.
+Note that files larger than 500MB may be rejected on upload. Please contact your support team if you genuinely need to upload a file of this size, or need assistance in cropping and filtering OSM data.
 
 #### Filtering
 
@@ -86,7 +86,7 @@ If you just created a new region, you will be prompted to upload a GTFS bundle. 
 
 First you need to assign your new bundle a name. We recommend staying organized by basing the name on the time period and/or services included such as "TTC&GO - June 2019". Next choose one or more .zip files to upload. You can select multiple GTFS feeds in the file dialogue by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system). Finally, click the create button to confirm.
 
-Again, note that files larger than 500MB may be rejected on upload. The largest GTFS feeds in regular use are below 400MB and most are much smaller than this. A larger file may indicate a problem. Please contact us if you genuinely need to upload a larger file.
+Again, note that files larger than 500MB may be rejected on upload. The largest GTFS feeds in regular use are below 400MB and most are much smaller than this. A larger file may indicate a problem. Please contact your support team if you genuinely need to upload a larger file.
 
 If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
 

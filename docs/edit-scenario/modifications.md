@@ -11,7 +11,7 @@ When creating a new modification, you have several different options, each expla
 * `Reroute`_
 * `Custom`_ (not for general use)
 
-Across all modification types however the basic actions are consistent. 
+Across all modification types the basic actions are consistent. 
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>
 <br><span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>
 <br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>
@@ -44,7 +44,7 @@ This will activate the map-based route editing mode. You can stop and save your 
 
 <span class="btn btn-warning"><i class="fa fa-stop-circle"></i> Stop editing</span>
 
-New route alignments are defined by by an ordered set of stops and control points. The actual route taken between these can either follow existing streets or it can take a straight line between points. It is also possible to combine the two options in one route as when a bus runs on the street but then diverts into a planned busway which is not yet part of the street network. The distance between stops is used to estimate segment travel time on the new alignment so it can be important to as be as accurate with the alignment as possible. 
+New route alignments are defined by by an ordered set of stops and control points. The actual route taken between these can either follow existing streets or it can take a straight line between points. It is also possible to combine the two options in one route as when a bus runs on the street but then diverts into a planned busway which is not yet part of the street network. The distance between stops is used to estimate segment travel time on the new alignment so it is important to as be as accurate with the alignment as possible. 
 
 <figure>
   <img src="../img/stop-edit-legend.png" alt="symbols for stops and control points"/>

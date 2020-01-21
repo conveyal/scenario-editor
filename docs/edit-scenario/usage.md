@@ -1,3 +1,4 @@
+.. _managing_mods:
 # Managing modifications
 
 :term:`Modifications<modification>` can be grouped by :term:`project` and :term:`scenario`, and different projects and scenarios can be compared against each other in analysis mode, giving you flexibility on how to use them. Depending on your use cases, different approaches may make sense.

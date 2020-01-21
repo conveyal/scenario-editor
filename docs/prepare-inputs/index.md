@@ -80,9 +80,13 @@ osmium tags-filter input.osm.pbf \
 
 ## Uploading a GTFS bundle
 
-Start by gathering :term:`GTFS` feeds for the transit agencies whose service will be included in your region. A _GTFS feed_ is a set of CSV files inside a `.zip` archive, and a _GTFS bundle_ is a set of one or more GTFS feeds. 
+Start by gathering :term:`GTFS feeds<GTFS feed>` for the transit agencies whose service will be included in your region. A GTFS feed is a set of CSV files inside a `.zip` archive, and a :term:`GTFS bundle` is a set of one or more GTFS feeds. 
 
-If you just created a new region, you will be prompted to upload a GTFS bundle. Otherwise, you can click the database icon (<i class="fa fa-database"></i>) on the sidebar to access your GTFS Bundles at any time. 
+If you just created a new region, you will be prompted to upload a GTFS bundle:
+
+<span class="btn btn-success"><i class="fa fa-plus"></i> Create a bundle</span>
+
+Otherwise, you can click the database icon (<i class="fa fa-database"></i>) on the sidebar to access your GTFS Bundles at any time. 
 
 First you need to assign your new bundle a name. We recommend staying organized by basing the name on the time period and/or services included such as "TTC&GO - June 2019". Next choose one or more .zip files to upload. You can select multiple GTFS feeds in the file dialogue by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system). Finally, click the create button to confirm.
 
@@ -92,9 +96,11 @@ If there is no GTFS available for your region, as a workaround you can use a val
 
 ## Creating a Project
 
-Uploading and processing a GTFS bundle may take several minutes. Once processing is complete, you should be able to create a new _project_ based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then _Create new Project_. 
+Uploading and processing a GTFS bundle may take several minutes. Once processing is complete, you should be able to create a new :term:`project` based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then,
 
-A project is essentially a wrapper around a bundle which associates it with any scenarios and modifications you may create later on. The purpose of projects is to allow multiple users to work simultaneously on the same baseline network without stepping on each other's toes. Later on we'll cover how modifications can be shared between projects which are based on the same bundle. Once created, the bundle associated with a project cannot be changed. 
+<span class="btn btn-success"><i class="fa fa-plus"></i> Create new Project</span>
+
+A project is essentially a wrapper around a bundle which associates it with any scenarios and modifications you may create later on. The purpose of projects is to allow multiple users to work simultaneously on the same baseline network without stepping on each other's toes. The section on :ref:`managing_mods` describes how modifications can be shared between projects that are based on the same bundle. Once created, the bundle associated with a project cannot be changed. 
 
 Give the project a descriptive name, select a bundle to which the project will be associated, and click the create button to confirm. 
 You are now ready to move on to [editing scenarios](../edit-scenario).

@@ -1,6 +1,6 @@
 # Preparing a baseline transport network
 
-Accessibility calculations will be based on the :term:`transport network` that is set up for your :term:`region`. This includes scheduled transit services as well as the region's network of streets, sidewalks, bikeways, etc. Initially you will set up a :term:`baseline network` describing your region's normal transit services. Later on you will likely want to compare alternative :term:`scenarios<scenario>` by creating :term:`modifications<modification>` to the baseline network. 
+Accessibility calculations will be based on the :term:`transport network` that is set up for your :term:`region`. This includes scheduled transit services as well as the region's network of streets, sidewalks, bikeways, etc. Initially you will set up a :term:`baseline network` representing the transit services described in the :term:`GTFS feed` for your region. Later on you will likely want to compare alternative :term:`scenarios<scenario>` by creating :term:`modifications<modification>` to the baseline network. 
 
 ## Setting up a new region
 
@@ -10,7 +10,7 @@ The regions page, shown after you log in, provides a list of existing regions if
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Set up a new region</span>
 
-Start by using the search bar in the map to automatically locate your city or country by name. You can also manually enter coordinates or drag the points defining the bounding box on the map. Enter a name for the region and an optional description.
+Start by using the search bar in the map to automatically locate your city or country by name. You can also move the bounding box by dragging its corners on the map or by manually entering coordinates in the sidebar. Enter a name for the region and an optional description.
 
 You must also upload an appropriate [OpenStreetMap](https://www.openstreetmap.org) (OSM) extract at this point, which will serve as the street layer of the transport network. This will be used for any walking or biking segments of a trip as well as for some transfers between stops and stations. Note that while several formats exist for OSM data, we require the [PBF format](https://wiki.openstreetmap.org/wiki/PBF_Format) because it is more compact and faster to process. Your extract should cover your entire service area or region, but not extend unnecessarily far beyond it as that may impact processing time.
 

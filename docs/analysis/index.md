@@ -1,3 +1,4 @@
+.. _single_point_analysis:
 # Single point analysis
 
 The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. To start an analysis, ensure a :term:`project` and :term:`scenario` are selected. 
@@ -7,6 +8,7 @@ If this is your first time performing an analysis with a given :term:`bundle<gtf
 For more information, see :ref:`why_the_wait`
 
 Once the compute cluster is initialized, you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a chart showing cumulative accessibility results at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red. 
+Many other configuration parameters are described in :ref:`analysis_configuration`.
 
 ## Isochrone map
 

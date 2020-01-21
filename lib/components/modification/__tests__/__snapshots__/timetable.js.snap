@@ -985,7 +985,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                 </strong>
               </h4>
               <P>
-                <Styled(div)
+                <Box
                   as="p"
                   mb="10px"
                 >
@@ -996,7 +996,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       Dwell time at added stops + moving time along added segments
                     </em>
                   </p>
-                </Styled(div)>
+                </Box>
               </P>
               <MinutesSeconds
                 label="Default dwell time"
@@ -1044,7 +1044,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                 </Group>
               </MinutesSeconds>
               <P>
-                <Styled(div)
+                <Box
                   as="p"
                   mb="10px"
                 >
@@ -1053,7 +1053,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     The default time table dwell time will be used for each stop that does not have a custom one set.
                   </p>
-                </Styled(div)>
+                </Box>
               </P>
               <Collapsible
                 title="Set individual stop dwell times"

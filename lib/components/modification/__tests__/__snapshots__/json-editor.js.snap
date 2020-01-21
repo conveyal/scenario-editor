@@ -10,7 +10,7 @@ exports[`Components > Modification > JSON Editor should render 1`] = `
   save={[MockFunction]}
 >
   <P>
-    <Styled(div)
+    <Box
       as="p"
       mb="10px"
     >
@@ -19,7 +19,7 @@ exports[`Components > Modification > JSON Editor should render 1`] = `
       >
         For advanced users only
       </p>
-    </Styled(div)>
+    </Box>
   </P>
   <textarea
     className="form-control monospace"

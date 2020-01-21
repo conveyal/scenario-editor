@@ -1215,7 +1215,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                 className="col-xs-8"
               >
                 <P>
-                  <Styled(div)
+                  <Box
                     as="p"
                     mb="10px"
                   >
@@ -1224,7 +1224,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                     >
                       Lower limits may apply to transfer and egress legs. See the user manual for more information.
                     </p>
-                  </Styled(div)>
+                  </Box>
                 </P>
               </div>
             </div>
@@ -1404,7 +1404,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                       Customize Profile Request
                     </label>
                     <P>
-                      <Styled(div)
+                      <Box
                         as="p"
                         mb="10px"
                       >
@@ -1413,7 +1413,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         >
                           Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
                         </p>
-                      </Styled(div)>
+                      </Box>
                     </P>
                     <textarea
                       className="form-control monospace"

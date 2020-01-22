@@ -35,7 +35,6 @@
   "homepage": "https://github.com/conveyal/analysis-ui#readme",
   "dependencies": {
     "@chakra-ui/core": "^0.5.2",
-    "@conveyal/gridualizer": "^2.1.0",
     "@conveyal/lonlat": "^1.4.0",
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
@@ -114,6 +113,7 @@
     "shpjs": "^3.4.3",
     "simple-statistics": "^7.0.7",
     "swr": "^0.1.13",
+    "tiny-lru": "^7.0.2",
     "uuid": "^3.3.3",
     "whatwg-fetch": "^3.0.0",
     "xorshift": "^1.1.1"

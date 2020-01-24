@@ -3,7 +3,7 @@
   "version": "0.0.0-semantic.release",
   "description": "Conveyal's tool for editing land use/transportation scenarios.",
   "engines": {
-    "node": "10.x"
+    "node": "12.x"
   },
   "scripts": {
     "analyze": "ANALYZE=true yarn run build",
@@ -90,7 +90,7 @@
     "migrate": "^1.6.2",
     "moment": "^2.24.0",
     "mongodb": "^3.4.1",
-    "next": "^9.2.0",
+    "next": "^9.2.1",
     "next-cookies": "^2.0.3",
     "next-redux-wrapper": "^4.0.1",
     "node-fetch": "^2.6.0",

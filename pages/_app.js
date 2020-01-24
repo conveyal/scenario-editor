@@ -14,6 +14,9 @@ import useRouteChanging from 'lib/hooks/use-route-changing'
 import {timer} from 'lib/utils/metric'
 import createStore from 'lib/store'
 
+import 'react-datetime/css/react-datetime.css'
+import '../styles.css'
+
 const ErrorModal = dynamic(() => import('lib/components/error-modal'))
 const Map = dynamic(() => import('lib/components/map'), {ssr: false})
 const Sidebar = dynamic(() => import('lib/components/sidebar'))

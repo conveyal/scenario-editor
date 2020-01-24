@@ -67,27 +67,6 @@ exports[`RegionalResults snapshot(mount) 1`] = `
     }
   }
   analysisId="abcd"
-  breaks={
-    Array [
-      100,
-      500,
-      1000,
-      2000,
-    ]
-  }
-  grid={
-    Object {
-      "contains": [Function],
-      "data": Array [],
-      "height": 300,
-      "max": 2000,
-      "min": 0,
-      "north": 20024,
-      "west": 20015,
-      "width": 300,
-      "zoom": 9,
-    }
-  }
   opportunityDatasets={
     Array [
       Object {
@@ -161,117 +140,138 @@ exports[`RegionalResults snapshot(mount) 1`] = `
           </p>
         </Box>
       </P>
+      <Legend
+        breaks={
+          Array [
+            0,
+            436,
+            857,
+            1257,
+            1649,
+            2000,
+          ]
+        }
+        colors={
+          Array [
+            Object {
+              "b": 255,
+              "g": 255,
+              "opacity": 0,
+              "r": 255,
+            },
+            Rgb {
+              "b": 239,
+              "g": 219,
+              "opacity": 0.42,
+              "r": 198,
+            },
+            Rgb {
+              "b": 225,
+              "g": 202,
+              "opacity": 0.42,
+              "r": 158,
+            },
+            Rgb {
+              "b": 214,
+              "g": 174,
+              "opacity": 0.42,
+              "r": 107,
+            },
+            Rgb {
+              "b": 189,
+              "g": 130,
+              "opacity": 0.42,
+              "r": 49,
+            },
+            Rgb {
+              "b": 156,
+              "g": 81,
+              "opacity": 0.42,
+              "r": 8,
+            },
+          ]
+        }
+        min={0}
+      >
+        <div
+          className="Legend"
+        >
+          <div
+            className="Legend-Item"
+            key="break-0"
+            style={
+              Object {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            0 (transparent)
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-1"
+            style={
+              Object {
+                "backgroundColor": "rgba(198, 219, 239, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            1 to 436
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-2"
+            style={
+              Object {
+                "backgroundColor": "rgba(158, 202, 225, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            437 to 857
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-3"
+            style={
+              Object {
+                "backgroundColor": "rgba(107, 174, 214, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            858 to 1,257
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-4"
+            style={
+              Object {
+                "backgroundColor": "rgba(49, 130, 189, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,258 to 1,649
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-5"
+            style={
+              Object {
+                "backgroundColor": "rgba(8, 81, 156, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,650 to 2,000
+          </div>
+        </div>
+      </Legend>
     </div>
   </Group>
-  <Legend
-    breaks={
-      Array [
-        100,
-        500,
-        1000,
-        2000,
-      ]
-    }
-    colors={
-      Array [
-        "rgba(241, 237, 246, 0.42)",
-        "rgba(188, 200, 224, 0.42)",
-        "rgba(116, 169, 207, 0.42)",
-        "rgba(43, 140, 190, 0.42)",
-        "rgba(4, 90, 142, 0.42)",
-      ]
-    }
-    min={0}
-  >
-    <ul
-      className="Legend"
-    >
-      <Break
-        bottom={0}
-        color="rgba(241, 237, 246, 0.42)"
-        key="break-0"
-        top={100}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(241, 237, 246)"
-          style={
-            Object {
-              "backgroundColor": "rgb(241, 237, 246)",
-              "color": "#000",
-            }
-          }
-        >
-          0
-           to 
-          100
-        </li>
-      </Break>
-      <Break
-        bottom={100}
-        color="rgba(188, 200, 224, 0.42)"
-        key="break-1"
-        top={500}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(188, 200, 224)"
-          style={
-            Object {
-              "backgroundColor": "rgb(188, 200, 224)",
-              "color": "#000",
-            }
-          }
-        >
-          100
-           to 
-          500
-        </li>
-      </Break>
-      <Break
-        bottom={500}
-        color="rgba(116, 169, 207, 0.42)"
-        key="break-2"
-        top={1000}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(116, 169, 207)"
-          style={
-            Object {
-              "backgroundColor": "rgb(116, 169, 207)",
-              "color": "#000",
-            }
-          }
-        >
-          500
-           to 
-          1,000
-        </li>
-      </Break>
-      <Break
-        bottom={1000}
-        color="rgba(43, 140, 190, 0.42)"
-        key="break-3"
-        top={2000}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(43, 140, 190)"
-          style={
-            Object {
-              "backgroundColor": "rgb(43, 140, 190)",
-              "color": "#fff",
-            }
-          }
-        >
-          1,000
-           to 
-          2,000
-        </li>
-      </Break>
-    </ul>
-  </Legend>
   <AggregationArea
     regionId="MOCK_REGION_ID"
   >
@@ -463,27 +463,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
     }
   }
   analysisId="abcd"
-  breaks={
-    Array [
-      100,
-      500,
-      1000,
-      2000,
-    ]
-  }
-  grid={
-    Object {
-      "contains": [Function],
-      "data": Array [],
-      "height": 300,
-      "max": 2000,
-      "min": 0,
-      "north": 20024,
-      "west": 20015,
-      "width": 300,
-      "zoom": 9,
-    }
-  }
   opportunityDatasets={
     Array [
       Object {
@@ -557,117 +536,138 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
           </p>
         </Box>
       </P>
+      <Legend
+        breaks={
+          Array [
+            0,
+            436,
+            857,
+            1257,
+            1649,
+            2000,
+          ]
+        }
+        colors={
+          Array [
+            Object {
+              "b": 255,
+              "g": 255,
+              "opacity": 0,
+              "r": 255,
+            },
+            Rgb {
+              "b": 239,
+              "g": 219,
+              "opacity": 0.42,
+              "r": 198,
+            },
+            Rgb {
+              "b": 225,
+              "g": 202,
+              "opacity": 0.42,
+              "r": 158,
+            },
+            Rgb {
+              "b": 214,
+              "g": 174,
+              "opacity": 0.42,
+              "r": 107,
+            },
+            Rgb {
+              "b": 189,
+              "g": 130,
+              "opacity": 0.42,
+              "r": 49,
+            },
+            Rgb {
+              "b": 156,
+              "g": 81,
+              "opacity": 0.42,
+              "r": 8,
+            },
+          ]
+        }
+        min={0}
+      >
+        <div
+          className="Legend"
+        >
+          <div
+            className="Legend-Item"
+            key="break-0"
+            style={
+              Object {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            0 (transparent)
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-1"
+            style={
+              Object {
+                "backgroundColor": "rgba(198, 219, 239, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            1 to 436
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-2"
+            style={
+              Object {
+                "backgroundColor": "rgba(158, 202, 225, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            437 to 857
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-3"
+            style={
+              Object {
+                "backgroundColor": "rgba(107, 174, 214, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            858 to 1,257
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-4"
+            style={
+              Object {
+                "backgroundColor": "rgba(49, 130, 189, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,258 to 1,649
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-5"
+            style={
+              Object {
+                "backgroundColor": "rgba(8, 81, 156, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,650 to 2,000
+          </div>
+        </div>
+      </Legend>
     </div>
   </Group>
-  <Legend
-    breaks={
-      Array [
-        100,
-        500,
-        1000,
-        2000,
-      ]
-    }
-    colors={
-      Array [
-        "rgba(241, 237, 246, 0.42)",
-        "rgba(188, 200, 224, 0.42)",
-        "rgba(116, 169, 207, 0.42)",
-        "rgba(43, 140, 190, 0.42)",
-        "rgba(4, 90, 142, 0.42)",
-      ]
-    }
-    min={0}
-  >
-    <ul
-      className="Legend"
-    >
-      <Break
-        bottom={0}
-        color="rgba(241, 237, 246, 0.42)"
-        key="break-0"
-        top={100}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(241, 237, 246)"
-          style={
-            Object {
-              "backgroundColor": "rgb(241, 237, 246)",
-              "color": "#000",
-            }
-          }
-        >
-          0
-           to 
-          100
-        </li>
-      </Break>
-      <Break
-        bottom={100}
-        color="rgba(188, 200, 224, 0.42)"
-        key="break-1"
-        top={500}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(188, 200, 224)"
-          style={
-            Object {
-              "backgroundColor": "rgb(188, 200, 224)",
-              "color": "#000",
-            }
-          }
-        >
-          100
-           to 
-          500
-        </li>
-      </Break>
-      <Break
-        bottom={500}
-        color="rgba(116, 169, 207, 0.42)"
-        key="break-2"
-        top={1000}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(116, 169, 207)"
-          style={
-            Object {
-              "backgroundColor": "rgb(116, 169, 207)",
-              "color": "#000",
-            }
-          }
-        >
-          500
-           to 
-          1,000
-        </li>
-      </Break>
-      <Break
-        bottom={1000}
-        color="rgba(43, 140, 190, 0.42)"
-        key="break-3"
-        top={2000}
-      >
-        <li
-          className="Legend-Item"
-          key="break-rgb(43, 140, 190)"
-          style={
-            Object {
-              "backgroundColor": "rgb(43, 140, 190)",
-              "color": "#fff",
-            }
-          }
-        >
-          1,000
-           to 
-          2,000
-        </li>
-      </Break>
-    </ul>
-  </Legend>
   <AggregationArea
     regionId="MOCK_REGION_ID"
   >

@@ -45,7 +45,7 @@ exports[`create-region.render 1`] = `
         className="InnerDock block"
         style={
           Object {
-            "height": 768,
+            "height": "100vh",
           }
         }
       >

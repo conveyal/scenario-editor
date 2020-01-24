@@ -4,16 +4,15 @@
  * that have more than 1000 values.
  * @trevorgerhardt
  */
-
 const XorShift = require('xorshift').constructor
 const ss = require('simple-statistics')
 
 const RUNS = Array(1).fill(0)
 const VALS = Array(100000).fill(0)
-const RANG = 1000
+const RANG = 10000
 const SEED = [1, 2, 3, 4]
 
-const percentiles = [0.1, 0.15, 0.5, 0.85, 0.99]
+const percentiles = [0.1, 0.15, 0.5, 0.85, 0.99, 0.999]
 
 function findPercentile(fn) {
   const times = []

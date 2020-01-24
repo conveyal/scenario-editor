@@ -139,6 +139,7 @@ exports[`Components > Analysis > Regional Analysis Selector renders correctly 1`
         getOptionLabel={[Function]}
         getOptionValue={[Function]}
         isClearable={true}
+        onChange={[Function]}
         options={
           Array [
             Object {
@@ -273,6 +274,7 @@ exports[`Components > Analysis > Regional Analysis Selector renders correctly 1`
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           isClearable={true}
+          onChange={[Function]}
           options={
             Array [
               Object {

@@ -5,7 +5,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
   className="InnerDock block "
   style={
     Object {
-      "height": 768,
+      "height": "100vh",
     }
   }
 >

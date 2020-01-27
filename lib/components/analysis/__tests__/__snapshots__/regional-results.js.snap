@@ -218,7 +218,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               }
             }
           >
-            1 to 436
+            0 to 436
           </div>
           <div
             className="Legend-Item"
@@ -230,7 +230,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               }
             }
           >
-            437 to 857
+            436 to 857
           </div>
           <div
             className="Legend-Item"
@@ -242,7 +242,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               }
             }
           >
-            858 to 1,257
+            857 to 1,257
           </div>
           <div
             className="Legend-Item"
@@ -254,7 +254,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               }
             }
           >
-            1,258 to 1,649
+            1,257 to 1,649
           </div>
           <div
             className="Legend-Item"
@@ -266,7 +266,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               }
             }
           >
-            1,650 to 2,000
+            1,649 to 2,000
           </div>
         </div>
       </Legend>
@@ -614,7 +614,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            1 to 436
+            0 to 436
           </div>
           <div
             className="Legend-Item"
@@ -626,7 +626,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            437 to 857
+            436 to 857
           </div>
           <div
             className="Legend-Item"
@@ -638,7 +638,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            858 to 1,257
+            857 to 1,257
           </div>
           <div
             className="Legend-Item"
@@ -650,7 +650,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            1,258 to 1,649
+            1,257 to 1,649
           </div>
           <div
             className="Legend-Item"
@@ -662,7 +662,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            1,650 to 2,000
+            1,649 to 2,000
           </div>
         </div>
       </Legend>

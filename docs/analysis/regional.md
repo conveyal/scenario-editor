@@ -1,5 +1,23 @@
-# Regional analysis view
+# Regional analysis
 
+The :ref:`single_point_analysis` interface also allows creating a *regional analysis*, which involves repeating an accessibility calculation for every location in a regular grid (See :ref:`spatial_grid`).
+
+## Starting a regional analysis
+
+To start a regional analysis, first set the appropriate parameters using the controls for a :ref:`single_point_analysis`, and confirm that the :term:`isochrones<isochrone>` and accessibility plots are as expected.
+
+You can also choose geographic bounds for your regional analysis in the Advanced settings. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, make sure they have the same bounds.
+
+When you have configured all of these options, click <span class="btn btn-success"><i class="fa fa-plus"></i> New regional analysis</span> at the top of the panel and enter a name. Note that this button is disabled unless isochrones are displayed; checking single-origin isochrone results is a verification step that helps avoid heavy computation for analyses with invalid settings.
+
+After a few seconds, you will see the name of your regional analysis appear in a list with a progress bar. In most cases, the progress bar will start moving more quickly once the system brings additional servers online, which usually takes a couple of minutes. When a regional analysis is complete, you can select from the drop-down menu, which will take you to the [regional analysis view](regional.html).
+
+<figure>
+  <img src="../img/regional-progress.png" />
+    <figcaption>Selecting a completed regional analysis from the drop-down menu</figcaption>
+</figure>
+
+## Inspecting results
 Upon selecting a completed regional analysis, you will see a screen like the following:
 
 <figure>
@@ -7,11 +25,9 @@ Upon selecting a completed regional analysis, you will see a screen like the fol
   <figcaption>Viewing a regional analysis</figcaption>
 </figure>
 
-The map shows the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis.
+The map shows the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis. Using the download button, you can save regional analysis results in a [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) raster format. These files can then be opened in a GIS to conduct additional analyses or create custom maps. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
 
-Using the download button, you can save regional analysis results in a raster format (GEOTIFF). These saved files can be opened in GIS to conduct additional analyses or create custom maps. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
-
-## Comparing regional analyses
+## Comparing results
 
 You can also compare two regional analyses from different projects in the same region. The map will show the differences in accessibility between the two analyses, with blue areas showing increased accessibility, and red areas showing decreased accessibility, relative to the comparison analysis.
 

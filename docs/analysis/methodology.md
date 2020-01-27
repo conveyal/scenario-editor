@@ -1,12 +1,14 @@
+.. _methodology:
 # Methodology
 
 This is a summary of the accessibility indicators used in Conveyal Analysis. For more details, please see Conway, Matthew Wigginton, Andrew Byrd, and Marco van der Linden (2017). “[Evidence-Based Transit and Land Use Sketch Planning Using Interactive Accessibility Methods on Combined Schedule and Headway-Based Networks](http://trrjournalonline.trb.org/doi/abs/10.3141/2653-06)”
 
+.. _spatial_grid:
 ##Spatial resolution
 
 As a shared geographic foundation for regions, opportunity datasets, and accessibility indicators, Conveyal Analysis uses a regular grid of cells measuring approximately 300 meters by 300 meters. Large regions may contain more than a million such cells, reflecting a much finer resolution than typical regional travel demand models.
 
-Opportunity datasets from uploaded files and LODES imports are converted to this regular grid. For example, if a large traffic analysis zone in an uploaded shapefile has 10 thousand jobs, those jobs are dispersed uniformly throughout the grid cells in that zone.  
+Opportunity datasets from uploaded files and LODES imports are converted to this regular grid. For example, if a large traffic analysis zone in an uploaded shapefile has 10 thousand jobs, those jobs are dispersed uniformly throughout the grid cells in that zone. 
 
 In analysis mode, travel times from the origin location to all grid cells in the region are calculated. Total travel time to a grid cell includes time  from the origin location to the nearest point in the street network, and from the street network to the center of the destination grid cell, as well as typical on-street, waiting, and in-vehicle components of travel time. Accessibility indicators are then calculated as the sum of the opportunity values of all cells reachable within the travel time threshold. In regional accessibility analyses, each grid cell of a region is treated as an origin, and this calculation is repeated in parallel for each cell.
 

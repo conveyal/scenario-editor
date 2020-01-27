@@ -1,10 +1,11 @@
 # Frequently Asked Questions
 
+.. _why_the_wait:
 ### When starting an analysis, why does the "initializing cluster" message persist for so long?
 
 Three steps need to take place when starting a new analysis.
 
-First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services.  For scalability, we start a "worker" server for each [transport network](../glossary.html#transport-network) being analyzed.  This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine.  
+First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services.  For scalability, we start a "worker" server for each :term:`transport network` being analyzed.  This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine. 
 
 Second, the worker server needs to set up a transport network.  The server checks whether the required transport network is already built and available for download from Amazon S3.  If it is, the server downloads it and proceeds to the next step.  If a pre-built network cannot be downloaded, the server downloads the required input files (OSM extract and GTFS bundle).  It will then build the transport network by combining the road and transit layers, which be a lengthy process (on the order of 10 minutes for large regions, and an hour for very large regions with dense networks).  To avoid having to repeat this step, the server will upload the built network to S3 for future use.
 
@@ -14,7 +15,7 @@ By default, servers check for activity about every hour after starting up, and t
 
 ### How can I add more servers to a cluster to speed up regional analyses?
 
-To complete regional analyses quickly, we can clone hundreds of servers within a cluster for a transport network.  We haven't yet built the user interface to launch additional servers from within Conveyal Analysis, so for the moment, get in touch with us if you need to speed up analyses.
+To complete regional analyses quickly, we can clone hundreds of servers within a cluster for a transport network.  We haven't yet built the user interface to launch additional servers from within Conveyal Analysis, so for the moment, get in touch with your support team if you need to speed up analyses.
 
 ### Who can see and edit my projects?
 

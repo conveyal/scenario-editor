@@ -118,7 +118,6 @@ exports[`Component WithContext(AddTripPattern) snapshot(shallow) 1`] = `
     update={[MockFunction]}
   />
   <Timetables
-    allPhaseFromTimetableStops={Array []}
     bidirectional={false}
     modificationStops={Array []}
     projectTimetables={Array []}

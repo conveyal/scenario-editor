@@ -193,7 +193,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
       trip="abcd"
     />
     <TimetableEntry
-      allPhaseFromTimetableStops={Object {}}
       bidirectional={false}
       modificationStops={Array []}
       projectTimetables={Array []}

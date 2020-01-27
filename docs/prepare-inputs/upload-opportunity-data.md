@@ -3,7 +3,7 @@
 To measure access to spatially distributed opportunities (e.g. jobs, people, schools), you will need to ensure at least one **opportunity dataset** has been added to your project. To add or manage opportunity datasets, click the grid icon on the sidebar:
 <br><span class="ui-icon"><i class="fa fa-th"></i> Opportunity Datasets</span>
 
-Opportunity datasets can be added either by uploading a CSV or shapefile representing the spatial distribution of opportunities, or by using the LODES data import tool (US only). 
+Opportunity datasets can be added either by uploading a CSV or shapefile representing the spatial distribution of opportunities, or by using the LODES data import tool (US only).
 
 ## Uploading an opportunity dataset
 
@@ -13,11 +13,11 @@ Enter a name for the opportunity dataset source, then select the appropriate fil
 
 After processing is complete, you can refresh the page and see dot-density maps of your datasets, converted to the [analysis grid](../analysis/methodology.html#spatial-resolution) used in Conveyal Analysis.
 
-### CSV 
+### CSV
 
-A [Comma Separated Value](https://en.wikipedia.org/wiki/Comma-separated_values) (CSV) file can be used to represent opportunities as point features. The CSV should have columns for latitude, longitude, and one or more associated opportunity counts. 
+A [Comma Separated Value](https://en.wikipedia.org/wiki/Comma-separated_values) (CSV) file can be used to represent opportunities as point features. The CSV should have columns for latitude, longitude, and one or more associated opportunity counts.
 
-In the following example, a CSV file represents the location of restaurants along with the number of restaurants (1 per point) and the estimated number of employees at each. Such a dataset could be used to represent either opportunities for entertainment or for work. 
+In the following example, a CSV file represents the location of restaurants along with the number of restaurants (1 per point) and the estimated number of employees at each. Such a dataset could be used to represent either opportunities for entertainment or for work.
 
 ```csv
 lat,lon,restaurant_count,est_employees,name
@@ -29,13 +29,13 @@ lat,lon,restaurant_count,est_employees,name
 ...
 ```
 
-Note that only *numeric* fields will be accepted. The `name` field in this example would be dropped. Be careful to give each column a meaningful name in the header row and remove any numeric columns which do not represent opportunity counts such as ID fields. Be sure to name the file with a `.csv` extension and use only commas as separators, i.e. no tab-separated or fixed-width text files. 
+Note that only _numeric_ fields will be accepted. The `name` field in this example would be dropped. Be careful to give each column a meaningful name in the header row and remove any numeric columns which do not represent opportunity counts such as ID fields. Be sure to name the file with a `.csv` extension and use only commas as separators, i.e. no tab-separated or fixed-width text files.
 
 You will be prompted for the names of the fields containing latitude and longitude values. In the example above you would enter `lat` and `lon` respectively. We currently only support CSV files which specify points in WGS 84 latitude/longitude coordinates.
 
 ### Shapefiles
 
-A shapefile may represent opportunities as either points or polygons. Opportunity counts associated with polygons will be treated as though they are uniformly distributed within the given area. For the easiest experience, any numeric fields not representing opportunities (ID fields, etc) should be removed before uploading. As with CSV, text fields will be dropped - this includes fields which may look like numbers (e.g. `"1"`, `"NA"`) but are actually stored as text. If a field is not showing up after upload, ensure that it was actually stored as a numeric value rather than text. 
+A shapefile may represent opportunities as either points or polygons. Opportunity counts associated with polygons will be treated as though they are uniformly distributed within the given area. For the easiest experience, any numeric fields not representing opportunities (ID fields, etc) should be removed before uploading. As with CSV, text fields will be dropped - this includes fields which may look like numbers (e.g. `"1"`, `"NA"`) but are actually stored as text. If a field is not showing up after upload, ensure that it was actually stored as a numeric value rather than text.
 
 Shapefiles should not be zipped; select all of the files in the Shapefile when uploading (at the very least, `.shp`, `.shx`, `.dbf` and `.prj`). How you select multiple files depends on your browser and operating system, but generally will involve shift-clicking, control-clicking or command-clicking.
 
@@ -49,7 +49,7 @@ Shapefiles should not be zipped; select all of the files in the Shapefile when u
 Selecting an existing opportunity dataset from the dropdown menu will give you options to:
 
 <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit dataset name</span><br>
-<span class="btn btn-danger"><i class="fa fa-trash"></i> Delete this dataset</span><br> 
+<span class="btn btn-danger"><i class="fa fa-trash"></i> Delete this dataset</span><br>
 <span class="btn btn-danger"><i class="fa fa-trash"></i> Delete entire dataset source</span> (e.g. all attributes from a shapefile)
 
 ## LODES dataset import

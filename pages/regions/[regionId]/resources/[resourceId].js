@@ -41,7 +41,7 @@ const GeoJSON = dynamic(() => import('lib/components/map/geojson'), {
 function dateFromObjectId(objectId) {
   return format(
     new Date(parseInt(objectId.substring(0, 8), 16) * 1000),
-    'YYYY-MM-DD HH:mm:ss'
+    'yyyy-MM-dd HH:mm:ss'
   )
 }
 

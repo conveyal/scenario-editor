@@ -58,15 +58,26 @@ jobs:
           path: '.'
           key: ${{ github.sha }}
 
+      # Install the binary
+      - run: yarn run cypress install
+        
+      # Start and run the next.js server in the background
+      - run: yarn start &
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+        
       - uses: cypress-io/github-action@v1
         with:
-          start: yarn start
+          install: false
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
           env: $CYPRESS_GITHUB_ENV
 
-      - uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
+      # - uses: actions/upload-artifact@v1
+      #  if: always()
+      #  with:
+      #    name: cypress-screenshots
+      #    path: cypress/screenshots

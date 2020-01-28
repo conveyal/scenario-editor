@@ -74,7 +74,7 @@ jobs:
           install: false
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
-          env: $CYPRESS_GITHUB_ENV
+          env: ${{ secrets.CYPRESS_GITHUB_ENV }}
 
       # - uses: actions/upload-artifact@v1
       #  if: always()

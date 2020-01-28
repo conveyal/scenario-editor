@@ -8,6 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install --frozen-lockfile --check-files
+      - run: cat $NEXT_ENV_BUILD > .env.build
+        env:
+          NEXT_ENV_BUILD: ${{ secrets.NEXT_ENV_BUILD }} 
       - run: yarn build
 
       - uses: actions/cache@v1

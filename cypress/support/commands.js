@@ -29,6 +29,10 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
+Cypress.Commands.add('mapIsReady', function() {
+  cy.window({timeout: 10000}).then(w => typeof w.LeafletMap !== 'undefined')
+})
+
 Cypress.Commands.add('login', function() {
   cy.getCookie('user').then(user => {
     const inTenMinutes = Date.now() + 600 * 1000

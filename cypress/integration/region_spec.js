@@ -13,13 +13,7 @@ describe('Set up a new region', () => {
     // TODO STILL not working...
     cy.waitUntil(
       () =>
-        cy
-          .window({log: false})
-          .then(
-            w =>
-              w.hasOwnProperty('LeafletMap') &&
-              typeof w.LeafletMap !== 'undefined'
-          ),
+        cy.window({log: false}).then(w => typeof w.LeafletMap !== 'undefined'),
       {timeout: 10000, description: 'Map Global is available'}
     )
     cy.window().then(w => {

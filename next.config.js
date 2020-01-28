@@ -18,7 +18,7 @@ const env = {
   AUTH_DISABLED: process.env.AUTH_DISABLED === 'true',
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-  LOGROCKET: process.env.LOGROCKET || 'not-required',
+  LOGROCKET: process.env.LOGROCKET || false,
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
 }
 

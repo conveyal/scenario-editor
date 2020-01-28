@@ -8,6 +8,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const path = require('path')
 const webpack = require('webpack')
 
+if (process.env.API_URL === undefined) {
+  require('dotenv').config({path: '.env.build'})
+}
+
 const env = {
   ADMIN_ACCESS_GROUP: process.env.ADMIN_ACCESS_GROUP,
   API_URL: process.env.API_URL,
@@ -16,6 +20,15 @@ const env = {
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
   LOGROCKET: process.env.LOGROCKET,
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
+}
+
+if (Object.values(env).findIndex(v => v === undefined || v === null) !== -1) {
+  console.error(
+    'Please ensure required environment variables can be found. If running locally, copy the `.env.build.tmp` to `.env.build` and ensure all variables (' +
+      Object.keys(env).join(', ') +
+      ') are set.'
+  )
+  process.exit(1)
 }
 
 module.exports = withMDX(

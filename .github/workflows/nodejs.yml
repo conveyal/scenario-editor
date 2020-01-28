@@ -8,12 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install --frozen-lockfile --check-files
-      - run: yarn build
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
-          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
-          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
 
       - uses: actions/cache@v1
         id: cache-build
@@ -60,15 +54,17 @@ jobs:
 
       # Install the binary
       - run: yarn run cypress install
-        
-      # Start and run the next.js server in the background
-      - run: yarn start &
+
+      # Build then run the next.js server in the background
+      - run: |
+          yarn build
+          yarn start &
         env:
           API_URL: ${{ secrets.API_URL }}
           AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
           AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
-        
+
       - uses: cypress-io/github-action@v1
         with:
           install: false
@@ -76,8 +72,7 @@ jobs:
           wait-on-timeout: 60
           env: ${{ secrets.CYPRESS_GITHUB_ENV }}
 
-      # - uses: actions/upload-artifact@v1
-      #  if: always()
-      #  with:
-      #    name: cypress-screenshots
-      #    path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots

@@ -13,12 +13,12 @@ if (process.env.API_URL === undefined) {
 }
 
 const env = {
-  ADMIN_ACCESS_GROUP: process.env.ADMIN_ACCESS_GROUP,
+  ADMIN_ACCESS_GROUP: process.env.ADMIN_ACCESS_GROUP || 'conveyal',
   API_URL: process.env.API_URL,
   AUTH_DISABLED: process.env.AUTH_DISABLED === 'true',
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-  LOGROCKET: process.env.LOGROCKET,
+  LOGROCKET: process.env.LOGROCKET || 'not-required',
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
 }
 

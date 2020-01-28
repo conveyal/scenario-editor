@@ -1,0 +1,793 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegionalResults snapshot(mount) 1`] = `
+<RegionalResults
+  analysis={
+    Object {
+      "_id": "abcd",
+      "accessGroup": "accessGroupName",
+      "bounds": Object {},
+      "bundleId": "5678",
+      "complete": true,
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "cutoffMinutes": 60,
+      "deleted": false,
+      "grid": "Jobs_total",
+      "height": 300,
+      "name": "ANALYSIS 1",
+      "nonce": "12345",
+      "north": 20024,
+      "projectId": "1234",
+      "request": Object {
+        "accessModes": "WALK",
+        "bikeSafe": 1,
+        "bikeSlope": 1,
+        "bikeSpeed": 4.166666666666667,
+        "bikeTime": 1,
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "bundleId": "1",
+        "date": "2016-01-16",
+        "defaultExpanded": true,
+        "directModes": "WALK",
+        "egressModes": "WALK",
+        "fromLat": 12,
+        "fromLon": 34,
+        "fromTime": 25200,
+        "maxBikeTime": 20,
+        "maxRides": 4,
+        "maxTripDurationMinutes": 60,
+        "maxWalkTime": 20,
+        "monteCarloDraws": 200,
+        "name": "Profile Request Test",
+        "projectId": "1",
+        "reachabilityThreshold": 0,
+        "regionId": "1",
+        "toTime": 32400,
+        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+        "travelTimePercentile": 50,
+        "variantIndex": 0,
+        "walkSpeed": 1.3888888888888888,
+        "workerVersion": "v4.0.0",
+      },
+      "status": "DONE",
+      "travelTimePercentile": -1,
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variant": 0,
+      "west": 20015,
+      "width": 300,
+      "workerVersion": "v3.2.0",
+      "zoom": 9,
+    }
+  }
+  analysisId="abcd"
+  opportunityDatasets={
+    Array [
+      Object {
+        "_id": "Jobs_total",
+        "name": "Total jobs",
+      },
+    ]
+  }
+  regionId="MOCK_REGION_ID"
+>
+  <Group
+    label="Compare to"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="control-label"
+        htmlFor="compare-to-input-0"
+      >
+        Compare to
+      </label>
+      <S
+        getOptionLabel={[Function]}
+        getOptionValue={[Function]}
+        isClearable={true}
+        onChange={[Function]}
+        options={Array []}
+      >
+        <ReactSelect
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          isClearable={true}
+          onChange={[Function]}
+          options={Array []}
+          styles={
+            Object {
+              "control": [Function],
+              "option": [Function],
+            }
+          }
+        >
+          <div
+            className="ReactSelectMock"
+          />
+        </ReactSelect>
+      </S>
+    </div>
+  </Group>
+  <Group
+    label="Access to"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="control-label"
+        htmlFor="access-to-input-1"
+      >
+        Access to
+      </label>
+      <P>
+        <Box
+          as="p"
+          mb="10px"
+        >
+          <p
+            className="css-1r2f04i"
+          >
+            Total jobs within 60 minutes (average instantaneous accessibility)
+          </p>
+        </Box>
+      </P>
+      <Legend
+        breaks={
+          Array [
+            0,
+            436,
+            857,
+            1257,
+            1649,
+            2000,
+          ]
+        }
+        colors={
+          Array [
+            Object {
+              "b": 255,
+              "g": 255,
+              "opacity": 0,
+              "r": 255,
+            },
+            Rgb {
+              "b": 239,
+              "g": 219,
+              "opacity": 0.42,
+              "r": 198,
+            },
+            Rgb {
+              "b": 225,
+              "g": 202,
+              "opacity": 0.42,
+              "r": 158,
+            },
+            Rgb {
+              "b": 214,
+              "g": 174,
+              "opacity": 0.42,
+              "r": 107,
+            },
+            Rgb {
+              "b": 189,
+              "g": 130,
+              "opacity": 0.42,
+              "r": 49,
+            },
+            Rgb {
+              "b": 156,
+              "g": 81,
+              "opacity": 0.42,
+              "r": 8,
+            },
+          ]
+        }
+        min={0}
+      >
+        <div
+          className="Legend"
+        >
+          <div
+            className="Legend-Item"
+            key="break-0"
+            style={
+              Object {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            0 (transparent)
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-1"
+            style={
+              Object {
+                "backgroundColor": "rgba(198, 219, 239, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            0 to 436
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-2"
+            style={
+              Object {
+                "backgroundColor": "rgba(158, 202, 225, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            436 to 857
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-3"
+            style={
+              Object {
+                "backgroundColor": "rgba(107, 174, 214, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            857 to 1,257
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-4"
+            style={
+              Object {
+                "backgroundColor": "rgba(49, 130, 189, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,257 to 1,649
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-5"
+            style={
+              Object {
+                "backgroundColor": "rgba(8, 81, 156, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,649 to 2,000
+          </div>
+        </div>
+      </Legend>
+    </div>
+  </Group>
+  <AggregationArea
+    regionId="MOCK_REGION_ID"
+  >
+    <Group
+      label="Aggregate results to"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label"
+          htmlFor="aggregate-results-to-input-2"
+        >
+          Aggregate results to
+        </label>
+        <S
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          isClearable={true}
+          isDisabled={false}
+          name="aggregateTo"
+          onChange={[Function]}
+          options={Array []}
+        >
+          <ReactSelect
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            isClearable={true}
+            isDisabled={false}
+            name="aggregateTo"
+            onChange={[Function]}
+            options={Array []}
+            styles={
+              Object {
+                "control": [Function],
+                "option": [Function],
+              }
+            }
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </S>
+      </div>
+    </Group>
+    <Group>
+      <div
+        className="form-group"
+      >
+        <Button
+          block={true}
+          onClick={[Function]}
+          size="sm"
+          style="info"
+        >
+          <a
+            className="btn btn-info btn-block btn-sm"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            Upload new aggregation area
+             
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "chevron-down",
+                  "prefix": "fas",
+                }
+              }
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "chevron-down",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                swapOpacity={false}
+                symbol={false}
+                title=""
+                transform={null}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-chevron-down fa-w-NaN fa-fw "
+                  data-icon="chevron-down"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+          </a>
+        </Button>
+      </div>
+    </Group>
+  </AggregationArea>
+</RegionalResults>
+`;
+
+exports[`RegionalResults with comparison snapshot(mount) 1`] = `
+<RegionalResults
+  analysis={
+    Object {
+      "_id": "abcd",
+      "accessGroup": "accessGroupName",
+      "bounds": Object {},
+      "bundleId": "5678",
+      "complete": true,
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "cutoffMinutes": 60,
+      "deleted": false,
+      "grid": "Jobs_total",
+      "height": 300,
+      "name": "ANALYSIS 1",
+      "nonce": "12345",
+      "north": 20024,
+      "projectId": "1234",
+      "request": Object {
+        "accessModes": "WALK",
+        "bikeSafe": 1,
+        "bikeSlope": 1,
+        "bikeSpeed": 4.166666666666667,
+        "bikeTime": 1,
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "bundleId": "1",
+        "date": "2016-01-16",
+        "defaultExpanded": true,
+        "directModes": "WALK",
+        "egressModes": "WALK",
+        "fromLat": 12,
+        "fromLon": 34,
+        "fromTime": 25200,
+        "maxBikeTime": 20,
+        "maxRides": 4,
+        "maxTripDurationMinutes": 60,
+        "maxWalkTime": 20,
+        "monteCarloDraws": 200,
+        "name": "Profile Request Test",
+        "projectId": "1",
+        "reachabilityThreshold": 0,
+        "regionId": "1",
+        "toTime": 32400,
+        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+        "travelTimePercentile": 50,
+        "variantIndex": 0,
+        "walkSpeed": 1.3888888888888888,
+        "workerVersion": "v4.0.0",
+      },
+      "status": "DONE",
+      "travelTimePercentile": -1,
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variant": 0,
+      "west": 20015,
+      "width": 300,
+      "workerVersion": "v3.2.0",
+      "zoom": 9,
+    }
+  }
+  analysisId="abcd"
+  opportunityDatasets={
+    Array [
+      Object {
+        "_id": "Jobs_total",
+        "name": "Total jobs",
+      },
+    ]
+  }
+  regionId="MOCK_REGION_ID"
+>
+  <Group
+    label="Compare to"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="control-label"
+        htmlFor="compare-to-input-3"
+      >
+        Compare to
+      </label>
+      <S
+        getOptionLabel={[Function]}
+        getOptionValue={[Function]}
+        isClearable={true}
+        onChange={[Function]}
+        options={Array []}
+      >
+        <ReactSelect
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          isClearable={true}
+          onChange={[Function]}
+          options={Array []}
+          styles={
+            Object {
+              "control": [Function],
+              "option": [Function],
+            }
+          }
+        >
+          <div
+            className="ReactSelectMock"
+          />
+        </ReactSelect>
+      </S>
+    </div>
+  </Group>
+  <Group
+    label="Access to"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="control-label"
+        htmlFor="access-to-input-4"
+      >
+        Access to
+      </label>
+      <P>
+        <Box
+          as="p"
+          mb="10px"
+        >
+          <p
+            className="css-1r2f04i"
+          >
+            Total jobs within 60 minutes (average instantaneous accessibility)
+          </p>
+        </Box>
+      </P>
+      <Legend
+        breaks={
+          Array [
+            0,
+            436,
+            857,
+            1257,
+            1649,
+            2000,
+          ]
+        }
+        colors={
+          Array [
+            Object {
+              "b": 255,
+              "g": 255,
+              "opacity": 0,
+              "r": 255,
+            },
+            Rgb {
+              "b": 239,
+              "g": 219,
+              "opacity": 0.42,
+              "r": 198,
+            },
+            Rgb {
+              "b": 225,
+              "g": 202,
+              "opacity": 0.42,
+              "r": 158,
+            },
+            Rgb {
+              "b": 214,
+              "g": 174,
+              "opacity": 0.42,
+              "r": 107,
+            },
+            Rgb {
+              "b": 189,
+              "g": 130,
+              "opacity": 0.42,
+              "r": 49,
+            },
+            Rgb {
+              "b": 156,
+              "g": 81,
+              "opacity": 0.42,
+              "r": 8,
+            },
+          ]
+        }
+        min={0}
+      >
+        <div
+          className="Legend"
+        >
+          <div
+            className="Legend-Item"
+            key="break-0"
+            style={
+              Object {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            0 (transparent)
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-1"
+            style={
+              Object {
+                "backgroundColor": "rgba(198, 219, 239, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            0 to 436
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-2"
+            style={
+              Object {
+                "backgroundColor": "rgba(158, 202, 225, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            436 to 857
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-3"
+            style={
+              Object {
+                "backgroundColor": "rgba(107, 174, 214, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            857 to 1,257
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-4"
+            style={
+              Object {
+                "backgroundColor": "rgba(49, 130, 189, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,257 to 1,649
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-5"
+            style={
+              Object {
+                "backgroundColor": "rgba(8, 81, 156, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            1,649 to 2,000
+          </div>
+        </div>
+      </Legend>
+    </div>
+  </Group>
+  <AggregationArea
+    regionId="MOCK_REGION_ID"
+  >
+    <Group
+      label="Aggregate results to"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label"
+          htmlFor="aggregate-results-to-input-5"
+        >
+          Aggregate results to
+        </label>
+        <S
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          isClearable={true}
+          isDisabled={false}
+          name="aggregateTo"
+          onChange={[Function]}
+          options={Array []}
+        >
+          <ReactSelect
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            isClearable={true}
+            isDisabled={false}
+            name="aggregateTo"
+            onChange={[Function]}
+            options={Array []}
+            styles={
+              Object {
+                "control": [Function],
+                "option": [Function],
+              }
+            }
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </S>
+      </div>
+    </Group>
+    <Group>
+      <div
+        className="form-group"
+      >
+        <Button
+          block={true}
+          onClick={[Function]}
+          size="sm"
+          style="info"
+        >
+          <a
+            className="btn btn-info btn-block btn-sm"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            Upload new aggregation area
+             
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "chevron-down",
+                  "prefix": "fas",
+                }
+              }
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "chevron-down",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                swapOpacity={false}
+                symbol={false}
+                title=""
+                transform={null}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-chevron-down fa-w-NaN fa-fw "
+                  data-icon="chevron-down"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+          </a>
+        </Button>
+      </div>
+    </Group>
+  </AggregationArea>
+</RegionalResults>
+`;

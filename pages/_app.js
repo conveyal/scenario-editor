@@ -31,8 +31,7 @@ const DevBar = () => (
     className='DEV'
     mt='-4px'
     position='absolute'
-    left='0'
-    right='0'
+    width='100vw'
     zIndex='10000'
   />
 )
@@ -132,6 +131,7 @@ function ComponentWithMap(p) {
           </Box>
           <Box
             flexGrow='1'
+            height='100vh'
             opacity={routeChanging ? 0.4 : 1}
             position='relative'
           >

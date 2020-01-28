@@ -128,7 +128,7 @@ exports[`Component > EditRegion 1`] = `
         className="InnerDock block"
         style={
           Object {
-            "height": 768,
+            "height": "100vh",
           }
         }
       >

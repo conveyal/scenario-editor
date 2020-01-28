@@ -12,101 +12,85 @@ exports[`Components > Analysis > Regional > Legend should display 1`] = `
   }
   colors={
     Array [
-      "#111111",
-      "#222222",
-      "#333333",
-      "#444444",
+      Object {
+        "b": 0,
+        "g": 0,
+        "opacity": 0,
+        "r": 0,
+      },
+      Object {
+        "b": 0,
+        "g": 0,
+        "opacity": 1,
+        "r": 0,
+      },
+      Object {
+        "b": 0,
+        "g": 0,
+        "opacity": 2,
+        "r": 0,
+      },
+      Object {
+        "b": 0,
+        "g": 0,
+        "opacity": 3,
+        "r": 0,
+      },
     ]
   }
   min={0}
 >
-  <ul
+  <div
     className="Legend"
   >
-    <Break
-      bottom={0}
-      color="#111111"
+    <div
+      className="Legend-Item"
       key="break-0"
-      top={1000}
-    >
-      <li
-        className="Legend-Item"
-        key="break-rgb(17, 17, 17)"
-        style={
-          Object {
-            "backgroundColor": "rgb(17, 17, 17)",
-            "color": "#fff",
-          }
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "color": "#fff",
         }
-      >
-        0
-         to 
-        1,000
-      </li>
-    </Break>
-    <Break
-      bottom={1000}
-      color="#222222"
+      }
+    >
+      0 to 1,000 (transparent)
+    </div>
+    <div
+      className="Legend-Item"
       key="break-1"
-      top={2000}
-    >
-      <li
-        className="Legend-Item"
-        key="break-rgb(34, 34, 34)"
-        style={
-          Object {
-            "backgroundColor": "rgb(34, 34, 34)",
-            "color": "#fff",
-          }
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "color": "#fff",
         }
-      >
-        1,000
-         to 
-        2,000
-      </li>
-    </Break>
-    <Break
-      bottom={2000}
-      color="#333333"
+      }
+    >
+      1,000 to 2,000
+    </div>
+    <div
+      className="Legend-Item"
       key="break-2"
-      top={3000}
-    >
-      <li
-        className="Legend-Item"
-        key="break-rgb(51, 51, 51)"
-        style={
-          Object {
-            "backgroundColor": "rgb(51, 51, 51)",
-            "color": "#fff",
-          }
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "color": "#fff",
         }
-      >
-        2,000
-         to 
-        3,000
-      </li>
-    </Break>
-    <Break
-      bottom={3000}
-      color="#444444"
+      }
+    >
+      2,000 to 3,000
+    </div>
+    <div
+      className="Legend-Item"
       key="break-3"
-      top={4000}
-    >
-      <li
-        className="Legend-Item"
-        key="break-rgb(68, 68, 68)"
-        style={
-          Object {
-            "backgroundColor": "rgb(68, 68, 68)",
-            "color": "#fff",
-          }
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "color": "#fff",
         }
-      >
-        3,000
-         to 
-        4,000
-      </li>
-    </Break>
-  </ul>
+      }
+    >
+      3,000 to 4,000
+    </div>
+  </div>
 </Legend>
 `;

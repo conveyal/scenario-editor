@@ -137,9 +137,3 @@ Object {
   "type": "set regional analyses",
 }
 `;
-
-exports[`Actions > Analysis > Regional setRegionalAnalysisGrids should work 1`] = `
-Object {
-  "type": "set regional analysis grids",
-}
-`;

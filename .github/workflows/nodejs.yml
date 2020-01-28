@@ -8,10 +8,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install --frozen-lockfile --check-files
-      - run: echo $NEXT_ENV_BUILD > .env.build
-        env:
-          NEXT_ENV_BUILD: ${{ secrets.NEXT_ENV_BUILD }} 
       - run: yarn build
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
 
       - uses: actions/cache@v1
         id: cache-build

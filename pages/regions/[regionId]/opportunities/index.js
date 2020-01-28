@@ -3,6 +3,7 @@ import React from 'react'
 
 import {load} from 'lib/actions/region'
 import {
+  checkUploadStatus,
   loadOpportunityDatasets,
   setActiveOpportunityDataset
 } from 'lib/modules/opportunity-datasets/actions'
@@ -37,6 +38,7 @@ function initialFetch(store, query) {
   // Load all the data
   return Promise.all([
     store.dispatch(loadOpportunityDatasets(query.regionId)),
+    store.dispatch(checkUploadStatus(query.regionId)),
     store.dispatch(load(query.regionId))
   ])
 }

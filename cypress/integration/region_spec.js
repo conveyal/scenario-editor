@@ -14,7 +14,7 @@ describe('Set up a new region', function() {
     cy.visit('/regions/create')
     cy.mapIsReady()
     // try searching all selected regions
-    cy.fixture('regions.json').then(JSON => {
+    return cy.fixture('regions.json').then(JSON => {
       cy.wrap(JSON.regions).each(region => {
         cy.get('input#react-select-2-input')
           .focus()
@@ -35,12 +35,6 @@ describe('Set up a new region', function() {
       .type(45.769)
     cy.get('a[name="Set up a new region"]').should('have.attr', 'disabled')
   })
-
-  //  it('enter region descriptors', () => {
-  //    // name and decription
-  //    cy.get('input[name="Region Name"]').type('Temporary region')
-  //    cy.get('input[name="Description"]').type('this should be deleted shortly')
-  //  })
 
   it('select pbf', () => {
     cy.visit('/regions/create')

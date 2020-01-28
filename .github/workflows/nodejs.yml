@@ -3,37 +3,62 @@ name: Build, Test, Deploy
 on: [pull_request]
 
 jobs:
-  test:
+  install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - run: yarn install
-
+      - uses: actions/checkout@v2
+      - run: yarn install --frozen-lockfile --check-files
       - run: yarn build
+
+      - uses: actions/cache@v1
+        id: cache-build
+        with:
+          path: '.'
+          key: ${{ github.sha }}
+
+  codeLinter:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/cache@v1
+        id: restore-build
+        with:
+          path: '.'
+          key: ${{ github.sha }}
+
       - run: yarn lint
       - run: yarn check-format
+
+  jestUnitTests:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/cache@v1
+        id: restore-build
+        with:
+          path: '.'
+          key: ${{ github.sha }}
+
       - run: yarn jest
         env:
           CI: true
 
-  integration:
+  cypress:
     runs-on: ubuntu-latest
+    needs: install
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/cache@v1
+        id: restore-build
         with:
-          node-version: 12.x
-      - run: yarn install
-      - run: |
-          export CYPRESS_baseURL=$(now deploy --no-clipboard --token $ZEIT_TOKEN)
-          yarn cypress run --env $CYPRESS_GITHUB_ENV
+          path: '.'
+          key: ${{ github.sha }}
 
-        env:
-          CYPRESS_GITHUB_ENV: ${{ secrets.CYPRESS_GITHUB_ENV }}
-          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+      - uses: cypress-io/github-action@v1
+        with:
+          start: yarn start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+          env: $CYPRESS_GITHUB_ENV
 
       - uses: actions/upload-artifact@v1
         if: always()

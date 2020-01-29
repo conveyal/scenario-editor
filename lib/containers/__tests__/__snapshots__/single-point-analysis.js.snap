@@ -775,6 +775,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   addOpportunityDataset={[Function]}
                   checkUploadStatus={[Function]}
                   clearStatus={[Function]}
+                  clearUploadStatus={[Function]}
                   deleteOpportunityDataset={[Function]}
                   deleteSourceSet={[Function]}
                   downloadLODES={[Function]}

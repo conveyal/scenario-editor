@@ -182,6 +182,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
           addOpportunityDataset={[Function]}
           checkUploadStatus={[Function]}
           clearStatus={[Function]}
+          clearUploadStatus={[Function]}
           deleteOpportunityDataset={[Function]}
           deleteSourceSet={[Function]}
           downloadLODES={[Function]}

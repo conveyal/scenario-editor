@@ -33,6 +33,21 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       </p>
     </Box>
   </P>
+  <Button
+    block={true}
+    className="DEV"
+    onClick={[Function]}
+    style="warning"
+  >
+    <a
+      className="btn btn-warning btn-block DEV"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
+    >
+      Clear selected bundle
+    </a>
+  </Button>
 </div>
 `;
 

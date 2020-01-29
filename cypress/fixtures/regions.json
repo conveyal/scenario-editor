@@ -1,0 +1,23 @@
+{
+  "selected":0,
+  "regions":[
+    {
+      "name": "Cincinnati",
+      "searchTerm": "cincinnati",
+      "foundName":"Cincinnati, Ohio, United States",
+      "north":39.3177,
+      "south":39.0126,
+      "east":-84.2442,
+      "west":-84.7173
+    },
+    {
+      "name": "Portland",
+      "searchTerm": "portland",
+      "foundName":"Portland, Oregon, United States",
+      "north":45.8580,
+      "south":45.3794,
+      "east":-122.4410,
+      "west":-122.9292
+    }
+  ]
+}

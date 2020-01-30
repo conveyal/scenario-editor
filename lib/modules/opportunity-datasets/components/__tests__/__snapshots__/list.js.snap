@@ -177,20 +177,14 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
     <div
       className="form-group"
     >
-      <Connect(OpportunityDatasetSelector)>
-        <OpportunityDatasetSelector
-          addOpportunityDataset={[Function]}
-          checkUploadStatus={[Function]}
-          clearStatus={[Function]}
-          clearUploadStatus={[Function]}
-          deleteOpportunityDataset={[Function]}
-          deleteSourceSet={[Function]}
-          downloadLODES={[Function]}
-          downloadOpportunityDataset={[Function]}
-          editOpportunityDataset={[Function]}
-          loadOpportunityDataset={[Function]}
-          loadOpportunityDatasets={[Function]}
-          opportunityDatasets={
+      <OpportunityDatasetSelector>
+        <S
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          isClearable={true}
+          isDisabled={false}
+          onChange={[Function]}
+          options={
             Array [
               Object {
                 "_id": "Workers_total",
@@ -199,15 +193,8 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
               },
             ]
           }
-          removeOpportunityDataset={[Function]}
-          setActiveOpportunityDataset={[Function]}
-          setOpportunityDatasets={[Function]}
-          updateOpportunityDataset={[Function]}
-          updateUploadStatuses={[Function]}
-          uploadOpportunityDataset={[Function]}
-          uploadStatuses={Array []}
         >
-          <S
+          <ReactSelect
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             isClearable={true}
@@ -222,36 +209,19 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                 },
               ]
             }
+            styles={
+              Object {
+                "control": [Function],
+                "option": [Function],
+              }
+            }
           >
-            <ReactSelect
-              getOptionLabel={[Function]}
-              getOptionValue={[Function]}
-              isClearable={true}
-              isDisabled={false}
-              onChange={[Function]}
-              options={
-                Array [
-                  Object {
-                    "_id": "Workers_total",
-                    "name": "Workers total",
-                    "sourceName": "lodes-data-2014",
-                  },
-                ]
-              }
-              styles={
-                Object {
-                  "control": [Function],
-                  "option": [Function],
-                }
-              }
-            >
-              <div
-                className="ReactSelectMock"
-              />
-            </ReactSelect>
-          </S>
-        </OpportunityDatasetSelector>
-      </Connect(OpportunityDatasetSelector)>
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </S>
+      </OpportunityDatasetSelector>
     </div>
   </Group>
 </ListOpportunityDatasets>

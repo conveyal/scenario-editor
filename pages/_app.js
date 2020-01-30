@@ -121,6 +121,13 @@ function ComponentWithMap(p) {
     <State initialState={noopFragment}>
       {(mapChildren, setMapChildren) => (
         <Flex pointerEvents={routeChanging ? 'none' : 'inherit'}>
+          <style jsx global>{`
+            body {
+              height: 100vh;
+              overflow: hidden;
+              width: 100vw;
+            }
+          `}</style>
           <Sidebar />
           <Box
             borderRight='1px solid #ddd'
@@ -131,7 +138,6 @@ function ComponentWithMap(p) {
           </Box>
           <Box
             flexGrow='1'
-            height='100vh'
             opacity={routeChanging ? 0.4 : 1}
             position='relative'
           >

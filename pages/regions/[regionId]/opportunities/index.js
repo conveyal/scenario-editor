@@ -26,7 +26,7 @@ const Opportunities = React.memo(function Opportunities(p) {
 
   return (
     <Heading>
-      <List {...p} />
+      <List {...p} regionId={p.query.regionId} />
     </Heading>
   )
 })

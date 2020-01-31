@@ -3,12 +3,10 @@ import React from 'react'
 import Heading from 'lib/modules/opportunity-datasets/components/heading'
 import Upload from 'lib/modules/opportunity-datasets/components/upload'
 
-function OpportunitiesUpload(p) {
+export default function OpportunitiesUpload(p) {
   return (
-    <Heading {...p}>
-      <Upload {...p} />
+    <Heading>
+      <Upload {...p} regionId={p.query.regionId} />
     </Heading>
   )
 }
-
-export default OpportunitiesUpload

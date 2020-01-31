@@ -69,7 +69,7 @@ export default withRedux(createStore)(
         return {pageProps}
       } catch (e) {
         console.error('Error getting initial props', e)
-        return {error: e}
+        return {error: e, pageProps: {}}
       } finally {
         timeApp.end()
       }

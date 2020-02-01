@@ -32,7 +32,6 @@ jobs:
           path: '.'
           key: ${{ github.sha }}
 
-      - run: yarn install
       - run: yarn lint
       - run: yarn check-format
 

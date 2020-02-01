@@ -1,4 +1,4 @@
-name: Build, Test, Deploy
+name: Install, Lint, Unit test, Build, Cypress Test
 
 on: [pull_request, push]
 

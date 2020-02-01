@@ -10,13 +10,12 @@ jobs:
       - id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v1
-        id: cache
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          
-      - if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --check-files
+        
+      # Should be fast with the yarn cache restored
+      - run: yarn install --frozen-lockfile --check-files
       
       # Cache the entire working directory for subsequent steps
       - uses: actions/cache@v1

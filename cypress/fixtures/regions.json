@@ -14,10 +14,10 @@
       "name": "Portland",
       "searchTerm": "portland",
       "foundName":"Portland, Oregon, United States",
-      "north":45.8580,
-      "south":45.3794,
-      "east":-122.4410,
-      "west":-122.9292
+      "north":45.83,
+      "south":45.27,
+      "east":-122.28,
+      "west":-122.28
     }
   ]
 }

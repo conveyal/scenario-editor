@@ -65,14 +65,11 @@ jobs:
           AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
           AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
-          
-      # Install the cypress binary
-      - run: yarn cypress install
 
-      - uses: cypress-io/github-action@v1
+      - uses: trevorgerhardt/github-action@patch-1
         with:
           env: ${{ secrets.CYPRESS_GITHUB_ENV }}
-          install: false
+          installDependencies: false
           start: yarn start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60

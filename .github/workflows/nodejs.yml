@@ -57,6 +57,15 @@ jobs:
         with:
           path: '.'
           key: ${{ github.sha }}
+          
+      - uses: actions/cache@v1
+        id: cypress-cache
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ hashFiles('**/yarn.lock') }} 
+          
+      - if: steps.cypress-cache.outputs.cache-hit != 'true'
+        run: yarn run cypress install
       
       # Build the next.js app
       - run: yarn build
@@ -69,6 +78,7 @@ jobs:
       - uses: cypress-io/github-action@v1
         with:
           env: ${{ secrets.CYPRESS_GITHUB_ENV }}
+          install: false          
           start: yarn start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60

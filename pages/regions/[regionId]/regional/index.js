@@ -1,7 +1,8 @@
 import {
   load,
   setActiveRegionalAnalysis,
-  setComparisonRegionalAnalysis
+  setComparisonRegionalAnalysis,
+  setRegionalAnalysisDisplayCutoff
 } from 'lib/actions/analysis/regional'
 import {loadRegion} from 'lib/actions/region'
 import RegionalResultsList from 'lib/components/analysis/regional-results-list'
@@ -18,6 +19,7 @@ async function initialFetch(store, query) {
   // Set the store from the query parameters
   store.dispatch(setActiveRegionalAnalysis(query.analysisId))
   store.dispatch(setComparisonRegionalAnalysis(query.comparisonAnalysisId))
+  store.dispatch(setRegionalAnalysisDisplayCutoff(query.cutoff))
 
   return {
     analysis: regionalAnalyses.find(a => a._id === query.analysisId),

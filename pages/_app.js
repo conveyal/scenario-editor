@@ -86,7 +86,7 @@ export default withRedux(createStore)(
             <Head>
               <title key='title'>Conveyal Analysis</title>
               {isAdmin(p.pageProps.user) && (
-                <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
+                <style id='DEVSTYLE'>{`.DEV{display: inherit !important;}`}</style>
               )}
             </Head>
             <DevBar />

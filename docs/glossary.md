@@ -36,10 +36,10 @@ Several terms have a special or specific meaning in the context of Conveyal Anal
       A trip pattern is a sequence of stops visited by a transit vehicle. A trip pattern can have many trips, and a route consists of a one or more trip patterns. A basic two-way route might consist of two trip patterns - e.g. one for inbound service, one outbound. Each might make stops on different sides of the street and/or in a different order. 
 
    trip
-      A single vehicle trip, representing a vehicle visiting the stops on a particular trip pattern at a particular time.
+      A single vehicle trip, representing a single vehicle visiting the stops on a particular trip pattern at a particular set of times.
 
-   hop
-      A portion of a trip consisting of a transit vehicle traveling between two consecutive stops.
+   segment
+      A portion of a :term:`trip pattern` consisting of a transit vehicle traveling between two consecutive stops.
 
    isochrone
       An `isochrone <https://en.wiktionary.org/wiki/isochrone#English>`_ is a boundary around a given origin point defined such that travel from the origin to any point on the boundary takes an equal amount of time. Conveyal Analysis calculates travel time over a departure window, so the travel time used is actually a selected percentile in a distribution of travel times. 

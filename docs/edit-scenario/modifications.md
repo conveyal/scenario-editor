@@ -84,6 +84,7 @@ Once you have created an alignment, you'll need to specify when the route runs u
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
+.. _adjust_dwell_time:
 ## Adjust dwell time
 
 You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular stop. As with the remove-stops modification, you can select a feed, route and optionally patterns. You can then use the map to select the affected stops (if you skip this step, all stops will have their dwell times adjusted). You can then choose to either enter a new dwell time (in seconds), or scale the existing dwell times (for instance, entering 2 would double existing dwell times).
@@ -94,15 +95,28 @@ Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_tim
   <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
+.. _adjust_speed:
 ## Adjust speed
 
-Sometimes you will want to adjust the speed on a route, or a portion of it (for instance due to the addition of dedicated bus lanes, or an application of transit signal priority). As before, you will create the modification and select a feed, routes and patterns. If you want to modify only part of the route, you can use similar selection tools to those used in the remove stops (with new selection, add and remove buttons). The difference is that you are now selecting :term:`hops<hop>`. The selected segment will be shown on the map in purple. Finally, enter a scale, which is the factor to multiply the speed by. For instance, if you enter 2, vehicles will travel twice as fast between stops (this modification does not affect dwell times; to model changes in dwell time, see the adjust dwell time modification below).
+Sometimes you will want to adjust the speed on an entire route or just a :term:`segment` of one. For instance you might want to model the addition of bus lanes or an application of transit signal priority. This modification allows you to scale the speed of existing scheduled :term:`trips<trip>`, or segments of them, by a constant factor. It can be applied to whole routes (in which case more than one route may be selected) or to selected segments of a particular route or to just a subset of :term:`trip patterns<trip pattern>`. 
 
-This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
+You will need to select a GTFS feed, routes and optionally :term:`trip patterns<trip pattern>` if only one route is selected. All trip patterns will be selected by default. Segments can be selected by clicking _Select_ from the toolbox shown in the figure below. This will allow you to begin drawing a polygon selection area on the map. Any segments within this area will be selected when the polygon is closed and selected segments will then render on the map in purple. 
+
+<figure>
+  <img src="../img/segment-selector.png"/>
+  <figcaption>Options for selecting segments of trip patterns</figcaption>
+</figure>
+
+The _Select_ option will begin a new selection and the _Add to_ option will add to the current selection if any. _Remove from_ allows you to select segments to remove from the current selection and _Clear_ un-selects all segments. 
 
 <figure>
   <img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
+  <figcaption>Segments being selected from a set of overlapping trip patterns</figcaption>
 </figure>
+
+Finally, enter a numeric value in the _Scale speed by_ field --- this is the factor to multiply the speed by. For instance, if you enter 1.3, the speed of vehicles will increase by 30% when traveling between stops. Note however that this modification does not affect dwell times; to model changes in dwell time, see the :ref:`adjust_dwell_time` modification.
+
+This modification does not take into account the possibility of increased frequency due to faster, more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
 
 .. _convert_to_frequency:
 ## Convert to frequency
@@ -119,6 +133,7 @@ You then [add details to each frequency entry](timetable.html). Repeat this proc
 
 You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
 
+.. _remove_stops:
 ## Remove stops
 
 It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new _remove stops_ modification, and select a feed, route, and patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.

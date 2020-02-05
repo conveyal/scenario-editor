@@ -206,6 +206,11 @@ exports[`constainers/single-point-analysis 1`] = `
     >
       <div
         className="ApplicationDockTitle"
+        style={
+          Object {
+            "width": "640px",
+          }
+        }
       >
         <div>
           <Icon

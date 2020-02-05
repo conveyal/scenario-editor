@@ -3,6 +3,11 @@
 exports[`Components > Analysis > Title should render properly given different states 1`] = `
 <div
   className="ApplicationDockTitle"
+  style={
+    Object {
+      "width": "640px",
+    }
+  }
 >
   <div>
     <Icon
@@ -64,6 +69,11 @@ exports[`Components > Analysis > Title should render properly given different st
 exports[`Components > Analysis > Title should render properly given different states 2`] = `
 <div
   className="ApplicationDockTitle"
+  style={
+    Object {
+      "width": "640px",
+    }
+  }
 >
   <div>
     <Icon
@@ -125,6 +135,11 @@ exports[`Components > Analysis > Title should render properly given different st
 exports[`Components > Analysis > Title should render properly given different states 3`] = `
 <div
   className="ApplicationDockTitle"
+  style={
+    Object {
+      "width": "640px",
+    }
+  }
 >
   <div>
     <Icon
@@ -186,6 +201,11 @@ exports[`Components > Analysis > Title should render properly given different st
 exports[`Components > Analysis > Title should render properly given different states 4`] = `
 <div
   className="ApplicationDockTitle"
+  style={
+    Object {
+      "width": "640px",
+    }
+  }
 >
   <div>
     <Icon

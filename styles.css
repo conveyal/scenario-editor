@@ -224,6 +224,7 @@ input[type='range'].form-control {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  width: var(--dock-width);
 }
 
 .ApplicationDockTitle .btn {

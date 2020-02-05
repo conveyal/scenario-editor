@@ -48,8 +48,7 @@ export default withRedux(createStore)(
     static async getInitialProps({Component, ctx}) {
       const timeApp = timer('App.getInitialProps')
 
-      // Set the query string in the store
-      // TODO ideally stop duplicating this data in the store
+      // Set the query string in the store. This action mutates the store
       ctx.store.dispatch(setQueryString(ctx.query))
 
       try {

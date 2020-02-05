@@ -18,7 +18,7 @@ exports[`Component OpportunityDatasetSelector snapshot(mount) 1`] = `
       ]
     }
   >
-    <ReactSelect
+    <ForwardRef(LoadableComponent)
       getOptionLabel={[Function]}
       getOptionValue={[Function]}
       isClearable={true}
@@ -40,10 +40,14 @@ exports[`Component OpportunityDatasetSelector snapshot(mount) 1`] = `
         }
       }
     >
-      <div
-        className="ReactSelectMock"
+      <loading
+        error={null}
+        isLoading={true}
+        pastDelay={false}
+        retry={[Function]}
+        timedOut={false}
       />
-    </ReactSelect>
+    </ForwardRef(LoadableComponent)>
   </S>
 </OpportunityDatasetSelector>
 `;

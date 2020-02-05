@@ -133,7 +133,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
           ]
         }
       >
-        <ReactSelect
+        <ForwardRef(LoadableComponent)
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           onChange={[Function]}
@@ -167,10 +167,14 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
             }
           }
         >
-          <div
-            className="ReactSelectMock"
+          <loading
+            error={null}
+            isLoading={true}
+            pastDelay={false}
+            retry={[Function]}
+            timedOut={false}
           />
-        </ReactSelect>
+        </ForwardRef(LoadableComponent)>
       </S>
     </div>
   </Group>

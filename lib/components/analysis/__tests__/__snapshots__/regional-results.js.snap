@@ -66,7 +66,6 @@ exports[`RegionalResults snapshot(mount) 1`] = `
       "zoom": 9,
     }
   }
-  analysisId="abcd"
   opportunityDatasets={
     Array [
       Object {
@@ -94,14 +93,268 @@ exports[`RegionalResults snapshot(mount) 1`] = `
         getOptionValue={[Function]}
         isClearable={true}
         onChange={[Function]}
-        options={Array []}
+        options={
+          Array [
+            Object {
+              "_id": "abcd",
+              "accessGroup": "accessGroupName",
+              "bounds": Object {},
+              "bundleId": "5678",
+              "complete": true,
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "cutoffMinutes": 60,
+              "deleted": false,
+              "grid": "Jobs_total",
+              "height": 300,
+              "name": "ANALYSIS 1",
+              "nonce": "12345",
+              "north": 20024,
+              "projectId": "1234",
+              "request": Object {
+                "accessModes": "WALK",
+                "bikeSafe": 1,
+                "bikeSlope": 1,
+                "bikeSpeed": 4.166666666666667,
+                "bikeTime": 1,
+                "bounds": Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                },
+                "bundleId": "1",
+                "date": "2016-01-16",
+                "defaultExpanded": true,
+                "directModes": "WALK",
+                "egressModes": "WALK",
+                "fromLat": 12,
+                "fromLon": 34,
+                "fromTime": 25200,
+                "maxBikeTime": 20,
+                "maxRides": 4,
+                "maxTripDurationMinutes": 60,
+                "maxWalkTime": 20,
+                "monteCarloDraws": 200,
+                "name": "Profile Request Test",
+                "projectId": "1",
+                "reachabilityThreshold": 0,
+                "regionId": "1",
+                "toTime": 32400,
+                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                "travelTimePercentile": 50,
+                "variantIndex": 0,
+                "walkSpeed": 1.3888888888888888,
+                "workerVersion": "v4.0.0",
+              },
+              "status": "DONE",
+              "travelTimePercentile": -1,
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
+              "variant": 0,
+              "west": 20015,
+              "width": 300,
+              "workerVersion": "v3.2.0",
+              "zoom": 9,
+            },
+            Object {
+              "_id": "efgh",
+              "accessGroup": "accessGroupName",
+              "bounds": Object {},
+              "bundleId": "5678",
+              "complete": true,
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "cutoffMinutes": 60,
+              "deleted": false,
+              "grid": "Jobs_total",
+              "height": 300,
+              "name": "ANALYSIS 2",
+              "nonce": "12345",
+              "north": 20024,
+              "projectId": "4321",
+              "request": Object {
+                "accessModes": "WALK",
+                "bikeSafe": 1,
+                "bikeSlope": 1,
+                "bikeSpeed": 4.166666666666667,
+                "bikeTime": 1,
+                "bounds": Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                },
+                "bundleId": "1",
+                "date": "2016-01-16",
+                "defaultExpanded": true,
+                "directModes": "WALK",
+                "egressModes": "WALK",
+                "fromLat": 12,
+                "fromLon": 34,
+                "fromTime": 25200,
+                "maxBikeTime": 20,
+                "maxRides": 4,
+                "maxTripDurationMinutes": 60,
+                "maxWalkTime": 20,
+                "monteCarloDraws": 200,
+                "name": "Profile Request Test",
+                "projectId": "1",
+                "reachabilityThreshold": 0,
+                "regionId": "1",
+                "toTime": 32400,
+                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                "travelTimePercentile": 50,
+                "variantIndex": 0,
+                "walkSpeed": 1.3888888888888888,
+                "workerVersion": "v4.0.0",
+              },
+              "status": "DONE",
+              "travelTimePercentile": 42,
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
+              "variant": 1,
+              "west": 20015,
+              "width": 300,
+              "workerVersion": "v3.2.0",
+              "zoom": 9,
+            },
+          ]
+        }
       >
-        <ReactSelect
+        <ForwardRef(LoadableComponent)
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           isClearable={true}
           onChange={[Function]}
-          options={Array []}
+          options={
+            Array [
+              Object {
+                "_id": "abcd",
+                "accessGroup": "accessGroupName",
+                "bounds": Object {},
+                "bundleId": "5678",
+                "complete": true,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "cutoffMinutes": 60,
+                "deleted": false,
+                "grid": "Jobs_total",
+                "height": 300,
+                "name": "ANALYSIS 1",
+                "nonce": "12345",
+                "north": 20024,
+                "projectId": "1234",
+                "request": Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                },
+                "status": "DONE",
+                "travelTimePercentile": -1,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variant": 0,
+                "west": 20015,
+                "width": 300,
+                "workerVersion": "v3.2.0",
+                "zoom": 9,
+              },
+              Object {
+                "_id": "efgh",
+                "accessGroup": "accessGroupName",
+                "bounds": Object {},
+                "bundleId": "5678",
+                "complete": true,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "cutoffMinutes": 60,
+                "deleted": false,
+                "grid": "Jobs_total",
+                "height": 300,
+                "name": "ANALYSIS 2",
+                "nonce": "12345",
+                "north": 20024,
+                "projectId": "4321",
+                "request": Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                },
+                "status": "DONE",
+                "travelTimePercentile": 42,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variant": 1,
+                "west": 20015,
+                "width": 300,
+                "workerVersion": "v3.2.0",
+                "zoom": 9,
+              },
+            ]
+          }
           styles={
             Object {
               "control": [Function],
@@ -109,10 +362,14 @@ exports[`RegionalResults snapshot(mount) 1`] = `
             }
           }
         >
-          <div
-            className="ReactSelectMock"
+          <loading
+            error={null}
+            isLoading={true}
+            pastDelay={false}
+            retry={[Function]}
+            timedOut={false}
           />
-        </ReactSelect>
+        </ForwardRef(LoadableComponent)>
       </S>
     </div>
   </Group>
@@ -296,7 +553,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
           onChange={[Function]}
           options={Array []}
         >
-          <ReactSelect
+          <ForwardRef(LoadableComponent)
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             isClearable={true}
@@ -311,10 +568,14 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               }
             }
           >
-            <div
-              className="ReactSelectMock"
+            <loading
+              error={null}
+              isLoading={true}
+              pastDelay={false}
+              retry={[Function]}
+              timedOut={false}
             />
-          </ReactSelect>
+          </ForwardRef(LoadableComponent)>
         </S>
       </div>
     </Group>
@@ -462,7 +723,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
       "zoom": 9,
     }
   }
-  analysisId="abcd"
   opportunityDatasets={
     Array [
       Object {
@@ -490,28 +750,1002 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
         getOptionValue={[Function]}
         isClearable={true}
         onChange={[Function]}
-        options={Array []}
+        options={
+          Array [
+            Object {
+              "_id": "abcd",
+              "accessGroup": "accessGroupName",
+              "bounds": Object {},
+              "bundleId": "5678",
+              "complete": true,
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "cutoffMinutes": 60,
+              "deleted": false,
+              "grid": "Jobs_total",
+              "height": 300,
+              "name": "ANALYSIS 1",
+              "nonce": "12345",
+              "north": 20024,
+              "projectId": "1234",
+              "request": Object {
+                "accessModes": "WALK",
+                "bikeSafe": 1,
+                "bikeSlope": 1,
+                "bikeSpeed": 4.166666666666667,
+                "bikeTime": 1,
+                "bounds": Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                },
+                "bundleId": "1",
+                "date": "2016-01-16",
+                "defaultExpanded": true,
+                "directModes": "WALK",
+                "egressModes": "WALK",
+                "fromLat": 12,
+                "fromLon": 34,
+                "fromTime": 25200,
+                "maxBikeTime": 20,
+                "maxRides": 4,
+                "maxTripDurationMinutes": 60,
+                "maxWalkTime": 20,
+                "monteCarloDraws": 200,
+                "name": "Profile Request Test",
+                "projectId": "1",
+                "reachabilityThreshold": 0,
+                "regionId": "1",
+                "toTime": 32400,
+                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                "travelTimePercentile": 50,
+                "variantIndex": 0,
+                "walkSpeed": 1.3888888888888888,
+                "workerVersion": "v4.0.0",
+              },
+              "status": "DONE",
+              "travelTimePercentile": -1,
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
+              "variant": 0,
+              "west": 20015,
+              "width": 300,
+              "workerVersion": "v3.2.0",
+              "zoom": 9,
+            },
+            Object {
+              "_id": "efgh",
+              "accessGroup": "accessGroupName",
+              "bounds": Object {},
+              "bundleId": "5678",
+              "complete": true,
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "cutoffMinutes": 60,
+              "deleted": false,
+              "grid": "Jobs_total",
+              "height": 300,
+              "name": "ANALYSIS 2",
+              "nonce": "12345",
+              "north": 20024,
+              "projectId": "4321",
+              "request": Object {
+                "accessModes": "WALK",
+                "bikeSafe": 1,
+                "bikeSlope": 1,
+                "bikeSpeed": 4.166666666666667,
+                "bikeTime": 1,
+                "bounds": Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                },
+                "bundleId": "1",
+                "date": "2016-01-16",
+                "defaultExpanded": true,
+                "directModes": "WALK",
+                "egressModes": "WALK",
+                "fromLat": 12,
+                "fromLon": 34,
+                "fromTime": 25200,
+                "maxBikeTime": 20,
+                "maxRides": 4,
+                "maxTripDurationMinutes": 60,
+                "maxWalkTime": 20,
+                "monteCarloDraws": 200,
+                "name": "Profile Request Test",
+                "projectId": "1",
+                "reachabilityThreshold": 0,
+                "regionId": "1",
+                "toTime": 32400,
+                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                "travelTimePercentile": 50,
+                "variantIndex": 0,
+                "walkSpeed": 1.3888888888888888,
+                "workerVersion": "v4.0.0",
+              },
+              "status": "DONE",
+              "travelTimePercentile": 42,
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
+              "variant": 1,
+              "west": 20015,
+              "width": 300,
+              "workerVersion": "v3.2.0",
+              "zoom": 9,
+            },
+          ]
+        }
+        value={
+          Object {
+            "_id": "efgh",
+            "accessGroup": "accessGroupName",
+            "bounds": Object {},
+            "bundleId": "5678",
+            "complete": true,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "cutoffMinutes": 60,
+            "deleted": false,
+            "grid": "Jobs_total",
+            "height": 300,
+            "name": "ANALYSIS 2",
+            "nonce": "12345",
+            "north": 20024,
+            "projectId": "4321",
+            "request": Object {
+              "accessModes": "WALK",
+              "bikeSafe": 1,
+              "bikeSlope": 1,
+              "bikeSpeed": 4.166666666666667,
+              "bikeTime": 1,
+              "bounds": Object {
+                "east": -76,
+                "north": 39,
+                "south": 38,
+                "west": -77,
+              },
+              "bundleId": "1",
+              "date": "2016-01-16",
+              "defaultExpanded": true,
+              "directModes": "WALK",
+              "egressModes": "WALK",
+              "fromLat": 12,
+              "fromLon": 34,
+              "fromTime": 25200,
+              "maxBikeTime": 20,
+              "maxRides": 4,
+              "maxTripDurationMinutes": 60,
+              "maxWalkTime": 20,
+              "monteCarloDraws": 200,
+              "name": "Profile Request Test",
+              "projectId": "1",
+              "reachabilityThreshold": 0,
+              "regionId": "1",
+              "toTime": 32400,
+              "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+              "travelTimePercentile": 50,
+              "variantIndex": 0,
+              "walkSpeed": 1.3888888888888888,
+              "workerVersion": "v4.0.0",
+            },
+            "status": "DONE",
+            "travelTimePercentile": 42,
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variant": 1,
+            "west": 20015,
+            "width": 300,
+            "workerVersion": "v3.2.0",
+            "zoom": 9,
+          }
+        }
       >
-        <ReactSelect
+        <ForwardRef(LoadableComponent)
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           isClearable={true}
           onChange={[Function]}
-          options={Array []}
+          options={
+            Array [
+              Object {
+                "_id": "abcd",
+                "accessGroup": "accessGroupName",
+                "bounds": Object {},
+                "bundleId": "5678",
+                "complete": true,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "cutoffMinutes": 60,
+                "deleted": false,
+                "grid": "Jobs_total",
+                "height": 300,
+                "name": "ANALYSIS 1",
+                "nonce": "12345",
+                "north": 20024,
+                "projectId": "1234",
+                "request": Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                },
+                "status": "DONE",
+                "travelTimePercentile": -1,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variant": 0,
+                "west": 20015,
+                "width": 300,
+                "workerVersion": "v3.2.0",
+                "zoom": 9,
+              },
+              Object {
+                "_id": "efgh",
+                "accessGroup": "accessGroupName",
+                "bounds": Object {},
+                "bundleId": "5678",
+                "complete": true,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "cutoffMinutes": 60,
+                "deleted": false,
+                "grid": "Jobs_total",
+                "height": 300,
+                "name": "ANALYSIS 2",
+                "nonce": "12345",
+                "north": 20024,
+                "projectId": "4321",
+                "request": Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                },
+                "status": "DONE",
+                "travelTimePercentile": 42,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variant": 1,
+                "west": 20015,
+                "width": 300,
+                "workerVersion": "v3.2.0",
+                "zoom": 9,
+              },
+            ]
+          }
           styles={
             Object {
               "control": [Function],
               "option": [Function],
             }
           }
+          value={
+            Object {
+              "_id": "efgh",
+              "accessGroup": "accessGroupName",
+              "bounds": Object {},
+              "bundleId": "5678",
+              "complete": true,
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "cutoffMinutes": 60,
+              "deleted": false,
+              "grid": "Jobs_total",
+              "height": 300,
+              "name": "ANALYSIS 2",
+              "nonce": "12345",
+              "north": 20024,
+              "projectId": "4321",
+              "request": Object {
+                "accessModes": "WALK",
+                "bikeSafe": 1,
+                "bikeSlope": 1,
+                "bikeSpeed": 4.166666666666667,
+                "bikeTime": 1,
+                "bounds": Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                },
+                "bundleId": "1",
+                "date": "2016-01-16",
+                "defaultExpanded": true,
+                "directModes": "WALK",
+                "egressModes": "WALK",
+                "fromLat": 12,
+                "fromLon": 34,
+                "fromTime": 25200,
+                "maxBikeTime": 20,
+                "maxRides": 4,
+                "maxTripDurationMinutes": 60,
+                "maxWalkTime": 20,
+                "monteCarloDraws": 200,
+                "name": "Profile Request Test",
+                "projectId": "1",
+                "reachabilityThreshold": 0,
+                "regionId": "1",
+                "toTime": 32400,
+                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                "travelTimePercentile": 50,
+                "variantIndex": 0,
+                "walkSpeed": 1.3888888888888888,
+                "workerVersion": "v4.0.0",
+              },
+              "status": "DONE",
+              "travelTimePercentile": 42,
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
+              "variant": 1,
+              "west": 20015,
+              "width": 300,
+              "workerVersion": "v3.2.0",
+              "zoom": 9,
+            }
+          }
         >
-          <div
-            className="ReactSelectMock"
-          />
-        </ReactSelect>
+          <ReactSelect
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            isClearable={true}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "_id": "abcd",
+                  "accessGroup": "accessGroupName",
+                  "bounds": Object {},
+                  "bundleId": "5678",
+                  "complete": true,
+                  "createdAt": "2017-11-08T12:30:50.133Z",
+                  "createdBy": "person@gmail.com",
+                  "cutoffMinutes": 60,
+                  "deleted": false,
+                  "grid": "Jobs_total",
+                  "height": 300,
+                  "name": "ANALYSIS 1",
+                  "nonce": "12345",
+                  "north": 20024,
+                  "projectId": "1234",
+                  "request": Object {
+                    "accessModes": "WALK",
+                    "bikeSafe": 1,
+                    "bikeSlope": 1,
+                    "bikeSpeed": 4.166666666666667,
+                    "bikeTime": 1,
+                    "bounds": Object {
+                      "east": -76,
+                      "north": 39,
+                      "south": 38,
+                      "west": -77,
+                    },
+                    "bundleId": "1",
+                    "date": "2016-01-16",
+                    "defaultExpanded": true,
+                    "directModes": "WALK",
+                    "egressModes": "WALK",
+                    "fromLat": 12,
+                    "fromLon": 34,
+                    "fromTime": 25200,
+                    "maxBikeTime": 20,
+                    "maxRides": 4,
+                    "maxTripDurationMinutes": 60,
+                    "maxWalkTime": 20,
+                    "monteCarloDraws": 200,
+                    "name": "Profile Request Test",
+                    "projectId": "1",
+                    "reachabilityThreshold": 0,
+                    "regionId": "1",
+                    "toTime": 32400,
+                    "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                    "travelTimePercentile": 50,
+                    "variantIndex": 0,
+                    "walkSpeed": 1.3888888888888888,
+                    "workerVersion": "v4.0.0",
+                  },
+                  "status": "DONE",
+                  "travelTimePercentile": -1,
+                  "updatedAt": "2017-11-08T12:31:19.602Z",
+                  "updatedBy": "person@gmail.com",
+                  "variant": 0,
+                  "west": 20015,
+                  "width": 300,
+                  "workerVersion": "v3.2.0",
+                  "zoom": 9,
+                },
+                Object {
+                  "_id": "efgh",
+                  "accessGroup": "accessGroupName",
+                  "bounds": Object {},
+                  "bundleId": "5678",
+                  "complete": true,
+                  "createdAt": "2017-11-08T12:30:50.133Z",
+                  "createdBy": "person@gmail.com",
+                  "cutoffMinutes": 60,
+                  "deleted": false,
+                  "grid": "Jobs_total",
+                  "height": 300,
+                  "name": "ANALYSIS 2",
+                  "nonce": "12345",
+                  "north": 20024,
+                  "projectId": "4321",
+                  "request": Object {
+                    "accessModes": "WALK",
+                    "bikeSafe": 1,
+                    "bikeSlope": 1,
+                    "bikeSpeed": 4.166666666666667,
+                    "bikeTime": 1,
+                    "bounds": Object {
+                      "east": -76,
+                      "north": 39,
+                      "south": 38,
+                      "west": -77,
+                    },
+                    "bundleId": "1",
+                    "date": "2016-01-16",
+                    "defaultExpanded": true,
+                    "directModes": "WALK",
+                    "egressModes": "WALK",
+                    "fromLat": 12,
+                    "fromLon": 34,
+                    "fromTime": 25200,
+                    "maxBikeTime": 20,
+                    "maxRides": 4,
+                    "maxTripDurationMinutes": 60,
+                    "maxWalkTime": 20,
+                    "monteCarloDraws": 200,
+                    "name": "Profile Request Test",
+                    "projectId": "1",
+                    "reachabilityThreshold": 0,
+                    "regionId": "1",
+                    "toTime": 32400,
+                    "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                    "travelTimePercentile": 50,
+                    "variantIndex": 0,
+                    "walkSpeed": 1.3888888888888888,
+                    "workerVersion": "v4.0.0",
+                  },
+                  "status": "DONE",
+                  "travelTimePercentile": 42,
+                  "updatedAt": "2017-11-08T12:31:19.602Z",
+                  "updatedBy": "person@gmail.com",
+                  "variant": 1,
+                  "west": 20015,
+                  "width": 300,
+                  "workerVersion": "v3.2.0",
+                  "zoom": 9,
+                },
+              ]
+            }
+            styles={
+              Object {
+                "control": [Function],
+                "option": [Function],
+              }
+            }
+            value={
+              Object {
+                "_id": "efgh",
+                "accessGroup": "accessGroupName",
+                "bounds": Object {},
+                "bundleId": "5678",
+                "complete": true,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "cutoffMinutes": 60,
+                "deleted": false,
+                "grid": "Jobs_total",
+                "height": 300,
+                "name": "ANALYSIS 2",
+                "nonce": "12345",
+                "north": 20024,
+                "projectId": "4321",
+                "request": Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                },
+                "status": "DONE",
+                "travelTimePercentile": 42,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variant": 1,
+                "west": 20015,
+                "width": 300,
+                "workerVersion": "v3.2.0",
+                "zoom": 9,
+              }
+            }
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </ForwardRef(LoadableComponent)>
       </S>
     </div>
   </Group>
+  <Stack
+    mb={4}
+    spacing={4}
+  >
+    <Flex
+      direction="column"
+      mb={4}
+    >
+      <Box
+        display="flex"
+        flexDirection="column"
+        mb={4}
+      >
+        <div
+          className="css-opcg3f"
+        />
+      </Box>
+    </Flex>
+  </Stack>
+  <ProfileRequestDisplay
+    _id="efgh"
+    accessGroup="accessGroupName"
+    accessModes="WALK"
+    bikeSafe={1}
+    bikeSlope={1}
+    bikeSpeed={4.166666666666667}
+    bikeTime={1}
+    bounds={
+      Object {
+        "east": -76,
+        "north": 39,
+        "south": 38,
+        "west": -77,
+      }
+    }
+    bundleId="1"
+    complete={true}
+    createdAt="2017-11-08T12:30:50.133Z"
+    createdBy="person@gmail.com"
+    cutoffMinutes={60}
+    date="2016-01-16"
+    defaultExpanded={true}
+    deleted={false}
+    directModes="WALK"
+    egressModes="WALK"
+    fromLat={12}
+    fromLon={34}
+    fromTime={25200}
+    grid="Jobs_total"
+    height={300}
+    maxBikeTime={20}
+    maxRides={4}
+    maxTripDurationMinutes={60}
+    maxWalkTime={20}
+    monteCarloDraws={200}
+    name="Profile Request Test"
+    nonce="12345"
+    north={20024}
+    projectId="1"
+    reachabilityThreshold={0}
+    regionId="1"
+    request={
+      Object {
+        "accessModes": "WALK",
+        "bikeSafe": 1,
+        "bikeSlope": 1,
+        "bikeSpeed": 4.166666666666667,
+        "bikeTime": 1,
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "bundleId": "1",
+        "date": "2016-01-16",
+        "defaultExpanded": true,
+        "directModes": "WALK",
+        "egressModes": "WALK",
+        "fromLat": 12,
+        "fromLon": 34,
+        "fromTime": 25200,
+        "maxBikeTime": 20,
+        "maxRides": 4,
+        "maxTripDurationMinutes": 60,
+        "maxWalkTime": 20,
+        "monteCarloDraws": 200,
+        "name": "Profile Request Test",
+        "projectId": "1",
+        "reachabilityThreshold": 0,
+        "regionId": "1",
+        "toTime": 32400,
+        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+        "travelTimePercentile": 50,
+        "variantIndex": 0,
+        "walkSpeed": 1.3888888888888888,
+        "workerVersion": "v4.0.0",
+      }
+    }
+    status="DONE"
+    toTime={32400}
+    transitModes="BUS,TRAM,RAIL,SUBWAY"
+    travelTimePercentile={50}
+    updatedAt="2017-11-08T12:31:19.602Z"
+    updatedBy="person@gmail.com"
+    variant={1}
+    variantIndex={0}
+    walkSpeed={1.3888888888888888}
+    west={20015}
+    width={300}
+    workerVersion="v4.0.0"
+    zoom={9}
+  >
+    <Collapsible
+      defaultExpanded={true}
+      heading={[Function]}
+    >
+      <Panel>
+        <div
+          className="panel panel-default"
+        >
+          <Heading
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          >
+            <div
+              className="panel-heading clearfix "
+              onClick={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+            >
+              Profile Request Test
+              <span
+                className="pull-right"
+              >
+                <Icon
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "caret-down",
+                      "prefix": "fas",
+                    }
+                  }
+                >
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "caret-down",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    swapOpacity={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-caret-down fa-w-NaN fa-fw "
+                      data-icon="caret-down"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+              </span>
+            </div>
+          </Heading>
+          <table
+            className="table table-condensed table-striped"
+          >
+            <tbody>
+              <tr>
+                <th>
+                  Resources
+                </th>
+                <td>
+                  <Link
+                    bundleId="1"
+                    regionId="1"
+                    to="bundleEdit"
+                  >
+                    <Link
+                      as="/regions/1/bundles/1"
+                      href={
+                        Object {
+                          "pathname": "/regions/[regionId]/bundles/[bundleId]",
+                          "query": Object {},
+                        }
+                      }
+                      passHref={true}
+                    >
+                      <a
+                        href="/regions/1/bundles/1"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                      >
+                        GTFS Bundle
+                      </a>
+                    </Link>
+                  </Link>
+                   / 
+                  <Link
+                    projectId="1"
+                    regionId="1"
+                    to="modifications"
+                  >
+                    <Link
+                      as="/regions/1/projects/1"
+                      href={
+                        Object {
+                          "pathname": "/regions/[regionId]/projects/[projectId]",
+                          "query": Object {},
+                        }
+                      }
+                      passHref={true}
+                    >
+                      <a
+                        href="/regions/1/projects/1"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                      >
+                        Project
+                      </a>
+                    </Link>
+                  </Link>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Routing engine
+                </th>
+                <td>
+                  v4.0.0
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Date
+                </th>
+                <td>
+                  2016-01-16
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  From time
+                </th>
+                <td>
+                  07:00
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  To time
+                </th>
+                <td>
+                  09:00
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Maximum transfers
+                </th>
+                <td>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Simulated schedules
+                </th>
+                <td>
+                  200
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Access modes
+                </th>
+                <td>
+                  <Modes
+                    modes="WALK"
+                  >
+                    <span
+                      key="WALK"
+                      title="Walk"
+                    >
+                      <Icon
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "walking",
+                            "prefix": "fas",
+                          }
+                        }
+                      >
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={true}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "walking",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          swapOpacity={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-walking fa-w-NaN fa-fw "
+                            data-icon="walking"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            style={Object {}}
+                            viewBox="0 0 undefined undefined"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill="currentColor"
+                              style={Object {}}
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </Icon>
+                    </span>
+                  </Modes>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Transit
+                </th>
+                <td>
+                  yes
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Panel>
+    </Collapsible>
+  </ProfileRequestDisplay>
   <Group
     label="Access to"
   >
@@ -536,19 +1770,67 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
           </p>
         </Box>
       </P>
+      <P>
+        <Box
+          as="p"
+          mb="10px"
+        >
+          <p
+            className="css-1r2f04i"
+          >
+            minus 
+            Total jobs within 60 minutes (percentile 42)
+          </p>
+        </Box>
+      </P>
       <Legend
         breaks={
           Array [
-            0,
-            436,
-            857,
-            1257,
-            1649,
-            2000,
+            -1421,
+            -1089,
+            -773,
+            -491,
+            -235,
+            235,
+            491,
+            773,
+            1089,
+            1421,
+            1994,
           ]
         }
         colors={
           Array [
+            Rgb {
+              "b": 21,
+              "g": 15,
+              "opacity": 0.42,
+              "r": 165,
+            },
+            Rgb {
+              "b": 38,
+              "g": 45,
+              "opacity": 0.42,
+              "r": 222,
+            },
+            Rgb {
+              "b": 74,
+              "g": 106,
+              "opacity": 0.42,
+              "r": 251,
+            },
+            Rgb {
+              "b": 114,
+              "g": 146,
+              "opacity": 0.42,
+              "r": 252,
+            },
+            Rgb {
+              "b": 161,
+              "g": 187,
+              "opacity": 0.42,
+              "r": 252,
+            },
             Object {
               "b": 255,
               "g": 255,
@@ -587,7 +1869,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
             },
           ]
         }
-        min={0}
+        min={-1998}
       >
         <div
           className="Legend"
@@ -597,16 +1879,76 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
             key="break-0"
             style={
               Object {
+                "backgroundColor": "rgba(165, 15, 21, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            -1,998 to -1,421
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-1"
+            style={
+              Object {
+                "backgroundColor": "rgba(222, 45, 38, 1)",
+                "color": "#fff",
+              }
+            }
+          >
+            -1,421 to -1,089
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-2"
+            style={
+              Object {
+                "backgroundColor": "rgba(251, 106, 74, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            -1,089 to -773
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-3"
+            style={
+              Object {
+                "backgroundColor": "rgba(252, 146, 114, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            -773 to -491
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-4"
+            style={
+              Object {
+                "backgroundColor": "rgba(252, 187, 161, 1)",
+                "color": "#000",
+              }
+            }
+          >
+            -491 to -235
+          </div>
+          <div
+            className="Legend-Item"
+            key="break-5"
+            style={
+              Object {
                 "backgroundColor": "rgba(255, 255, 255, 1)",
                 "color": "#000",
               }
             }
           >
-            0 (transparent)
+            -235 to 235 (transparent)
           </div>
           <div
             className="Legend-Item"
-            key="break-1"
+            key="break-6"
             style={
               Object {
                 "backgroundColor": "rgba(198, 219, 239, 1)",
@@ -614,11 +1956,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            0 to 436
+            235 to 491
           </div>
           <div
             className="Legend-Item"
-            key="break-2"
+            key="break-7"
             style={
               Object {
                 "backgroundColor": "rgba(158, 202, 225, 1)",
@@ -626,11 +1968,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            436 to 857
+            491 to 773
           </div>
           <div
             className="Legend-Item"
-            key="break-3"
+            key="break-8"
             style={
               Object {
                 "backgroundColor": "rgba(107, 174, 214, 1)",
@@ -638,11 +1980,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            857 to 1,257
+            773 to 1,089
           </div>
           <div
             className="Legend-Item"
-            key="break-4"
+            key="break-9"
             style={
               Object {
                 "backgroundColor": "rgba(49, 130, 189, 1)",
@@ -650,11 +1992,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            1,257 to 1,649
+            1,089 to 1,421
           </div>
           <div
             className="Legend-Item"
-            key="break-5"
+            key="break-10"
             style={
               Object {
                 "backgroundColor": "rgba(8, 81, 156, 1)",
@@ -662,7 +2004,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            1,649 to 2,000
+            1,421 to 1,994
           </div>
         </div>
       </Legend>
@@ -692,7 +2034,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
           onChange={[Function]}
           options={Array []}
         >
-          <ReactSelect
+          <ForwardRef(LoadableComponent)
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             isClearable={true}
@@ -707,10 +2049,26 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               }
             }
           >
-            <div
-              className="ReactSelectMock"
-            />
-          </ReactSelect>
+            <ReactSelect
+              getOptionLabel={[Function]}
+              getOptionValue={[Function]}
+              isClearable={true}
+              isDisabled={false}
+              name="aggregateTo"
+              onChange={[Function]}
+              options={Array []}
+              styles={
+                Object {
+                  "control": [Function],
+                  "option": [Function],
+                }
+              }
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </ForwardRef(LoadableComponent)>
         </S>
       </div>
     </Group>

@@ -67,8 +67,6 @@ Object {
   },
   "regionalAnalyses": Object {
     "analyses": Array [],
-    "displayCutoff": 60,
-    "displayPercentile": 50,
     "grids": Array [],
   },
   "resources": Array [],

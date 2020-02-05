@@ -531,7 +531,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
           options={Array []}
           placeholder="Phase at stop"
         >
-          <ReactSelect
+          <ForwardRef(LoadableComponent)
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             isClearable={true}
@@ -547,10 +547,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
               }
             }
           >
-            <div
-              className="ReactSelectMock"
+            <loading
+              error={null}
+              isLoading={true}
+              pastDelay={false}
+              retry={[Function]}
+              timedOut={false}
             />
-          </ReactSelect>
+          </ForwardRef(LoadableComponent)>
         </S>
       </div>
     </Group>

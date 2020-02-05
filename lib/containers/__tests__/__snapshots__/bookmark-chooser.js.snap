@@ -85,7 +85,7 @@ exports[`Containers > Bookmark Chooser should render correctly 1`] = `
                 onChange={[Function]}
                 options={Array []}
               >
-                <ReactSelect
+                <ForwardRef(LoadableComponent)
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   onChange={[Function]}
@@ -97,10 +97,14 @@ exports[`Containers > Bookmark Chooser should render correctly 1`] = `
                     }
                   }
                 >
-                  <div
-                    className="ReactSelectMock"
+                  <loading
+                    error={null}
+                    isLoading={true}
+                    pastDelay={false}
+                    retry={[Function]}
+                    timedOut={false}
                   />
-                </ReactSelect>
+                </ForwardRef(LoadableComponent)>
               </S>
             </div>
             <div

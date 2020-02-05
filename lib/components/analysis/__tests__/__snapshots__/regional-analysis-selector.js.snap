@@ -270,7 +270,7 @@ exports[`Components > Analysis > Regional Analysis Selector renders correctly 1`
         }
         placeholder="View a regional analysis..."
       >
-        <ReactSelect
+        <ForwardRef(LoadableComponent)
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           isClearable={true}
@@ -411,10 +411,14 @@ exports[`Components > Analysis > Regional Analysis Selector renders correctly 1`
             }
           }
         >
-          <div
-            className="ReactSelectMock"
+          <loading
+            error={null}
+            isLoading={true}
+            pastDelay={false}
+            retry={[Function]}
+            timedOut={false}
           />
-        </ReactSelect>
+        </ForwardRef(LoadableComponent)>
       </S>
     </div>
   </Group>

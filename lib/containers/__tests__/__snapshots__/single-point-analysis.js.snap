@@ -175,7 +175,134 @@ exports[`constainers/single-point-analysis 1`] = `
       }
     }
     regionId="1"
-    regionalAnalyses={Array []}
+    regionalAnalyses={
+      Array [
+        Object {
+          "_id": "abcd",
+          "accessGroup": "accessGroupName",
+          "bounds": Object {},
+          "bundleId": "5678",
+          "complete": true,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "cutoffMinutes": 60,
+          "deleted": false,
+          "grid": "Jobs_total",
+          "height": 300,
+          "name": "ANALYSIS 1",
+          "nonce": "12345",
+          "north": 20024,
+          "projectId": "1234",
+          "request": Object {
+            "accessModes": "WALK",
+            "bikeSafe": 1,
+            "bikeSlope": 1,
+            "bikeSpeed": 4.166666666666667,
+            "bikeTime": 1,
+            "bounds": Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            },
+            "bundleId": "1",
+            "date": "2016-01-16",
+            "defaultExpanded": true,
+            "directModes": "WALK",
+            "egressModes": "WALK",
+            "fromLat": 12,
+            "fromLon": 34,
+            "fromTime": 25200,
+            "maxBikeTime": 20,
+            "maxRides": 4,
+            "maxTripDurationMinutes": 60,
+            "maxWalkTime": 20,
+            "monteCarloDraws": 200,
+            "name": "Profile Request Test",
+            "projectId": "1",
+            "reachabilityThreshold": 0,
+            "regionId": "1",
+            "toTime": 32400,
+            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+            "travelTimePercentile": 50,
+            "variantIndex": 0,
+            "walkSpeed": 1.3888888888888888,
+            "workerVersion": "v4.0.0",
+          },
+          "status": "DONE",
+          "travelTimePercentile": -1,
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variant": 0,
+          "west": 20015,
+          "width": 300,
+          "workerVersion": "v3.2.0",
+          "zoom": 9,
+        },
+        Object {
+          "_id": "efgh",
+          "accessGroup": "accessGroupName",
+          "bounds": Object {},
+          "bundleId": "5678",
+          "complete": true,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "cutoffMinutes": 60,
+          "deleted": false,
+          "grid": "Jobs_total",
+          "height": 300,
+          "name": "ANALYSIS 2",
+          "nonce": "12345",
+          "north": 20024,
+          "projectId": "4321",
+          "request": Object {
+            "accessModes": "WALK",
+            "bikeSafe": 1,
+            "bikeSlope": 1,
+            "bikeSpeed": 4.166666666666667,
+            "bikeTime": 1,
+            "bounds": Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            },
+            "bundleId": "1",
+            "date": "2016-01-16",
+            "defaultExpanded": true,
+            "directModes": "WALK",
+            "egressModes": "WALK",
+            "fromLat": 12,
+            "fromLon": 34,
+            "fromTime": 25200,
+            "maxBikeTime": 20,
+            "maxRides": 4,
+            "maxTripDurationMinutes": 60,
+            "maxWalkTime": 20,
+            "monteCarloDraws": 200,
+            "name": "Profile Request Test",
+            "projectId": "1",
+            "reachabilityThreshold": 0,
+            "regionId": "1",
+            "toTime": 32400,
+            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+            "travelTimePercentile": 50,
+            "variantIndex": 0,
+            "walkSpeed": 1.3888888888888888,
+            "workerVersion": "v4.0.0",
+          },
+          "status": "DONE",
+          "travelTimePercentile": 42,
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variant": 1,
+          "west": 20015,
+          "width": 300,
+          "workerVersion": "v3.2.0",
+          "zoom": 9,
+        },
+      ]
+    }
     removeDestination={[Function]}
     setComparisonProject={[Function]}
     setDestination={[Function]}
@@ -485,7 +612,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   }
                 }
               >
-                <ReactSelect
+                <ForwardRef(LoadableComponent)
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   isDisabled={false}
@@ -533,10 +660,14 @@ exports[`constainers/single-point-analysis 1`] = `
                     }
                   }
                 >
-                  <div
-                    className="ReactSelectMock"
+                  <loading
+                    error={null}
+                    isLoading={true}
+                    pastDelay={false}
+                    retry={[Function]}
+                    timedOut={false}
                   />
-                </ReactSelect>
+                </ForwardRef(LoadableComponent)>
               </S>
             </div>
           </Group>
@@ -575,7 +706,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   }
                 }
               >
-                <ReactSelect
+                <ForwardRef(LoadableComponent)
                   isDisabled={false}
                   onChange={[Function]}
                   options={
@@ -603,10 +734,14 @@ exports[`constainers/single-point-analysis 1`] = `
                     }
                   }
                 >
-                  <div
-                    className="ReactSelectMock"
+                  <loading
+                    error={null}
+                    isLoading={true}
+                    pastDelay={false}
+                    retry={[Function]}
+                    timedOut={false}
                   />
-                </ReactSelect>
+                </ForwardRef(LoadableComponent)>
               </S>
             </div>
           </Group>
@@ -655,7 +790,7 @@ exports[`constainers/single-point-analysis 1`] = `
                 }
                 placeholder="Select comparison project…"
               >
-                <ReactSelect
+                <ForwardRef(LoadableComponent)
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   isClearable={true}
@@ -689,10 +824,14 @@ exports[`constainers/single-point-analysis 1`] = `
                     }
                   }
                 >
-                  <div
-                    className="ReactSelectMock"
+                  <loading
+                    error={null}
+                    isLoading={true}
+                    pastDelay={false}
+                    retry={[Function]}
+                    timedOut={false}
                   />
-                </ReactSelect>
+                </ForwardRef(LoadableComponent)>
               </S>
             </div>
           </Group>
@@ -723,7 +862,7 @@ exports[`constainers/single-point-analysis 1`] = `
                 }
                 placeholder="Select comparison scenario…"
               >
-                <ReactSelect
+                <ForwardRef(LoadableComponent)
                   isDisabled={true}
                   name="Scenario"
                   onChange={[Function]}
@@ -743,10 +882,14 @@ exports[`constainers/single-point-analysis 1`] = `
                     }
                   }
                 >
-                  <div
-                    className="ReactSelectMock"
+                  <loading
+                    error={null}
+                    isLoading={true}
+                    pastDelay={false}
+                    retry={[Function]}
+                    timedOut={false}
                   />
-                </ReactSelect>
+                </ForwardRef(LoadableComponent)>
               </S>
             </div>
           </Group>
@@ -787,7 +930,7 @@ exports[`constainers/single-point-analysis 1`] = `
                     ]
                   }
                 >
-                  <ReactSelect
+                  <ForwardRef(LoadableComponent)
                     getOptionLabel={[Function]}
                     getOptionValue={[Function]}
                     isClearable={true}
@@ -809,10 +952,14 @@ exports[`constainers/single-point-analysis 1`] = `
                       }
                     }
                   >
-                    <div
-                      className="ReactSelectMock"
+                    <loading
+                      error={null}
+                      isLoading={true}
+                      pastDelay={false}
+                      retry={[Function]}
+                      timedOut={false}
                     />
-                  </ReactSelect>
+                  </ForwardRef(LoadableComponent)>
                 </S>
               </OpportunityDatasetSelector>
             </div>
@@ -941,7 +1088,7 @@ exports[`constainers/single-point-analysis 1`] = `
                       onChange={[Function]}
                       options={Array []}
                     >
-                      <ReactSelect
+                      <ForwardRef(LoadableComponent)
                         getOptionLabel={[Function]}
                         getOptionValue={[Function]}
                         isDisabled={false}
@@ -954,10 +1101,14 @@ exports[`constainers/single-point-analysis 1`] = `
                           }
                         }
                       >
-                        <div
-                          className="ReactSelectMock"
+                        <loading
+                          error={null}
+                          isLoading={true}
+                          pastDelay={false}
+                          retry={[Function]}
+                          timedOut={false}
                         />
-                      </ReactSelect>
+                      </ForwardRef(LoadableComponent)>
                     </S>
                   </div>
                   <div
@@ -2595,7 +2746,134 @@ exports[`constainers/single-point-analysis 1`] = `
               "west": -77,
             }
           }
-          regionalAnalyses={Array []}
+          regionalAnalyses={
+            Array [
+              Object {
+                "_id": "abcd",
+                "accessGroup": "accessGroupName",
+                "bounds": Object {},
+                "bundleId": "5678",
+                "complete": true,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "cutoffMinutes": 60,
+                "deleted": false,
+                "grid": "Jobs_total",
+                "height": 300,
+                "name": "ANALYSIS 1",
+                "nonce": "12345",
+                "north": 20024,
+                "projectId": "1234",
+                "request": Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                },
+                "status": "DONE",
+                "travelTimePercentile": -1,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variant": 0,
+                "west": 20015,
+                "width": 300,
+                "workerVersion": "v3.2.0",
+                "zoom": 9,
+              },
+              Object {
+                "_id": "efgh",
+                "accessGroup": "accessGroupName",
+                "bounds": Object {},
+                "bundleId": "5678",
+                "complete": true,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "cutoffMinutes": 60,
+                "deleted": false,
+                "grid": "Jobs_total",
+                "height": 300,
+                "name": "ANALYSIS 2",
+                "nonce": "12345",
+                "north": 20024,
+                "projectId": "4321",
+                "request": Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                },
+                "status": "DONE",
+                "travelTimePercentile": 42,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variant": 1,
+                "west": 20015,
+                "width": 300,
+                "workerVersion": "v3.2.0",
+                "zoom": 9,
+              },
+            ]
+          }
           setProfileRequest={[Function]}
           showBoundsEditor={[Function]}
         >

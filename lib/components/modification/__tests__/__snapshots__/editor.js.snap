@@ -5,7 +5,9 @@ exports[`Components > Modification > Editor should render and execute functions 
   <div
     className="ApplicationDockTitle"
   >
-    <div>
+    <div
+      className=""
+    >
       <IconTip
         icon={
           Object {

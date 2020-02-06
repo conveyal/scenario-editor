@@ -12,6 +12,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
       "createdAt": "2017-11-08T12:30:50.133Z",
       "createdBy": "person@gmail.com",
       "cutoffMinutes": 60,
+      "cutoffsMinutes": Array [
+        60,
+      ],
       "deleted": false,
       "grid": "Jobs_total",
       "height": 300,
@@ -57,6 +60,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
       },
       "status": "DONE",
       "travelTimePercentile": -1,
+      "travelTimePercentiles": Array [
+        50,
+      ],
       "updatedAt": "2017-11-08T12:31:19.602Z",
       "updatedBy": "person@gmail.com",
       "variant": 0,
@@ -104,6 +110,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               "createdAt": "2017-11-08T12:30:50.133Z",
               "createdBy": "person@gmail.com",
               "cutoffMinutes": 60,
+              "cutoffsMinutes": Array [
+                60,
+              ],
               "deleted": false,
               "grid": "Jobs_total",
               "height": 300,
@@ -149,6 +158,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               },
               "status": "DONE",
               "travelTimePercentile": -1,
+              "travelTimePercentiles": Array [
+                50,
+              ],
               "updatedAt": "2017-11-08T12:31:19.602Z",
               "updatedBy": "person@gmail.com",
               "variant": 0,
@@ -166,6 +178,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               "createdAt": "2017-11-08T12:30:50.133Z",
               "createdBy": "person@gmail.com",
               "cutoffMinutes": 60,
+              "cutoffsMinutes": Array [
+                60,
+              ],
               "deleted": false,
               "grid": "Jobs_total",
               "height": 300,
@@ -210,7 +225,10 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                 "workerVersion": "v4.0.0",
               },
               "status": "DONE",
-              "travelTimePercentile": 42,
+              "travelTimePercentile": 50,
+              "travelTimePercentiles": Array [
+                50,
+              ],
               "updatedAt": "2017-11-08T12:31:19.602Z",
               "updatedBy": "person@gmail.com",
               "variant": 1,
@@ -238,6 +256,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                 "createdAt": "2017-11-08T12:30:50.133Z",
                 "createdBy": "person@gmail.com",
                 "cutoffMinutes": 60,
+                "cutoffsMinutes": Array [
+                  60,
+                ],
                 "deleted": false,
                 "grid": "Jobs_total",
                 "height": 300,
@@ -283,6 +304,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                 },
                 "status": "DONE",
                 "travelTimePercentile": -1,
+                "travelTimePercentiles": Array [
+                  50,
+                ],
                 "updatedAt": "2017-11-08T12:31:19.602Z",
                 "updatedBy": "person@gmail.com",
                 "variant": 0,
@@ -300,6 +324,9 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                 "createdAt": "2017-11-08T12:30:50.133Z",
                 "createdBy": "person@gmail.com",
                 "cutoffMinutes": 60,
+                "cutoffsMinutes": Array [
+                  60,
+                ],
                 "deleted": false,
                 "grid": "Jobs_total",
                 "height": 300,
@@ -344,7 +371,10 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                   "workerVersion": "v4.0.0",
                 },
                 "status": "DONE",
-                "travelTimePercentile": 42,
+                "travelTimePercentile": 50,
+                "travelTimePercentiles": Array [
+                  50,
+                ],
                 "updatedAt": "2017-11-08T12:31:19.602Z",
                 "updatedBy": "person@gmail.com",
                 "variant": 1,
@@ -393,7 +423,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
           <p
             className="css-1r2f04i"
           >
-            Total jobs within 60 minutes (average instantaneous accessibility)
+            Total jobs within 60 minutes (percentile 50)
           </p>
         </Box>
       </P>
@@ -669,6 +699,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
       "createdAt": "2017-11-08T12:30:50.133Z",
       "createdBy": "person@gmail.com",
       "cutoffMinutes": 60,
+      "cutoffsMinutes": Array [
+        60,
+      ],
       "deleted": false,
       "grid": "Jobs_total",
       "height": 300,
@@ -714,6 +747,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
       },
       "status": "DONE",
       "travelTimePercentile": -1,
+      "travelTimePercentiles": Array [
+        50,
+      ],
       "updatedAt": "2017-11-08T12:31:19.602Z",
       "updatedBy": "person@gmail.com",
       "variant": 0,
@@ -761,6 +797,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               "createdAt": "2017-11-08T12:30:50.133Z",
               "createdBy": "person@gmail.com",
               "cutoffMinutes": 60,
+              "cutoffsMinutes": Array [
+                60,
+              ],
               "deleted": false,
               "grid": "Jobs_total",
               "height": 300,
@@ -806,6 +845,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               },
               "status": "DONE",
               "travelTimePercentile": -1,
+              "travelTimePercentiles": Array [
+                50,
+              ],
               "updatedAt": "2017-11-08T12:31:19.602Z",
               "updatedBy": "person@gmail.com",
               "variant": 0,
@@ -823,6 +865,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               "createdAt": "2017-11-08T12:30:50.133Z",
               "createdBy": "person@gmail.com",
               "cutoffMinutes": 60,
+              "cutoffsMinutes": Array [
+                60,
+              ],
               "deleted": false,
               "grid": "Jobs_total",
               "height": 300,
@@ -867,7 +912,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 "workerVersion": "v4.0.0",
               },
               "status": "DONE",
-              "travelTimePercentile": 42,
+              "travelTimePercentile": 50,
+              "travelTimePercentiles": Array [
+                50,
+              ],
               "updatedAt": "2017-11-08T12:31:19.602Z",
               "updatedBy": "person@gmail.com",
               "variant": 1,
@@ -888,6 +936,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
             "createdAt": "2017-11-08T12:30:50.133Z",
             "createdBy": "person@gmail.com",
             "cutoffMinutes": 60,
+            "cutoffsMinutes": Array [
+              60,
+            ],
             "deleted": false,
             "grid": "Jobs_total",
             "height": 300,
@@ -932,7 +983,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               "workerVersion": "v4.0.0",
             },
             "status": "DONE",
-            "travelTimePercentile": 42,
+            "travelTimePercentile": 50,
+            "travelTimePercentiles": Array [
+              50,
+            ],
             "updatedAt": "2017-11-08T12:31:19.602Z",
             "updatedBy": "person@gmail.com",
             "variant": 1,
@@ -959,6 +1013,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 "createdAt": "2017-11-08T12:30:50.133Z",
                 "createdBy": "person@gmail.com",
                 "cutoffMinutes": 60,
+                "cutoffsMinutes": Array [
+                  60,
+                ],
                 "deleted": false,
                 "grid": "Jobs_total",
                 "height": 300,
@@ -1004,6 +1061,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 },
                 "status": "DONE",
                 "travelTimePercentile": -1,
+                "travelTimePercentiles": Array [
+                  50,
+                ],
                 "updatedAt": "2017-11-08T12:31:19.602Z",
                 "updatedBy": "person@gmail.com",
                 "variant": 0,
@@ -1021,6 +1081,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 "createdAt": "2017-11-08T12:30:50.133Z",
                 "createdBy": "person@gmail.com",
                 "cutoffMinutes": 60,
+                "cutoffsMinutes": Array [
+                  60,
+                ],
                 "deleted": false,
                 "grid": "Jobs_total",
                 "height": 300,
@@ -1065,7 +1128,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                   "workerVersion": "v4.0.0",
                 },
                 "status": "DONE",
-                "travelTimePercentile": 42,
+                "travelTimePercentile": 50,
+                "travelTimePercentiles": Array [
+                  50,
+                ],
                 "updatedAt": "2017-11-08T12:31:19.602Z",
                 "updatedBy": "person@gmail.com",
                 "variant": 1,
@@ -1092,6 +1158,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               "createdAt": "2017-11-08T12:30:50.133Z",
               "createdBy": "person@gmail.com",
               "cutoffMinutes": 60,
+              "cutoffsMinutes": Array [
+                60,
+              ],
               "deleted": false,
               "grid": "Jobs_total",
               "height": 300,
@@ -1136,7 +1205,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 "workerVersion": "v4.0.0",
               },
               "status": "DONE",
-              "travelTimePercentile": 42,
+              "travelTimePercentile": 50,
+              "travelTimePercentiles": Array [
+                50,
+              ],
               "updatedAt": "2017-11-08T12:31:19.602Z",
               "updatedBy": "person@gmail.com",
               "variant": 1,
@@ -1163,6 +1235,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                   "createdAt": "2017-11-08T12:30:50.133Z",
                   "createdBy": "person@gmail.com",
                   "cutoffMinutes": 60,
+                  "cutoffsMinutes": Array [
+                    60,
+                  ],
                   "deleted": false,
                   "grid": "Jobs_total",
                   "height": 300,
@@ -1208,6 +1283,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                   },
                   "status": "DONE",
                   "travelTimePercentile": -1,
+                  "travelTimePercentiles": Array [
+                    50,
+                  ],
                   "updatedAt": "2017-11-08T12:31:19.602Z",
                   "updatedBy": "person@gmail.com",
                   "variant": 0,
@@ -1225,6 +1303,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                   "createdAt": "2017-11-08T12:30:50.133Z",
                   "createdBy": "person@gmail.com",
                   "cutoffMinutes": 60,
+                  "cutoffsMinutes": Array [
+                    60,
+                  ],
                   "deleted": false,
                   "grid": "Jobs_total",
                   "height": 300,
@@ -1269,7 +1350,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                     "workerVersion": "v4.0.0",
                   },
                   "status": "DONE",
-                  "travelTimePercentile": 42,
+                  "travelTimePercentile": 50,
+                  "travelTimePercentiles": Array [
+                    50,
+                  ],
                   "updatedAt": "2017-11-08T12:31:19.602Z",
                   "updatedBy": "person@gmail.com",
                   "variant": 1,
@@ -1296,6 +1380,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 "createdAt": "2017-11-08T12:30:50.133Z",
                 "createdBy": "person@gmail.com",
                 "cutoffMinutes": 60,
+                "cutoffsMinutes": Array [
+                  60,
+                ],
                 "deleted": false,
                 "grid": "Jobs_total",
                 "height": 300,
@@ -1340,7 +1427,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                   "workerVersion": "v4.0.0",
                 },
                 "status": "DONE",
-                "travelTimePercentile": 42,
+                "travelTimePercentile": 50,
+                "travelTimePercentiles": Array [
+                  50,
+                ],
                 "updatedAt": "2017-11-08T12:31:19.602Z",
                 "updatedBy": "person@gmail.com",
                 "variant": 1,
@@ -1374,7 +1464,338 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
       >
         <div
           className="css-opcg3f"
-        />
+        >
+          <Select
+            key=".0"
+            mb={4}
+            onChange={[Function]}
+            value={60}
+          >
+            <Box
+              mb={4}
+              position="relative"
+              width="100%"
+            >
+              <div
+                className="css-1s2yu6d"
+              >
+                <ForwardRef(SelectInput)
+                  color="inherit"
+                  onChange={[Function]}
+                  value={60}
+                >
+                  <Input
+                    appearance="none"
+                    as="select"
+                    color="inherit"
+                    errorBorderColor="red.500"
+                    focusBorderColor="blue.500"
+                    isFullWidth={true}
+                    lineHeight="normal"
+                    onChange={[Function]}
+                    pb="px"
+                    pr="2rem"
+                    size="md"
+                    value={60}
+                    variant="outline"
+                  >
+                    <PseudoBox
+                      _disabled={
+                        Object {
+                          "cursor": "not-allowed",
+                          "opacity": "0.4",
+                        }
+                      }
+                      _focus={
+                        Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                        }
+                      }
+                      _hover={
+                        Object {
+                          "borderColor": "gray.300",
+                        }
+                      }
+                      _invalid={
+                        Object {
+                          "borderColor": "#e53e3e",
+                          "boxShadow": "0 0 0 1px #e53e3e",
+                        }
+                      }
+                      _readOnly={
+                        Object {
+                          "bg": "transparent",
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        }
+                      }
+                      alignItems="center"
+                      appearance="none"
+                      as="select"
+                      bg="white"
+                      border="1px"
+                      borderColor="inherit"
+                      color="inherit"
+                      display="flex"
+                      fontSize="md"
+                      height={10}
+                      lineHeight="normal"
+                      onChange={[Function]}
+                      outline="none"
+                      pb="px"
+                      position="relative"
+                      pr="2rem"
+                      px={4}
+                      rounded="md"
+                      transition="all 0.2s"
+                      value={60}
+                      width="100%"
+                    >
+                      <select
+                        className="css-9vp1pm"
+                        onChange={[Function]}
+                        value={60}
+                      >
+                        <option
+                          key="60"
+                          value={60}
+                        >
+                          60
+                           minutes
+                        </option>
+                      </select>
+                    </PseudoBox>
+                  </Input>
+                </ForwardRef(SelectInput)>
+                <ForwardRef(SelectIconWrapper)
+                  color="inherit"
+                  opacity={null}
+                >
+                  <Box
+                    alignItems="center"
+                    color="inherit"
+                    display="inline-flex"
+                    height="100%"
+                    justifyContent="center"
+                    opacity={null}
+                    pointerEvents="none"
+                    position="absolute"
+                    right="0.5rem"
+                    top="50%"
+                    transform="translateY(-50%)"
+                    width="1.5rem"
+                    zIndex={2}
+                  >
+                    <div
+                      className="css-1lepn2w"
+                    >
+                      <EnhancedIcon
+                        icon="chevron-down"
+                        size={5}
+                      >
+                        <Icon
+                          color="currentColor"
+                          focusable="false"
+                          name="chevron-down"
+                          size={5}
+                        >
+                          <Styled(div)
+                            as="svg"
+                            color="currentColor"
+                            display="inline-block"
+                            focusable="false"
+                            role="presentation"
+                            size={5}
+                            verticalAlign="middle"
+                            viewBox="0 0 24 24"
+                          >
+                            <svg
+                              className="css-12c4avn"
+                              focusable="false"
+                              role="presentation"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </Styled(div)>
+                        </Icon>
+                      </EnhancedIcon>
+                    </div>
+                  </Box>
+                </ForwardRef(SelectIconWrapper)>
+              </div>
+            </Box>
+          </Select>
+          <Select
+            key=".1"
+            mb={null}
+            onChange={[Function]}
+            value={50}
+          >
+            <Box
+              mb={null}
+              position="relative"
+              width="100%"
+            >
+              <div
+                className="css-1jke4yk"
+              >
+                <ForwardRef(SelectInput)
+                  color="inherit"
+                  onChange={[Function]}
+                  value={50}
+                >
+                  <Input
+                    appearance="none"
+                    as="select"
+                    color="inherit"
+                    errorBorderColor="red.500"
+                    focusBorderColor="blue.500"
+                    isFullWidth={true}
+                    lineHeight="normal"
+                    onChange={[Function]}
+                    pb="px"
+                    pr="2rem"
+                    size="md"
+                    value={50}
+                    variant="outline"
+                  >
+                    <PseudoBox
+                      _disabled={
+                        Object {
+                          "cursor": "not-allowed",
+                          "opacity": "0.4",
+                        }
+                      }
+                      _focus={
+                        Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                        }
+                      }
+                      _hover={
+                        Object {
+                          "borderColor": "gray.300",
+                        }
+                      }
+                      _invalid={
+                        Object {
+                          "borderColor": "#e53e3e",
+                          "boxShadow": "0 0 0 1px #e53e3e",
+                        }
+                      }
+                      _readOnly={
+                        Object {
+                          "bg": "transparent",
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        }
+                      }
+                      alignItems="center"
+                      appearance="none"
+                      as="select"
+                      bg="white"
+                      border="1px"
+                      borderColor="inherit"
+                      color="inherit"
+                      display="flex"
+                      fontSize="md"
+                      height={10}
+                      lineHeight="normal"
+                      onChange={[Function]}
+                      outline="none"
+                      pb="px"
+                      position="relative"
+                      pr="2rem"
+                      px={4}
+                      rounded="md"
+                      transition="all 0.2s"
+                      value={50}
+                      width="100%"
+                    >
+                      <select
+                        className="css-9vp1pm"
+                        onChange={[Function]}
+                        value={50}
+                      >
+                        <option
+                          key="50"
+                          value={50}
+                        >
+                          50
+                          th percentile
+                        </option>
+                      </select>
+                    </PseudoBox>
+                  </Input>
+                </ForwardRef(SelectInput)>
+                <ForwardRef(SelectIconWrapper)
+                  color="inherit"
+                  opacity={null}
+                >
+                  <Box
+                    alignItems="center"
+                    color="inherit"
+                    display="inline-flex"
+                    height="100%"
+                    justifyContent="center"
+                    opacity={null}
+                    pointerEvents="none"
+                    position="absolute"
+                    right="0.5rem"
+                    top="50%"
+                    transform="translateY(-50%)"
+                    width="1.5rem"
+                    zIndex={2}
+                  >
+                    <div
+                      className="css-1lepn2w"
+                    >
+                      <EnhancedIcon
+                        icon="chevron-down"
+                        size={5}
+                      >
+                        <Icon
+                          color="currentColor"
+                          focusable="false"
+                          name="chevron-down"
+                          size={5}
+                        >
+                          <Styled(div)
+                            as="svg"
+                            color="currentColor"
+                            display="inline-block"
+                            focusable="false"
+                            role="presentation"
+                            size={5}
+                            verticalAlign="middle"
+                            viewBox="0 0 24 24"
+                          >
+                            <svg
+                              className="css-12c4avn"
+                              focusable="false"
+                              role="presentation"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </Styled(div)>
+                        </Icon>
+                      </EnhancedIcon>
+                    </div>
+                  </Box>
+                </ForwardRef(SelectIconWrapper)>
+              </div>
+            </Box>
+          </Select>
+        </div>
       </Box>
     </Flex>
   </Stack>
@@ -1399,6 +1820,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
     createdAt="2017-11-08T12:30:50.133Z"
     createdBy="person@gmail.com"
     cutoffMinutes={60}
+    cutoffsMinutes={
+      Array [
+        60,
+      ]
+    }
     date="2016-01-16"
     defaultExpanded={true}
     deleted={false}
@@ -1462,6 +1888,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
     toTime={32400}
     transitModes="BUS,TRAM,RAIL,SUBWAY"
     travelTimePercentile={50}
+    travelTimePercentiles={
+      Array [
+        50,
+      ]
+    }
     updatedAt="2017-11-08T12:31:19.602Z"
     updatedBy="person@gmail.com"
     variant={1}
@@ -1766,7 +2197,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
           <p
             className="css-1r2f04i"
           >
-            Total jobs within 60 minutes (average instantaneous accessibility)
+            Total jobs within 60 minutes (percentile 50)
           </p>
         </Box>
       </P>
@@ -1779,7 +2210,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
             className="css-1r2f04i"
           >
             minus 
-            Total jobs within 60 minutes (percentile 42)
+            Total jobs within 60 minutes (percentile 50)
           </p>
         </Box>
       </P>

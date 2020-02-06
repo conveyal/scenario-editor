@@ -18,6 +18,9 @@ Object {
       "createdAt": "2017-11-08T12:30:50.133Z",
       "createdBy": "person@gmail.com",
       "cutoffMinutes": 60,
+      "cutoffsMinutes": Array [
+        60,
+      ],
       "deleted": false,
       "grid": "Jobs_total",
       "height": 300,
@@ -63,6 +66,9 @@ Object {
       },
       "status": "DONE",
       "travelTimePercentile": -1,
+      "travelTimePercentiles": Array [
+        50,
+      ],
       "updatedAt": "2017-11-08T12:31:19.602Z",
       "updatedBy": "person@gmail.com",
       "variant": 0,
@@ -80,6 +86,9 @@ Object {
       "createdAt": "2017-11-08T12:30:50.133Z",
       "createdBy": "person@gmail.com",
       "cutoffMinutes": 60,
+      "cutoffsMinutes": Array [
+        60,
+      ],
       "deleted": false,
       "grid": "Jobs_total",
       "height": 300,
@@ -124,7 +133,10 @@ Object {
         "workerVersion": "v4.0.0",
       },
       "status": "DONE",
-      "travelTimePercentile": 42,
+      "travelTimePercentile": 50,
+      "travelTimePercentiles": Array [
+        50,
+      ],
       "updatedAt": "2017-11-08T12:31:19.602Z",
       "updatedBy": "person@gmail.com",
       "variant": 1,

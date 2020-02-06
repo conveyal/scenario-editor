@@ -25,6 +25,11 @@ body,
   outline-offset: 4px;
 }
 
+.disableAndDim {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .monospace {
   font-family: monospace;
   font-size: 12px;

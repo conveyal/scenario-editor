@@ -1,0 +1,20 @@
+## Regional Analysis Display Update
+
+We refactored the way regional analyses are displayed on the map.
+
+- New blue and red color schemes.
+- Locations with 0 opportunities will always be transparent.
+- Comparsion breaks switch from one diverging color scheme to a consistent red if negative change, blue if positive change color scheme.
+- The comparison break centered around 0 will always be transparent.
+
+To calculate the color breaks for a Regional Analysis we use the [CKMeans](https://simplestatistics.org/docs/#ckmeans) clustering algorithm on a randomly sampled subset of data. This algorithm helps generate cluster.
+
+### Before:
+
+![Before](/img/changelog/20200210/before.jpg)
+![Before Comparison](/img/changelog/20200210/comparison-before.jpg)
+
+### After:
+
+![After](/img/changelog/20200210/after.jpg)
+![After Comparison](/img/changelog/20200210/comparison-after.jpg)

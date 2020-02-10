@@ -2643,8 +2643,8 @@ exports[`constainers/single-point-analysis 1`] = `
                       options={
                         Array [
                           Object {
-                            "label": "v4.7.0 (recommended)",
-                            "value": "v4.7.0",
+                            "label": "v4.8.0 (recommended)",
+                            "value": "v4.8.0",
                           },
                         ]
                       }
@@ -2656,8 +2656,8 @@ exports[`constainers/single-point-analysis 1`] = `
                       }
                       value={
                         Object {
-                          "label": "v4.7.0 (recommended)",
-                          "value": "v4.7.0",
+                          "label": "v4.8.0 (recommended)",
+                          "value": "v4.8.0",
                         }
                       }
                     >

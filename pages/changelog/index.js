@@ -1,5 +1,18 @@
-import {Box, Divider, Heading, Link, Stack} from '@chakra-ui/core'
+import {faArrowLeft, faCalendarCheck} from '@fortawesome/free-solid-svg-icons'
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Stack,
+  Text
+} from '@chakra-ui/core'
 import React from 'react'
+
+import Icon from 'lib/components/icon'
 
 import C201909 from './201909.mdx'
 import C201910 from './201910.mdx'
@@ -11,47 +24,85 @@ const changes = [
   ['September 13th, 2019', C201909]
 ]
 
+const spacing = 10
+
 export default function Changelog() {
   return (
-    <Stack spacing={10} p={20}>
-      <Heading size='2xl'>
-        Conveyal Analysis Changelog{' '}
-        <Link color='blue.500' href='/'>
-          Back to Analysis
-        </Link>
-      </Heading>
+    <Stack spacing={spacing} p={40}>
+      <Flex justify='space-between'>
+        <Heading size='2xl'>What&lsquo;s new</Heading>
+        <Image display='inline-block' size='5rem' src='/logo.svg' />
+      </Flex>
+      <Link
+        color='blue.500'
+        fontSize='14px'
+        textDecoration='underline'
+        href='/'
+      >
+        <Icon icon={faArrowLeft} /> Back to the application
+      </Link>
       {changes.map(([title, C], i) => (
-        <Box key={i}>
-          <Heading mb={5} size='xl'>
-            {title}
+        <Stack spacing={spacing} key={i}>
+          <Divider />
+          <Heading size='xl'>
+            <Icon icon={faCalendarCheck} /> {title}
           </Heading>
           <Box className='CL'>
             <C />
           </Box>
-        </Box>
+        </Stack>
       ))}
       <style jsx global>{`
-        .CL h2 {
-          font-size: 2rem;
-          margin-bottom: 1rem;
+        .CL {
+          font-size: 14px;
         }
 
+        .CL h1 {
+          font-size: 2.5rem;
+        }
+        .CL h2 {
+          font-size: 2.25rem;
+        }
         .CL h3 {
+          font-size: 2rem;
+        }
+        .CL h4 {
+          font-size: 1.75rem;
+        }
+        .CL h5 {
           font-size: 1.5rem;
-          margin-bottom: 0.75rem;
+        }
+        .CL h6 {
+          font-size: 1.25rem;
+        }
+
+        .CL h1,
+        .CL h2,
+        .CL h3,
+        .CL h4 {
+          margin-bottom: calc(1em / 2);
         }
 
         .CL p {
-          margin-bottom: 1rem;
+          margin-bottom: 2rem;
         }
 
         .CL ul {
           padding-left: 1.5rem;
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .CL li {
+          margin-bottom: 0.5rem;
         }
 
         .CL img {
           display: inline-block;
+        }
+
+        .CL a {
+          color: #3182ce;
+          text-decoration: underline;
         }
       `}</style>
     </Stack>

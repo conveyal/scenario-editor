@@ -1,15 +1,5 @@
 import {faArrowLeft, faCalendarCheck} from '@fortawesome/free-solid-svg-icons'
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  Image,
-  Link,
-  Stack,
-  Text
-} from '@chakra-ui/core'
+import {Box, Divider, Flex, Heading, Image, Link, Stack} from '@chakra-ui/core'
 import React from 'react'
 
 import Icon from 'lib/components/icon'

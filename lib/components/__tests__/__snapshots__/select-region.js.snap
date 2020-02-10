@@ -119,8 +119,62 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                     </strong>
                   </div>
                 </Box>
-                <Box
+                <Alert
+                  borderRadius="4px"
                   key=".1"
+                  mb={4}
+                  status="info"
+                >
+                  <Box
+                    alignItems="center"
+                    bg="blue.100"
+                    borderRadius="4px"
+                    display="flex"
+                    mb={4}
+                    overflow="hidden"
+                    pb={3}
+                    pl={4}
+                    position="relative"
+                    pr={4}
+                    pt={3}
+                    role="alert"
+                  >
+                    <div
+                      className="css-h34547"
+                      role="alert"
+                    >
+                      <span>
+                        <strong>
+                          February 10, 2020
+                        </strong>
+                         — We made some changes to the application. 
+                        <ForwardRef
+                          href="/changelog"
+                        >
+                          <PseudoBox
+                            _hover={
+                              Object {
+                                "color": "#185c86",
+                              }
+                            }
+                            as="a"
+                            color="#2389c9"
+                            href="/changelog"
+                          >
+                            <a
+                              className="css-khmg1f"
+                              href="/changelog"
+                            >
+                              Click here to learn more.
+                            </a>
+                          </PseudoBox>
+                        </ForwardRef>
+                      </span>
+                    </div>
+                  </Box>
+                </Alert>
+                <Box
+                  key=".2"
                   mb={4}
                 >
                   <div
@@ -212,7 +266,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                   </div>
                 </Box>
                 <Box
-                  key=".2"
+                  key=".3"
                   mb={4}
                 >
                   <div
@@ -223,7 +277,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                 </Box>
                 <Box
                   className="list-group"
-                  key=".3"
+                  key=".4"
                   mb={4}
                 >
                   <div
@@ -332,7 +386,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                   </div>
                 </Box>
                 <Box
-                  key=".4"
+                  key=".5"
                   mb={null}
                 >
                   <div

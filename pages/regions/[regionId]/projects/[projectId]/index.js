@@ -1,9 +1,10 @@
 import React from 'react'
 
 import {loadBundles} from 'lib/actions'
-import {loadProjectAndModifications, loadProjects} from 'lib/actions/project'
+import {loadProject, loadProjects} from 'lib/actions/project'
 import {loadRegion} from 'lib/actions/region'
 import List from 'lib/components/modification/list'
+import ProjectTitle from 'lib/components/project-title'
 import SelectProject from 'lib/components/select-project'
 import withInitialFetch from 'lib/with-initial-fetch'
 
@@ -16,7 +17,12 @@ function Modifications(p) {
   if (noProjectId(p.query.projectId)) {
     return <SelectProject {...p} />
   } else {
-    return <List {...p} />
+    return (
+      <>
+        <ProjectTitle project={p.project} />
+        <List project={p.project} setMapChildren={p.setMapChildren} />
+      </>
+    )
   }
 }
 
@@ -33,7 +39,7 @@ async function initialFetch(store, query) {
     ])
     return {bundles, projects, region}
   } else {
-    return store.dispatch(loadProjectAndModifications(projectId))
+    return {project: await store.dispatch(loadProject(projectId))}
   }
 }
 

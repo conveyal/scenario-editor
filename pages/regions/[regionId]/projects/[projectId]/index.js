@@ -1,4 +1,6 @@
+import find from 'lodash/find'
 import React from 'react'
+import {useSelector} from 'react-redux'
 
 import {loadBundles} from 'lib/actions'
 import {loadProject, loadProjects} from 'lib/actions/project'
@@ -14,13 +16,16 @@ const noProjectId = pid => !pid || pid === 'undefined'
  * Show Select Project if a project has not been selected
  */
 function Modifications(p) {
-  if (noProjectId(p.query.projectId)) {
+  const project = useSelector(s =>
+    find(s.project.projects, ['_id', p.query.projectId])
+  )
+  if (!project) {
     return <SelectProject {...p} />
   } else {
     return (
       <>
-        <ProjectTitle project={p.project} />
-        <List project={p.project} setMapChildren={p.setMapChildren} />
+        <ProjectTitle project={project} />
+        <List project={project} setMapChildren={p.setMapChildren} />
       </>
     )
   }

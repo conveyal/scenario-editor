@@ -7,7 +7,7 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 const BundlesView = p => (
   <Bundles>
-    <EditBundle key={p.bundleId} />
+    <EditBundle bundleProjects={[]} key={p.bundleId} />
   </Bundles>
 )
 

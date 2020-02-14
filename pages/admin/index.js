@@ -16,7 +16,7 @@ import JobDashboard from 'lib/components/admin-job-dashboard'
 import TextLink from 'lib/components/text-link'
 import WorkerList from 'lib/components/admin-worker-list'
 import getInitialAuth from 'lib/get-initial-auth'
-import {useProxyRequest} from 'lib/use-request'
+import {useProxyRequest} from 'lib/hooks/use-request'
 
 // Refresh every five seconds
 const refreshInterval = 5000

@@ -12,7 +12,7 @@ import {
 import React from 'react'
 
 import Icon from 'lib/components/icon'
-import useRequest from 'lib/use-request'
+import useRequest from 'lib/hooks/use-request'
 
 export default function Status() {
   const req = useRequest(process.env.API_URL + '/version', {

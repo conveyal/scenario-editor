@@ -1,66 +1,67 @@
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import {
+  Divider,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  List,
+  ListItem,
+  Stack
+} from '@chakra-ui/core'
 import React from 'react'
 
-import {API_URL} from 'lib/constants'
-import P from 'lib/components/p'
-import fetch from 'lib/utils/fetch'
+import Icon from 'lib/components/icon'
+import useRequest from 'lib/use-request'
 
 export default function Status() {
-  const [serverOk, setServerOk] = React.useState(false)
-  const [serverStatus, setServerStatus] = React.useState('Unknown')
+  const req = useRequest(process.env.API_URL + '/version', {
+    refreshInterval: 5000
+  })
 
-  // On component mount
-  React.useEffect(() => {
-    let timeoutId = null
-
-    function pingApi() {
-      const startTime = new Date()
-      fetch(`${API_URL}/version`)
-        .then(async res => {
-          if (res.ok) {
-            const body = await res.json()
-            setServerOk(true)
-            setServerStatus({
-              ...body,
-              responseTime: (new Date() - startTime) / 1000 + 's'
-            })
-          } else {
-            setServerOk(false)
-            setServerStatus(res.status)
-          }
-        })
-        .catch(e => {
-          setServerOk(false)
-          setServerStatus(String(e))
-        })
-        .finally(() => {
-          timeoutId = setTimeout(pingApi, 10000)
-        })
-    }
-
-    pingApi()
-
-    return () => clearTimeout(timeoutId)
-  }, [])
+  const color = req.error ? 'red.500' : req.data ? 'green.500' : 'yellow.500'
+  const text = req.error ? 'ERROR' : req.data ? 'OK' : 'UNKNOWN'
+  const data = req.error || req.data || {}
 
   return (
-    <div className='container'>
-      <div className='row'>
-        <div className='col-xs-12'>
-          <br />
-          <div className='jumbotron'>
-            <h1>Conveyal Status</h1>
-            <P>
-              <strong>Client:</strong> <span className='text-success'>OK</span>
-            </P>
-            <P>
-              <strong>Server: </strong>
-              <pre className={serverOk ? 'text-success' : 'text-danger'}>
-                {JSON.stringify(serverStatus, null, '\t')}
-              </pre>
-            </P>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Flex justify='center' mt={40}>
+      <Stack spacing={10} width='50rem'>
+        <Flex justify='space-between'>
+          <Heading size='2xl'>Status</Heading>
+          <Image display='inline-block' size='45px' src='/logo.svg' />
+        </Flex>
+        <Link
+          color='blue.500'
+          fontSize='14px'
+          textDecoration='underline'
+          href='/'
+        >
+          <Icon icon={faArrowLeft} /> Back to the application
+        </Link>
+        <Divider />
+        <Flex justify='space-between'>
+          <Heading size='xl'>Client</Heading>
+          <Heading color='green.500' size='xl'>
+            OK
+          </Heading>
+        </Flex>
+        <Divider />
+        <Stack spacing={5}>
+          <Flex justify='space-between'>
+            <Heading size='xl'>Server</Heading>
+            <Heading color={color} size='xl'>
+              {text}
+            </Heading>
+          </Flex>
+          <List styleType='disc'>
+            {Object.keys(data).map(k => (
+              <ListItem key={k}>
+                {k}:&nbsp;<strong>{data[k]}</strong>
+              </ListItem>
+            ))}
+          </List>
+        </Stack>
+      </Stack>
+    </Flex>
   )
 }

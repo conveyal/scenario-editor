@@ -21,7 +21,7 @@ export default function Changelog() {
     <Stack spacing={spacing} p={40}>
       <Flex justify='space-between'>
         <Heading size='2xl'>What&lsquo;s new</Heading>
-        <Image display='inline-block' size='5rem' src='/logo.svg' />
+        <Image display='inline-block' size='45px' src='/logo.svg' />
       </Flex>
       <Link
         color='blue.500'

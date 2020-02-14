@@ -19,8 +19,8 @@ export default function Status() {
     refreshInterval: 5000
   })
 
-  const color = req.error ? 'red.500' : req.data ? 'green.500' : 'yellow.500'
-  const text = req.error ? 'ERROR' : req.data ? 'OK' : 'UNKNOWN'
+  const color = !req.data ? 'red.500' : 'green.500'
+  const text = req.error ? 'ERROR' : req.data ? 'OK' : 'NOT FOUND'
   const data = req.error || req.data || {}
 
   return (

@@ -1,4 +1,4 @@
-import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import {faArrowLeft, faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons'
 import {
   Divider,
   Flex,
@@ -14,8 +14,10 @@ import React from 'react'
 import Icon from 'lib/components/icon'
 import useRequest from 'lib/hooks/use-request'
 
+const API_URL = process.env.API_URL + '/version'
+
 export default function Status() {
-  const req = useRequest(process.env.API_URL + '/version', {
+  const req = useRequest(API_URL, {
     refreshInterval: 5000
   })
 
@@ -53,6 +55,14 @@ export default function Status() {
               {text}
             </Heading>
           </Flex>
+          <Link
+            color='blue.500'
+            fontSize='14px'
+            textDecoration='underline'
+            href={API_URL}
+          >
+            {API_URL} <Icon icon={faExternalLinkAlt} />
+          </Link>
           <List styleType='disc'>
             {Object.keys(data).map(k => (
               <ListItem key={k}>

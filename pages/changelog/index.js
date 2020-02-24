@@ -4,11 +4,13 @@ import React from 'react'
 
 import Icon from 'lib/components/icon'
 
+import Dev from './dev.mdx'
 import C201909 from './201909.mdx'
 import C201910 from './201910.mdx'
 import C20200210 from './20200210.mdx'
 
 const changes = [
+  ['Dev', Dev],
   ['February 10th, 2020', C20200210],
   ['October 12th, 2019', C201910],
   ['September 13th, 2019', C201909]

@@ -8,9 +8,10 @@
   <figcaption>Newly added timetable</figcaption>
 </figure>
 
-Each timetable or frequency entry allows for the specification of days of service, span of service, and frequency. You can add as many timetables as you need to specify different frequencies or speeds at different times of days.  Overlapping windows can be specified, but keep in mind that this means that trips on _both_ entries will operate at the specified frequencies (e.g. if you have a ten-minute frequency and a 15-minute frequency overlapping, there will be one set of vehicles coming every ten minutes and another, independent set coming every 15).
+Each timetable or frequency entry allows for the specification of days of service, span of service, and frequency. You can add as many timetables as you need to specify different frequencies or speeds at different times of days. Overlapping windows can be specified, but keep in mind that this means that trips on _both_ entries will operate at the specified frequencies (e.g. if you have a ten-minute frequency and a 15-minute frequency overlapping, there will be one set of vehicles coming every ten minutes and another, independent set coming every 15).
 
 For :ref:`add_trip_pattern` modifications, speed and dwell time values can be set for each timetable, either at the segment level or as overall average values. 
+The user interface also displays travel times derived from these values. While segment-level running-time values can be modified, the speed values are what Conveyal Analysis actually saves and uses for calculation. Recalculated travel time values may differ slightly from explicitly entered values, due to rounding of speed values or if segment lengths change. Before analyzing scenarios, we recommend re-opening modifications with timetables and double checking that values reflect desired travel times.
 
 For :ref:`convert_to_frequency` modifications, speed and dwell time values are copied from the template trip. Oftentimes, travel time will vary throughout the day due to varying traffic and passenger loads, so it makes sense to choose a template trip that is representative of the time window for which you are creating frequency service.
 

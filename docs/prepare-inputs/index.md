@@ -1,5 +1,6 @@
 # Preparing a baseline transport network
 
+<<<<<<< HEAD
 Accessibility calculations will be based on the :term:`transport network` that is set up for your :term:`region`. This includes scheduled transit services as well as the region's network of streets, sidewalks, bikeways, etc. Initially you will set up a :term:`baseline network` representing the transit services described in the :term:`GTFS bundle` for your region. Later on you will likely want to compare alternative :term:`scenarios<scenario>` by creating :term:`modifications<modification>` to the baseline network. 
 
 ## Setting up a new region
@@ -92,7 +93,12 @@ First you need to assign your new bundle a name. We recommend staying organized 
 
 Again, note that files larger than 500MB may be rejected on upload. The largest GTFS feeds in regular use are below 400MB and most are much smaller than this. A larger file may indicate a problem. Please contact your support team if you genuinely need to upload a larger file.
 
-If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
+If there is no GTFS available for your region you can, as a workaround, create a blank slate by using a valid GTFS feed from somewhere else in the world. After creating a project as described below, you can then attempt to [import modifications](../edit-scenario/usage.html#importing-modifications) from a shapefile representing service in your region.
+
+Ensure any GTFS you upload follows requirements of the specification. Various [validation tools](https://gtfs.org/testing/) are available. Common issues include:
+* Missing required files
+* Calendar dates that do not cover an intended date of analysis.
+* Using values other than 0-7 in the route_type column of routes.txt
 
 ## Creating a Project
 

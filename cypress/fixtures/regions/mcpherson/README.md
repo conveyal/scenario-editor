@@ -1,0 +1,1 @@
+McPherson is a small city in Kansas with no transit. It's a test case for importing routes via shapefile. A shapefile is provided and the OSM data will be added by the download script. The GTFS needed to create the project can be taken from another region e.g. Portland's CTRAN.

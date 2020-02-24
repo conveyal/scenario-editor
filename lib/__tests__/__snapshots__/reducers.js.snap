@@ -56,7 +56,7 @@ Object {
   },
   "queryString": Object {},
   "r5Version": Object {
-    "currentVersion": "v4.7.0",
+    "currentVersion": "v4.8.0",
     "usedVersions": Array [],
   },
   "region": Object {

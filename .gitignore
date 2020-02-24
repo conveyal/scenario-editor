@@ -66,3 +66,5 @@ cypress.env.json
 
 # IDE settings
 .idea
+
+.now

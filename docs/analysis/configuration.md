@@ -18,9 +18,13 @@ You will also need to select a **Routing engine** version, which should default 
 
 The final option is the **Percentile of travel time**. In single-point analyses, this is rounded to one of five pre-defined values (5, 25, 50, 75, and 95). For more information, see [methodology](methodology.html#time-percentile).
 
-## Detailed settings
+## Advanced settings
 
 **Maximum transfers** is an upper limit on the number of transfers that will be considered when finding optimal trips.
+
+**Egress mode** defaults to walking. Non-walk egress modes may require a lengthy initial computation step; contact your support team if you need assistance.
+
+**Walk speed**, **Bike speed**, **Max walk time**, and **Max bike time** apply to each access, transfer, and egress leg of trips involving public transport (as of routing engine v4.6.0). For example, a 15 minute value for Max walk time would allow trips requiring a 15 minute walk to access initial public transport stops, 15 minute walks at each transfer, and a 15 minute walk egressing from public transport to destinations. These limits are not applied when public transport is disabled. Otherwise, the requested values will be applied for access legs; for transfer and egress legs, the requested values will be applied, up to a distance limit of 2 km for walk and 5 km for bicycle egress.
 
 If your scenario includes frequency-based routes (either in the baseline GTFS or in modifications with [exact times](../edit-scenario/timetable.html#exact-times) not selected), **simulated schedules** controls the number of schedules simulated for sampling. The sampling process introduces random uncertainty, so you may see results change slightly when you repeatedly request accessibility results. When comparing regional analyses that include frequency-based routes, you may see small unexpected increases or decreases attributable to this random noise. Final results will be more accurate when **simulated schedules** is set to higher values, but computation will take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000. For more information, see [methodology](methodology.html).
 

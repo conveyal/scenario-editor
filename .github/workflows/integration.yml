@@ -1,0 +1,37 @@
+name: Cypress Integration Tests
+
+on: [pull_request]
+
+jobs:
+  cypressIntegration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      # Should be fast with the yarn cache restored
+      - run: yarn install --frozen-lockfile --check-files
+
+      - uses: cypress-io/github-action@v1
+        with:
+          build: yarn build
+          # passed to the cypress command
+          env: ${{ secrets.CYPRESS_GITHUB_ENV }}
+          start: yarn start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots

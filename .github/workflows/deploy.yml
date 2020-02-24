@@ -1,0 +1,44 @@
+name: Manually triggered Deployment from Slack
+# NB: When the default installed `now` version is 17 this will no longer work
+# TODO: run cypress tests on permanent urls after deployment
+
+on: [deployment]
+
+jobs:
+  deployStaging:
+    runs-on: ubuntu-latest
+    if: github.event.sender.type == 'User' && github.event.deployment.environment == 'staging'
+    steps:
+      - uses: actions/checkout@v2
+    
+      - run: now --prod --local-config=now.json --token $ZEIT_TOKEN
+        env:
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          
+      - uses: bobheadxi/deployments@master
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          deployment_id: ${{ github.event.deployment.id }}
+          env_url: 'https://analysis-staging.conveyal.com'
+        
+  deployProduction:
+    runs-on: ubuntu-latest
+    if: github.event.sender.type == 'User' && github.event.deployment.environment == 'production'
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: now --prod --local-config=now.production.json --token $ZEIT_TOKEN
+        env:
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+      
+      - uses: bobheadxi/deployments@master
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          deployment_id: ${{ github.event.deployment.id }}
+          env_url: 'https://analysis.conveyal.com'

@@ -24,7 +24,7 @@ You may need to click the scenarios bar to expand it. Once expanded, you should 
 When editing modifications, you may opt to add them to one or more scenarios. The _baseline scenario_ represents the :term:`baseline network` and cannot be edited. 
 
 ## Activate a modification in a scenario
-By default, each modification is active in all scenarios that exist when the modification is created. You can change which scenarios a modification is active in by using the checkboxes corresponding to scenario numbers at the bottom of the modification detail panel. 
+By default, each modification is active in all scenarios that exist when the modification is created. You can change which scenarios a modification is active in by using the checkboxes corresponding to scenarios at the bottom of the modification detail panel. 
 
 <figure>
   <img src="../img/scenario-chooser.png" />

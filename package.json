@@ -91,6 +91,7 @@
     "migrate": "^1.6.2",
     "moment": "^2.24.0",
     "mongodb": "^3.4.1",
+    "ms": "^2.1.2",
     "next": "^9.2.1",
     "next-cookies": "^2.0.3",
     "next-redux-wrapper": "^4.0.1",

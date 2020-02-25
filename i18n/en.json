@@ -48,6 +48,7 @@
     "files": "GTFS .zip files",
     "delete": "Delete this bundle",
     "deleteConfirmation": "Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.",
+    "deleteDisabled": "This bundle cannot be deleted while projects are using it. Currently used by %(projects) project(s).",
     "processing": "Wait until processing is complete before leaving this page. This may take a few minutes.",
     "save": "Save renamed bundle/feed names",
     "select": "or select an existing one",

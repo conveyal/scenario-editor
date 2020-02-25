@@ -42,7 +42,7 @@ export default function Status() {
         </Link>
         <Divider />
         <Flex justify='space-between'>
-          <Heading size='xl'>Client</Heading>
+          <Heading size='xl'>Front-end</Heading>
           <Heading color='green.500' size='xl'>
             OK
           </Heading>

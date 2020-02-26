@@ -1,107 +1,176 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Profile Request Display should render correctly 1`] = `
-<Collapsible
-  defaultExpanded={true}
-  heading={[Function]}
+<div
+  className="jsx-2817932548 PRD"
 >
-  <table
-    className="table table-condensed table-striped"
+  <JSXStyle
+    id="2817932548"
   >
-    <tbody>
-      <tr>
-        <th>
-          Resources
-        </th>
-        <td>
-          <Link
-            bundleId="1"
-            regionId="1"
-            to="bundleEdit"
+    .PRD&gt;.panel{margin-bottom:0;}
+  </JSXStyle>
+  <Collapsible
+    defaultExpanded={true}
+    heading={[Function]}
+  >
+    <table
+      className="jsx-2817932548 table table-condensed table-striped"
+    >
+      <tbody
+        className="jsx-2817932548"
+      >
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
           >
-            <a>
-              GTFS Bundle
-            </a>
-          </Link>
-           / 
-          <Link
-            projectId="1"
-            regionId="1"
-            to="modifications"
+            Resources
+          </th>
+          <td
+            className="jsx-2817932548"
           >
-            <a>
-              Project
-            </a>
-          </Link>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          Routing engine
-        </th>
-        <td>
-          v4.0.0
-        </td>
-      </tr>
-      <tr>
-        <th>
-          Date
-        </th>
-        <td>
-          2016-01-16
-        </td>
-      </tr>
-      <tr>
-        <th>
-          From time
-        </th>
-        <td>
-          07:00
-        </td>
-      </tr>
-      <tr>
-        <th>
-          To time
-        </th>
-        <td>
-          09:00
-        </td>
-      </tr>
-      <tr>
-        <th>
-          Maximum transfers
-        </th>
-        <td>
-          3
-        </td>
-      </tr>
-      <tr>
-        <th>
-          Simulated schedules
-        </th>
-        <td>
-          200
-        </td>
-      </tr>
-      <tr>
-        <th>
-          Access modes
-        </th>
-        <td>
-          <Modes
-            modes="WALK"
-          />
-        </td>
-      </tr>
-      <tr>
-        <th>
-          Transit
-        </th>
-        <td>
-          yes
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</Collapsible>
+            <Link
+              bundleId="1"
+              regionId="1"
+              to="bundleEdit"
+            >
+              <a
+                className="jsx-2817932548"
+              >
+                GTFS Bundle
+              </a>
+            </Link>
+             / 
+            <Link
+              projectId="1"
+              regionId="1"
+              to="modifications"
+            >
+              <a
+                className="jsx-2817932548"
+              >
+                Project
+              </a>
+            </Link>
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            Routing engine
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            v4.0.0
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            Date
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            2016-01-16
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            From time
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            07:00
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            To time
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            09:00
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            Maximum transfers
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            3
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            Simulated schedules
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            200
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            Access modes
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            <Modes
+              modes="WALK"
+            />
+          </td>
+        </tr>
+        <tr
+          className="jsx-2817932548"
+        >
+          <th
+            className="jsx-2817932548"
+          >
+            Transit
+          </th>
+          <td
+            className="jsx-2817932548"
+          >
+            yes
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </Collapsible>
+</div>
 `;

@@ -5,6 +5,7 @@ import ms from 'ms'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
+import {setSearchParameter} from 'lib/actions'
 import {
   load as loadAllAnalyses,
   loadActiveRegionalJobs
@@ -13,8 +14,9 @@ import {loadRegion} from 'lib/actions/region'
 import Icon from 'lib/components/icon'
 import InnerDock from 'lib/components/inner-dock'
 import Regional from 'lib/components/analysis/regional'
-import Selector from 'lib/components/analysis/regional-analysis-selector'
 import RunningJob from 'lib/components/running-analysis'
+import Select from 'lib/components/select'
+import useControlledInput from 'lib/hooks/use-controlled-input'
 import useInterval from 'lib/hooks/use-interval'
 import {loadOpportunityDatasets} from 'lib/modules/opportunity-datasets/actions'
 import selectActiveAnalysis from 'lib/selectors/active-regional-analysis'
@@ -30,14 +32,16 @@ function RegionalPage(p) {
   const allAnalyses = useSelector(selectRegionalAnalyses)
   const activeAnalysis = useSelector(selectActiveAnalysis)
   const jobs = useSelector(selectJobs)
+  const [activeId, onChange] = useControlledInput(
+    get(activeAnalysis, '_id'),
+    v => dispatch(setSearchParameter('analysisId', v))
+  )
+  const activeJob = jobs.find(j => j.jobId === activeId)
 
   useInterval(
     () => dispatch(loadActiveRegionalJobs(p.query.regionId)),
     REFETCH_INTERVAL
   )
-
-  // Look for an active job for the analysis
-  const activeJob = jobs.find(j => j.jobId === get(activeAnalysis, '_id'))
 
   return (
     <InnerDock>
@@ -54,25 +58,31 @@ function RegionalPage(p) {
         )}
 
         <Box>
-          <Selector
-            activeAnalysis={activeAnalysis}
-            allAnalyses={allAnalyses}
-            key={activeAnalysis}
+          <Select
+            isClearable
+            onChange={v => onChange(get(v, '_id'))}
+            getOptionLabel={a => a.name}
+            getOptionValue={a => a._id}
+            options={allAnalyses}
+            placeholder='View a regional analysis...'
+            value={allAnalyses.find(a => a._id === activeId)}
           />
         </Box>
 
-        {activeAnalysis ? (
-          <Box>
-            <Regional
-              analysis={activeAnalysis}
-              isComplete={!activeJob}
-              key={activeAnalysis._id}
-              opportunityDatasets={p.opportunityDatasets}
-              regionalAnalyses={allAnalyses}
-              setMapChildren={p.setMapChildren}
-            />
-            {activeJob && <RunningJob job={activeJob} mt={2} />}
-          </Box>
+        {activeId && activeAnalysis ? (
+          <Stack spacing={4}>
+            {activeJob && <RunningJob job={activeJob} />}
+            <Box>
+              <Regional
+                analysis={activeAnalysis}
+                isComplete={!activeJob}
+                key={activeAnalysis._id}
+                opportunityDatasets={p.opportunityDatasets}
+                regionalAnalyses={allAnalyses}
+                setMapChildren={p.setMapChildren}
+              />
+            </Box>
+          </Stack>
         ) : (
           jobs.map(job => <RunningJob job={job} key={job.jobId} />)
         )}

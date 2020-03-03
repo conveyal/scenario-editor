@@ -1,4 +1,5 @@
 import {Box, Flex} from '@chakra-ui/core'
+import get from 'lodash/get'
 import App from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -10,6 +11,7 @@ import {setQueryString} from 'lib/actions'
 import ChakraTheme from 'lib/chakra'
 import State from 'lib/components/state'
 import useRouteChanging from 'lib/hooks/use-route-changing'
+import LogRocket from 'lib/logrocket'
 import {timer} from 'lib/utils/metric'
 import createStore from 'lib/store'
 
@@ -45,6 +47,8 @@ const pathUsesMap = path => path.startsWith('/region')
  */
 export default withRedux(createStore)(
   class extends App {
+    state = {}
+
     static async getInitialProps({Component, ctx}) {
       const timeApp = timer('App.getInitialProps')
 
@@ -73,8 +77,23 @@ export default withRedux(createStore)(
       }
     }
 
-    componentDidCatch(err) {
-      console.error(err)
+    componentDidCatch(err, info) {
+      LogRocket.captureException(err, {
+        tags: {
+          accessGroup: get(this.props, 'pageProps.user.accessGroup'),
+          page: get(this.props, 'Component.displayName'),
+          pathname: get(this.props, 'router.pathname')
+        },
+        extras: info
+      })
+    }
+
+    static getDerivedStateFromError(error) {
+      return {error}
+    }
+
+    clearError = () => {
+      this.setState({error: null})
     }
 
     render() {
@@ -89,7 +108,7 @@ export default withRedux(createStore)(
               )}
             </Head>
             <DevBar />
-            <ErrorModal />
+            <ErrorModal error={this.state.error} clear={this.clearError} />
 
             {pathUsesMap(p.router.pathname) ? (
               <ComponentWithMap {...p} />

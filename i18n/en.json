@@ -28,9 +28,9 @@
     "back": "Go back",
     "close": "Continue anyways",
     "details": "Details",
-    "report": "Continuing anyways and refreshing your browser may resolve the issue. If not, please take a screenshot of your browser window and email it along with a description of what you were doing to your support team or",
+    "report": "Refreshing your browser may resolve the issue. If not, please take a screenshot of your browser window and email it along with the URL and a description of what you were doing to your support team or",
     "script": "Refresh your browser to resolve this error...",
-    "supportEmail": "analysis@conveyal.com",
+    "supportEmail": "support@conveyal.com",
     "title": "Unfortunately it appears an error has occured..."
   },
   "authentication": {

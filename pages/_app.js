@@ -85,7 +85,6 @@ export default withRedux(createStore)(
     }
 
     componentDidCatch(err, info) {
-      console.log('App.componentDidCatch')
       LogRocket.captureException(err, {
         tags: {
           accessGroup: get(this.props, 'pageProps.user.accessGroup'),
@@ -97,7 +96,6 @@ export default withRedux(createStore)(
     }
 
     static getDerivedStateFromError(error) {
-      console.log('App.getDerivedStateFromError')
       return {
         clearedError: false,
         error

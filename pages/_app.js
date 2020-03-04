@@ -71,7 +71,13 @@ export default withRedux(createStore)(
         return {pageProps}
       } catch (e) {
         console.error('Error getting initial props', e)
-        return {error: e, pageProps: {}}
+        return {
+          error: {
+            message: e.message,
+            stack: JSON.stringify(e.stack, null, '\n')
+          },
+          pageProps: {}
+        }
       } finally {
         timeApp.end()
       }
@@ -89,15 +95,21 @@ export default withRedux(createStore)(
     }
 
     static getDerivedStateFromError(error) {
-      return {error}
+      return {
+        clearedError: false,
+        error
+      }
     }
 
     clearError = () => {
-      this.setState({error: null})
+      this.setState({clearedError: true, error: null})
     }
 
     render() {
       const p = this.props
+      const s = this.state
+      // Allow clearing a prop error
+      const error = s.clearedError ? null : s.error || p.error
       return (
         <ChakraTheme>
           <Provider store={p.store}>
@@ -108,7 +120,7 @@ export default withRedux(createStore)(
               )}
             </Head>
             <DevBar />
-            <ErrorModal error={this.state.error} clear={this.clearError} />
+            <ErrorModal error={error} clear={this.clearError} />
 
             {pathUsesMap(p.router.pathname) ? (
               <ComponentWithMap {...p} />

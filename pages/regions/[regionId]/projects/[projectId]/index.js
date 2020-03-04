@@ -1,9 +1,12 @@
+import find from 'lodash/find'
 import React from 'react'
+import {useSelector} from 'react-redux'
 
 import {loadBundles} from 'lib/actions'
-import {loadProjectAndModifications, loadProjects} from 'lib/actions/project'
+import {loadProject, loadProjects} from 'lib/actions/project'
 import {loadRegion} from 'lib/actions/region'
 import List from 'lib/components/modification/list'
+import ProjectTitle from 'lib/components/project-title'
 import SelectProject from 'lib/components/select-project'
 import withInitialFetch from 'lib/with-initial-fetch'
 
@@ -13,10 +16,18 @@ const noProjectId = pid => !pid || pid === 'undefined'
  * Show Select Project if a project has not been selected
  */
 function Modifications(p) {
-  if (noProjectId(p.query.projectId)) {
+  const project = useSelector(s =>
+    find(s.project.projects, ['_id', p.query.projectId])
+  )
+  if (!project) {
     return <SelectProject {...p} />
   } else {
-    return <List {...p} />
+    return (
+      <>
+        <ProjectTitle project={project} />
+        <List project={project} setMapChildren={p.setMapChildren} />
+      </>
+    )
   }
 }
 
@@ -33,7 +44,7 @@ async function initialFetch(store, query) {
     ])
     return {bundles, projects, region}
   } else {
-    return store.dispatch(loadProjectAndModifications(projectId))
+    return {project: await store.dispatch(loadProject(projectId))}
   }
 }
 

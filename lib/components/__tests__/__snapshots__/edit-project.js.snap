@@ -95,21 +95,51 @@ exports[`Component > EditProject 1`] = `
               <p
                 className="css-1r2f04i"
               >
-                Mock Bundle
-              </p>
-            </Box>
-          </P>
-          <P>
-            <Box
-              as="p"
-              mb="10px"
-            >
-              <p
-                className="css-1r2f04i"
-              >
-                <em>
-                  Bundle cannot be changed once a project is created.
-                </em>
+                Bundle cannot be changed once a project is created. 
+                <ALink
+                  bundleId="1"
+                  regionId="1"
+                  to="bundleEdit"
+                >
+                  <Link
+                    bundleId="1"
+                    regionId="1"
+                    to="bundleEdit"
+                  >
+                    <Link
+                      as="/regions/1/bundles/1"
+                      href={
+                        Object {
+                          "pathname": "/regions/[regionId]/bundles/[bundleId]",
+                          "query": Object {},
+                        }
+                      }
+                      passHref={true}
+                    >
+                      <PseudoBox
+                        _hover={
+                          Object {
+                            "color": "#185c86",
+                          }
+                        }
+                        as="a"
+                        color="#2389c9"
+                        href="/regions/1/bundles/1"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                      >
+                        <a
+                          className="css-khmg1f"
+                          href="/regions/1/bundles/1"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                        >
+                          View bundle info here.
+                        </a>
+                      </PseudoBox>
+                    </Link>
+                  </Link>
+                </ALink>
               </p>
             </Box>
           </P>

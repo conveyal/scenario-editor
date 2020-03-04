@@ -145,9 +145,10 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                     >
                       <span>
                         <strong>
-                          February 10, 2020
+                          February 28, 2020
                         </strong>
-                         — We made some changes to the application. 
+                         — We fixed bugs and made changes to the application.
+                         
                         <ForwardRef
                           href="/changelog"
                         >

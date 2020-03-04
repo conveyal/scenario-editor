@@ -159,6 +159,11 @@ input[type='range'].form-control {
   margin-bottom: 0;
 }
 
+.alert .upload-error p {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
 .InputWithUnits {
   position: relative;
 }

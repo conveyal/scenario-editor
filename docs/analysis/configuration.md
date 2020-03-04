@@ -1,4 +1,5 @@
 .. _analysis_configuration:
+
 # Options and configuration
 
 Below the accessibility charts, different parameters for the analysis can be set:
@@ -24,7 +25,11 @@ The final option is the **Percentile of travel time**. In single-point analyses,
 
 **Egress mode** defaults to walking. Non-walk egress modes may require a lengthy initial computation step; contact your support team if you need assistance.
 
-**Walk speed**, **Bike speed**, **Max walk time**, and **Max bike time** apply to each access, transfer, and egress leg of trips involving public transport (as of routing engine v4.6.0). For example, a 15 minute value for Max walk time would allow trips requiring a 15 minute walk to access initial public transport stops, 15 minute walks at each transfer, and a 15 minute walk egressing from public transport to destinations. These limits are not applied when public transport is disabled. Otherwise, the requested values will be applied for access legs; for transfer and egress legs, the requested values will be applied, up to a distance limit of 2 km for walk and 5 km for bicycle egress.
+**Walk speed**, **Bike speed**, **Max walk time**, and **Max bike time** apply to each access, transfer, and egress leg of trips when public transport is enabled. Any requested values will be applied for access and direct (walk- or bike-only) legs. For transfer and egress legs, the requested values will be applied, up to a distance limit of 2 km for walk and 5 km for bicycle. At reasonable speeds, the default value for Max walk time allows trips requiring a 20 minute walk to initial boarding stops, 20 minute walks at each transfer, and a 20 minute walk from alighting stops to final destinations; it also allows trips requiring a 20 minute walk from origin to destination, when walking directly is faster than using public transport.
+
+In certain cases, these limits may lead to counterintuitive results. For example, consider a destination that is about a 30-minute walk north of a given origin; an east-west bus route 15 minutes north of the origin would let travelers "circumvent" a 20-minute max walk time by walking 15 minutes to the bus, riding one stop, then walking 15 minutes to the destination.
+
+When public transport is disabled, these limits are not applied and the travel time slider below the accessibility chart effectively controls the maximum time for the requested direct mode.
 
 If your scenario includes frequency-based routes (either in the baseline GTFS or in modifications with [exact times](../edit-scenario/timetable.html#exact-times) not selected), **simulated schedules** controls the number of schedules simulated for sampling. The sampling process introduces random uncertainty, so you may see results change slightly when you repeatedly request accessibility results. When comparing regional analyses that include frequency-based routes, you may see small unexpected increases or decreases attributable to this random noise. Final results will be more accurate when **simulated schedules** is set to higher values, but computation will take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000. For more information, see [methodology](methodology.html).
 

@@ -30,8 +30,3 @@ jobs:
           AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
           AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots

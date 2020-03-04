@@ -1,28 +1,35 @@
-import {Button} from '@chakra-ui/core'
+import {Button, Stack} from '@chakra-ui/core'
 import React from 'react'
+import {useDispatch} from 'react-redux'
 
 function onClick(title) {
+  const obj = {}
   setTimeout(() => {
-    throw new Error(title)
+    console.error(title)
+    obj.does.not.exist = 10
   }, 1)
 }
 
-function SubComponent() {
+function SubComponent(p) {
   return (
-    <Button onClick={() => onClick('Error from sub-component')}>
+    <Button {...p} onClick={() => onClick('Error from sub-component')}>
       Click to throw error from sub component
     </Button>
   )
 }
 
 export default function Debug() {
+  const dispatch = useDispatch()
   return (
-    <>
+    <Stack align='center' width='400px' spacing={4} mt={10}>
       <Button onClick={() => onClick('Error from page')}>
         Click to throw error from a page
       </Button>
       <SubComponent />
-    </>
+      <Button onClick={() => dispatch({type: 'throw error'})}>
+        Click to dispatch an action that throws an error
+      </Button>
+    </Stack>
   )
 }
 

@@ -123,11 +123,12 @@ export default withRedux(createStore)(
             <DevBar />
             <ErrorModal error={error} clear={this.clearError} />
 
-            {pathUsesMap(p.router.pathname) ? (
-              <ComponentWithMap {...p} />
-            ) : (
-              <p.Component {...p.pageProps} />
-            )}
+            {!error &&
+              (pathUsesMap(p.router.pathname) ? (
+                <ComponentWithMap {...p} />
+              ) : (
+                <p.Component {...p.pageProps} />
+              ))}
           </Provider>
         </ChakraTheme>
       )

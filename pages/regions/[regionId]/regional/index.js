@@ -21,16 +21,17 @@ import useInterval from 'lib/hooks/use-interval'
 import {loadOpportunityDatasets} from 'lib/modules/opportunity-datasets/actions'
 import selectActiveAnalysis from 'lib/selectors/active-regional-analysis'
 import selectRegionalAnalyses from 'lib/selectors/regional-analyses'
-import selectRegionalAnalysisJobs from 'lib/selectors/regional-analysis-jobs'
 import withInitialFetch from 'lib/with-initial-fetch'
 
 const REFETCH_INTERVAL = ms('15s')
+
+const selectJobs = s => get(s, 'regionalAnalyses.activeJobs', [])
 
 function RegionalPage(p) {
   const dispatch = useDispatch()
   const allAnalyses = useSelector(selectRegionalAnalyses)
   const activeAnalysis = useSelector(selectActiveAnalysis)
-  const jobs = useSelector(selectRegionalAnalysisJobs)
+  const jobs = useSelector(selectJobs)
   const [activeId, onChange] = useControlledInput(
     get(activeAnalysis, '_id'),
     v => dispatch(setSearchParameter('analysisId', v))

@@ -38,6 +38,11 @@ function RegionalPage(p) {
   )
   const activeJob = jobs.find(j => j.jobId === activeId)
 
+  // Analyses are deleted before the jobs get cleared
+  const jobsWithAnalysis = jobs.filter(
+    j => allAnalyses.findIndex(a => j.jobId === a._id) !== -1
+  )
+
   useInterval(
     () => dispatch(loadActiveRegionalJobs(p.query.regionId)),
     REFETCH_INTERVAL
@@ -60,6 +65,7 @@ function RegionalPage(p) {
         <Box>
           <Select
             isClearable
+            key={`analysis-${activeId}`} // Dont show deleted analyses as selected
             onChange={v => onChange(get(v, '_id'))}
             getOptionLabel={a => a.name}
             getOptionValue={a => a._id}
@@ -84,7 +90,7 @@ function RegionalPage(p) {
             </Box>
           </Stack>
         ) : (
-          jobs.map(job => <RunningJob job={job} key={job.jobId} />)
+          jobsWithAnalysis.map(job => <RunningJob job={job} key={job.jobId} />)
         )}
       </Stack>
     </InnerDock>

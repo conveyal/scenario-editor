@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import '@testing-library/cypress/add-commands'
+import 'cypress-file-upload'
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({

@@ -22,6 +22,27 @@ describe('Scratch region tests, run locally', () => {
     })
   })
 
+  it('Coordinate input validation works', () => {
+    let coordinates = [
+      {valid: false, n: '39.4', s: '67', e: '11', w: '4'},
+      {valid: false, n: '9', s: '7', e: '11.5', w: '0'}
+    ]
+    coordinates.forEach(v => {
+      cy.get('#north-bound')
+        .clear()
+        .type(v.n)
+      cy.get('#south-bound')
+        .clear()
+        .type(v.s)
+      cy.get('#east-bound')
+        .clear()
+        .type(v.e)
+      cy.get('#west-bound')
+        .clear()
+        .type(v.w)
+    })
+  })
+
   it('Enter exact coordinates', () => {
     cy.fixture('regions/scratch.json').then(region => {
       cy.get('#north-bound')

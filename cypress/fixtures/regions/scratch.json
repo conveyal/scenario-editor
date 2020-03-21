@@ -1,0 +1,10 @@
+{
+  "name": "Northern Kentucky",
+  "PBFfile": "regions/nky/streets.osm.pbf",
+  "searchTerm": "covington",
+  "foundName": "Covington, Kentucky, United States",
+  "north": 39.1199,
+  "south": 38.9268,
+  "east": -84.3592,
+  "west": -84.706
+}

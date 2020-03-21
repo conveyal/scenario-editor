@@ -1,36 +1,67 @@
-const now = Date.now() + ''
+const regionName = 'Scratch Region ' + Date.now()
 
-const localState = {
-  region: {
-    name: now + ': Test Region'
-  }
-}
-
-const pbfName = 'noma-dc.osm.pbf'
-
-describe('Test suite to be run in a local development environment with auth disabled', () => {
-  it('should not require being logged in to load the home page', () => {
-    cy.visit('/')
-    cy.findByText('Set up a new region').should('exist')
-  })
-
-  it('should be able to create a region', function() {
+describe('Scratch region tests, run locally', () => {
+  it('Locate region set-up link on home page', () => {
     cy.visit('/')
     cy.findByText('Set up a new region').click()
-    cy.findByPlaceholderText('Region Name', {exact: false}).type(
-      localState.region.name
-    )
+  })
 
-    cy.fixture(pbfName, {encoding: 'base64'}).then(fileContent => {
-      console.log(fileContent)
-      cy.findByLabelText('OpenStreetMap data in PBF format*').upload({
-        encoding: 'base64',
-        fileContent,
-        fileName: pbfName,
-        mimeType: 'application/octet-stream'
-      })
+  it('Enter region name and description', () => {
+    cy.findByPlaceholderText('Region Name').type(regionName)
+    cy.findByPlaceholderText('Description').type('Scratch region Cypress test')
+  })
 
-      cy.findByRole('button', {name: 'Set up a new region'}).click()
+  it('Search for location by name', () => {
+    cy.mapIsReady()
+    cy.fixture('regions/scratch.json').then(region => {
+      cy.get('input#react-select-2-input')
+        .focus()
+        .clear()
+        .type(region.searchTerm)
+      cy.contains(region.foundName).click({force: true})
     })
+  })
+
+  it('Enter exact coordinates', () => {
+    cy.fixture('regions/scratch.json').then(region => {
+      cy.get('#north-bound')
+        .clear()
+        .type(region.north)
+      cy.get('#south-bound')
+        .clear()
+        .type(region.south)
+      cy.get('#east-bound')
+        .clear()
+        .type(region.east)
+      cy.get('#west-bound')
+        .clear()
+        .type(region.west)
+    })
+    //    cy.get('button[name="Set up a new region"]').should('have.attr', 'disabled')
+  })
+
+  it('Select PBF file', () => {
+    cy.fixture('regions/scratch.json').then(region => {
+      cy.fixture(region.PBFfile, {encoding: 'base64'}).then(fileContent => {
+        cy.get('input[type=file]').upload({
+          encoding: 'base64',
+          fileContent,
+          fileName: region.PBFfile,
+          mimeType: 'application/octet-stream'
+        })
+      })
+    })
+  })
+
+  it('Create region', () => {
+    cy.get('button[name="Set up a new region"]').click()
+    cy.contains('Upload a new GTFS Bundle', {timeout: 10000})
+  })
+
+  it('Delete Region', () => {
+    cy.visit('/')
+    cy.findByText(regionName).click()
+    cy.get('svg[data-icon="map"]').click()
+    cy.contains('Delete this region').click()
   })
 })

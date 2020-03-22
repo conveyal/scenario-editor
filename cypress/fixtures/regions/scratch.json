@@ -1,5 +1,6 @@
 {
   "name": "Northern Kentucky",
+  "description": "Cypress stratch testing region",
   "PBFfile": "regions/nky/streets.osm.pbf",
   "searchTerm": "covington",
   "foundName": "Covington, Kentucky, United States",

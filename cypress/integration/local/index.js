@@ -1,4 +1,5 @@
-const regionName = 'Scratch Region ' + Date.now()
+const runTime = new Date()
+const regionName = 'Scratch Region ' + runTime.toUTCString()
 
 describe('Scratch region tests, run locally', () => {
   it('Locate region set-up link on home page', () => {

@@ -8,6 +8,9 @@ describe('Scratch region tests, run locally', () => {
     //})
     cy.visit('/')
     cy.findByText('Set up a new region').click()
+    cy.location('pathname').should('eq', '/regions/create')
+    // TODO hard waits are bad
+    cy.wait(3000)
     //cy.route('https://api.mapbox.com/.*').as('tileserver')
     //cy.wait('@tileserver')
   })
@@ -30,12 +33,13 @@ describe('Scratch region tests, run locally', () => {
     })
   })
 
+  /*
   it('Coordinate input validation works', () => {
     let coordinates = [
       // invalid because n < s & e < w
-      //{valid: false, n: '1', s: '2', e: '3', w: '4'},
+      {valid: false, n: '1', s: '2', e: '3', w: '4'},
       // Rome, Italy
-      //{valid: true, n: '42.02', s: '41.74', e: '12.70', w: '12.31'}
+      {valid: true, n: '42.02', s: '41.74', e: '12.70', w: '12.31'}
     ]
     coordinates.forEach(v => {
       cy.findByLabelText(/North bound/)
@@ -52,6 +56,7 @@ describe('Scratch region tests, run locally', () => {
         .type(v.w)
     })
   })
+*/
 
   it('Enter exact coordinates', () => {
     cy.fixture('regions/scratch.json').then(region => {
@@ -127,6 +132,26 @@ describe('Scratch region tests, run locally', () => {
           expect(roundingError).to.be.lessThan(maxError)
         })
     })
+  })
+
+  it('Upload single GTFS bundle', () => {
+    cy.get('svg[data-icon="database"]').click()
+    cy.findByText(/Create a bundle/).click()
+    cy.location('pathname').should('match', /.*\/bundles\/create$/)
+    cy.findByLabelText(/Bundle Name/i).type('single GTFS bundle')
+    cy.fixture('regions/scratch.json').then(region => {
+      cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(fileContent => {
+        cy.get('input[type="file"]').upload({
+          encoding: 'base64',
+          fileContent,
+          fileName: region.GTFSfile,
+          mimeType: 'application/octet-stream'
+        })
+      })
+    })
+    cy.findByRole('button', {name: /Create/i}).click()
+    cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
+    // TODO verify the upload is selectable from the dropdown
   })
 
   it('Delete region', () => {

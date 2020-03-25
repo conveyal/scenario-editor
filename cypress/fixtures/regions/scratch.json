@@ -2,6 +2,7 @@
   "name": "Northern Kentucky",
   "description": "Cypress stratch testing region",
   "PBFfile": "regions/nky/streets.osm.pbf",
+  "GTFSfile": "regions/nky/TANK-GTFS.zip",
   "searchTerm": "covington",
   "foundName": "Covington, Kentucky, United States",
   "north": 39.1199,

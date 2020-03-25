@@ -15,22 +15,18 @@ describe('Scratch region tests, run locally', () => {
     //cy.wait('@tileserver')
   })
 
-  it('Enter region name and description', () => {
+  it('Enter region name and description', function() {
     cy.findByPlaceholderText('Region Name').type(regionName)
-    cy.fixture('regions/scratch.json').then(region => {
-      cy.findByPlaceholderText('Description').type(region.description)
-    })
+    cy.findByPlaceholderText('Description').type(this.scratchRegion.description)
   })
 
-  it('Search for location by name', () => {
+  it('Search for location by name', function() {
     cy.mapIsReady()
-    cy.fixture('regions/scratch.json').then(region => {
-      cy.get('input#react-select-2-input')
-        .focus()
-        .clear()
-        .type(region.searchTerm)
-      cy.contains(region.foundName).click({force: true})
-    })
+    cy.get('input#react-select-2-input')
+      .focus()
+      .clear()
+      .type(this.scratchRegion.searchTerm)
+    cy.contains(this.scratchRegion.foundName).click({force: true})
   })
 
   /*
@@ -58,34 +54,32 @@ describe('Scratch region tests, run locally', () => {
   })
 */
 
-  it('Enter exact coordinates', () => {
-    cy.fixture('regions/scratch.json').then(region => {
-      cy.findByLabelText(/North bound/)
-        .clear()
-        .type(region.north)
-      cy.findByLabelText(/South bound/)
-        .clear()
-        .type(region.south)
-      cy.findByLabelText(/East bound/)
-        .clear()
-        .type(region.east)
-      cy.findByLabelText(/West bound/)
-        .clear()
-        .type(region.west)
-    })
+  it('Enter exact coordinates', function() {
+    cy.findByLabelText(/North bound/)
+      .clear()
+      .type(this.scratchRegion.north)
+    cy.findByLabelText(/South bound/)
+      .clear()
+      .type(this.scratchRegion.south)
+    cy.findByLabelText(/East bound/)
+      .clear()
+      .type(this.scratchRegion.east)
+    cy.findByLabelText(/West bound/)
+      .clear()
+      .type(this.scratchRegion.west)
   })
 
-  it('Select PBF file', () => {
-    cy.fixture('regions/scratch.json').then(region => {
-      cy.fixture(region.PBFfile, {encoding: 'base64'}).then(fileContent => {
+  it('Select PBF file', function() {
+    cy.fixture(this.scratchRegion.PBFfile, {encoding: 'base64'}).then(
+      fileContent => {
         cy.get('input[type="file"]').upload({
           encoding: 'base64',
           fileContent,
-          fileName: region.PBFfile,
+          fileName: this.scratchRegion.PBFfile,
           mimeType: 'application/octet-stream'
         })
-      })
-    })
+      }
+    )
   })
 
   it('Create region', () => {
@@ -93,62 +87,60 @@ describe('Scratch region tests, run locally', () => {
     cy.contains('Upload a new GTFS Bundle', {timeout: 10000})
   })
 
-  it('Region settings saved correctly', () => {
+  it('Region settings saved correctly', function() {
     cy.visit('/')
     // region is listed with correct name
     cy.findByText(regionName).click()
     cy.get('svg[data-icon="map"]').click()
     cy.contains('Edit region')
-    cy.fixture('regions/scratch.json').then(region => {
-      cy.findByPlaceholderText('Region Name').should('have.value', regionName)
-      cy.findByPlaceholderText('Description').should(
-        'have.value',
-        region.description
-      )
-      // coordinate values are rounded to match analysis grid
-      let maxError = 0.01
-      cy.findByLabelText(/North bound/)
-        .invoke('val')
-        .then(val => {
-          let roundingError = Math.abs(Number(val) - region.north)
-          expect(roundingError).to.be.lessThan(maxError)
-        })
-      cy.findByLabelText(/South bound/)
-        .invoke('val')
-        .then(val => {
-          let roundingError = Math.abs(Number(val) - region.south)
-          expect(roundingError).to.be.lessThan(maxError)
-        })
-      cy.findByLabelText(/East bound/)
-        .invoke('val')
-        .then(val => {
-          let roundingError = Math.abs(Number(val) - region.east)
-          expect(roundingError).to.be.lessThan(maxError)
-        })
-      cy.findByLabelText(/West bound/)
-        .invoke('val')
-        .then(val => {
-          let roundingError = Math.abs(Number(val) - region.west)
-          expect(roundingError).to.be.lessThan(maxError)
-        })
-    })
+    cy.findByPlaceholderText('Region Name').should('have.value', regionName)
+    cy.findByPlaceholderText('Description').should(
+      'have.value',
+      this.scratchRegion.description
+    )
+    // coordinate values are rounded to match analysis grid
+    let maxError = 0.01
+    cy.findByLabelText(/North bound/)
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.scratchRegion.north)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
+    cy.findByLabelText(/South bound/)
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.scratchRegion.south)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
+    cy.findByLabelText(/East bound/)
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.scratchRegion.east)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
+    cy.findByLabelText(/West bound/)
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.scratchRegion.west)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
   })
 
-  it('Upload single GTFS bundle', () => {
+  it('Upload single GTFS bundle', function() {
     cy.get('svg[data-icon="database"]').click()
     cy.findByText(/Create a bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type('single GTFS bundle')
-    cy.fixture('regions/scratch.json').then(region => {
-      cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(fileContent => {
+    cy.fixture(this.scratchRegion.GTFSfile, {encoding: 'base64'}).then(
+      fileContent => {
         cy.get('input[type="file"]').upload({
           encoding: 'base64',
           fileContent,
-          fileName: region.GTFSfile,
+          fileName: this.scratchRegion.GTFSfile,
           mimeType: 'application/octet-stream'
         })
-      })
-    })
+      }
+    )
     cy.findByRole('button', {name: /Create/i}).click()
     cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
     // TODO verify the upload is selectable from the dropdown

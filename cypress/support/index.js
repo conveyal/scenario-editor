@@ -17,3 +17,7 @@
 import './commands'
 
 import 'cypress-wait-until'
+
+beforeEach(function() {
+  cy.fixture('regions/scratch.json').as('scratchRegion')
+})

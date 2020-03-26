@@ -155,6 +155,26 @@ describe('Local Tests', () => {
     })
   })
 
+  context('Create a new project', () => {
+    it('create project', () => {
+      cy.get('svg[data-icon="cubes"]').click()
+      cy.findByText(/Create new Project/i).click()
+      cy.location('pathname').should('match', /create-project/)
+      cy.findByLabelText(/Project name/).type('single-GTFS project')
+      cy.findByLabelText(/Associated GTFS bundle/i).select('single GTFS bundle')
+      cy.findByText(/Create/).click()
+      cy.location('pathname').should('match', /regions\/.*\/projects\/.*/)
+      cy.contains(/Modifications/)
+    })
+  })
+
+  context('Create modifications', () => {
+    // these don't strictly require map interaction
+    it('Adjust dwell time', () => {})
+    it('Adjust speed', () => {})
+    it('Remove trips', () => {})
+  })
+
   context('Delete scratch region', () => {
     it('Delete region', () => {
       cy.visit('/')

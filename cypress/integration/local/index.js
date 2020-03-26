@@ -2,6 +2,10 @@ const runTime = new Date()
 const regionName = 'Scratch Region ' + runTime.toUTCString()
 
 describe('Scratch region tests, run locally', () => {
+  beforeEach(function() {
+    cy.fixture('regions/scratch.json').as('scratchRegion')
+  })
+
   it('Locate region set-up link on home page', () => {
     cy.visit('/')
     cy.findByText('Set up a new region').click()

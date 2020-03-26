@@ -3,16 +3,12 @@ const regionName = 'Scratch Region ' + runTime.toUTCString()
 
 describe('Scratch region tests, run locally', () => {
   it('Locate region set-up link on home page', () => {
-    //cy.server({
-    //  urlMatchingOptions: { matchBase: false, dot: true }
-    //})
     cy.visit('/')
     cy.findByText('Set up a new region').click()
     cy.location('pathname').should('eq', '/regions/create')
-    // TODO hard waits are bad
+    // TODO hard waits are bad, but I can't yet check whether the map is ready
+    cy.mapIsReady()
     cy.wait(3000)
-    //cy.route('https://api.mapbox.com/.*').as('tileserver')
-    //cy.wait('@tileserver')
   })
 
   it('Enter region name and description', function() {
@@ -142,6 +138,7 @@ describe('Scratch region tests, run locally', () => {
       }
     )
     cy.findByRole('button', {name: /Create/i}).click()
+    cy.findByText(/Processing/)
     cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
     // TODO verify the upload is selectable from the dropdown
   })

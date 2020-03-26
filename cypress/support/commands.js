@@ -32,8 +32,17 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
-Cypress.Commands.add('mapIsReady', function() {
-  cy.window({timeout: 10000}).then(w => typeof w.LeafletMap !== 'undefined')
+Cypress.Commands.add('mapIsReady', () => {
+  cy.window().should('have.property', 'LeafletMap')
+  // map should have a tileLayer which is done loading
+  cy.window().then(win => {
+    win.LeafletMap.eachLayer(layer => {
+      if (layer instanceof win.L.MapboxGL) {
+        // TODO how to check if tiles are loaded??
+        cy.log(layer)
+      }
+    })
+  })
 })
 
 Cypress.Commands.add('login', function() {

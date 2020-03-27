@@ -3,6 +3,7 @@
   "description": "Cypress stratch testing region",
   "PBFfile": "regions/nky/streets.osm.pbf",
   "GTFSfile": "regions/nky/TANK-GTFS.zip",
+  "feedAgencyName": "Transit Authority of Northern Kentucky",
   "searchTerm": "covington",
   "foundName": "Covington, Kentucky, United States",
   "north": 39.1199,

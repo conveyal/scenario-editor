@@ -132,7 +132,7 @@ describe('Local Tests', () => {
     */
   })
 
-  context('Uplaod and manage GTFS bundles', () => {
+  context('Upload and manage GTFS bundles', () => {
     it('Upload single GTFS bundle', function() {
       cy.get('svg[data-icon="database"]').click()
       cy.findByText(/Create a bundle/).click()
@@ -161,17 +161,39 @@ describe('Local Tests', () => {
       cy.findByText(/Create new Project/i).click()
       cy.location('pathname').should('match', /create-project/)
       cy.findByLabelText(/Project name/).type('single-GTFS project')
-      cy.findByLabelText(/Associated GTFS bundle/i).select('single GTFS bundle')
-      cy.findByText(/Create/).click()
-      cy.location('pathname').should('match', /regions\/.*\/projects\/.*/)
+      // hack to select first GTFS from dropdown
+      cy.findByLabelText(/Associated GTFS bundle/i)
+        .click()
+        .type('{downarrow}{enter}')
+      cy.get('a.btn')
+        .contains(/Create/)
+        .click()
+      cy.location('pathname').should('match', /regions\/.{24}\/projects\/.{24}/)
       cy.contains(/Modifications/)
     })
   })
 
   context('Create modifications', () => {
     // these don't strictly require map interaction
-    it('Adjust dwell time', () => {})
+    it('Adjust dwell time', () => {
+      cy.findByRole('link', {name: 'Create a modification'}).click()
+      cy.findByLabelText(/Modification type/i).select('Adjust Dwell Time')
+      cy.findByLabelText(/Modification name/i).type('Dwell adjust mod')
+      cy.findByRole('link', {name: 'Create'}).click()
+      cy.location('pathname').should(
+        'match',
+        /regions\/.{24}\/projects\/.{24}\/.{24}/
+      )
+      cy.contains('Dwell adjust mod')
+      cy.findByRole('link', {name: /Add description/}).click()
+      cy.findByLabelText('Description').type('the description')
+      cy.findByLabelText(/Select feed and routes/i)
+        .click()
+        .type('{downarrow}{enter}')
+    })
+
     it('Adjust speed', () => {})
+
     it('Remove trips', () => {})
   })
 

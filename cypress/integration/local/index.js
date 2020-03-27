@@ -174,7 +174,14 @@ describe('Local Tests', () => {
   })
 
   context('Create modifications', () => {
-    // these don't strictly require map interaction
+    it('Create a new scenario', () => {
+      cy.findByText('Scenarios').click()
+      cy.spy(window, 'prompt').as('win.prompt')
+      cy.findByRole('link', {name: 'Create a scenario'}).click()
+      // TODO not working yet..
+      expect('@win.prompt').to.be.called
+    })
+
     it('Adjust dwell time', () => {
       cy.findByRole('link', {name: 'Create a modification'}).click()
       cy.findByLabelText(/Modification type/i).select('Adjust Dwell Time')

@@ -173,15 +173,29 @@ describe('Local Tests', () => {
     })
   })
 
-  context('Create modifications', () => {
+  context('Manage scenarios', () => {
     it('Create a new scenario', () => {
       cy.findByText('Scenarios').click()
-      cy.spy(window, 'prompt').as('win.prompt')
-      cy.findByRole('link', {name: 'Create a scenario'}).click()
-      // TODO not working yet..
-      expect('@win.prompt').to.be.called
+      cy.window().then(win => {
+        cy.stub(win, 'prompt').returns('New scenario!')
+        cy.findByRole('link', {name: 'Create a scenario'}).click()
+      })
+      cy.contains('New scenario!')
     })
 
+    it('Modify scenario name', () => {
+      // default scenario name is "Default"
+      cy.window().then(win => {
+        cy.stub(win, 'prompt').returns('Scenario 1')
+        cy.findByText(/Default/)
+          .findByTitle(/Rename this scenario/)
+          .click()
+      })
+      cy.contains(/Scenario 1/)
+    })
+  })
+
+  context('Create modifications', () => {
     it('Adjust dwell time', () => {
       cy.findByRole('link', {name: 'Create a modification'}).click()
       cy.findByLabelText(/Modification type/i).select('Adjust Dwell Time')

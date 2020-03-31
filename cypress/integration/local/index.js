@@ -201,13 +201,23 @@ describe('Local Tests', () => {
     it('Create a new scenario', () => {
       cy.findByText('Scenarios').click()
       cy.window().then(win => {
-        cy.stub(win, 'prompt').returns('New scenario!')
+        cy.stub(win, 'prompt').returns('Temp scenario')
         cy.findByRole('link', {name: 'Create a scenario'}).click()
       })
-      cy.contains('New scenario!')
+      cy.contains('Temp scenario')
     })
 
-    it('Modify scenario name', () => {
+    it('Delete a scenario', () => {
+      cy.window().then(win => {
+        cy.stub(win, 'confirm').returns(true)
+        cy.findByText(/Temp scenario/)
+          .findByTitle(/Delete this scenario/)
+          .click()
+      })
+      cy.findByText(/Temp scenario/).should('not.exist')
+    })
+
+    it('Rename a scenario', () => {
       // default scenario name is "Default"
       cy.window().then(win => {
         cy.stub(win, 'prompt').returns('Scenario 1')

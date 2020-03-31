@@ -106,30 +106,54 @@ describe('Local Tests', () => {
         })
     })
 
-    /*
-    it('Coordinate input validation works', () => {
-      let coordinates = [
-        // invalid because n < s & e < w
-        {valid: false, n: '1', s: '2', e: '3', w: '4'},
-        // Rome, Italy
-        {valid: true, n: '42.02', s: '41.74', e: '12.70', w: '12.31'}
-      ]
-      coordinates.forEach(v => {
-        cy.findByLabelText(/North bound/)
-          .clear()
-          .type(v.n)
-        cy.findByLabelText(/South bound/)
-          .clear()
-          .type(v.s)
-        cy.findByLabelText(/East bound/)
-          .clear()
-          .type(v.e)
-        cy.findByLabelText(/West bound/)
-          .clear()
-          .type(v.w)
-      })
+    it('Invalid coordinates not allowed', () => {
+      cy.findByLabelText(/North bound/).as('North')
+      cy.findByLabelText(/South bound/).as('South')
+      cy.findByLabelText(/East bound/).as('East')
+      cy.findByLabelText(/West bound/).as('West')
+      // try to set south == north
+      cy.get('@North')
+        .invoke('val')
+        .then(northVal => {
+          cy.get('@South')
+            .clear()
+            .type(northVal)
+            .blur()
+          cy.wait(300)
+          cy.get('@South')
+            .invoke('val')
+            .then(southVal => {
+              expect(Number(southVal)).to.be.lessThan(Number(northVal))
+            })
+        })
+      // try to set east < west
+      cy.get('@East')
+        .invoke('val')
+        .then(eastVal => {
+          cy.get('@West')
+            .clear()
+            .type(Number(eastVal) + 1)
+            .blur()
+          cy.wait(300)
+          cy.get('@West')
+            .invoke('val')
+            .then(westVal => {
+              expect(Number(westVal)).to.be.lessThan(Number(eastVal))
+            })
+        })
+      // try to enter a non-numeric value
+      // form should revert to previous numeric value
+      cy.get('@West')
+        .clear()
+        .type('letters')
+        .blur()
+      cy.wait(300)
+      cy.get('@West')
+        .invoke('val')
+        .then(westVal => {
+          assert.isNotNaN(Number(westVal))
+        })
     })
-    */
   })
 
   context('Upload and manage GTFS bundles', () => {

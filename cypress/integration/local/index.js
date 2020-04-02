@@ -198,7 +198,7 @@ describe('Local Tests', () => {
   })
 
   context('Manage scenarios', () => {
-    it('Create a new scenario', () => {
+    it('Create a scenario', () => {
       cy.findByText('Scenarios').click()
       cy.window().then(win => {
         cy.stub(win, 'prompt').returns('Temp scenario')

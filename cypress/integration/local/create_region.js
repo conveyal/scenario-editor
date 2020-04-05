@@ -1,113 +1,33 @@
-describe('Set up a new region', () => {
+describe('Region setup', () => {
   beforeEach(() => {
-    // load stratch fixture
-    cy.fixture('regions/scratch.json').as('scratchRegion')
-    // visit the region creation page
-    cy.visit('/')
-    cy.findByText('Set up a new region').click()
-    cy.location('pathname').should('eq', '/regions/create')
-    // TODO hard waits are bad, but I can't yet check whether the map is ready
-    cy.mapIsReady()
-    cy.wait(3000)
-  })
-
-  it('creates region from valid input', function() {
-    // create a temporary region name
-    const regionName = 'Scratch Region ' + Date.now()
-    // Enter region name and description
-    cy.findByPlaceholderText('Region Name').type(regionName)
-    cy.findByPlaceholderText('Description').type(this.scratchRegion.description)
-    // Enter exact coordinates
-    cy.findByLabelText(/North bound/)
-      .clear()
-      .type(this.scratchRegion.north)
-    cy.findByLabelText(/South bound/)
-      .clear()
-      .type(this.scratchRegion.south)
-    cy.findByLabelText(/East bound/)
-      .clear()
-      .type(this.scratchRegion.east)
-    cy.findByLabelText(/West bound/)
-      .clear()
-      .type(this.scratchRegion.west)
-    // Select PBF file
-    cy.fixture(this.scratchRegion.PBFfile, {encoding: 'base64'}).then(
-      fileContent => {
-        cy.get('input[type="file"]').upload({
-          encoding: 'base64',
-          fileContent,
-          fileName: this.scratchRegion.PBFfile,
-          mimeType: 'application/octet-stream'
-        })
+    // scratch region settings
+    cy.fixture('regions/scratch.json').as('region')
+    // be on the region setup page
+    cy.location('pathname').then(path => {
+      cy.log(path)
+      if (!/\/regions\/create|\/regions\/.{24}\/edit/.test(path)) {
+        cy.visit('/regions/create')
       }
-    )
-    // Create the region
-    cy.findByRole('button', {name: /Set up a new region/}).click()
-    // redirect to bundle upload
-    cy.contains('Upload a new GTFS Bundle', {timeout: 10000})
-    // Region is listed in main regions menu
-    cy.visit('/')
-    cy.findByText(regionName).click()
-    // region settings are saved correctly
-    cy.get('svg[data-icon="map"]').click()
-    cy.contains('Edit region')
-
-    cy.findByPlaceholderText('Region Name').should('have.value', regionName)
-    cy.findByPlaceholderText('Description').should(
-      'have.value',
-      this.scratchRegion.description
-    )
-    // coordinate values are rounded to match analysis grid
-    let maxError = 0.02
-    cy.findByLabelText(/North bound/)
-      .invoke('val')
-      .then(val => {
-        let roundingError = Math.abs(Number(val) - this.scratchRegion.north)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
-    cy.findByLabelText(/South bound/)
-      .invoke('val')
-      .then(val => {
-        let roundingError = Math.abs(Number(val) - this.scratchRegion.south)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
-    cy.findByLabelText(/East bound/)
-      .invoke('val')
-      .then(val => {
-        let roundingError = Math.abs(Number(val) - this.scratchRegion.east)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
-    cy.findByLabelText(/West bound/)
-      .invoke('val')
-      .then(val => {
-        let roundingError = Math.abs(Number(val) - this.scratchRegion.west)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
-    // Delete region
-    cy.visit('/')
-    cy.findByText(regionName).click()
-    cy.location('pathname').should('match', /regions\/.{24}/)
-    cy.wait(200)
-    cy.get('svg[data-icon="map"]').click()
-    cy.findByText(/Delete this region/).click()
-    // should go back to home page
-    cy.location('pathname').should('eq', '/')
-  })
-
-  it('is able to search for a location by name', function() {
-    cy.mapIsReady()
-    cy.get('input#react-select-2-input')
-      .focus()
-      .clear()
-      .type(this.scratchRegion.searchTerm)
-    cy.contains(this.scratchRegion.foundName).click({force: true})
-  })
-
-  it('does not allow invalid coordinates', () => {
+    })
+    // alias all inputs
+    cy.findByPlaceholderText('Region Name').as('name')
+    cy.findByPlaceholderText('Description').as('description')
     cy.findByLabelText(/North bound/).as('North')
     cy.findByLabelText(/South bound/).as('South')
     cy.findByLabelText(/East bound/).as('East')
     cy.findByLabelText(/West bound/).as('West')
+    cy.findByRole('button', {name: /Set up a new region/}).as('create')
+    cy.get('input#react-select-2-input').as('search')
+    cy.get('input[type="file"]').as('PBFupload')
+  })
+
+  it('can be found from homepage', function() {
+    cy.visit('/')
+    cy.findByText('Set up a new region').click()
+    cy.location('pathname').should('eq', '/regions/create')
+  })
+
+  it('does not allow invalid coordinates', () => {
     // try to set south == north
     cy.get('@North')
       .invoke('val')
@@ -150,5 +70,118 @@ describe('Set up a new region', () => {
       .then(westVal => {
         assert.isNotNaN(Number(westVal))
       })
+  })
+
+  it('finds locations by name', function() {
+    cy.get('@search')
+      .focus()
+      .clear()
+      .type('cincinnati')
+    cy.contains(/Cincinnati, Ohio/, {timeout: 10000}).click({force: true})
+    // assert about map location
+    cy.get('@search')
+      .focus()
+      .clear()
+      .type('alabama')
+    cy.contains(/Alabama, United States/).click({force: true})
+    // assert about map state
+  })
+
+  it.only('creates new region from valid input', function() {
+    // create a temporary region name
+    const regionName = 'Scratch Region ' + Date.now()
+    // Enter region name and description
+    cy.get('@name').type(regionName)
+    cy.get('@description').type(this.region.description)
+    // search for region by name
+    cy.get('@search')
+      .focus()
+      .clear()
+      .type(this.region.searchTerm)
+    cy.contains(this.region.foundName).click({force: true})
+    // Enter exact coordinates
+    cy.get('@North')
+      .clear()
+      .type(this.region.north)
+    cy.get('@South')
+      .clear()
+      .type(this.region.south)
+    cy.get('@East')
+      .clear()
+      .type(this.region.east)
+    cy.get('@West')
+      .clear()
+      .type(this.region.west)
+    // Select PBF file
+    cy.fixture(this.region.PBFfile, {encoding: 'base64'}).then(fileContent => {
+      cy.get('@PBFupload').upload({
+        encoding: 'base64',
+        fileContent,
+        fileName: this.region.PBFfile,
+        mimeType: 'application/octet-stream'
+      })
+    })
+    // Create the region
+    cy.get('@create').click()
+    // should redirect to bundle upload
+    cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
+    cy.contains('Upload a new GTFS Bundle')
+    // Region is listed in main regions menu
+    cy.visit('/')
+    cy.findByText(regionName).click()
+    cy.location('pathname').should('match', /regions\/.{24}$/)
+    // region settings are saved correctly
+    cy.location('pathname').then(currentPath => {
+      cy.visit(currentPath + '/edit')
+    })
+    cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
+    cy.contains('Edit region')
+    // settings are saved correctly
+    // redeclaration is necessary to prevent the page from reloading... :-(
+    cy.findByPlaceholderText('Region Name').as('name')
+    cy.findByPlaceholderText('Description').as('description')
+    cy.findByLabelText(/North bound/).as('North')
+    cy.findByLabelText(/South bound/).as('South')
+    cy.findByLabelText(/East bound/).as('East')
+    cy.findByLabelText(/West bound/).as('West')
+
+    cy.get('@name').should('have.value', regionName)
+    cy.get('@description').should('have.value', this.region.description)
+
+    // coordinate values are rounded to match analysis grid
+    let maxError = 0.02
+    cy.get('@North')
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.region.north)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
+    cy.get('@South')
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.region.south)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
+    cy.get('@East')
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.region.east)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
+    cy.get('@West')
+      .invoke('val')
+      .then(val => {
+        let roundingError = Math.abs(Number(val) - this.region.west)
+        expect(roundingError).to.be.lessThan(maxError)
+      })
+    // Delete region
+    cy.visit('/')
+    cy.findByText(regionName).click()
+    cy.location('pathname').should('match', /regions\/.{24}/)
+    cy.wait(200)
+    cy.get('svg[data-icon="map"]').click()
+    cy.findByText(/Delete this region/).click()
+    // should go back to home page
+    cy.location('pathname').should('eq', '/')
   })
 })

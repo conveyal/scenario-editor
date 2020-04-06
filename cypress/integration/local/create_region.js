@@ -3,12 +3,7 @@ describe('Region setup', () => {
     // scratch region settings
     cy.fixture('regions/scratch.json').as('region')
     // be on the region setup page
-    cy.location('pathname').then(path => {
-      cy.log(path)
-      if (!/\/regions\/create|\/regions\/.{24}\/edit/.test(path)) {
-        cy.visit('/regions/create')
-      }
-    })
+    cy.visit('/regions/create')
     // alias all inputs
     cy.findByPlaceholderText('Region Name').as('name')
     cy.findByPlaceholderText('Description').as('description')
@@ -72,7 +67,7 @@ describe('Region setup', () => {
       })
   })
 
-  it('finds locations by name', function() {
+  it('finds locations searched by name', function() {
     cy.get('@search')
       .focus()
       .clear()
@@ -87,7 +82,7 @@ describe('Region setup', () => {
     // assert about map state
   })
 
-  it.only('creates new region from valid input', function() {
+  it('creates new region from valid input', function() {
     // create a temporary region name
     const regionName = 'Scratch Region ' + Date.now()
     // Enter region name and description
@@ -175,11 +170,6 @@ describe('Region setup', () => {
         expect(roundingError).to.be.lessThan(maxError)
       })
     // Delete region
-    cy.visit('/')
-    cy.findByText(regionName).click()
-    cy.location('pathname').should('match', /regions\/.{24}/)
-    cy.wait(200)
-    cy.get('svg[data-icon="map"]').click()
     cy.findByText(/Delete this region/).click()
     // should go back to home page
     cy.location('pathname').should('eq', '/')

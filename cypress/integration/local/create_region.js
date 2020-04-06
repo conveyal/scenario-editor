@@ -82,7 +82,7 @@ describe('Region setup', () => {
     // assert about map state
   })
 
-  it('creates new region from valid input', function() {
+  it.only('creates new region from valid input', function() {
     // create a temporary region name
     const regionName = 'Scratch Region ' + Date.now()
     // Enter region name and description
@@ -126,9 +126,7 @@ describe('Region setup', () => {
     cy.findByText(regionName).click()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
-    cy.location('pathname').then(currentPath => {
-      cy.visit(currentPath + '/edit')
-    })
+    cy.findByTitle('Region Settings').click({force: true})
     cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
     cy.contains('Edit region')
     // settings are saved correctly

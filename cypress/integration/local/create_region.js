@@ -82,7 +82,7 @@ describe('Region setup', () => {
     // assert about map state
   })
 
-  it.only('creates new region from valid input', function() {
+  it('creates new region from valid input', function() {
     // create a temporary region name
     const regionName = 'Scratch Region ' + Date.now()
     // Enter region name and description
@@ -122,7 +122,8 @@ describe('Region setup', () => {
     cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
     cy.contains('Upload a new GTFS Bundle')
     // Region is listed in main regions menu
-    cy.visit('/')
+    cy.findByTitle('Regions').click({force: true})
+    cy.location('pathname').should('eq', '/')
     cy.findByText(regionName).click()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly

@@ -100,6 +100,33 @@ Cypress.Commands.add('setupBundle', regionName => {
   }
 })
 
+Cypress.Commands.add('setupProject', regionName => {
+  cy.setupBundle(regionName)
+  let projectName = 'autogen ' + regionName + ' project'
+  cy.findByTitle('Projects').click({force: true})
+  cy.contains('Create new Project')
+  cy.get('body').then(body => {
+    if (body.text().includes(projectName)) {
+      // project already exists; just select it
+      cy.findByText(projectName).click()
+    } else {
+      // project needs to be created
+      cy.findByText(/Create new Project/i).click()
+      cy.location('pathname').should('match', /create-project/)
+      cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
+      // hack to select first GTFS from dropdown
+      cy.findByLabelText(/Associated GTFS bundle/i)
+        .click()
+        .type('{downarrow}{enter}')
+      cy.get('a.btn')
+        .contains(/Create/)
+        .click()
+    }
+  })
+  cy.location('pathname').should('match', /regions\/.{24}\/projects\/.{24}/)
+  cy.contains(/Modifications/)
+})
+
 Cypress.Commands.add('mapIsReady', () => {
   cy.window().should('have.property', 'LeafletMap')
   // map should have a tileLayer which is done loading

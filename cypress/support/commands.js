@@ -39,7 +39,6 @@ Cypress.Commands.add('setupRegion', regionName => {
   cy.get('body').then(body => {
     if (body.text().includes(name)) {
       cy.findByText(name).click()
-      cy.location('pathname').should('match', /\/regions\/.{24}/)
     } else {
       cy.visit('/regions/create')
       cy.findByPlaceholderText('Region Name').type(name, {delay: 1})
@@ -67,9 +66,38 @@ Cypress.Commands.add('setupRegion', regionName => {
         })
       })
       cy.findByRole('button', {name: /Set up a new region/}).click()
-      cy.location('pathname').should('match', /\/regions\/.{24}/)
     }
   })
+  cy.location('pathname').should('match', /\/regions\/.{24}/)
+})
+
+Cypress.Commands.add('setupBundle', regionName => {
+  cy.setupRegion(regionName)
+  let bundleName = 'autogen ' + regionName + ' bundle'
+  cy.findByTitle('GTFS Bundles').click({force: true})
+  cy.location('pathname').should('match', /\/regions\/.{24}\/bundles/)
+  // TODO test whether bundle already exists and only create conditionally
+  // need to be able to access dropdown
+  if (false) {
+    // bundle already exists, don't create it
+  } else {
+    cy.findByText(/Create a bundle/).click()
+    cy.location('pathname').should('match', /.*\/bundles\/create$/)
+    cy.findByLabelText(/Bundle Name/i).type(bundleName, {delay: 1})
+    cy.fixture('regions/' + regionName + '.json').then(region => {
+      cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(fileContent => {
+        cy.get('input[type="file"]').upload({
+          encoding: 'base64',
+          fileContent,
+          fileName: region.GTFSfile,
+          mimeType: 'application/octet-stream'
+        })
+      })
+    })
+    cy.findByRole('button', {name: /Create/i}).click()
+    cy.findByText(/Processing/)
+    cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
+  }
 })
 
 Cypress.Commands.add('mapIsReady', () => {

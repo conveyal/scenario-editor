@@ -76,28 +76,30 @@ Cypress.Commands.add('setupBundle', regionName => {
   let bundleName = 'autogen ' + regionName + ' bundle'
   cy.findByTitle('GTFS Bundles').click({force: true})
   cy.location('pathname').should('match', /\/regions\/.{24}\/bundles/)
-  // TODO test whether bundle already exists and only create conditionally
-  // need to be able to access dropdown
-  if (false) {
-    // bundle already exists, don't create it
-  } else {
-    cy.findByText(/Create a bundle/).click()
-    cy.location('pathname').should('match', /.*\/bundles\/create$/)
-    cy.findByLabelText(/Bundle Name/i).type(bundleName, {delay: 1})
-    cy.fixture('regions/' + regionName + '.json').then(region => {
-      cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(fileContent => {
-        cy.get('input[type="file"]').upload({
-          encoding: 'base64',
-          fileContent,
-          fileName: region.GTFSfile,
-          mimeType: 'application/octet-stream'
+  cy.contains('or select an existing one')
+  cy.findByText(/Select.../).click()
+  cy.get('body').then(body => {
+    if (body.text().includes(bundleName)) {
+      // bundle already exists. do nothing
+    } else {
+      cy.findByText(/Create a bundle/).click()
+      cy.location('pathname').should('match', /.*\/bundles\/create$/)
+      cy.findByLabelText(/Bundle Name/i).type(bundleName, {delay: 1})
+      cy.fixture('regions/' + regionName + '.json').then(region => {
+        cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(fileContent => {
+          cy.get('input[type="file"]').upload({
+            encoding: 'base64',
+            fileContent,
+            fileName: region.GTFSfile,
+            mimeType: 'application/octet-stream'
+          })
         })
       })
-    })
-    cy.findByRole('button', {name: /Create/i}).click()
-    cy.findByText(/Processing/)
-    cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
-  }
+      cy.findByRole('button', {name: /Create/i}).click()
+      cy.findByText(/Processing/)
+      cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
+    }
+  })
 })
 
 Cypress.Commands.add('setupProject', regionName => {

@@ -4,7 +4,7 @@ context('GTFS bundles', () => {
     cy.setupRegion('scratch')
   })
 
-  it('can be uploaded with single feed', function() {
+  it('with single feed can be uploaded and deleted', function() {
     let bundleName = 'single-GTFS bundle'
     cy.findByTitle('GTFS Bundles').click({force: true})
     cy.findByText(/Create a bundle/).click()
@@ -20,16 +20,20 @@ context('GTFS bundles', () => {
     })
     cy.findByRole('button', {name: /Create/i}).click()
     cy.findByText(/Processing/)
-    cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
+    cy.location('pathname', {timeout: 60000}).should('match', /.*\/bundles$/)
     // confirm that the bundle was saved
     cy.contains('or select an existing one')
     cy.findByText(/Select.../).click()
     cy.findByText(bundleName).click()
+    cy.location('pathname').should('match', /.*bundles\/.{24}$/)
     cy.findByLabelText(/Bundle Name/)
       .invoke('val')
       .then(name => {
         expect(name).to.equal(bundleName)
       })
     cy.findByText(/Delete this bundle/i).click()
+    cy.location('pathname').should('match', /.*\/bundles$/)
+    cy.findByText(/Select.../).click()
+    cy.contains(bundleName).should('not.exist')
   })
 })

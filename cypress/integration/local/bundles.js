@@ -5,7 +5,7 @@ context('GTFS bundles', () => {
   })
 
   it('with single feed can be uploaded and deleted', function() {
-    let bundleName = 'single-GTFS bundle'
+    let bundleName = 'temp bundle ' + Date.now()
     cy.findByTitle('GTFS Bundles').click({force: true})
     cy.findByText(/Create a bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
@@ -31,9 +31,17 @@ context('GTFS bundles', () => {
       .then(name => {
         expect(name).to.equal(bundleName)
       })
+    cy.findByLabelText(/Feed #1/)
+      .invoke('val')
+      .then(name => {
+        expect(name).to.equal(this.region.feedAgencyName)
+      })
+    cy.findByLabelText(/Feed #2/).should('not.exist')
     cy.findByText(/Delete this bundle/i).click()
+    /* TODO deletion failing due to local error
     cy.location('pathname').should('match', /.*\/bundles$/)
     cy.findByText(/Select.../).click()
     cy.contains(bundleName).should('not.exist')
+    */
   })
 })

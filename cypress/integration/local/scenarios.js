@@ -1,38 +1,44 @@
 context('Scenarios', () => {
-  before('prepare a, region, bundle, & project', () => {
+  before(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.setupProject('scratch')
+    // open the panel
+    cy.findByText(/Scenarios/)
+      .parent()
+      .as('scenarioPanel')
+    cy.get('@scenarioPanel').click()
   })
 
-  it('can be created', function() {
-    cy.findByText('Scenarios').click()
-    cy.window().then(win => {
-      cy.stub(win, 'prompt').returns('Temp scenario')
-      cy.findByRole('link', {name: 'Create a scenario'}).click()
-    })
-    cy.contains('Temp scenario')
+  beforeEach(() => {
+    cy.findByText(/Scenarios/)
+      .parent()
+      .as('scenarioPanel')
   })
 
-  it('can be deleted', () => {
-    cy.window().then(win => {
-      cy.stub(win, 'confirm').returns(true)
-      cy.findByText(/Temp scenario/)
-        .findByTitle(/Delete this scenario/)
-        .click()
-    })
-    cy.findByText(/Temp scenario/).should('not.exist')
+  it('include baseline', () => {
+    cy.get('@scenarioPanel')
+      .contains(/Baseline/)
+      .findByTitle(/Delete this scenario/)
+      .should('not.exist')
   })
 
-  it('can be renamed', () => {
-    // TODO this can break when reusing a project
-    // (ie the scenario has already been renamed)
-    // default scenario name is "Default"
+  it('can be created and deleted', function() {
+    let scenarioName = 'scenario ' + Date.now()
+    // stub the prompt
     cy.window().then(win => {
-      cy.stub(win, 'prompt').returns('Scenario 1')
-      cy.findByText(/Default/)
-        .findByTitle(/Rename this scenario/)
-        .click()
+      cy.stub(win, 'prompt').returns(scenarioName)
     })
-    cy.contains(/Scenario 1/)
+    // create
+    cy.findByRole('link', {name: 'Create a scenario'}).click()
+    // confirm creation and delete
+    cy.get('@scenarioPanel')
+      .contains(scenarioName)
+      .findByTitle(/Delete this scenario/)
+      .click()
+    cy.findByText(scenarioName).should('not.exist')
+  })
+
+  it('can be created and renamed', () => {
+    // TODO
   })
 })

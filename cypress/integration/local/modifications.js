@@ -3,24 +3,39 @@ describe('Modifications', () => {
     cy.setupProject('scratch')
   })
 
-  it('Adjust dwell time', () => {
-    cy.findByRole('link', {name: 'Create a modification'}).click()
-    cy.findByLabelText(/Modification type/i).select('Adjust Dwell Time')
-    cy.findByLabelText(/Modification name/i).type('Dwell adjust mod')
-    cy.findByRole('link', {name: 'Create'}).click()
-    cy.location('pathname').should(
-      'match',
-      /regions\/.{24}\/projects\/.{24}\/.{24}/
-    )
-    cy.contains('Dwell adjust mod')
-    cy.findByRole('link', {name: /Add description/}).click()
-    cy.findByLabelText('Description').type('the description')
-    cy.findByLabelText(/Select feed and routes/i)
-      .click()
-      .type('{downarrow}{enter}')
+  beforeEach(() => {
+    cy.findByTitle(/Edit Modifications/).click({force: true})
+    cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
   })
 
-  it('Adjust speed', () => {})
+  it('Adjust dwell time', () => {
+    let modName = 'tempDwellMod'
+    cy.findByRole('link', {name: 'Create a modification'}).click()
+    cy.findByLabelText(/Modification type/i).select('Adjust Dwell Time')
+    cy.findByLabelText(/Modification name/i).type(modName)
+    cy.findByRole('link', {name: 'Create'}).click()
+    cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+    // now editing the modification
+    cy.contains(modName)
+    cy.findByRole('link', {name: /Add description/}).click()
+    cy.findByLabelText('Description').type('the description')
+    // TODO can't select feed yet
+    // go back and see if this saved
+    cy.findByTitle(/Edit Modifications/).click({force: true})
+    //cy.location('pathname').should('match', /\/projects\/.{24}$/)
+    // should contain section with modifications of this type
+    //cy.contains(/Adjust Dwell Time/).parent().contains(modName)
+  })
+
+  it('Adjust speed', () => {
+    let modName = 'tempSpeedMod'
+    cy.findByRole('link', {name: 'Create a modification'}).click()
+    cy.findByLabelText(/Modification type/i).select('Adjust Speed')
+    cy.findByLabelText(/Modification name/i).type(modName)
+    cy.findByRole('link', {name: 'Create'}).click()
+    cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+    cy.contains(modName)
+  })
 
   it('Remove trips', () => {})
 })

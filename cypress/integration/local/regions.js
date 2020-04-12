@@ -189,5 +189,7 @@ describe('Region setup', () => {
     cy.findByText(/Delete this region/).click()
     // should go back to home page
     cy.location('pathname').should('eq', '/')
+    cy.contains('Set up a new region')
+    cy.findByText(regionName).should('not.exist')
   })
 })

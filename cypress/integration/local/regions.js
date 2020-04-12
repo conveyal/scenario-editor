@@ -67,7 +67,7 @@ describe('Region setup', () => {
       })
   })
 
-  it.only('finds locations searched by name', () => {
+  it('finds locations searched by name', () => {
     let regions = [
       {
         searchTerm: 'cincinnati',
@@ -109,7 +109,8 @@ describe('Region setup', () => {
       .focus()
       .clear()
       .type(this.region.searchTerm)
-    cy.contains(this.region.foundName).click({force: true})
+    cy.findByText(this.region.foundName).click()
+    cy.mapIsCenteredOn([39.1, -84.5], 10000)
     // Enter exact coordinates
     cy.get('@North')
       .clear()

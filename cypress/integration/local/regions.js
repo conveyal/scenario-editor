@@ -67,19 +67,35 @@ describe('Region setup', () => {
       })
   })
 
-  it('finds locations searched by name', function() {
-    cy.get('@search')
-      .focus()
-      .clear()
-      .type('cincinnati')
-    cy.contains(/Cincinnati, Ohio/, {timeout: 10000}).click({force: true})
-    // assert about map location
-    cy.get('@search')
-      .focus()
-      .clear()
-      .type('alabama')
-    cy.contains(/Alabama, United States/).click({force: true})
-    // assert about map state
+  it.only('finds locations searched by name', () => {
+    let regions = [
+      {
+        searchTerm: 'cincinnati',
+        findText: /^Cincinnati, Ohio/,
+        lat: 39.1,
+        lon: -84.5
+      },
+      {
+        searchTerm: 'tulsa',
+        findText: /^Tulsa, Oklahoma/,
+        lat: 36.1,
+        lon: -95.9
+      },
+      {
+        searchTerm: 'greenwich',
+        findText: /^Greenwich,.* England/,
+        lat: 51.5,
+        lon: 0
+      }
+    ]
+    regions.forEach(r => {
+      cy.get('@search')
+        .focus()
+        .clear()
+        .type(r.searchTerm)
+      cy.findByText(r.findText).click()
+      cy.mapIsCenteredOn([r.lat, r.lon], 20000)
+    })
   })
 
   it('creates new region from valid input', function() {

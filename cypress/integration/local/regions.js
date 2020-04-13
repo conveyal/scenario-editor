@@ -22,7 +22,7 @@ describe('Region setup', () => {
     cy.location('pathname').should('eq', '/regions/create')
   })
 
-  it('does not allow invalid coordinates', () => {
+  it.only('does not allow invalid coordinates', () => {
     // try to set south == north
     cy.get('@North')
       .invoke('val')
@@ -31,12 +31,9 @@ describe('Region setup', () => {
           .clear()
           .type(northVal)
           .blur()
-        cy.wait(300)
-        cy.get('@South')
-          .invoke('val')
-          .then(southVal => {
-            expect(Number(southVal)).to.be.lessThan(Number(northVal))
-          })
+        cy.get('@South').should(south => {
+          expect(Number(south[0].value)).to.be.lessThan(Number(northVal))
+        })
       })
     // try to set east < west
     cy.get('@East')
@@ -46,12 +43,9 @@ describe('Region setup', () => {
           .clear()
           .type(Number(eastVal) + 1)
           .blur()
-        cy.wait(300)
-        cy.get('@West')
-          .invoke('val')
-          .then(westVal => {
-            expect(Number(westVal)).to.be.lessThan(Number(eastVal))
-          })
+        cy.get('@West').should(west => {
+          expect(Number(west[0].value)).to.be.lessThan(Number(eastVal))
+        })
       })
     // try to enter a non-numeric value
     // form should revert to previous numeric value
@@ -59,12 +53,9 @@ describe('Region setup', () => {
       .clear()
       .type('letters')
       .blur()
-    cy.wait(300)
-    cy.get('@West')
-      .invoke('val')
-      .then(westVal => {
-        assert.isNotNaN(Number(westVal))
-      })
+    cy.get('@West').should(west => {
+      assert.isNotNaN(Number(west[0].value))
+    })
   })
 
   it('finds locations searched by name', () => {

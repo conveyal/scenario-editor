@@ -22,7 +22,7 @@ describe('Region setup', () => {
     cy.location('pathname').should('eq', '/regions/create')
   })
 
-  it.only('does not allow invalid coordinates', () => {
+  it('does not allow invalid coordinates', () => {
     // try to set south == north
     cy.get('@North')
       .invoke('val')

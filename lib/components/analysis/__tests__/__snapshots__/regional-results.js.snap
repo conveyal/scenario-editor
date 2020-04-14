@@ -2260,16 +2260,20 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       className="css-1lepn2w"
                                     >
                                       <EnhancedIcon
+                                        aria-hidden="true"
+                                        focusable="false"
                                         icon="chevron-down"
                                         size={5}
                                       >
                                         <Icon
+                                          aria-hidden="true"
                                           color="currentColor"
                                           focusable="false"
                                           name="chevron-down"
                                           size={5}
                                         >
                                           <Styled(div)
+                                            aria-hidden="true"
                                             as="svg"
                                             color="currentColor"
                                             display="inline-block"
@@ -2280,6 +2284,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                             viewBox="0 0 24 24"
                                           >
                                             <svg
+                                              aria-hidden="true"
                                               className="css-12c4avn"
                                               focusable="false"
                                               role="presentation"
@@ -2426,16 +2431,20 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       className="css-1lepn2w"
                                     >
                                       <EnhancedIcon
+                                        aria-hidden="true"
+                                        focusable="false"
                                         icon="chevron-down"
                                         size={5}
                                       >
                                         <Icon
+                                          aria-hidden="true"
                                           color="currentColor"
                                           focusable="false"
                                           name="chevron-down"
                                           size={5}
                                         >
                                           <Styled(div)
+                                            aria-hidden="true"
                                             as="svg"
                                             color="currentColor"
                                             display="inline-block"
@@ -2446,6 +2455,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                             viewBox="0 0 24 24"
                                           >
                                             <svg
+                                              aria-hidden="true"
                                               className="css-12c4avn"
                                               focusable="false"
                                               role="presentation"

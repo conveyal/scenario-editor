@@ -76,6 +76,7 @@ exports[`Component > EditRegion 1`] = `
     }
     router={
       Router {
+        "_getServerData": [Function],
         "_getStaticData": [Function],
         "_wrapApp": undefined,
         "asPath": "as-path",
@@ -86,6 +87,8 @@ exports[`Component > EditRegion 1`] = `
           },
           "page": Object {
             "Component": undefined,
+            "__N_SSG": undefined,
+            "__N_SSP": undefined,
             "err": undefined,
             "props": undefined,
           },
@@ -95,6 +98,7 @@ exports[`Component > EditRegion 1`] = `
           "off": [Function],
           "on": [Function],
         },
+        "isFallback": undefined,
         "isSsr": true,
         "onPopState": [Function],
         "pageLoader": undefined,
@@ -1378,6 +1382,7 @@ exports[`Component > EditRegion 1`] = `
                         mr={2}
                       >
                         <Icon
+                          aria-hidden="true"
                           color="currentColor"
                           focusable="false"
                           ml={-1}
@@ -1385,6 +1390,7 @@ exports[`Component > EditRegion 1`] = `
                           name="delete"
                         >
                           <Styled(div)
+                            aria-hidden="true"
                             as="svg"
                             color="currentColor"
                             display="inline-block"
@@ -1397,6 +1403,7 @@ exports[`Component > EditRegion 1`] = `
                             viewBox="0 0 24 24"
                           >
                             <svg
+                              aria-hidden="true"
                               className="css-yxiis9"
                               focusable="false"
                               role="presentation"

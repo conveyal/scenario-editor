@@ -1260,12 +1260,15 @@ exports[`create-region.render 1`] = `
                       className="css-acwcvw"
                       role="group"
                     >
-                      <FormLabel>
+                      <FormLabel
+                        htmlFor="osm"
+                      >
                         <Box
                           as="label"
                           display="inline-block"
                           fontSize="md"
                           fontWeight="medium"
+                          htmlFor="osm"
                           opacity="1"
                           pb="4px"
                           pr="12px"
@@ -1274,6 +1277,7 @@ exports[`create-region.render 1`] = `
                         >
                           <label
                             className="css-176s5fq"
+                            htmlFor="osm"
                           >
                             OpenStreetMap data in PBF format
                             <RequiredIndicator>
@@ -1298,6 +1302,7 @@ exports[`create-region.render 1`] = `
                         as="input"
                         errorBorderColor="red.500"
                         focusBorderColor="blue.500"
+                        id="osm"
                         isFullWidth={true}
                         onChange={[Function]}
                         size="md"
@@ -1346,6 +1351,7 @@ exports[`create-region.render 1`] = `
                           display="flex"
                           fontSize="md"
                           height={10}
+                          id="osm"
                           lineHeight="2.5rem"
                           onChange={[Function]}
                           outline="none"
@@ -1362,6 +1368,7 @@ exports[`create-region.render 1`] = `
                             aria-required={true}
                             className="css-1bqs6u7"
                             disabled={false}
+                            id="osm"
                             onChange={[Function]}
                             required={true}
                             type="file"

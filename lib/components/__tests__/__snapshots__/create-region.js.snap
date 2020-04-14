@@ -7,6 +7,7 @@ exports[`create-region.render 1`] = `
   <CreateRegion
     router={
       Router {
+        "_getServerData": [Function],
         "_getStaticData": [Function],
         "_wrapApp": undefined,
         "asPath": "as-path",
@@ -17,6 +18,8 @@ exports[`create-region.render 1`] = `
           },
           "page": Object {
             "Component": undefined,
+            "__N_SSG": undefined,
+            "__N_SSP": undefined,
             "err": undefined,
             "props": undefined,
           },
@@ -26,6 +29,7 @@ exports[`create-region.render 1`] = `
           "off": [Function],
           "on": [Function],
         },
+        "isFallback": undefined,
         "isSsr": true,
         "onPopState": [Function],
         "pageLoader": undefined,
@@ -212,6 +216,7 @@ exports[`create-region.render 1`] = `
                             Object {
                               "borderColor": "#3182ce",
                               "boxShadow": "0 0 0 1px #3182ce",
+                              "zIndex": 1,
                             }
                           }
                           _hover={
@@ -233,6 +238,7 @@ exports[`create-region.render 1`] = `
                             }
                           }
                           alignItems="center"
+                          appearance="none"
                           aria-disabled={false}
                           aria-invalid={true}
                           aria-required={true}
@@ -244,7 +250,6 @@ exports[`create-region.render 1`] = `
                           display="flex"
                           fontSize="md"
                           height={10}
-                          lineHeight="2.5rem"
                           name="Region Name"
                           onChange={[Function]}
                           outline="none"
@@ -262,7 +267,7 @@ exports[`create-region.render 1`] = `
                             aria-disabled={false}
                             aria-invalid={true}
                             aria-required={true}
-                            className="css-1bqs6u7"
+                            className="css-1ga4kqw"
                             disabled={false}
                             name="Region Name"
                             onChange={[Function]}
@@ -331,6 +336,7 @@ exports[`create-region.render 1`] = `
                             Object {
                               "borderColor": "#3182ce",
                               "boxShadow": "0 0 0 1px #3182ce",
+                              "zIndex": 1,
                             }
                           }
                           _hover={
@@ -352,6 +358,7 @@ exports[`create-region.render 1`] = `
                             }
                           }
                           alignItems="center"
+                          appearance="none"
                           aria-disabled={false}
                           as="input"
                           bg="white"
@@ -361,7 +368,6 @@ exports[`create-region.render 1`] = `
                           display="flex"
                           fontSize="md"
                           height={10}
-                          lineHeight="2.5rem"
                           onChange={[Function]}
                           outline="none"
                           placeholder="Description"
@@ -375,7 +381,7 @@ exports[`create-region.render 1`] = `
                         >
                           <input
                             aria-disabled={false}
-                            className="css-1bqs6u7"
+                            className="css-1ga4kqw"
                             disabled={false}
                             onChange={[Function]}
                             placeholder="Description"
@@ -561,6 +567,7 @@ exports[`create-region.render 1`] = `
                                       Object {
                                         "borderColor": "#3182ce",
                                         "boxShadow": "0 0 0 1px #3182ce",
+                                        "zIndex": 1,
                                       }
                                     }
                                     _hover={
@@ -582,6 +589,7 @@ exports[`create-region.render 1`] = `
                                       }
                                     }
                                     alignItems="center"
+                                    appearance="none"
                                     aria-disabled={false}
                                     aria-invalid={false}
                                     aria-required={true}
@@ -594,7 +602,6 @@ exports[`create-region.render 1`] = `
                                     fontSize="md"
                                     height={10}
                                     id="north-bound"
-                                    lineHeight="2.5rem"
                                     onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
@@ -611,7 +618,7 @@ exports[`create-region.render 1`] = `
                                       aria-disabled={false}
                                       aria-invalid={false}
                                       aria-required={true}
-                                      className="css-1bqs6u7"
+                                      className="css-1ga4kqw"
                                       disabled={false}
                                       id="north-bound"
                                       onBlur={[Function]}
@@ -739,6 +746,7 @@ exports[`create-region.render 1`] = `
                                       Object {
                                         "borderColor": "#3182ce",
                                         "boxShadow": "0 0 0 1px #3182ce",
+                                        "zIndex": 1,
                                       }
                                     }
                                     _hover={
@@ -760,6 +768,7 @@ exports[`create-region.render 1`] = `
                                       }
                                     }
                                     alignItems="center"
+                                    appearance="none"
                                     aria-disabled={false}
                                     aria-invalid={false}
                                     aria-required={true}
@@ -772,7 +781,6 @@ exports[`create-region.render 1`] = `
                                     fontSize="md"
                                     height={10}
                                     id="south-bound"
-                                    lineHeight="2.5rem"
                                     onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
@@ -789,7 +797,7 @@ exports[`create-region.render 1`] = `
                                       aria-disabled={false}
                                       aria-invalid={false}
                                       aria-required={true}
-                                      className="css-1bqs6u7"
+                                      className="css-1ga4kqw"
                                       disabled={false}
                                       id="south-bound"
                                       onBlur={[Function]}
@@ -917,6 +925,7 @@ exports[`create-region.render 1`] = `
                                       Object {
                                         "borderColor": "#3182ce",
                                         "boxShadow": "0 0 0 1px #3182ce",
+                                        "zIndex": 1,
                                       }
                                     }
                                     _hover={
@@ -938,6 +947,7 @@ exports[`create-region.render 1`] = `
                                       }
                                     }
                                     alignItems="center"
+                                    appearance="none"
                                     aria-disabled={false}
                                     aria-invalid={false}
                                     aria-required={true}
@@ -950,7 +960,6 @@ exports[`create-region.render 1`] = `
                                     fontSize="md"
                                     height={10}
                                     id="east-bound"
-                                    lineHeight="2.5rem"
                                     onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
@@ -967,7 +976,7 @@ exports[`create-region.render 1`] = `
                                       aria-disabled={false}
                                       aria-invalid={false}
                                       aria-required={true}
-                                      className="css-1bqs6u7"
+                                      className="css-1ga4kqw"
                                       disabled={false}
                                       id="east-bound"
                                       onBlur={[Function]}
@@ -1095,6 +1104,7 @@ exports[`create-region.render 1`] = `
                                       Object {
                                         "borderColor": "#3182ce",
                                         "boxShadow": "0 0 0 1px #3182ce",
+                                        "zIndex": 1,
                                       }
                                     }
                                     _hover={
@@ -1116,6 +1126,7 @@ exports[`create-region.render 1`] = `
                                       }
                                     }
                                     alignItems="center"
+                                    appearance="none"
                                     aria-disabled={false}
                                     aria-invalid={false}
                                     aria-required={true}
@@ -1128,7 +1139,6 @@ exports[`create-region.render 1`] = `
                                     fontSize="md"
                                     height={10}
                                     id="west-bound"
-                                    lineHeight="2.5rem"
                                     onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
@@ -1145,7 +1155,7 @@ exports[`create-region.render 1`] = `
                                       aria-disabled={false}
                                       aria-invalid={false}
                                       aria-required={true}
-                                      className="css-1bqs6u7"
+                                      className="css-1ga4kqw"
                                       disabled={false}
                                       id="west-bound"
                                       onBlur={[Function]}
@@ -1320,6 +1330,7 @@ exports[`create-region.render 1`] = `
                             Object {
                               "borderColor": "#3182ce",
                               "boxShadow": "0 0 0 1px #3182ce",
+                              "zIndex": 1,
                             }
                           }
                           _hover={
@@ -1341,6 +1352,7 @@ exports[`create-region.render 1`] = `
                             }
                           }
                           alignItems="center"
+                          appearance="none"
                           aria-disabled={false}
                           aria-required={true}
                           as="input"
@@ -1352,7 +1364,6 @@ exports[`create-region.render 1`] = `
                           fontSize="md"
                           height={10}
                           id="osm"
-                          lineHeight="2.5rem"
                           onChange={[Function]}
                           outline="none"
                           position="relative"
@@ -1366,7 +1377,7 @@ exports[`create-region.render 1`] = `
                           <input
                             aria-disabled={false}
                             aria-required={true}
-                            className="css-1bqs6u7"
+                            className="css-1ga4kqw"
                             disabled={false}
                             id="osm"
                             onChange={[Function]}
@@ -1456,6 +1467,7 @@ exports[`create-region.render 1`] = `
                         mr={2}
                       >
                         <Icon
+                          aria-hidden="true"
                           color="currentColor"
                           focusable="false"
                           ml={-1}
@@ -1463,6 +1475,7 @@ exports[`create-region.render 1`] = `
                           name="check"
                         >
                           <Styled(div)
+                            aria-hidden="true"
                             as="svg"
                             color="currentColor"
                             display="inline-block"
@@ -1475,6 +1488,7 @@ exports[`create-region.render 1`] = `
                             viewBox="0 0 14 14"
                           >
                             <svg
+                              aria-hidden="true"
                               className="css-yxiis9"
                               focusable="false"
                               role="presentation"

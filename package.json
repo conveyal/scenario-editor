@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/conveyal/analysis-ui#readme",
   "dependencies": {
-    "@chakra-ui/core": "^0.5.2",
+    "@chakra-ui/core": "^0.6.0",
     "@conveyal/lonlat": "^1.4.0",
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
@@ -94,6 +94,7 @@
     "migrate": "^1.6.2",
     "moment": "^2.24.0",
     "mongodb": "^3.4.1",
+    "ms": "^2.1.2",
     "next": "^9.2.1",
     "next-cookies": "^2.0.3",
     "next-redux-wrapper": "^4.0.1",

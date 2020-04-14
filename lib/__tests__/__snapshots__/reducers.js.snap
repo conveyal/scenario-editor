@@ -66,6 +66,7 @@ Object {
     "regions": Array [],
   },
   "regionalAnalyses": Object {
+    "activeJobs": Array [],
     "analyses": Array [],
     "grids": Array [],
   },

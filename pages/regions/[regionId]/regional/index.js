@@ -1,70 +1,98 @@
+import {Alert, AlertIcon, Box, Heading, Stack} from '@chakra-ui/core'
 import {faServer} from '@fortawesome/free-solid-svg-icons'
+import get from 'lodash/get'
+import ms from 'ms'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
 import {
-  deleteRegionalAnalysis,
-  load as loadAllAnalyses
+  load as loadAllAnalyses,
+  loadActiveRegionalJobs
 } from 'lib/actions/analysis/regional'
 import {loadRegion} from 'lib/actions/region'
 import Icon from 'lib/components/icon'
 import InnerDock from 'lib/components/inner-dock'
 import Regional from 'lib/components/analysis/regional'
-import Selector from 'lib/components/analysis/regional-analysis-selector'
+import RunningJob from 'lib/components/running-analysis'
+import Select from 'lib/components/select'
+import useControlledInput from 'lib/hooks/use-controlled-input'
 import useInterval from 'lib/hooks/use-interval'
 import {loadOpportunityDatasets} from 'lib/modules/opportunity-datasets/actions'
 import selectActiveAnalysis from 'lib/selectors/active-regional-analysis'
 import selectRegionalAnalyses from 'lib/selectors/regional-analyses'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-const REFETCH_INTERVAL = 15 * 1000 // 15 seconds
+const REFETCH_INTERVAL = ms('15s')
+
+const selectJobs = s => get(s, 'regionalAnalyses.activeJobs', [])
 
 function RegionalPage(p) {
   const dispatch = useDispatch()
   const allAnalyses = useSelector(selectRegionalAnalyses)
   const activeAnalysis = useSelector(selectActiveAnalysis)
+  const jobs = useSelector(selectJobs)
+  const [activeId, onChange] = useControlledInput(
+    get(activeAnalysis, '_id'),
+    v => dispatch(setSearchParameter('analysisId', v))
+  )
+  const activeJob = jobs.find(j => j.jobId === activeId)
 
-  function _deleteAnalysis(id) {
-    if (
-      window.confirm('Are you sure you wish to remove this regional analysis?')
-    ) {
-      // clear active analysis
-      dispatch(setSearchParameter('analysisId'))
-      dispatch(deleteRegionalAnalysis(id))
-    }
-  }
+  // Analyses are deleted before the jobs get cleared
+  const jobsWithAnalysis = jobs.filter(
+    j => allAnalyses.findIndex(a => j.jobId === a._id) !== -1
+  )
 
-  useInterval(() => dispatch(loadAllAnalyses(p.regionId)), REFETCH_INTERVAL)
+  useInterval(
+    () => dispatch(loadActiveRegionalJobs(p.query.regionId)),
+    REFETCH_INTERVAL
+  )
 
   return (
-    <InnerDock className='block'>
-      <legend>
-        <Icon icon={faServer} /> Regional Analyses
-      </legend>
-      {allAnalyses.length > 0 ? (
-        <Selector
-          activeAnalysis={activeAnalysis}
-          deleteAnalysis={_deleteAnalysis}
-          allAnalyses={allAnalyses}
-          key={activeAnalysis}
-        />
-      ) : (
-        <div className='alert alert-warning'>
-          You have no running or completed regional analysis jobs! To create
-          one, go to the single point analysis page.
-        </div>
-      )}
-      {activeAnalysis && (
-        <Regional
-          analysis={activeAnalysis}
-          deleteAnalysis={_deleteAnalysis}
-          key={activeAnalysis._id}
-          opportunityDatasets={p.opportunityDatasets}
-          regionalAnalyses={allAnalyses}
-          setMapChildren={p.setMapChildren}
-        />
-      )}
+    <InnerDock>
+      <Stack p={4} spacing={4}>
+        <Heading size='md'>
+          <Icon icon={faServer} /> Regional Analyses
+        </Heading>
+
+        {allAnalyses.length === 0 && (
+          <Alert status='warning'>
+            <AlertIcon /> You have no running or completed regional analysis
+            jobs! To create one, go to the single point analysis page.
+          </Alert>
+        )}
+
+        <Box>
+          <Select
+            isClearable
+            key={`analysis-${activeId}`} // Dont show deleted analyses as selected
+            onChange={v => onChange(get(v, '_id'))}
+            getOptionLabel={a => a.name}
+            getOptionValue={a => a._id}
+            options={allAnalyses}
+            placeholder='View a regional analysis...'
+            value={allAnalyses.find(a => a._id === activeId)}
+          />
+        </Box>
+
+        {activeId && activeAnalysis ? (
+          <Stack spacing={4}>
+            {activeJob && <RunningJob job={activeJob} />}
+            <Box>
+              <Regional
+                analysis={activeAnalysis}
+                isComplete={!activeJob}
+                key={activeAnalysis._id}
+                opportunityDatasets={p.opportunityDatasets}
+                regionalAnalyses={allAnalyses}
+                setMapChildren={p.setMapChildren}
+              />
+            </Box>
+          </Stack>
+        ) : (
+          jobsWithAnalysis.map(job => <RunningJob job={job} key={job.jobId} />)
+        )}
+      </Stack>
     </InnerDock>
   )
 }
@@ -73,7 +101,8 @@ async function initialFetch(store, query) {
   const [regionalAnalyses, opportunityDatasets, region] = await Promise.all([
     store.dispatch(loadAllAnalyses(query.regionId)),
     store.dispatch(loadOpportunityDatasets(query.regionId)),
-    store.dispatch(loadRegion(query.regionId))
+    store.dispatch(loadRegion(query.regionId)),
+    store.dispatch(loadActiveRegionalJobs(query.regionId))
   ])
 
   return {

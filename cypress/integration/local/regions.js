@@ -85,7 +85,9 @@ describe('Region setup', () => {
         .clear()
         .type(r.searchTerm)
       cy.findByText(r.findText).click()
-      cy.mapIsCenteredOn([r.lat, r.lon], 20000)
+      cy.mapDistanceFrom([r.lat, r.lon]).then(distance => {
+        expect(distance).to.be.lessThan(20000)
+      })
     })
   })
 
@@ -101,7 +103,10 @@ describe('Region setup', () => {
       .clear()
       .type(this.region.searchTerm)
     cy.findByText(this.region.foundName).click()
-    cy.mapIsCenteredOn([39.1, -84.5], 10000)
+
+    cy.mapDistanceFrom([39.1, -84.5]).then(distance => {
+      expect(distance).to.be.lessThan(10000)
+    })
     // Enter exact coordinates
     cy.get('@North')
       .clear()

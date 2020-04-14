@@ -116,12 +116,11 @@ Cypress.Commands.add('mapIsReady', () => {
   })
 })
 
-Cypress.Commands.add('mapIsCenteredOn', (latLonArray, metersPrecision) => {
+Cypress.Commands.add('mapDistanceFrom', latLonArray => {
   cy.window().should('have.property', 'LeafletMap')
-  cy.window().then(win => {
+  return cy.window().then(win => {
     let map = win.LeafletMap
-    let distance = map.distance(map.getCenter(), latLonArray)
-    expect(distance).to.be.lessThan(metersPrecision)
+    return map.distance(map.getCenter(), latLonArray)
   })
 })
 

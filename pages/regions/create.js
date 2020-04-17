@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux'
 
 import {create} from 'lib/actions/region'
 import CreateRegion from 'lib/components/create-region'
+import getInitialAuth from 'lib/get-initial-auth'
 import {routeTo} from 'lib/router'
 
 export default function CreateRegionPage(p) {
@@ -19,3 +20,5 @@ export default function CreateRegionPage(p) {
 
   return <CreateRegion create={_create} setMapChildren={p.setMapChildren} />
 }
+
+CreateRegionPage.getInitialProps = getInitialAuth

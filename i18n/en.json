@@ -73,7 +73,7 @@
       "title": "GTFS",
       "description": "Reuse existing GTFS from other bundles or upload new GTFS.",
       "existingTitle": "Reuse existing GTFS",
-      "existingLabel": "Select existing Network Bundle to reuse OSM from.",
+      "existingLabel": "Select existing Network Bundle to reuse GTFS from.",
       "existingPlaceholder": "Select a Network Bundle",
       "uploadNewTitle": "Upload new GTFS",
       "uploadNewLabel": "Select one or more .zip files containing valid GTFS"

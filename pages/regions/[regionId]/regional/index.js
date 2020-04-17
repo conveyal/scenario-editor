@@ -99,7 +99,12 @@ function RegionalPage(p) {
 }
 
 async function initialFetch(store, query) {
-  const [regionalAnalyses, opportunityDatasets, region] = await Promise.all([
+  const [
+    aggregationAreas,
+    regionalAnalyses,
+    opportunityDatasets,
+    region
+  ] = await Promise.all([
     store.dispatch(loadAggregationAreas(query.regionId)),
     store.dispatch(loadAllAnalyses(query.regionId)),
     store.dispatch(loadOpportunityDatasets(query.regionId)),
@@ -108,6 +113,7 @@ async function initialFetch(store, query) {
   ])
 
   return {
+    aggregationAreas,
     analysis: regionalAnalyses.find(a => a._id === query.analysisId),
     opportunityDatasets,
     region,

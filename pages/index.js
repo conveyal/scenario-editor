@@ -4,7 +4,7 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 async function initialFetch(store) {
   // If navigating to this page, reset the store and clear region specific data.
-  // This very important for the application behaving correctly after switching.
+  // This important for the application behaving correctly after switching.
   store.dispatch(clear())
 
   // Load all regions

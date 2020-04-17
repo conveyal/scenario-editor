@@ -11,6 +11,8 @@ Object {
 
 exports[`reducers > region should handle delete region 1`] = `
 Object {
+  "aggregationAreas": Array [],
+  "bookmarks": Array [],
   "bundles": Array [],
   "regions": Array [],
 }

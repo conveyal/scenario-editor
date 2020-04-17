@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > EditRegion 1`] = `
-<Memo(ConnectedEditRegion)
+<ConnectedEditRegion
   region={
     Object {
       "_id": "1",
@@ -1500,5 +1500,5 @@ exports[`Component > EditRegion 1`] = `
       </div>
     </InnerDock>
   </EditRegion>
-</Memo(ConnectedEditRegion)>
+</ConnectedEditRegion>
 `;

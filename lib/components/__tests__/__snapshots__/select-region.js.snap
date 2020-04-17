@@ -145,9 +145,9 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                     >
                       <span>
                         <strong>
-                          February 28, 2020
+                          April 18, 2020
                         </strong>
-                         — We fixed bugs and made changes to the application.
+                         — We have improved ways to manage your transportation network data.
                          
                         <ForwardRef
                           href="/changelog"

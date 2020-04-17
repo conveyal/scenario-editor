@@ -29,7 +29,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       <p
         className="css-1r2f04i"
       >
-        If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
+        If you deleted the network bundle underlying this modification, you will need to clear the bundle or delete this modification.
       </p>
     </Box>
   </P>

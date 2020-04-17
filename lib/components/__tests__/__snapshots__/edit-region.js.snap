@@ -1347,119 +1347,152 @@ exports[`Component > EditRegion 1`] = `
                     </button>
                   </PseudoBox>
                 </Button>
-                <Button
+                <ConfirmButton
+                  action="DANGER! Delete this region"
                   block={true}
+                  description="Are you sure you would like to delete this region? This will delete all associated projects and modifications."
                   key=".5"
                   leftIcon="delete"
                   mb={null}
-                  onClick={[Function]}
+                  onConfirm={[Function]}
                   size="lg"
                   variantColor="red"
                 >
-                  <PseudoBox
-                    _active={
-                      Object {
-                        "bg": "red.700",
-                      }
-                    }
-                    _disabled={
-                      Object {
-                        "boxShadow": "none",
-                        "cursor": "not-allowed",
-                        "opacity": "40%",
-                      }
-                    }
-                    _focus={
-                      Object {
-                        "boxShadow": "outline",
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "bg": "red.600",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    as="button"
-                    bg="red.500"
+                  <Button
                     block={true}
-                    borderRadius="md"
-                    color="white"
-                    display="inline-flex"
-                    fontSize="lg"
-                    fontWeight="semibold"
-                    height={12}
-                    justifyContent="center"
-                    lineHeight="1.2"
+                    leftIcon="delete"
                     mb={null}
-                    minWidth={12}
                     onClick={[Function]}
-                    outline="none"
-                    position="relative"
-                    px={6}
-                    transition="all 250ms"
-                    type="button"
-                    userSelect="none"
-                    verticalAlign="middle"
-                    whiteSpace="nowrap"
+                    size="lg"
+                    variantColor="red"
                   >
-                    <button
-                      className="css-1sjt7cz"
+                    <PseudoBox
+                      _active={
+                        Object {
+                          "bg": "red.700",
+                        }
+                      }
+                      _disabled={
+                        Object {
+                          "boxShadow": "none",
+                          "cursor": "not-allowed",
+                          "opacity": "40%",
+                        }
+                      }
+                      _focus={
+                        Object {
+                          "boxShadow": "outline",
+                        }
+                      }
+                      _hover={
+                        Object {
+                          "bg": "red.600",
+                        }
+                      }
+                      alignItems="center"
+                      appearance="none"
+                      as="button"
+                      bg="red.500"
+                      block={true}
+                      borderRadius="md"
+                      color="white"
+                      display="inline-flex"
+                      fontSize="lg"
+                      fontWeight="semibold"
+                      height={12}
+                      justifyContent="center"
+                      lineHeight="1.2"
+                      mb={null}
+                      minWidth={12}
                       onClick={[Function]}
+                      outline="none"
+                      position="relative"
+                      px={6}
+                      transition="all 250ms"
                       type="button"
+                      userSelect="none"
+                      verticalAlign="middle"
+                      whiteSpace="nowrap"
                     >
-                      <ButtonIcon
-                        icon="delete"
-                        ml={-1}
-                        mr={2}
+                      <button
+                        className="css-1sjt7cz"
+                        onClick={[Function]}
+                        type="button"
                       >
-                        <Icon
-                          aria-hidden="true"
-                          color="currentColor"
-                          focusable="false"
+                        <ButtonIcon
+                          icon="delete"
                           ml={-1}
                           mr={2}
-                          name="delete"
                         >
-                          <Styled(div)
+                          <Icon
                             aria-hidden="true"
-                            as="svg"
                             color="currentColor"
-                            display="inline-block"
                             focusable="false"
                             ml={-1}
                             mr={2}
-                            role="presentation"
-                            size="1em"
-                            verticalAlign="middle"
-                            viewBox="0 0 24 24"
+                            name="delete"
                           >
-                            <svg
+                            <Styled(div)
                               aria-hidden="true"
-                              className="css-yxiis9"
+                              as="svg"
+                              color="currentColor"
+                              display="inline-block"
                               focusable="false"
+                              ml={-1}
+                              mr={2}
                               role="presentation"
+                              size="1em"
+                              verticalAlign="middle"
                               viewBox="0 0 24 24"
                             >
-                              <g
-                                fill="currentColor"
+                              <svg
+                                aria-hidden="true"
+                                className="css-yxiis9"
+                                focusable="false"
+                                role="presentation"
+                                viewBox="0 0 24 24"
                               >
-                                <path
-                                  d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
-                                />
-                                <path
-                                  d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
-                                />
-                              </g>
-                            </svg>
-                          </Styled(div)>
-                        </Icon>
-                      </ButtonIcon>
-                      DANGER! Delete this region
-                    </button>
-                  </PseudoBox>
-                </Button>
+                                <g
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
+                                  />
+                                  <path
+                                    d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
+                                  />
+                                </g>
+                              </svg>
+                            </Styled(div)>
+                          </Icon>
+                        </ButtonIcon>
+                        DANGER! Delete this region
+                      </button>
+                    </PseudoBox>
+                  </Button>
+                  <AlertDialog
+                    isOpen={false}
+                    leastDestructiveRef={
+                      Object {
+                        "current": undefined,
+                      }
+                    }
+                    onClose={[Function]}
+                    size="lg"
+                  >
+                    <Modal
+                      formatIds={[Function]}
+                      initialFocusRef={
+                        Object {
+                          "current": undefined,
+                        }
+                      }
+                      isOpen={false}
+                      onClose={[Function]}
+                      size="lg"
+                    />
+                  </AlertDialog>
+                </ConfirmButton>
               </div>
             </Box>
           </Flex>

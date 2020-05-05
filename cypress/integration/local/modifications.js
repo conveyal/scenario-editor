@@ -97,17 +97,18 @@ describe('Modifications', () => {
       cy.get('div.leaflet-container').as('map')
       cy.window().then((win) => {
         let map = win.LeafletMap
-        let L = win.L
-        let route = L.polyline(this.region.newRoute)
-        // TODO fitBounds seems to mess up the lat/lon -> pix projections
-        //route.addTo(map)
-        //map.fitBounds( route.getBounds() )
+        let route = win.L.polyline(this.region.newRoute)
+        map.fitBounds(route.getBounds(), {animate: false})
+        // TODO figure out why wait is necessary
+        cy.wait(500)
         // click at the coordinates
         route.getLatLngs().forEach((point) => {
           let pix = map.latLngToContainerPoint(point)
           cy.get('@map').click(pix.x, pix.y)
         })
+        cy.contains(new RegExp(route.getLatLngs().length + ' stops'))
       })
+
       cy.findByText(/Stop editing/i)
         .click()
         .contains(/Edit route geometry/i)

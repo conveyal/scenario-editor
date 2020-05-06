@@ -292,3 +292,7 @@ Cypress.Commands.add('login', function () {
     })
   })
 })
+
+import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
+
+addMatchImageSnapshotCommand()

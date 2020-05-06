@@ -19,5 +19,6 @@ context('Analysis', () => {
     cy.get('@map').get('.leaflet-marker-icon')
     cy.findByText(/Fetch Results/i).click()
     cy.findByText(/Isochrone as GeoJSON/i, {timeout: 60000}).should('exist')
+    cy.get('@map').matchImageSnapshot('post')
   })
 })

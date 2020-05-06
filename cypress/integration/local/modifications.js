@@ -100,6 +100,7 @@ describe('Modifications', () => {
         let route = win.L.polyline(this.region.newRoute)
         map.fitBounds(route.getBounds(), {animate: false})
         // TODO figure out why wait is necessary
+        // maybe related to point layer loading?
         cy.wait(500)
         // click at the coordinates
         route.getLatLngs().forEach((point) => {
@@ -108,7 +109,6 @@ describe('Modifications', () => {
         })
         cy.contains(new RegExp(route.getLatLngs().length + ' stops'))
       })
-
       cy.findByText(/Stop editing/i)
         .click()
         .contains(/Edit route geometry/i)

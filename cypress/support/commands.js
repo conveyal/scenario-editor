@@ -247,6 +247,21 @@ Cypress.Commands.add('distanceFromMapCenter', (latLonArray) => {
     })
 })
 
+Cypress.Commands.add('mapContainsRegion', (regionName) => {
+  cy.fixture('regions/' + regionName + '.json').then((region) => {
+    cy.window()
+      .its('LeafletMap')
+      .then((map) => {
+        cy.wrap(
+          map.getBounds().contains([
+            [region.north, region.east],
+            [region.south, region.west]
+          ])
+        ).should('be.true')
+      })
+  })
+})
+
 Cypress.Commands.add('login', function () {
   cy.getCookie('user').then((user) => {
     const inTenMinutes = Date.now() + 600 * 1000

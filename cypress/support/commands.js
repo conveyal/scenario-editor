@@ -238,12 +238,14 @@ Cypress.Commands.add('mapIsReady', () => {
     })
 })
 
-Cypress.Commands.add('distanceFromMapCenter', (latLonArray) => {
-  return cy
-    .window()
+Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
+  cy.window()
     .its('LeafletMap')
     .then((map) => {
-      return map.distance(map.getCenter(), latLonArray)
+      cy.wrap(map.distance(map.getCenter(), latLonArray)).should(
+        'be.lessThan',
+        tolerance
+      )
     })
 })
 

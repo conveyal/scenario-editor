@@ -76,9 +76,7 @@ describe('Region setup', () => {
     regions.forEach((r) => {
       cy.get('@search').focus().clear().type(r.searchTerm)
       cy.findByText(r.findText).click()
-      cy.distanceFromMapCenter([r.lat, r.lon]).then((offset) => {
-        expect(offset).to.be.lessThan(maxOffset)
-      })
+      cy.mapCenteredOn([r.lat, r.lon], maxOffset)
     })
   })
 
@@ -91,9 +89,7 @@ describe('Region setup', () => {
     // search for region by name
     cy.get('@search').focus().clear().type(this.region.searchTerm)
     cy.findByText(this.region.foundName).click()
-    cy.distanceFromMapCenter([39.1, -84.5]).then((offset) => {
-      expect(offset).to.be.lessThan(10000)
-    })
+    cy.mapCenteredOn([39.1, -84.5], 10000)
     // Enter exact coordinates
     cy.get('@North').clear().type(this.region.north)
     cy.get('@South').clear().type(this.region.south)

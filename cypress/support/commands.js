@@ -264,6 +264,40 @@ Cypress.Commands.add('mapContainsRegion', (regionName) => {
   })
 })
 
+Cypress.Commands.add('mapMoveMarkerTo', (latLonArray) => {
+  cy.window()
+    .its('LeafletMap')
+    .then((map) => {
+      // find the marker
+      var marker
+      for (let key in map._layers) {
+        let layer = map._layers[key]
+        // only the marker layer has this set, though...
+        // TODO there is probably a surer way to get the marker
+        if (typeof layer.getLatLng === 'function') {
+          marker = map.latLngToContainerPoint(layer.getLatLng())
+          cy.log('move from ' + marker)
+        }
+      }
+      // project to screen coordinates
+      let dest = map.latLngToContainerPoint(latLonArray)
+      cy.log('move to ' + dest)
+      // TODO marker drag not working yet
+      cy.get('.leaflet-container')
+        .trigger('mousedown', {
+          which: 1,
+          clientX: marker.x + 680,
+          clientY: marker.y
+        })
+        .trigger('mousemove', {
+          which: 1,
+          clientX: dest.x + 680,
+          clientY: dest.y
+        })
+        .trigger('mouseup')
+    })
+})
+
 Cypress.Commands.add('login', function () {
   cy.getCookie('user').then((user) => {
     const inTenMinutes = Date.now() + 600 * 1000

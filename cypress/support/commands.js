@@ -151,6 +151,7 @@ Cypress.Commands.add('deleteMod', (modType, modName) => {
 Cypress.Commands.add('deleteThisMod', () => {
   cy.get('a[name="Delete modification"]').click()
   cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+  cy.contains(/Create a modification/)
 })
 
 Cypress.Commands.add('setupScenario', (scenarioName) => {

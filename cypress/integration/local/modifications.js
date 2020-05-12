@@ -91,6 +91,9 @@ describe('Modifications', () => {
     it('can be drawn on map', function () {
       let modName = Date.now() + ''
       cy.setupMod('Add Trip Pattern', modName)
+      cy.findAllByRole('alert').contains(/must have at least 2 stops/)
+      cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
+      // add a route geometry
       cy.findByText(/Edit route geometry/i)
         .click()
         .contains(/Stop editing/i)
@@ -99,19 +102,43 @@ describe('Modifications', () => {
         let map = win.LeafletMap
         let route = win.L.polyline(this.region.newRoute)
         map.fitBounds(route.getBounds(), {animate: false})
-        // TODO figure out why wait is necessary
-        // maybe related to point layer loading?
+        // TODO Figure out why wait is necessary here
+        // Maybe related to point layer loading?
         cy.wait(500)
         // click at the coordinates
-        route.getLatLngs().forEach((point) => {
+        let coords = route.getLatLngs()
+        coords.forEach((point, i) => {
           let pix = map.latLngToContainerPoint(point)
           cy.get('@map').click(pix.x, pix.y)
+          if (i > 0) {
+            cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
+          }
         })
-        cy.contains(new RegExp(route.getLatLngs().length + ' stops'))
+        // convert an arbitrary stop to a control point
+        let stop = coords[Math.floor(Math.random() * coords.length)]
+        let pix = map.latLngToContainerPoint(stop)
+        cy.get('@map').click(pix.x, pix.y)
+        cy.get('@map')
+          .findByText(/make control point/)
+          .click()
+        cy.get('@map').click(pix.x, pix.y)
+        cy.get('@map')
+          .findByText(/make stop/)
+          .click()
       })
-      cy.findByText(/Stop editing/i)
-        .click()
-        .contains(/Edit route geometry/i)
+      cy.findByText(/Stop editing/i).click()
+      cy.findAllByRole('alert')
+        .contains(/must have at least 2 stops/)
+        .should('not.exist')
+      // add a timetable
+      cy.findByText(/Add new timetable/i).click()
+      cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
+        'not.exist'
+      )
+      // add to scenario
+      cy.findByLabelText(/Default/).uncheck({force: true})
+      cy.findByLabelText(/scratch scenario/).should('be.checked')
+      //
       cy.deleteThisMod()
     })
 

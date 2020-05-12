@@ -9,6 +9,7 @@ Cypress.Cookies.defaults({
 Cypress.Commands.add('setupRegion', (regionName) => {
   // set up the named region if it doesn't already exist
   cy.visit('/')
+  cy.contains('conveyal analysis')
   cy.get('body').then((body) => {
     if (body.text().includes(regionName)) {
       cy.findByText(regionName).click()

@@ -46,6 +46,8 @@ Cypress.Commands.add('setupBundle', (regionName) => {
     .parent()
     .click()
   // wait for options to load before getting body text
+  // TODO this will fail if another bundle name is present
+  // dropdown needs an associated label to narrow the search
   cy.contains(RegExp(bundleName + '|No options', 'i'))
   cy.get('body').then((body) => {
     if (body.text().includes(bundleName)) {

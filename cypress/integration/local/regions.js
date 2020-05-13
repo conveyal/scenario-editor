@@ -106,7 +106,6 @@ describe('Region setup', () => {
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
     cy.navTo('Region Settings')
-    cy.contains('Edit region')
     // redeclaration is necessary to prevent the page from reloading... :-(
     cy.findByLabelText(/Region Name/).as('name')
     cy.findByLabelText(/Description/).as('description')

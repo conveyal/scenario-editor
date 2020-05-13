@@ -113,6 +113,10 @@ Cypress.Commands.add('setupProject', (regionName) => {
   cy.contains(/Modifications/)
 })
 
+Cypress.Commands.add('deleteProject', (regionName) => {
+  cy.navTo('Projects')
+})
+
 Cypress.Commands.add('setupMod', (modType, modName) => {
   cy.navTo(/Edit Modifications/)
   // assumes we are already on this page or editing another mod
@@ -201,30 +205,38 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
+  // attempt to wait until at least part of the desired page is loaded
+  Cypress.log({name: 'Navigate to'})
   let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
-  // parent selects the SVG itself rather than the <title> element within
-  cy.findByTitle(caseInsensitiveTitle).parent().click()
+  //
+  cy.findByTitle(caseInsensitiveTitle, {log: false})
+    .parent({log: false}) // select actual SVG element rather than <title> el
+    .click({log: false})
   switch (caseInsensitiveTitle.toString()) {
     case /Regions/i.toString():
-      cy.location('pathname').should('eq', '/')
+      cy.contains(/conveyal analysis/i, {log: false})
+      cy.contains(/Set up a new region/i, {log: false})
       break
     case /Region Settings/i.toString():
-      cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
+      cy.contains(/Delete this region/i, {log: false})
       break
     case /Projects/i.toString():
-      cy.location('pathname').should('match', /\/regions\/.{24}$/)
+      cy.contains(/Create new Project/i, {log: false})
       break
     case /Network Bundles/i.toString():
-      cy.location('pathname').should('match', /.*\/bundles$/)
+      cy.contains(/Create a new network bundle/i, {log: false})
       break
     case /Opportunity datasets/i.toString():
-      cy.location('pathname').should('match', /\/opportunities$/)
+      cy.contains(/Upload a new dataset/i, {log: false})
       break
     case /Edit Modifications/i.toString():
-      cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+      cy.contains(/create new project|create a modification/i, {log: false})
       break
     case /Analyze/i.toString():
-      cy.location('pathname').should('match', /\/analysis/)
+      cy.location('pathname', {log: false}).should('match', /\/analysis/, {
+        log: false
+      })
+      cy.contains(/Comparison Project/i, {log: false})
       break
   }
 })

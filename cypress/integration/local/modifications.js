@@ -9,6 +9,7 @@ describe('Modifications', () => {
 
   after(() => {
     cy.deleteScenario('scratch scenario')
+    cy.deleteProject('scratch')
   })
 
   beforeEach(() => {

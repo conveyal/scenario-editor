@@ -113,8 +113,17 @@ Cypress.Commands.add('setupProject', (regionName) => {
   cy.contains(/Modifications/)
 })
 
-Cypress.Commands.add('deleteProject', (regionName) => {
+Cypress.Commands.add('deleteProject', (projectName) => {
   cy.navTo('Projects')
+  cy.get('body').then((body) => {
+    if (body.text().includes(projectName)) {
+      cy.findByText(projectName).click()
+      cy.get('svg[data-icon="cog"]').click()
+      cy.findByText(/Delete project/i).click()
+    } else {
+      // so such project - nothing to delete
+    }
+  })
 })
 
 Cypress.Commands.add('setupMod', (modType, modName) => {

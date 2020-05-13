@@ -30,7 +30,7 @@ describe('Modifications', () => {
       'Reroute',
       'Custom'
     ]
-    let modType = mods[random(0, mods.length)]
+    let modType = mods[random(0, mods.length - 1)]
     let modName = 'tempMod ' + Date.now()
     let description = 'descriptive text'
     cy.findByRole('link', {name: 'Create a modification'}).click()
@@ -118,7 +118,7 @@ describe('Modifications', () => {
           }
         })
         // convert an arbitrary stop to a control point
-        let stop = coords[random(0, coords.length)]
+        let stop = coords[random(0, coords.length - 1)]
         let pix = map.latLngToContainerPoint(stop)
         cy.get('@map').click(pix.x, pix.y)
         cy.get('@map')

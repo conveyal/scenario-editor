@@ -1,3 +1,6 @@
+// use lodash .random
+const {random} = Cypress._
+
 describe('Modifications', () => {
   before(() => {
     cy.setupProject('scratch')
@@ -27,7 +30,7 @@ describe('Modifications', () => {
       'Reroute',
       'Custom'
     ]
-    let modType = mods[Math.floor(Math.random() * mods.length)]
+    let modType = mods[random(0, mods.length)]
     let modName = 'tempMod ' + Date.now()
     let description = 'descriptive text'
     cy.findByRole('link', {name: 'Create a modification'}).click()
@@ -115,16 +118,20 @@ describe('Modifications', () => {
           }
         })
         // convert an arbitrary stop to a control point
-        let stop = coords[Math.floor(Math.random() * coords.length)]
+        let stop = coords[random(0, coords.length)]
         let pix = map.latLngToContainerPoint(stop)
         cy.get('@map').click(pix.x, pix.y)
         cy.get('@map')
           .findByText(/make control point/)
           .click()
+        // control point not counted as stop
+        cy.contains(new RegExp(coords.length - 1 + ' stops over \\d\\.\\d+ km'))
+        // convert control point back to stop
         cy.get('@map').click(pix.x, pix.y)
         cy.get('@map')
           .findByText(/make stop/)
           .click()
+        cy.contains(new RegExp(coords.length + ' stops over \\d\\.\\d+ km'))
       })
       cy.findByText(/Stop editing/i).click()
       cy.findAllByRole('alert')

@@ -40,5 +40,9 @@
         "speed": 15
       }
     ]
+  },
+  "aggregationAreas": {
+    "location": "regions/nky/city-boundaries/",
+    "nameField": "name"
   }
 }

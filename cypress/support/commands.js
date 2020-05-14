@@ -7,12 +7,14 @@ Cypress.Cookies.defaults({
 })
 
 Cypress.Commands.add('setupRegion', (regionName) => {
+  Cypress.log({name: 'setup region'})
   // set up the named region if it doesn't already exist
-  cy.visit('/')
-  cy.contains('conveyal analysis')
-  cy.get('body').then((body) => {
+  cy.visit('/', {log: false})
+  cy.contains('conveyal analysis', {log: false})
+  cy.get('body', {log: false}).then((body) => {
     if (body.text().includes(regionName)) {
-      cy.findByText(regionName).click()
+      Cypress.log({message: regionName + ' region exists'})
+      cy.findByText(regionName, {log: false}).click({log: false})
     } else {
       cy.visit('/regions/create')
       cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
@@ -33,15 +35,13 @@ Cypress.Commands.add('setupRegion', (regionName) => {
       cy.findByRole('button', {name: /Set up a new region/}).click()
     }
   })
-  cy.location('pathname').should('match', /\/regions\/.{24}/)
+  cy.contains(/Upload a new network bundle|create new project/i, {log: false})
 })
 
 Cypress.Commands.add('setupBundle', (regionName) => {
   cy.setupRegion(regionName)
   let bundleName = regionName + ' bundle'
   cy.navTo('Network Bundles')
-  cy.location('pathname').should('match', /\/bundles$/)
-  cy.contains('or select an existing one')
   cy.findByText(/Select.../)
     .parent()
     .click()
@@ -121,7 +121,7 @@ Cypress.Commands.add('deleteProject', (projectName) => {
       cy.get('svg[data-icon="cog"]').click()
       cy.findByText(/Delete project/i).click()
     } else {
-      // so such project - nothing to delete
+      // no such project - nothing to delete
     }
   })
 })
@@ -217,7 +217,6 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   // attempt to wait until at least part of the desired page is loaded
   Cypress.log({name: 'Navigate to'})
   let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
-  //
   cy.findByTitle(caseInsensitiveTitle, {log: false})
     .parent({log: false}) // select actual SVG element rather than <title> el
     .click({log: false})

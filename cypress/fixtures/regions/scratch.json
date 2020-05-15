@@ -4,6 +4,7 @@
   "PBFfile": "regions/nky/streets.osm.pbf",
   "GTFSfile": "regions/nky/TANK-GTFS.zip",
   "feedAgencyName": "Transit Authority of Northern Kentucky",
+  "sampleRouteName": "Southbank Shuttle",
   "searchTerm": "covington",
   "foundName": "Covington, Kentucky, United States",
   "north": 39.1199,
@@ -44,5 +45,11 @@
   "aggregationAreas": {
     "location": "regions/nky/city-boundaries/",
     "nameField": "name"
+  },
+  "testCases": {
+    "removeStops": {
+      "route": "25X",
+      "bounds": [[], [], [], []]
+    }
   }
 }

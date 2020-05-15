@@ -17,7 +17,7 @@ describe('Modifications', () => {
     cy.navTo(/Edit Modifications/)
   })
 
-  it('can be created, saved, and deleted', () => {
+  it('can be created, saved, and deleted', function () {
     // create an arbitrary modification type
     // these actions should be the same across all types
     // TODO the types that are commented out are producing errors locally
@@ -26,7 +26,7 @@ describe('Modifications', () => {
       //'Adjust Dwell Time',
       'Adjust Speed',
       //'Convert To Frequency',
-      //'Remove Stops',
+      'Remove Stops',
       'Remove Trips',
       'Reroute',
       'Custom'
@@ -223,15 +223,15 @@ describe('Modifications', () => {
   })
 
   describe('Adjust dwell time', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Adjust Dwell Time', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Scale existing dwell times/i).check()
       cy.findByLabelText(/Set new dwell time to/i).check()
@@ -240,35 +240,35 @@ describe('Modifications', () => {
   })
 
   describe('Adjust speed', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.deleteThisMod()
     })
   })
 
   describe('Convert to frequency', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Convert To Frequency', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/retain existing scheduled trips/i).check()
       cy.findByText(/Add frequency entry/i).click()
       cy.findByLabelText(/Select patterns/i)
         .click({force: true})
-        .type('walnut{enter}')
+        .type('Bakewell{enter}')
       cy.findByLabelText(/Frequency/i)
         .clear()
         .type('00:20:00')
@@ -280,22 +280,26 @@ describe('Modifications', () => {
         .type('23:00')
       cy.findByLabelText(/Phase at stop/i)
         .click({force: true})
-        .type('4th at Walnut{enter}')
+        .type('Fountain Square{enter}')
       cy.findByText(/Delete frequency entry/i).click()
       cy.deleteThisMod()
     })
   })
 
   describe('Remove stops', () => {
-    it('has working form elements', () => {
+    /*
+      can test this with the 25X by removing few stops in downtown
+      need to determine when this line runs (probably standard peak service)
+    */
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Remove Stops', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Time savings per removed stop/i)
       cy.deleteThisMod()
@@ -303,30 +307,30 @@ describe('Modifications', () => {
   })
 
   describe('Remove trips', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Remove Trips', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.deleteThisMod()
     })
   })
 
   describe('Reroute', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Reroute', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       // verify existence only
       cy.findByLabelText(/Select patterns/i)
       cy.findByText(/Start of reroute/i)

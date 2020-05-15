@@ -293,15 +293,20 @@ describe('Modifications', () => {
     */
     it('has working form elements', function () {
       let modName = Date.now() + ''
+      let testCase = this.region.testCases.removeStops
       cy.setupMod('Remove Stops', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type(this.region.sampleRouteName + '{enter}')
+        .type(testCase.routeName + '{enter}')
+      // can't interact with these yet - leave all at defaults
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Time savings per removed stop/i)
+      // select stops
+      //cy.get('a.btn').contains('New').click()
+      //cy.get('div.leaflet-container').as('map')
       cy.deleteThisMod()
     })
   })

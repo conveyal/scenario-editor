@@ -108,7 +108,7 @@ describe('Modifications', () => {
         map.fitBounds(route.getBounds(), {animate: false})
         // TODO Figure out why wait is necessary here
         // Maybe related to point layer loading?
-        cy.wait(500)
+        cy.wait(500) // eslint-disable-line cypress/no-unnecessary-waiting
         // click at the coordinates
         let coords = route.getLatLngs()
         coords.forEach((point, i) => {

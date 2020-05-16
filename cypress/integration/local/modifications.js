@@ -106,9 +106,7 @@ describe('Modifications', () => {
         let map = win.LeafletMap
         let route = win.L.polyline(this.region.newRoute)
         map.fitBounds(route.getBounds(), {animate: false})
-        // TODO Figure out why wait is necessary here
-        // Maybe related to point layer loading?
-        cy.wait(500) // eslint-disable-line cypress/no-unnecessary-waiting
+        cy.waitForMapToLoad()
         // click at the coordinates
         let coords = route.getLatLngs()
         coords.forEach((point, i) => {

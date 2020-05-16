@@ -249,16 +249,14 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   }
 })
 
-Cypress.Commands.add('mapIsReady', () => {
-  // map should have a tileLayer which is done loading
+Cypress.Commands.add('waitForMapToLoad', () => {
   cy.window()
     .its('LeafletMap')
     .then((map) => {
-      map.eachLayer((layer) => {
-        if (layer.getAttribution()) {
-          cy.log(layer)
-        }
-      })
+      // this just does not seem to work as expected. The wait remains necessary
+      cy.wrap(map).its('_loaded').should('be.true')
+      cy.wrap(map).its('_renderer').its('_drawing').should('be.false')
+      cy.wait(500) // eslint-disable-line cypress/no-unnecessary-waiting
     })
 })
 

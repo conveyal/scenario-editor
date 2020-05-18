@@ -21,6 +21,7 @@ const env = {
   ADMIN_ACCESS_GROUP: process.env.ADMIN_ACCESS_GROUP || 'conveyal',
   API_URL: process.env.API_URL || 'http://localhost:7070',
   LOGROCKET: AUTH_DISABLED ? false : process.env.LOGROCKET,
+  BASEMAP_DISABLED: process.env.BASEMAP_DISABLED === 'true',
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
 
   // Auth

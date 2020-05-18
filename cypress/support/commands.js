@@ -36,6 +36,15 @@ Cypress.Commands.add('setupRegion', (regionName) => {
     }
   })
   cy.contains(/Upload a new network bundle|create new project/i, {log: false})
+  // store the region UUID for later
+  cy.location('pathname', {log: false}).then((path) => {
+    let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
+    cy.writeFile(
+      `cypress/fixtures/regions/.${regionName}.json`,
+      {regionId: matches.groups.uuid},
+      {log: false}
+    )
+  })
 })
 
 Cypress.Commands.add('setupBundle', (regionName) => {
@@ -109,8 +118,18 @@ Cypress.Commands.add('setupProject', (regionName) => {
         .click()
     }
   })
-  cy.location('pathname').should('match', /\/projects\/.{24}$/)
   cy.contains(/Modifications/)
+  // store the projectId
+  cy.location('pathname')
+    .should('match', /\/projects\/\w{24}$/)
+    .then((path) => {
+      let matches = path.match(/(?:\/projects\/)(?<uuid>\w{24})/)
+      let file = `cypress/fixtures/regions/.${regionName}.json`
+      cy.readFile(file).then((contents) => {
+        contents = {...contents, projectId: matches.groups.uuid}
+        cy.writeFile(file, contents)
+      })
+    })
 })
 
 Cypress.Commands.add('deleteProject', (projectName) => {
@@ -247,6 +266,16 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
       cy.contains(/Comparison Project/i, {log: false})
       break
   }
+})
+
+Cypress.Commands.add('clickMap', (coord) => {
+  console.assert('lat' in coord && 'lon' in coord)
+  cy.window()
+    .its('LeafletMap')
+    .then((map) => {
+      let pix = map.latLngToContainerPoint([coord.lat, coord.lon])
+      cy.get('div.leaflet-container').click(pix.x, pix.y)
+    })
 })
 
 Cypress.Commands.add('waitForMapToLoad', () => {

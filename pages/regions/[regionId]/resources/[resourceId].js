@@ -153,10 +153,10 @@ const EditResourcePage = withInitialFetch(
       </SelectResource>
     )
   },
-  async (store, query) => {
+  async (dispatch, query) => {
     return {
-      resource: await store.dispatch(loadResource(query.resourceId)),
-      resources: await store.dispatch(loadAllResources(query))
+      resource: await dispatch(loadResource(query.resourceId)),
+      resources: await dispatch(loadAllResources(query))
     }
   }
 )

@@ -5,10 +5,8 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 const CreateProjectPage = withInitialFetch(
   CreateProject,
-  async (store, query) => {
-    const bundles = await store.dispatch(
-      loadBundles({regionId: query.regionId})
-    )
+  async (dispatch, query) => {
+    const bundles = await dispatch(loadBundles({regionId: query.regionId}))
     return {bundles}
   }
 )

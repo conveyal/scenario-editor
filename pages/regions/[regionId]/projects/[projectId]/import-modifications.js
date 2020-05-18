@@ -20,9 +20,9 @@ const ImportModificationsPage = withInitialFetch(
       </Dock>
     </>
   ),
-  async (store, query) => {
+  async (dispatch, query) => {
     const {regionId, projectId} = query
-    const {projects} = await store.dispatch(loadRegion(regionId))
+    const {projects} = await dispatch(loadRegion(regionId))
     return {
       project: projects.find((p) => p._id === projectId),
       projects: projects.filter((p) => p._id !== projectId)

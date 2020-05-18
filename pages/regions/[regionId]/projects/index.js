@@ -3,8 +3,8 @@ import SelectProject from 'lib/components/select-project'
 import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-const SelectProjectPage = withInitialFetch(SelectProject, (store, query) => {
-  return store.dispatch(load(query.regionId))
+const SelectProjectPage = withInitialFetch(SelectProject, (dispatch, query) => {
+  return dispatch(load(query.regionId))
 })
 
 SelectProjectPage.Layout = MapLayout

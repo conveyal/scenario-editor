@@ -13,11 +13,9 @@ const BundleViewPage = withInitialFetch(
       <EditBundle bundleProjects={p.bundleProjects} key={p.query.bundleId} />
     </Bundles>
   ),
-  async (store, query) => ({
-    bundles: await store.dispatch(loadBundles({regionId: query.regionId})),
-    bundleProjects: await store.dispatch(
-      loadProjects({bundleId: query.bundleId})
-    )
+  async (dispatch, query) => ({
+    bundles: await dispatch(loadBundles({regionId: query.regionId})),
+    bundleProjects: await dispatch(loadProjects({bundleId: query.bundleId}))
   })
 )
 

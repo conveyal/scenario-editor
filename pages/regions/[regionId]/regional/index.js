@@ -101,18 +101,18 @@ const RegionalPage = withInitialFetch(
       </InnerDock>
     )
   },
-  async (store, query) => {
+  async (dispatch, query) => {
     const [
       aggregationAreas,
       regionalAnalyses,
       opportunityDatasets,
       region
     ] = await Promise.all([
-      store.dispatch(loadAggregationAreas(query.regionId)),
-      store.dispatch(loadAllAnalyses(query.regionId)),
-      store.dispatch(loadOpportunityDatasets(query.regionId)),
-      store.dispatch(loadRegion(query.regionId)),
-      store.dispatch(loadActiveRegionalJobs(query.regionId))
+      dispatch(loadAggregationAreas(query.regionId)),
+      dispatch(loadAllAnalyses(query.regionId)),
+      dispatch(loadOpportunityDatasets(query.regionId)),
+      dispatch(loadRegion(query.regionId)),
+      dispatch(loadActiveRegionalJobs(query.regionId))
     ])
 
     return {

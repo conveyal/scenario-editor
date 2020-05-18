@@ -4,9 +4,9 @@ import withAuth from 'lib/with-auth'
 import withInitialFetch from 'lib/with-initial-fetch'
 import withRedux from 'lib/with-redux'
 
-const ReportPage = withInitialFetch(Report, async (store, query) => {
+const ReportPage = withInitialFetch(Report, async (dispatch, query) => {
   const {projectId, index} = query
-  const {bundle, feeds, modifications, project} = await store.dispatch(
+  const {bundle, feeds, modifications, project} = await dispatch(
     loadProjectAndModifications(projectId)
   )
 

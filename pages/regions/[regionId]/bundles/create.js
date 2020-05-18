@@ -8,10 +8,10 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 const CreateBundlePage = withInitialFetch(
   (p) => <CreateBundle regionId={p.query.regionId} />,
-  (store, query) =>
+  (dispatch, query) =>
     Promise.all([
-      store.dispatch(loadBundles({regionId: query.regionId})),
-      store.dispatch(loadRegion(query.regionId))
+      dispatch(loadBundles({regionId: query.regionId})),
+      dispatch(loadRegion(query.regionId))
     ])
 )
 

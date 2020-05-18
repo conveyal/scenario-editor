@@ -32,17 +32,17 @@ const ModificationsPage = withInitialFetch(
       )
     }
   },
-  async (store, query) => {
+  async (dispatch, query) => {
     const {projectId, regionId} = query
     if (noProjectId(projectId)) {
       const [region, bundles, projects] = await Promise.all([
-        store.dispatch(loadRegion(regionId)),
-        store.dispatch(loadBundles({regionId})),
-        store.dispatch(loadProjects({regionId}))
+        dispatch(loadRegion(regionId)),
+        dispatch(loadBundles({regionId})),
+        dispatch(loadProjects({regionId}))
       ])
       return {bundles, projects, region}
     } else {
-      return {project: await store.dispatch(loadProject(projectId))}
+      return {project: await dispatch(loadProject(projectId))}
     }
   }
 )

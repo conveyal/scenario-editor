@@ -21,9 +21,9 @@ const ImportShapeFilePage = withInitialFetch(
       </Dock>
     </>
   ),
-  async (store, query) => ({
-    region: await store.dispatch(loadRegion(query.regionId)),
-    project: await store.dispatch(loadProject(query.projectId))
+  async (dispatch, query) => ({
+    region: await dispatch(loadRegion(query.regionId)),
+    project: await dispatch(loadProject(query.projectId))
   })
 )
 

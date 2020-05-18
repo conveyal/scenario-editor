@@ -5,9 +5,9 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 const SelectResourcePage = withInitialFetch(
   SelectResource,
-  async (store, query) => {
+  async (dispatch, query) => {
     return {
-      resources: await store.dispatch(loadAllResources(query))
+      resources: await dispatch(loadAllResources(query))
     }
   }
 )

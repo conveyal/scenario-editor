@@ -8,20 +8,20 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 const EditorPage = withInitialFetch(
   ModificationEditor,
-  async (store, query) => {
+  async (dispatch, query) => {
     const {modificationId, projectId} = query
 
     // TODO check if project and feed are already loaded
     const [project, modification] = await Promise.all([
-      store.dispatch(loadProject(projectId)),
+      dispatch(loadProject(projectId)),
       // Always reload the modification to get recent changes
-      store.dispatch(loadModification(modificationId))
+      dispatch(loadModification(modificationId))
     ])
 
     // Only gets unloaded feeds for modifications that have them
     const [bundle, feeds] = await Promise.all([
-      store.dispatch(loadBundle(project.bundleId)),
-      store.dispatch(
+      dispatch(loadBundle(project.bundleId)),
+      dispatch(
         getFeedsRoutesAndStops({
           bundleId: project.bundleId,
           modifications: [modification]

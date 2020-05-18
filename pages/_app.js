@@ -9,9 +9,6 @@ import LogRocket from '../lib/logrocket'
 import 'react-datetime/css/react-datetime.css'
 import '../styles.css'
 
-/**
- * Provides the redux store and provider for all pages.
- */
 export default class ConveyalApp extends App {
   state = {}
 
@@ -24,7 +21,7 @@ export default class ConveyalApp extends App {
   }
 
   render() {
-    const {Component, router} = this.props
+    const {Component} = this.props
     return (
       <ChakraTheme>
         <Head>
@@ -36,11 +33,11 @@ export default class ConveyalApp extends App {
             clear={() => this.setState({error: null})}
           />
         ) : Component.Layout ? (
-          <Component.Layout query={router.query}>
-            <Component query={router.query} />
+          <Component.Layout>
+            <Component />
           </Component.Layout>
         ) : (
-          <Component query={router.query} />
+          <Component />
         )}
       </ChakraTheme>
     )

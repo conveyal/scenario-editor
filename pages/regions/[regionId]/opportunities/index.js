@@ -32,15 +32,15 @@ const OpportunitiesPage = withInitialFetch(
       </Heading>
     )
   },
-  (store, query) => {
+  (dispatch, query) => {
     // Set the active id
-    store.dispatch(setActiveOpportunityDataset(query.opportunityDatasetId))
+    dispatch(setActiveOpportunityDataset(query.opportunityDatasetId))
 
     // Load all the data
     return Promise.all([
-      store.dispatch(loadOpportunityDatasets(query.regionId)),
-      store.dispatch(checkUploadStatus(query.regionId)),
-      store.dispatch(load(query.regionId))
+      dispatch(loadOpportunityDatasets(query.regionId)),
+      dispatch(checkUploadStatus(query.regionId)),
+      dispatch(load(query.regionId))
     ])
   }
 )

@@ -8,15 +8,18 @@ import SinglePointAnalysis from 'lib/containers/single-point-analysis'
 import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-const AnalysisPage = withInitialFetch(SinglePointAnalysis, (store, query) => {
-  store.dispatch(setScenarioApplicationWarnings(null))
-  store.dispatch(setScenarioApplicationErrors(null))
+const AnalysisPage = withInitialFetch(
+  SinglePointAnalysis,
+  (dispatch, query) => {
+    dispatch(setScenarioApplicationWarnings(null))
+    dispatch(setScenarioApplicationErrors(null))
 
-  return Promise.all([
-    store.dispatch(load(query.regionId)),
-    store.dispatch(loadBookmarks(query.regionId))
-  ])
-})
+    return Promise.all([
+      dispatch(load(query.regionId)),
+      dispatch(loadBookmarks(query.regionId))
+    ])
+  }
+)
 
 AnalysisPage.Layout = MapLayout
 

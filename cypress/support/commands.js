@@ -6,35 +6,24 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
-Cypress.Commands.add('setupRegion', (regionName) => {
-  Cypress.log({name: 'setup region'})
-  // set up the named region if it doesn't already exist
-  cy.visit('/', {log: false})
-  cy.contains('conveyal analysis', {log: false})
-  cy.get('body', {log: false}).then((body) => {
-    if (body.text().includes(regionName)) {
-      Cypress.log({message: regionName + ' region exists'})
-      cy.findByText(regionName, {log: false}).click({log: false})
-    } else {
-      cy.visit('/regions/create')
-      cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
-      cy.fixture('regions/' + regionName + '.json').then((region) => {
-        cy.findByLabelText(/North bound/)
-          .clear()
-          .type(region.north, {delay: 1})
-        cy.findByLabelText(/South bound/)
-          .clear()
-          .type(region.south, {delay: 1})
-        cy.findByLabelText(/West bound/)
-          .clear()
-          .type(region.west, {delay: 1})
-        cy.findByLabelText(/East bound/)
-          .clear()
-          .type(region.east, {delay: 1})
-      })
-      cy.findByRole('button', {name: /Set up a new region/}).click()
-    }
+function createNewRegion(regionName) {
+  cy.visit('/regions/create')
+  cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
+  cy.fixture('regions/' + regionName + '.json').then((region) => {
+    cy.findByLabelText(/North bound/)
+      .clear()
+      .type(region.north, {delay: 0})
+    cy.findByLabelText(/South bound/)
+      .clear()
+      .type(region.south, {delay: 0})
+    cy.findByLabelText(/West bound/)
+      .clear()
+      .type(region.west, {delay: 0})
+    cy.findByLabelText(/East bound/)
+      .clear()
+      .type(region.east, {delay: 0})
   })
+  cy.findByRole('button', {name: /Set up a new region/}).click()
   cy.contains(/Upload a new network bundle|create new project/i, {log: false})
   // store the region UUID for later
   cy.location('pathname', {log: false}).then((path) => {
@@ -44,6 +33,20 @@ Cypress.Commands.add('setupRegion', (regionName) => {
       {regionId: matches.groups.uuid},
       {log: false}
     )
+  })
+}
+
+Cypress.Commands.add('setupRegion', (regionName) => {
+  // set up the named region from fixtures if necessary
+  let logFile = `cypress/fixtures/regions/.${regionName}.json`
+  cy.readFile(logFile, {log: false}).then((IDs) => {
+    if ('regionId' in IDs) {
+      // go to region directly
+      cy.visit('/regions/' + IDs.regionId)
+    } else {
+      // set up the region
+      createNewRegion(regionName)
+    }
   })
 })
 
@@ -118,16 +121,16 @@ Cypress.Commands.add('setupProject', (regionName) => {
         .click()
     }
   })
-  cy.contains(/Modifications/)
+  cy.contains(/Modifications/, {log: false})
   // store the projectId
-  cy.location('pathname')
+  cy.location('pathname', {log: false})
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
       let matches = path.match(/(?:\/projects\/)(?<uuid>\w{24})/)
       let file = `cypress/fixtures/regions/.${regionName}.json`
-      cy.readFile(file).then((contents) => {
+      cy.readFile(file, {log: false}).then((contents) => {
         contents = {...contents, projectId: matches.groups.uuid}
-        cy.writeFile(file, contents)
+        cy.writeFile(file, contents, {log: false})
       })
     })
 })

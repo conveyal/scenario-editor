@@ -6,6 +6,20 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
+Cypress.Commands.add('setupRegion', (regionName) => {
+  // set up the named region from fixtures if necessary
+  let logFile = `cypress/fixtures/regions/.${regionName}.json`
+  cy.readFile(logFile, {log: false}).then((IDs) => {
+    if ('regionId' in IDs) {
+      // go to region directly
+      cy.visit('/regions/' + IDs.regionId)
+    } else {
+      // set up the region
+      createNewRegion(regionName)
+    }
+  })
+})
+
 function createNewRegion(regionName) {
   cy.visit('/regions/create')
   cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
@@ -36,68 +50,66 @@ function createNewRegion(regionName) {
   })
 }
 
-Cypress.Commands.add('setupRegion', (regionName) => {
-  // set up the named region from fixtures if necessary
+Cypress.Commands.add('setupBundle', (regionName) => {
+  cy.setupRegion(regionName)
   let logFile = `cypress/fixtures/regions/.${regionName}.json`
   cy.readFile(logFile, {log: false}).then((IDs) => {
-    if ('regionId' in IDs) {
-      // go to region directly
-      cy.visit('/regions/' + IDs.regionId)
+    let regionId = IDs.regionId
+    if ('bundleId' in IDs) {
+      let bundleId = IDs.bundleId
+      cy.visit(`/regions/${regionId}/bundles/${bundleId}`)
     } else {
-      // set up the region
-      createNewRegion(regionName)
+      cy.visit(`/regions/${regionId}/bundles`)
+      createNewBundle(regionName)
     }
   })
 })
 
-Cypress.Commands.add('setupBundle', (regionName) => {
-  cy.setupRegion(regionName)
+function createNewBundle(regionName) {
   let bundleName = regionName + ' bundle'
+  cy.findByText(/Create .* bundle/).click()
+  cy.location('pathname').should('match', /\/bundles\/create$/)
+  cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
+  cy.findByText(/Upload new OpenStreetMap/i).click()
+  cy.fixture('regions/' + regionName + '.json').then((region) => {
+    cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
+      cy.findByLabelText(/Select PBF file/i).upload({
+        encoding: 'base64',
+        fileContent,
+        fileName: region.PBFfile,
+        mimeType: 'application/octet-stream'
+      })
+    })
+    cy.findByText(/Upload new GTFS/i).click()
+    cy.fixture(region.GTFSfile, {encoding: 'base64'}).then((fileContent) => {
+      cy.findByLabelText(/Select .*GTFS/i).upload({
+        encoding: 'base64',
+        fileContent,
+        fileName: region.GTFSfile,
+        mimeType: 'application/octet-stream'
+      })
+    })
+  })
+  cy.findByRole('button', {name: /Create/i}).click()
+  cy.findByText(/Processing/)
+  cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
+  // go back and grab the UUID
   cy.navTo('Network Bundles')
   cy.findByText(/Select.../)
     .parent()
     .click()
-  // wait for options to load before getting body text
-  // TODO this will fail if another bundle name is present
-  // dropdown needs an associated label to narrow the search
-  cy.contains(RegExp(bundleName + '|No options', 'i'))
-  cy.get('body').then((body) => {
-    if (body.text().includes(bundleName)) {
-      // bundle already exists. do nothing
-    } else {
-      cy.findByText(/Create .* bundle/).click()
-      cy.location('pathname').should('match', /\/bundles\/create$/)
-      cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
-      cy.findByText(/Upload new OpenStreetMap/i).click()
-      cy.fixture('regions/' + regionName + '.json').then((region) => {
-        cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
-          cy.findByLabelText(/Select PBF file/i).upload({
-            encoding: 'base64',
-            fileContent,
-            fileName: region.PBFfile,
-            mimeType: 'application/octet-stream'
-          })
-        })
-        cy.findByText(/Upload new GTFS/i).click()
-        cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(
-          (fileContent) => {
-            cy.findByLabelText(/Select .*GTFS/i).upload({
-              encoding: 'base64',
-              fileContent,
-              fileName: region.GTFSfile,
-              mimeType: 'application/octet-stream'
-            })
-          }
-        )
+    .type(bundleName + '{enter}')
+  cy.location('pathname')
+    .should('match', /bundles\/\w{24}$/)
+    .then((path) => {
+      let matches = path.match(/\w{24}$/)
+      let file = `cypress/fixtures/regions/.${regionName}.json`
+      cy.readFile(file).then((contents) => {
+        contents = {...contents, bundleId: matches[0]}
+        cy.writeFile(file, contents, {log: false})
       })
-      cy.findByRole('button', {name: /Create/i}).click()
-      cy.findByText(/Processing/)
-      cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
-      cy.navTo('Network Bundles')
-    }
-  })
-  cy.location('pathname').should('match', /.*\/bundles$/)
-})
+    })
+}
 
 Cypress.Commands.add('setupProject', (regionName) => {
   cy.setupBundle(regionName)

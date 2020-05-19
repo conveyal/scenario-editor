@@ -113,39 +113,44 @@ function createNewBundle(regionName) {
 
 Cypress.Commands.add('setupProject', (regionName) => {
   cy.setupBundle(regionName)
-  let projectName = regionName + ' project'
-  cy.navTo('Projects')
-  cy.contains('Create new Project')
-  cy.get('body').then((body) => {
-    if (body.text().includes(projectName)) {
-      // project already exists; just select it
-      cy.findByText(projectName).click()
+  let logFile = `cypress/fixtures/regions/.${regionName}.json`
+  cy.readFile(logFile, {log: false}).then((IDs) => {
+    let regionId = IDs.regionId
+    if ('projectId' in IDs) {
+      let projectId = IDs.projectId
+      cy.visit(`/regions/${regionId}/projects/${projectId}`)
     } else {
-      // project needs to be created
-      let bundleName = regionName + ' bundle'
-      cy.findByText(/Create new Project/i).click()
-      cy.location('pathname').should('match', /\/create-project/)
-      cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
-      cy.findByLabelText(/Associated network bundle/i).click()
-      cy.findByText(bundleName).click()
-      cy.get('a.btn')
-        .contains(/Create/)
-        .click()
+      cy.visit(`/regions/${regionId}/projects`)
+      createNewProject(regionName)
     }
   })
+})
+
+function createNewProject(regionName) {
+  let projectName = regionName + ' project'
+  let bundleName = regionName + ' bundle'
+  cy.contains('Create new Project')
+  cy.findByText(/Create new Project/i).click()
+  cy.location('pathname').should('match', /\/create-project/)
+  cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
+  cy.findByLabelText(/Associated network bundle/i).click()
+  cy.findByText(bundleName).click()
+  cy.get('a.btn')
+    .contains(/Create/)
+    .click()
   cy.contains(/Modifications/, {log: false})
   // store the projectId
+  let logFile = `cypress/fixtures/regions/.${regionName}.json`
   cy.location('pathname', {log: false})
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
-      let matches = path.match(/(?:\/projects\/)(?<uuid>\w{24})/)
-      let file = `cypress/fixtures/regions/.${regionName}.json`
-      cy.readFile(file, {log: false}).then((contents) => {
-        contents = {...contents, projectId: matches.groups.uuid}
-        cy.writeFile(file, contents, {log: false})
+      let projectId = path.match(/\w{24}$/)[0]
+      cy.readFile(logFile, {log: false}).then((contents) => {
+        contents = {...contents, projectId: projectId}
+        cy.writeFile(logFile, contents, {log: false})
       })
     })
-})
+}
 
 Cypress.Commands.add('deleteProject', (projectName) => {
   cy.navTo('Projects')

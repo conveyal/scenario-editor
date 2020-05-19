@@ -6,10 +6,16 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
+function pseudoFixture(regionName) {
+  // this is a file used to store randomly generated UUIDs associated with
+  // objects in order to look them up efficiently across tests without resorting
+  // to unecessary UI interaction in the 'before' hook
+  return `cypress/fixtures/regions/.${regionName}.json`
+}
+
 Cypress.Commands.add('setupRegion', (regionName) => {
   // set up the named region from fixtures if necessary
-  let logFile = `cypress/fixtures/regions/.${regionName}.json`
-  cy.readFile(logFile, {log: false}).then((IDs) => {
+  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
     if ('regionId' in IDs) {
       // go to region directly
       cy.visit('/regions/' + IDs.regionId)
@@ -43,7 +49,7 @@ function createNewRegion(regionName) {
   cy.location('pathname', {log: false}).then((path) => {
     let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
     cy.writeFile(
-      `cypress/fixtures/regions/.${regionName}.json`,
+      pseudoFixture(regionName),
       {regionId: matches.groups.uuid},
       {log: false}
     )
@@ -52,8 +58,7 @@ function createNewRegion(regionName) {
 
 Cypress.Commands.add('setupBundle', (regionName) => {
   cy.setupRegion(regionName)
-  let logFile = `cypress/fixtures/regions/.${regionName}.json`
-  cy.readFile(logFile, {log: false}).then((IDs) => {
+  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
     let regionId = IDs.regionId
     if ('bundleId' in IDs) {
       let bundleId = IDs.bundleId
@@ -103,18 +108,16 @@ function createNewBundle(regionName) {
     .should('match', /bundles\/\w{24}$/)
     .then((path) => {
       let matches = path.match(/\w{24}$/)
-      let file = `cypress/fixtures/regions/.${regionName}.json`
-      cy.readFile(file).then((contents) => {
+      cy.readFile(pseudoFixture(regionName)).then((contents) => {
         contents = {...contents, bundleId: matches[0]}
-        cy.writeFile(file, contents, {log: false})
+        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
       })
     })
 }
 
 Cypress.Commands.add('setupProject', (regionName) => {
   cy.setupBundle(regionName)
-  let logFile = `cypress/fixtures/regions/.${regionName}.json`
-  cy.readFile(logFile, {log: false}).then((IDs) => {
+  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
     let regionId = IDs.regionId
     if ('projectId' in IDs) {
       let projectId = IDs.projectId
@@ -140,14 +143,13 @@ function createNewProject(regionName) {
     .click()
   cy.contains(/Modifications/, {log: false})
   // store the projectId
-  let logFile = `cypress/fixtures/regions/.${regionName}.json`
   cy.location('pathname', {log: false})
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
       let projectId = path.match(/\w{24}$/)[0]
-      cy.readFile(logFile, {log: false}).then((contents) => {
+      cy.readFile(pseudoFixture(regionName), {log: false}).then((contents) => {
         contents = {...contents, projectId: projectId}
-        cy.writeFile(logFile, contents, {log: false})
+        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
       })
     })
 }

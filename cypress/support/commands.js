@@ -17,10 +17,9 @@ Cypress.Commands.add('setupRegion', (regionName) => {
   // set up the named region from fixtures if necessary
   cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
     if ('regionId' in IDs) {
-      // go to region directly
-      cy.visit('/regions/' + IDs.regionId)
+      cy.visit(`/regions/${IDs.regionId}`)
+      cy.contains(/Create new Project/i)
     } else {
-      // set up the region
       createNewRegion(regionName)
     }
   })
@@ -44,28 +43,28 @@ function createNewRegion(regionName) {
       .type(region.east, {delay: 0})
   })
   cy.findByRole('button', {name: /Set up a new region/}).click()
-  cy.contains(/Upload a new network bundle|create new project/i, {log: false})
+  cy.contains(/Upload a new network bundle|create new project/i)
   // store the region UUID for later
-  cy.location('pathname', {log: false}).then((path) => {
-    let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
-    cy.writeFile(
-      pseudoFixture(regionName),
-      {regionId: matches.groups.uuid},
-      {log: false}
-    )
-  })
+  cy.location('pathname')
+    .should('match', /regions\/\w{24}$/)
+    .then((path) => {
+      let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
+      cy.writeFile(pseudoFixture(regionName), {regionId: matches.groups.uuid})
+    })
 }
 
 Cypress.Commands.add('setupBundle', (regionName) => {
-  cy.setupRegion(regionName)
-  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
-    let regionId = IDs.regionId
+  cy.readFile(pseudoFixture(regionName)).then((IDs) => {
     if ('bundleId' in IDs) {
-      let bundleId = IDs.bundleId
-      cy.visit(`/regions/${regionId}/bundles/${bundleId}`)
-    } else {
-      cy.visit(`/regions/${regionId}/bundles`)
+      cy.visit(`/regions/${IDs.regionId}/bundles/${IDs.bundleId}`)
+      cy.contains(/create a new network bundle/i)
+    } else if ('regionId' in IDs) {
+      // no bundle, but region exists
+      cy.visit(`/regions/${IDs.regionId}/bundles`)
       createNewBundle(regionName)
+    } else {
+      cy.setupRegion(regionName)
+      cy.setupBundle(regionName)
     }
   })
 })
@@ -116,15 +115,16 @@ function createNewBundle(regionName) {
 }
 
 Cypress.Commands.add('setupProject', (regionName) => {
-  cy.setupBundle(regionName)
   cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
-    let regionId = IDs.regionId
     if ('projectId' in IDs) {
-      let projectId = IDs.projectId
-      cy.visit(`/regions/${regionId}/projects/${projectId}`)
-    } else {
-      cy.visit(`/regions/${regionId}/projects`)
+      cy.visit(`/regions/${IDs.regionId}/projects/${IDs.projectId}`)
+      cy.contains(/Create a modification/i)
+    } else if ('bundleId' in IDs) {
+      cy.visit(`/regions/${IDs.regionId}/projects`)
       createNewProject(regionName)
+    } else {
+      cy.setupBundle(regionName)
+      cy.setupProject(regionName)
     }
   })
 })

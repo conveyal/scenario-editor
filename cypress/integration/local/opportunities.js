@@ -53,12 +53,6 @@ describe('Opportunities', () => {
     cy.contains(/Delete entire dataset/i).click()
   })
 
-  it('can be imported from LODES', function () {
-    // TODO
-    //cy.findByText(/Fetch LODES/i).click()
-    // Error on the server - Cannot download LODES in offline mode.
-  })
-
   it('can be uploaded as shapefile', function () {
     // TODO
   })

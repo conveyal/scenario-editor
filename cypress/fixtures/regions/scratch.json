@@ -31,6 +31,12 @@
       "latitudeField": "lat",
       "longitudeField": "lon",
       "numericFields": ["count"]
+    },
+    "shapefile": {
+      "name": ""
+    },
+    "grid": {
+      "name": ""
     }
   },
   "importRoutes": {

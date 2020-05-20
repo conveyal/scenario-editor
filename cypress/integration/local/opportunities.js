@@ -28,10 +28,12 @@ describe('Opportunities', () => {
       .should('not.be.disabled')
       .click()
     cy.location('pathname').should('match', /opportunities$/)
-    cy.contains(oppName + ' (UPLOADING)')
-    // TODO at this point i get an AWS-related error
-    // need to finish by checking that the upload:
-    // finishes processing
+    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+    cy.findByText(/Select\.\.\./)
+      .click()
+      .type(`${oppName}{enter}`)
+    cy.contains(/Delete entire dataset/i).click()
+    // TODO need to finish by checking that the upload:
     // has only the one numeric field
     // can be seen on the map
     // can be deleted

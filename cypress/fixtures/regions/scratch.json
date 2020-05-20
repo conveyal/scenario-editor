@@ -23,7 +23,14 @@
     [39.077075788976124, -84.51271533966064],
     [39.07675929457793, -84.51522588729858]
   ],
-  "opportunityCSV": "regions/nky/sports-pitches.csv",
+  "opportunities": {
+    "csv": {
+      "file": "regions/nky/sports-pitches.csv",
+      "latitudeField": "lat",
+      "longitudeField": "lon",
+      "numericFields": ["count"]
+    }
+  },
   "importRoutes": {
     "shapefile": "regions/nky/import-routes.zip",
     "nameField": "name",

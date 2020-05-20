@@ -26,6 +26,8 @@
   "opportunities": {
     "csv": {
       "file": "regions/nky/sports-pitches.csv",
+      "name": "pitches",
+      "description": "sports fields from OSM - baseball diamonds, etc.",
       "latitudeField": "lat",
       "longitudeField": "lon",
       "numericFields": ["count"]

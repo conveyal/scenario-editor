@@ -6,12 +6,13 @@ describe('Opportunities', () => {
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.navTo(/Opportunity datasets/i)
+    cy.get('div.leaflet-container').as('map')
   })
 
   it('can be uploaded as CSV', function () {
     let opportunity = this.region.opportunities.csv
-
-    let oppName = 'opp ' + Date.now()
+    let oppName = opportunity.name + ' ' + Date.now()
+    let expectedFieldCount = 1 + opportunity.numericFields.length
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
     cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
@@ -30,20 +31,26 @@ describe('Opportunities', () => {
       .should('not.be.disabled')
       .click()
     cy.location('pathname').should('match', /opportunities$/)
-    // find the alert showing this upload is complete and close it
+    // find the message showing this upload is complete
     cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
       .parent()
       .parent()
-      .findByRole('button', /x/)
-      .click()
-    //
+      .as('notice')
+    // cheech number of fields uploaded
+    cy.get('@notice').contains(
+      `Finished uploading ${expectedFieldCount} features`
+    )
+    // close the message
+    cy.get('@notice').findByRole('button', /x/).click()
+    // select in the dropdown
     cy.findByText(/Select\.\.\./)
       .click()
-      .type(`${oppName}{enter}`)
+      .type(`${oppName}: ${opportunity.numericFields[0]} {enter}`)
+    // look at the map
+    cy.waitForMapToLoad()
+    cy.get('@map').matchImageSnapshot('csv-' + opportunity.name)
+    //
     cy.contains(/Delete entire dataset/i).click()
-    // TODO need to finish by checking that the upload:
-    // has only the numeric fields
-    // can be seen on the map
   })
 
   it('can be imported from LODES', function () {

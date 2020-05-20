@@ -306,7 +306,7 @@ Cypress.Commands.add('waitForMapToLoad', () => {
     .then((map) => {
       // this just does not seem to work as expected. The wait remains necessary
       cy.wrap(map).its('_loaded').should('be.true')
-      cy.wrap(map).its('_renderer').its('_drawing').should('be.false')
+      //cy.wrap(map).its('_renderer').its('_drawing').should('be.false')
       cy.wait(500) // eslint-disable-line cypress/no-unnecessary-waiting
     })
 })

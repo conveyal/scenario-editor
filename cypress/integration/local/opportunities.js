@@ -54,7 +54,14 @@ describe('Opportunities', () => {
   })
 
   it('can be uploaded as shapefile', function () {
-    // TODO
+    let opportunity = this.region.opportunities.shapefile
+    let oppName = opportunity.name + ' ' + Date.now()
+    //let expectedFieldCount = opportunity.numericFields.length
+    cy.findByText(/Upload a new dataset/i).click()
+    cy.location('pathname').should('match', /\/opportunities\/upload$/)
+    cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+    cy.get('input[placeholder="Select opportunity dataset*"]')
+    //  .attachFile(opportunity.files+'')
   })
 
   it('can be uploaded as grid', function () {

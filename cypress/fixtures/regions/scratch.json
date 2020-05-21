@@ -33,7 +33,17 @@
       "numericFields": ["count"]
     },
     "shapefile": {
-      "name": ""
+      "name": "block groups",
+      "files": "regions/nky/block-groups/",
+      "numericFields": [
+        "people",
+        "males",
+        "females",
+        "asians",
+        "blacks",
+        "hispanics",
+        "whites"
+      ]
     },
     "grid": {
       "name": ""

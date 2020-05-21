@@ -17,9 +17,9 @@ context('Network bundles', () => {
     cy.fixture(this.region.PBFfile, {encoding: 'base64'}).then(
       (fileContent) => {
         cy.findByLabelText(/Select PBF file/i).upload({
-          encoding: 'base64',
           fileContent,
           fileName: this.region.PBFfile,
+          encoding: 'base64',
           mimeType: 'application/octet-stream'
         })
       }
@@ -28,9 +28,9 @@ context('Network bundles', () => {
     cy.fixture(this.region.GTFSfile, {encoding: 'base64'}).then(
       (fileContent) => {
         cy.findByLabelText(/Select .*GTFS/i).upload({
-          encoding: 'base64',
           fileContent,
           fileName: this.region.GTFSfile,
+          encoding: 'base64',
           mimeType: 'application/octet-stream'
         })
       }

@@ -20,8 +20,7 @@ describe('Opportunities', () => {
       cy.findByLabelText(/^Select opportunity dataset/i).upload({
         fileContent,
         fileName: opportunity.file,
-        mimeType: 'text/csv',
-        encoding: 'utf-8'
+        mimeType: 'text/csv'
       })
     })
     cy.findByLabelText(/Latitude/).type(opportunity.latitudeField)
@@ -60,8 +59,7 @@ describe('Opportunities', () => {
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
     cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
-    cy.get('input[placeholder="Select opportunity dataset*"]')
-    //  .attachFile(opportunity.files+'')
+    cy.findByLabelText(/Select opportunity dataset/)
   })
 
   it('can be uploaded as grid', function () {

@@ -78,18 +78,18 @@ function createNewBundle(regionName) {
   cy.fixture('regions/' + regionName + '.json').then((region) => {
     cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
       cy.findByLabelText(/Select PBF file/i).upload({
-        encoding: 'base64',
         fileContent,
         fileName: region.PBFfile,
+        encoding: 'base64',
         mimeType: 'application/octet-stream'
       })
     })
     cy.findByText(/Upload new GTFS/i).click()
     cy.fixture(region.GTFSfile, {encoding: 'base64'}).then((fileContent) => {
       cy.findByLabelText(/Select .*GTFS/i).upload({
-        encoding: 'base64',
         fileContent,
         fileName: region.GTFSfile,
+        encoding: 'base64',
         mimeType: 'application/octet-stream'
       })
     })

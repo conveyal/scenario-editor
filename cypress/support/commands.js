@@ -15,10 +15,11 @@ function pseudoFixture(regionName) {
 
 Cypress.Commands.add('setupRegion', (regionName) => {
   // set up the named region from fixtures if necessary
+  cy.task('touch', pseudoFixture(regionName))
   cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
     if ('regionId' in IDs) {
       cy.visit(`/regions/${IDs.regionId}`)
-      cy.contains(/Create new Project/i)
+      cy.contains(/Create new Project|Upload a .* Bundle/i)
     } else {
       createNewRegion(regionName)
     }
@@ -31,16 +32,16 @@ function createNewRegion(regionName) {
   cy.fixture('regions/' + regionName + '.json').then((region) => {
     cy.findByLabelText(/North bound/)
       .clear()
-      .type(region.north, {delay: 0})
+      .type(region.north, {delay: 1})
     cy.findByLabelText(/South bound/)
       .clear()
-      .type(region.south, {delay: 0})
+      .type(region.south, {delay: 1})
     cy.findByLabelText(/West bound/)
       .clear()
-      .type(region.west, {delay: 0})
+      .type(region.west, {delay: 1})
     cy.findByLabelText(/East bound/)
       .clear()
-      .type(region.east, {delay: 0})
+      .type(region.east, {delay: 1})
   })
   cy.findByRole('button', {name: /Set up a new region/}).click()
   cy.contains(/Upload a new network bundle|create new project/i)
@@ -54,6 +55,7 @@ function createNewRegion(regionName) {
 }
 
 Cypress.Commands.add('setupBundle', (regionName) => {
+  cy.task('touch', pseudoFixture(regionName))
   cy.readFile(pseudoFixture(regionName)).then((IDs) => {
     if ('bundleId' in IDs) {
       cy.visit(`/regions/${IDs.regionId}/bundles/${IDs.bundleId}`)
@@ -115,6 +117,7 @@ function createNewBundle(regionName) {
 }
 
 Cypress.Commands.add('setupProject', (regionName) => {
+  cy.task('touch', pseudoFixture(regionName))
   cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
     if ('projectId' in IDs) {
       cy.visit(`/regions/${IDs.regionId}/projects/${IDs.projectId}`)
@@ -270,7 +273,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
       cy.contains(/Delete this region/i, {log: false})
       break
     case /Projects/i.toString():
-      cy.contains(/Create new Project/i, {log: false})
+      cy.contains(/Create new Project|Upload a .* Bundle/i, {log: false})
       break
     case /Network Bundles/i.toString():
       cy.contains(/Create a new network bundle/i, {log: false})

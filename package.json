@@ -107,6 +107,7 @@
     "react": "^16.13.1",
     "react-datetime": "^2.16.3",
     "react-dom": "^16.13.1",
+    "react-ga": "^2.7.0",
     "react-leaflet": "^2.7.0",
     "react-leaflet-control": "^2.1.2",
     "react-leaflet-draw": "^0.19.0",

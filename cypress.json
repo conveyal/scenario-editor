@@ -8,5 +8,6 @@
     "password": "fakepassword",
     "authZeroClientId": "",
     "authZeroDomain": ""
-  }
+  },
+  "dataPrefix": "CYP_"
 }

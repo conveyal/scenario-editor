@@ -5,14 +5,21 @@ To measure access to spatially distributed opportunities (e.g. jobs, people, sch
 
 Opportunity datasets can be added either by uploading a CSV or shapefile representing the spatial distribution of opportunities, or by using the LODES data import tool (US only).
 
-.. _upload_opportunities:
+.. \_upload_opportunities:
+
 ## Uploading an opportunity dataset
 
-A spatial dataset representing any opportunities of interest may be uploaded as either a CSV or shapefile, formatted to the specifications described below. To start an upload, click: <br><span class="btn btn-success"><i class="fa fa-plus"></i> Upload a new opportunity dataset</span>
+A spatial dataset representing any opportunities of interest can be uploaded in one of three formats:
 
-Enter a name for the opportunity dataset source, then select the appropriate file(s). Once this is done, click the upload button to start the upload. Opportunity datasets will be saved with the source name you entered and the attribute/column names of the uploaded files.
+- CSV
+- shapefile
+- our custom .grid format
 
-After processing is complete, you can refresh the page and see dot-density maps of your datasets, converted to the [analysis grid](../analysis/methodology.html#spatial-resolution) used in Conveyal Analysis.
+To start an upload, click: <br><span class="btn btn-success"><i class="fa fa-plus"></i> Upload a new opportunity dataset</span>
+
+Enter a name for the opportunity dataset source, then select the appropriate file(s). Once this is done, click the upload button to start the upload. Opportunity datasets will be saved with the source name you entered and the attribute/column names, if any, of the uploaded files.
+
+After processing is complete you can select a dataset from the dropdown menu to show a dot-density map of your opportunity data converted to the [grid](../analysis/methodology.html#spatial-resolution) used in Conveyal Analysis.
 
 ### CSV
 
@@ -52,6 +59,8 @@ Selecting an existing opportunity dataset from the dropdown menu will give you o
 <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit dataset name</span><br>
 <span class="btn btn-danger"><i class="fa fa-trash"></i> Delete this dataset</span><br>
 <span class="btn btn-danger"><i class="fa fa-trash"></i> Delete entire dataset source</span> (e.g. all attributes from a shapefile)
+
+You can also download your dataset as a [geoTiff](https://en.wikipedia.org/wiki/GeoTIFF) raster file for use in an external GIS application, or you can download it in our custom .grid format, which may be useful for preserving the exact data used in an analysis or transfering it between regions.
 
 ## LODES dataset import
 

@@ -7,7 +7,7 @@ After selecting a :term:`project`, you will arrive at the modifications page, sh
   <figcaption>Initial view in editing mode for an established project</figcaption>
 </figure>
 
-To prevent data conflicts, the system does not support multiple users or browser tabs editing the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them. Modifications can later be imported into a project from other projects based on the same :term:`GTFS bundle` (See :ref:`managing_mods`).
+To prevent data conflicts, the system does not support multiple users or browser tabs editing the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them. Modifications can later be imported into a project from other projects based on the same :term:`network bundle` (See :ref:`managing_mods`).
 
 ## Create a new modification
 

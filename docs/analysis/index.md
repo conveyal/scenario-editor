@@ -8,7 +8,7 @@ To retrieve results for the origin marker shown on the map, you can either move 
 <br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
 This will initialize a compute cluster which may take a minute to start up. 
-If this is your first time performing an analysis with a given :term:`bundle<gtfs bundle>`, it may take some time to build the network. This only needs to be done once for each bundle. 
+If this is your first time performing an analysis with a given :term:`bundle<network bundle>`, it may take some time to build the network. This only needs to be done once for each bundle. 
 For more information, see :ref:`why_the_wait`
 
 Once the compute cluster is initialized, you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a chart showing cumulative accessibility results at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red. 
@@ -44,7 +44,7 @@ If an [opportunity dataset](../prepare-inputs/upload-opportunity-data.html) is s
 ## Analysis panel
 
 The left panel has controls for the analysis and displays the access to opportunities afforded by the :term:`scenario`. At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, access to schools, or some other variable of interest represented in an :term:`opportunity dataset` you uploaded.
-Additional scenarios can be selected for comparison. A :term:`baseline<baseline network>` scenario with no modifications (i.e. the unmodified :term:`GTFS bundle` you uploaded) is automatically available for every project.
+Additional scenarios can be selected for comparison. A :term:`baseline<baseline network>` scenario with no modifications (i.e. the unmodified :term:`network bundle` you uploaded) is automatically available for every project.
 
 ### Charts of accessibility results
 

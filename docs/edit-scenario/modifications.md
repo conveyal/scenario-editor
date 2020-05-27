@@ -2,14 +2,14 @@
 
 When creating a new modification, you have several different options, each explained in detail below.
 
-- `Add trip pattern`\_
-- `Adjust Dwell Time`\_
-- `Adjust Speed`\_
-- `Convert to Frequency`\_
-- `Remove Stops`\_
-- `Remove Trips`\_
-- `Reroute`\_
-- `Custom`\_ (not for general use)
+- `Add trip pattern`_
+- `Adjust Dwell Time`_
+- `Adjust Speed`_
+- `Convert to Frequency`_
+- `Remove Stops`_
+- `Remove Trips`_
+- `Reroute`_
+- `Custom`_ (not for general use)
 
 Across all modification types the basic actions are consistent.
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>
@@ -24,8 +24,7 @@ Clicking the small blue back arrow saves your changes and takes you back to the 
 <br><span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>
 <br>Changes are also automatically saved every 10 seconds.
 
-.. \_add_trip_pattern:
-
+.. _add_trip_pattern:
 ## Add trip pattern
 
 The **add trip pattern** modification allows you to add new :term:`trip patterns<trip pattern>` to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars.
@@ -87,8 +86,7 @@ Once you have created an alignment, you'll need to specify when the route runs u
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
-.. \_adjust_dwell_time:
-
+.. _adjust_dwell_time:
 ## Adjust dwell time
 
 You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular stop. As with the remove-stops modification, you can select a feed, route and optionally patterns. You can then use the map to select the affected stops (if you skip this step, all stops will have their dwell times adjusted). You can then choose to either enter a new dwell time (in seconds), or scale the existing dwell times (for instance, entering 2 would double existing dwell times).
@@ -99,8 +97,7 @@ Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_tim
   <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
-.. \_adjust_speed:
-
+.. _adjust_speed:
 ## Adjust speed
 
 This modification can be applied to multiple routes, but only one route will be shown on the map.
@@ -125,8 +122,7 @@ The _Select_ option will begin a new selection and the _Add to_ option will add 
 
 Finally, enter a numeric value in the _Scale speed by_ field --- this is the factor to multiply the speed by. For instance, if you enter 1.3, the speed of vehicles will increase by 30% when traveling between stops. Note however that this modification does not affect dwell times; to model changes in dwell time, see the :ref:`adjust_dwell_time` modification. It also does not take into account the possibility of increased frequency due to faster, more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
 
-.. \_convert_to_frequency:
-
+.. _convert_to_frequency:
 ## Convert to frequency
 
 Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing :term:`trip patterns<trip pattern>` with frequency based :ref:`timetables`. You can opt either to
@@ -158,10 +154,9 @@ Within each timetable, you will need to select a trip pattern from your route, t
 Typically, you will need to create _at least_ two new timetables, one for each direction of travel.
 
 .. note::
-Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
+   Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
 
-.. \_remove_stops:
-
+.. _remove_stops:
 ## Remove stops
 
 It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new _remove stops_ modification, and select a feed, route, and patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.
@@ -184,7 +179,7 @@ Another common modification is to remove trips. The most common use is to remove
   <img src="../img/remove-trips.png" alt="Remove trips" />
 </figure>
 
-.. \_reroute:
+.. _reroute:
 
 ## Reroute
 
@@ -212,7 +207,7 @@ A few examples should help to illustrate how this modification works. Consider a
 - To extend this pattern backward, to originate at a stop Y, select A as the "end of reroute/extension," activate route editing, and click on stop Y to add a segment from Y -> A. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and D are not affected.
 - To detour this pattern so that it serves a stop Z between B and C, select B as the "start of reroute/extension", select C as the "end of reroute/extension", activate route editing, click on the new segment to add a stop, and drag the added stop to Z. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and B, and between C and D, are not affected.
 
-.. \_custom:
+.. _custom:
 
 ## Custom modifications
 

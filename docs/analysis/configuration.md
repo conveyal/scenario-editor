@@ -1,5 +1,4 @@
 .. _analysis_configuration:
-
 # Options and configuration
 
 Below the accessibility charts, different parameters for the analysis can be set:

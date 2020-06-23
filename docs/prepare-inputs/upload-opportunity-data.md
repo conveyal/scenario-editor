@@ -48,7 +48,7 @@ A shapefile may represent opportunities as either points or polygons. Opportunit
 Shapefiles should not be zipped; select all of the files in the Shapefile when uploading (at the very least, `.shp`, `.shx`, `.dbf` and `.prj`). How you select multiple files depends on your browser and operating system, but generally will involve shift-clicking, control-clicking or command-clicking.
 
 <figure>
-  <img src="../img/upload-shapefile.png" />
+  <img src="../static/img/upload-shapefile.png" />
   <figcaption>Uploading a Shapefile by selecting all constituent files</figcaption>
 </figure>
 

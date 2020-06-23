@@ -4,7 +4,7 @@
 The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. 
 
 <figure>
-  <img src="../img/analysis-default-settings.png" />
+  <img src="../static/img/analysis-default-settings.png" />
   <figcaption>The single-point analysis page with no projects or scenarios selected</figcaption>
 </figure>
 
@@ -23,7 +23,7 @@ Many other configuration parameters are described in :ref:`analysis_configuratio
 After the server returns results the map will show a blue :term:`isochrone` for your primary scenario. This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty. If a comparison scenario is selected, its isochrone will be shown in red. The overlap of the main and comparison isochrones should be visible as a combination of the two colors.
 
 <figure>
-  <img src="../img/overlapping-isochrones.png" />
+  <img src="../static/img/overlapping-isochrones.png" />
   <figcaption>Overlapping isochrones with a comparison scenario</figcaption>
 </figure>
 
@@ -33,7 +33,7 @@ The default values are 60 minutes, at the 50<sup>th</sup> percentile. This would
 For single point analysis, percentile values are restricted to a preset range (5,25,50,75,95), so moving this slider will result in fairly discrete changes in the isochrone. An arbitrary percentile value can be set for a :ref:`regional_analysis`. 
 
 <figure>
-  <img src="../img/travel-time-slider.gif" />
+  <img src="../static/img/travel-time-slider.gif" />
   <figcaption>Testing different travel time cutoffs, percentiles, and origins</figcaption>
 </figure>
 
@@ -42,7 +42,7 @@ The display of modifications on the map is controlled in editing mode (See: :ref
 To change the origin of the analysis, drag the marker to a new location. Clicking on the map away from the marker will display a box and whisker plot of the distribution of travel times from the origin to that location. For example, in the image below the travel time varies between about 30 and 50 minutes depending on when one departs.
 
 <figure>
-  <img src="../img/destination-travel-time-distribution.png" />
+  <img src="../static/img/destination-travel-time-distribution.png" />
   <figcaption>The travel time distribution from an origin to a destination</figcaption>
 </figure>
 
@@ -58,7 +58,7 @@ The options available in this panel are described more fully in :ref:`analysis_c
 If an :term:`opportunity dataset` is selected, the map will include a dot-density layer representing opportunities and you will be shown a chart of the accessibility (i.e. the number of opportunities reachable) from the chosen origin.
 
 <figure>
-  <img src="../img/analysis-stacked-percentile.png" />
+  <img src="../static/img/analysis-stacked-percentile.png" />
   <figcaption>A stacked percentile plot</figcaption>
 </figure>
 
@@ -73,7 +73,7 @@ To the left of the Y axis labels is a box-and-whisker plot. This shows the same 
 When a comparison scenario is selected two box plots will be displayed to the left of the axis with the comparison in red. The plots will also be simplified and only the bands between the 75<sup>th</sup> and 25<sup>th</sup> percentile travel times will be shown.
 
 <figure>
-  <img src="../img/stacked-percentile-comparison.png" />
+  <img src="../static/img/stacked-percentile-comparison.png" />
   <figcaption>A stacked percentile plot comparing two scenarios. Note that the main scenario in blue has travel time variability while the comparison scenario in red (bicycle access only) has none.</figcaption>
 </figure>
 

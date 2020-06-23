@@ -8,7 +8,7 @@ You can accomplish both of these things using the phasing settings. We implement
 The image below shows the settings for a pulse between two lines in Atlanta. 
 
 <figure>
-  <img src="../img/phase.png" alt="Phasing a route in Atlanta, Georgia, USA"/>
+  <img src="../static/img/phase.png" alt="Phasing a route in Atlanta, Georgia, USA"/>
   <figcaption>Phasing fields</figcaption>
 </figure>
 

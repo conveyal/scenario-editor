@@ -10,7 +10,7 @@ The **add trip pattern** modification allows you to add new :term:`trip patterns
 After creating a new modification you will see something like the view below.
 
 <figure>
-  <img src="../img/new-add-trip-pattern.png" alt="a new add trip patterns modification" />
+  <img src="../static/img/new-add-trip-pattern.png" alt="a new add trip patterns modification" />
   <figcaption>Initial view of an add trip patterns modification</figcaption>
 </figure>
 
@@ -25,7 +25,7 @@ This will activate the map-based route editing mode. You can stop and save your 
 New route alignments are defined by by an ordered set of stops and control points. The actual route taken between these can either follow existing streets or it can take a straight line between points. It is also possible to combine the two options in one route as when a bus runs on the street but then diverts into a planned busway which is not yet part of the street network. The distance between stops is used to estimate segment travel time on the new alignment so it is important to as be as accurate with the alignment as possible.
 
 <figure>
-  <img src="../img/stop-edit-legend.png" alt="symbols for stops and control points"/>
+  <img src="../static/img/stop-edit-legend.png" alt="symbols for stops and control points"/>
   <figcaption>Map symbols for stops and control points</figcaption>
 </figure>
 
@@ -34,7 +34,7 @@ By default when you begin editing a new route, you can click once on the map to 
 Once created, any stop or control point can be moved by dragging it to a new location. Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. Similarly, control points can be converted back to stops or deleted by clicking on them.
 
 <figure>
-  <img src="../img/make-control-point.png" alt="convert a stop to a control point" />
+  <img src="../static/img/make-control-point.png" alt="convert a stop to a control point" />
   <figcaption>Clicking on a stop or control point brings up options to convert or delete it.</figcaption>
 </figure>
 
@@ -43,7 +43,7 @@ You can also insert a stop into the middle of an existing alignment. Simply hove
 On the panel to the left of the map there are a few options available while editing an alignment. These are described below.
 
 <figure>
-  <img src="../img/alignment-options.png" alt="alignment options" />
+  <img src="../static/img/alignment-options.png" alt="alignment options" />
   <figcaption>Alignment editing options and their default values</figcaption>
 </figure>
 
@@ -72,7 +72,7 @@ You may also want to adjust the dwell time along a route or at a particular stop
 Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_time and departure_time values. For such feeds where many or all dwell times are zero, the scaling approach will not work and dwell times must be set in seconds.
 
 <figure>
-  <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
+  <img src="../static/img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
 .. _adjust_speed:
@@ -87,14 +87,14 @@ Sometimes you will want to adjust the speed on an entire route or just a :term:`
 You will need to select a GTFS feed, routes and optionally :term:`trip patterns<trip pattern>` if only one route is selected. All trip patterns will be selected by default. Segments can be selected by clicking _Select_ from the toolbox shown in the figure below. This will allow you to begin drawing a polygon selection area on the map. Any segments within this area will be selected when the polygon is closed and selected segments will then render on the map in purple.
 
 <figure>
-  <img src="../img/segment-selector.png"/>
+  <img src="../static/img/segment-selector.png"/>
   <figcaption>Options for selecting segments of trip patterns</figcaption>
 </figure>
 
 The _Select_ option will begin a new selection and the _Add to_ option will add to the current selection if any. _Remove from_ allows you to select segments to remove from the current selection and _Clear_ un-selects all segments.
 
 <figure>
-  <img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
+  <img src="../static/img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
   <figcaption>Segments are selected from two overlapping trip patterns</figcaption>
 </figure>
 
@@ -113,7 +113,7 @@ The travel and dwell times on the replacement trips are based on those of an exi
 First, create a new modification and select _Convert to frequency_. Give the modification a name; you will likely want to name it after the route you plan to modify.
 
 <figure>
-  <img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
+  <img src="../static/img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
   <figcaption>A convert to frequency modification with a replacement timetable open</figcaption>
 </figure>
 
@@ -125,7 +125,7 @@ You then create any number of frequency entries using simple [timetables](timeta
 Within each timetable, you will need to select a trip pattern from your route, then a particular trip from that trip pattern to be used as a template. Travel times for the new timetable will be based on this template trip so it is important to choose one that is representative. For example, you may want to select one of the slower trips when specifying frequencies during congested peak-hour service.
 
 <figure>
-  <img src="../img/select-trip.png" alt="Selecting a template trip based on total travel time" />
+  <img src="../static/img/select-trip.png" alt="Selecting a template trip based on total travel time" />
   <figcaption>A convert to frequency modification with a replacement timetable open</figcaption>
 </figure>
 
@@ -146,7 +146,7 @@ When removing the beginning of a route, the dwell times at each stop are removed
 This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
 
 <figure>
-  <img src="../img/remove-stops.png"  alt="Remove stops" />
+  <img src="../static/img/remove-stops.png"  alt="Remove stops" />
 </figure>
 
 ### Remove trips
@@ -154,7 +154,7 @@ This modification does not take into account the possibility of increased freque
 Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific :term:`trip patterns<trip pattern>` on a particular route. In order to remove trips, create a new _remove trips_ modification, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this route/pattern combination will be removed and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active. In this case it implies that the trips will be removed from the selected variants.
 
 <figure>
-  <img src="../img/remove-trips.png" alt="Remove trips" />
+  <img src="../static/img/remove-trips.png" alt="Remove trips" />
 </figure>
 
 .. _reroute:
@@ -165,7 +165,7 @@ This modification type can be used to represent detours, extensions,and curtailm
 <br> then clicking an existing stop on the baseline pattern.
 
 <figure>
-  <img src="../img/reroute.png" alt="Rerouting" />
+  <img src="../static/img/reroute.png" alt="Rerouting" />
   <figcaption>A trip pattern being extended from a selected stop at the end of the line.</figcaption>
 </figure>
 
@@ -197,7 +197,7 @@ The custom modification type allows us to try out new development features that 
 Both street modification types require specifying whether access is allowed for **walking**, **cycling**, and **driving**. 
 
 <figure>
-  <img src="../img/street-mod-settings.png" alt="street properties"/>
+  <img src="../static/img/street-mod-settings.png" alt="street properties"/>
   <figcaption>Default settings for access and impedance on affected streets</figcaption>
 </figure>
 
@@ -216,7 +216,7 @@ The **add streets** modification allows you to add new links to the street netwo
 Once you've created the modification, you can add streets to the map by clicking the line icon on the right side of the map. This allows you to draw a line which will be linked to the street network only at the first and last points. To finish a polyline, click again on the final point or select "finish" from the editing menu. 
 
 <figure>
-  <img src="../img/add-street.png" alt="editing streets"/>
+  <img src="../static/img/add-street.png" alt="editing streets"/>
   <figcaption>Adding a simple pedestrian connection over a railway</figcaption>
 </figure>
 
@@ -233,6 +233,6 @@ Similar to the Add Streets modification, properties are set at the level of the 
 To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. 
 
 <figure>
-  <img src="../img/draw-a-polygon.png" alt="modifying streets"/>
+  <img src="../static/img/draw-a-polygon.png" alt="modifying streets"/>
   <figcaption>Drawing a new area on the map</figcaption>
 </figure>

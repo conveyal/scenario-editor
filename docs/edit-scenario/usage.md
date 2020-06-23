@@ -40,7 +40,7 @@ A panel will then be shown with multiple options to download or share the scenar
 * <span class="btn btn-info"><i class="fa fa-print"></i> Summary Report</span> a summary of all modifications in a scenario, for printing or reference. Keep in mind that some browsers may not print more than 30 pages or so of a long report.
 
 <figure>
-	<img src="../img/report.png" />
+	<img src="../static/img/report.png" />
 	<figcaption>A summary report for a scenario</figcaption>
 </figure>
 
@@ -77,7 +77,7 @@ To upload a shapefile from the upload/import panel (<i class="fa fa-upload"></i>
 After selecting and uploading a zipped shapefile, you should see the following options. You'll need to use the dropdown menus to identify the attributes from your uploaded shapefile that will be used to generate the modifications. 
 
 <figure>
-  <img src="../img/import-modifications-from-shapefile.png"/>
+  <img src="../static/img/import-modifications-from-shapefile.png"/>
   <figcaption>Options for importing route alignments from a shapefile</figcaption>
 </figure>
 

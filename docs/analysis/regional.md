@@ -12,7 +12,7 @@ You can also choose custom geographic bounds for your regional analysis. By defa
 When you have configured all of these options, the green **Multi-point**<i class="fa fa-plus"></i> button in your settings menu will be enabled. Clicking this will prompt you for a name for the analysis and begin processing. 
 
 <figure>
-  <img src="../img/ready-for-regional-analysis.png" />
+  <img src="../static/img/ready-for-regional-analysis.png" />
     <figcaption>With all settings properly configured, we are ready to begin a regional analysis.</figcaption>
 </figure>
 
@@ -21,14 +21,14 @@ Note that this button is disabled unless isochrones are displayed; checking sing
 After a few seconds, you will see your regional analysis appear in the list with a progress bar. Since Conveyal Analysis is computing accessibility from every origin in the region, it can take a [few minutes](../learn-more/faq.html#how-long-should-each-regional-analysis-take) for each regional analysis to complete.
 
 <figure>
-  <img src="../img/regional-progress.png" />
+  <img src="../static/img/regional-progress.png" />
     <figcaption>Computing status for a running regional analysis</figcaption>
 </figure>
 
 Once a regional analysis is complete, it can be viewed by selecting it from the drop-down menu, which will take you to the [regional analysis view](regional.html).
 
 <figure>
-  <img src="../img/regional-selection.png" />
+  <img src="../static/img/regional-selection.png" />
     <figcaption>Selecting a completed regional analysis from the drop-down menu</figcaption>
 </figure>
 
@@ -36,7 +36,7 @@ Once a regional analysis is complete, it can be viewed by selecting it from the 
 Upon selecting a completed regional analysis, you will see a screen like the following:
 
 <figure>
-  <img src="../img/regional.png" />
+  <img src="../static/img/regional.png" />
   <figcaption>Viewing a regional analysis</figcaption>
 </figure>
 
@@ -51,7 +51,7 @@ Using the download button, you can save regional analysis results in a raster fo
 You can also compare two regional analyses from different projects in the same region. The map will show the differences in accessibility between the two analyses, with blue areas showing increased accessibility, and red areas showing decreased accessibility, relative to the comparison analysis. Again, you can download raw results for the two analyses being compared for further styling and analysis in GIS.
 
 <figure>
-  <img src="../img/regional-comparison.png" />
+  <img src="../static/img/regional-comparison.png" />
     <figcaption>Map showing comparison of two regional analyses in Toronto</figcaption>
 </figure>
 
@@ -69,7 +69,7 @@ To create aggregation areas when viewing completed regional analysis, click
 You will then see options to upload and process a shapefile:
 
 <figure>
-  <img src="../img/upload-aggregation-area.png" />
+  <img src="../static/img/upload-aggregation-area.png" />
   <figcaption>Aggregation area upload options</figcaption>
 </figure>
 
@@ -88,7 +88,7 @@ To view aggregate metrics, select an uploaded aggregation area and what you want
 Once you have an aggregation area and weight selected, you will see a display similar to the one below, showing a histogram of how many of the units you weighted by experience a particular level of access.
 
 <figure>
-  <img src="../img/aggregate-accessibility.png" />
+  <img src="../static/img/aggregate-accessibility.png" />
   <figcaption>Aggregate accessibility in Brooklyn, New York, USA</figcaption>
 </figure>
 
@@ -101,7 +101,7 @@ You can also view these aggregate metrics when comparing two regional analyses.
 In the example below, the baseline scenario is shown in blue and an alternative scenario is shown in red, with a darker area where the two overlap. The horizontal axis is a scale of number of jobs accessible within 45 minutes. The height of each histogram bin represents the number of households who have the corresponding level of job access. The farther to the right the red distribution is, the higher the job access gains across households.
 
 <figure>
-  <img src="../img/seattle-comparison.jpeg" />
+  <img src="../static/img/seattle-comparison.jpeg" />
   <figcaption>Aggregate metrics of households' access to jobs in Seattle, Washington, USA</figcaption>
 </figure>
 

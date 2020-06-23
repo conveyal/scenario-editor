@@ -4,7 +4,7 @@
 Below the accessibility charts, different parameters for the analysis can be set:
 
 <figure>
-  <img src="../img/analysis-settings.png" />
+  <img src="../static/img/analysis-settings.png" />
   <figcaption>The analysis settings pane</figcaption>
 </figure>
 
@@ -69,13 +69,13 @@ In general the default setting should be fine unless you are advised otherwise b
 Occasionally analysis will fail because there is a problem with one of your modifications. When this occurs, error messages will be displayed detailing the issues as shown below. Simply return to the modification editor and correct the errors in the relevant modifications. 
 
 <figure>
-  <img src="../img/modification-error.png" />
+  <img src="../static/img/modification-error.png" />
   <figcaption>Error displayed for a modification</figcaption>
 </figure>
 
 In other cases, the scenario may generate a warning, for instance if you remove more time from a segment when speeding it up than the length of that segment. This is not necessarily an error but may require attention.
 
 <figure>
-  <img src="../img/scenario-warning.png" />
+  <img src="../static/img/scenario-warning.png" />
   <figcaption>Warnings displayed for a modification</figcaption>
 </figure>

@@ -2,7 +2,7 @@
 
 Conveyal uses a special or specific meaning for several terms. While we hope that their meaning is usually clear enough from the context, this glossary is provided for reference.
 
-# Baseline network
+## Baseline network
 The baseline network is the transport network without any associated modifications. It is a useful point of comparison during analysis and a starting point for most modifications.
 
 ## GTFS / GTFS feed

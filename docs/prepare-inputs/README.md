@@ -1,10 +1,10 @@
 # Preparing a baseline transport network
 
-Accessibility calculations will be based on :term:`transport networks<transport network>` that is set up in your :term:`region`. Transport networks includes scheduled transit service as well as the region's streets, sidewalks, bikeways, etc. Initially you will set up a :term:`baseline network`. Later on you will likely want to compare alternative :term:`scenarios<scenario>` by creating :term:`modifications<modification>` to the baseline network.
+Accessibility calculations will be based on [transport networks](../glossary#transport-network) that is set up in your [region](../glossary#region). Transport networks includes scheduled transit service as well as the region's streets, sidewalks, bikeways, etc. Initially you will set up a [baseline network](../glossary#baseline-network). Later on you will likely want to compare alternative [scenarios](../glossary#scenario) by creating [modifications](../glossary#modification) to the baseline network.
 
 ## Setting up a new region
 
-The :term:`region` is a [bounding box](https://wiki.openstreetmap.org/wiki/Bounding_Box) defining the area to be used for accessibility calculations. It should generally cover the entire service area of the agency or agencies you will be working with. Opportunities and network components outside this area will generally not be considered.
+The [region](../glossary#region) is a [bounding box](https://wiki.openstreetmap.org/wiki/Bounding_Box) defining the area to be used for accessibility calculations. It should generally cover the entire service area of the agency or agencies you will be working with. Opportunities and network components outside this area will generally not be considered.
 
 The regions page, shown after you log in, provides a list of existing regions (if any), and the option to create a new region. It is also accessible at any later point by clicking the globe icon (<i class="fa fa-globe"></i>). From the regions page, set up a new region by clicking:
 
@@ -16,7 +16,7 @@ Enter a name for the region and an optional description. To finalize region crea
 
 ## Creating a network bundle
 
-Conveyal Analysis requires a :term:`network bundle`, which consists of street and transit data.
+Conveyal Analysis requires a [network bundle](../glossary#network-bundle), which consists of street and transit data.
 
 To create a network bundle, click on the Network Bundles icon (<i class="fa fa-database"></i>), then click:
 
@@ -102,7 +102,7 @@ osmium tags-filter input.osm.pbf \
 
 ## Uploading GTFS feeds
 
-If your new network bundle will not be re-using previously uploaded GTFS, start by gathering :term:`GTFS feeds<GTFS feed>` for the transit agencies whose service you want to include. A GTFS feed is a set of CSV files inside a `.zip` archive.
+If your new network bundle will not be re-using previously uploaded GTFS, start by gathering [GTFS feeds](../glossary#GTFS--GTFS-feed) for the transit agencies whose service you want to include. A GTFS feed is a set of CSV files inside a `.zip` archive.
 
 Once these files are gathered on your computer, select the .zip files to upload in the "Upload new GTFS" tab of the network bundle creation panel. You can select multiple GTFS feeds in the file dialogue by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system).
 
@@ -124,7 +124,7 @@ After you have specified a name for the network bundle, OSM data to re-use or up
 
 ## Creating a Project
 
-Uploading and processing a network bundle may take several minutes. Once processing is complete, you should be able to create a new :term:`project` based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then,
+Uploading and processing a network bundle may take several minutes. Once processing is complete, you should be able to create a new [project](../glossary#project) based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then,
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Create new Project</span>
 

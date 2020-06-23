@@ -3,7 +3,7 @@
 After selecting a :term:`project`, you will arrive at the modifications page, shown below. Each project has an expandable list of numbered :term:`scenarios<scenario>` followed by a list of :term:`modifications<modification>` grouped by type. Each modification represents a single operation on the :term:`baseline network` (for example adding a line, or adjusting the speed of an existing line) and can be activated in multiple scenarios. Scenarios are a way of packaging isolated modifications into meaningful groups representing changes to the broader network. For example, you could create a scenario representing each of several funding scenarios with one for service cuts, one for extended service and so on.
 
 <figure>
-  <img src="../img/create-scenario.png" />
+  <img src="../static/img/create-scenario.png" />
   <figcaption>Initial view in editing mode for an established project</figcaption>
 </figure>
 
@@ -18,7 +18,7 @@ To add a modification, first navigate to the modification page (the <i class="fa
 Clicking on this will open a window prompting you to enter a name for the modification and to select a [modification type](modifications.html). 
 
 <figure>
-  <img src="../img/create-mod-dialog.png" />
+  <img src="../static/img/create-mod-dialog.png" />
   <figcaption>Window with options for creating a new modification</figcaption>
 </figure>
 
@@ -45,6 +45,6 @@ When editing modifications, you may opt to add them to one or more scenarios. Th
 By default, each modification is active in all scenarios that exist when the modification is created. You can change which scenarios a modification is active in by using the checkboxes corresponding to scenarios at the bottom of the modification detail panel.
 
 <figure>
-  <img src="../img/scenario-chooser.png" />
+  <img src="../static/img/scenario-chooser.png" />
   <figcaption>Choosing the scenarios in which a modification is active</figcaption>
 </figure>

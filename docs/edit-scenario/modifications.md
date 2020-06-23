@@ -117,7 +117,7 @@ First, create a new modification and select _Convert to frequency_. Give the mod
   <figcaption>A convert to frequency modification with a replacement timetable open</figcaption>
 </figure>
 
-Start by selecting a [GTFS feed](../glossary.md#GTFS) and then the route from that feed that you want to adjust. You should see all trip patterns for the selected route displayed on the map.
+Start by selecting a [GTFS feed](../glossary.md#GTFS--GTFS-feed) and then the route from that feed that you want to adjust. You should see all trip patterns for the selected route displayed on the map.
 
 You can choose to remove all existing trips on the route (the default) and start from scratch with new timetables. Or you may choose to retain trips outside the time windows in which you specify frequencies which is useful when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the checkbox labeled "_Retain existing scheduled trips at times without new frequencies specified_".
 

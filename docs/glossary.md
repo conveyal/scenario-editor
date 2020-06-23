@@ -2,7 +2,7 @@
 
 Conveyal uses a special or specific meaning for several terms. While we hope that their meaning is usually clear enough from the context, this glossary is provided for reference.
 
-## GTFS / GTFS feed {#GTFS}
+## GTFS / GTFS feed
 [General Transit Feed Specification](https://developers.google.com/transit/gtfs/), a format for transit network and schedule data. Most transit agencies produce **GTFS** feeds to power customer-facing trip planning applications, but they are also useful for analysis.
 
 ## Network-bundle

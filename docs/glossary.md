@@ -18,7 +18,7 @@ A modification is an alteration of some kind made to scheduled transit services.
 A network bundle consists of an OpenStreetMap file and one or more GTFS feeds associated with your region. A region can have multiple bundles, and a bundle can include a single agency's GTFS or feeds from several adjacent or overlapping agencies.
 
 ## Opportunity dataset
-An opportunity dataset is a spatial dataset with one or more numeric fields representing a count of opportunities (destinations) at particular locations in your [region](#region). See :ref:`upload_opportunities`.
+An opportunity dataset is a spatial dataset with one or more numeric fields representing a count of opportunities (destinations) at particular locations in your [region](#region). See [uploading opportunities](upload-opportunity-data.md#upload_opportunities).
 
 ## Project
 A project is means of associating scenarios and modifications with a particular network bundle. A project is associated with only one bundle, which cannot be changed after the project is created.

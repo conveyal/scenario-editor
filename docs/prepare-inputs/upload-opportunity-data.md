@@ -7,7 +7,7 @@ Opportunity datasets can be added either by uploading a CSV or shapefile represe
 
 .. _upload_opportunities:
 
-## Uploading an opportunity dataset
+## Uploading an opportunity dataset <a name="upload_opportunities"/>
 
 A spatial dataset representing any opportunities of interest can be uploaded in one of three formats:
 

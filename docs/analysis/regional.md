@@ -5,7 +5,7 @@ The :ref:`single_point_analysis` interface also allows creating a *regional anal
 
 ## Starting a regional analysis
 
-To start a regional analysis, first set the appropriate parameters using the controls for a :ref:`single_point_analysis`, and confirm that the :term:`isochrones<isochrone>` and accessibility plots are as expected.
+To start a regional analysis, first set the appropriate parameters using the controls for a :ref:`single_point_analysis`, and confirm that the [isochrones](../glossary.md#isochrone) and accessibility plots are as expected.
 
 You can also choose custom geographic bounds for your regional analysis. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, make sure they have the same bounds and routing engine version. The exact version and bounds used for previous regional analyses can be selected directly in their respective dropdown menus. 
 

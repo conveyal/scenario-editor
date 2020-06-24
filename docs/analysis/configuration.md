@@ -10,7 +10,7 @@ Below the accessibility charts, different parameters for the analysis can be set
 
 ## Travel time and variability
 
-The **Travel time cutoff** sets the maximum door-to-door travel time for the :term:`isochrone` on the map and accessibility indicators.
+The **Travel time cutoff** sets the maximum door-to-door travel time for the [isochrone](../glossary.md#isochrone) on the map and accessibility indicators.
 There may be variability in travel times, depending on when exactly in a specified time window someone starts their trip. The **Travel time percentile** sets which percentile of the distribution of total travel times to use. Low percentiles correspond to travelers having the information and flexibility to start trips at times that minimize their overall travel time. For more information, see [methodology](methodology.html#time-percentile). In single-point analyses the travel time percentile is rounded to one of five pre-defined values (5, 25, 50, 75, and 95).
 
 ## Bookmarks

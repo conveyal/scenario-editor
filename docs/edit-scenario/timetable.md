@@ -19,7 +19,7 @@ For :ref:`convert_to_frequency` modifications, speed and dwell time values are c
 
 You can specify whether the timetable represents an assumed headway, or represents the exact schedule, using the *Times are exact* checkbox. The default setting, with this box unchecked, should be used when a trip pattern's frequency is known but an exact schedule has not yet been defined (e.g. for a new service still in the planning stages). 
 
-For example, consider a timetable specifying that a particular :term:`trip pattern` runs every 15 minutes from 9 AM until 7 PM. With the checkbox unchecked, the routing engine knows that vehicles depart the first stop on the route every 15 minutes between 9 AM and 7 PM, but has no information as to exactly when that will happen. For example, vehicles might leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities will be simulated in order to get a complete picture of how different possible schedules might perform. See :ref:`methodology` for more details.
+For example, consider a timetable specifying that a particular [trip pattern](../glossary.md#trip-pattern) runs every 15 minutes from 9 AM until 7 PM. With the checkbox unchecked, the routing engine knows that vehicles depart the first stop on the route every 15 minutes between 9 AM and 7 PM, but has no information as to exactly when that will happen. For example, vehicles might leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities will be simulated in order to get a complete picture of how different possible schedules might perform. See :ref:`methodology` for more details.
 
 When the complete schedule is defined, it is appropriate to activate the *Times are exact* checkbox. In this case, a single fixed timetable will be created, with the first departure at the start time, and then additional departures with exactly the specified frequency until (but not including) the end time. For example, in the scenario given above, the vehicles would be scheduled to depart at exactly 9:00, 9:15, 9:30 until 6:45 (but not at 7:00 because the end time is not included). 
 
@@ -29,7 +29,7 @@ If the schedule is not known, but it is known that the schedules of two lines wi
 
 Timetable entries can be copied between :ref:`add_trip_pattern` and :ref:`convert_to_frequency` modifications.
 
-Some users may find it convenient to use a single template *add trip patterns* modification that specifies commonly used service windows and frequencies.  For example, you could create a "Base Timetables" :term:`modification` and deactivate it from all :term:`scenarios<scenario>`. You could then add multiple timetables to this template, for example: 
+Some users may find it convenient to use a single template *add trip patterns* modification that specifies commonly used service windows and frequencies.  For example, you could create a "Base Timetables" [modification](../glossary.md#modification) and deactivate it from all [scenarios](../glossary.md#scenario). You could then add multiple timetables to this template, for example: 
 
 * AM Peak, Frequent Network: 7 AM to 9 AM, every 5 minutes, every day
 * Midday, Frequent Network: 9 AM to 3 PM, every 10 minutes, every day

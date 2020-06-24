@@ -5,7 +5,7 @@
 .. _add_trip_pattern:
 ### Add trip pattern
 
-The **add trip pattern** modification allows you to add new :term:`trip patterns<trip pattern>` to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars.
+The **add trip pattern** modification allows you to add new [trip patterns](../glossary.md#trip-pattern) to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars.
 
 After creating a new modification you will see something like the view below.
 
@@ -82,9 +82,9 @@ This modification can be applied to multiple routes, but only one route will be 
 
 This modification does not automatically increase frequency in response to the more efficient routes. However, it can be paired with an adjust frequency modification to model such a response.
 
-Sometimes you will want to adjust the speed on an entire route or just a :term:`segment` of one. For instance you might want to model the addition of bus lanes or an application of transit signal priority. This modification allows you to scale the speed of existing scheduled :term:`trips<trip>`, or segments of them, by a constant factor. It can be applied to whole routes (in which case more than one route may be selected) or to selected segments of a particular route or to just a subset of :term:`trip patterns<trip pattern>`.
+Sometimes you will want to adjust the speed on an entire route or just a [segment](../glossary.md#segment) of one. For instance you might want to model the addition of bus lanes or an application of transit signal priority. This modification allows you to scale the speed of existing scheduled [trips](../glossary.md#trip), or segments of them, by a constant factor. It can be applied to whole routes (in which case more than one route may be selected) or to selected segments of a particular route or to just a subset of [trip patterns](../glossary.md#trip-pattern).
 
-You will need to select a GTFS feed, routes and optionally :term:`trip patterns<trip pattern>` if only one route is selected. All trip patterns will be selected by default. Segments can be selected by clicking _Select_ from the toolbox shown in the figure below. This will allow you to begin drawing a polygon selection area on the map. Any segments within this area will be selected when the polygon is closed and selected segments will then render on the map in purple.
+You will need to select a GTFS feed, routes and optionally trip patterns if only one route is selected. All trip patterns will be selected by default. Segments can be selected by clicking _Select_ from the toolbox shown in the figure below. This will allow you to begin drawing a polygon selection area on the map. Any segments within this area will be selected when the polygon is closed and selected segments will then render on the map in purple.
 
 <figure>
   <img src="../static/img/segment-selector.png"/>
@@ -103,7 +103,7 @@ Finally, enter a numeric value in the _Scale speed by_ field --- this is the fac
 .. _convert_to_frequency:
 ### Convert to frequency
 
-Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing :term:`trip patterns<trip pattern>` with frequency based :ref:`timetables`. You can opt either to
+Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing [trip patterns](../glossary.md#trip-pattern) with frequency based :ref:`timetables`. You can opt either to
 
 - delete all existing trips and replace them with your own timetables or
 - replace trips only when the new timetables would be in effect.
@@ -151,7 +151,7 @@ This modification does not take into account the possibility of increased freque
 
 ### Remove trips
 
-Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific :term:`trip patterns<trip pattern>` on a particular route. In order to remove trips, create a new _remove trips_ modification, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this route/pattern combination will be removed and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active. In this case it implies that the trips will be removed from the selected variants.
+Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific [trip patterns](../glossary.md#trip-pattern) on a particular route. In order to remove trips, create a new _remove trips_ modification, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this route/pattern combination will be removed and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active. In this case it implies that the trips will be removed from the selected variants.
 
 <figure>
   <img src="../static/img/remove-trips.png" alt="Remove trips" />
@@ -160,7 +160,7 @@ Another common modification is to remove trips. The most common use is to remove
 .. _reroute:
 ### Reroute
 
-This modification type can be used to represent detours, extensions,and curtailments. When creating a _reroute_ modification, you first select a :term:`GTFS feed`, route, and :term:`trip patterns<trip pattern>`. Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
+This modification type can be used to represent detours, extensions,and curtailments. When creating a _reroute_ modification, you first select a [GTFS feed](../glossary.md#GTFS--GTFS-feed), route, and [trip patterns](../glossary.md#trip-pattern). Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
 <br> then clicking an existing stop on the baseline pattern.
 
@@ -226,7 +226,7 @@ You can also edit previously drawn lines by clicking on the edit layers icon. Th
 
 .. _modify_streets
 ### Modify Streets
-This modification allows you to assign new access and impedance properties to existing streets in your :term:`baseline network`. Rather than selecting individual streets, it uses a polygon selection to apply the modification to all streets within the selected area. This is useful for applying changes to areas or corridors. 
+This modification allows you to assign new access and impedance properties to existing streets in your [baseline network](../glossary.md#baseline-network). Rather than selecting individual streets, it uses a polygon selection to apply the modification to all streets within the selected area. This is useful for applying changes to areas or corridors. 
 As an example, you might use this to identify a neighborhood or corridor where traffic calming measures will be implemented and model this by reducing bicycle traffic stress and decreasing driving speeds or eliminating automotive access altogether.
 Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas. 
 

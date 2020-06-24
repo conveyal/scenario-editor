@@ -1,26 +1,26 @@
 .. _single_point_analysis:
 # Single point analysis
 
-The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. 
+The main analysis page is for generating [isochrones](../glossary.md#isochrone) (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. 
 
 <figure>
   <img src="../static/img/analysis-default-settings.png" />
   <figcaption>The single-point analysis page with no projects or scenarios selected</figcaption>
 </figure>
 
-To start an analysis, you'll need to select a :term:`project` and :term:`scenario`. Once these are selected you can retrieve results for the origin marker shown on the map either by moving the marker to a new location or clicking the *fetch results* button at the top of the page. 
+To start an analysis, you'll need to select a [project](../glossary.md#project) and [scenario](../glossary.md#scenario). Once these are selected you can retrieve results for the origin marker shown on the map either by moving the marker to a new location or clicking the *fetch results* button at the top of the page. 
 
 <span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
 This will initialize a compute cluster which may take a minute to start up. 
-If this is your first time performing an analysis with a given :term:`network bundle` it may take some time to build the network, however this only needs to be done once for each bundle. For more information, see :ref:`why_the_wait`
+If this is your first time performing an analysis with a given [network bundle](../glossary.md#network-bundle) it may take some time to build the network, however this only needs to be done once for each bundle. For more information, see :ref:`why_the_wait`
 
 Once the compute cluster is initialized you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a :ref:`accessibility_chart` at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red.
 Many other configuration parameters are described in :ref:`analysis_configuration`.
 
 ## Isochrone map
 
-After the server returns results the map will show a blue :term:`isochrone` for your primary scenario. This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty. If a comparison scenario is selected, its isochrone will be shown in red. The overlap of the main and comparison isochrones should be visible as a combination of the two colors.
+After the server returns results the map will show a blue [isochrone](../glossary.md#isochrone) for your primary scenario. This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty. If a comparison scenario is selected, its isochrone will be shown in red. The overlap of the main and comparison isochrones should be visible as a combination of the two colors.
 
 <figure>
   <img src="../static/img/overlapping-isochrones.png" />
@@ -48,14 +48,14 @@ To change the origin of the analysis, drag the marker to a new location. Clickin
 
 ## Analysis panel
 
-The left panel has controls for the analysis and displays the access to opportunities afforded by the :term:`scenario`. At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, access to schools, or some other variable of interest represented in an :term:`opportunity dataset` you uploaded.
-Additional scenarios can be selected for comparison. A :term:`baseline<baseline network>` scenario with no modifications (i.e. the unmodified :term:`network bundle` you uploaded) is automatically available for every project.
+The left panel has controls for the analysis and displays the access to opportunities afforded by the [scenario](../glossary.md#scenario). At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, access to schools, or some other variable of interest represented in an [opportunity dataset](../glossary.md#opportunity-dataset) you uploaded.
+Additional scenarios can be selected for comparison. A [baseline](../glossary.md#baseline-network) scenario with no modifications (i.e. the unmodified [network bundle](../glossary.md#network-bundle) you uploaded) is automatically available for every project.
 
 The options available in this panel are described more fully in :ref:`analysis_configuration`.
 
 .. _accessibility_chart:
 ### Chart of accessibility results
-If an :term:`opportunity dataset` is selected, the map will include a dot-density layer representing opportunities and you will be shown a chart of the accessibility (i.e. the number of opportunities reachable) from the chosen origin.
+If an [opportunity dataset](../glossary.md#opportunity-dataset) is selected, the map will include a dot-density layer representing opportunities and you will be shown a chart of the accessibility (i.e. the number of opportunities reachable) from the chosen origin.
 
 <figure>
   <img src="../static/img/analysis-stacked-percentile.png" />

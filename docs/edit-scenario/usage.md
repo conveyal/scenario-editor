@@ -1,24 +1,24 @@
 .. _managing_mods:
 # Managing modifications
 
-:term:`Modifications<modification>` can be grouped by :term:`project` and :term:`scenario`, and different projects and scenarios can be compared against each other in analysis mode, giving you flexibility on how to use them. Depending on your use cases, different approaches may make sense.
+[Modifications](../glossary.md#modification) can be grouped by [project](../glossary.md#project) and [scenario](../glossary.md#scenario), and different projects and scenarios can be compared against each other in analysis mode, giving you flexibility on how to use them. Depending on your use cases, different approaches may make sense.
 
 If one user will be responsible for analyses in your region, involving a relatively small number of modifications, we recommend doing your work in one project and assessing the impact of different combinations of modifications by creating and using scenarios within that project.
 
-If multiple users will be involved in editing scenarios, or if you want to assess more than 10 different combinations of modifications, which would make the list of scenarios annoyingly long, we recommend dividing the modifications among different projects. For example, one team member could code rail scenarios in Project A, another team member could code bus scenarios in Project B. Modifications can be [imported](#importing-modifications-from-another-project) between projects that use the same :term:`network bundle`; in this example, modifications from the two projects could combined in a third Project _C_.
+If multiple users will be involved in editing scenarios, or if you want to assess more than 10 different combinations of modifications, which would make the list of scenarios annoyingly long, we recommend dividing the modifications among different projects. For example, one team member could code rail scenarios in Project A, another team member could code bus scenarios in Project B. Modifications can be [imported](#importing-modifications-from-another-project) between projects that use the same [network bundle](../glossary.md#network-bundle); in this example, modifications from the two projects could combined in a third Project _C_.
 
 .. _toggle_mod_display:
 ## Toggling display of modifications
 
 In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click the eye icon ( <i class="fa fa-eye"></i> ) next to each modification.
 
-Stops and segments representing modifications are displayed on the map using different colors to indicate their state relative to the :term:`baseline network`:
+Stops and segments representing modifications are displayed on the map using different colors to indicate their state relative to the [baseline network](../glossary.md#baseline-network):
 * <span style="color:blue">Blue</span>: **Added** trip pattern or streets
 * <span style="color:red">Red</span>: **Removed** trip pattern
 * <span style="color:magenta">Purple</span>: **Changed** timetable (e.g. modified frequency, speed, or dwell time) or street network
-* <span style="color:gray">Gray</span>: **Unchanged** (alignment is unchanged but the :term:`trip pattern` is effected somehow, e.g. :ref:`reroute`)
+* <span style="color:gray">Gray</span>: **Unchanged** (alignment is unchanged but the [trip pattern](../glossary.md#trip-pattern) is effected somehow, e.g. :ref:`reroute`)
 
-Projects start with only a *Default* scenario, plus a locked :term:`Baseline<baseline network>` scenario which does not accept modifications. You can create additional scenarios by clicking the create button, and entering a name.
+Projects start with only a *Default* scenario, plus a locked [Baseline](../glossary.md#baseline-network) scenario which does not accept modifications. You can create additional scenarios by clicking the create button, and entering a name.
 
 When the Scenario list is expanded, options next to each scenario, excluding the baseline, allow you to:
 <br><span class="ui-icon"><i class="fa fa-eye"></i>Show on the map</span> all (and only) the modifications active in the scenario

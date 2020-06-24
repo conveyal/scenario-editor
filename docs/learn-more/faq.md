@@ -25,7 +25,7 @@ If it is faster to reach a destination directly, without using transit, the rout
 .. _why_the_wait:
 ### When starting an analysis, why does the "initializing cluster" message persist for so long?
 
-First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services. For scalability, we start a "worker" server for each :term:`transport network` being analyzed. This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine. 
+First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services. For scalability, we start a "worker" server for each [transport network](../glossary.md#transport-network) being analyzed. This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine. 
 
 To complete regional analyses quickly, we can clone hundreds of servers within a cluster for a transport network. We haven't yet built the user interface to launch additional servers from within Conveyal Analysis, so for the moment, get in touch with your support team if you need to speed up analyses.
 

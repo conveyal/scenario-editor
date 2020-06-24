@@ -5,8 +5,6 @@ To measure access to spatially distributed opportunities (e.g. jobs, people, sch
 
 Opportunity datasets can be added either by uploading a CSV or shapefile representing the spatial distribution of opportunities, or by using the LODES data import tool (US only).
 
-.. _upload_opportunities:
-
 ## Uploading an opportunity dataset <a name="upload_opportunities"/>
 
 A spatial dataset representing any opportunities of interest can be uploaded in one of three formats:

@@ -2,8 +2,7 @@
 
 ## Transit Network Modifications
 
-.. _add_trip_pattern:
-### Add trip pattern
+### Add trip pattern <a name="add-trip-pattern"/>
 
 The **add trip pattern** modification allows you to add new [trip patterns](../glossary.md#trip-pattern) to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars.
 
@@ -100,8 +99,7 @@ The _Select_ option will begin a new selection and the _Add to_ option will add 
 
 Finally, enter a numeric value in the _Scale speed by_ field --- this is the factor to multiply the speed by. For instance, if you enter 1.3, the speed of vehicles will increase by 30% when traveling between stops. Note however that this modification does not affect dwell times; to model changes in dwell time, see the :ref:`adjust_dwell_time` modification. It also does not take into account the possibility of increased frequency due to faster, more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
 
-.. _convert_to_frequency:
-### Convert to frequency
+### Convert to frequency <a name="add-trip-pattern"/>
 
 Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing [trip patterns](../glossary.md#trip-pattern) with frequency based :ref:`timetables`. You can opt either to
 

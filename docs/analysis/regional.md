@@ -17,14 +17,14 @@ When you have configured all of these options, the green **Multi-point**<i class
 
 Note that this button is disabled unless isochrones are displayed; checking single-origin isochrone results is a verification step that helps avoid heavy computation for analyses with invalid settings.
 
-After a few seconds, you will see your regional analysis appear in the list with a progress bar. Since Conveyal Analysis is computing accessibility from every origin in the region, it can take a [few minutes](../learn-more/faq.html#how-long-should-each-regional-analysis-take) for each regional analysis to complete.
+After a few seconds, you will see your regional analysis appear in the list with a progress bar. Since Conveyal Analysis is computing accessibility from every origin in the region, it can take a [few minutes](../learn-more/faq.md#how-long) for each regional analysis to complete.
 
 <figure>
   <img src="../static/img/regional-progress.png" />
     <figcaption>Computing status for a running regional analysis</figcaption>
 </figure>
 
-Once a regional analysis is complete, it can be viewed by selecting it from the drop-down menu, which will take you to the [regional analysis view](regional.html).
+Once a regional analysis is complete, it can be viewed by selecting it from the drop-down menu, which will take you to the [regional analysis view](./regional.md).
 
 <figure>
   <img src="../static/img/regional-selection.png" />
@@ -39,11 +39,11 @@ Upon selecting a completed regional analysis, you will see a screen like the fol
   <figcaption>Viewing a regional analysis</figcaption>
 </figure>
 
-The map shows the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis. Using the download button, you can save regional analysis results in a [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) raster format. These files can then be opened in a GIS to conduct additional analyses or create custom maps. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
+The map shows the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis. Using the download button, you can save regional analysis results in a [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) raster format. These files can then be opened in a GIS to conduct additional analyses or create custom maps. Downloading results also allows you to see the raw [grid cells](./methodology.md#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
 
 ## Downloading regional results
 
-Using the download button, you can save regional analysis results in a raster format (GEOTIFF). These saved files can be opened in GIS to conduct additional analyses or create custom maps. In QGIS, you will likely want to [style](https://docs.qgis.org/2.8/en/docs/training_manual/rasters/changing_symbology.html#basic-fa-changing-raster-layer-symbology) the accessibility layer with a singleband pseudocolor scheme. If you prefer to work with the results as a regular grid of vector points, you may find the "Raster values to points" tool in the QGIS processing toolbox helpful. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
+Using the download button, you can save regional analysis results in a raster format (GEOTIFF). These saved files can be opened in GIS to conduct additional analyses or create custom maps. In QGIS, you will likely want to [style](https://docs.qgis.org/2.8/en/docs/training_manual/rasters/changing_symbology.html#basic-fa-changing-raster-layer-symbology) the accessibility layer with a singleband pseudocolor scheme. If you prefer to work with the results as a regular grid of vector points, you may find the "Raster values to points" tool in the QGIS processing toolbox helpful. Downloading results also allows you to see the raw [grid cells](./methodology.md#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
 
 ## Comparing regional analyses
 

@@ -2,7 +2,7 @@
 
 ### How does Conveyal Analysis calculate travel times?
 
-Conveyal Analysis calculates door-to-door total travel time, without any subjective impedance factors. Travel times are always computed by finding actual paths through a full street and (where applicable) public transport ("transit", in American English) network. By default, Conveyal Analysis uses the centers of [high-resolution grid cells](../analysis/methodology.html#spatial-resolution) as destinations.
+Conveyal Analysis calculates door-to-door total travel time, without any subjective impedance factors. Travel times are always computed by finding actual paths through a full street and (where applicable) public transport ("transit", in American English) network. By default, Conveyal Analysis uses the centers of [high-resolution grid cells](../analysis/methodology.md#spatial-grid) as destinations.
 
 For analyses with transit disabled, the total travel time from an origin to a destination includes time spent:
 
@@ -22,8 +22,7 @@ For analyses with transit enabled, the total travel time from an origin to a des
 
 If it is faster to reach a destination directly, without using transit, the routing engine will replace the second step above with direct travel along the street network to the point on the street network nearest the to the destination, then skip to the final step. Public transport routing uses actual schedules from the imported GTFS feeds. For every origin, Conveyal Analysis finds a large number of travel times to every destination grid cell. Different travel times may be found for each departure time (each minute in the specified time window). If new transit routes have been added with frequencies but without specific departure times, many different possible schedules are also tested producing hundreds or thousands of possible travel times (according to the "simulated schedules" advanced parameter). All these different travel times imply a statistical distribution, from which a certain percentile of travel time, set in the user interface, can be read.
 
-### When starting an analysis, why does the "initializing cluster" message persist for so long?
-<a name="why-the-wait"/>
+### When starting an analysis, why does the "initializing cluster" message persist for so long? <a name="why-the-wait"/>
 
 First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services. For scalability, we start a "worker" server for each [transport network](../glossary.md#transport-network) being analyzed. This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine. 
 
@@ -47,11 +46,11 @@ Uploaded OpenStreetMap data with poorly connected subnetworks may also lead to i
 
 All authorized users within an organization have access to that organization's regions, projects, and scenarios. Multiple users should not edit or analyze the same project concurrently. If multiple users try to edit the same modification simultaneously, or if you have Conveyal Analysis open in multiple browser tabs, you may see "data out of date" errors.
 
-### How long should it take to start a single-origin analysis?
+### How long should it take to start a single-origin analysis? <a name="how-long"/>
 
 Three steps take place when starting a new single-origin analysis.
 
-First, the main Analysis server must request and initialize a compute cluster from Amazon Web Services. For scalability, we start a "worker" server for each [transport network](../glossary.html#transport-network) being analyzed. This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine version.
+First, the main Analysis server must request and initialize a compute cluster from Amazon Web Services. For scalability, we start a "worker" server for each [transport network](../glossary.md#transport-network) being analyzed. This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine version.
 
 Second, the worker server needs to set up a transport network. It first checks whether the required transport network is already built and available for download from Amazon S3. If it is, the server downloads it and proceeds to step 3. If a pre-built network cannot be downloaded, the server downloads the required input files (OSM extract and GTFS bundle). It then builds the transport network by combining the road and transit layers, which can be a lengthy process (on the order of 10 minutes for large regions, and an hour for very large regions with dense networks). To avoid having to repeat this step, the server will upload the built network to S3 for future use.
 
@@ -82,7 +81,7 @@ Additional servers start automatically once a results for few origins in a regio
 ### How do I model corridor upgrades where a new trunk is added and existing services are converted to feeder routes?
 
 The new trunk service can be represented with an
-[add-trip modification](../edit-scenario/modifications.html#add-trips). Existing services can be curtailed using [reroute modifications](../edit-scenario/modifications.html#reroute). You will need separate modifications for each direction of each curtailed route, setting the start/end stop to the stop at which the route will be curtailed as a feeder to the new trunk.
+[add-trip modification](../edit-scenario/modifications.md#add-trip-pattern). Existing services can be curtailed using [reroute modifications](../edit-scenario/modifications.md#reroute). You will need separate modifications for each direction of each curtailed route, setting the start/end stop to the stop at which the route will be curtailed as a feeder to the new trunk.
 
 ### What new features is Conveyal working on?
 

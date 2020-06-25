@@ -15,7 +15,7 @@ To add a modification, first navigate to the modification page (the <i class="fa
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Create a modification</span>
 
-Clicking on this will open a window prompting you to enter a name for the modification and to select a [modification type](modifications.html). 
+Clicking on this will open a window prompting you to enter a name for the modification and to select a [modification type](modifications.md). 
 
 <figure>
   <img src="../static/img/create-mod-dialog.png" />

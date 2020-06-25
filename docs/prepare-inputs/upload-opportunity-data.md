@@ -17,7 +17,7 @@ To start an upload, click: <br><span class="btn btn-success"><i class="fa fa-plu
 
 Enter a name for the opportunity dataset source, then select the appropriate file(s). Once this is done, click the upload button to start the upload. Opportunity datasets will be saved with the source name you entered and the attribute/column names, if any, of the uploaded files.
 
-After processing is complete you can select a dataset from the dropdown menu to show a dot-density map of your opportunity data converted to the [grid](../analysis/methodology.html#spatial-resolution) used in Conveyal Analysis.
+After processing is complete you can select a dataset from the dropdown menu to show a dot-density map of your opportunity data converted to the [grid](../analysis/methodology.md#spatial-resolution) used in Conveyal Analysis.
 
 ### CSV
 

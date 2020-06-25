@@ -48,7 +48,7 @@ On the panel to the left of the map there are a few options available while edit
 
 - **Auto-create stops at set spacing**: Specifies whether stops should be created automatically at a specified interval along the route. When using this option, you will likely want to define your route alignment with control points rather than stops, however if stops are used new stops will not be added unless the gap between existing stops is sufficiently large. The stop spacing can easily be changed later.
 
-- **Bidirectional**: If this option is checked (the default value), vehicles will travel in both directions along the described geometry. If it is toggled off, vehicles will only travel in the direction the line is drawn. Directed alignments can be useful when there are [couplets](https://en.wikipedia.org/wiki/One-way_pair) or other aspects of the route that don't follow the same alignment in both directions. Directed alignments are also necessary for [phasing](phasing.html).
+- **Bidirectional**: If this option is checked (the default value), vehicles will travel in both directions along the described geometry. If it is toggled off, vehicles will only travel in the direction the line is drawn. Directed alignments can be useful when there are [couplets](https://en.wikipedia.org/wiki/One-way_pair) or other aspects of the route that don't follow the same alignment in both directions. Directed alignments are also necessary for [phasing](./phasing.md).
 
 - **Follow streets**:
   If this option is unchecked (the default value), stops and control points will be connected by straight lines. If it is checked, the route will follow streets. This setting only applies to segments that are actively being edited and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street. The length of each segment is used to estimate travel times between stops, so this feature is very useful for aproximating the length of bus/streetcar routes.
@@ -59,7 +59,7 @@ On the panel to the left of the map there are a few options available while edit
 
 - **Snap to existing stops (beta)**: Experimental feature that adds stops from the baseline GTFS bundle to the new route. This feature adds stops within 20 meters of the alignment, but not more than one stop approximately every 80 meters.
 
-Once you have created an alignment, you'll need to specify when the route runs using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
+Once you have created an alignment, you'll need to specify when the route runs using a [simplified timetable](./timetable.md). You can do this by [copying a previously created timetable](./timetable.md#copying-timetables), or by clicking:
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
@@ -120,7 +120,7 @@ Start by selecting a [GTFS feed](../glossary.md#GTFS--GTFS-feed) and then the ro
 
 You can choose to remove all existing trips on the route (the default) and start from scratch with new timetables. Or you may choose to retain trips outside the time windows in which you specify frequencies which is useful when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the checkbox labeled "_Retain existing scheduled trips at times without new frequencies specified_".
 
-You then create any number of frequency entries using simple [timetables](timetable.html).
+You then create any number of frequency entries using simple [timetables](timetable.md).
 Within each timetable, you will need to select a trip pattern from your route, then a particular trip from that trip pattern to be used as a template. Travel times for the new timetable will be based on this template trip so it is important to choose one that is representative. For example, you may want to select one of the slower trips when specifying frequencies during congested peak-hour service.
 
 <figure>

@@ -108,7 +108,7 @@ Once these files are gathered on your computer, select the .zip files to upload 
 
 Again, note that files larger than 500MB may be rejected on upload. The largest GTFS feeds in regular use are below 400MB and most are much smaller than this. A larger file may indicate a problem. Please contact your support team if you genuinely need to upload a larger file.
 
-If there is no GTFS available for your region you can, as a workaround, create a blank slate by using a valid GTFS feed from somewhere else in the world. After creating a project as described below, you can then attempt to [import modifications](../edit-scenario/usage.html#importing-modifications) from a shapefile representing service in your region.
+If there is no GTFS available for your region you can, as a workaround, create a blank slate by using a valid GTFS feed from somewhere else in the world. After creating a project as described below, you can then attempt to [import modifications](../edit-scenario/usage.md#importing-modifications) from a shapefile representing service in your region.
 
 Ensure any GTFS you upload follows requirements of the specification. Various [validation tools](https://gtfs.org/testing/) are available. Common issues include:
 

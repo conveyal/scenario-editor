@@ -1,4 +1,3 @@
-.. _phasing:
 # Phasing
 
 The phasing feature can be used to tie the timetables of two [add trip pattern](./modifications.md#add-trip-pattern) or [convert to frequency](./modifications.md#convert-to-frequency) modifications together. For example, if you are creating a [pulsed system](http://humantransit.org/2010/11/basics-finding-your-pulse.html) where buses run infrequently but are timed to meet at specific transfer points, you might want to specify that while you don't know the exact schedules of any of the lines, they will all meet at a central point at the same time. Alternately, you might have a [branching service](http://humantransit.org/2011/02/basics-branching-or-how-transit-is-like-a-river.html) where two lines share part of their alignment but then branch. If each branch runs every 30 minutes, you might want to write the schedules such that they provide service every 15 minutes on the shared alignment, rather than both coming at the same time.

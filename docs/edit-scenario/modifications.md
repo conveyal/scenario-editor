@@ -63,8 +63,8 @@ Once you have created an alignment, you'll need to specify when the route runs u
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
-.. _adjust_dwell_time:
 ### Adjust dwell time
+<a name="adjust-dwell-time"/>
 
 You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular stop. As with the remove-stops modification, you can select a feed, route and optionally patterns. You can then use the map to select the affected stops (if you skip this step, all stops will have their dwell times adjusted). You can then choose to either enter a new dwell time (in seconds), or scale the existing dwell times (for instance, entering 2 would double existing dwell times).
 
@@ -74,8 +74,8 @@ Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_tim
   <img src="../static/img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
-.. _adjust_speed:
-### Adjust speed
+### Adjust speed 
+<a name="adjust-speed"/>
 
 This modification can be applied to multiple routes, but only one route will be shown on the map.
 
@@ -97,16 +97,17 @@ The _Select_ option will begin a new selection and the _Add to_ option will add 
   <figcaption>Segments are selected from two overlapping trip patterns</figcaption>
 </figure>
 
-Finally, enter a numeric value in the _Scale speed by_ field --- this is the factor to multiply the speed by. For instance, if you enter 1.3, the speed of vehicles will increase by 30% when traveling between stops. Note however that this modification does not affect dwell times; to model changes in dwell time, see the :ref:`adjust_dwell_time` modification. It also does not take into account the possibility of increased frequency due to faster, more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
+Finally, enter a numeric value in the _Scale speed by_ field --- this is the factor to multiply the speed by. For instance, if you enter 1.3, the speed of vehicles will increase by 30% when traveling between stops. Note however that this modification does not affect dwell times; to model changes in dwell time, see the [adjust dwell time](#adjust-dwell-time) modification. It also does not take into account the possibility of increased frequency due to faster, more efficient routes. However, it can be paired with a [convert to frequency](#convert-to-frequency) modification to model that scenario.
 
-### Convert to frequency <a name="add-trip-pattern"/>
+### Convert to frequency 
+<a name="convert-to-frequency"/>
 
-Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing [trip patterns](../glossary.md#trip-pattern) with frequency based :ref:`timetables`. You can opt either to
+Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing [trip patterns](../glossary.md#trip-pattern) with frequency based [timetables](./timetable.md). You can opt either to
 
 - delete all existing trips and replace them with your own timetables or
 - replace trips only when the new timetables would be in effect.
 
-The travel and dwell times on the replacement trips are based on those of an existing trip which you can select from the affected trip pattern. The new timetables can make use of :ref:`phasing` to reproduce timed services on branching lines, etc.
+The travel and dwell times on the replacement trips are based on those of an existing trip which you can select from the affected trip pattern. The new timetables can make use of [phasing](./phasing.md) to reproduce timed services on branching lines, etc.
 
 First, create a new modification and select _Convert to frequency_. Give the modification a name; you will likely want to name it after the route you plan to modify.
 
@@ -132,8 +133,8 @@ Typically, you will need to create _at least_ two new timetables, one for each d
 .. note::
    Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
    
-.. _remove_stops:
-### Remove stops
+### Remove stops 
+<a name="remove-stops"/>
 
 It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new _remove stops_ modification, and select a feed, route, and patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.
 
@@ -141,7 +142,7 @@ You can also specify that you wish to remove a certain amount of time at each re
 
 When removing the beginning of a route, the dwell times at each stop are removed, as is any time specified to be removed at each removed stop. Any remaining travel time is preserved as an offset from the start of the trip in the original GTFS to the start of trips at the new first stop. This is effectively as if the vehicles were leaving the original terminal at the same time but deadheading past all of the removed stops.
 
-This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
+This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a [convert to frequency](#convert-to-frequency) modification to model that scenario.
 
 <figure>
   <img src="../static/img/remove-stops.png"  alt="Remove stops" />
@@ -155,8 +156,9 @@ Another common modification is to remove trips. The most common use is to remove
   <img src="../static/img/remove-trips.png" alt="Remove trips" />
 </figure>
 
-.. _reroute:
+
 ### Reroute
+<a name="reroute"/>
 
 This modification type can be used to represent detours, extensions,and curtailments. When creating a _reroute_ modification, you first select a [GTFS feed](../glossary.md#GTFS--GTFS-feed), route, and [trip patterns](../glossary.md#trip-pattern). Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
@@ -182,7 +184,6 @@ A few examples should help to illustrate how this modification works. Consider a
 - To extend this pattern backward, to originate at a stop Y, select A as the "end of reroute/extension," activate route editing, and click on stop Y to add a segment from Y -> A. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and D are not affected.
 - To detour this pattern so that it serves a stop Z between B and C, select B as the "start of reroute/extension", select C as the "end of reroute/extension", activate route editing, click on the new segment to add a stop, and drag the added stop to Z. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and B, and between C and D, are not affected.
 
-.. _custom:
 ### Custom
 The custom modification type allows us to try out new development features that are not yet generally supported. _You should not use this modification type without consulting with your support team; an improper configuration may produce errors during analysis._
 
@@ -207,8 +208,9 @@ The default **walk time factor** and **bike time factor** values of 1 will have 
 
 Finally, if **driving** is enabled, you must enter a constant speed in kilometers per hour. 
 
-.. _add_streets
 ### Add Streets
+<a name="add-streets"/>
+
 The **add streets** modification allows you to add new links to the street network, making new walking, cycling, and/or driving connections. Each new street or set of streets is characterised by mode-specific access restrictions and travel impedences. Each modification allows one or more new streets to be drawn on the map and attributes of these streets are set at the level of the modification. This means a modification can include several new streets each with the same properties. For example you might use one modification to add several footbridges to your network and another for a new network of shared-use bike paths.
 
 Once you've created the modification, you can add streets to the map by clicking the line icon on the right side of the map. This allows you to draw a line which will be linked to the street network only at the first and last points. To finish a polyline, click again on the final point or select "finish" from the editing menu. 
@@ -222,8 +224,9 @@ To create a line connecting to the existing network at several points, you will 
 
 You can also edit previously drawn lines by clicking on the edit layers icon. This will allow you to add, move, or delete nodes. To delete a whole line, click on the trash can icon and then click somewhere on the line. Be sure to hit save when you are satisfied with your edits. 
 
-.. _modify_streets
 ### Modify Streets
+<a name="modify-streets"/>
+
 This modification allows you to assign new access and impedance properties to existing streets in your [baseline network](../glossary.md#baseline-network). Rather than selecting individual streets, it uses a polygon selection to apply the modification to all streets within the selected area. This is useful for applying changes to areas or corridors. 
 As an example, you might use this to identify a neighborhood or corridor where traffic calming measures will be implemented and model this by reducing bicycle traffic stress and decreasing driving speeds or eliminating automotive access altogether.
 Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas. 

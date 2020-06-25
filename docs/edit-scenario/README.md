@@ -7,7 +7,7 @@ After selecting a [project](../glossary.md#project), you will arrive at the modi
   <figcaption>Initial view in editing mode for an established project</figcaption>
 </figure>
 
-To prevent data conflicts, the system does not support multiple users or browser tabs editing the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them. Modifications can later be imported into a project from other projects based on the same [network bundle](../glossary.md#network-bundle) (See :ref:`managing_mods`).
+To prevent data conflicts, the system does not support multiple users or browser tabs editing the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them. Modifications can later be imported into a project from other projects based on the same [network bundle](../glossary.md#network-bundle) (See [Managing Modifications](./usage.md#managing-mods).
 
 ## Create a new modification
 

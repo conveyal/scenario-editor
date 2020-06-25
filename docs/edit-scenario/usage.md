@@ -1,5 +1,5 @@
-.. _managing_mods:
 # Managing modifications
+<a name="managing-mods"/>
 
 [Modifications](../glossary.md#modification) can be grouped by [project](../glossary.md#project) and [scenario](../glossary.md#scenario), and different projects and scenarios can be compared against each other in analysis mode, giving you flexibility on how to use them. Depending on your use cases, different approaches may make sense.
 
@@ -7,8 +7,8 @@ If one user will be responsible for analyses in your region, involving a relativ
 
 If multiple users will be involved in editing scenarios, or if you want to assess more than 10 different combinations of modifications, which would make the list of scenarios annoyingly long, we recommend dividing the modifications among different projects. For example, one team member could code rail scenarios in Project A, another team member could code bus scenarios in Project B. Modifications can be [imported](#importing-modifications-from-another-project) between projects that use the same [network bundle](../glossary.md#network-bundle); in this example, modifications from the two projects could combined in a third Project _C_.
 
-.. _toggle_mod_display:
 ## Toggling display of modifications
+<a name="toggle-mod-display"/>
 
 In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click the eye icon ( <i class="fa fa-eye"></i> ) next to each modification.
 
@@ -16,7 +16,7 @@ Stops and segments representing modifications are displayed on the map using dif
 * <span style="color:blue">Blue</span>: **Added** trip pattern or streets
 * <span style="color:red">Red</span>: **Removed** trip pattern
 * <span style="color:magenta">Purple</span>: **Changed** timetable (e.g. modified frequency, speed, or dwell time) or street network
-* <span style="color:gray">Gray</span>: **Unchanged** (alignment is unchanged but the [trip pattern](../glossary.md#trip-pattern) is effected somehow, e.g. :ref:`reroute`)
+* <span style="color:gray">Gray</span>: **Unchanged** (alignment is unchanged but the [trip pattern](../glossary.md#trip-pattern) is effected somehow, e.g. [reroute](./modifications.md#reroute))
 
 Projects start with only a *Default* scenario, plus a locked [Baseline](../glossary.md#baseline-network) scenario which does not accept modifications. You can create additional scenarios by clicking the create button, and entering a name.
 
@@ -25,8 +25,9 @@ When the Scenario list is expanded, options next to each scenario, excluding the
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span> the scenario 
 <br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span> the scenario (excluding the default)
 
-.. _export_mods:
+
 ## Exporting modifications
+<a name="export-mods"/>
 
 To see options for exporting scenarios from the top of the editing panel, click
 <br><span class="ui-icon"><i class="fa fa-share-alt-square"></i>Download or share this project</span>
@@ -44,8 +45,8 @@ A panel will then be shown with multiple options to download or share the scenar
 	<figcaption>A summary report for a scenario</figcaption>
 </figure>
 
-.. _import_mods:
 ## Importing modifications
+<a name="import-mods"/>
 
 To import modifications from another project or a shapefile, click
 <br><span class="ui-icon"><i class="fa fa-upload"></i>Upload/import modifications</span>
@@ -63,7 +64,7 @@ If you choose a project associated with a different GTFS, bundle, only add-trip 
 
 ### From shapefiles
 
-In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However on occasion it may be desirable to import modifications from a [shapefile](https://en.wikipedia.org/wiki/Shapefile). If you have a shapefile containing route geometries, you can upload it to Conveyal Analysis and have it turned into a set of :ref:`add_trip_pattern` modifications. Your shapefile will need attributes (columns) for each line's:
+In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However on occasion it may be desirable to import modifications from a [shapefile](https://en.wikipedia.org/wiki/Shapefile). If you have a shapefile containing route geometries, you can upload it to Conveyal Analysis and have it turned into a set of [add trip pattern](./modifications.md#add-trip-pattern) modifications. Your shapefile will need attributes (columns) for each line's:
 * name (e.g. route id)
 * approximate headway in minutes
 * approximate speed in kmph

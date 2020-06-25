@@ -22,8 +22,8 @@ For analyses with transit enabled, the total travel time from an origin to a des
 
 If it is faster to reach a destination directly, without using transit, the routing engine will replace the second step above with direct travel along the street network to the point on the street network nearest the to the destination, then skip to the final step. Public transport routing uses actual schedules from the imported GTFS feeds. For every origin, Conveyal Analysis finds a large number of travel times to every destination grid cell. Different travel times may be found for each departure time (each minute in the specified time window). If new transit routes have been added with frequencies but without specific departure times, many different possible schedules are also tested producing hundreds or thousands of possible travel times (according to the "simulated schedules" advanced parameter). All these different travel times imply a statistical distribution, from which a certain percentile of travel time, set in the user interface, can be read.
 
-.. _why_the_wait:
 ### When starting an analysis, why does the "initializing cluster" message persist for so long?
+<a name="why-the-wait"/>
 
 First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services. For scalability, we start a "worker" server for each [transport network](../glossary.md#transport-network) being analyzed. This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine. 
 

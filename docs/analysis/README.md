@@ -1,4 +1,3 @@
-.. _single_point_analysis:
 # Single point analysis
 
 The main analysis page is for generating [isochrones](../glossary.md#isochrone) (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. 
@@ -13,10 +12,10 @@ To start an analysis, you'll need to select a [project](../glossary.md#project) 
 <span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
 This will initialize a compute cluster which may take a minute to start up. 
-If this is your first time performing an analysis with a given [network bundle](../glossary.md#network-bundle) it may take some time to build the network, however this only needs to be done once for each bundle. For more information, see :ref:`why_the_wait`
+If this is your first time performing an analysis with a given [network bundle](../glossary.md#network-bundle) it may take some time to build the network, however this only needs to be done once for each bundle. For more information, see the [FAQ page](../learn-more/faq.md#why-the-wait).
 
-Once the compute cluster is initialized you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a :ref:`accessibility_chart` at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red.
-Many other configuration parameters are described in :ref:`analysis_configuration`.
+Once the compute cluster is initialized you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a [chart of accessibility](#accessibility-chart) at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red.
+Many other configuration parameters are described in the [Options and Configuration](./configuration.md).
 
 ## Isochrone map
 
@@ -30,14 +29,14 @@ After the server returns results the map will show a blue [isochrone](../glossar
 The *time cutoff* slider controls the travel time threshold between a range of one minute and two hours. The slider for *travel time percentile* controls the portion of departures within the time window that have to meet the travel time threshold. 
 Reducing the travel time should smoothly decrease the size of the isochrone. 
 The default values are 60 minutes, at the 50<sup>th</sup> percentile. This would mean that the default isochrone boundary is drawn where the median trip in the selected departure window would take exactly one hour. 
-For single point analysis, percentile values are restricted to a preset range (5,25,50,75,95), so moving this slider will result in fairly discrete changes in the isochrone. An arbitrary percentile value can be set for a :ref:`regional_analysis`. 
+For single point analysis, percentile values are restricted to a preset range (5,25,50,75,95), so moving this slider will result in fairly discrete changes in the isochrone. An arbitrary percentile value can be set for a [regional analysis](./regional.md). 
 
 <figure>
   <img src="../static/img/travel-time-slider.gif" />
   <figcaption>Testing different travel time cutoffs, percentiles, and origins</figcaption>
 </figure>
 
-The display of modifications on the map is controlled in editing mode (See: :ref:`toggle_mod_display`). To change what modifications are shown, you must set the visibility there and then navigate back to the analysis page. 
+The display of modifications on the map is controlled in editing mode (See: [Toggling display of modifications](../edit-scenario/usage.md#toggle-mod-display)). To change what modifications are shown, you must set the visibility there and then navigate back to the analysis page. 
 
 To change the origin of the analysis, drag the marker to a new location. Clicking on the map away from the marker will display a box and whisker plot of the distribution of travel times from the origin to that location. For example, in the image below the travel time varies between about 30 and 50 minutes depending on when one departs.
 
@@ -51,10 +50,11 @@ To change the origin of the analysis, drag the marker to a new location. Clickin
 The left panel has controls for the analysis and displays the access to opportunities afforded by the [scenario](../glossary.md#scenario). At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, access to schools, or some other variable of interest represented in an [opportunity dataset](../glossary.md#opportunity-dataset) you uploaded.
 Additional scenarios can be selected for comparison. A [baseline](../glossary.md#baseline-network) scenario with no modifications (i.e. the unmodified [network bundle](../glossary.md#network-bundle) you uploaded) is automatically available for every project.
 
-The options available in this panel are described more fully in :ref:`analysis_configuration`.
+The options available in this panel are described more fully in [Options and Configuration](./configuration.md).
 
-.. _accessibility_chart:
 ### Chart of accessibility results
+<a name="accessibility-chart"/>
+
 If an [opportunity dataset](../glossary.md#opportunity-dataset) is selected, the map will include a dot-density layer representing opportunities and you will be shown a chart of the accessibility (i.e. the number of opportunities reachable) from the chosen origin.
 
 <figure>

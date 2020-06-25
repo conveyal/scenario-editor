@@ -128,7 +128,7 @@ Uploading and processing a network bundle may take several minutes. Once process
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Create new Project</span>
 
-A project is essentially a wrapper around a bundle which associates it with any scenarios and modifications you may create later on. The purpose of projects is to allow multiple users to work simultaneously on the same baseline network without stepping on each other's toes. The section on :ref:`managing_mods` describes how modifications can be shared between projects that are based on the same bundle. Once created, the bundle associated with a project cannot be changed.
+A project is essentially a wrapper around a bundle which associates it with any scenarios and modifications you may create later on. The purpose of projects is to allow multiple users to work simultaneously on the same baseline network without stepping on each other's toes. The section on [managing modifications](../edit-scenario/usage.md#managing-mods) describes how modifications can be shared between projects that are based on the same bundle. Once created, the bundle associated with a project cannot be changed.
 
 Give the project a descriptive name, select a bundle to which the project will be associated, and click the create button to confirm.
 You are now ready to move on to [editing scenarios](../edit-scenario).

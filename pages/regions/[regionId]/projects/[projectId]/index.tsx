@@ -1,5 +1,5 @@
 import find from 'lodash/find'
-import React from 'react'
+import get from 'lodash/get'
 import {useSelector} from 'react-redux'
 
 import {loadBundles} from 'lib/actions'
@@ -16,10 +16,10 @@ const noProjectId = (pid) => !pid || pid === 'undefined'
 /**
  * Show Select Project if a project has not been selected
  */
-const ModificationsPage = withInitialFetch(
+const ModificationsPage: any = withInitialFetch(
   (p) => {
     const project = useSelector((s) =>
-      find(s.project.projects, ['_id', p.query.projectId])
+      find(get(s, 'project.projects'), ['_id', p.query.projectId])
     )
     if (!project) {
       return <SelectProject {...p} />

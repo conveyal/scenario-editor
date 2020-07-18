@@ -1,6 +1,7 @@
 import {Box, Stack, Progress, StackProps} from '@chakra-ui/core'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
+import get from 'lodash/get'
 import {memo} from 'react'
 import {useSelector} from 'react-redux'
 
@@ -97,7 +98,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
         )}
       </Stack>
 
-      {percentileCurves &&
+      {get(percentileCurves, 'length') > 0 &&
         (comparisonPercentileCurves == null ? (
           <StackedPercentile
             cutoff={isochroneCutoff}

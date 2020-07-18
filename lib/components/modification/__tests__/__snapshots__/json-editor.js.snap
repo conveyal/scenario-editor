@@ -9,44 +9,197 @@ exports[`Components > Modification > JSON Editor should render 1`] = `
   }
   save={[MockFunction]}
 >
-  <P>
-    <Box
-      as="p"
-      mb="10px"
-    >
-      <p
-        className="css-1r2f04i"
-      >
-        For advanced users only
-      </p>
-    </Box>
-  </P>
-  <textarea
-    className="form-control monospace"
-    defaultValue="{
-  \\"name\\": \\"hello\\"
-}"
-    key="{
-  \\"name\\": \\"hello\\"
-}"
-    rows={10}
-  />
-  <br />
-  <Button
-    block={true}
-    name="Save custom changes"
-    onClick={[Function]}
-    style="success"
+  <ForwardRef
+    spacing={4}
   >
-    <a
-      className="btn btn-success btn-block"
-      href="#"
-      name="Save custom changes"
-      onClick={[Function]}
-      tabIndex={0}
+    <Flex
+      direction="column"
     >
-      Save custom changes
-    </a>
-  </Button>
+      <Box
+        display="flex"
+        flexDirection="column"
+      >
+        <div
+          className="css-j7qwjs"
+        >
+          <Text
+            key=".0"
+            mb={4}
+          >
+            <Box
+              as="p"
+              fontFamily="body"
+              mb={4}
+            >
+              <p
+                className="css-zwncle"
+              >
+                For advanced users only
+              </p>
+            </Box>
+          </Text>
+          <Textarea
+            defaultValue="{
+  \\"name\\": \\"hello\\"
+}"
+            fontFamily="mono"
+            fontSize="sm"
+            height="40em"
+            key=".\${
+  \\"name\\"=2 \\"hello\\"
+}"
+            mb={4}
+          >
+            <Input
+              as="textarea"
+              defaultValue="{
+  \\"name\\": \\"hello\\"
+}"
+              errorBorderColor="red.500"
+              focusBorderColor="blue.500"
+              fontFamily="mono"
+              fontSize="sm"
+              height="40em"
+              isFullWidth={true}
+              lineHeight="short"
+              mb={4}
+              minHeight="80px"
+              py="8px"
+              size="md"
+              variant="outline"
+            >
+              <PseudoBox
+                _disabled={
+                  Object {
+                    "cursor": "not-allowed",
+                    "opacity": "0.4",
+                  }
+                }
+                _focus={
+                  Object {
+                    "borderColor": "#3182ce",
+                    "boxShadow": "0 0 0 1px #3182ce",
+                    "zIndex": 1,
+                  }
+                }
+                _hover={
+                  Object {
+                    "borderColor": "gray.300",
+                  }
+                }
+                _invalid={
+                  Object {
+                    "borderColor": "#e53e3e",
+                    "boxShadow": "0 0 0 1px #e53e3e",
+                  }
+                }
+                _readOnly={
+                  Object {
+                    "bg": "transparent",
+                    "boxShadow": "none !important",
+                    "userSelect": "all",
+                  }
+                }
+                alignItems="center"
+                appearance="none"
+                as="textarea"
+                bg="white"
+                border="1px"
+                borderColor="inherit"
+                defaultValue="{
+  \\"name\\": \\"hello\\"
+}"
+                display="flex"
+                fontFamily="mono"
+                fontSize="sm"
+                height="40em"
+                lineHeight="short"
+                mb={4}
+                minHeight="80px"
+                outline="none"
+                position="relative"
+                px={4}
+                py="8px"
+                rounded="md"
+                transition="all 0.2s"
+                width="100%"
+              >
+                <textarea
+                  className="css-1tail54"
+                  defaultValue="{
+  \\"name\\": \\"hello\\"
+}"
+                />
+              </PseudoBox>
+            </Input>
+          </Textarea>
+          <Button
+            isFullWidth={true}
+            key=".2"
+            mb={null}
+            onClick={[Function]}
+            variantColor="green"
+          >
+            <PseudoBox
+              _active={
+                Object {
+                  "bg": "green.700",
+                }
+              }
+              _disabled={
+                Object {
+                  "boxShadow": "none",
+                  "cursor": "not-allowed",
+                  "opacity": "40%",
+                }
+              }
+              _focus={
+                Object {
+                  "boxShadow": "outline",
+                }
+              }
+              _hover={
+                Object {
+                  "bg": "green.600",
+                }
+              }
+              alignItems="center"
+              appearance="none"
+              as="button"
+              bg="green.500"
+              borderRadius="md"
+              color="white"
+              display="inline-flex"
+              fontSize="md"
+              fontWeight="semibold"
+              height={10}
+              justifyContent="center"
+              lineHeight="1.2"
+              mb={null}
+              minWidth={10}
+              onClick={[Function]}
+              outline="none"
+              position="relative"
+              px={4}
+              transition="all 250ms"
+              type="button"
+              userSelect="none"
+              verticalAlign="middle"
+              whiteSpace="nowrap"
+              width="full"
+            >
+              <button
+                className="css-sci538"
+                onClick={[Function]}
+                type="button"
+              >
+                Save custom changes
+              </button>
+            </PseudoBox>
+          </Button>
+        </div>
+      </Box>
+    </Flex>
+  </ForwardRef>
 </JSONEditor>
 `;

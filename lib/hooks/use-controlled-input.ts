@@ -35,7 +35,7 @@ export default function useControlledInput({
   const [isValid, setIsValid] = useState(() =>
     test(parse(inputValue), inputValue)
   )
-  const ref = useRef()
+  const ref = useRef<any>()
 
   // Generate ids when they do not exist
   const autoId = useMemo(() => id || uuid(), [id])

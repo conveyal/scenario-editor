@@ -1,12 +1,11 @@
-context('Single point analysis', () => {
+describe('Single point analysis', () => {
   before(() => {
     cy.setup('project')
     cy.setup('opportunities')
     cy.navTo('Analyze')
-    cy.get('div.leaflet-container').as('map')
   })
 
-  it('of baseline network looks reasonable', function () {
+  it('baseline network', function () {
     // select project and scenario
     cy.findAllByLabelText(/^Project$/)
       .first()
@@ -23,7 +22,10 @@ context('Single point analysis', () => {
       .type('default{enter}')
     // start analysis from default marker position
     cy.findByText(/Fetch Results/i).click()
-    cy.findByText(/Analyze results/i, {timeout: 200000}).should('exist')
+    cy.findByText(/Performing analysis|Enqueued task|Building network/i, {
+      timeout: 200000
+    })
+    cy.findByText(/Analyze results/i, {timeout: 200000})
     // move the marker and re-run
     cy.mapMoveMarkerTo([39.08877, -84.5106]) // to transit center
     cy.findByText(/Fetch Results/i).click()

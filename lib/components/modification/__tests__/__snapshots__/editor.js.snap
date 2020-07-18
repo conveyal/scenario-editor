@@ -1,120 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Modification > Editor should render and execute functions properly 1`] = `
-<Fragment>
-  <ConnectedDisplayAll
-    isEditing={true}
-  />
-  <div
-    className="ApplicationDockTitle"
-  >
-    <div
-      className=""
-    >
-      <IconTip
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "chevron-left",
-            "prefix": "fas",
-          }
-        }
-        link={
-          Object {
-            "projectId": "1",
-            "regionId": "1",
-            "to": "modifications",
-          }
-        }
-        tip="Modifications"
-      />
-      Test Modification
-    </div>
-    <div
-      className=""
-    >
-      <FitBounds />
-      <IconTip
-        className="pull-right"
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "trash",
-            "prefix": "fas",
-          }
-        }
-        onClick={[Function]}
-        tip="Delete modification"
-      />
-      <IconTip
-        className="pull-right"
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "copy",
-            "prefix": "fas",
-          }
-        }
-        onClick={[Function]}
-        tip="Copy modification"
-      />
-      <IconTip
-        className="pull-right"
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "pencil-alt",
-            "prefix": "fas",
-          }
-        }
-        onClick={[Function]}
-        tip="Edit modification name"
-      />
-    </div>
-  </div>
-  <InnerDock
-    className="block "
-  >
-    <Group>
-      <Button
-        block={true}
-        name="Add description"
-        onClick={[Function]}
-        style="info"
-      >
-        <Icon
-          icon={
-            Object {
-              "icon": Array [],
-              "iconName": "pencil-alt",
-              "prefix": "fas",
-            }
-          }
-        />
-         
-        Add description…
-      </Button>
-    </Group>
-    <Type
-      mapState={null}
-      modification={
-        Object {
-          "_id": "1234",
-          "accessGroup": "accessGroupName",
-          "bidirectional": false,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": undefined,
-          "entries": Array [],
-          "feed": "1",
-          "name": "Test Modification",
-          "nonce": "12345",
-          "projectId": "1",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
+<ModificationEditor
+  allVariants={
+    Array [
+      "variant one",
+      "variant two",
+    ]
+  }
+  clearActive={[MockFunction]}
+  copyModification={[MockFunction]}
+  debouncedSaveToServer={[Function]}
+  feedIsLoaded={true}
+  modification={
+    Object {
+      "_id": "1234",
+      "accessGroup": "accessGroupName",
+      "bidirectional": false,
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "description": undefined,
+      "entries": Array [],
+      "feed": "1",
+      "name": "Test Modification",
+      "nonce": "12345",
+      "projectId": "1",
+      "routes": Array [
+        "route1",
+      ],
+      "segments": Array [
+        {
   "fromStopId": "1",
   "geometry": {
     "type": "LineString",
@@ -151,175 +66,64 @@ exports[`Components > Modification > Editor should render and execute functions 
   "stopAtStart": false,
   "type": "Feature"
 },
+      ],
+      "timetables": Array [
+        Object {
+          "_id": "timetable-id",
+          "dwellTime": 10,
+          "dwellTimes": Array [
+            12,
           ],
-          "timetables": Array [
-            Object {
-              "_id": "timetable-id",
-              "dwellTime": 10,
-              "dwellTimes": Array [
-                12,
-              ],
-              "endTime": 57600,
-              "exactTimes": false,
-              "friday": true,
-              "headwaySecs": 900,
-              "modificationId": "1234",
-              "modificationName": "Test Modification",
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "phaseAtStop": "",
-              "phaseFromStop": "",
-              "phaseFromTimetable": "",
-              "phaseSeconds": 300,
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
+          "endTime": 57600,
+          "exactTimes": false,
+          "friday": true,
+          "headwaySecs": 900,
+          "modificationId": "1234",
+          "modificationName": "Test Modification",
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
             "abcd",
           ],
-          "type": "add-trip-pattern",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            true,
-          ],
-        }
-      }
-      setMapState={[Function]}
-      type="add-trip-pattern"
-      update={[Function]}
-      updateAndRetrieveFeedData={[Function]}
-    />
-    <Variants
-      activeVariants={
-        Array [
-          true,
-        ]
-      }
-      allVariants={
-        Array [
-          "variant one",
-          "variant two",
-        ]
-      }
-      modificationId="1234"
-      setVariant={[Function]}
-    />
-    <Collapsible
-      title="Customize modification"
-    >
-      <JSONEditor
-        modification={
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": undefined,
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
+          "phaseAtStop": "",
+          "phaseFromStop": "",
+          "phaseFromTimetable": "",
+          "phaseSeconds": 300,
+          "saturday": false,
+          "segmentSpeeds": Array [],
+          "sourceTrip": "abcd",
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
+        },
       ],
-      [
-        "-122.02790000",
-        "37.04900000"
+      "trips": Array [
+        "abcd",
       ],
-      [
-        "-121.97990000",
-        "37.22990000"
+      "type": "add-trip-pattern",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variants": Array [
+        true,
       ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          }
-        }
-        save={[Function]}
-      />
-    </Collapsible>
-  </InnerDock>
-</Fragment>
+    }
+  }
+  modificationId="1234"
+  query={
+    Object {
+      "projectId": "1",
+      "regionId": "1",
+    }
+  }
+  removeModification={[MockFunction]}
+  saveInProgress={false}
+  setActive={[MockFunction]}
+  setMapChildren={[MockFunction]}
+  setMapState={[MockFunction]}
+  update={[MockFunction]}
+  updateAndRetrieveFeedData={[MockFunction]}
+  updateLocally={[Function]}
+/>
 `;

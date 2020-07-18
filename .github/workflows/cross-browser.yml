@@ -1,12 +1,12 @@
-name: Nightly Integration Tests
+name: Nightly Cross-browser Integration Tests
 # For now, run local tests on all browsers. Eventually, run tests on production.
 
 on:
   pull_request:
     branches:
-      - dev # pull requests from the dev branch, usually means a merge to master
+      - master # pull requests into the master branch, usually means from dev to master
   schedule:
-    - cron: '0 0 * * *' # every day at midnight
+    - cron: '0 0 * * 1,2,3,4,5' # every weekday at midnight
 
 jobs:
   cypressCrossBrowserTests:

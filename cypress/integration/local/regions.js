@@ -1,3 +1,5 @@
+const tempRegionName = Cypress.env('dataPrefix') + 'temp'
+
 describe('Region setup', () => {
   beforeEach(() => {
     // scratch region settings
@@ -82,8 +84,7 @@ describe('Region setup', () => {
 
   it('creates new region from valid input', function () {
     // create a temporary region name
-    const regionName =
-      Cypress.env('dataPrefix') + ' Scratch Region ' + Date.now()
+    const regionName = tempRegionName + Date.now()
     // Enter region name and description
     cy.get('@name').type(regionName)
     cy.get('@description').type(this.region.description)
@@ -98,12 +99,14 @@ describe('Region setup', () => {
     cy.get('@West').clear().type(this.region.west)
     // Create the region
     cy.get('@create').click()
+    cy.navComplete()
     // should redirect to bundle upload
     cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
     cy.navTo('Regions')
     cy.findByText(regionName).click()
+    cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
     cy.navTo('Region Settings')

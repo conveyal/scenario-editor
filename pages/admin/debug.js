@@ -1,5 +1,9 @@
 import {Button, Stack, Text} from '@chakra-ui/core'
 import React from 'react'
+import {useDispatch} from 'react-redux'
+
+import fetch from 'lib/actions/fetch'
+import withRedux from 'lib/with-redux'
 
 function SubComponent() {
   return <Button.DoesNotExist>Will not render</Button.DoesNotExist>
@@ -8,28 +12,27 @@ function SubComponent() {
 const addListener = process.browser ? window.addEventListener : () => {}
 const removeListener = process.browser ? window.removeEventListener : () => {}
 
-export default function Debug() {
+export default withRedux(function Debug() {
+  const dispatch = useDispatch()
   const [show, setShow] = React.useState(false)
   const [error, setError] = React.useState()
   const [rejection, setRejection] = React.useState()
 
   React.useEffect(() => {
     const onError = (e) => {
-      console.error('error', e)
       setError(e)
     }
     addListener('error', onError)
     return () => removeListener('error', onError)
-  }, [])
+  }, [setError]) // just on mount / dismount
 
   React.useEffect(() => {
     const listener = (e) => {
-      console.error('rejection', e)
       setRejection(e)
     }
     addListener('unhandledrejection', listener)
     return () => removeListener('unhandledrejection', listener)
-  }, [])
+  }, [setRejection]) // just on mount / dismount
 
   return (
     <Stack align='center' spacing={4} mt={10} justify='center'>
@@ -38,7 +41,8 @@ export default function Debug() {
       </Button>
       <Button
         onClick={() => {
-          throw new Error('Thrown error.')
+          console.log(this.does.not.exist)
+          throw new Error('This is the error name. Can it be understood?')
         }}
         variantColor='red'
       >
@@ -52,7 +56,9 @@ export default function Debug() {
       )}
       <Button
         onClick={() => {
-          new Promise((resolve, reject) => reject('Rejected!'))
+          new Promise((resolve, reject) =>
+            reject('This is the reason why this was rejected.')
+          )
         }}
         variantColor='red'
       >
@@ -63,10 +69,19 @@ export default function Debug() {
           Rejection caught! See console for details.
         </Text>
       )}
+      <Button
+        onClick={() => dispatch(fetch({url: '/does/not/exits'}))}
+        variantColor='red'
+      >
+        Fetch a url that does not exist
+      </Button>
+      <Button onClick={() => dispatch(fetch())} variantColor='red'>
+        Fetch with invalid parameters
+      </Button>
     </Stack>
   )
-}
+})
 
-Debug.getInitialProps = () => {
+/** Debug.getInitialProps = () => {
   throw new Error('Intentional error thrown from Debug.getInitialProps.')
-}
+} */

@@ -1,19 +1,22 @@
+import {Button, Tooltip} from '@chakra-ui/core'
 import {faExpand} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
+import {useEffect, useState} from 'react'
 import {useLeaflet} from 'react-leaflet'
 import {useSelector} from 'react-redux'
 
 import selectModificationBounds from 'lib/selectors/modification-bounds'
 
-import IconTip from '../icon-tip'
+import Icon from '../icon'
+
+const label = 'Fit map to modification extents'
 
 export default function FitBounds() {
   const leaflet = useLeaflet()
   const bounds = useSelector(selectModificationBounds)
-  const [fitBoundsTriggered, setFitBoundsTriggered] = React.useState(0)
+  const [fitBoundsTriggered, setFitBoundsTriggered] = useState(0)
 
   // Zoom to bounds on a trigger or bounds change
-  React.useEffect(() => {
+  useEffect(() => {
     if (fitBoundsTriggered !== 0) {
       if (bounds) {
         leaflet.map.fitBounds(bounds)
@@ -22,12 +25,16 @@ export default function FitBounds() {
   }, [bounds, leaflet, fitBoundsTriggered])
 
   return (
-    <IconTip
-      className='pull-right'
-      id='zoom-to-modification'
-      onClick={() => setFitBoundsTriggered(Date.now())}
-      tip='Fit map to modification extents'
-      icon={faExpand}
-    />
+    <Tooltip aria-label={label} label={label} hasArrow zIndex={1000}>
+      <Button
+        id='zoom-to-modification'
+        onClick={() => setFitBoundsTriggered(Date.now())}
+        size='sm'
+        variant='ghost'
+        variantColor='blue'
+      >
+        <Icon icon={faExpand} fixedWidth={false} />
+      </Button>
+    </Tooltip>
   )
 }

@@ -219,7 +219,7 @@ export default function Sidebar() {
               icon={faPencilAlt}
               label={message('nav.editModifications')}
               link={{
-                to: 'modifications',
+                to: projectId ? 'modifications' : 'projectSelect',
                 params: {
                   regionId,
                   projectId: projectId ? projectId : 'undefined'
@@ -301,7 +301,7 @@ const LogoSpinner = memo(() => {
   }, [outstandingRequests])
 
   if (outstandingRequests || routeChanging) {
-    return <Icon color={CB_HEX} icon={faCompass} spin />
+    return <Icon color={CB_HEX} icon={faCompass} spin id='sidebar-spinner' />
   }
 
   return <Image display='inline-block' size='20px' src={LOGO_URL} />

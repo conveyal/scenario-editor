@@ -2607,28 +2607,6 @@ exports[`Component > Timetable renders correctly 2`] = `
                           </button>
                         </PseudoBox>
                       </Button>
-                      <AlertDialog
-                        isOpen={false}
-                        leastDestructiveRef={
-                          Object {
-                            "current": undefined,
-                          }
-                        }
-                        onClose={[Function]}
-                        size="lg"
-                      >
-                        <Modal
-                          formatIds={[Function]}
-                          initialFocusRef={
-                            Object {
-                              "current": undefined,
-                            }
-                          }
-                          isOpen={false}
-                          onClose={[Function]}
-                          size="lg"
-                        />
-                      </AlertDialog>
                     </ConfirmButton>
                   </div>
                 </Box>

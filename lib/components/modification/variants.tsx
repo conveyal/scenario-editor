@@ -1,16 +1,10 @@
 import {Checkbox, Heading, Stack} from '@chakra-ui/core'
-import React from 'react'
 
 import message from 'lib/message'
 
-export default function Variants({
-  activeVariants,
-  allVariants,
-  setVariant,
-  ...p
-}) {
+export default function Variants({activeVariants, allVariants, setVariant}) {
   return (
-    <Stack spacing={4} {...p} mb={4}>
+    <Stack spacing={4}>
       <Heading size='md'>{message('variant.activeIn')}</Heading>
       <Stack spacing={2}>
         {allVariants.map((v, i) => (

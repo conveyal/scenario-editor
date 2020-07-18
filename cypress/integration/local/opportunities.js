@@ -1,5 +1,8 @@
 import {generateName} from '../../support'
 
+// How long should it take to create an OD
+const timeout = 60000
+
 describe('Opportunity Datasets', () => {
   before(() => {
     cy.setup('region')
@@ -11,7 +14,7 @@ describe('Opportunity Datasets', () => {
     cy.get('div.leaflet-container').as('map')
   })
 
-  context('can be imported', () => {
+  describe('can be imported', () => {
     it('from CSV', function () {
       let opportunity = this.opportunities.csv
       let oppName = generateName('opportunities', opportunity.name)
@@ -28,9 +31,10 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -70,9 +74,10 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 30000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -106,9 +111,11 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
+
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -125,7 +132,7 @@ describe('Opportunity Datasets', () => {
     })
   })
 
-  context('can be downloaded', () => {
+  describe('can be downloaded', () => {
     before(() => {
       cy.setup('opportunities')
     })

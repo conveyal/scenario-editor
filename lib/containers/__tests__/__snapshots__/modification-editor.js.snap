@@ -40,45 +40,121 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
             <div
               className="simplebar-content"
             >
-              <P>
-                <Box
-                  as="p"
-                  mb="10px"
-                >
-                  <p
-                    className="css-1r2f04i"
-                  >
-                    Loading modification feed...
-                  </p>
-                </Box>
-              </P>
-              <P>
-                <Box
-                  as="p"
-                  mb="10px"
-                >
-                  <p
-                    className="css-1r2f04i"
-                  >
-                    If you deleted the network bundle underlying this modification, you will need to clear the bundle or delete this modification.
-                  </p>
-                </Box>
-              </P>
-              <Button
-                block={true}
-                className="DEV"
-                onClick={[Function]}
-                style="warning"
+              <ForwardRef
+                spacing={4}
               >
-                <a
-                  className="btn btn-warning btn-block DEV"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
+                <Flex
+                  direction="column"
                 >
-                  Clear selected bundle
-                </a>
-              </Button>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                  >
+                    <div
+                      className="css-j7qwjs"
+                    >
+                      <Text
+                        key=".0"
+                        mb={4}
+                      >
+                        <Box
+                          as="p"
+                          fontFamily="body"
+                          mb={4}
+                        >
+                          <p
+                            className="css-zwncle"
+                          >
+                            Loading modification feed...
+                          </p>
+                        </Box>
+                      </Text>
+                      <Text
+                        key=".1"
+                        mb={4}
+                      >
+                        <Box
+                          as="p"
+                          fontFamily="body"
+                          mb={4}
+                        >
+                          <p
+                            className="css-zwncle"
+                          >
+                            If you deleted the network bundle underlying this modification, you will need to clear the bundle or delete this modification.
+                          </p>
+                        </Box>
+                      </Text>
+                      <Button
+                        className="DEV"
+                        isFullWidth={true}
+                        key=".2"
+                        mb={null}
+                        onClick={[Function]}
+                        variantColor="yellow"
+                      >
+                        <PseudoBox
+                          _active={
+                            Object {
+                              "bg": "yellow.700",
+                            }
+                          }
+                          _disabled={
+                            Object {
+                              "boxShadow": "none",
+                              "cursor": "not-allowed",
+                              "opacity": "40%",
+                            }
+                          }
+                          _focus={
+                            Object {
+                              "boxShadow": "outline",
+                            }
+                          }
+                          _hover={
+                            Object {
+                              "bg": "yellow.600",
+                            }
+                          }
+                          alignItems="center"
+                          appearance="none"
+                          as="button"
+                          bg="yellow.500"
+                          borderRadius="md"
+                          className="DEV"
+                          color="white"
+                          display="inline-flex"
+                          fontSize="md"
+                          fontWeight="semibold"
+                          height={10}
+                          justifyContent="center"
+                          lineHeight="1.2"
+                          mb={null}
+                          minWidth={10}
+                          onClick={[Function]}
+                          outline="none"
+                          position="relative"
+                          px={4}
+                          transition="all 250ms"
+                          type="button"
+                          userSelect="none"
+                          verticalAlign="middle"
+                          whiteSpace="nowrap"
+                          width="full"
+                        >
+                          <button
+                            className="DEV css-r89f3h"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Clear selected bundle
+                          </button>
+                        </PseudoBox>
+                      </Button>
+                    </div>
+                  </Box>
+                </Flex>
+              </ForwardRef>
             </div>
           </div>
         </div>
@@ -103,108 +179,4 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
     </div>
   </div>
 </SimpleBar>
-`;
-
-exports[`Container > Modification Editor renders and can change the name 1`] = `
-Array [
-  Object {
-    "payload": Object {
-      "_id": "1234",
-      "accessGroup": "accessGroupName",
-      "bidirectional": false,
-      "createdAt": "2017-11-08T12:30:50.133Z",
-      "createdBy": "person@gmail.com",
-      "description": "Mock description",
-      "entries": Array [],
-      "feed": "1",
-      "name": "Test Modification",
-      "nonce": "12345",
-      "projectId": "1",
-      "routes": Array [
-        "route1",
-      ],
-      "segments": Array [
-        {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-      ],
-      "timetables": Array [
-        Object {
-          "_id": "timetable-id",
-          "dwellTime": 10,
-          "dwellTimes": Array [
-            12,
-          ],
-          "endTime": 57600,
-          "exactTimes": false,
-          "friday": true,
-          "headwaySecs": 900,
-          "modificationId": "1234",
-          "modificationName": "Test Modification",
-          "monday": true,
-          "name": "Test timetable",
-          "patternTrips": Array [
-            "abcd",
-          ],
-          "phaseAtStop": "",
-          "phaseFromStop": "",
-          "phaseFromTimetable": "",
-          "phaseSeconds": 300,
-          "saturday": false,
-          "segmentSpeeds": Array [],
-          "sourceTrip": "abcd",
-          "startTime": 28800,
-          "sunday": false,
-          "thursday": true,
-          "tuesday": true,
-          "wednesday": true,
-        },
-      ],
-      "trips": Array [
-        "abcd",
-      ],
-      "type": "add-trip-pattern",
-      "updatedAt": "2017-11-08T12:31:19.602Z",
-      "updatedBy": "person@gmail.com",
-      "variants": Array [
-        true,
-      ],
-    },
-    "type": "set modification",
-  },
-]
 `;

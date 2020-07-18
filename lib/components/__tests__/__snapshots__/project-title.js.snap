@@ -21,143 +21,586 @@ exports[`Component > ProjectTitle 1`] = `
   }
 >
   <Flex
+    align="center"
     borderBottom="1px solid #E2E8F0"
-    justify="space-between"
-    p={4}
+    p={2}
+    width="320px"
   >
     <Box
+      alignItems="center"
       borderBottom="1px solid #E2E8F0"
       display="flex"
-      justifyContent="space-between"
-      p={4}
+      p={2}
+      width="320px"
     >
       <div
-        className="css-awiul5"
+        className="css-hyly4r"
       >
+        <SimpleIconButton
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "chevron-left",
+              "prefix": "fas",
+            }
+          }
+          label="All projects"
+          onClick={[Function]}
+        >
+          <Box>
+            <div
+              className="css-0"
+            >
+              <Tooltip
+                aria-label="All projects"
+                hasArrow={true}
+                label="All projects"
+                placement="auto"
+                zIndex={1000}
+              >
+                <Button
+                  aria-label="All projects"
+                  isActive={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  size="sm"
+                  variant="ghost"
+                  variantColor="blue"
+                >
+                  <PseudoBox
+                    _active={
+                      Object {
+                        "bg": "blue.100",
+                      }
+                    }
+                    _disabled={
+                      Object {
+                        "boxShadow": "none",
+                        "cursor": "not-allowed",
+                        "opacity": "40%",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "boxShadow": "outline",
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "bg": "blue.50",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-label="All projects"
+                    as="button"
+                    bg="transparent"
+                    borderRadius="md"
+                    color="blue.500"
+                    display="inline-flex"
+                    fontSize="sm"
+                    fontWeight="semibold"
+                    height={8}
+                    justifyContent="center"
+                    lineHeight="1.2"
+                    minWidth={8}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    outline="none"
+                    position="relative"
+                    px={3}
+                    transition="all 250ms"
+                    type="button"
+                    userSelect="none"
+                    verticalAlign="middle"
+                    whiteSpace="nowrap"
+                  >
+                    <button
+                      aria-label="All projects"
+                      className="css-ig2uvu"
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                      type="button"
+                    >
+                      <Icon
+                        fixedWidth={false}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "chevron-left",
+                            "prefix": "fas",
+                          }
+                        }
+                      >
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={false}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "chevron-left",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          swapOpacity={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-chevron-left fa-w-NaN "
+                            data-icon="chevron-left"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            style={Object {}}
+                            viewBox="0 0 undefined undefined"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill="currentColor"
+                              style={Object {}}
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </Icon>
+                    </button>
+                  </PseudoBox>
+                </Button>
+                <ForwardRef
+                  anchorEl={
+                    <button
+                      aria-label="All projects"
+                      class="css-ig2uvu"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="svg-inline--fa fa-chevron-left fa-w-NaN "
+                        data-icon="chevron-left"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        viewBox="0 0 undefined undefined"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </button>
+                  }
+                  arrowSize="10px"
+                  bg="gray.700"
+                  borderRadius="sm"
+                  color="whiteAlpha.900"
+                  fontSize="sm"
+                  fontWeight="medium"
+                  hasArrow={true}
+                  isOpen={false}
+                  maxW="320px"
+                  modifiers={
+                    Object {
+                      "offset": Object {
+                        "enabled": true,
+                        "offset": "0, 8",
+                      },
+                    }
+                  }
+                  placement="auto"
+                  pointerEvents="none"
+                  px="8px"
+                  py="2px"
+                  shadow="md"
+                  timeout={200}
+                  usePortal={true}
+                  zIndex={1000}
+                />
+              </Tooltip>
+            </div>
+          </Box>
+        </SimpleIconButton>
         <Heading
+          flex="1"
+          ml={2}
+          overflow="hidden"
           size="md"
+          style={
+            Object {
+              "textOverflow": "ellipsis",
+            }
+          }
+          whiteSpace="nowrap"
         >
           <Box
             as="h2"
+            flex="1"
             fontFamily="heading"
             fontSize="xl"
             fontWeight="bold"
             lineHeight="shorter"
+            ml={2}
+            overflow="hidden"
+            style={
+              Object {
+                "textOverflow": "ellipsis",
+              }
+            }
+            whiteSpace="nowrap"
           >
             <h2
-              className="css-aku8fb"
-            >
-              <Icon
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "cube",
-                    "prefix": "fas",
-                  }
+              className="css-1ruodvp"
+              style={
+                Object {
+                  "textOverflow": "ellipsis",
                 }
-              >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
-                  icon={
-                    Object {
-                      "icon": Array [],
-                      "iconName": "cube",
-                      "prefix": "fas",
-                    }
-                  }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
-                    data-icon="cube"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="currentColor"
-                      style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-               
+              }
+            >
               Mock Project
             </h2>
           </Box>
         </Heading>
-        <ForwardRef
-          fontSize="14px"
-          isInline={true}
-        >
-          <Flex
-            direction="row"
-            fontSize="14px"
+        <Flex>
+          <Box
+            display="flex"
           >
-            <Box
-              display="flex"
-              flexDirection="row"
-              fontSize="14px"
+            <div
+              className="css-k008qs"
             >
-              <div
-                className="css-u4l8ps"
+              <SimpleIconButton
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "external-link-alt",
+                    "prefix": "fas",
+                  }
+                }
+                label="Download or share this project"
+                onClick={[Function]}
               >
-                <Box
-                  key=".0"
-                  mr={2}
-                >
+                <Box>
                   <div
-                    className="css-9u48bm"
+                    className="css-0"
                   >
-                    <Tip
-                      tip="Edit project settings"
+                    <Tooltip
+                      aria-label="Download or share this project"
+                      hasArrow={true}
+                      label="Download or share this project"
+                      placement="auto"
+                      zIndex={1000}
                     >
-                      <span
-                        className="Tip "
+                      <Button
+                        aria-label="Download or share this project"
+                        isActive={false}
                         onBlur={[Function]}
+                        onClick={[Function]}
                         onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                        size="sm"
+                        variant="ghost"
+                        variantColor="blue"
                       >
-                        <Link
-                          projectId="1"
-                          regionId="1"
-                          to="projectSettings"
-                        >
-                          <Link
-                            as="/regions/1/projects/1/edit"
-                            href={
-                              Object {
-                                "pathname": "/regions/[regionId]/projects/[projectId]/edit",
-                                "query": Object {},
-                              }
+                        <PseudoBox
+                          _active={
+                            Object {
+                              "bg": "blue.100",
                             }
-                            passHref={true}
+                          }
+                          _disabled={
+                            Object {
+                              "boxShadow": "none",
+                              "cursor": "not-allowed",
+                              "opacity": "40%",
+                            }
+                          }
+                          _focus={
+                            Object {
+                              "boxShadow": "outline",
+                            }
+                          }
+                          _hover={
+                            Object {
+                              "bg": "blue.50",
+                            }
+                          }
+                          alignItems="center"
+                          appearance="none"
+                          aria-label="Download or share this project"
+                          as="button"
+                          bg="transparent"
+                          borderRadius="md"
+                          color="blue.500"
+                          display="inline-flex"
+                          fontSize="sm"
+                          fontWeight="semibold"
+                          height={8}
+                          justifyContent="center"
+                          lineHeight="1.2"
+                          minWidth={8}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                          outline="none"
+                          position="relative"
+                          px={3}
+                          transition="all 250ms"
+                          type="button"
+                          userSelect="none"
+                          verticalAlign="middle"
+                          whiteSpace="nowrap"
+                        >
+                          <button
+                            aria-label="Download or share this project"
+                            className="css-ig2uvu"
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                            type="button"
                           >
-                            <a
-                              href="/regions/1/projects/1/edit"
-                              onClick={[Function]}
-                              onMouseEnter={[Function]}
+                            <Icon
+                              fixedWidth={false}
+                              icon={
+                                Object {
+                                  "icon": Array [],
+                                  "iconName": "external-link-alt",
+                                  "prefix": "fas",
+                                }
+                              }
                             >
-                              <Icon
+                              <FontAwesomeIcon
+                                border={false}
+                                className=""
+                                fixedWidth={false}
+                                flip={null}
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "external-link-alt",
+                                    "prefix": "fas",
+                                  }
+                                }
+                                inverse={false}
+                                listItem={false}
+                                mask={null}
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                swapOpacity={false}
+                                symbol={false}
+                                title=""
+                                transform={null}
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="svg-inline--fa fa-external-link-alt fa-w-NaN "
+                                  data-icon="external-link-alt"
+                                  data-prefix="fas"
+                                  focusable="false"
+                                  role="img"
+                                  style={Object {}}
+                                  viewBox="0 0 undefined undefined"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    style={Object {}}
+                                  />
+                                </svg>
+                              </FontAwesomeIcon>
+                            </Icon>
+                          </button>
+                        </PseudoBox>
+                      </Button>
+                      <ForwardRef
+                        anchorEl={
+                          <button
+                            aria-label="Download or share this project"
+                            class="css-ig2uvu"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-external-link-alt fa-w-NaN "
+                              data-icon="external-link-alt"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </button>
+                        }
+                        arrowSize="10px"
+                        bg="gray.700"
+                        borderRadius="sm"
+                        color="whiteAlpha.900"
+                        fontSize="sm"
+                        fontWeight="medium"
+                        hasArrow={true}
+                        isOpen={false}
+                        maxW="320px"
+                        modifiers={
+                          Object {
+                            "offset": Object {
+                              "enabled": true,
+                              "offset": "0, 8",
+                            },
+                          }
+                        }
+                        placement="auto"
+                        pointerEvents="none"
+                        px="8px"
+                        py="2px"
+                        shadow="md"
+                        timeout={200}
+                        usePortal={true}
+                        zIndex={1000}
+                      />
+                    </Tooltip>
+                  </div>
+                </Box>
+              </SimpleIconButton>
+              <SimpleIconButton
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "cog",
+                    "prefix": "fas",
+                  }
+                }
+                label="Edit project settings"
+                onClick={[Function]}
+              >
+                <Box>
+                  <div
+                    className="css-0"
+                  >
+                    <Tooltip
+                      aria-label="Edit project settings"
+                      hasArrow={true}
+                      label="Edit project settings"
+                      placement="auto"
+                      zIndex={1000}
+                    >
+                      <Button
+                        aria-label="Edit project settings"
+                        isActive={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                        size="sm"
+                        variant="ghost"
+                        variantColor="blue"
+                      >
+                        <PseudoBox
+                          _active={
+                            Object {
+                              "bg": "blue.100",
+                            }
+                          }
+                          _disabled={
+                            Object {
+                              "boxShadow": "none",
+                              "cursor": "not-allowed",
+                              "opacity": "40%",
+                            }
+                          }
+                          _focus={
+                            Object {
+                              "boxShadow": "outline",
+                            }
+                          }
+                          _hover={
+                            Object {
+                              "bg": "blue.50",
+                            }
+                          }
+                          alignItems="center"
+                          appearance="none"
+                          aria-label="Edit project settings"
+                          as="button"
+                          bg="transparent"
+                          borderRadius="md"
+                          color="blue.500"
+                          display="inline-flex"
+                          fontSize="sm"
+                          fontWeight="semibold"
+                          height={8}
+                          justifyContent="center"
+                          lineHeight="1.2"
+                          minWidth={8}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                          outline="none"
+                          position="relative"
+                          px={3}
+                          transition="all 250ms"
+                          type="button"
+                          userSelect="none"
+                          verticalAlign="middle"
+                          whiteSpace="nowrap"
+                        >
+                          <button
+                            aria-label="Edit project settings"
+                            className="css-ig2uvu"
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                            type="button"
+                          >
+                            <Icon
+                              fixedWidth={false}
+                              icon={
+                                Object {
+                                  "icon": Array [],
+                                  "iconName": "cog",
+                                  "prefix": "fas",
+                                }
+                              }
+                            >
+                              <FontAwesomeIcon
+                                border={false}
+                                className=""
+                                fixedWidth={false}
+                                flip={null}
                                 icon={
                                   Object {
                                     "icon": Array [],
@@ -165,139 +608,96 @@ exports[`Component > ProjectTitle 1`] = `
                                     "prefix": "fas",
                                   }
                                 }
+                                inverse={false}
+                                listItem={false}
+                                mask={null}
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                swapOpacity={false}
+                                symbol={false}
+                                title=""
+                                transform={null}
                               >
-                                <FontAwesomeIcon
-                                  border={false}
-                                  className=""
-                                  fixedWidth={true}
-                                  flip={null}
-                                  icon={
-                                    Object {
-                                      "icon": Array [],
-                                      "iconName": "cog",
-                                      "prefix": "fas",
-                                    }
-                                  }
-                                  inverse={false}
-                                  listItem={false}
-                                  mask={null}
-                                  pull={null}
-                                  pulse={false}
-                                  rotation={null}
-                                  size={null}
-                                  spin={false}
-                                  swapOpacity={false}
-                                  symbol={false}
-                                  title=""
-                                  transform={null}
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
-                                    data-icon="cog"
-                                    data-prefix="fas"
-                                    focusable="false"
-                                    role="img"
-                                    style={Object {}}
-                                    viewBox="0 0 undefined undefined"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      style={Object {}}
-                                    />
-                                  </svg>
-                                </FontAwesomeIcon>
-                              </Icon>
-                            </a>
-                          </Link>
-                        </Link>
-                      </span>
-                    </Tip>
-                  </div>
-                </Box>
-                <Box
-                  key=".1"
-                  mr={null}
-                >
-                  <div
-                    className="css-0"
-                  >
-                    <Tip
-                      tip="Download or share this project"
-                    >
-                      <span
-                        className="Tip "
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
-                      >
-                        <a
-                          name="Download or share this project"
-                          onClick={[Function]}
-                        >
-                          <Icon
-                            icon={
-                              Object {
-                                "icon": Array [],
-                                "iconName": "share-alt-square",
-                                "prefix": "fas",
-                              }
-                            }
-                          >
-                            <FontAwesomeIcon
-                              border={false}
-                              className=""
-                              fixedWidth={true}
-                              flip={null}
-                              icon={
-                                Object {
-                                  "icon": Array [],
-                                  "iconName": "share-alt-square",
-                                  "prefix": "fas",
-                                }
-                              }
-                              inverse={false}
-                              listItem={false}
-                              mask={null}
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              swapOpacity={false}
-                              symbol={false}
-                              title=""
-                              transform={null}
-                            >
-                              <svg
-                                aria-hidden="true"
-                                className="svg-inline--fa fa-share-alt-square fa-w-NaN fa-fw "
-                                data-icon="share-alt-square"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                style={Object {}}
-                                viewBox="0 0 undefined undefined"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fill="currentColor"
+                                <svg
+                                  aria-hidden="true"
+                                  className="svg-inline--fa fa-cog fa-w-NaN "
+                                  data-icon="cog"
+                                  data-prefix="fas"
+                                  focusable="false"
+                                  role="img"
                                   style={Object {}}
-                                />
-                              </svg>
-                            </FontAwesomeIcon>
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
+                                  viewBox="0 0 undefined undefined"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    style={Object {}}
+                                  />
+                                </svg>
+                              </FontAwesomeIcon>
+                            </Icon>
+                          </button>
+                        </PseudoBox>
+                      </Button>
+                      <ForwardRef
+                        anchorEl={
+                          <button
+                            aria-label="Edit project settings"
+                            class="css-ig2uvu"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-cog fa-w-NaN "
+                              data-icon="cog"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </button>
+                        }
+                        arrowSize="10px"
+                        bg="gray.700"
+                        borderRadius="sm"
+                        color="whiteAlpha.900"
+                        fontSize="sm"
+                        fontWeight="medium"
+                        hasArrow={true}
+                        isOpen={false}
+                        maxW="320px"
+                        modifiers={
+                          Object {
+                            "offset": Object {
+                              "enabled": true,
+                              "offset": "0, 8",
+                            },
+                          }
+                        }
+                        placement="auto"
+                        pointerEvents="none"
+                        px="8px"
+                        py="2px"
+                        shadow="md"
+                        timeout={200}
+                        usePortal={true}
+                        zIndex={1000}
+                      />
+                    </Tooltip>
                   </div>
                 </Box>
-              </div>
-            </Box>
-          </Flex>
-        </ForwardRef>
+              </SimpleIconButton>
+            </div>
+          </Box>
+        </Flex>
       </div>
     </Box>
   </Flex>

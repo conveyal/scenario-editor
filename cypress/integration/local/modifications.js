@@ -19,17 +19,20 @@ const types = [
   'Custom'
 ]
 
+// Delete an open modification
 function deleteThisMod() {
-  cy.get('a[name="Delete modification"]').click()
-  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
-  cy.contains(/Create a modification/)
+  cy.findByRole('button', {name: 'Delete modification'}).click()
+  cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
 }
 
 function openMod(modType, modName) {
   // opens the first listed modification of this type with this name
   cy.navTo('Edit Modifications')
+  cy.findByRole('tab', {name: /Modifications/g}).click()
+
   // find the container for this modification type and open it if need be
-  cy.contains(modType)
+  cy.findByText(modType)
+    .parent()
     .parent()
     .as('modList')
     .then((modList) => {
@@ -45,8 +48,8 @@ function openMod(modType, modName) {
 function deleteMod(modType, modName) {
   openMod(modType, modName)
 
-  cy.get('a[name="Delete modification"]').click()
-  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+  cy.findByRole('button', {name: 'Delete modification'}).click()
+  cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
   cy.contains('Create a modification')
   cy.findByText(modName).should('not.exist')
 }
@@ -72,22 +75,22 @@ function drawRouteGeometry(newRoute) {
     .contains(/Stop editing/i)
   cy.get('div.leaflet-container').as('map')
   cy.window().then((win) => {
-    let map = win.LeafletMap
-    let route = win.L.polyline(newRoute)
+    const map = win.LeafletMap
+    const route = win.L.polyline(newRoute)
     map.fitBounds(route.getBounds(), {animate: false})
     cy.waitForMapToLoad()
     // click at the coordinates
-    let coords = route.getLatLngs()
+    const coords = route.getLatLngs()
     coords.forEach((point, i) => {
-      let pix = map.latLngToContainerPoint(point)
+      const pix = map.latLngToContainerPoint(point)
       cy.get('@map').click(pix.x, pix.y)
       if (i > 0) {
         cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
       }
     })
     // convert an arbitrary stop to a control point
-    let stop = coords[coords.length - 2]
-    let pix = map.latLngToContainerPoint(stop)
+    const stop = coords[coords.length - 2]
+    const pix = map.latLngToContainerPoint(stop)
     cy.get('@map').click(pix.x, pix.y)
     cy.get('@map')
       .findByText(/make control point/)
@@ -107,7 +110,23 @@ function drawRouteGeometry(newRoute) {
 describe('Modifications', () => {
   before(() => {
     cy.setup('project')
-    cy.setupScenario(scenarioName)
+    cy.findByText(/Scenarios/).click()
+    cy.get('#scenarios').then((scenarios) => {
+      // create scenario if it doesn't already exist
+      if (!scenarios.text().includes(scenarioName)) {
+        cy.findByText('Create a scenario').click()
+
+        cy.get('#scenarios')
+          .findByText(/Scenario \d/)
+          .parent()
+          .parent()
+          .parent()
+          .click()
+          .parent()
+          .findByDisplayValue(/Scenario \d/)
+          .type(scenarioName + '{enter}')
+      }
+    })
 
     // TODO clear out all old modifications
   })
@@ -115,11 +134,14 @@ describe('Modifications', () => {
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.navTo('Edit Modifications')
+    cy.findByRole('tab', {name: /Modifications/g}).click()
   })
 
   describe('Add Trip Pattern', () => {
     it('can be imported from shapefile', function () {
-      cy.get('svg[data-icon="upload"]').click()
+      cy.findByRole('button', {
+        name: 'Import modifications from another project'
+      }).click()
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
       cy.get('a.btn').get('svg[data-icon="upload"]').click()
@@ -137,7 +159,8 @@ describe('Modifications', () => {
       cy.findByText(/Import/)
         .should('not.be.disabled')
         .click()
-      cy.location('pathname').should('match', /projects\/.{24}$/)
+
+      cy.location('pathname').should('match', /projects\/.{24}\/modifications/)
 
       this.region.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
@@ -375,15 +398,20 @@ describe('Modifications', () => {
         const description = 'descriptive text'
         setupMod(type, name)
         cy.contains(name)
-        cy.findByRole('link', {name: /Add description/}).click()
-        cy.findByLabelText('Description').type(description)
+        cy.findByText(/Add description/)
+          .parent()
+          .parent()
+          .click()
+
+        cy.get('input').first().focus().type(description)
+
         // scenarios
         cy.findByLabelText(/Default/).uncheck({force: true})
         cy.findByLabelText(scenarioNameRegEx).check({force: true})
         // go back and check that everything saved
         cy.navTo('Edit Modifications')
         openMod(type, name)
-        cy.findByLabelText('Description').contains(description)
+        cy.findByText(description)
         cy.findByLabelText(/Default/).should('not.be.checked')
         cy.findByLabelText(scenarioNameRegEx).should('be.checked')
         deleteThisMod()

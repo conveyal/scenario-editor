@@ -16,6 +16,12 @@ const regionFixture = `regions/${regionName}.json`
 export const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
+// Wait until the page has finished loading
+Cypress.Commands.add('navComplete', () => {
+  cy.get('#sidebar-spinner', unlog).should('not.exist')
+  Cypress.log({name: 'Navigation complete'})
+})
+
 // For easy use inside tests
 Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
 
@@ -27,63 +33,58 @@ Cypress.Commands.add('isWithinTolerance', (f1, f2, tolerance = 0.025) => {
   cy.wrap(Math.abs(Number(f1) - Number(f2)) < tolerance).should('be.true')
 })
 
-Cypress.Commands.add('setup', (entity) => {
-  setup(entity)
-})
+// Recursive setup
+Cypress.Commands.add('setup', (entity) => setup(entity))
+
 function setup(entity) {
-  const entities = {
-    region: {dependsOn: null, setup: createNewRegion},
-    bundle: {dependsOn: 'region', setup: createNewBundle},
-    opportunities: {dependsOn: 'region', setup: createNewOpportunities},
-    project: {dependsOn: 'bundle', setup: createNewProject}
-  }
-  if (!(entity in entities)) {
-    return
-  }
-  let entityId = entity + 'Id'
-  cy.task('touch', pseudoFixture, unlog)
-  cy.readFile(pseudoFixture, unlog).then((storedVals) => {
-    if (entityId in storedVals) {
+  const idKey = entity + 'Id'
+  cy.task('touch', pseudoFixture)
+  return cy.readFile(pseudoFixture).then((storedVals) => {
+    if (idKey in storedVals) {
       // thing exists; navigate to it
       switch (entity) {
         case 'region':
           cy.visit(`/regions/${storedVals.regionId}`)
-          cy.contains(/Create new Project|Upload a .* Bundle/i, unlog)
-          break
+          cy.navComplete()
+          return cy.contains(/Create new Project|Upload a .* Bundle/i)
         case 'bundle':
           cy.visit(
             `/regions/${storedVals.regionId}/bundles/${storedVals.bundleId}`
           )
-          cy.contains(/create a new network bundle/i, unlog)
-          break
+          cy.navComplete()
+          return cy.contains(/create a new network bundle/i)
         case 'opportunities':
           cy.visit(`/regions/${storedVals.regionId}/opportunities`)
-          cy.contains(/Upload a new dataset/i, unlog)
-          break
+          cy.navComplete()
+          return cy.contains(/Upload a new dataset/i)
         case 'project':
           cy.visit(
-            `/regions/${storedVals.regionId}/projects/${storedVals.projectId}`
+            `/regions/${storedVals.regionId}/projects/${storedVals.projectId}/modifications`
           )
-          cy.contains(/Create a modification/i, unlog)
-          break
+          cy.navComplete()
+          return cy.contains(/Create a modification/i)
       }
-    } else {
-      // recursive call for dependency
-      setup(entities[entity].dependsOn)
-      entities[entity].setup()
+    } else if (entity === 'region') {
+      return createNewRegion()
+    } else if (entity === 'bundle') {
+      return setup('region').then(() => createNewBundle())
+    } else if (entity === 'opportunities') {
+      return setup('region').then(() => createNewOpportunities())
+    } else if (entity === 'project') {
+      return setup('bundle').then(() => createNewProject())
     }
   })
 }
 
 function stash(key, val) {
-  cy.readFile(pseudoFixture, unlog).then((contents) => {
+  cy.readFile(pseudoFixture).then((contents) => {
     contents = {...contents, [key]: val}
-    cy.writeFile(pseudoFixture, contents, unlog)
+    cy.writeFile(pseudoFixture, contents)
   })
 }
 
 function createNewOpportunities() {
-  cy.fixture(regionFixture).then((region) => {
+  return cy.fixture(regionFixture).then((region) => {
     let opportunity = region.opportunities.grid
     let oppName = `${prefix}default_opportunities`
     cy.navTo('Opportunity Datasets')
@@ -96,6 +97,7 @@ function createNewOpportunities() {
     cy.get('a.btn')
       .contains(/Upload/)
       .click()
+    cy.navComplete()
     // find the message showing this upload is complete
     cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
       .parent()
@@ -109,7 +111,8 @@ function createNewOpportunities() {
     cy.findByText(/Select\.\.\./)
       .click()
       .type(`${oppName} {enter}`)
-    cy.location('href')
+    return cy
+      .location('href')
       .should('match', /.*DatasetId=\w{24}$/)
       .then((href) => {
         stash('opportunitiesId', href.match(/\w{24}$/)[0])
@@ -135,9 +138,11 @@ function createNewRegion() {
       .type(region.east, {delay: 1})
   })
   cy.findByRole('button', {name: /Set up a new region/}).click()
+  cy.navComplete()
   cy.contains(/Upload a new network bundle|create new project/i)
   // store the region UUID for later
-  cy.location('pathname')
+  return cy
+    .location('pathname')
     .should('match', /regions\/\w{24}$/)
     .then((path) => {
       stash('regionId', path.match(/\w{24}$/)[0])
@@ -173,7 +178,8 @@ function createNewBundle() {
     .parent()
     .click()
     .type(bundleName + '{enter}')
-  cy.location('pathname')
+  return cy
+    .location('pathname')
     .should('match', /bundles\/\w{24}$/)
     .then((path) => {
       stash('bundleId', path.match(/\w{24}$/)[0])
@@ -181,24 +187,21 @@ function createNewBundle() {
 }
 
 function createNewProject() {
-  let projectName = prefix + regionName + ' project'
-  let bundleName = prefix + regionName + ' bundle'
+  const projectName = prefix + regionName + ' project'
+  const bundleName = prefix + regionName + ' bundle'
   cy.navTo('Projects')
-  cy.contains('Create new Project')
   cy.findByText(/Create new Project/i).click()
-  cy.location('pathname').should('match', /\/create-project/)
-  cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
+  cy.findByLabelText(/Project name/).type(projectName)
   cy.findByLabelText(/Associated network bundle/i).click()
   cy.findByText(bundleName).click()
-  cy.get('a.btn')
-    .contains(/Create/)
-    .click()
-  cy.contains(/Modifications/, unlog)
+  cy.findByText(/^Create$/).click()
+
   // store the projectId
-  cy.location('pathname', unlog)
-    .should('match', /\/projects\/\w{24}$/)
+  return cy
+    .location('pathname', unlog)
+    .should('match', /regions\/\w{24}\/projects\/\w{24}\/modifications$/) // wait until the location has changed
     .then((path) => {
-      stash('projectId', path.match(/\w{24}$/)[0])
+      stash('projectId', path.match(/\w{24}/g)[1])
     })
 }
 
@@ -211,33 +214,6 @@ Cypress.Commands.add('deleteProject', (projectName) => {
       cy.findByText(/Delete project/i).click()
     } else {
       // no such project - nothing to delete
-    }
-  })
-})
-
-Cypress.Commands.add('setupScenario', (scenarioName) => {
-  // can be called when editing modifications
-  cy.navTo('Edit Modifications')
-  cy.contains('Scenarios')
-    .parent()
-    .as('panel')
-    .then((panel) => {
-      // open the scenario panel if it isn't open already
-      if (!panel.text().includes('Create a scenario')) {
-        cy.get(panel).click()
-        cy.get(panel).contains('Create a scenario')
-      }
-    })
-  cy.get('@panel').then((panel) => {
-    // create scenario if it doesn't already exist
-    if (!panel.text().includes(scenarioName)) {
-      cy.window().then((win) => {
-        cy.stub(win, 'prompt').returns(scenarioName)
-      })
-      cy.findByRole('link', {name: 'Create a scenario'}).click()
-      cy.window().then((win) => {
-        win.prompt.restore()
-      })
     }
   })
 })
@@ -264,30 +240,25 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
   // and wait until at least part of the page is loaded
   Cypress.log({name: 'Navigate to'})
-  cy.findByTitle(RegExp(menuItemTitle, 'i'), unlog)
+  cy.findByTitle(RegExp(menuItemTitle, 'i'))
     .parent(unlog) // select actual SVG element rather than <title> el
-    .click(unlog)
+    .click()
+
   switch (menuItemTitle.toLowerCase()) {
     case 'regions':
-      cy.contains(/Set up a new region/i, unlog)
-      break
+      return cy.contains(/Set up a new region/i)
     case 'region settings':
-      cy.contains(/Delete this region/i, unlog)
-      break
+      return cy.contains(/Delete this region/i)
     case 'projects':
-      cy.contains(/Create new Project|Upload a .* Bundle/i, unlog)
-      break
+      return cy.contains(/Create new Project|Upload a .* Bundle/i)
     case 'network bundles':
-      cy.contains(/Create a new network bundle/i, unlog)
-      break
+      return cy.contains(/Create a new network bundle/i)
     case 'opportunity datasets':
-      cy.contains(/Upload a new dataset/i, unlog)
-      break
+      return cy.contains(/Upload a new dataset/i)
     case 'edit modifications':
-      cy.contains(/create new project|create a modification/i, unlog)
-      break
+      return cy.contains(/create new project|create a modification/i)
     case 'analyze':
-      cy.contains(/Comparison Project/i, unlog)
+      return cy.contains(/Comparison Project/i)
   }
 })
 

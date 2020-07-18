@@ -1,6 +1,6 @@
 import {RouteTo} from 'lib/constants'
 
-export function routeTo(to, props) {
+export function routeTo(to: string, props: any) {
   const href = RouteTo[to]
   if (!href) {
     console.error(`${to} is not a valid RouteTo route!`)
@@ -10,8 +10,8 @@ export function routeTo(to, props) {
   return {as, href, query}
 }
 
-export function hrefToAs(str, obj) {
-  if (!obj) return str
+export function hrefToAs(str: string, obj: any) {
+  if (!obj) return {as: str}
   const query = {}
   Object.keys(obj).forEach((k) => {
     const key = `[${k}]`

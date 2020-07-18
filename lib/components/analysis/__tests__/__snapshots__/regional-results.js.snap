@@ -1687,10 +1687,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                           to="modifications"
                                         >
                                           <Link
-                                            as="/regions/1/projects/1"
+                                            as="/regions/1/projects/1/modifications"
                                             href={
                                               Object {
-                                                "pathname": "/regions/[regionId]/projects/[projectId]",
+                                                "pathname": "/regions/[regionId]/projects/[projectId]/modifications",
                                                 "query": Object {},
                                               }
                                             }
@@ -1698,7 +1698,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                           >
                                             <a
                                               className="jsx-2817932548"
-                                              href="/regions/1/projects/1"
+                                              href="/regions/1/projects/1/modifications"
                                               onClick={[Function]}
                                               onMouseEnter={[Function]}
                                             >

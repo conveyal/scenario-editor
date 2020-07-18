@@ -1,4 +1,4 @@
-context('Network bundles', () => {
+describe('Network bundles', () => {
   before('prepare the region', () => {
     cy.setup('region')
   })

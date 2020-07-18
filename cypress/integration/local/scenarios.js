@@ -1,53 +1,88 @@
-context('Scenarios', () => {
+function findScenarioByName(name) {
+  return cy.get('#scenarios').contains(name).parent().parent().parent()
+}
+
+describe('Scenarios', () => {
   before(() => {
     cy.setup('project')
+    cy.findByText(/Scenarios/).click()
+
+    // Clear all existing scenarios
+    cy.get('#scenarios')
+      .findAllByRole('group')
+      .each((group, index) => {
+        if (index !== 0) {
+          cy.wrap(group)
+            .parent()
+            .parent()
+            .findByRole('button', {name: 'Delete this scenario'})
+            .click()
+          cy.findByRole('button', {
+            name: 'Confirm: Delete this scenario'
+          }).click()
+          cy.findByRole('alertdialog').should('not.exist')
+        }
+      })
   })
 
-  beforeEach(() => {
-    // identify and open the scenarios panel, if closed
-    cy.findByText(/Scenarios/)
+  it('baseline scenario cannot be copied, deleted, or renamed', () => {
+    findScenarioByName('Baseline')
+      .findByRole('button', {name: /Delete this scenario/})
+      .should('not.exist')
+  })
+
+  it('default scenario should exist and cannot be deleted, but can be copied and renamed', () => {
+    const defaultName = 'Default'
+    const newName = Cypress.env('dataPrefix') + 'scenario'
+
+    findScenarioByName(defaultName)
+      .findByRole('button', {name: /Delete this scenario/})
+      .should('not.exist')
+
+    findScenarioByName(defaultName).findByRole('button', {
+      name: 'Copy scenario'
+    })
+
+    findScenarioByName(defaultName)
+      .click()
       .parent()
-      .as('scenarioPanel')
-    cy.get('@scenarioPanel').then((panel) => {
-      if (!panel.text().includes('Create a scenario')) {
-        cy.get('@scenarioPanel').click()
-      }
-    })
+      .findByDisplayValue(defaultName)
+      .type(newName + '{enter}')
+
+    findScenarioByName(newName)
+      .click()
+      .parent()
+      .findByDisplayValue(newName)
+      .type(defaultName + '{enter}')
   })
 
-  it("include 'baseline' & 'default'", () => {
-    cy.get('@scenarioPanel')
-      .contains(/Baseline/)
-      .findByTitle(/Delete this scenario/)
-      .should('not.exist')
-    cy.get('@scenarioPanel')
-      .contains(/Default/)
-      .findByTitle(/Rename this scenario/)
-      .should('exist')
-  })
+  it('new scenario can be created, copied, renamed, & deleted', function () {
+    const scenarioName = Cypress.env('dataPrefix') + 'scenario ' + Date.now()
+    // create
+    cy.findByText('Create a scenario').click()
 
-  it('can be created, renamed, & deleted', function () {
-    let scenarioName = 'scenario ' + Date.now()
-    cy.window().then((win) => {
-      cy.stub(win, 'prompt').returns(scenarioName)
-      //.returns(scenarioName + ' altered')
-    })
-    cy.findByRole('link', {name: 'Create a scenario'}).click()
-    cy.window().then((win) => {
-      win.prompt.restore()
-      cy.stub(win, 'prompt').returns(scenarioName + ' altered')
-    })
-    cy.get('@scenarioPanel')
-      .contains(scenarioName)
-      .findByTitle(/Rename/)
+    // rename
+    findScenarioByName('Scenario 2')
       .click()
-    cy.get('@scenarioPanel')
-      .contains(scenarioName + ' altered')
-      .findByTitle(/Delete this scenario/)
+      .parent()
+      .findByDisplayValue('Scenario 2')
+      .type(scenarioName + '{enter}')
+
+    // copy
+    findScenarioByName(scenarioName)
+      .findByRole('button', {name: 'Copy scenario'})
       .click()
-    cy.get('@scenarioPanel').findByText(scenarioName).should('not.exist')
-    cy.get('@scenarioPanel')
-      .findByText(scenarioName + ' altered')
-      .should('not.exist')
+
+    // delete copy
+    findScenarioByName(scenarioName + ' (copy)')
+      .findByRole('button', {name: 'Delete this scenario'})
+      .click()
+    cy.findByRole('button', {name: 'Confirm: Delete this scenario'}).click()
+
+    // delete first scenario
+    findScenarioByName(scenarioName)
+      .findByRole('button', {name: 'Delete this scenario'})
+      .click()
+    cy.findByRole('button', {name: 'Confirm: Delete this scenario'}).click()
   })
 })

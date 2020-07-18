@@ -2,8 +2,6 @@
 
 exports[`Components > Modification > Variants 1`] = `
 <ForwardRef
-  mb={4}
-  modificationId="1"
   spacing={4}
 >
   <Heading

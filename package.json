@@ -137,7 +137,7 @@
     "@testing-library/react": "^10.2.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
-    "cypress": "^4.7.0",
+    "cypress": "^4.10.0",
     "cypress-file-upload": "^4.0.7",
     "cypress-image-snapshot": "^3.1.1",
     "cypress-wait-until": "^1.7.1",

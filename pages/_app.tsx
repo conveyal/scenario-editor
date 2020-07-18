@@ -6,7 +6,7 @@ import React, {ComponentType, ErrorInfo} from 'react'
 import ReactGA from 'react-ga'
 
 import ChakraTheme from '../lib/chakra'
-import {ErrorModal} from '../lib/components/error-modal'
+import ErrorModal from '../lib/components/error-modal'
 import LogRocket from '../lib/logrocket'
 
 import 'react-datetime/css/react-datetime.css'
@@ -65,6 +65,7 @@ export default class ConveyalAnalysis extends App {
           <ErrorModal
             error={this.state.error}
             clear={() => this.setState({error: null})}
+            title='Application error'
           />
         ) : (
           <Layout>

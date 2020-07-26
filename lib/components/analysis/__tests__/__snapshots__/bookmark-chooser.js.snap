@@ -10,31 +10,39 @@ exports[`Component BookmarkChooser snapshot(mount) 1`] = `
         className="css-0"
         role="group"
       >
-        <FormLabel
-          display="flex"
-          htmlFor="select-bookmark-false"
-          justifyContent="space-between"
-          pb="3px"
-          pr={0}
+        <Flex
+          justify="space-between"
         >
           <Box
-            as="label"
             display="flex"
-            fontSize="md"
-            fontWeight="medium"
-            htmlFor="select-bookmark-false"
             justifyContent="space-between"
-            opacity="1"
-            pb="3px"
-            pr={0}
-            textAlign="left"
-            verticalAlign="middle"
           >
-            <label
-              className="css-7ap8sm"
-              htmlFor="select-bookmark-false"
+            <div
+              className="css-gg4vpm"
             >
-              Bookmark
+              <FormLabel
+                htmlFor="select-bookmark-false"
+              >
+                <Box
+                  as="label"
+                  display="inline-block"
+                  fontSize="md"
+                  fontWeight="medium"
+                  htmlFor="select-bookmark-false"
+                  opacity="1"
+                  pb="4px"
+                  pr="12px"
+                  textAlign="left"
+                  verticalAlign="middle"
+                >
+                  <label
+                    className="css-176s5fq"
+                    htmlFor="select-bookmark-false"
+                  >
+                    Bookmark
+                  </label>
+                </Box>
+              </FormLabel>
               <Button
                 onClick={[Function]}
                 rightIcon="small-add"
@@ -138,9 +146,9 @@ exports[`Component BookmarkChooser snapshot(mount) 1`] = `
                   </button>
                 </PseudoBox>
               </Button>
-            </label>
+            </div>
           </Box>
-        </FormLabel>
+        </Flex>
         <Box>
           <div
             className="css-0"

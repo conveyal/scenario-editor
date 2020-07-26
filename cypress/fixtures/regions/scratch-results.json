@@ -1,0 +1,17 @@
+{
+  "locations": {
+    "center": {
+      "default": 132530,
+      "6:00-8:00": 132817,
+      "22:00-24:00": 65052,
+      "custom-bounds": 10485
+    },
+    "middle": {
+      "default": 43828,
+      "bike-only": 93708
+    },
+    "margin": {
+      "default": 31778
+    }
+  }
+}

@@ -238,28 +238,28 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
-  // and wait until at least part of the page is loaded
-  Cypress.log({name: 'Navigate to'})
-  cy.findByTitle(RegExp(menuItemTitle, 'i'))
-    .parent(unlog) // select actual SVG element rather than <title> el
-    .click()
-
-  switch (menuItemTitle.toLowerCase()) {
-    case 'regions':
-      return cy.contains(/Set up a new region/i)
-    case 'region settings':
-      return cy.contains(/Delete this region/i)
-    case 'projects':
-      return cy.contains(/Create new Project|Upload a .* Bundle/i)
-    case 'network bundles':
-      return cy.contains(/Create a new network bundle/i)
-    case 'opportunity datasets':
-      return cy.contains(/Upload a new dataset/i)
-    case 'edit modifications':
-      return cy.contains(/create new project|create a modification/i)
-    case 'analyze':
-      return cy.contains(/Comparison Project/i)
+  // and wait until at least part of the page is loaded.
+  const pages = {
+    regions: {lookFor: /Set up a new region/i},
+    'region settings': {lookFor: /Delete this region/i},
+    projects: {lookFor: /Create new Project|Upload a .* Bundle/i},
+    'network bundles': {lookFor: /Create a new network bundle/i},
+    'opportunity datasets': {lookFor: /Upload a new dataset/i},
+    'edit modifications': {
+      lookFor: /create new project|create a modification/i
+    },
+    analyze: {lookFor: /Comparison Project/i},
+    'regional analyses': {lookFor: /Regional Analyses/i}
   }
+  const title = menuItemTitle.toLowerCase()
+  console.assert(title in pages)
+  Cypress.log({name: 'Navigate to'})
+  // click the menu item
+  cy.findByTitle(RegExp(title, 'i'), unlog)
+    .parent(unlog) // select actual SVG element rather than <title> el
+    .click(unlog)
+  // check that page loads at least some content
+  cy.contains(pages[title].lookFor, unlog)
 })
 
 Cypress.Commands.add('clickMap', (coord) => {
@@ -294,37 +294,12 @@ Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
     })
 })
 
-Cypress.Commands.add('mapMoveMarkerTo', (latLonArray) => {
+Cypress.Commands.add('centerMapOn', (latLonArray, zoom = 12) => {
+  // centers map on a given lat/lon coordinate: [x,y]
   cy.window()
     .its('LeafletMap')
     .then((map) => {
-      // find the marker
-      var marker
-      for (let key in map._layers) {
-        let layer = map._layers[key]
-        // only the marker layer has this set, though...
-        // TODO there is probably a surer way to get the marker
-        if (typeof layer.getLatLng === 'function') {
-          marker = map.latLngToContainerPoint(layer.getLatLng())
-          cy.log('move from ' + marker)
-        }
-      }
-      // project to screen coordinates
-      let dest = map.latLngToContainerPoint(latLonArray)
-      cy.log('move to ' + dest)
-      // TODO marker drag not working yet
-      cy.get('.leaflet-container')
-        .trigger('mousedown', {
-          which: 1,
-          clientX: marker.x + 680,
-          clientY: marker.y
-        })
-        .trigger('mousemove', {
-          which: 1,
-          clientX: dest.x + 680,
-          clientY: dest.y
-        })
-        .trigger('mouseup')
+      map.setView(latLonArray, zoom)
     })
 })
 

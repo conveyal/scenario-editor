@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   FormControlProps
@@ -103,14 +104,8 @@ export default memo<Props & FormControlProps>(function BookmarkChooser({
 
   return (
     <FormControl isDisabled={disabled} {...p}>
-      <FormLabel
-        display='flex'
-        justifyContent='space-between'
-        htmlFor={id}
-        pr={0}
-        pb='3px'
-      >
-        {message('analysis.bookmark')}
+      <Flex justify='space-between'>
+        <FormLabel htmlFor={id}>{message('analysis.bookmark')}</FormLabel>
         <Button
           isDisabled={disabled}
           onClick={_createBookmark}
@@ -120,7 +115,7 @@ export default memo<Props & FormControlProps>(function BookmarkChooser({
         >
           New
         </Button>
-      </FormLabel>
+      </Flex>
       <Box>
         <Select
           name={id}

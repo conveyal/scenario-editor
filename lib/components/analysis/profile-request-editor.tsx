@@ -196,13 +196,15 @@ export default function ProfileRequestEditor({
             isDisabled={disabled}
             isInvalid={bundleOutOfDate || !dateIsValid}
           >
-            <FormLabel>{message('analysis.date')}</FormLabel>
+            <FormLabel htmlFor='serviceDate'>
+              {message('analysis.date')}
+            </FormLabel>
             <DateTimeWithRender
               closeOnSelect
               dateFormat={DATE_FORMAT}
               inputProps={{disabled}}
               onChange={setDate}
-              renderInput={(p) => <Input {...p} />}
+              renderInput={(p) => <Input {...p} id='serviceDate' />}
               timeFormat={false}
               utc // because new Date('2016-12-12') yields a date at midnight UTC
               value={date}
@@ -234,7 +236,9 @@ export default function ProfileRequestEditor({
             isDisabled={disabled}
             isInvalid={monteCarloInput.isInvalid}
           >
-            <FormLabel>{message('analysis.monteCarloDraws')}</FormLabel>
+            <FormLabel htmlFor={monteCarloInput.id}>
+              {message('analysis.monteCarloDraws')}
+            </FormLabel>
             <Input {...monteCarloInput} type='number' />
           </FormControl>
 
@@ -242,7 +246,9 @@ export default function ProfileRequestEditor({
             isDisabled={disabled}
             isInvalid={maxTransfersInput.isInvalid}
           >
-            <FormLabel>{message('analysis.transfers')}</FormLabel>
+            <FormLabel htmlFor={maxTransfersInput.id}>
+              {message('analysis.transfers')}
+            </FormLabel>
             <Input {...maxTransfersInput} type='number' />
           </FormControl>
 

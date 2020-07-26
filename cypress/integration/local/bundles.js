@@ -90,4 +90,8 @@ describe('Network bundles', () => {
       .click()
     cy.location('pathname').should('match', /.*\/bundles$/)
   })
+
+  it('with multiple GTFS feeds can be uploaded')
+
+  it('rejects obviously corrupt GTFS')
 })

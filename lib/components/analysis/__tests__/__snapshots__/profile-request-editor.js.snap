@@ -9,7 +9,9 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
     isDisabled={false}
     isInvalid={false}
   >
-    <FormLabel>
+    <FormLabel
+      htmlFor="serviceDate"
+    >
       Date
     </FormLabel>
     <DateTime
@@ -54,7 +56,9 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
     isDisabled={false}
     isInvalid={false}
   >
-    <FormLabel>
+    <FormLabel
+      htmlFor="00000000-0000-0000-0000-000000000000"
+    >
       Simulated schedules
     </FormLabel>
     <Input
@@ -76,7 +80,9 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
     isDisabled={false}
     isInvalid={false}
   >
-    <FormLabel>
+    <FormLabel
+      htmlFor="00000000-0000-0000-0000-000000000000"
+    >
       Maximum transfers
     </FormLabel>
     <Input

@@ -3,7 +3,6 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  Box,
   Flex,
   FormControl,
   FormLabel,
@@ -249,13 +248,7 @@ function Results({
         <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
       </Skeleton>
 
-      <Stack align='center' isInline spacing={P.md}>
-        <Box fontWeight='500' whiteSpace='nowrap'>
-          Time cutoff
-        </Box>
-        <CutoffSlider isDisabled={isDisabledOrStale} />
-        <Box fontWeight='500'>minute(s)</Box>
-      </Stack>
+      <CutoffSlider isDisabled={isDisabledOrStale} />
 
       <Stack isInline spacing={P.md}>
         <FormControl flex='1' isDisabled={isDisabled}>

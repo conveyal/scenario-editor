@@ -130,6 +130,9 @@ describe('Opportunity Datasets', () => {
       )
       cy.contains(/Delete entire dataset/i).click()
     })
+
+    // doesn't work in offline mode
+    it('from LODES importer')
   })
 
   describe('can be downloaded', () => {
@@ -161,7 +164,7 @@ describe('Opportunity Datasets', () => {
         })
     })
 
-    it('as TIFF') // eslint-disable-line jest/no-disabled-tests
+    it('as TIFF') // produces an error
   })
 
   after(() => {

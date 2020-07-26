@@ -6,6 +6,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
+  Stack,
   FormHelperText,
   FormControlProps
 } from '@chakra-ui/core'
@@ -35,15 +36,23 @@ export function CutoffSlider({isDisabled, ...p}) {
   })
 
   return (
-    <Slider {...p} {...cutoffSlider} isDisabled={isDisabled} min={1} max={120}>
-      <SliderTrack />
-      <SliderFilledTrack />
-      <SliderThumb ref={cutoffSlider.ref} size='8'>
-        <Box fontSize='sm' fontWeight='bold'>
-          {cutoffSlider.value}
-        </Box>
-      </SliderThumb>
-    </Slider>
+    <FormControl isDisabled={isDisabled} {...p}>
+      <Stack align='center' isInline spacing={5}>
+        <FormLabel htmlFor={cutoffSlider.id} whiteSpace='nowrap' pb={0}>
+          Time cutoff
+        </FormLabel>
+        <Slider {...cutoffSlider} isDisabled={isDisabled} min={1} max={120}>
+          <SliderTrack />
+          <SliderFilledTrack />
+          <SliderThumb ref={cutoffSlider.ref} size='8'>
+            <Box fontSize='sm' fontWeight='bold'>
+              {cutoffSlider.value}
+            </Box>
+          </SliderThumb>
+        </Slider>
+        <FormLabel pb={0}>minute(s)</FormLabel>
+      </Stack>
+    </FormControl>
   )
 }
 

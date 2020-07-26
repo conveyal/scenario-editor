@@ -104,11 +104,11 @@ export default function ModeSelector({
   return (
     <Flex justify='space-between' {...p}>
       <FormControl>
-        <FormLabel>
+        <FormLabel htmlFor='accessMode'>
           {transit ? message('mode.access') : message('mode.direct')}
         </FormLabel>
         <Box>
-          <ButtonGroup isAttached>
+          <ButtonGroup isAttached id='accessMode'>
             <Button
               isActive={nonTransitMode === WALK}
               isDisabled={disabled}
@@ -145,9 +145,9 @@ export default function ModeSelector({
         </Box>
       </FormControl>
       <FormControl>
-        <FormLabel>Transit modes</FormLabel>
+        <FormLabel htmlFor='transitModes'>Transit modes</FormLabel>
         <Box>
-          <ButtonGroup isAttached>
+          <ButtonGroup isAttached id='transitModes'>
             <Button
               isActive={_hasAllTransit()}
               isDisabled={disabled}
@@ -224,9 +224,11 @@ export default function ModeSelector({
         </Box>
       </FormControl>
       <FormControl>
-        <FormLabel pr={0}>Egress mode</FormLabel>
+        <FormLabel pr={0} htmlFor='egressMode'>
+          Egress mode
+        </FormLabel>
         <Box>
-          <ButtonGroup isAttached>
+          <ButtonGroup isAttached id='egressMode'>
             <Button
               isActive={transit && egressModes === WALK}
               isDisabled={!transit || disabled}

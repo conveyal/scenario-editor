@@ -307,18 +307,18 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                           <PseudoBox
                             _hover={
                               Object {
-                                "color": "#185c86",
+                                "color": "blue.700",
                               }
                             }
                             as="a"
                             className="list-group-item"
-                            color="#2389c9"
+                            color="blue.500"
                             href="/regions/1"
                             onClick={[Function]}
                             onMouseEnter={[Function]}
                           >
                             <a
-                              className="list-group-item css-khmg1f"
+                              className="list-group-item css-1cnzmew"
                               href="/regions/1"
                               onClick={[Function]}
                               onMouseEnter={[Function]}
@@ -412,17 +412,18 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                           <PseudoBox
                             _hover={
                               Object {
-                                "color": "#185c86",
+                                "color": "blue.700",
                               }
                             }
                             as="a"
-                            color="#2389c9"
+                            className=""
+                            color="blue.500"
                             href="/api/logout"
                             onClick={[Function]}
                             onMouseEnter={[Function]}
                           >
                             <a
-                              className="css-khmg1f"
+                              className=" css-1cnzmew"
                               href="/api/logout"
                               onClick={[Function]}
                               onMouseEnter={[Function]}

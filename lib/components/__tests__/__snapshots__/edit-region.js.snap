@@ -63,8 +63,7 @@ exports[`Component > EditRegion 1`] = `
     router={
       Router {
         "_bps": undefined,
-        "_getServerData": [Function],
-        "_getStaticData": [Function],
+        "_inFlightRoute": undefined,
         "_wrapApp": undefined,
         "asPath": "as-path",
         "basePath": "",

@@ -40,57 +40,101 @@ exports[`Components > Analysis > Regional > Legend should display 1`] = `
   }
   min={0}
 >
-  <div
-    className="Legend"
+  <ForwardRef
+    borderTop="1px solid #E2E8F0"
+    spacing={0}
   >
-    <div
-      className="Legend-Item"
-      key="break-0"
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 1)",
-          "color": "#fff",
-        }
-      }
+    <Flex
+      borderTop="1px solid #E2E8F0"
+      direction="column"
     >
-      0 to 1,000 (transparent)
-    </div>
-    <div
-      className="Legend-Item"
-      key="break-1"
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 1)",
-          "color": "#fff",
-        }
-      }
-    >
-      1,000 to 2,000
-    </div>
-    <div
-      className="Legend-Item"
-      key="break-2"
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 1)",
-          "color": "#fff",
-        }
-      }
-    >
-      2,000 to 3,000
-    </div>
-    <div
-      className="Legend-Item"
-      key="break-3"
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 1)",
-          "color": "#fff",
-        }
-      }
-    >
-      3,000 to 4,000
-    </div>
-  </div>
+      <Box
+        borderTop="1px solid #E2E8F0"
+        display="flex"
+        flexDirection="column"
+      >
+        <div
+          className="css-1qzxoio"
+        >
+          <PseudoBox
+            _last={
+              Object {
+                "roundedBottom": "md",
+              }
+            }
+            backgroundColor="rgba(0, 0, 0, 1)"
+            color="#fff"
+            key=".$break-0"
+            mb={0}
+            px={4}
+            py={1}
+          >
+            <div
+              className="css-q4j0tr"
+            >
+              4,000 to 3,000
+            </div>
+          </PseudoBox>
+          <PseudoBox
+            _last={
+              Object {
+                "roundedBottom": "md",
+              }
+            }
+            backgroundColor="rgba(0, 0, 0, 1)"
+            color="#fff"
+            key=".$break-1"
+            mb={0}
+            px={4}
+            py={1}
+          >
+            <div
+              className="css-q4j0tr"
+            >
+              3,000 to 2,000
+            </div>
+          </PseudoBox>
+          <PseudoBox
+            _last={
+              Object {
+                "roundedBottom": "md",
+              }
+            }
+            backgroundColor="rgba(0, 0, 0, 1)"
+            color="#fff"
+            key=".$break-2"
+            mb={0}
+            px={4}
+            py={1}
+          >
+            <div
+              className="css-q4j0tr"
+            >
+              2,000 to 1,000
+            </div>
+          </PseudoBox>
+          <PseudoBox
+            _last={
+              Object {
+                "roundedBottom": "md",
+              }
+            }
+            backgroundColor="rgba(0, 0, 0, 1)"
+            color="#fff"
+            key=".$break-3"
+            mb={null}
+            px={4}
+            py={1}
+          >
+            <div
+              className="css-1ib9w0t"
+            >
+              1,000 to 0 (transparent)
+            </div>
+          </PseudoBox>
+        </div>
+      </Box>
+    </Flex>
+  </ForwardRef>
 </Legend>
 `;

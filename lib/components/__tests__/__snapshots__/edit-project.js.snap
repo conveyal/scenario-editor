@@ -166,17 +166,18 @@ exports[`Component > EditProject 1`] = `
                                   <PseudoBox
                                     _hover={
                                       Object {
-                                        "color": "#185c86",
+                                        "color": "blue.700",
                                       }
                                     }
                                     as="a"
-                                    color="#2389c9"
+                                    className=""
+                                    color="blue.500"
                                     href="/regions/1/bundles/1"
                                     onClick={[Function]}
                                     onMouseEnter={[Function]}
                                   >
                                     <a
-                                      className="css-khmg1f"
+                                      className=" css-1cnzmew"
                                       href="/regions/1/bundles/1"
                                       onClick={[Function]}
                                       onMouseEnter={[Function]}

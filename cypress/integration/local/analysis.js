@@ -286,7 +286,7 @@ context('Analysis', () => {
       //cy.findByLabelText(/Aggregate results to/i) // TODO dissociated label
       cy.findByText(/upload new aggregation area/i)
       // clean up
-      cy.findByText(/Delete/i).click()
+      cy.findByRole('button', {name: 'Delete'}).click()
     })
 
     it('compares two regional analyses')

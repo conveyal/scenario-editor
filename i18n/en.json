@@ -364,7 +364,7 @@
     "newRegionalAnalysis": "New regional analysis",
     "disableRegionalAnalysis": "Fetch results for a single point before running a regional analysis",
     "startRegionalAnalysis": "Start regional analysis",
-    "accessTo": "%(opportunity) within %(cutoff) minutes (percentile %(percentile))",
+    "accessTo": "%(opportunity) within %(cutoff) minutes, %(percentile) percentile",
     "accessToInstantaneous": "%(opportunity) within %(cutoff) minutes (average instantaneous accessibility)",
     "comparisonAccessTo": "compared with %(opportunity) within %(cutoff) minutes (percentile %(percentile))",
     "comparisonAccessToInstantaneous": "compared with %(opportunity) within %(cutoff) minutes (average instantaneous accessibility)",

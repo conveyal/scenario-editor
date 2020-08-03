@@ -204,7 +204,7 @@ If access for a given mode is enabled, you will have options to set correspondin
 
 The default **walk time factor** and **bike time factor** values of 1 will have no effect on results. For baseline street networks built with custom generalized cost or impedance values, values other than 1 can be set, which will scale the amount of time it takes to traverse these links. For example, if you are routing by "perceived" time, a pleasant street might have a walk time factor less than 1, while a high-traffic unpleasant street might have a walk time factor greater than 1. Contact your support team for more details.
 
-*Bike level of traffic stress* can be used to set the level of traffic stress for street links added or modified by the modification. Streets beyond the Maximum level of traffic stress set in an analysis will be traversed at walking speed. See [here](https://blog.conveyal.com/better-measures-of-bike-accessibility-d875ae5ed831) for more details. 
+*Bike level of traffic stress* can be used to set the level of traffic stress for street links added or modified by the modification. Streets beyond the Maximum level of traffic stress set in an analysis will be traversed at walking speed. See [here](learn-more/lts.html) for more details. 
 
 Finally, if **driving** is enabled, you must enter a constant speed in kilometers per hour. 
 

@@ -1,13 +1,22 @@
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  FormControl,
+  FormLabel,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Stack
+} from '@chakra-ui/core'
+import React, {useState, useEffect} from 'react'
 import {scaleLinear} from 'd3-scale'
 import {format as d3Format} from 'd3-format'
 
 import colors from 'lib/constants/colors'
 import message from 'lib/message'
 
-import Icon from '../icon'
-import {Slider} from '../input'
 import P from '../p'
 import * as Panel from '../panel'
 
@@ -28,53 +37,45 @@ const PERCENTILE_OF_ACCESSIBILITY = 10
 /**
  * This component renders the aggregate accessibility display (histograms and percentiles).
  */
-export default class AggregateAccessibilityComponent extends React.Component {
-  state = {
-    percentileOfAccessibility: PERCENTILE_OF_ACCESSIBILITY
-  }
+export default function AggregateAccessibilityComponent({
+  accessToName,
+  aggregateAccessibility,
+  comparisonAccessToName,
+  comparisonAggregateAccessibility,
+  comparisonRegionalAnalysisName,
+  regionalAnalysisName,
+  weightByName
+}) {
+  const [xScale, setXScale] = useState(() =>
+    createXScale(aggregateAccessibility, comparisonAggregateAccessibility)
+  )
+  const [yScale, setYScale] = useState(() =>
+    createYScale(aggregateAccessibility, comparisonAggregateAccessibility)
+  )
+  const [percentile, setPercentile] = useState(PERCENTILE_OF_ACCESSIBILITY)
 
-  static getDerivedStateFromProps(props) {
-    return {
-      xScale: createXScale(props),
-      yScale: createYScale(props)
-    }
-  }
+  // Update the scales if the accessibility changes
+  useEffect(() => {
+    setXScale(() =>
+      createXScale(aggregateAccessibility, comparisonAggregateAccessibility)
+    )
+    setYScale(() =>
+      createYScale(aggregateAccessibility, comparisonAggregateAccessibility)
+    )
+  }, [aggregateAccessibility, comparisonAggregateAccessibility])
 
-  setPercentileOfAccessibility = (e) => {
-    this.setState({percentileOfAccessibility: e.target.value})
-  }
+  const percentiles = aggregateAccessibility.percentiles[percentile]
+  const comparisonPercentiles = comparisonAggregateAccessibility
+    ? comparisonAggregateAccessibility.percentiles[percentile]
+    : 0
 
-  percentiles() {
-    const {aggregateAccessibility} = this.props
-    const {percentileOfAccessibility} = this.state
-    return aggregateAccessibility.percentiles[percentileOfAccessibility]
-  }
-
-  comparisonPercentiles() {
-    const accessibility = this.props.comparisonAggregateAccessibility
-    const {percentileOfAccessibility} = this.state
-    return accessibility
-      ? accessibility.percentiles[percentileOfAccessibility]
-      : 0
-  }
-
-  render() {
-    const {
-      accessToName,
-      aggregateAccessibility,
-      comparisonAccessToName,
-      comparisonAggregateAccessibility,
-      comparisonRegionalAnalysisName,
-      regionalAnalysisName,
-      weightByName
-    } = this.props
-    const {percentileOfAccessibility, xScale, yScale} = this.state
-    return (
-      <>
+  return (
+    <Stack spacing={4}>
+      <Box>
         <svg width={WIDTH} height={HEIGHT}>
           <Bins
             bins={aggregateAccessibility.bins}
-            breakPoint={this.percentiles()}
+            breakPoint={percentiles}
             color={colors.PROJECT_PERCENTILE_COLOR}
             xScale={xScale}
             yScale={yScale}
@@ -83,69 +84,74 @@ export default class AggregateAccessibilityComponent extends React.Component {
           <YScale weightByName={weightByName} yScale={yScale} />
           <PercentileLine
             color={colors.PROJECT_PERCENTILE_COLOR}
-            x={xScale(this.percentiles())}
+            x={xScale(percentiles)}
           />
           {comparisonAggregateAccessibility && (
             <>
               <Bins
                 bins={comparisonAggregateAccessibility.bins}
-                breakPoint={this.comparisonPercentiles()}
+                breakPoint={comparisonPercentiles}
                 color={colors.COMPARISON_PERCENTILE_COLOR}
                 xScale={xScale}
                 yScale={yScale}
               />
               <PercentileLine
                 color={colors.COMPARISON_PERCENTILE_COLOR}
-                x={xScale(this.comparisonPercentiles())}
+                x={xScale(comparisonPercentiles)}
               />
             </>
           )}
         </svg>
+      </Box>
+
+      <FormControl pl='30px' pr='15px'>
+        <FormLabel htmlFor='percentileOfAccessibility'>
+          {message('analysis.selectPercentileOfAccessibility')}
+        </FormLabel>
         <Slider
-          label={message('analysis.selectPercentileOfAccessibility')}
-          width={WIDTH - Y_SCALE_WIDTH}
+          id='percentileOfAccessibility'
           min={1}
           max={99}
           step={1}
-          value={percentileOfAccessibility}
-          onChange={this.setPercentileOfAccessibility}
-          style={{left: Y_SCALE_WIDTH}}
-        />
+          value={percentile}
+          onChange={setPercentile}
+        >
+          <SliderTrack />
+          <SliderFilledTrack />
+          <SliderThumb />
+        </Slider>
+      </FormControl>
 
+      <AggregateAccessibilityReadout
+        name={regionalAnalysisName}
+        weightByName={weightByName}
+        accessToName={accessToName}
+        // invert: 90th percentile of accessibility means accessibility that
+        // high or greater is experienced by 10% of the population
+        percentage={100 - percentile}
+        accessibilityForPercentile={percentiles}
+        weightedAverage={aggregateAccessibility.weightedAverage}
+      />
+
+      {comparisonAggregateAccessibility && (
         <AggregateAccessibilityReadout
-          name={regionalAnalysisName}
+          name={comparisonRegionalAnalysisName}
           weightByName={weightByName}
-          accessToName={accessToName}
+          accessToName={comparisonAccessToName}
           // invert: 90th percentile of accessibility means accessibility that
           // high or greater is experienced by 10% of the population
-          percentage={100 - percentileOfAccessibility}
-          accessibilityForPercentile={this.percentiles()}
-          weightedAverage={aggregateAccessibility.weightedAverage}
+          percentage={100 - percentile}
+          accessibilityForPercentile={comparisonPercentiles}
+          weightedAverage={comparisonAggregateAccessibility.weightedAverage}
         />
+      )}
 
-        {comparisonAggregateAccessibility && (
-          <AggregateAccessibilityReadout
-            name={comparisonRegionalAnalysisName}
-            weightByName={weightByName}
-            accessToName={comparisonAccessToName}
-            // invert: 90th percentile of accessibility means accessibility that
-            // high or greater is experienced by 10% of the population
-            percentage={100 - percentileOfAccessibility}
-            accessibilityForPercentile={this.comparisonPercentiles()}
-            weightedAverage={comparisonAggregateAccessibility.weightedAverage}
-          />
-        )}
-
-        <div className='alert alert-warning'>
-          <Icon icon={faExclamationTriangle} />
-          <span>
-            {' '}
-            {message('analysis.weightedAverageAccessibilityWarning')}
-          </span>
-        </div>
-      </>
-    )
-  }
+      <Alert status='warning'>
+        <AlertIcon />
+        {message('analysis.weightedAverageAccessibilityWarning')}
+      </Alert>
+    </Stack>
+  )
 }
 
 function Bins({
@@ -230,7 +236,7 @@ function AggregateAccessibilityReadout({
     <Panel.Panel>
       <Panel.Heading>{name}</Panel.Heading>
       <Panel.Body>
-        <P>
+        <Box px={2} pb={2}>
           {message('analysis.percentileOfAccessibility', {
             name,
             weightByName,
@@ -240,21 +246,22 @@ function AggregateAccessibilityReadout({
             percentage,
             accessibility: fmt(Math.round(accessibilityForPercentile))
           })}
-        </P>
+        </Box>
 
-        <P>
+        <Box px={2}>
           {message('analysis.weightedAverageAccessibility', {
             weightedAverage: fmt(Math.round(weightedAverage))
           })}
-        </P>
+        </Box>
       </Panel.Body>
     </Panel.Panel>
   )
 }
 
-function createXScale(props) {
-  const {aggregateAccessibility, comparisonAggregateAccessibility} = props
-
+function createXScale(
+  aggregateAccessibility,
+  comparisonAggregateAccessibility
+) {
   const minAccessibility = comparisonAggregateAccessibility
     ? Math.min(
         comparisonAggregateAccessibility.minAccessibility,
@@ -274,9 +281,10 @@ function createXScale(props) {
     .range([Y_SCALE_WIDTH, WIDTH])
 }
 
-function createYScale(props) {
-  const {aggregateAccessibility, comparisonAggregateAccessibility} = props
-
+function createYScale(
+  aggregateAccessibility,
+  comparisonAggregateAccessibility
+) {
   const maxCount = comparisonAggregateAccessibility
     ? Math.max(
         ...[
@@ -334,7 +342,7 @@ function YScale({weightByName, yScale}) {
           x={0}
           key={`y-label-${i}`}
           style={{
-            textAnchor: 'right',
+            textAnchor: 'end',
             alignmentBaseline: 'middle',
             fontSize: FONT_SIZE
           }}

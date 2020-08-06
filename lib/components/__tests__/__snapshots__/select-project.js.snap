@@ -634,7 +634,7 @@ exports[`Component > SelectProject 1`] = `
                                         leftIcon={[Function]}
                                         mb={null}
                                         onClick={[Function]}
-                                        py={3}
+                                        py={4}
                                         textAlign="left"
                                         variant="outline"
                                         variantColor="blue"
@@ -696,7 +696,7 @@ exports[`Component > SelectProject 1`] = `
                                           outline="none"
                                           position="relative"
                                           px={4}
-                                          py={3}
+                                          py={4}
                                           textAlign="left"
                                           transition="all 250ms"
                                           type="button"
@@ -706,7 +706,7 @@ exports[`Component > SelectProject 1`] = `
                                           width="full"
                                         >
                                           <button
-                                            className="css-f9thng"
+                                            className="css-gl3dww"
                                             onClick={[Function]}
                                             type="button"
                                           >

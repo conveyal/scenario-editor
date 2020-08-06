@@ -25,9 +25,11 @@ export const selectStyles = {
   })
 }
 
+const SelectWithForwardRef = forwardRef((p: Props, ref) => (
+  <Select innerRef={ref as any} styles={selectStyles} {...p} />
+))
+
 // NB: React enforces `memo(forwardRef(...))`
-export default memo<Props>(
-  forwardRef((p: Props, ref) => (
-    <Select innerRef={ref as any} styles={selectStyles} {...p} />
-  ))
-)
+const MemoedReactSelect = memo<Props>(SelectWithForwardRef)
+
+export default MemoedReactSelect

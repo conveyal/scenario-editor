@@ -1,14 +1,14 @@
 import get from 'lodash/get'
+import set from 'lodash/set'
 import dynamic from 'next/dynamic'
-import React from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {AttributionControl, Map as LeafletMap, ZoomControl} from 'react-leaflet'
 import {useSelector} from 'react-redux'
 
-import useOnMount from 'lib/hooks/use-on-mount'
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import selectModificationSaveInProgress from 'lib/selectors/modification-save-in-progress'
 import selectRegionBounds from 'lib/selectors/region-bounds'
-import * as localStorage from 'lib/utils/local-storage'
+import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
 import Geocoder from './geocoder'
 
@@ -23,11 +23,9 @@ const DEFAULT_VIEWPORT = {
 }
 
 export default function Map({children, setLeafletContext}) {
-  const leafletMapRef = React.useRef()
+  const leafletMapRef = useRef<LeafletMap>()
   const regionBounds = useSelector(selectRegionBounds)
-  const [viewport, setViewport] = React.useState(() =>
-    localStorage.getParsedItem(VIEWPORT_KEY)
-  )
+  const [viewport, setViewport] = useState(() => getParsedItem(VIEWPORT_KEY))
   const saveInProgress = useSelector(selectModificationSaveInProgress)
   const [routeChanging] = useRouteChanging()
 
@@ -35,19 +33,19 @@ export default function Map({children, setLeafletContext}) {
   const getMap = () => get(leafletMapRef, 'current.leafletElement')
 
   // On mount, store the leaflet element
-  React.useEffect(() => {
+  useEffect(() => {
     if (leafletMapRef.current) {
       const map = leafletMapRef.current.leafletElement
       // Attach the leaflet map to `window` if it exists. Helpful with Cypress test
-      window.LeafletMap = map
+      set(window, 'LeafletMap', map)
       // Store the leaflet context for consuming elsewhere
       setLeafletContext({map, layerContainer: map})
     }
   }, [leafletMapRef, setLeafletContext])
 
   // Map container map change sizes between pages
-  React.useEffect(() => {
-    if (leafletMapRef.current && !routeChanging) {
+  useEffect(() => {
+    if (leafletMapRef.current !== undefined && !routeChanging) {
       leafletMapRef.current.leafletElement.invalidateSize()
 
       // Delay an additional inalidation to allow for elements to change the
@@ -61,7 +59,7 @@ export default function Map({children, setLeafletContext}) {
   }, [routeChanging, leafletMapRef])
 
   // If center is not within region bounds, reset to center
-  React.useEffect(() => {
+  useEffect(() => {
     if (regionBounds) {
       const center = get(viewport, 'center')
       if (!center || !regionBounds.contains(center)) {
@@ -70,36 +68,21 @@ export default function Map({children, setLeafletContext}) {
     }
   }, [leafletMapRef, regionBounds, viewport])
 
-  // Set geolocation to users current position on initial use
-  useOnMount(() => {
-    let watchId = false
-    if (!viewport && navigator in window) {
-      watchId = navigator.geolocation.getCurrentPosition(function (p) {
-        setViewport({
-          ...viewport,
-          center: [p.coords.latitude, p.coords.longitude]
-        })
-      })
-    }
-
-    return () => {
-      if (watchId) navigator.geolocation.clearWatch(watchId)
-    }
-  })
-
   return (
     <>
       <LeafletMap
         attributionControl={false}
         className={routeChanging || saveInProgress ? 'disableAndDim' : ''}
         minZoom={MIN_ZOOM}
-        onViewportChanged={(v) => localStorage.stringifyAndSet(VIEWPORT_KEY, v)}
+        onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
         preferCanvas={true}
         ref={leafletMapRef}
         viewport={viewport || DEFAULT_VIEWPORT}
         zoomControl={false}
       >
-        {process.env.NEXT_PUBLIC_BASEMAP_DISABLED == null && <MapboxGLLayer />}
+        {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
+          <MapboxGLLayer />
+        )}
 
         <AttributionControl position='bottomright' prefix={false} />
         <ZoomControl position='topright' />

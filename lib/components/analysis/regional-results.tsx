@@ -21,8 +21,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setSearchParameter} from 'lib/actions'
 import {loadRegionalAnalysisGrid} from 'lib/actions/analysis/regional'
 import useControlledInput from 'lib/hooks/use-controlled-input'
+import useOnMount from 'lib/hooks/use-on-mount'
 import message from 'lib/message'
-import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
+import {
+  activeOpportunityDataset,
+  opportunityDatasets as selectOpportunityDatasets
+} from 'lib/modules/opportunity-datasets/selectors'
 import selectAggregateAccessibility from 'lib/selectors/aggregate-accessibility'
 import selectComparisonAA from 'lib/selectors/comparison-aggregate-accessibility'
 import selectComparisonAnalyses from 'lib/selectors/comparison-analyses'
@@ -47,6 +51,9 @@ import AggregateAccessibility from './aggregate-accessibility'
 // For react-select props
 const getName = fpGet('name')
 const getId = fpGet('_id')
+
+// Cannot pass `parseInt` directly because
+const parseCutoff = (c) => parseInt(c)
 
 function getNumberWithOrdinal(n) {
   var s = ['th', 'st', 'nd', 'rd'],
@@ -76,10 +83,25 @@ function createAccessibilityLabel(analysis, gridName, cutoff, percentile) {
   })
 }
 
+function useComparisonAccessibilityLabel(comparisonAnalysis) {
+  const comparisonPointSet = useSelector(selectComparisonPointSet)
+  const comparisonCutoff = useSelector(selectComparisonCutoff)
+  const comparisonPercentile = useSelector(selectComparisonPercentile)
+
+  return comparisonAnalysis
+    ? createAccessibilityLabel(
+        comparisonAnalysis,
+        get(comparisonPointSet, 'name'),
+        comparisonCutoff,
+        comparisonPercentile
+      )
+    : null
+}
+
 /**
  * Render a regional analysis results.
  */
-export default function RegionalResults({analysis, opportunityDatasets}) {
+export default function RegionalResults({analysis}) {
   const dispatch = useDispatch()
 
   const opportunityDataset = useSelector(activeOpportunityDataset)
@@ -94,7 +116,6 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
   const pointSet = useSelector(selectPointSet)
 
   // For easier comparison later
-  const comparisonPointSetId = get(comparisonPointSet, '_id')
   const pointSetId = get(pointSet, '_id')
 
   const onChangeComparisonAnalysis = useCallback(
@@ -107,57 +128,10 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
   })
   const comparisonAnalysis = comparisonAnalysisInput.value
 
-  const onChangeCutoff = useCallback(
-    (v) => dispatch(setSearchParameter('comparisonCutoff', v)),
-    [dispatch]
-  )
-  const comparisonCutoffInput = useControlledInput({
-    onChange: onChangeCutoff,
-    value: useSelector(selectComparisonCutoff)
-  })
-  const comparisonCutoff = comparisonCutoffInput.value
-
-  const onChangePercentile = useCallback(
-    (v) => dispatch(setSearchParameter('comparisonPercentile', v)),
-    [dispatch]
-  )
-  const comparisonPercentileInput = useControlledInput({
-    onChange: onChangePercentile,
-    value: useSelector(selectComparisonPercentile)
-  })
-  const comparisonPercentile = comparisonPercentileInput.value
-
-  const onChangeDestinationPointSet = useCallback(
-    (v) => dispatch(setSearchParameter('comparisonDestinationPointSetId', v)),
-    [dispatch]
-  )
-  const destinationPointSetInput = useControlledInput({
-    onChange: onChangeDestinationPointSet,
-    value: get(comparisonPointSet, '_id')
-  })
-
-  // Load the grids on mount and when they are changed.
+  // Load the grid on mount and when the settings are changed.
   useEffect(() => {
     dispatch(loadRegionalAnalysisGrid(analysis, cutoff, percentile, pointSetId))
   }, [analysis, cutoff, percentile, pointSetId, dispatch])
-  useEffect(() => {
-    if (comparisonAnalysis) {
-      dispatch(
-        loadRegionalAnalysisGrid(
-          comparisonAnalysis,
-          comparisonCutoff,
-          comparisonPercentile,
-          comparisonPointSetId
-        )
-      )
-    }
-  }, [
-    comparisonAnalysis,
-    comparisonCutoff,
-    comparisonPercentile,
-    comparisonPointSetId,
-    dispatch
-  ])
 
   const aggregationWeightName = get(opportunityDataset, 'name')
 
@@ -167,11 +141,8 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
     cutoff,
     percentile
   )
-  const comparisonAccessToLabel = createAccessibilityLabel(
-    comparisonAnalysis,
-    get(comparisonPointSet, 'name'),
-    comparisonCutoff,
-    comparisonPercentile
+  const comparisonAccessToLabel = useComparisonAccessibilityLabel(
+    comparisonAnalysis
   )
 
   return (
@@ -192,57 +163,10 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
       </FormControl>
 
       {comparisonAnalysis && (
-        <>
-          <Stack spacing={4} px={4} pb={4}>
-            {analysis.workerVersion !== comparisonAnalysis.workerVersion && (
-              <Alert status='error'>
-                <AlertIcon />
-                {message('r5Version.comparisonIsDifferent')}
-              </Alert>
-            )}
-
-            {Array.isArray(comparisonAnalysis.destinationPointSetIds) && (
-              <ChakraSelect {...destinationPointSetInput}>
-                {comparisonAnalysis.destinationPointSetIds.map((id) => (
-                  <option key={id} value={id}>
-                    {get(find(opportunityDatasets, ['_id', id]), 'name')}
-                  </option>
-                ))}
-              </ChakraSelect>
-            )}
-
-            <Stack isInline>
-              {Array.isArray(comparisonAnalysis.cutoffsMinutes) && (
-                <ChakraSelect {...comparisonCutoffInput}>
-                  {comparisonAnalysis.cutoffsMinutes.map((m) => (
-                    <option key={m} value={m}>
-                      {m} minutes
-                    </option>
-                  ))}
-                </ChakraSelect>
-              )}
-              {Array.isArray(comparisonAnalysis.travelTimePercentiles) && (
-                <ChakraSelect {...comparisonPercentileInput}>
-                  {comparisonAnalysis.travelTimePercentiles.map((p) => (
-                    <option key={p} value={p}>
-                      {p}th percentile
-                    </option>
-                  ))}
-                </ChakraSelect>
-              )}
-            </Stack>
-          </Stack>
-
-          <ProfileRequestDisplay
-            bundleId={comparisonAnalysis.bundleId}
-            color='red'
-            profileRequest={{
-              ...omit(comparisonAnalysis, 'request'),
-              ...comparisonAnalysis.request
-            }}
-            projectId={comparisonAnalysis.projectId}
-          />
-        </>
+        <ComparisonDisplay
+          analysis={analysis}
+          comparisonAnalysis={comparisonAnalysis}
+        />
       )}
 
       <MapControl position='bottomleft'>
@@ -303,5 +227,130 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
         </Box>
       )}
     </Stack>
+  )
+}
+
+function ComparisonDisplay({analysis, comparisonAnalysis}) {
+  const dispatch = useDispatch()
+  const opportunityDatasets = useSelector(selectOpportunityDatasets)
+  const comparisonCutoff = useSelector(selectComparisonCutoff)
+  const comparisonPercentile = useSelector(selectComparisonPercentile)
+  const comparisonPointSet = useSelector(selectComparisonPointSet)
+
+  const onChangeCutoff = useCallback(
+    (v) => dispatch(setSearchParameter('comparisonCutoff', v)),
+    [dispatch]
+  )
+  const comparisonCutoffInput = useControlledInput({
+    onChange: onChangeCutoff,
+    parse: parseInt,
+    value: comparisonCutoff
+  })
+
+  const onChangePercentile = useCallback(
+    (v) => dispatch(setSearchParameter('comparisonPercentile', v)),
+    [dispatch]
+  )
+  const comparisonPercentileInput = useControlledInput({
+    onChange: onChangePercentile,
+    parse: parseInt,
+    value: comparisonPercentile
+  })
+
+  const onChangeDestinationPointSet = useCallback(
+    (v) => dispatch(setSearchParameter('comparisonDestinationPointSetId', v)),
+    [dispatch]
+  )
+  const destinationPointSetInput = useControlledInput({
+    onChange: onChangeDestinationPointSet,
+    value: get(comparisonPointSet, '_id')
+  })
+
+  // Set the parameters on load to decouple them from the primary ones.
+  useOnMount(() => {
+    dispatch(setSearchParameter('comparisonCutoff', comparisonCutoff))
+    dispatch(setSearchParameter('comparisonPercentile', comparisonPercentile))
+    dispatch(
+      setSearchParameter(
+        'comparisonDestinationPointSetId',
+        get(comparisonPointSet, '_id')
+      )
+    )
+    return () => {
+      dispatch(setSearchParameter('comparisonCutoff'))
+      dispatch(setSearchParameter('comparisonPercentile'))
+      dispatch(setSearchParameter('comparisonDestinationPointSetId'))
+    }
+  })
+
+  useEffect(() => {
+    dispatch(
+      loadRegionalAnalysisGrid(
+        comparisonAnalysis,
+        parseInt(comparisonCutoff),
+        parseInt(comparisonPercentile),
+        get(comparisonPointSet, '_id')
+      )
+    )
+  }, [
+    comparisonAnalysis,
+    comparisonCutoff,
+    comparisonPercentile,
+    comparisonPointSet,
+    dispatch
+  ])
+
+  return (
+    <>
+      <Stack spacing={4} px={4} pb={4}>
+        {analysis.workerVersion !== comparisonAnalysis.workerVersion && (
+          <Alert status='error'>
+            <AlertIcon />
+            {message('r5Version.comparisonIsDifferent')}
+          </Alert>
+        )}
+
+        {Array.isArray(comparisonAnalysis.destinationPointSetIds) && (
+          <ChakraSelect {...destinationPointSetInput}>
+            {comparisonAnalysis.destinationPointSetIds.map((id) => (
+              <option key={id} value={id}>
+                {get(find(opportunityDatasets, ['_id', id]), 'name')}
+              </option>
+            ))}
+          </ChakraSelect>
+        )}
+
+        <Stack isInline>
+          {Array.isArray(comparisonAnalysis.cutoffsMinutes) && (
+            <ChakraSelect {...comparisonCutoffInput}>
+              {comparisonAnalysis.cutoffsMinutes.map((m) => (
+                <option key={m} value={m}>
+                  {m} minutes
+                </option>
+              ))}
+            </ChakraSelect>
+          )}
+          {Array.isArray(comparisonAnalysis.travelTimePercentiles) && (
+            <ChakraSelect {...comparisonPercentileInput}>
+              {comparisonAnalysis.travelTimePercentiles.map((p) => (
+                <option key={p} value={p}>
+                  {p}th percentile
+                </option>
+              ))}
+            </ChakraSelect>
+          )}
+        </Stack>
+      </Stack>
+
+      <ProfileRequestDisplay
+        bundleId={comparisonAnalysis.bundleId}
+        color='red'
+        profileRequest={{
+          ...omit(comparisonAnalysis, 'request'),
+          ...comparisonAnalysis.request
+        }}
+        projectId={comparisonAnalysis.projectId}
+      />
+    </>
   )
 }

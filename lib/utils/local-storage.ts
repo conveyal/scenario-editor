@@ -1,8 +1,8 @@
-const isServer = typeof window === 'undefined'
-
 // For testing and old browsers
 const localStorage =
-  process.env.NODE_ENV !== 'test' && !isServer && window.localStorage
+  process.env.NODE_ENV !== 'test' &&
+  typeof window !== 'undefined' &&
+  window.localStorage
     ? window.localStorage
     : {
         getItem() {

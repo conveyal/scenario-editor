@@ -489,8 +489,8 @@ exports[`Modification > List 1`] = `
                                                     >
                                                       <svg
                                                         aria-hidden="true"
-                                                        class="svg-inline--fa fa-eye fa-w-NaN "
-                                                        data-icon="eye"
+                                                        class="svg-inline--fa fa-eye-slash fa-w-NaN "
+                                                        data-icon="eye-slash"
                                                         data-prefix="fas"
                                                         focusable="false"
                                                         role="img"
@@ -1965,7 +1965,7 @@ exports[`Modification > List 1`] = `
                                                                                           icon={
                                                                                             Object {
                                                                                               "icon": Array [],
-                                                                                              "iconName": "eye",
+                                                                                              "iconName": "eye-slash",
                                                                                               "prefix": "fas",
                                                                                             }
                                                                                           }
@@ -2061,7 +2061,7 @@ exports[`Modification > List 1`] = `
                                                                                                         icon={
                                                                                                           Object {
                                                                                                             "icon": Array [],
-                                                                                                            "iconName": "eye",
+                                                                                                            "iconName": "eye-slash",
                                                                                                             "prefix": "fas",
                                                                                                           }
                                                                                                         }
@@ -2074,7 +2074,7 @@ exports[`Modification > List 1`] = `
                                                                                                           icon={
                                                                                                             Object {
                                                                                                               "icon": Array [],
-                                                                                                              "iconName": "eye",
+                                                                                                              "iconName": "eye-slash",
                                                                                                               "prefix": "fas",
                                                                                                             }
                                                                                                           }
@@ -2093,8 +2093,8 @@ exports[`Modification > List 1`] = `
                                                                                                         >
                                                                                                           <svg
                                                                                                             aria-hidden="true"
-                                                                                                            className="svg-inline--fa fa-eye fa-w-NaN "
-                                                                                                            data-icon="eye"
+                                                                                                            className="svg-inline--fa fa-eye-slash fa-w-NaN "
+                                                                                                            data-icon="eye-slash"
                                                                                                             data-prefix="fas"
                                                                                                             focusable="false"
                                                                                                             role="img"
@@ -2449,8 +2449,8 @@ exports[`Modification > List 1`] = `
                                                     >
                                                       <svg
                                                         aria-hidden="true"
-                                                        class="svg-inline--fa fa-eye fa-w-NaN "
-                                                        data-icon="eye"
+                                                        class="svg-inline--fa fa-eye-slash fa-w-NaN "
+                                                        data-icon="eye-slash"
                                                         data-prefix="fas"
                                                         focusable="false"
                                                         role="img"

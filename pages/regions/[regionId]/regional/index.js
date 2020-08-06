@@ -1,4 +1,4 @@
-import {Alert, AlertIcon, Box, Heading, Stack} from '@chakra-ui/core'
+import {Alert, AlertIcon, Box, Heading, PseudoBox, Stack} from '@chakra-ui/core'
 import {faServer} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import ms from 'ms'
@@ -59,21 +59,16 @@ const RegionalPage = withInitialFetch(
     return (
       <InnerDock>
         {input.value && activeAnalysis ? (
-          <Stack spacing={4}>
-            {activeJob && <RunningJob job={activeJob} />}
-            <Box>
-              <Regional
-                isComplete={!activeJob}
-                key={activeAnalysis._id}
-                opportunityDatasets={p.opportunityDatasets}
-                regionalAnalyses={allAnalyses}
-                setMapChildren={p.setMapChildren}
-              />
-            </Box>
-          </Stack>
+          <Regional
+            job={activeJob}
+            key={activeAnalysis._id}
+            opportunityDatasets={p.opportunityDatasets}
+            regionalAnalyses={allAnalyses}
+            setMapChildren={p.setMapChildren}
+          />
         ) : (
-          <Stack spacing={4} p={4}>
-            <Heading size='md'>
+          <Stack spacing={4} py={4}>
+            <Heading size='md' px={4}>
               <Icon icon={faServer} /> Regional Analyses
             </Heading>
 
@@ -83,7 +78,7 @@ const RegionalPage = withInitialFetch(
                 jobs! To create one, go to the single point analysis page.
               </Alert>
             )}
-            <Box>
+            <Box px={4}>
               <Select
                 isClearable
                 key={`analysis-${input.value}`} // Dont show deleted analyses as selected
@@ -95,11 +90,19 @@ const RegionalPage = withInitialFetch(
                 value={allAnalyses.find((a) => a._id === input.value)}
               />
             </Box>
-            {jobsWithAnalysis.map((job) => (
-              <Box key={job.jobId}>
-                <RunningJob job={job} />
-              </Box>
-            ))}
+            <Stack spacing={0}>
+              {jobsWithAnalysis.map((job) => (
+                <PseudoBox
+                  borderBottom='1px solid #e2e8f0'
+                  _first={{
+                    borderTop: '1px solid #e2e8f0'
+                  }}
+                  key={job.jobId}
+                >
+                  <RunningJob job={job} />
+                </PseudoBox>
+              ))}
+            </Stack>
           </Stack>
         )}
       </InnerDock>

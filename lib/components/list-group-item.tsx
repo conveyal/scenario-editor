@@ -8,7 +8,7 @@ export default function ListGroupItem({children, ...p}) {
       borderColor='#E2E8F0'
       justifyContent='left'
       height='unset'
-      py={3}
+      py={4}
       textAlign='left'
       whiteSpace='break-spaces'
       variant='outline'

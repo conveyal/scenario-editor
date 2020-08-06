@@ -393,9 +393,11 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                             <div
                               className="css-70qvj9"
                             >
-                              <Box>
+                              <Box
+                                pr={1}
+                              >
                                 <div
-                                  className="css-0"
+                                  className="css-osq69c"
                                 >
                                   Baseline
                                 </div>

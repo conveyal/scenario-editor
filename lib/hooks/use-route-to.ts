@@ -4,7 +4,7 @@ import {useCallback, useEffect, useState} from 'react'
 
 import {routeTo} from '../router'
 
-export default function useRouteTo(to: string, props: any) {
+export default function useRouteTo(to: string, props: any = {}) {
   const [result, setResult] = useState(() => routeTo(to, props))
 
   useEffect(() => {

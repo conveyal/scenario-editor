@@ -10,14 +10,13 @@ import {
   SliderThumb,
   Stack
 } from '@chakra-ui/core'
-import React, {useState, useEffect} from 'react'
+import {Fragment, useState, useEffect} from 'react'
 import {scaleLinear} from 'd3-scale'
 import {format as d3Format} from 'd3-format'
 
 import colors from 'lib/constants/colors'
 import message from 'lib/message'
 
-import P from '../p'
 import * as Panel from '../panel'
 
 const WIDTH = 290
@@ -182,7 +181,7 @@ function Bins({
         } else {
           // part of this bar is above the cutoff percentile, part below, so render two bars
           return (
-            <React.Fragment key={`bin-${i}.`}>
+            <Fragment key={`bin-${i}.`}>
               <rect
                 x={xScale(min)}
                 width={xScale(breakPoint) - xScale(min)}
@@ -200,7 +199,7 @@ function Bins({
                 height={yScale(0) - yScale(value)}
                 style={{fill: color, fillOpacity: 0.5}}
               />
-            </React.Fragment>
+            </Fragment>
           )
         }
       })}

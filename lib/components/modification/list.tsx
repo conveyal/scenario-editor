@@ -32,7 +32,7 @@ import {LS_MOM} from 'lib/constants'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 import selectVariants from 'lib/selectors/variants'
-import * as localStorage from 'lib/utils/local-storage'
+import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
 import IconButton from '../icon-button'
 import InnerDock from '../inner-dock'
@@ -92,7 +92,7 @@ export default function ModificationsList(p) {
 
   // Array of ids for currently displayed modifications
   const [modificationsOnMap, setModificationsOnMap] = useState(() => {
-    return new Set(get(localStorage.getParsedItem(LS_MOM), projectId, []))
+    return new Set(get(getParsedItem(LS_MOM), projectId, []))
   })
 
   // Load the GTFS information for the modifications
@@ -115,9 +115,9 @@ export default function ModificationsList(p) {
   const setAndStoreMoM = useCallback(
     (newMoM) => {
       setModificationsOnMap(newMoM)
-      const mom = localStorage.getParsedItem(LS_MOM) || {}
+      const mom = getParsedItem(LS_MOM) || {}
       mom[projectId] = Array.from(newMoM)
-      localStorage.stringifyAndSet(LS_MOM, mom)
+      stringifyAndSet(LS_MOM, mom)
     },
     [setModificationsOnMap]
   )
@@ -316,7 +316,7 @@ const ModificationItem = memo<ModificationItemProps>(
             {modification.name}
           </Box>
           <IconButton
-            icon={isDisplayed ? faEyeSlash : faEye}
+            icon={isDisplayed ? faEye : faEyeSlash}
             label={isDisplayed ? 'Hide from map' : 'Show on map'}
             onClick={(e) => {
               e.preventDefault()

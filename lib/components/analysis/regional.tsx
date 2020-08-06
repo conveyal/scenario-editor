@@ -29,6 +29,7 @@ import selectPointset from 'lib/selectors/regional-display-destination-pointset'
 import {ConfirmDialog} from '../confirm-button'
 import Editable from '../editable'
 import IconButton from '../icon-button'
+import RunningAnalysis from '../running-analysis'
 
 import ProfileRequestDisplay from './profile-request-display'
 
@@ -54,7 +55,7 @@ const nameIsValid = (s) => s && s.length > 0
 
 export default function Regional(p) {
   const deleteDisclosure = useDisclosure()
-  const {isComplete} = p
+  const isComplete = !p.job
   const analysis = useSelector(selectActiveAnalysis)
   const dispatch = useDispatch()
   const cutoffsMinutes = analysis.cutoffsMinutes
@@ -66,6 +67,7 @@ export default function Regional(p) {
   )
   const cutoffInput = useControlledInput({
     onChange: onChangeCutoff,
+    parse: parseInt,
     value: useSelector(selectCutoff)
   })
 
@@ -75,6 +77,7 @@ export default function Regional(p) {
   )
   const percentileInput = useControlledInput({
     onChange: onChangePercentile,
+    parse: parseInt,
     value: useSelector(selectPercentile)
   })
 
@@ -173,6 +176,8 @@ export default function Regional(p) {
           />
         </Flex>
       </Flex>
+
+      {p.job && <RunningAnalysis job={p.job} />}
 
       <Stack spacing={4} px={4} py={4}>
         {Array.isArray(analysis.destinationPointSetIds) && (

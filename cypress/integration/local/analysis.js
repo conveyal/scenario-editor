@@ -73,7 +73,7 @@ context('Analysis', () => {
       .type('baseline{enter}')
     cy.findByLabelText(/^Opportunity Dataset$/)
       .click({force: true})
-      .type(`${name}{enter}`)
+      .type(`{enter}`)
       .wait(100)
     cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   })
@@ -84,7 +84,7 @@ context('Analysis', () => {
       cy.findByLabelText(/Time cutoff/i)
       cy.findByLabelText(/Travel time percentile/i)
       cy.get('@primary')
-        .findByRole('button', {name: 'Multi-point'})
+        .findByRole('button', {name: 'Regional analysis'})
         .should('be.disabled')
       cy.get('@primary').contains('scratch project')
       cy.get('@primary').contains('Baseline')
@@ -255,15 +255,15 @@ context('Analysis', () => {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
-      // stub the name
-      cy.window().then((win) => {
-        cy.stub(win, 'prompt').returns(analysisName)
-      })
       // start the analysis
       cy.get('@primary')
-        .findByRole('button', {name: 'Multi-point'})
+        .findByRole('button', {name: 'Regional analysis'})
         .should('be.enabled')
         .click()
+
+      cy.findByLabelText(/Regional analysis name/).type(analysisName)
+
+      cy.findByRole('button', {name: 'Create'}).click()
       // we should now be on the regional analyses page
       cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 10000})
       cy.findByRole('heading', {name: analysisName})

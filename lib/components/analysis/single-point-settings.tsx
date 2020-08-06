@@ -24,7 +24,6 @@ import {
   setCopyRequestSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
-import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import selectCurrentBundle from 'lib/selectors/current-bundle'
@@ -45,6 +44,7 @@ import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
 import ModeSelector from './mode-selector'
+import CreateRegional from './create-regional'
 
 const SPACING_XS = 2
 const SPACING = 5
@@ -316,33 +316,9 @@ function RequestHeading({
   scenario,
   ...p
 }) {
-  const dispatch = useDispatch()
   const settingsHaveChanged = useSelector(selectProfileRequestHasChanged)
   const scenarioName =
     get(project, 'variants', [])[scenario] || message('variant.baseline')
-
-  function onCreateRegionalAnalysis(e) {
-    e.stopPropagation()
-
-    if (project) {
-      const name = window.prompt(
-        'Enter a name and click ok to begin a regional analysis job for this project and settings:',
-        `Analysis ${regionalAnalyses.length + 1}: ${
-          project.name
-        } ${scenarioName}`
-      )
-      if (name && name.length > 0) {
-        dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            name,
-            projectId: project._id,
-            variantIndex: scenario
-          })
-        )
-      }
-    }
-  }
 
   const projectDownloadName = cleanProjectScenarioName(project, scenario)
 
@@ -400,14 +376,14 @@ function RequestHeading({
           requestsSettings={profileRequest}
           variantIndex={scenario}
         />
-        <Button
-          isDisabled={!hasResults || settingsHaveChanged || !opportunityDataset}
-          onClick={onCreateRegionalAnalysis}
-          rightIcon='small-add'
-          variantColor='green'
-        >
-          Multi-point
-        </Button>
+        <Box>
+          <CreateRegional
+            isDisabled={!hasResults || settingsHaveChanged}
+            profileRequest={profileRequest}
+            projectId={get(project, '_id')}
+            variantIndex={scenario}
+          />
+        </Box>
       </Stack>
     </Flex>
   )

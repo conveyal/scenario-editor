@@ -41,7 +41,7 @@ const defaultCutoffs = [20, 30, 45, 60]
 const defaultPercentiles = [5, 25, 50, 75, 95]
 
 const parseStringAsIntArray = (s) =>
-  Array.isArray(s) ? s : sort((s || '').split(',').map((s) => parseInt(s)))
+  Array.isArray(s) ? s : sort((s || '').split(',').map((s) => Number(s)))
 
 const createTestArray = (min, max) => (sorted) =>
   sorted.every((s) => Number.isInteger(s)) &&
@@ -217,9 +217,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                       : cutoffsInput.value
                   }
                 />
-                <FormHelperText>
-                  In increasing order, maximum 120.
-                </FormHelperText>
+                <FormHelperText>From 5 to 120.</FormHelperText>
               </FormControl>
 
               <FormControl
@@ -236,7 +234,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                       : percentilesInput.value
                   }
                 />
-                <FormHelperText>In increasing order.</FormHelperText>
+                <FormHelperText>From 1 to 99.</FormHelperText>
               </FormControl>
             </Stack>
           )}

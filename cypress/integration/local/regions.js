@@ -54,7 +54,7 @@ describe('Region setup', () => {
   })
 
   it('finds locations searched by name', () => {
-    let regions = [
+    const regions = [
       {
         searchTerm: 'cincinnati',
         findText: /^Cincinnati, Ohio/,
@@ -74,7 +74,7 @@ describe('Region setup', () => {
         lon: 0
       }
     ]
-    let maxOffset = 10000 // meters
+    const maxOffset = 10000 // meters
     regions.forEach((r) => {
       cy.get('@search').focus().clear().type(r.searchTerm)
       cy.findByText(r.findText).click()
@@ -82,7 +82,7 @@ describe('Region setup', () => {
     })
   })
 
-  it('creates new region from valid input', function () {
+  it('CRUD a region', function () {
     // create a temporary region name
     const regionName = tempRegionName + Date.now()
     // Enter region name and description
@@ -91,7 +91,7 @@ describe('Region setup', () => {
     // search for region by name
     cy.get('@search').focus().clear().type(this.region.searchTerm)
     cy.findByText(this.region.foundName).click()
-    cy.mapCenteredOn([39.1, -84.5], 10000)
+    cy.mapCenteredOn(this.region.center, 10000)
     // Enter exact coordinates
     cy.get('@North').clear().type(this.region.north)
     cy.get('@South').clear().type(this.region.south)
@@ -101,7 +101,7 @@ describe('Region setup', () => {
     cy.get('@create').click()
     cy.navComplete()
     // should redirect to bundle upload
-    cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
+    cy.location('pathname', {timeout: 10000}).should('match', /regions\/.{24}$/)
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
     cy.navTo('Regions')
@@ -123,32 +123,29 @@ describe('Region setup', () => {
     // coordinate values are rounded to match analysis grid
     cy.get('@North')
       .invoke('val')
-      .then((val) => cy.isWithinTolerance(val, this.region.north))
+      .then((coord) => cy.isWithin(coord, this.region.north, 0.02))
     cy.get('@South')
       .invoke('val')
-      .then((val) => cy.isWithinTolerance(val, this.region.south))
+      .then((coord) => cy.isWithin(coord, this.region.south, 0.02))
     cy.get('@East')
       .invoke('val')
-      .then((val) => cy.isWithinTolerance(val, this.region.east))
+      .then((coord) => cy.isWithin(coord, this.region.east, 0.02))
     cy.get('@West')
       .invoke('val')
-      .then((val) => cy.isWithinTolerance(val, this.region.west))
-
-    // Check if the map contains the region properly
-    /* TODO: Re-enable when we can make it work consistently.
-    cy.getLeafletMap().then((map) => {
-      // Depending on the browser window the bounds can be different. Zoom out to ensure broader coverage.
-      map.zoomOut(3) 
-      cy.log(map.getBounds())
-      cy.wrap(
-        map.getBounds().contains([
-          [this.region.north, this.region.east],
-          [this.region.south, this.region.west]
-        ])
-      ).should('be.true')
-    })
-    */
-
+      .then((coord) => cy.isWithin(coord, this.region.west, 0.02))
+    cy.mapCenteredOn(this.region.center, 10000)
+    // update something and verify save
+    cy.findByRole('button', {name: 'Save changes'})
+      .as('save')
+      .should('be.disabled')
+    const newDescription = 'This text has just been updated!'
+    cy.get('@description').clear().type(newDescription)
+    cy.get('@save').should('be.enabled').click()
+    cy.navTo('Regions')
+    cy.findByText(regionName).click()
+    cy.navComplete()
+    cy.navTo('Region Settings') // will go to bundle page otherwise
+    cy.findByLabelText(/Description/).should('have.value', newDescription)
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()
@@ -157,6 +154,4 @@ describe('Region setup', () => {
     cy.contains('Set up a new region')
     cy.findByText(regionName).should('not.exist')
   })
-
-  it('modifies existing region settings')
 })

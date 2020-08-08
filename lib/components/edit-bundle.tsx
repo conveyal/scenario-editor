@@ -104,10 +104,10 @@ export default function EditBundle(p) {
   return (
     <Stack spacing={8}>
       <FormControl>
-        <FormLabel>{message('bundle.select')}</FormLabel>
-
+        <FormLabel htmlFor='selectBundle'>{message('bundle.select')}</FormLabel>
         <Box>
           <Select
+            inputId='selectBundle'
             options={bundles}
             getOptionLabel={getOptionLabel}
             getOptionValue={get('_id')}
@@ -164,7 +164,6 @@ export default function EditBundle(p) {
           ) : (
             <ConfirmButton
               action={message('bundle.delete')}
-              block
               description={message('bundle.deleteConfirmation')}
               leftIcon='delete'
               onConfirm={_deleteBundle}

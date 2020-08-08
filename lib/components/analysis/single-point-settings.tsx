@@ -24,6 +24,7 @@ import {
   setCopyRequestSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
+import useOnMount from 'lib/hooks/use-on-mount'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import selectCurrentBundle from 'lib/selectors/current-bundle'
@@ -124,17 +125,13 @@ export default function Settings({
   )
 
   // On initial load, the query string may be out of sync with the requestsSettings.projectId
-  useEffect(() => {
+  useOnMount(() => {
     const projectId = get(currentProject, '_id')
-    const settingsId = get(requestsSettings, '[0].projectId')
-    if (
-      projectId !== settingsId &&
-      projectId != null &&
-      projectId !== 'undefined'
-    ) {
+    if (projectId != null && projectId !== 'undefined') {
+      dispatch(setSearchParameter({projectId}))
       setPrimaryPR({projectId})
     }
-  }, []) // eslint-disable-line
+  })
 
   // Set the analysis bounds to be the region bounds if bounds do not exist
   useEffect(() => {

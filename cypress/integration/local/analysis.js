@@ -54,7 +54,7 @@ context('Analysis', () => {
 
   beforeEach(() => {
     // refresh analysis page each time by navigating away and then back
-    cy.navTo('network bundles')
+    cy.navTo('projects')
     cy.navTo('Analyze')
     // alias all the things!
     cy.fixture('regions/scratch.json').as('region')
@@ -76,6 +76,7 @@ context('Analysis', () => {
       .type(`{enter}`)
       .wait(100)
     cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+    cy.get('@primary').findByLabelText(/Date/i).clear().type('2020-07-20')
   })
 
   context('of a point', () => {

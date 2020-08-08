@@ -24,6 +24,7 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
+import fpGet from 'lodash/fp/get'
 import {useRouter} from 'next/router'
 import {memo, useCallback, useContext, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
@@ -101,36 +102,34 @@ const NavItemContents = memo<NavItemContentsProps>(
   }
 )
 
-function useIsActive({to, params = {}}) {
+function useIsActive(to, params = {}) {
   const [, pathname] = useRouteChanging()
-  let {href, as} = routeTo(to, params)
-  href = href.split('?')[0]
-  as = as.split('?')[0]
+  const route = routeTo(to, params)
+  route.href = route.href.split('?')[0]
+  route.as = route.as.split('?')[0]
   const pathOnly = pathname.split('?')[0]
   // Server === 'href', client === 'as'
-  return pathOnly === href || pathOnly === as
+  return pathOnly === route.href || pathOnly === route.as
 }
 
 type ItemLinkProps = {
   icon: IconDefinition
   label: string
-  link: {
-    to: string
-    params?: any
-  }
+  to: string
+  params?: any
 }
 
 /**
  * Render an ItemLink.
  */
-const ItemLink = memo<ItemLinkProps>(({icon, label, link}) => {
+const ItemLink = memo<ItemLinkProps>(({icon, label, to, params = {}}) => {
   const router = useRouter()
-  const isActive = useIsActive(link)
+  const isActive = useIsActive(to, params)
 
   const goToLink = useCallback(() => {
-    const {href, as, query} = routeTo(link.to, link.params)
+    const {href, as, query} = routeTo(to, params)
     router.push({pathname: href, query}, as)
-  }, [link, router])
+  }, [params, router, to])
 
   const navItemProps = isActive
     ? {
@@ -147,11 +146,16 @@ const ItemLink = memo<ItemLinkProps>(({icon, label, link}) => {
   )
 })
 
+// Selector for getting the queryString out of the store
+const selectQueryString = fpGet('queryString')
+
 export default function Sidebar() {
   const router = useRouter()
   const user = useContext(UserContext)
   const email = get(user, 'email')
-  const {projectId, regionId} = router.query
+  const storeParams = useSelector(selectQueryString)
+  const queryParams = {...router.query, ...storeParams}
+  const regionOnly = {regionId: queryParams.regionId}
 
   return (
     <Flex
@@ -166,86 +170,58 @@ export default function Sidebar() {
           <LogoSpinner />
         </Box>
 
-        <ItemLink
-          icon={faGlobe}
-          label={message('nav.regions')}
-          link={{to: 'regions'}}
-        />
-        {regionId && regionId !== CREATING_ID && (
+        <ItemLink icon={faGlobe} label={message('nav.regions')} to='regions' />
+        {queryParams.regionId && queryParams.regionId !== CREATING_ID && (
           <>
             <ItemLink
               icon={faMap}
               label={message('nav.regionSettings')}
-              link={{
-                to: 'regionSettings',
-                params: {regionId}
-              }}
+              to='regionSettings'
+              params={regionOnly}
             />
             <ItemLink
               icon={faCubes}
               label={message('nav.projects')}
-              link={{
-                to: 'projects',
-                params: {regionId}
-              }}
+              to='projects'
+              params={regionOnly}
             />
             <ItemLink
               icon={faDatabase}
               label={message('nav.networkBundles')}
-              link={{
-                to: 'bundles',
-                params: {regionId}
-              }}
+              to='bundles'
+              params={queryParams}
             />
             <ItemLink
               icon={faTh}
               label={message('nav.opportunityDatasets')}
-              link={{
-                to: 'opportunities',
-                params: {regionId}
-              }}
+              to='opportunities'
+              params={queryParams}
             />
             <Box className='DEV'>
               <ItemLink
                 icon={faLayerGroup}
                 label={message('nav.resources')}
-                link={{
-                  to: 'resources',
-                  params: {regionId}
-                }}
+                to='resources'
+                params={queryParams}
               />
             </Box>
             <ItemLink
               icon={faPencilAlt}
               label={message('nav.editModifications')}
-              link={{
-                to: projectId ? 'modifications' : 'projectSelect',
-                params: {
-                  regionId,
-                  projectId: projectId ? projectId : 'undefined'
-                }
-              }}
+              to={queryParams.projectId ? 'modifications' : 'projectSelect'}
+              params={queryParams}
             />
             <ItemLink
               icon={faChartArea}
               label={message('nav.analyze')}
-              link={{
-                to: 'analysis',
-                params: {
-                  projectId,
-                  regionId
-                }
-              }}
+              to='analysis'
+              params={queryParams}
             />
             <ItemLink
               icon={faServer}
               label='Regional Analyses'
-              link={{
-                to: 'regionalAnalyses',
-                params: {
-                  regionId
-                }
-              }}
+              to='regionalAnalyses'
+              params={queryParams}
             />
           </>
         )}
@@ -260,7 +236,7 @@ export default function Sidebar() {
               ' - ' +
               message('authentication.username', {username: email})
             }
-            link={{to: 'logout'}}
+            to='logout'
           />
         )}
         <ExternalLink

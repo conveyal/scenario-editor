@@ -2,7 +2,10 @@ import '@testing-library/cypress/add-commands'
 import 'cypress-file-upload'
 import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
 
-addMatchImageSnapshotCommand()
+addMatchImageSnapshotCommand({
+  failureThresholdType: 'percent',
+  failureThreshold: 0.03 // allow up to a 3% diff
+})
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
@@ -25,12 +28,9 @@ Cypress.Commands.add('navComplete', () => {
 // For easy use inside tests
 Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
 
-// Fetch the leaflet map
-Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
-
 // Check if a floating point number is within a certain tolerance
-Cypress.Commands.add('isWithinTolerance', (f1, f2, tolerance = 0.025) => {
-  cy.wrap(Math.abs(Number(f1) - Number(f2)) < tolerance).should('be.true')
+Cypress.Commands.add('isWithin', (f1, f2, tolerance = 0) => {
+  cy.wrap(Math.abs(Number(f1) - Number(f2)) <= tolerance).should('be.true')
 })
 
 // Recursive setup
@@ -174,9 +174,8 @@ function createNewBundle() {
   cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
   // go back and grab the UUID
   cy.navTo('Network Bundles')
-  cy.findByText(/Select.../)
-    .parent()
-    .click()
+  cy.findByLabelText(/or select an existing one/)
+    .click({force: true})
     .type(bundleName + '{enter}')
   return cy
     .location('pathname')
@@ -259,7 +258,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
     .parent(unlog) // select actual SVG element rather than <title> el
     .click(unlog)
   // check that page loads at least some content
-  cy.contains(pages[title].lookFor, unlog)
+  cy.contains(pages[title].lookFor, {log: false, timeout: 4000})
 })
 
 Cypress.Commands.add('clickMap', (coord) => {

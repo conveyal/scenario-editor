@@ -237,6 +237,30 @@ describe('Modifications', () => {
   })
 
   describe('Add Trip Pattern', () => {
+    it('has working form elements', function () {
+      // touches form elements not interacted with elsewhere
+      const modName = createModName('ATP', 'form elements')
+      setupMod('Add Trip Pattern', modName)
+      cy.findByLabelText(/Transit Mode/i).select('Tram')
+      cy.findAllByRole('alert').contains(/must have at least 2 stops/)
+      cy.findByRole('button', {name: /Edit route geometry/i}).as('edit')
+      cy.findByLabelText(/Auto-create stops at set spacing/i).check({
+        force: true
+      })
+      //.should('be.checked') // TODO pending issue 1161
+      cy.findByLabelText(/Bidirectional/i)
+        .uncheck({force: true})
+        .should('not.be.checked')
+      cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
+      cy.findByRole('button', {name: /Add new timetable/i}).click()
+      cy.findByRole('button', {name: /Timetable 1/}).click()
+      cy.findByLabelText(/Times are exact/i).uncheck({force: true})
+      cy.findByLabelText(/Phase at stop/i)
+        .focus()
+        .type(' {backspace}')
+      deleteThisMod()
+    })
+
     it('can be imported from shapefile', function () {
       cy.findByRole('button', {
         name: 'Import modifications from another project'
@@ -363,8 +387,6 @@ describe('Modifications', () => {
       // delete the template modification
       deleteMod('Add Trip Pattern', modName)
     })
-    it('allows phasing')
-    it('allows exact timetables')
   })
 
   describe('Adjust dwell time', () => {
@@ -395,6 +417,9 @@ describe('Modifications', () => {
         .click({force: true})
         .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
+      cy.findByLabelText(/Scale speed by/i)
+        .invoke('val')
+        .then((val) => expect(val * 1).to.eq(1))
       deleteThisMod()
     })
   })

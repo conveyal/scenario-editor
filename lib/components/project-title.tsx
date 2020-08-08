@@ -13,7 +13,7 @@ import IconButton from './icon-button'
 
 export default function ProjectTitle({project}) {
   const exportSelect = useDisclosure()
-  const goToAllProjects = useRouteTo('projectSelect', {
+  const goToAllProjects = useRouteTo('projects', {
     regionId: project.regionId
   })
   const goToProjectSettings = useRouteTo('projectSettings', {

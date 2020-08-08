@@ -29,12 +29,15 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                 className="css-0"
                 role="group"
               >
-                <FormLabel>
+                <FormLabel
+                  htmlFor="selectBundle"
+                >
                   <Box
                     as="label"
                     display="inline-block"
                     fontSize="md"
                     fontWeight="medium"
+                    htmlFor="selectBundle"
                     opacity="1"
                     pb="4px"
                     pr="12px"
@@ -43,6 +46,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                   >
                     <label
                       className="css-176s5fq"
+                      htmlFor="selectBundle"
                     >
                       or select an existing one
                     </label>
@@ -55,6 +59,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                     <ForwardRef
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
+                      inputId="selectBundle"
                       onChange={[Function]}
                       options={
                         Array [
@@ -84,6 +89,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                         getOptionLabel={[Function]}
                         getOptionValue={[Function]}
                         innerRef={null}
+                        inputId="selectBundle"
                         onChange={[Function]}
                         options={
                           Array [

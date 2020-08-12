@@ -8,7 +8,7 @@ To start a regional analysis, first set the appropriate parameters using the con
 
 You can also choose custom geographic bounds for your regional analysis. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, make sure they have the same bounds and routing engine version. The exact version and bounds used for previous regional analyses can be selected directly in their respective dropdown menus. 
 
-When you have configured all of these options, the green **Multi-point**<i class="fa fa-plus"></i> button in your settings menu will be enabled. Clicking this will prompt you for a name for the analysis and begin processing. 
+When you have configured all of these options, the green **Regional analysis** <i class="fa fa-plus"></i> button in your settings menu will be enabled. Clicking this will prompt you for a name for the analysis and begin processing. 
 
 <figure>
   <img src="../static/img/ready-for-regional-analysis.png" />

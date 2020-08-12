@@ -2,7 +2,6 @@ import {Box, Select, Stack, Flex, useDisclosure} from '@chakra-ui/core'
 import {
   faChevronLeft,
   faDownload,
-  faMap,
   faTrash
 } from '@fortawesome/free-solid-svg-icons'
 import find from 'lodash/find'
@@ -82,13 +81,14 @@ export default function Regional(p) {
   })
 
   const activePointSet = useSelector(selectPointset)
+  const activePointSetId = get(activePointSet, '_id')
   const onChangeDestinationPointSet = useCallback(
     (v) => dispatch(setSearchParameter('destinationPointSetId', v)),
     [dispatch]
   )
   const destinationPointSetInput = useControlledInput({
     onChange: onChangeDestinationPointSet,
-    value: activePointSet._id
+    value: activePointSetId
   })
 
   async function _remove() {
@@ -104,7 +104,7 @@ export default function Regional(p) {
     e.preventDefault()
     const value = await dispatch(
       fetchAction({
-        url: `${API.Regional}/${analysis._id}/grid/tiff?cutoff=${cutoffInput.value}&percentile=${percentileInput.value}&destinationPointSetId=${activePointSet._id}`
+        url: `${API.Regional}/${analysis._id}/grid/tiff?cutoff=${cutoffInput.value}&percentile=${percentileInput.value}&destinationPointSetId=${activePointSetId}`
       })
     )
     window.open(get(value, 'url'))

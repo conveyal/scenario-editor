@@ -243,7 +243,7 @@ function ComparisonDisplay({analysis, comparisonAnalysis}) {
   )
   const comparisonCutoffInput = useControlledInput({
     onChange: onChangeCutoff,
-    parse: parseInt,
+    parse: parseCutoff,
     value: comparisonCutoff
   })
 
@@ -253,7 +253,7 @@ function ComparisonDisplay({analysis, comparisonAnalysis}) {
   )
   const comparisonPercentileInput = useControlledInput({
     onChange: onChangePercentile,
-    parse: parseInt,
+    parse: parseCutoff,
     value: comparisonPercentile
   })
 

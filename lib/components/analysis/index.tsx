@@ -270,13 +270,13 @@ function Results({
 function ScenarioApplicationErrors({errors, ...p}) {
   /** Render any errors that may have occurred applying the project */
   return (
-    <Stack spacing={P.md} {...p}>
+    <Stack spacing={P.md} {...p} maxHeight='200px' overflowY='scroll'>
       {errors.map((err, idx) => (
         <Stack key={idx}>
           <Heading size='sm'>
             {message('analysis.errorsInModification', {id: err.modificationId})}
           </Heading>
-          <List styleType='disc'>
+          <List styleType='disc' spacing={2}>
             {err.messages.map((msg, idx) => (
               <ListItem key={`message-${idx}`}>{msg}</ListItem>
             ))}

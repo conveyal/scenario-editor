@@ -1,4 +1,6 @@
-import {generateName} from '../../support'
+function generateName(type, name) {
+  return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
+}
 
 // How long should it take to create an OD
 const timeout = 60000

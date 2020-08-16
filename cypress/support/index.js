@@ -27,7 +27,3 @@ before('Optionally wipe configured state', () => {
     }
   })
 })
-
-export function generateName(type, name) {
-  return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
-}

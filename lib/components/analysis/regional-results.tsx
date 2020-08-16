@@ -181,11 +181,18 @@ export default function RegionalResults({analysis}) {
             <Icon icon={faTh} /> Access to
           </Heading>
 
-          <Text px={4}>{accessToLabel}</Text>
+          <Box px={4}>
+            <Heading size='xs'>{analysis.name}</Heading>
+            <Text>{accessToLabel}</Text>
+          </Box>
           {comparisonAnalysis && (
-            <Text px={4}>
-              <em>minus</em> {comparisonAccessToLabel}
-            </Text>
+            <Box px={4}>
+              <Text color='red.500'>
+                <em>minus</em>
+              </Text>
+              <Heading size='xs'>{comparisonAnalysis.name}</Heading>
+              <Text>{comparisonAccessToLabel}</Text>
+            </Box>
           )}
 
           {displayGrid && displayScale ? (
@@ -277,6 +284,7 @@ function ComparisonDisplay({analysis, comparisonAnalysis}) {
       )
     )
     return () => {
+      dispatch(setSearchParameter('comparisonAnalysisId'))
       dispatch(setSearchParameter('comparisonCutoff'))
       dispatch(setSearchParameter('comparisonPercentile'))
       dispatch(setSearchParameter('comparisonDestinationPointSetId'))

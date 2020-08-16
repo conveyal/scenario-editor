@@ -4,7 +4,7 @@ import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
 
 addMatchImageSnapshotCommand({
   failureThresholdType: 'percent',
-  failureThreshold: 0.03 // allow up to a 3% diff
+  failureThreshold: 0.05 // allow up to a 5% image diff
 })
 
 // Persist the user cookie across sessions
@@ -63,7 +63,14 @@ function setup(entity) {
           )
           cy.navComplete()
           return cy.contains(/Create a modification/i)
+        case 'analysis':
+          cy.visit(
+            `/regions/${storedVals.regionId}/regional?analysisId=${storedVals.analysisId}`
+          )
+          cy.navComplete()
+          return cy.contains(/Aggregate results to/i)
       }
+      // if the entity didn't already exist, recurse through all dependencies
     } else if (entity === 'region') {
       return createNewRegion()
     } else if (entity === 'bundle') {
@@ -72,6 +79,8 @@ function setup(entity) {
       return setup('region').then(() => createNewOpportunities())
     } else if (entity === 'project') {
       return setup('bundle').then(() => createNewProject())
+    } else if (entity === 'analysis') {
+      return setup('project').then(() => createNewAnalysis())
     }
   })
 }
@@ -81,6 +90,13 @@ function stash(key, val) {
     contents = {...contents, [key]: val}
     cy.writeFile(pseudoFixture, contents)
   })
+}
+
+function createNewAnalysis() {
+  // TODO this function is left here empty for now - only one regional analysis
+  // is ever created, so it seems best not to duplicate that code here without
+  // need. It probably should be done eventually though.
+  return assert(false).is.true
 }
 
 function createNewOpportunities() {

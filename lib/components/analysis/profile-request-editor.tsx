@@ -12,18 +12,12 @@ import {
   SimpleGrid
 } from '@chakra-ui/core'
 import get from 'lodash/get'
-import {forwardRef, useState, useCallback} from 'react'
-import DateTime from 'react-datetime'
+import {forwardRef, useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 
 import TimePicker from '../time-picker'
-
-// DateTime does not have a `renderInput`
-const DateTimeWithRender = DateTime as any
-
-const DATE_FORMAT = 'YYYY-MM-DD'
 
 const bold = (b) => `<strong>${b}</strong>`
 
@@ -104,17 +98,20 @@ export default function ProfileRequestEditor({
     setProfileRequest({fromTime: parseInt(fromTime)})
   const setToTime = (toTime) => setProfileRequest({toTime: parseInt(toTime)})
 
-  const [dateIsValid, setDateIsValid] = useState(true)
-  function setDate(date) {
-    if (!date || !date.isValid || !date.isValid()) {
-      return setDateIsValid(false)
-    }
-    setDateIsValid(true)
-    setProfileRequest({date: date.format(DATE_FORMAT)})
-  }
+  const {fromTime, toTime} = profileRequest
+  const bundleOutOfDate = bundleIsOutOfDate(
+    bundle,
+    profileRequest.date,
+    project
+  )
 
-  const {date, fromTime, toTime} = profileRequest
-  const bundleOutOfDate = bundleIsOutOfDate(bundle, date, project)
+  const setDate = useCallback((date) => setProfileRequest({date}), [
+    setProfileRequest
+  ])
+  const dateInput = useInput({
+    onChange: setDate,
+    value: profileRequest.date
+  })
 
   const setWalkSpeed = useCallback(
     (walkSpeed) => setProfileRequest({walkSpeed: walkSpeed / 3.6}), // km/h to m/s
@@ -194,20 +191,15 @@ export default function ProfileRequestEditor({
         <>
           <FormControl
             isDisabled={disabled}
-            isInvalid={bundleOutOfDate || !dateIsValid}
+            isInvalid={bundleOutOfDate || dateInput.isInvalid}
           >
-            <FormLabel htmlFor='serviceDate'>
+            <FormLabel htmlFor={dateInput.id}>
               {message('analysis.date')}
             </FormLabel>
-            <DateTimeWithRender
-              closeOnSelect
-              dateFormat={DATE_FORMAT}
-              inputProps={{disabled}}
-              onChange={setDate}
-              renderInput={(p) => <Input {...p} id='serviceDate' />}
-              timeFormat={false}
-              utc // because new Date('2016-12-12') yields a date at midnight UTC
-              value={date}
+            <Input
+              {...dateInput}
+              isInvalid={!!bundleOutOfDate || dateInput.isInvalid}
+              type='date'
             />
           </FormControl>
 

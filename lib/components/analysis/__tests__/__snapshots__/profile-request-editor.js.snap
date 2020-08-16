@@ -10,34 +10,23 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
     isInvalid={false}
   >
     <FormLabel
-      htmlFor="serviceDate"
+      htmlFor="00000000-0000-0000-0000-000000000000"
     >
       Date
     </FormLabel>
-    <DateTime
-      className=""
-      closeOnSelect={true}
-      closeOnTab={true}
-      dateFormat="YYYY-MM-DD"
-      defaultValue=""
-      input={true}
-      inputProps={
-        Object {
-          "disabled": false,
-        }
-      }
-      onBlur={[Function]}
+    <Input
+      as="input"
+      errorBorderColor="red.500"
+      focusBorderColor="blue.500"
+      id="00000000-0000-0000-0000-000000000000"
+      isFullWidth={true}
+      isInvalid={false}
+      isValid={true}
       onChange={[Function]}
-      onFocus={[Function]}
-      onNavigateBack={[Function]}
-      onNavigateForward={[Function]}
-      onViewModeChange={[Function]}
-      renderInput={[Function]}
-      strictParsing={true}
-      timeConstraints={Object {}}
-      timeFormat={false}
-      utc={true}
+      size="md"
+      type="date"
       value="2016-01-16"
+      variant="outline"
     />
   </FormControl>
   <Memo(TimePicker)

@@ -46,6 +46,30 @@ function asInt(numericText) {
   return parseInt(numericText.replace(',', ''))
 }
 
+function setupAnalysis() {
+  // refresh the analysis page by navigating away and then back
+  cy.navTo('projects')
+  cy.navTo('Analyze')
+  cy.get('div#PrimaryAnalysisSettings').as('primary')
+  // set a standard project and scenario for all tests
+  cy.get('@primary')
+    .findByLabelText(/^Project$/)
+    .click({force: true})
+    .type('scratch{enter}')
+  cy.get('@primary')
+    .findByLabelText(/^Scenario$/)
+    .click({force: true})
+    .type('baseline{enter}')
+  cy.findByLabelText(/^Opportunity Dataset$/)
+    .click({force: true})
+    .type(`{enter}`)
+    .wait(100)
+  cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+  cy.fixture('regions/scratch.json').then((region) => {
+    cy.get('@primary').findByLabelText(/Date/i).clear().type(region.date)
+  })
+}
+
 context('Analysis', () => {
   before(() => {
     cy.setup('project')
@@ -53,30 +77,11 @@ context('Analysis', () => {
   })
 
   beforeEach(() => {
-    // refresh analysis page each time by navigating away and then back
-    cy.navTo('projects')
-    cy.navTo('Analyze')
-    // alias all the things!
     cy.fixture('regions/scratch.json').as('region')
     cy.fixture('regions/scratch-results.json').as('results')
-    cy.get('div.leaflet-container').as('map')
+    setupAnalysis()
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
-    // set a standard project and scenario for all tests
-    cy.get('@primary')
-      .findByLabelText(/^Project$/)
-      .click({force: true})
-      .type('scratch{enter}')
-    cy.get('@primary')
-      .findByLabelText(/^Scenario$/)
-      .click({force: true})
-      .type('baseline{enter}')
-    cy.findByLabelText(/^Opportunity Dataset$/)
-      .click({force: true})
-      .type(`{enter}`)
-      .wait(100)
-    cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
-    cy.get('@primary').findByLabelText(/Date/i).clear().type('2020-07-20')
   })
 
   context('of a point', () => {
@@ -252,7 +257,7 @@ context('Analysis', () => {
   })
 
   context('of a region', () => {
-    it('runs a regional analysis', function () {
+    it('runs a regional analysis, etc.', function () {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
@@ -279,21 +284,78 @@ context('Analysis', () => {
       cy.findByText(/View a regional analysis/)
         .click()
         .type(`${analysisName}{enter}`)
-      // now in regional results vieiw
-      //cy.findByLabelText(/Export to GIS/i) // TODO dissociated label
-      //  .findByRole('button')
-      //cy.findByLabelText(/Compare to/i) // TODO dissociated label
+      // snapshot the legend
+      // TODO note that now that variable analysis name included, this may break
       cy.findByText(/Access to/i)
-      //cy.findByLabelText(/Aggregate results to/i) // TODO dissociated label
-      cy.findByText(/upload new aggregation area/i)
+        .parent()
+        .as('legend')
+      cy.get('@legend')
+        .should('not.contain', 'Loading grids')
+        .wait(1000)
+        .matchImageSnapshot('regional-single-legend')
+      // compare to self with different time cutoff and check the legend again
+      cy.findByLabelText(/Compare to/).type(`${analysisName}{enter}`, {
+        force: true
+      })
+      // TODO make these select elements easier to identify
+      cy.findByText(/Compare to/)
+        .parent()
+        .parent()
+        .findByRole('option', {name: '45 minutes'})
+        .parent()
+        .select('60 minutes')
+      cy.get('@legend')
+        .should('not.contain', 'Loading grids')
+        .wait(1000)
+        .matchImageSnapshot('regional-comparison-legend')
+      // TODO more semantic selector would be preferable
+      // TODO export to GIS produces error locally
+      cy.get('button[aria-label*="Export to GIS"')
+      // test aggreation area upload
+      cy.findByText(/upload new aggregation area/i).click()
+      //.click() // TODO export gives an error when running locally
+      cy.findByRole('button', {name: 'Upload'})
+        .as('upload')
+        .should('be.disabled')
+      cy.findByLabelText(/Aggregation area name/i).type('cities')
+      cy.findByLabelText(/Select aggregation area files/i)
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[0],
+          encoding: 'base64'
+        })
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[1],
+          encoding: 'base64'
+        })
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[2],
+          encoding: 'base64'
+        })
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[3],
+          encoding: 'base64'
+        })
+      cy.findByLabelText(/Union/).uncheck({force: true})
+      cy.findByLabelText(/Attribute name to lookup on the shapefile/i)
+        .clear()
+        .type(this.region.aggregationAreas.nameField)
+      cy.get('@upload').click()
+      cy.contains(/Upload complete/, {timeout: 10000}).should('be.visible')
+      // TODO label dissociated from input
+      //cy.findByLabelText(/Aggregate results to/i)
+      //  .type(this.region.aggregationAreas.sampleName+'{enter}')
       // clean up
       cy.findByRole('button', {name: 'Delete'}).click()
+      cy.findByRole('button', {name: /Confirm/}).click()
     })
 
+    // TODO this is partly tested above but should be refactored into its own
+    // test here. This will require setting up an analysis first though
     it('compares two regional analyses')
 
-    it('uploads an aggregation area')
-
-    it('aggregates results to subregion')
+    // TODO this is partly tested above, but should be separated out into its
+    // own test here. Aggregation is blocked by a dissociated label
+    // (see note above)
+    it('uploads an aggregation area and aggregates results')
   })
 })

@@ -651,24 +651,45 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                               </h2>
                             </Box>
                           </Heading>
-                          <Text
+                          <Box
                             key=".1"
                             mb={3}
                             px={4}
                           >
-                            <Box
-                              as="p"
-                              fontFamily="body"
-                              mb={3}
-                              px={4}
+                            <div
+                              className="css-1w68sn0"
                             >
-                              <p
-                                className="css-6d7uu3"
+                              <Heading
+                                size="xs"
                               >
-                                undefined within 60 minutes, 50th percentile
-                              </p>
-                            </Box>
-                          </Text>
+                                <Box
+                                  as="h2"
+                                  fontFamily="heading"
+                                  fontSize="sm"
+                                  fontWeight="bold"
+                                  lineHeight="shorter"
+                                >
+                                  <h2
+                                    className="css-glel1g"
+                                  >
+                                    ANALYSIS 1
+                                  </h2>
+                                </Box>
+                              </Heading>
+                              <Text>
+                                <Box
+                                  as="p"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-fzcsno"
+                                  >
+                                    undefined within 60 minutes, 50th percentile
+                                  </p>
+                                </Box>
+                              </Text>
+                            </div>
+                          </Box>
                           <Legend
                             breaks={
                               Array [
@@ -4042,46 +4063,101 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                               </h2>
                             </Box>
                           </Heading>
-                          <Text
+                          <Box
                             key=".1"
                             mb={3}
                             px={4}
                           >
-                            <Box
-                              as="p"
-                              fontFamily="body"
-                              mb={3}
-                              px={4}
+                            <div
+                              className="css-1w68sn0"
                             >
-                              <p
-                                className="css-6d7uu3"
+                              <Heading
+                                size="xs"
                               >
-                                undefined within 60 minutes, 50th percentile
-                              </p>
-                            </Box>
-                          </Text>
-                          <Text
+                                <Box
+                                  as="h2"
+                                  fontFamily="heading"
+                                  fontSize="sm"
+                                  fontWeight="bold"
+                                  lineHeight="shorter"
+                                >
+                                  <h2
+                                    className="css-glel1g"
+                                  >
+                                    ANALYSIS 1
+                                  </h2>
+                                </Box>
+                              </Heading>
+                              <Text>
+                                <Box
+                                  as="p"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-fzcsno"
+                                  >
+                                    undefined within 60 minutes, 50th percentile
+                                  </p>
+                                </Box>
+                              </Text>
+                            </div>
+                          </Box>
+                          <Box
                             key=".2"
                             mb={3}
                             px={4}
                           >
-                            <Box
-                              as="p"
-                              fontFamily="body"
-                              mb={3}
-                              px={4}
+                            <div
+                              className="css-1w68sn0"
                             >
-                              <p
-                                className="css-6d7uu3"
+                              <Text
+                                color="red.500"
                               >
-                                <em>
-                                  minus
-                                </em>
-                                 
-                                undefined within 60 minutes, 50th percentile
-                              </p>
-                            </Box>
-                          </Text>
+                                <Box
+                                  as="p"
+                                  color="red.500"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-1bqbto5"
+                                  >
+                                    <em>
+                                      minus
+                                    </em>
+                                  </p>
+                                </Box>
+                              </Text>
+                              <Heading
+                                size="xs"
+                              >
+                                <Box
+                                  as="h2"
+                                  fontFamily="heading"
+                                  fontSize="sm"
+                                  fontWeight="bold"
+                                  lineHeight="shorter"
+                                >
+                                  <h2
+                                    className="css-glel1g"
+                                  >
+                                    ANALYSIS 2
+                                  </h2>
+                                </Box>
+                              </Heading>
+                              <Text>
+                                <Box
+                                  as="p"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-fzcsno"
+                                  >
+                                    undefined within 60 minutes, 50th percentile
+                                  </p>
+                                </Box>
+                              </Text>
+                            </div>
+                          </Box>
                           <Legend
                             breaks={
                               Array [

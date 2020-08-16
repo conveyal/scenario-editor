@@ -13,6 +13,7 @@
   "east": -84.3592,
   "west": -84.706,
   "center": [39.02335, -84.5326],
+  "date": "2020-07-20",
   "newRoute": [
     [39.085792, -84.488225],
     [39.08493, -84.489807],
@@ -77,8 +78,14 @@
     ]
   },
   "aggregationAreas": {
-    "location": "regions/nky/city-boundaries/",
-    "nameField": "name"
+    "files": [
+      "regions/nky/city-boundaries/cities.dbf",
+      "regions/nky/city-boundaries/cities.prj",
+      "regions/nky/city-boundaries/cities.shp",
+      "regions/nky/city-boundaries/cities.shx"
+    ],
+    "nameField": "name",
+    "sampleName": "Covington"
   },
   "testCases": {
     "removeStops": {

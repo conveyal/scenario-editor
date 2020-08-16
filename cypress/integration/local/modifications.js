@@ -253,11 +253,64 @@ describe('Modifications', () => {
         .should('not.be.checked')
       cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
       cy.findByRole('button', {name: /Add new timetable/i}).click()
-      cy.findByRole('button', {name: /Timetable 1/}).click()
+      cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
       cy.findByLabelText(/Times are exact/i).uncheck({force: true})
       cy.findByLabelText(/Phase at stop/i)
         .focus()
         .type(' {backspace}')
+      // drawing a route activates the following elements
+      drawRouteGeometry(this.region.newRoute)
+      // set dwell times, verifying that they increase the total travel time
+      cy.findByText(/Travel time/i)
+        .parent()
+        .findByText(/\d\d:\d\d:\d\d/)
+        .as('travelTime')
+        .invoke('text')
+        .then((initialTime) => {
+          // now set a new dwell time
+          const dwellTime = '00:00:30'
+          cy.findByLabelText(/Default dwell time/i)
+            .clear()
+            .type(dwellTime)
+          cy.findByRole('button', {
+            name: /Set individual stop dwell times/i
+          }).click()
+          cy.findByLabelText(/Stop 1/)
+            .invoke('attr', 'placeholder')
+            .should('eq', `${dwellTime} (default)`)
+          cy.get('@travelTime')
+            .invoke('text')
+            .then(
+              // compares interval strings, but because of the format it works
+              (newTime) => expect(newTime > initialTime).to.be.true
+            )
+        })
+      // set segment speeds
+      cy.findByLabelText(/Average speed/i)
+      cy.findByLabelText(/Total moving time/i)
+      cy.findByRole('button', {name: /Set individual segment speeds/i}).click()
+      // decreasing segment speed should increase travel time
+      cy.findByLabelText(/Segment 1 speed/i)
+        .invoke('val')
+        .should('match', /\d+/i)
+        .then((segSpeed) => {
+          cy.get('@travelTime')
+            .invoke('text')
+            .then((initialTime) => {
+              cy.findByLabelText(/Segment 1 speed/i)
+                .clear()
+                .type(segSpeed * 0.5)
+              cy.get('@travelTime')
+                .invoke('text')
+                .then((newTime) => {
+                  cy.log(newTime, initialTime)
+                  expect(newTime > initialTime).to.be.true
+                })
+            })
+        })
+      cy.findByLabelText(/Segment 1 duration/i)
+        .invoke('val')
+        .should('match', /\d\d:\d\d:\d\d/)
       deleteThisMod()
     })
 
@@ -287,7 +340,7 @@ describe('Modifications', () => {
 
       this.region.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
-        cy.findByRole('button', {name: 'Timetable NaN'}).click()
+        cy.findByRole('button', {name: 'Timetable NaN'}).click({force: true})
         cy.findByLabelText(/Frequency/)
           .invoke('val')
           .then((val) => expect(val).to.eq('' + route.frequency))
@@ -324,7 +377,7 @@ describe('Modifications', () => {
       drawRouteGeometry(this.region.newRoute)
 
       cy.findByText(/Add new timetable/).click()
-      cy.findByText('Timetable 1').click()
+      cy.findByText('Timetable 1').click({force: true})
       // enter arbitrary settings to see if they get saved
       cy.findByLabelText('Name').clear().type('Weekday')
       cy.findByLabelText(/Mon/).check()
@@ -364,7 +417,7 @@ describe('Modifications', () => {
         .findByLabelText(/Timetable/)
         .select('Weekday')
       cy.findByText(/Copy into new timetable/i).click()
-      cy.contains(/copy of Weekday/i).click()
+      cy.contains(/copy of Weekday/i).click({force: true})
       // verify the settings from above
       cy.findByLabelText(/Mon/).should('be.checked')
       cy.findByLabelText(/Tue/).should('be.checked')

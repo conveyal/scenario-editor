@@ -151,7 +151,7 @@
     "eslint-plugin-react-hooks": "^4.0.2",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
-    "nock": "^12.0.3",
+    "nock": "^13.0.4",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "react-test-renderer": "^16.13.1",

@@ -24,7 +24,7 @@ export const createBookmark = (bookmark: Bookmark) =>
     next: (response) => createBookmarkLocally(response.value)
   })
 
-export const loadBookmarks = (regionId) =>
+export const loadBookmarks = (regionId: string) =>
   fetch({
     url: `${API.Region}/${regionId}/bookmarks`,
     next: (res) => setBookmarks(res.value)

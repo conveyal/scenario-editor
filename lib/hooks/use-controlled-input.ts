@@ -45,8 +45,9 @@ export default function useControlledInput({
   useEffect(() => {
     if (ref.current !== document.activeElement) {
       setInputValue(value)
+      setIsValid(test(parse(value), value))
     }
-  }, [value, ref, setInputValue])
+  }, [parse, ref, setInputValue, test, value])
 
   // Get the value from the Input, parse it, test it, and then pass then parsed
   // value to the original onChange function. This keeps the input in sync.
@@ -63,7 +64,7 @@ export default function useControlledInput({
       // Allow the sync to occur before propogating the change
       await onChange(parsedValue)
     },
-    [onChange, setInputValue, setIsValid, test]
+    [onChange, parse, setInputValue, setIsValid, test]
   )
 
   return {

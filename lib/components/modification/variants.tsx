@@ -15,6 +15,7 @@ export default function Variants({activeVariants, allVariants, setVariant}) {
             name={v}
             onChange={(e) => setVariant(i, e.target.checked)}
             value={i}
+            wordBreak='break-all'
           >
             {i + 1}. {v}
           </Checkbox>

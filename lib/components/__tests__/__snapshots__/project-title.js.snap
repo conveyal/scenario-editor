@@ -61,6 +61,7 @@ exports[`Component > ProjectTitle 1`] = `
                 <Button
                   aria-label="All projects"
                   isActive={false}
+                  isDisabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -312,6 +313,7 @@ exports[`Component > ProjectTitle 1`] = `
                       <Button
                         aria-label="Download or share this project"
                         isActive={false}
+                        isDisabled={false}
                         onBlur={[Function]}
                         onClick={[Function]}
                         onFocus={[Function]}
@@ -516,6 +518,7 @@ exports[`Component > ProjectTitle 1`] = `
                       <Button
                         aria-label="Edit project settings"
                         isActive={false}
+                        isDisabled={false}
                         onBlur={[Function]}
                         onClick={[Function]}
                         onFocus={[Function]}

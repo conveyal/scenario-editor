@@ -52,7 +52,7 @@ export default function AdvancedSettings({
         setProfileRequest(JSON.parse(jsonString))
       }
     },
-    [ref, setCurrentValue, setProfileRequest]
+    [setCurrentValue, setProfileRequest]
   )
 
   useEffect(() => {

@@ -2,13 +2,20 @@ import {Stack, Text, Heading} from '@chakra-ui/core'
 import get from 'lodash/get'
 import sum from 'lodash/sum'
 import {useState, useEffect} from 'react'
+import {CircleMarker} from 'react-leaflet'
+import {useSelector} from 'react-redux'
 
+import colors from 'lib/constants/colors'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
 import message from 'lib/message'
+import selectQualifiedStops from 'lib/selectors/qualified-stops-from-segments'
+import selectSegments from 'lib/selectors/segments'
+import selectSegmentDistances from 'lib/selectors/segment-distances'
 import {toPrecision} from 'lib/utils/math'
 import {secondsToHhMmSsString} from 'lib/utils/time'
 
 import Collapsible from '../collapsible'
+import GeoJSON from '../map/geojson'
 import MinutesSeconds from '../minutes-seconds'
 import SpeedInput from '../speed'
 
@@ -31,6 +38,7 @@ function getNewSegmentSpeeds(segmentDistances, segmentSpeeds) {
 
 function getAverageSpeed(segmentDistances, segmentSpeeds) {
   const totalDistance = sum(segmentDistances)
+  if (totalDistance === 0) return 0 // avoid dividing by 0
   const weightedSpeeds = segmentSpeeds.map((s, i) => s * segmentDistances[i])
   return (
     weightedSpeeds.reduce((total, speed) => total + speed, 0) / totalDistance
@@ -40,7 +48,7 @@ function getAverageSpeed(segmentDistances, segmentSpeeds) {
 function getDwellSeconds(dwellTime, dwellTimes, numberOfStops) {
   let totalSeconds = 0
   for (let i = 0; i < numberOfStops; i++) {
-    const customDwellSeconds = dwellTimes[i]
+    const customDwellSeconds = get(dwellTimes, i)
     totalSeconds += Number.isFinite(customDwellSeconds)
       ? customDwellSeconds
       : dwellTime
@@ -61,15 +69,17 @@ function getMovingSeconds(segmentDistances, segmentSpeeds) {
 export default function SegmentSpeeds({
   dwellTime,
   dwellTimes,
-  highlightSegment,
-  highlightStop,
   numberOfStops,
-  qualifiedStops,
-  segmentDistances,
   segmentSpeeds,
   update,
   ...p
 }) {
+  const segments = useSelector(selectSegments)
+  const segmentDistances = useSelector(selectSegmentDistances)
+  const qualifiedStops = useSelector(selectQualifiedStops)
+
+  const [highlightSegment, setHighlightSegment] = useState(-1)
+  const [highlightStop, setHighlightStop] = useState(-1)
   const [movingSeconds, setMovingSeconds] = useState(0)
   const [dwellSeconds, setDwellSeconds] = useState(0)
   const [segmentSpeedsAreEqual, setSegmentSpeedsAreEqual] = useState(() =>
@@ -118,6 +128,26 @@ export default function SegmentSpeeds({
 
   return (
     <Stack spacing={5} {...p}>
+      {highlightSegment > -1 && segments[highlightSegment] != null && (
+        <GeoJSON
+          color={colors.HIGHLIGHT}
+          data={segments[highlightSegment].geometry}
+          weight={6}
+        />
+      )}
+
+      {highlightStop > -1 && qualifiedStops[highlightStop] != null && (
+        <CircleMarker
+          center={[
+            qualifiedStops[highlightStop].lat,
+            qualifiedStops[highlightStop].lon
+          ]}
+          fillOpacity={1}
+          color={colors.ACTIVE}
+          radius={5}
+        />
+      )}
+
       <Heading display='flex' size='sm' justifyContent='space-between'>
         <Text>Travel time </Text>
         <Text fontWeight='bolder'>{secondsToHhMmSsString(totalSeconds)}</Text>
@@ -145,9 +175,9 @@ export default function SegmentSpeeds({
                 key={`segment-speeds-stop-dwell-time-${index}`}
                 label={`Stop ${index}`}
                 placeholder={`${secondsToHhMmSsString(dwellTime)} (default)`}
-                onBlur={() => highlightStop(-1)}
+                onBlur={() => setHighlightStop(-1)}
                 onChange={(time) => _setDwellTimeForStop(index, time)}
-                onFocus={() => highlightStop(index)}
+                onFocus={() => setHighlightStop(index)}
                 seconds={get(dwellTimes, index)}
               />
             ))}
@@ -178,17 +208,17 @@ export default function SegmentSpeeds({
             <Stack key={index}>
               <SpeedInput
                 label={`Segment ${index + 1} speed`}
-                onBlur={() => highlightSegment(-1)}
+                onBlur={() => setHighlightSegment(-1)}
                 onChange={(speed) => _setSpeedForSegment(index, speed)}
-                onFocus={() => highlightSegment(index)}
+                onFocus={() => setHighlightSegment(index)}
                 speed={speed}
               />
               <MinutesSeconds
                 label={`Segment ${index + 1} duration`}
                 placeholder={message('modification.time')}
-                onBlur={() => highlightSegment(-1)}
+                onBlur={() => setHighlightSegment(-1)}
                 onChange={(time) => _setTimeForSegment(index, time)}
-                onFocus={() => highlightSegment(index)}
+                onFocus={() => setHighlightSegment(index)}
                 seconds={(segmentDistances[index] / speed) * 60 * 60}
               />
             </Stack>

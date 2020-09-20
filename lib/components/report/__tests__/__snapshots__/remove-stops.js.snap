@@ -22,7 +22,7 @@ exports[`Report > RemoveStops renders correctly 1`] = `
       }
     }
   >
-    <Memo(PatternLayer)
+    <PatternLayer
       feed={
         Object {
           "checksum": "MOCK",

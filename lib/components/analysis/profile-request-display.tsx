@@ -79,7 +79,7 @@ export default function ProfileRequestDisplay({
         setRequestJSON(response)
       }
     )
-  }, [id])
+  }, [dispatch, id])
 
   const projects = useSelector(selectProjects)
   const bundles = useSelector(selectBundles)
@@ -218,6 +218,7 @@ export default function ProfileRequestDisplay({
               {keys.map((k) => (
                 <PseudoBox
                   as='tr'
+                  key={k}
                   _odd={{
                     bg: `${color}.50`
                   }}

@@ -11,7 +11,7 @@ import {useCallback} from 'react'
 import {useSelector} from 'react-redux'
 
 import message from 'lib/message'
-import selectPhaseFromTimetableStops from 'lib/selectors/all-phase-from-timetable-stops'
+import selectActiveModification from 'lib/selectors/active-modification'
 
 import MinutesSeconds from '../minutes-seconds'
 import TimePicker from '../time-picker'
@@ -32,18 +32,8 @@ const DAYS = [
  * Superclass for both changing frequencies and creating patterntimetables for
  * new patterns
  */
-export default function TimetableEntry({
-  bidirectional,
-  modificationStops,
-  projectTimetables,
-  timetable,
-  update
-}) {
-  const allPhaseFromTimetableStops = useSelector(selectPhaseFromTimetableStops)
-  const availableTimetables = projectTimetables.filter(
-    (tt) => tt._id !== timetable._id
-  )
-
+export default function TimetableEntry({modificationStops, timetable, update}) {
+  const modification = useSelector(selectActiveModification)
   const {endTime, startTime} = timetable
 
   /** set the start time of this modification */
@@ -117,17 +107,9 @@ export default function TimetableEntry({
         <Divider />
       )}
       <Phase
-        availableTimetables={availableTimetables}
-        disabled={!!(timetable.exactTimes || bidirectional)}
+        disabled={!!(timetable.exactTimes || modification.bidirectional)}
         modificationStops={modificationStops}
-        phaseAtStop={timetable.phaseAtStop}
-        phaseFromTimetable={timetable.phaseFromTimetable}
-        phaseFromStop={timetable.phaseFromStop}
-        phaseSeconds={timetable.phaseSeconds}
-        selectedPhaseFromTimetableStops={
-          allPhaseFromTimetableStops[timetable.phaseFromTimetable]
-        }
-        timetableHeadway={timetable.headwaySecs}
+        timetable={timetable}
         update={update}
       />
     </Stack>

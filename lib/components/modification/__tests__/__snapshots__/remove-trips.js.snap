@@ -2,7 +2,7 @@
 
 exports[`Component > Modification > RemoveTrips renders correctly 1`] = `
 <Fragment>
-  <Memo(PatternLayer)
+  <PatternLayer
     color="#c92336"
     feed={
       Object {

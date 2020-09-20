@@ -1,7 +1,0 @@
-import './regions'
-import './bundles'
-import './opportunities'
-import './projects'
-import './scenarios'
-import './modifications'
-import './analysis'

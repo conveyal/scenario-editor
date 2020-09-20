@@ -100,20 +100,19 @@ export default function ModeSelector({
 
   const transit = transitModes !== ''
   const nonTransitMode = transit ? accessModes : directModes
+  const label = transit ? message('mode.access') : message('mode.direct')
 
   return (
     <Flex justify='space-between' {...p}>
       <FormControl>
-        <FormLabel htmlFor='accessMode'>
-          {transit ? message('mode.access') : message('mode.direct')}
-        </FormLabel>
+        <FormLabel htmlFor='accessMode'>{label}</FormLabel>
         <Box>
           <ButtonGroup isAttached id='accessMode'>
             <Button
               isActive={nonTransitMode === WALK}
               isDisabled={disabled}
               onClick={_selectAccessMode(WALK)}
-              title={message('analysis.modes.walk')}
+              title={`${message('analysis.modes.walk')} ${label}`}
             >
               <ModeIcon mode='WALK' />
             </Button>
@@ -121,7 +120,7 @@ export default function ModeSelector({
               isActive={nonTransitMode === BICYCLE}
               isDisabled={disabled}
               onClick={_selectAccessMode(BICYCLE)}
-              title={message('analysis.modes.bicycle')}
+              title={`${message('analysis.modes.bicycle')} ${label}`}
             >
               <ModeIcon mode={BICYCLE} />
             </Button>
@@ -129,7 +128,7 @@ export default function ModeSelector({
               isActive={nonTransitMode === CAR}
               isDisabled={disabled}
               onClick={_selectAccessMode(CAR)}
-              title={message('analysis.modes.car')}
+              title={`${message('analysis.modes.car')} ${label}`}
             >
               <ModeIcon mode={CAR} />
             </Button>
@@ -137,7 +136,7 @@ export default function ModeSelector({
               isActive={nonTransitMode === CAR_PARK}
               isDisabled={disabled || !transit}
               onClick={_selectAccessMode(CAR_PARK)}
-              title={message('analysis.modes.carPark')}
+              title={`${message('analysis.modes.carPark')} ${label}`}
             >
               <ModeIcon mode={CAR_PARK} />
             </Button>
@@ -152,7 +151,7 @@ export default function ModeSelector({
               isActive={_hasAllTransit()}
               isDisabled={disabled}
               onClick={_toggleTransitMode(ALL)}
-              title='All'
+              title='All transit'
             >
               All
             </Button>
@@ -233,7 +232,7 @@ export default function ModeSelector({
               isActive={transit && egressModes === WALK}
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(WALK)}
-              title={message('analysis.modes.walk')}
+              title={`${message('analysis.modes.walk')} egress`}
             >
               <Icon icon={faWalking} />
             </Button>
@@ -241,7 +240,7 @@ export default function ModeSelector({
               isActive={transit && egressModes === BICYCLE}
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(BICYCLE)}
-              title={message('analysis.modes.bicycle')}
+              title={`${message('analysis.modes.bicycle')} egress`}
             >
               <Icon icon={faBicycle} />
             </Button>

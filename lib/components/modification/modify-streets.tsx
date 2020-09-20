@@ -52,7 +52,7 @@ export default function ModifyStreets({modification, update}) {
         )
       })
     }
-  }, [featureGroupRef])
+  }, [featureGroupRef]) // eslint-disable-line
 
   // Handle create, delete, and edit
   const onGeometryChange = useCallback(() => {

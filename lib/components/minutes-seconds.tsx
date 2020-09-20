@@ -6,7 +6,7 @@ import {
   InputRightElement,
   FormControlProps
 } from '@chakra-ui/core'
-import {memo, SyntheticEvent} from 'react'
+import {memo} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
 import {secondsToHhMmSsString} from 'lib/utils/time'
@@ -24,7 +24,7 @@ const test = (parsed, rawValue) => parsed >= 0 && isValidFormat(rawValue)
 
 const noop = () => {}
 
-type Props = {
+interface Props {
   disabled?: boolean
   label: string
   onBlur?: (SyntheticEvent) => void

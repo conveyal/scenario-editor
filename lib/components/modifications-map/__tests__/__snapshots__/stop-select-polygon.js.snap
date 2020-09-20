@@ -536,6 +536,7 @@ exports[`Component StopSelectPolygonTest snapshot(mount) 1`] = `
                 draw={
                   Object {
                     "circle": false,
+                    "circlemarker": false,
                     "marker": false,
                     "polygon": true,
                     "polyline": false,

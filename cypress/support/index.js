@@ -19,8 +19,8 @@ before('Optionally wipe configured state', () => {
         if ('regionId' in storedVals) {
           cy.visit(`/regions/${storedVals.regionId}`)
           cy.navTo('Region Settings')
-          cy.findByText(/Delete this region/i).click()
-          cy.findByText(/Confirm: Delete this region/).click()
+          cy.findByRole('button', {name: /Delete this region/i}).click()
+          cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
         }
       })
       cy.writeFile(pseudoFixture, '{}')

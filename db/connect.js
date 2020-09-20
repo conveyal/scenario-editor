@@ -5,7 +5,10 @@ const MongoClient = mongodb.MongoClient
 
 function connect(url = process.env.MONGODB_URL) {
   return new Promise((resolve, reject) => {
-    const client = new MongoClient(url, {useNewUrlParser: true})
+    const client = new MongoClient(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
     client.connect((err) => {
       if (err) return reject(err)
       resolve(client)

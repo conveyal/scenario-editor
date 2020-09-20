@@ -12,7 +12,6 @@ import {
   Stack,
   Skeleton
 } from '@chakra-ui/core'
-import lonlat from '@conveyal/lonlat'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
 import {useCallback, useEffect} from 'react'
@@ -22,15 +21,12 @@ import {updateRequestsSettings} from 'lib/actions/analysis/profile-request'
 import {
   cancelFetch,
   clearResults,
-  fetchTravelTimeSurface,
-  setDestination
+  fetchTravelTimeSurface
 } from 'lib/actions/analysis'
 import message from 'lib/message'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
 import selectAnalysisBounds from 'lib/selectors/analysis-bounds'
 import selectCurrentProject from 'lib/selectors/current-project'
-import selectDTTD from 'lib/selectors/destination-travel-time-distribution'
-import selectDTTDComparison from 'lib/selectors/comparison-destination-travel-time-distribution'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
 
@@ -80,9 +76,6 @@ export default function SinglePointAnalysis({
 }) {
   const dispatch = useDispatch()
   const currentProject = useSelector(selectCurrentProject)
-  const destination = useSelector((s) => get(s, 'analysis.destination'))
-  const dttdComparison = useSelector(selectDTTDComparison)
-  const dttd = useSelector(selectDTTD)
   const isochroneFetchStatus = useSelector((s) =>
     get(s, 'analysis.isochroneFetchStatus')
   )
@@ -150,27 +143,15 @@ export default function SinglePointAnalysis({
       <Isochrones isCurrent={displayedDataIsCurrent} />
 
       <AnalysisMap
-        destination={destination}
-        displayedDataIsCurrent={displayedDataIsCurrent}
-        disableMarker={disableInputs}
+        isDisabled={disableInputs}
         markerPosition={profileRequestLonLat}
         markerTooltip={
           !currentProject ? message('analysis.disableFetch') : undefined
         }
-        setDestination={(d) => dispatch(setDestination(d))}
         setOrigin={_setOrigin}
       />
 
-      {displayedDataIsCurrent && destination && (
-        <DTTD
-          key={lonlat.toString(destination)}
-          comparisonDistribution={dttdComparison}
-          destination={destination}
-          distribution={dttd}
-          remove={() => dispatch(setDestination())}
-          setDestination={(d) => dispatch(setDestination(d))}
-        />
-      )}
+      <DTTD />
 
       <AnalysisTitle />
 

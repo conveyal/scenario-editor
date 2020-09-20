@@ -2,7 +2,7 @@
 
 exports[`Project-Map > PatternLayer renders correctly 1`] = `
 <Fragment>
-  <Memo(Patterns)
+  <Patterns
     color="rgba(0, 0, 255, 0.2)"
     patterns={
       Array [

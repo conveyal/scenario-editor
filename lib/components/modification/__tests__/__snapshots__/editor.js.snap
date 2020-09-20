@@ -2,16 +2,7 @@
 
 exports[`Components > Modification > Editor should render and execute functions properly 1`] = `
 <ModificationEditor
-  allVariants={
-    Array [
-      "variant one",
-      "variant two",
-    ]
-  }
-  clearActive={[MockFunction]}
-  copyModification={[MockFunction]}
   debouncedSaveToServer={[Function]}
-  feedIsLoaded={true}
   modification={
     Object {
       "_id": "1234",
@@ -110,20 +101,12 @@ exports[`Components > Modification > Editor should render and execute functions 
       ],
     }
   }
-  modificationId="1234"
   query={
     Object {
       "projectId": "1",
       "regionId": "1",
     }
   }
-  removeModification={[MockFunction]}
-  saveInProgress={false}
-  setActive={[MockFunction]}
-  setMapChildren={[MockFunction]}
-  setMapState={[MockFunction]}
-  update={[MockFunction]}
-  updateAndRetrieveFeedData={[MockFunction]}
   updateLocally={[Function]}
 />
 `;

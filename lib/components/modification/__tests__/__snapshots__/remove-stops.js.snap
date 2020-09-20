@@ -1,8 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Modification > RemoveStops renders correctly 1`] = `
-<Fragment>
-  <Memo(PatternLayer)
+<ForwardRef
+  mb={4}
+  spacing={4}
+>
+  <PatternLayer
+    activeTrips={
+      Array [
+        "abcd",
+      ]
+    }
     color="#777777"
     feed={
       Object {
@@ -416,14 +424,114 @@ exports[`Component > Modification > RemoveStops renders correctly 1`] = `
       ]
     }
   />
-  <SelectStops
-    setMapState={[MockFunction]}
-    update={[MockFunction]}
-  />
   <NumberInput
     label="Time savings per removed stop"
     onChange={[Function]}
+    test={[Function]}
     units="seconds"
   />
-</Fragment>
+  <Box>
+    <SelectStops
+      modification={
+        Object {
+          "_id": "1234",
+          "accessGroup": "accessGroupName",
+          "bidirectional": false,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "description": "Mock description",
+          "entries": Array [],
+          "feed": "1",
+          "name": "Test Modification",
+          "nonce": "12345",
+          "projectId": "1",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [
+            {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+          ],
+          "timetables": Array [
+            Object {
+              "_id": "timetable-id",
+              "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
+              "endTime": 57600,
+              "exactTimes": false,
+              "friday": true,
+              "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            true,
+          ],
+        }
+      }
+      update={[MockFunction]}
+    />
+  </Box>
+</ForwardRef>
 `;

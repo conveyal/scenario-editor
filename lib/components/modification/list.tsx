@@ -119,7 +119,7 @@ export default function ModificationsList(p) {
       mom[projectId] = Array.from(newMoM)
       stringifyAndSet(LS_MOM, mom)
     },
-    [setModificationsOnMap]
+    [projectId, setModificationsOnMap]
   )
 
   const [filter, setFilter] = useState('')

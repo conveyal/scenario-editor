@@ -100,89 +100,218 @@ exports[`Component SelectStops snapshot(mount) 1`] = `
       ],
     }
   }
-  setMapState={[MockFunction]}
 >
-  <div
-    className="form-group"
+  <ForwardRef
+    spacing={4}
   >
-    <label
-      htmlFor="Selection"
+    <Flex
+      direction="column"
     >
-      Selection
-    </label>
-    <div
-      className="alert alert-info"
-      role="alert"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "exclamation-circle",
-            "prefix": "fas",
-          }
-        }
+      <Box
+        display="flex"
+        flexDirection="column"
       >
-        <FontAwesomeIcon
-          border={false}
-          className=""
-          fixedWidth={true}
-          flip={null}
-          icon={
-            Object {
-              "icon": Array [],
-              "iconName": "exclamation-circle",
-              "prefix": "fas",
-            }
-          }
-          inverse={false}
-          listItem={false}
-          mask={null}
-          pull={null}
-          pulse={false}
-          rotation={null}
-          size={null}
-          spin={false}
-          swapOpacity={false}
-          symbol={false}
-          title=""
-          transform={null}
+        <div
+          className="css-j7qwjs"
         >
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-exclamation-circle fa-w-NaN fa-fw "
-            data-icon="exclamation-circle"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={Object {}}
-            viewBox="0 0 undefined undefined"
-            xmlns="http://www.w3.org/2000/svg"
+          <ForwardRef
+            key=".0"
+            mb={null}
+            spacing={4}
           >
-            <path
-              fill="currentColor"
-              style={Object {}}
-            />
-          </svg>
-        </FontAwesomeIcon>
-      </Icon>
-       
-      Click 'New', then draw a polygon around the stops you wish to select.
-    </div>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="primary"
-    >
-      <a
-        className="btn btn-primary btn-block"
-        href="#"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        New
-      </a>
-    </Button>
-  </div>
+            <Flex
+              direction="column"
+              mb={null}
+            >
+              <Box
+                display="flex"
+                flexDirection="column"
+                mb={null}
+              >
+                <div
+                  className="css-j7qwjs"
+                >
+                  <Alert
+                    key=".0"
+                    mb={4}
+                    status="info"
+                  >
+                    <Box
+                      alignItems="center"
+                      bg="blue.100"
+                      display="flex"
+                      mb={4}
+                      overflow="hidden"
+                      pb={3}
+                      pl={4}
+                      position="relative"
+                      pr={4}
+                      pt={3}
+                      role="alert"
+                    >
+                      <div
+                        className="css-pjk3qj"
+                        role="alert"
+                      >
+                        <AlertIcon>
+                          <Icon
+                            color="blue.500"
+                            mr={3}
+                            name="info"
+                            size={5}
+                          >
+                            <Styled(div)
+                              as="svg"
+                              color="blue.500"
+                              display="inline-block"
+                              focusable={false}
+                              mr={3}
+                              role="presentation"
+                              size={5}
+                              verticalAlign="middle"
+                              viewBox="0 0 24 24"
+                            >
+                              <svg
+                                className="css-186zpkg"
+                                focusable={false}
+                                role="presentation"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm.25,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,12.25,5ZM14.5,18.5h-4a1,1,0,0,1,0-2h.75a.25.25,0,0,0,.25-.25v-4.5a.25.25,0,0,0-.25-.25H10.5a1,1,0,0,1,0-2h1a2,2,0,0,1,2,2v4.75a.25.25,0,0,0,.25.25h.75a1,1,0,1,1,0,2Z"
+                                  fill="currentColor"
+                                />
+                              </svg>
+                            </Styled(div)>
+                          </Icon>
+                        </AlertIcon>
+                         
+                        Click 'New', then draw a polygon around the stops you wish to select.
+                      </div>
+                    </Box>
+                  </Alert>
+                  <Button
+                    isFullWidth={true}
+                    key=".1"
+                    leftIcon="edit"
+                    mb={null}
+                    onClick={[Function]}
+                    variantColor="blue"
+                  >
+                    <PseudoBox
+                      _active={
+                        Object {
+                          "bg": "blue.700",
+                        }
+                      }
+                      _disabled={
+                        Object {
+                          "boxShadow": "none",
+                          "cursor": "not-allowed",
+                          "opacity": "40%",
+                        }
+                      }
+                      _focus={
+                        Object {
+                          "boxShadow": "outline",
+                        }
+                      }
+                      _hover={
+                        Object {
+                          "bg": "blue.600",
+                        }
+                      }
+                      alignItems="center"
+                      appearance="none"
+                      as="button"
+                      bg="blue.500"
+                      borderRadius="md"
+                      color="white"
+                      display="inline-flex"
+                      fontSize="md"
+                      fontWeight="semibold"
+                      height={10}
+                      justifyContent="center"
+                      lineHeight="1.2"
+                      mb={null}
+                      minWidth={10}
+                      onClick={[Function]}
+                      outline="none"
+                      position="relative"
+                      px={4}
+                      transition="all 250ms"
+                      type="button"
+                      userSelect="none"
+                      verticalAlign="middle"
+                      whiteSpace="nowrap"
+                      width="full"
+                    >
+                      <button
+                        className="css-c8cukl"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <ButtonIcon
+                          icon="edit"
+                          ml={-1}
+                          mr={2}
+                        >
+                          <Icon
+                            aria-hidden="true"
+                            color="currentColor"
+                            focusable="false"
+                            ml={-1}
+                            mr={2}
+                            name="edit"
+                          >
+                            <Styled(div)
+                              aria-hidden="true"
+                              as="svg"
+                              color="currentColor"
+                              display="inline-block"
+                              focusable="false"
+                              ml={-1}
+                              mr={2}
+                              role="presentation"
+                              size="1em"
+                              verticalAlign="middle"
+                              viewBox="0 0 24 24"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className="css-yxiis9"
+                                focusable="false"
+                                role="presentation"
+                                viewBox="0 0 24 24"
+                              >
+                                <g
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeLinecap="full"
+                                  strokeWidth="2"
+                                >
+                                  <path
+                                    d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                  />
+                                  <path
+                                    d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                  />
+                                </g>
+                              </svg>
+                            </Styled(div)>
+                          </Icon>
+                        </ButtonIcon>
+                        New
+                      </button>
+                    </PseudoBox>
+                  </Button>
+                </div>
+              </Box>
+            </Flex>
+          </ForwardRef>
+        </div>
+      </Box>
+    </Flex>
+  </ForwardRef>
 </SelectStops>
 `;

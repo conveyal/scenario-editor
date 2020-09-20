@@ -5,7 +5,8 @@ import message from 'lib/message'
 // The x axis labels for the plot
 const TIME_LABELS = [15, 30, 45, 60, 75, 90, 105, 120]
 
-type MinuteTicksProps = {
+interface MinuteTicksProps {
+  label?: boolean
   scale: (number) => number
   textHeight: number
 }
@@ -16,6 +17,7 @@ type MinuteTicksProps = {
  * text; fudge the left side a bit so that the 15 appears centered.
  */
 export default memo<MinuteTicksProps>(function MinuteTicks({
+  label = true,
   scale,
   textHeight
 }) {
@@ -36,7 +38,7 @@ export default memo<MinuteTicksProps>(function MinuteTicks({
           }}
         >
           {/* label first minute */}
-          {i === 0 ? message('analysis.minutes', {minutes: v}) : v}
+          {label && i === 0 ? message('analysis.minutes', {minutes: v}) : v}
         </text>
       ))}
     </>

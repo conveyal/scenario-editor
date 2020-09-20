@@ -9,7 +9,7 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  whitelist: ['user']
+  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
 })
 
 const prefix = Cypress.env('dataPrefix')
@@ -19,14 +19,26 @@ const regionFixture = `regions/${regionName}.json`
 export const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
+// No spinner
+Cypress.Commands.add('loadingComplete', () =>
+  cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
+    timeout: 15000
+  })
+)
+
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
-  cy.get('#sidebar-spinner', unlog).should('not.exist')
-  Cypress.log({name: 'Navigation complete'})
+  return cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
+    timeout: 15000
+  })
 })
 
 // For easy use inside tests
 Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
+Cypress.Commands.add('getPseudoFixture', () => {
+  cy.task('touch', pseudoFixture)
+  return cy.readFile(pseudoFixture)
+})
 
 // Check if a floating point number is within a certain tolerance
 Cypress.Commands.add('isWithin', (f1, f2, tolerance = 0) => {
@@ -38,37 +50,33 @@ Cypress.Commands.add('setup', (entity) => setup(entity))
 
 function setup(entity) {
   const idKey = entity + 'Id'
-  cy.task('touch', pseudoFixture)
-  return cy.readFile(pseudoFixture).then((storedVals) => {
+  return cy.getPseudoFixture().then((storedVals) => {
     if (idKey in storedVals) {
       // thing exists; navigate to it
       switch (entity) {
         case 'region':
           cy.visit(`/regions/${storedVals.regionId}`)
-          cy.navComplete()
-          return cy.contains(/Create new Project|Upload a .* Bundle/i)
+          return cy.navComplete()
         case 'bundle':
           cy.visit(
             `/regions/${storedVals.regionId}/bundles/${storedVals.bundleId}`
           )
-          cy.navComplete()
-          return cy.contains(/create a new network bundle/i)
+          return cy.navComplete()
         case 'opportunities':
           cy.visit(`/regions/${storedVals.regionId}/opportunities`)
-          cy.navComplete()
-          return cy.contains(/Upload a new dataset/i)
+          return cy.navComplete()
         case 'project':
           cy.visit(
             `/regions/${storedVals.regionId}/projects/${storedVals.projectId}/modifications`
           )
-          cy.navComplete()
-          return cy.contains(/Create a modification/i)
+          return cy.navComplete()
         case 'analysis':
-          cy.visit(
-            `/regions/${storedVals.regionId}/regional?analysisId=${storedVals.analysisId}`
-          )
-          cy.navComplete()
-          return cy.contains(/Aggregate results to/i)
+          cy.visit(`/regions/${storedVals.regionId}/regional`, {
+            qs: {
+              analysisId: storedVals.analysisId
+            }
+          })
+          return cy.navComplete()
       }
       // if the entity didn't already exist, recurse through all dependencies
     } else if (entity === 'region') {
@@ -138,7 +146,7 @@ function createNewOpportunities() {
 
 function createNewRegion() {
   cy.visit('/regions/create')
-  cy.findByPlaceholderText('Region Name').type(prefix + regionName, {delay: 0})
+  cy.findByLabelText(/Region Name/).type(prefix + regionName, {delay: 0})
   cy.fixture(regionFixture).then((region) => {
     cy.findByLabelText(/North bound/)
       .clear()
@@ -154,6 +162,7 @@ function createNewRegion() {
       .type(region.east, {delay: 1})
   })
   cy.findByRole('button', {name: /Set up a new region/}).click()
+  cy.findByRole('button', {name: /Creating region/}).should('not.exist')
   cy.navComplete()
   cy.contains(/Upload a new network bundle|create new project/i)
   // store the region UUID for later
@@ -207,8 +216,9 @@ function createNewProject() {
   cy.navTo('Projects')
   cy.findByText(/Create new Project/i).click()
   cy.findByLabelText(/Project name/).type(projectName)
-  cy.findByLabelText(/Associated network bundle/i).click()
-  cy.findByText(bundleName).click()
+  cy.findByLabelText(/Associated network bundle/i)
+    .click({force: true})
+    .type(bundleName + '{enter}')
   cy.findByText(/^Create$/).click()
 
   // store the projectId
@@ -251,30 +261,64 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
     .click()
 })
 
+/**
+ * Guidance taken from https://www.cypress.io/blog/2020/08/17/when-can-the-test-navigate/
+ */
 Cypress.Commands.add('navTo', (menuItemTitle) => {
+  const title = menuItemTitle.toLowerCase()
+  // Ensure that any previous navigation is complete before attempting to navigate again
+  cy.navComplete()
   // Navigate to a page using one of the main (leftmost) menu items
   // and wait until at least part of the page is loaded.
   const pages = {
-    regions: {lookFor: /Set up a new region/i},
-    'region settings': {lookFor: /Delete this region/i},
-    projects: {lookFor: /Create new Project|Upload a .* Bundle/i},
-    'network bundles': {lookFor: /Create a new network bundle/i},
-    'opportunity datasets': {lookFor: /Upload a new dataset/i},
-    'edit modifications': {
-      lookFor: /create new project|create a modification/i
+    regions: {
+      lookFor: /Set up a new region/i,
+      path: /\//
     },
-    analyze: {lookFor: /Comparison Project/i},
-    'regional analyses': {lookFor: /Regional Analyses/i}
+    'region settings': {
+      lookFor: /Delete this region/i,
+      path: /\/regions\/[a-z0-9]+\/edit/
+    },
+    projects: {
+      lookFor: /Create new Project|Upload a .* Bundle/i,
+      path: /\/regions\/[a-z0-9]+/
+    },
+    'network bundles': {
+      lookFor: /Create a new network bundle/i,
+      path: /\/regions\/[a-z0-9]+\/bundles/
+    },
+    'opportunity datasets': {
+      lookFor: /Upload a new dataset/i,
+      path: /\/regions\/[a-z0-9]+\/opportunities*/
+    },
+    'edit modifications': {
+      lookFor: /create a modification/i,
+      path: /\/regions\/[a-z0-9]+\/projects*/
+    },
+    analyze: {
+      lookFor: /Comparison Project/i,
+      path: /\/regions\/[a-z0-9]+\/analysis*/
+    },
+    'regional analyses': {
+      lookFor: /Regional Analyses/i,
+      path: /\/regions\/[a-z0-9]+\/regional*/
+    }
   }
-  const title = menuItemTitle.toLowerCase()
-  console.assert(title in pages)
+  const page = pages[title]
+  console.assert(page != null)
+
   Cypress.log({name: 'Navigate to'})
   // click the menu item
   cy.findByTitle(RegExp(title, 'i'), unlog)
-    .parent(unlog) // select actual SVG element rather than <title> el
-    .click(unlog)
+    .parent() // select actual SVG element rather than <title> el
+    .should('be.visible')
+    .click({force: true})
+  // Ensure the pathname has updated to the correct path
+  cy.location('pathname').should('match', page.path)
   // check that page loads at least some content
-  cy.contains(pages[title].lookFor, {log: false, timeout: 4000})
+  cy.contains(page.lookFor, {timeout: 8000}).should('be.visible')
+  // Ensure the spinner has stopped loading before continuing
+  cy.navComplete()
 })
 
 Cypress.Commands.add('clickMap', (coord) => {
@@ -319,47 +363,16 @@ Cypress.Commands.add('centerMapOn', (latLonArray, zoom = 12) => {
 })
 
 Cypress.Commands.add('login', function () {
-  cy.getCookie('user').then((user) => {
-    const inTenMinutes = Date.now() + 600 * 1000
-    const inOneHour = Date.now() + 3600 * 1000
+  cy.getCookie('a0:state').then((cookie) => {
+    // If the cookie already exists, skip the login
+    if (cookie) return
 
-    if (user) {
-      const value = JSON.parse(decodeURIComponent(user.value))
-      if (value.expiresAt > inTenMinutes) {
-        cy.log('valid cookie exists, skip getting a new one')
-        return
-      }
-    }
+    cy.visit('/')
+    cy.findByLabelText('Email').type(Cypress.env('username'))
+    cy.findByLabelText('Password').type(Cypress.env('password'))
+    cy.findByRole('button', {label: 'Log In'}).click()
 
-    cy.log('valid cookie does not exist, logging in ')
-    cy.request({
-      url: `https://${Cypress.env('authZeroDomain')}/oauth/ro`,
-      method: 'POST',
-      form: true,
-      body: {
-        client_id: Cypress.env('authZeroClientId'),
-        grant_type: 'password',
-        username: Cypress.env('username'),
-        password: Cypress.env('password'),
-        scope: 'openid email analyst',
-        connection: 'Username-Password-Authentication'
-      },
-      timeout: 30000
-    }).then((resp) => {
-      cy.setCookie(
-        'user',
-        encodeURIComponent(
-          JSON.stringify({
-            accessGroup: Cypress.env('accessGroup'),
-            expiresAt: inOneHour,
-            email: Cypress.env('username'),
-            idToken: resp.body.id_token
-          })
-        ),
-        {
-          expiry: inOneHour
-        }
-      )
-    })
+    // Should show the home page
+    cy.findByText(new RegExp(Cypress.env('username')))
   })
 })

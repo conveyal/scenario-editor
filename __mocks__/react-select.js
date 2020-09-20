@@ -1,5 +1,5 @@
 import React from 'react'
 
-export default function ReactSelect(p) {
+export default function ReactSelect() {
   return <div className='ReactSelectMock' />
 }

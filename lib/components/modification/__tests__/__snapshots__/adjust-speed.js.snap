@@ -202,554 +202,53 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
     }
   }
   routePatterns={Array []}
-  setMapState={[MockFunction]}
   update={[MockFunction]}
   updateAndRetrieveFeedData={[MockFunction]}
 >
-  <DynamicMockedComponent
-    feed={
-      Object {
-        "checksum": "MOCK",
-        "id": "1",
-        "name": "1",
-        "routes": Array [
-          Object {
-            "label": "mock-route-label",
-            "patterns": Array [
-              Object {
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.0246,
-                      36.9707,
-                    ],
-                    Array [
-                      -122.0279,
-                      37.049,
-                    ],
-                    Array [
-                      -121.9799,
-                      37.2299,
-                    ],
-                    Array [
-                      -121.9445,
-                      37.324,
-                    ],
-                    Array [
-                      -121.936,
-                      37.353,
-                    ],
-                    Array [
-                      -121.924,
-                      37.365,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "name": "Mock Pattern",
-                "pattern_id": "mock-pattern-id",
-                "stops": Array [
-                  Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                ],
-                "trips": Array [
-                  Object {
-                    "duration": 1234,
-                    "end_time": 13579,
-                    "start_time": 12345,
-                    "trip_headsign": "To Downtown",
-                    "trip_id": "abcd",
-                    "trip_short_name": "The Express",
-                  },
-                ],
-              },
-            ],
-            "route_id": "route1",
-          },
-        ],
-        "stops": Array [
-          Object {
-            "stop_id": "1",
-            "stop_lat": 36.9707,
-            "stop_lon": -122.0246,
-            "stop_name": "Santa Cruz",
-          },
-          Object {
-            "stop_id": "2",
-            "stop_lat": 37.049,
-            "stop_lon": -122.0279,
-            "stop_name": "Scotts Valley",
-          },
-        ],
-        "stopsById": Object {
-          "1": Object {
-            "stop_id": "1",
-            "stop_lat": 36.9707,
-            "stop_lon": -122.0246,
-            "stop_name": "Santa Cruz",
-          },
-          "2": Object {
-            "stop_id": "2",
-            "stop_lat": 37.049,
-            "stop_lon": -122.0279,
-            "stop_name": "Scotts Valley",
-          },
-        },
-      }
-    }
-    modification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-  />
-  <SelectFeedRouteAndPatterns
-    allowMultipleRoutes={true}
-    onChange={[Function]}
-    routes={
-      Array [
-        "route1",
-      ]
-    }
-    trips={
-      Array [
-        "abcd",
-      ]
-    }
+  <ForwardRef
+    mb={4}
+    spacing={4}
   >
-    <SelectFeedAndRoutes
-      allowMultipleRoutes={true}
-      feeds={
-        Array [
-          Object {
-            "checksum": "MOCK",
-            "id": "1",
-            "name": "1",
-            "routes": Array [
-              Object {
-                "label": "mock-route-label",
-                "patterns": Array [
-                  Object {
-                    "geometry": Object {
-                      "coordinates": Array [
-                        Array [
-                          -122.0246,
-                          36.9707,
-                        ],
-                        Array [
-                          -122.0279,
-                          37.049,
-                        ],
-                        Array [
-                          -121.9799,
-                          37.2299,
-                        ],
-                        Array [
-                          -121.9445,
-                          37.324,
-                        ],
-                        Array [
-                          -121.936,
-                          37.353,
-                        ],
-                        Array [
-                          -121.924,
-                          37.365,
-                        ],
-                      ],
-                      "type": "LineString",
-                    },
-                    "name": "Mock Pattern",
-                    "pattern_id": "mock-pattern-id",
-                    "stops": Array [
-                      Object {
-                        "stop_id": "1",
-                        "stop_lat": 36.9707,
-                        "stop_lon": -122.0246,
-                        "stop_name": "Santa Cruz",
-                      },
-                      Object {
-                        "stop_id": "2",
-                        "stop_lat": 37.049,
-                        "stop_lon": -122.0279,
-                        "stop_name": "Scotts Valley",
-                      },
-                    ],
-                    "trips": Array [
-                      Object {
-                        "duration": 1234,
-                        "end_time": 13579,
-                        "start_time": 12345,
-                        "trip_headsign": "To Downtown",
-                        "trip_id": "abcd",
-                        "trip_short_name": "The Express",
-                      },
-                    ],
-                  },
-                ],
-                "route_id": "route1",
-              },
-            ],
-            "stops": Array [
-              Object {
-                "stop_id": "1",
-                "stop_lat": 36.9707,
-                "stop_lon": -122.0246,
-                "stop_name": "Santa Cruz",
-              },
-              Object {
-                "stop_id": "2",
-                "stop_lat": 37.049,
-                "stop_lon": -122.0279,
-                "stop_name": "Scotts Valley",
-              },
-            ],
-            "stopsById": Object {
-              "1": Object {
-                "stop_id": "1",
-                "stop_lat": 36.9707,
-                "stop_lon": -122.0246,
-                "stop_name": "Santa Cruz",
-              },
-              "2": Object {
-                "stop_id": "2",
-                "stop_lat": 37.049,
-                "stop_lon": -122.0279,
-                "stop_name": "Scotts Valley",
-              },
-            },
-          },
-        ]
-      }
-      onChange={[Function]}
-      selectedFeed={
-        Object {
-          "checksum": "MOCK",
-          "id": "1",
-          "name": "1",
-          "routes": Array [
-            Object {
-              "label": "mock-route-label",
-              "patterns": Array [
-                Object {
-                  "geometry": Object {
-                    "coordinates": Array [
-                      Array [
-                        -122.0246,
-                        36.9707,
-                      ],
-                      Array [
-                        -122.0279,
-                        37.049,
-                      ],
-                      Array [
-                        -121.9799,
-                        37.2299,
-                      ],
-                      Array [
-                        -121.9445,
-                        37.324,
-                      ],
-                      Array [
-                        -121.936,
-                        37.353,
-                      ],
-                      Array [
-                        -121.924,
-                        37.365,
-                      ],
-                    ],
-                    "type": "LineString",
-                  },
-                  "name": "Mock Pattern",
-                  "pattern_id": "mock-pattern-id",
-                  "stops": Array [
-                    Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  ],
-                  "trips": Array [
-                    Object {
-                      "duration": 1234,
-                      "end_time": 13579,
-                      "start_time": 12345,
-                      "trip_headsign": "To Downtown",
-                      "trip_id": "abcd",
-                      "trip_short_name": "The Express",
-                    },
-                  ],
-                },
-              ],
-              "route_id": "route1",
-            },
-          ],
-          "stops": Array [
-            Object {
-              "stop_id": "1",
-              "stop_lat": 36.9707,
-              "stop_lon": -122.0246,
-              "stop_name": "Santa Cruz",
-            },
-            Object {
-              "stop_id": "2",
-              "stop_lat": 37.049,
-              "stop_lon": -122.0279,
-              "stop_name": "Scotts Valley",
-            },
-          ],
-          "stopsById": Object {
-            "1": Object {
-              "stop_id": "1",
-              "stop_lat": 36.9707,
-              "stop_lon": -122.0246,
-              "stop_name": "Santa Cruz",
-            },
-            "2": Object {
-              "stop_id": "2",
-              "stop_lat": 37.049,
-              "stop_lon": -122.0279,
-              "stop_name": "Scotts Valley",
-            },
-          },
-        }
-      }
-      selectedRouteIds={
-        Array [
-          "route1",
-        ]
-      }
+    <Flex
+      direction="column"
+      mb={4}
     >
-      <Group>
+      <Box
+        display="flex"
+        flexDirection="column"
+        mb={4}
+      >
         <div
-          className="form-group"
+          className="css-opcg3f"
         >
-          <label
-            htmlFor="Feed"
-          >
-            Select feed
-          </label>
-          <ForwardRef
-            getOptionLabel={[Function]}
-            getOptionValue={[Function]}
-            inputId="Feed"
-            name="Feed"
-            onChange={[Function]}
-            options={
+          <DynamicMockedComponent
+            key=".0"
+            mb={4}
+            stops={
               Array [
                 Object {
-                  "checksum": "MOCK",
-                  "id": "1",
-                  "name": "1",
-                  "routes": Array [
-                    Object {
-                      "label": "mock-route-label",
-                      "patterns": Array [
-                        Object {
-                          "geometry": Object {
-                            "coordinates": Array [
-                              Array [
-                                -122.0246,
-                                36.9707,
-                              ],
-                              Array [
-                                -122.0279,
-                                37.049,
-                              ],
-                              Array [
-                                -121.9799,
-                                37.2299,
-                              ],
-                              Array [
-                                -121.9445,
-                                37.324,
-                              ],
-                              Array [
-                                -121.936,
-                                37.353,
-                              ],
-                              Array [
-                                -121.924,
-                                37.365,
-                              ],
-                            ],
-                            "type": "LineString",
-                          },
-                          "name": "Mock Pattern",
-                          "pattern_id": "mock-pattern-id",
-                          "stops": Array [
-                            Object {
-                              "stop_id": "1",
-                              "stop_lat": 36.9707,
-                              "stop_lon": -122.0246,
-                              "stop_name": "Santa Cruz",
-                            },
-                            Object {
-                              "stop_id": "2",
-                              "stop_lat": 37.049,
-                              "stop_lon": -122.0279,
-                              "stop_name": "Scotts Valley",
-                            },
-                          ],
-                          "trips": Array [
-                            Object {
-                              "duration": 1234,
-                              "end_time": 13579,
-                              "start_time": 12345,
-                              "trip_headsign": "To Downtown",
-                              "trip_id": "abcd",
-                              "trip_short_name": "The Express",
-                            },
-                          ],
-                        },
-                      ],
-                      "route_id": "route1",
-                    },
-                  ],
-                  "stops": Array [
-                    Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  ],
-                  "stopsById": Object {
-                    "1": Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    "2": Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  },
+                  "stop_id": "1:1",
+                  "stop_lat": 36.9707,
+                  "stop_lon": -122.0246,
+                  "stop_name": "Santa Cruz",
+                },
+                Object {
+                  "stop_id": "1:2",
+                  "stop_lat": 37.049,
+                  "stop_lon": -122.0279,
+                  "stop_name": "Scotts Valley",
                 },
               ]
             }
-            placeholder="Select feed"
-            value={
+          />
+          <DynamicMockedComponent
+            activeTrips={
+              Array [
+                "abcd",
+              ]
+            }
+            color="#b623c9"
+            feed={
               Object {
                 "checksum": "MOCK",
                 "id": "1",
@@ -849,1071 +348,1616 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
                 },
               }
             }
-          >
-            <ReactSelect
-              getOptionLabel={[Function]}
-              getOptionValue={[Function]}
-              innerRef={null}
-              inputId="Feed"
-              name="Feed"
-              onChange={[Function]}
-              options={
-                Array [
-                  Object {
-                    "checksum": "MOCK",
-                    "id": "1",
-                    "name": "1",
-                    "routes": Array [
-                      Object {
-                        "label": "mock-route-label",
-                        "patterns": Array [
-                          Object {
-                            "geometry": Object {
-                              "coordinates": Array [
-                                Array [
-                                  -122.0246,
-                                  36.9707,
-                                ],
-                                Array [
-                                  -122.0279,
-                                  37.049,
-                                ],
-                                Array [
-                                  -121.9799,
-                                  37.2299,
-                                ],
-                                Array [
-                                  -121.9445,
-                                  37.324,
-                                ],
-                                Array [
-                                  -121.936,
-                                  37.353,
-                                ],
-                                Array [
-                                  -121.924,
-                                  37.365,
-                                ],
-                              ],
-                              "type": "LineString",
-                            },
-                            "name": "Mock Pattern",
-                            "pattern_id": "mock-pattern-id",
-                            "stops": Array [
-                              Object {
-                                "stop_id": "1",
-                                "stop_lat": 36.9707,
-                                "stop_lon": -122.0246,
-                                "stop_name": "Santa Cruz",
-                              },
-                              Object {
-                                "stop_id": "2",
-                                "stop_lat": 37.049,
-                                "stop_lon": -122.0279,
-                                "stop_name": "Scotts Valley",
-                              },
-                            ],
-                            "trips": Array [
-                              Object {
-                                "duration": 1234,
-                                "end_time": 13579,
-                                "start_time": 12345,
-                                "trip_headsign": "To Downtown",
-                                "trip_id": "abcd",
-                                "trip_short_name": "The Express",
-                              },
-                            ],
-                          },
-                        ],
-                        "route_id": "route1",
-                      },
-                    ],
-                    "stops": Array [
-                      Object {
-                        "stop_id": "1",
-                        "stop_lat": 36.9707,
-                        "stop_lon": -122.0246,
-                        "stop_name": "Santa Cruz",
-                      },
-                      Object {
-                        "stop_id": "2",
-                        "stop_lat": 37.049,
-                        "stop_lon": -122.0279,
-                        "stop_name": "Scotts Valley",
-                      },
-                    ],
-                    "stopsById": Object {
-                      "1": Object {
-                        "stop_id": "1",
-                        "stop_lat": 36.9707,
-                        "stop_lon": -122.0246,
-                        "stop_name": "Santa Cruz",
-                      },
-                      "2": Object {
-                        "stop_id": "2",
-                        "stop_lat": 37.049,
-                        "stop_lon": -122.0279,
-                        "stop_name": "Scotts Valley",
-                      },
-                    },
-                  },
-                ]
-              }
-              placeholder="Select feed"
-              styles={
-                Object {
-                  "control": [Function],
-                  "option": [Function],
-                }
-              }
-              value={
-                Object {
-                  "checksum": "MOCK",
-                  "id": "1",
-                  "name": "1",
-                  "routes": Array [
-                    Object {
-                      "label": "mock-route-label",
-                      "patterns": Array [
-                        Object {
-                          "geometry": Object {
-                            "coordinates": Array [
-                              Array [
-                                -122.0246,
-                                36.9707,
-                              ],
-                              Array [
-                                -122.0279,
-                                37.049,
-                              ],
-                              Array [
-                                -121.9799,
-                                37.2299,
-                              ],
-                              Array [
-                                -121.9445,
-                                37.324,
-                              ],
-                              Array [
-                                -121.936,
-                                37.353,
-                              ],
-                              Array [
-                                -121.924,
-                                37.365,
-                              ],
-                            ],
-                            "type": "LineString",
-                          },
-                          "name": "Mock Pattern",
-                          "pattern_id": "mock-pattern-id",
-                          "stops": Array [
-                            Object {
-                              "stop_id": "1",
-                              "stop_lat": 36.9707,
-                              "stop_lon": -122.0246,
-                              "stop_name": "Santa Cruz",
-                            },
-                            Object {
-                              "stop_id": "2",
-                              "stop_lat": 37.049,
-                              "stop_lon": -122.0279,
-                              "stop_name": "Scotts Valley",
-                            },
-                          ],
-                          "trips": Array [
-                            Object {
-                              "duration": 1234,
-                              "end_time": 13579,
-                              "start_time": 12345,
-                              "trip_headsign": "To Downtown",
-                              "trip_id": "abcd",
-                              "trip_short_name": "The Express",
-                            },
-                          ],
-                        },
-                      ],
-                      "route_id": "route1",
-                    },
-                  ],
-                  "stops": Array [
-                    Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  ],
-                  "stopsById": Object {
-                    "1": Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    "2": Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  },
-                }
-              }
-            >
-              <div
-                className="ReactSelectMock"
-              />
-            </ReactSelect>
-          </ForwardRef>
-        </div>
-      </Group>
-      <Group>
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="Route"
-          >
-            Select route
-          </label>
-          <ForwardRef
-            getOptionLabel={[Function]}
-            getOptionValue={[Function]}
-            inputId="Route"
-            isMulti={true}
-            name="Route"
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "mock-route-label",
-                  "patterns": Array [
-                    Object {
-                      "geometry": Object {
-                        "coordinates": Array [
-                          Array [
-                            -122.0246,
-                            36.9707,
-                          ],
-                          Array [
-                            -122.0279,
-                            37.049,
-                          ],
-                          Array [
-                            -121.9799,
-                            37.2299,
-                          ],
-                          Array [
-                            -121.9445,
-                            37.324,
-                          ],
-                          Array [
-                            -121.936,
-                            37.353,
-                          ],
-                          Array [
-                            -121.924,
-                            37.365,
-                          ],
-                        ],
-                        "type": "LineString",
-                      },
-                      "name": "Mock Pattern",
-                      "pattern_id": "mock-pattern-id",
-                      "stops": Array [
-                        Object {
-                          "stop_id": "1",
-                          "stop_lat": 36.9707,
-                          "stop_lon": -122.0246,
-                          "stop_name": "Santa Cruz",
-                        },
-                        Object {
-                          "stop_id": "2",
-                          "stop_lat": 37.049,
-                          "stop_lon": -122.0279,
-                          "stop_name": "Scotts Valley",
-                        },
-                      ],
-                      "trips": Array [
-                        Object {
-                          "duration": 1234,
-                          "end_time": 13579,
-                          "start_time": 12345,
-                          "trip_headsign": "To Downtown",
-                          "trip_id": "abcd",
-                          "trip_short_name": "The Express",
-                        },
-                      ],
-                    },
-                  ],
-                  "route_id": "route1",
-                },
-              ]
-            }
-            placeholder="Select route"
-            value={
-              Array [
-                Object {
-                  "label": "mock-route-label",
-                  "patterns": Array [
-                    Object {
-                      "geometry": Object {
-                        "coordinates": Array [
-                          Array [
-                            -122.0246,
-                            36.9707,
-                          ],
-                          Array [
-                            -122.0279,
-                            37.049,
-                          ],
-                          Array [
-                            -121.9799,
-                            37.2299,
-                          ],
-                          Array [
-                            -121.9445,
-                            37.324,
-                          ],
-                          Array [
-                            -121.936,
-                            37.353,
-                          ],
-                          Array [
-                            -121.924,
-                            37.365,
-                          ],
-                        ],
-                        "type": "LineString",
-                      },
-                      "name": "Mock Pattern",
-                      "pattern_id": "mock-pattern-id",
-                      "stops": Array [
-                        Object {
-                          "stop_id": "1",
-                          "stop_lat": 36.9707,
-                          "stop_lon": -122.0246,
-                          "stop_name": "Santa Cruz",
-                        },
-                        Object {
-                          "stop_id": "2",
-                          "stop_lat": 37.049,
-                          "stop_lon": -122.0279,
-                          "stop_name": "Scotts Valley",
-                        },
-                      ],
-                      "trips": Array [
-                        Object {
-                          "duration": 1234,
-                          "end_time": 13579,
-                          "start_time": 12345,
-                          "trip_headsign": "To Downtown",
-                          "trip_id": "abcd",
-                          "trip_short_name": "The Express",
-                        },
-                      ],
-                    },
-                  ],
-                  "route_id": "route1",
-                },
-              ]
-            }
-          >
-            <ReactSelect
-              getOptionLabel={[Function]}
-              getOptionValue={[Function]}
-              innerRef={null}
-              inputId="Route"
-              isMulti={true}
-              name="Route"
-              onChange={[Function]}
-              options={
-                Array [
-                  Object {
-                    "label": "mock-route-label",
-                    "patterns": Array [
-                      Object {
-                        "geometry": Object {
-                          "coordinates": Array [
-                            Array [
-                              -122.0246,
-                              36.9707,
-                            ],
-                            Array [
-                              -122.0279,
-                              37.049,
-                            ],
-                            Array [
-                              -121.9799,
-                              37.2299,
-                            ],
-                            Array [
-                              -121.9445,
-                              37.324,
-                            ],
-                            Array [
-                              -121.936,
-                              37.353,
-                            ],
-                            Array [
-                              -121.924,
-                              37.365,
-                            ],
-                          ],
-                          "type": "LineString",
-                        },
-                        "name": "Mock Pattern",
-                        "pattern_id": "mock-pattern-id",
-                        "stops": Array [
-                          Object {
-                            "stop_id": "1",
-                            "stop_lat": 36.9707,
-                            "stop_lon": -122.0246,
-                            "stop_name": "Santa Cruz",
-                          },
-                          Object {
-                            "stop_id": "2",
-                            "stop_lat": 37.049,
-                            "stop_lon": -122.0279,
-                            "stop_name": "Scotts Valley",
-                          },
-                        ],
-                        "trips": Array [
-                          Object {
-                            "duration": 1234,
-                            "end_time": 13579,
-                            "start_time": 12345,
-                            "trip_headsign": "To Downtown",
-                            "trip_id": "abcd",
-                            "trip_short_name": "The Express",
-                          },
-                        ],
-                      },
-                    ],
-                    "route_id": "route1",
-                  },
-                ]
-              }
-              placeholder="Select route"
-              styles={
-                Object {
-                  "control": [Function],
-                  "option": [Function],
-                }
-              }
-              value={
-                Array [
-                  Object {
-                    "label": "mock-route-label",
-                    "patterns": Array [
-                      Object {
-                        "geometry": Object {
-                          "coordinates": Array [
-                            Array [
-                              -122.0246,
-                              36.9707,
-                            ],
-                            Array [
-                              -122.0279,
-                              37.049,
-                            ],
-                            Array [
-                              -121.9799,
-                              37.2299,
-                            ],
-                            Array [
-                              -121.9445,
-                              37.324,
-                            ],
-                            Array [
-                              -121.936,
-                              37.353,
-                            ],
-                            Array [
-                              -121.924,
-                              37.365,
-                            ],
-                          ],
-                          "type": "LineString",
-                        },
-                        "name": "Mock Pattern",
-                        "pattern_id": "mock-pattern-id",
-                        "stops": Array [
-                          Object {
-                            "stop_id": "1",
-                            "stop_lat": 36.9707,
-                            "stop_lon": -122.0246,
-                            "stop_name": "Santa Cruz",
-                          },
-                          Object {
-                            "stop_id": "2",
-                            "stop_lat": 37.049,
-                            "stop_lon": -122.0279,
-                            "stop_name": "Scotts Valley",
-                          },
-                        ],
-                        "trips": Array [
-                          Object {
-                            "duration": 1234,
-                            "end_time": 13579,
-                            "start_time": 12345,
-                            "trip_headsign": "To Downtown",
-                            "trip_id": "abcd",
-                            "trip_short_name": "The Express",
-                          },
-                        ],
-                      },
-                    ],
-                    "route_id": "route1",
-                  },
-                ]
-              }
-            >
-              <div
-                className="ReactSelectMock"
-              />
-            </ReactSelect>
-          </ForwardRef>
-        </div>
-      </Group>
-    </SelectFeedAndRoutes>
-    <SelectPatterns
-      onChange={[Function]}
-      routePatterns={
-        Array [
-          Object {
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.0246,
-                  36.9707,
-                ],
-                Array [
-                  -122.0279,
-                  37.049,
-                ],
-                Array [
-                  -121.9799,
-                  37.2299,
-                ],
-                Array [
-                  -121.9445,
-                  37.324,
-                ],
-                Array [
-                  -121.936,
-                  37.353,
-                ],
-                Array [
-                  -121.924,
-                  37.365,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "name": "Mock Pattern",
-            "pattern_id": "mock-pattern-id",
-            "stops": Array [
+            key=".1"
+            mb={4}
+            modification={
               Object {
-                "stop_id": "1",
-                "stop_lat": 36.9707,
-                "stop_lon": -122.0246,
-                "stop_name": "Santa Cruz",
-              },
-              Object {
-                "stop_id": "2",
-                "stop_lat": 37.049,
-                "stop_lon": -122.0279,
-                "stop_name": "Scotts Valley",
-              },
-            ],
-            "trips": Array [
-              Object {
-                "duration": 1234,
-                "end_time": 13579,
-                "start_time": 12345,
-                "trip_headsign": "To Downtown",
-                "trip_id": "abcd",
-                "trip_short_name": "The Express",
-              },
-            ],
-          },
-        ]
-      }
-      trips={
-        Array [
-          "abcd",
-        ]
-      }
-    >
-      <Group>
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="Patterns"
-          >
-            Select patterns
-          </label>
-          <ForwardRef
-            getOptionLabel={[Function]}
-            getOptionValue={[Function]}
-            inputId="Patterns"
-            isMulti={true}
-            name="Patterns"
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "geometry": Object {
-                    "coordinates": Array [
-                      Array [
-                        -122.0246,
-                        36.9707,
-                      ],
-                      Array [
-                        -122.0279,
-                        37.049,
-                      ],
-                      Array [
-                        -121.9799,
-                        37.2299,
-                      ],
-                      Array [
-                        -121.9445,
-                        37.324,
-                      ],
-                      Array [
-                        -121.936,
-                        37.353,
-                      ],
-                      Array [
-                        -121.924,
-                        37.365,
-                      ],
-                    ],
-                    "type": "LineString",
-                  },
-                  "name": "Mock Pattern",
-                  "pattern_id": "mock-pattern-id",
-                  "stops": Array [
-                    Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  ],
-                  "trips": Array [
-                    Object {
-                      "duration": 1234,
-                      "end_time": 13579,
-                      "start_time": 12345,
-                      "trip_headsign": "To Downtown",
-                      "trip_id": "abcd",
-                      "trip_short_name": "The Express",
-                    },
-                  ],
-                },
-              ]
-            }
-            placeholder="Select patterns"
-            value={
-              Array [
-                Object {
-                  "geometry": Object {
-                    "coordinates": Array [
-                      Array [
-                        -122.0246,
-                        36.9707,
-                      ],
-                      Array [
-                        -122.0279,
-                        37.049,
-                      ],
-                      Array [
-                        -121.9799,
-                        37.2299,
-                      ],
-                      Array [
-                        -121.9445,
-                        37.324,
-                      ],
-                      Array [
-                        -121.936,
-                        37.353,
-                      ],
-                      Array [
-                        -121.924,
-                        37.365,
-                      ],
-                    ],
-                    "type": "LineString",
-                  },
-                  "name": "Mock Pattern",
-                  "pattern_id": "mock-pattern-id",
-                  "stops": Array [
-                    Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  ],
-                  "trips": Array [
-                    Object {
-                      "duration": 1234,
-                      "end_time": 13579,
-                      "start_time": 12345,
-                      "trip_headsign": "To Downtown",
-                      "trip_id": "abcd",
-                      "trip_short_name": "The Express",
-                    },
-                  ],
-                },
-              ]
-            }
-          >
-            <ReactSelect
-              getOptionLabel={[Function]}
-              getOptionValue={[Function]}
-              innerRef={null}
-              inputId="Patterns"
-              isMulti={true}
-              name="Patterns"
-              onChange={[Function]}
-              options={
-                Array [
+                "_id": "1234",
+                "accessGroup": "accessGroupName",
+                "bidirectional": false,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "description": "Mock description",
+                "entries": Array [],
+                "feed": "1",
+                "name": "Test Modification",
+                "nonce": "12345",
+                "projectId": "1",
+                "routes": Array [
+                  "route1",
+                ],
+                "segments": Array [
+                  {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+                ],
+                "timetables": Array [
                   Object {
-                    "geometry": Object {
-                      "coordinates": Array [
-                        Array [
-                          -122.0246,
-                          36.9707,
-                        ],
-                        Array [
-                          -122.0279,
-                          37.049,
-                        ],
-                        Array [
-                          -121.9799,
-                          37.2299,
-                        ],
-                        Array [
-                          -121.9445,
-                          37.324,
-                        ],
-                        Array [
-                          -121.936,
-                          37.353,
-                        ],
-                        Array [
-                          -121.924,
-                          37.365,
-                        ],
-                      ],
-                      "type": "LineString",
-                    },
-                    "name": "Mock Pattern",
-                    "pattern_id": "mock-pattern-id",
-                    "stops": Array [
-                      Object {
-                        "stop_id": "1",
-                        "stop_lat": 36.9707,
-                        "stop_lon": -122.0246,
-                        "stop_name": "Santa Cruz",
-                      },
-                      Object {
-                        "stop_id": "2",
-                        "stop_lat": 37.049,
-                        "stop_lon": -122.0279,
-                        "stop_name": "Scotts Valley",
-                      },
+                    "_id": "timetable-id",
+                    "dwellTime": 10,
+                    "dwellTimes": Array [
+                      12,
                     ],
-                    "trips": Array [
-                      Object {
-                        "duration": 1234,
-                        "end_time": 13579,
-                        "start_time": 12345,
-                        "trip_headsign": "To Downtown",
-                        "trip_id": "abcd",
-                        "trip_short_name": "The Express",
-                      },
+                    "endTime": 57600,
+                    "exactTimes": false,
+                    "friday": true,
+                    "headwaySecs": 900,
+                    "modificationId": "1234",
+                    "modificationName": "Test Modification",
+                    "monday": true,
+                    "name": "Test timetable",
+                    "patternTrips": Array [
+                      "abcd",
                     ],
+                    "phaseAtStop": "",
+                    "phaseFromStop": "",
+                    "phaseFromTimetable": "",
+                    "phaseSeconds": 300,
+                    "saturday": false,
+                    "segmentSpeeds": Array [],
+                    "sourceTrip": "abcd",
+                    "startTime": 28800,
+                    "sunday": false,
+                    "thursday": true,
+                    "tuesday": true,
+                    "wednesday": true,
                   },
-                ]
-              }
-              placeholder="Select patterns"
-              styles={
-                Object {
-                  "control": [Function],
-                  "option": [Function],
-                }
-              }
-              value={
-                Array [
-                  Object {
-                    "geometry": Object {
-                      "coordinates": Array [
-                        Array [
-                          -122.0246,
-                          36.9707,
-                        ],
-                        Array [
-                          -122.0279,
-                          37.049,
-                        ],
-                        Array [
-                          -121.9799,
-                          37.2299,
-                        ],
-                        Array [
-                          -121.9445,
-                          37.324,
-                        ],
-                        Array [
-                          -121.936,
-                          37.353,
-                        ],
-                        Array [
-                          -121.924,
-                          37.365,
-                        ],
-                      ],
-                      "type": "LineString",
-                    },
-                    "name": "Mock Pattern",
-                    "pattern_id": "mock-pattern-id",
-                    "stops": Array [
-                      Object {
-                        "stop_id": "1",
-                        "stop_lat": 36.9707,
-                        "stop_lon": -122.0246,
-                        "stop_name": "Santa Cruz",
-                      },
-                      Object {
-                        "stop_id": "2",
-                        "stop_lat": 37.049,
-                        "stop_lon": -122.0279,
-                        "stop_name": "Scotts Valley",
-                      },
-                    ],
-                    "trips": Array [
-                      Object {
-                        "duration": 1234,
-                        "end_time": 13579,
-                        "start_time": 12345,
-                        "trip_headsign": "To Downtown",
-                        "trip_id": "abcd",
-                        "trip_short_name": "The Express",
-                      },
-                    ],
-                  },
-                ]
-              }
-            >
-              <div
-                className="ReactSelectMock"
-              />
-            </ReactSelect>
-          </ForwardRef>
-        </div>
-      </Group>
-    </SelectPatterns>
-  </SelectFeedRouteAndPatterns>
-  <Group>
-    <div
-      className="form-group"
-    >
-      <label
-        htmlFor="Segment"
-      >
-        Segment
-      </label>
-      <Group
-        justified={true}
-      >
-        <div
-          className="btn-group btn-group-justified"
-        >
-          <Button
-            onClick={[Function]}
-          >
-            <a
-              className="btn btn-default"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              Select
-            </a>
-          </Button>
-          <Button
-            onClick={[Function]}
-          >
-            <a
-              className="btn btn-default"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              Add to
-            </a>
-          </Button>
-          <Button
-            onClick={[Function]}
-          >
-            <a
-              className="btn btn-default"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              Remove from
-            </a>
-          </Button>
-          <Button
-            onClick={[Function]}
-          >
-            <a
-              className="btn btn-default"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              Clear
-            </a>
-          </Button>
-        </div>
-      </Group>
-      <div
-        className="alert alert-info"
-        role="alert"
-      >
-        <Icon
-          icon={
-            Object {
-              "icon": Array [],
-              "iconName": "exclamation-circle",
-              "prefix": "fas",
-            }
-          }
-        >
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={true}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "exclamation-circle",
-                "prefix": "fas",
+                ],
+                "trips": Array [
+                  "abcd",
+                ],
+                "type": "add-trip-pattern",
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variants": Array [
+                  true,
+                ],
               }
             }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
-          >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-exclamation-circle fa-w-NaN fa-fw "
-              data-icon="exclamation-circle"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
-              style={Object {}}
-              viewBox="0 0 undefined undefined"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </FontAwesomeIcon>
-        </Icon>
-        Select the stop-to-stop segment(s) of the pattern(s) to scale the speed on.
-      </div>
-    </div>
-  </Group>
-  <NumberInput
-    label="Scale speed by"
-    min={0}
-    name="Scale speed by"
-    onChange={[Function]}
-    step="any"
-  >
-    <Group
-      id="scale-speed-by-input-0"
-      label="Scale speed by"
-      min={0}
-      name="Scale speed by"
-      onChange={[Function]}
-      step="any"
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          className="control-label"
-          htmlFor="scale-speed-by-input-0"
-        >
-          Scale speed by
-        </label>
-        <ForwardRef
-          id="scale-speed-by-input-0"
-          label="Scale speed by"
-          min={0}
-          name="Scale speed by"
-          onChange={[Function]}
-          onWheel={[Function]}
-          step="any"
-          type="text"
-        >
-          <input
-            className="form-control"
-            id="scale-speed-by-input-0"
-            label="Scale speed by"
-            min={0}
-            name="Scale speed by"
-            onChange={[Function]}
-            onWheel={[Function]}
-            placeholder="Scale speed by"
-            step="any"
-            type="text"
           />
-        </ForwardRef>
-      </div>
-    </Group>
-  </NumberInput>
+          <SelectFeedAndRoutes
+            allowMultipleRoutes={true}
+            key=".4"
+            mb={4}
+            onChange={[Function]}
+            selectedRouteIds={
+              Array [
+                "route1",
+              ]
+            }
+          >
+            <ForwardRef
+              mb={4}
+              spacing={4}
+            >
+              <Flex
+                direction="column"
+                mb={4}
+              >
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  mb={4}
+                >
+                  <div
+                    className="css-opcg3f"
+                  >
+                    <FormControl
+                      key=".0"
+                      mb={4}
+                    >
+                      <Box
+                        mb={4}
+                        role="group"
+                      >
+                        <div
+                          className="css-acwcvw"
+                          role="group"
+                        >
+                          <FormLabel
+                            htmlFor="Feed"
+                          >
+                            <Box
+                              as="label"
+                              display="inline-block"
+                              fontSize="md"
+                              fontWeight="medium"
+                              htmlFor="Feed"
+                              opacity="1"
+                              pb="4px"
+                              pr="12px"
+                              textAlign="left"
+                              verticalAlign="middle"
+                            >
+                              <label
+                                className="css-176s5fq"
+                                htmlFor="Feed"
+                              >
+                                Select feed
+                              </label>
+                            </Box>
+                          </FormLabel>
+                          <ForwardRef
+                            getOptionLabel={[Function]}
+                            getOptionValue={[Function]}
+                            inputId="Feed"
+                            name="Feed"
+                            onChange={[Function]}
+                            options={
+                              Array [
+                                Object {
+                                  "checksum": "MOCK",
+                                  "id": "1",
+                                  "name": "1",
+                                  "routes": Array [
+                                    Object {
+                                      "label": "mock-route-label",
+                                      "patterns": Array [
+                                        Object {
+                                          "geometry": Object {
+                                            "coordinates": Array [
+                                              Array [
+                                                -122.0246,
+                                                36.9707,
+                                              ],
+                                              Array [
+                                                -122.0279,
+                                                37.049,
+                                              ],
+                                              Array [
+                                                -121.9799,
+                                                37.2299,
+                                              ],
+                                              Array [
+                                                -121.9445,
+                                                37.324,
+                                              ],
+                                              Array [
+                                                -121.936,
+                                                37.353,
+                                              ],
+                                              Array [
+                                                -121.924,
+                                                37.365,
+                                              ],
+                                            ],
+                                            "type": "LineString",
+                                          },
+                                          "name": "Mock Pattern",
+                                          "pattern_id": "mock-pattern-id",
+                                          "stops": Array [
+                                            Object {
+                                              "stop_id": "1",
+                                              "stop_lat": 36.9707,
+                                              "stop_lon": -122.0246,
+                                              "stop_name": "Santa Cruz",
+                                            },
+                                            Object {
+                                              "stop_id": "2",
+                                              "stop_lat": 37.049,
+                                              "stop_lon": -122.0279,
+                                              "stop_name": "Scotts Valley",
+                                            },
+                                          ],
+                                          "trips": Array [
+                                            Object {
+                                              "duration": 1234,
+                                              "end_time": 13579,
+                                              "start_time": 12345,
+                                              "trip_headsign": "To Downtown",
+                                              "trip_id": "abcd",
+                                              "trip_short_name": "The Express",
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                      "route_id": "route1",
+                                    },
+                                  ],
+                                  "stops": Array [
+                                    Object {
+                                      "stop_id": "1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    Object {
+                                      "stop_id": "2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  ],
+                                  "stopsById": Object {
+                                    "1": Object {
+                                      "stop_id": "1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    "2": Object {
+                                      "stop_id": "2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  },
+                                },
+                              ]
+                            }
+                            placeholder="Select feed"
+                            value={
+                              Object {
+                                "checksum": "MOCK",
+                                "id": "1",
+                                "name": "1",
+                                "routes": Array [
+                                  Object {
+                                    "label": "mock-route-label",
+                                    "patterns": Array [
+                                      Object {
+                                        "geometry": Object {
+                                          "coordinates": Array [
+                                            Array [
+                                              -122.0246,
+                                              36.9707,
+                                            ],
+                                            Array [
+                                              -122.0279,
+                                              37.049,
+                                            ],
+                                            Array [
+                                              -121.9799,
+                                              37.2299,
+                                            ],
+                                            Array [
+                                              -121.9445,
+                                              37.324,
+                                            ],
+                                            Array [
+                                              -121.936,
+                                              37.353,
+                                            ],
+                                            Array [
+                                              -121.924,
+                                              37.365,
+                                            ],
+                                          ],
+                                          "type": "LineString",
+                                        },
+                                        "name": "Mock Pattern",
+                                        "pattern_id": "mock-pattern-id",
+                                        "stops": Array [
+                                          Object {
+                                            "stop_id": "1",
+                                            "stop_lat": 36.9707,
+                                            "stop_lon": -122.0246,
+                                            "stop_name": "Santa Cruz",
+                                          },
+                                          Object {
+                                            "stop_id": "2",
+                                            "stop_lat": 37.049,
+                                            "stop_lon": -122.0279,
+                                            "stop_name": "Scotts Valley",
+                                          },
+                                        ],
+                                        "trips": Array [
+                                          Object {
+                                            "duration": 1234,
+                                            "end_time": 13579,
+                                            "start_time": 12345,
+                                            "trip_headsign": "To Downtown",
+                                            "trip_id": "abcd",
+                                            "trip_short_name": "The Express",
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                    "route_id": "route1",
+                                  },
+                                ],
+                                "stops": Array [
+                                  Object {
+                                    "stop_id": "1",
+                                    "stop_lat": 36.9707,
+                                    "stop_lon": -122.0246,
+                                    "stop_name": "Santa Cruz",
+                                  },
+                                  Object {
+                                    "stop_id": "2",
+                                    "stop_lat": 37.049,
+                                    "stop_lon": -122.0279,
+                                    "stop_name": "Scotts Valley",
+                                  },
+                                ],
+                                "stopsById": Object {
+                                  "1": Object {
+                                    "stop_id": "1",
+                                    "stop_lat": 36.9707,
+                                    "stop_lon": -122.0246,
+                                    "stop_name": "Santa Cruz",
+                                  },
+                                  "2": Object {
+                                    "stop_id": "2",
+                                    "stop_lat": 37.049,
+                                    "stop_lon": -122.0279,
+                                    "stop_name": "Scotts Valley",
+                                  },
+                                },
+                              }
+                            }
+                          >
+                            <ReactSelect
+                              getOptionLabel={[Function]}
+                              getOptionValue={[Function]}
+                              innerRef={null}
+                              inputId="Feed"
+                              name="Feed"
+                              onChange={[Function]}
+                              options={
+                                Array [
+                                  Object {
+                                    "checksum": "MOCK",
+                                    "id": "1",
+                                    "name": "1",
+                                    "routes": Array [
+                                      Object {
+                                        "label": "mock-route-label",
+                                        "patterns": Array [
+                                          Object {
+                                            "geometry": Object {
+                                              "coordinates": Array [
+                                                Array [
+                                                  -122.0246,
+                                                  36.9707,
+                                                ],
+                                                Array [
+                                                  -122.0279,
+                                                  37.049,
+                                                ],
+                                                Array [
+                                                  -121.9799,
+                                                  37.2299,
+                                                ],
+                                                Array [
+                                                  -121.9445,
+                                                  37.324,
+                                                ],
+                                                Array [
+                                                  -121.936,
+                                                  37.353,
+                                                ],
+                                                Array [
+                                                  -121.924,
+                                                  37.365,
+                                                ],
+                                              ],
+                                              "type": "LineString",
+                                            },
+                                            "name": "Mock Pattern",
+                                            "pattern_id": "mock-pattern-id",
+                                            "stops": Array [
+                                              Object {
+                                                "stop_id": "1",
+                                                "stop_lat": 36.9707,
+                                                "stop_lon": -122.0246,
+                                                "stop_name": "Santa Cruz",
+                                              },
+                                              Object {
+                                                "stop_id": "2",
+                                                "stop_lat": 37.049,
+                                                "stop_lon": -122.0279,
+                                                "stop_name": "Scotts Valley",
+                                              },
+                                            ],
+                                            "trips": Array [
+                                              Object {
+                                                "duration": 1234,
+                                                "end_time": 13579,
+                                                "start_time": 12345,
+                                                "trip_headsign": "To Downtown",
+                                                "trip_id": "abcd",
+                                                "trip_short_name": "The Express",
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                        "route_id": "route1",
+                                      },
+                                    ],
+                                    "stops": Array [
+                                      Object {
+                                        "stop_id": "1",
+                                        "stop_lat": 36.9707,
+                                        "stop_lon": -122.0246,
+                                        "stop_name": "Santa Cruz",
+                                      },
+                                      Object {
+                                        "stop_id": "2",
+                                        "stop_lat": 37.049,
+                                        "stop_lon": -122.0279,
+                                        "stop_name": "Scotts Valley",
+                                      },
+                                    ],
+                                    "stopsById": Object {
+                                      "1": Object {
+                                        "stop_id": "1",
+                                        "stop_lat": 36.9707,
+                                        "stop_lon": -122.0246,
+                                        "stop_name": "Santa Cruz",
+                                      },
+                                      "2": Object {
+                                        "stop_id": "2",
+                                        "stop_lat": 37.049,
+                                        "stop_lon": -122.0279,
+                                        "stop_name": "Scotts Valley",
+                                      },
+                                    },
+                                  },
+                                ]
+                              }
+                              placeholder="Select feed"
+                              styles={
+                                Object {
+                                  "control": [Function],
+                                  "option": [Function],
+                                }
+                              }
+                              value={
+                                Object {
+                                  "checksum": "MOCK",
+                                  "id": "1",
+                                  "name": "1",
+                                  "routes": Array [
+                                    Object {
+                                      "label": "mock-route-label",
+                                      "patterns": Array [
+                                        Object {
+                                          "geometry": Object {
+                                            "coordinates": Array [
+                                              Array [
+                                                -122.0246,
+                                                36.9707,
+                                              ],
+                                              Array [
+                                                -122.0279,
+                                                37.049,
+                                              ],
+                                              Array [
+                                                -121.9799,
+                                                37.2299,
+                                              ],
+                                              Array [
+                                                -121.9445,
+                                                37.324,
+                                              ],
+                                              Array [
+                                                -121.936,
+                                                37.353,
+                                              ],
+                                              Array [
+                                                -121.924,
+                                                37.365,
+                                              ],
+                                            ],
+                                            "type": "LineString",
+                                          },
+                                          "name": "Mock Pattern",
+                                          "pattern_id": "mock-pattern-id",
+                                          "stops": Array [
+                                            Object {
+                                              "stop_id": "1",
+                                              "stop_lat": 36.9707,
+                                              "stop_lon": -122.0246,
+                                              "stop_name": "Santa Cruz",
+                                            },
+                                            Object {
+                                              "stop_id": "2",
+                                              "stop_lat": 37.049,
+                                              "stop_lon": -122.0279,
+                                              "stop_name": "Scotts Valley",
+                                            },
+                                          ],
+                                          "trips": Array [
+                                            Object {
+                                              "duration": 1234,
+                                              "end_time": 13579,
+                                              "start_time": 12345,
+                                              "trip_headsign": "To Downtown",
+                                              "trip_id": "abcd",
+                                              "trip_short_name": "The Express",
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                      "route_id": "route1",
+                                    },
+                                  ],
+                                  "stops": Array [
+                                    Object {
+                                      "stop_id": "1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    Object {
+                                      "stop_id": "2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  ],
+                                  "stopsById": Object {
+                                    "1": Object {
+                                      "stop_id": "1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    "2": Object {
+                                      "stop_id": "2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  },
+                                }
+                              }
+                            >
+                              <div
+                                className="ReactSelectMock"
+                              />
+                            </ReactSelect>
+                          </ForwardRef>
+                        </div>
+                      </Box>
+                    </FormControl>
+                    <FormControl
+                      key=".1"
+                      mb={null}
+                    >
+                      <Box
+                        mb={null}
+                        role="group"
+                      >
+                        <div
+                          className="css-0"
+                          role="group"
+                        >
+                          <FormLabel
+                            htmlFor="Route"
+                          >
+                            <Box
+                              as="label"
+                              display="inline-block"
+                              fontSize="md"
+                              fontWeight="medium"
+                              htmlFor="Route"
+                              opacity="1"
+                              pb="4px"
+                              pr="12px"
+                              textAlign="left"
+                              verticalAlign="middle"
+                            >
+                              <label
+                                className="css-176s5fq"
+                                htmlFor="Route"
+                              >
+                                Select route
+                              </label>
+                            </Box>
+                          </FormLabel>
+                          <ForwardRef
+                            getOptionLabel={[Function]}
+                            getOptionValue={[Function]}
+                            inputId="Route"
+                            isMulti={true}
+                            name="Route"
+                            onChange={[Function]}
+                            options={
+                              Array [
+                                Object {
+                                  "label": "mock-route-label",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "name": "Mock Pattern",
+                                      "pattern_id": "mock-pattern-id",
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "end_time": 13579,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                  "route_id": "route1",
+                                },
+                              ]
+                            }
+                            placeholder="Select route"
+                            value={
+                              Array [
+                                Object {
+                                  "label": "mock-route-label",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "name": "Mock Pattern",
+                                      "pattern_id": "mock-pattern-id",
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "end_time": 13579,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                  "route_id": "route1",
+                                },
+                              ]
+                            }
+                          >
+                            <ReactSelect
+                              getOptionLabel={[Function]}
+                              getOptionValue={[Function]}
+                              innerRef={null}
+                              inputId="Route"
+                              isMulti={true}
+                              name="Route"
+                              onChange={[Function]}
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "mock-route-label",
+                                    "patterns": Array [
+                                      Object {
+                                        "geometry": Object {
+                                          "coordinates": Array [
+                                            Array [
+                                              -122.0246,
+                                              36.9707,
+                                            ],
+                                            Array [
+                                              -122.0279,
+                                              37.049,
+                                            ],
+                                            Array [
+                                              -121.9799,
+                                              37.2299,
+                                            ],
+                                            Array [
+                                              -121.9445,
+                                              37.324,
+                                            ],
+                                            Array [
+                                              -121.936,
+                                              37.353,
+                                            ],
+                                            Array [
+                                              -121.924,
+                                              37.365,
+                                            ],
+                                          ],
+                                          "type": "LineString",
+                                        },
+                                        "name": "Mock Pattern",
+                                        "pattern_id": "mock-pattern-id",
+                                        "stops": Array [
+                                          Object {
+                                            "stop_id": "1",
+                                            "stop_lat": 36.9707,
+                                            "stop_lon": -122.0246,
+                                            "stop_name": "Santa Cruz",
+                                          },
+                                          Object {
+                                            "stop_id": "2",
+                                            "stop_lat": 37.049,
+                                            "stop_lon": -122.0279,
+                                            "stop_name": "Scotts Valley",
+                                          },
+                                        ],
+                                        "trips": Array [
+                                          Object {
+                                            "duration": 1234,
+                                            "end_time": 13579,
+                                            "start_time": 12345,
+                                            "trip_headsign": "To Downtown",
+                                            "trip_id": "abcd",
+                                            "trip_short_name": "The Express",
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                    "route_id": "route1",
+                                  },
+                                ]
+                              }
+                              placeholder="Select route"
+                              styles={
+                                Object {
+                                  "control": [Function],
+                                  "option": [Function],
+                                }
+                              }
+                              value={
+                                Array [
+                                  Object {
+                                    "label": "mock-route-label",
+                                    "patterns": Array [
+                                      Object {
+                                        "geometry": Object {
+                                          "coordinates": Array [
+                                            Array [
+                                              -122.0246,
+                                              36.9707,
+                                            ],
+                                            Array [
+                                              -122.0279,
+                                              37.049,
+                                            ],
+                                            Array [
+                                              -121.9799,
+                                              37.2299,
+                                            ],
+                                            Array [
+                                              -121.9445,
+                                              37.324,
+                                            ],
+                                            Array [
+                                              -121.936,
+                                              37.353,
+                                            ],
+                                            Array [
+                                              -121.924,
+                                              37.365,
+                                            ],
+                                          ],
+                                          "type": "LineString",
+                                        },
+                                        "name": "Mock Pattern",
+                                        "pattern_id": "mock-pattern-id",
+                                        "stops": Array [
+                                          Object {
+                                            "stop_id": "1",
+                                            "stop_lat": 36.9707,
+                                            "stop_lon": -122.0246,
+                                            "stop_name": "Santa Cruz",
+                                          },
+                                          Object {
+                                            "stop_id": "2",
+                                            "stop_lat": 37.049,
+                                            "stop_lon": -122.0279,
+                                            "stop_name": "Scotts Valley",
+                                          },
+                                        ],
+                                        "trips": Array [
+                                          Object {
+                                            "duration": 1234,
+                                            "end_time": 13579,
+                                            "start_time": 12345,
+                                            "trip_headsign": "To Downtown",
+                                            "trip_id": "abcd",
+                                            "trip_short_name": "The Express",
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                    "route_id": "route1",
+                                  },
+                                ]
+                              }
+                            >
+                              <div
+                                className="ReactSelectMock"
+                              />
+                            </ReactSelect>
+                          </ForwardRef>
+                        </div>
+                      </Box>
+                    </FormControl>
+                  </div>
+                </Box>
+              </Flex>
+            </ForwardRef>
+          </SelectFeedAndRoutes>
+          <ForwardRef
+            key=".5"
+            mb={4}
+            spacing={4}
+          >
+            <Flex
+              direction="column"
+              mb={4}
+            >
+              <Box
+                display="flex"
+                flexDirection="column"
+                mb={4}
+              >
+                <div
+                  className="css-opcg3f"
+                >
+                  <SelectPatterns
+                    key=".0"
+                    mb={4}
+                    onChange={[Function]}
+                    trips={
+                      Array [
+                        "abcd",
+                      ]
+                    }
+                  >
+                    <FormControl
+                      mb={4}
+                    >
+                      <Box
+                        mb={4}
+                        role="group"
+                      >
+                        <div
+                          className="css-acwcvw"
+                          role="group"
+                        >
+                          <FormLabel
+                            htmlFor="Patterns"
+                          >
+                            <Box
+                              as="label"
+                              display="inline-block"
+                              fontSize="md"
+                              fontWeight="medium"
+                              htmlFor="Patterns"
+                              opacity="1"
+                              pb="4px"
+                              pr="12px"
+                              textAlign="left"
+                              verticalAlign="middle"
+                            >
+                              <label
+                                className="css-176s5fq"
+                                htmlFor="Patterns"
+                              >
+                                Select patterns
+                              </label>
+                            </Box>
+                          </FormLabel>
+                          <ForwardRef
+                            getOptionLabel={[Function]}
+                            getOptionValue={[Function]}
+                            inputId="Patterns"
+                            isMulti={true}
+                            name="Patterns"
+                            onChange={[Function]}
+                            options={
+                              Array [
+                                Object {
+                                  "geometry": Object {
+                                    "coordinates": Array [
+                                      Array [
+                                        -122.0246,
+                                        36.9707,
+                                      ],
+                                      Array [
+                                        -122.0279,
+                                        37.049,
+                                      ],
+                                      Array [
+                                        -121.9799,
+                                        37.2299,
+                                      ],
+                                      Array [
+                                        -121.9445,
+                                        37.324,
+                                      ],
+                                      Array [
+                                        -121.936,
+                                        37.353,
+                                      ],
+                                      Array [
+                                        -121.924,
+                                        37.365,
+                                      ],
+                                    ],
+                                    "type": "LineString",
+                                  },
+                                  "name": "Mock Pattern",
+                                  "pattern_id": "mock-pattern-id",
+                                  "stops": Array [
+                                    Object {
+                                      "stop_id": "1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    Object {
+                                      "stop_id": "2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  ],
+                                  "trips": Array [
+                                    Object {
+                                      "duration": 1234,
+                                      "end_time": 13579,
+                                      "start_time": 12345,
+                                      "trip_headsign": "To Downtown",
+                                      "trip_id": "abcd",
+                                      "trip_short_name": "The Express",
+                                    },
+                                  ],
+                                },
+                              ]
+                            }
+                            placeholder="Select patterns"
+                            value={
+                              Array [
+                                Object {
+                                  "geometry": Object {
+                                    "coordinates": Array [
+                                      Array [
+                                        -122.0246,
+                                        36.9707,
+                                      ],
+                                      Array [
+                                        -122.0279,
+                                        37.049,
+                                      ],
+                                      Array [
+                                        -121.9799,
+                                        37.2299,
+                                      ],
+                                      Array [
+                                        -121.9445,
+                                        37.324,
+                                      ],
+                                      Array [
+                                        -121.936,
+                                        37.353,
+                                      ],
+                                      Array [
+                                        -121.924,
+                                        37.365,
+                                      ],
+                                    ],
+                                    "type": "LineString",
+                                  },
+                                  "name": "Mock Pattern",
+                                  "pattern_id": "mock-pattern-id",
+                                  "stops": Array [
+                                    Object {
+                                      "stop_id": "1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    Object {
+                                      "stop_id": "2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  ],
+                                  "trips": Array [
+                                    Object {
+                                      "duration": 1234,
+                                      "end_time": 13579,
+                                      "start_time": 12345,
+                                      "trip_headsign": "To Downtown",
+                                      "trip_id": "abcd",
+                                      "trip_short_name": "The Express",
+                                    },
+                                  ],
+                                },
+                              ]
+                            }
+                          >
+                            <ReactSelect
+                              getOptionLabel={[Function]}
+                              getOptionValue={[Function]}
+                              innerRef={null}
+                              inputId="Patterns"
+                              isMulti={true}
+                              name="Patterns"
+                              onChange={[Function]}
+                              options={
+                                Array [
+                                  Object {
+                                    "geometry": Object {
+                                      "coordinates": Array [
+                                        Array [
+                                          -122.0246,
+                                          36.9707,
+                                        ],
+                                        Array [
+                                          -122.0279,
+                                          37.049,
+                                        ],
+                                        Array [
+                                          -121.9799,
+                                          37.2299,
+                                        ],
+                                        Array [
+                                          -121.9445,
+                                          37.324,
+                                        ],
+                                        Array [
+                                          -121.936,
+                                          37.353,
+                                        ],
+                                        Array [
+                                          -121.924,
+                                          37.365,
+                                        ],
+                                      ],
+                                      "type": "LineString",
+                                    },
+                                    "name": "Mock Pattern",
+                                    "pattern_id": "mock-pattern-id",
+                                    "stops": Array [
+                                      Object {
+                                        "stop_id": "1",
+                                        "stop_lat": 36.9707,
+                                        "stop_lon": -122.0246,
+                                        "stop_name": "Santa Cruz",
+                                      },
+                                      Object {
+                                        "stop_id": "2",
+                                        "stop_lat": 37.049,
+                                        "stop_lon": -122.0279,
+                                        "stop_name": "Scotts Valley",
+                                      },
+                                    ],
+                                    "trips": Array [
+                                      Object {
+                                        "duration": 1234,
+                                        "end_time": 13579,
+                                        "start_time": 12345,
+                                        "trip_headsign": "To Downtown",
+                                        "trip_id": "abcd",
+                                        "trip_short_name": "The Express",
+                                      },
+                                    ],
+                                  },
+                                ]
+                              }
+                              placeholder="Select patterns"
+                              styles={
+                                Object {
+                                  "control": [Function],
+                                  "option": [Function],
+                                }
+                              }
+                              value={
+                                Array [
+                                  Object {
+                                    "geometry": Object {
+                                      "coordinates": Array [
+                                        Array [
+                                          -122.0246,
+                                          36.9707,
+                                        ],
+                                        Array [
+                                          -122.0279,
+                                          37.049,
+                                        ],
+                                        Array [
+                                          -121.9799,
+                                          37.2299,
+                                        ],
+                                        Array [
+                                          -121.9445,
+                                          37.324,
+                                        ],
+                                        Array [
+                                          -121.936,
+                                          37.353,
+                                        ],
+                                        Array [
+                                          -121.924,
+                                          37.365,
+                                        ],
+                                      ],
+                                      "type": "LineString",
+                                    },
+                                    "name": "Mock Pattern",
+                                    "pattern_id": "mock-pattern-id",
+                                    "stops": Array [
+                                      Object {
+                                        "stop_id": "1",
+                                        "stop_lat": 36.9707,
+                                        "stop_lon": -122.0246,
+                                        "stop_name": "Santa Cruz",
+                                      },
+                                      Object {
+                                        "stop_id": "2",
+                                        "stop_lat": 37.049,
+                                        "stop_lon": -122.0279,
+                                        "stop_name": "Scotts Valley",
+                                      },
+                                    ],
+                                    "trips": Array [
+                                      Object {
+                                        "duration": 1234,
+                                        "end_time": 13579,
+                                        "start_time": 12345,
+                                        "trip_headsign": "To Downtown",
+                                        "trip_id": "abcd",
+                                        "trip_short_name": "The Express",
+                                      },
+                                    ],
+                                  },
+                                ]
+                              }
+                            >
+                              <div
+                                className="ReactSelectMock"
+                              />
+                            </ReactSelect>
+                          </ForwardRef>
+                        </div>
+                      </Box>
+                    </FormControl>
+                  </SelectPatterns>
+                  <Alert
+                    key=".1"
+                    mb={4}
+                    status="info"
+                  >
+                    <Box
+                      alignItems="center"
+                      bg="blue.100"
+                      display="flex"
+                      mb={4}
+                      overflow="hidden"
+                      pb={3}
+                      pl={4}
+                      position="relative"
+                      pr={4}
+                      pt={3}
+                      role="alert"
+                    >
+                      <div
+                        className="css-pjk3qj"
+                        role="alert"
+                      >
+                        <AlertIcon>
+                          <Icon
+                            color="blue.500"
+                            mr={3}
+                            name="info"
+                            size={5}
+                          >
+                            <Styled(div)
+                              as="svg"
+                              color="blue.500"
+                              display="inline-block"
+                              focusable={false}
+                              mr={3}
+                              role="presentation"
+                              size={5}
+                              verticalAlign="middle"
+                              viewBox="0 0 24 24"
+                            >
+                              <svg
+                                className="css-186zpkg"
+                                focusable={false}
+                                role="presentation"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm.25,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,12.25,5ZM14.5,18.5h-4a1,1,0,0,1,0-2h.75a.25.25,0,0,0,.25-.25v-4.5a.25.25,0,0,0-.25-.25H10.5a1,1,0,0,1,0-2h1a2,2,0,0,1,2,2v4.75a.25.25,0,0,0,.25.25h.75a1,1,0,1,1,0,2Z"
+                                  fill="currentColor"
+                                />
+                              </svg>
+                            </Styled(div)>
+                          </Icon>
+                        </AlertIcon>
+                        Speed adjustment will apply to entire pattern(s). Use button below to limit the adjustment to certain segments.
+                      </div>
+                    </Box>
+                  </Alert>
+                  <Button
+                    isFullWidth={true}
+                    key=".2"
+                    leftIcon="edit"
+                    mb={null}
+                    onClick={[Function]}
+                    variantColor="blue"
+                  >
+                    <PseudoBox
+                      _active={
+                        Object {
+                          "bg": "blue.700",
+                        }
+                      }
+                      _disabled={
+                        Object {
+                          "boxShadow": "none",
+                          "cursor": "not-allowed",
+                          "opacity": "40%",
+                        }
+                      }
+                      _focus={
+                        Object {
+                          "boxShadow": "outline",
+                        }
+                      }
+                      _hover={
+                        Object {
+                          "bg": "blue.600",
+                        }
+                      }
+                      alignItems="center"
+                      appearance="none"
+                      as="button"
+                      bg="blue.500"
+                      borderRadius="md"
+                      color="white"
+                      display="inline-flex"
+                      fontSize="md"
+                      fontWeight="semibold"
+                      height={10}
+                      justifyContent="center"
+                      lineHeight="1.2"
+                      mb={null}
+                      minWidth={10}
+                      onClick={[Function]}
+                      outline="none"
+                      position="relative"
+                      px={4}
+                      transition="all 250ms"
+                      type="button"
+                      userSelect="none"
+                      verticalAlign="middle"
+                      whiteSpace="nowrap"
+                      width="full"
+                    >
+                      <button
+                        className="css-c8cukl"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <ButtonIcon
+                          icon="edit"
+                          ml={-1}
+                          mr={2}
+                        >
+                          <Icon
+                            aria-hidden="true"
+                            color="currentColor"
+                            focusable="false"
+                            ml={-1}
+                            mr={2}
+                            name="edit"
+                          >
+                            <Styled(div)
+                              aria-hidden="true"
+                              as="svg"
+                              color="currentColor"
+                              display="inline-block"
+                              focusable="false"
+                              ml={-1}
+                              mr={2}
+                              role="presentation"
+                              size="1em"
+                              verticalAlign="middle"
+                              viewBox="0 0 24 24"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className="css-yxiis9"
+                                focusable="false"
+                                role="presentation"
+                                viewBox="0 0 24 24"
+                              >
+                                <g
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeLinecap="full"
+                                  strokeWidth="2"
+                                >
+                                  <path
+                                    d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                  />
+                                  <path
+                                    d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                  />
+                                </g>
+                              </svg>
+                            </Styled(div)>
+                          </Icon>
+                        </ButtonIcon>
+                        Select
+                         segments
+                      </button>
+                    </PseudoBox>
+                  </Button>
+                </div>
+              </Box>
+            </Flex>
+          </ForwardRef>
+          <NumberInput
+            key=".6"
+            label="Scale speed by"
+            mb={null}
+            onChange={[Function]}
+            test={[Function]}
+          >
+            <FormControl
+              isDisabled={false}
+              isInvalid={true}
+              mb={null}
+            >
+              <Box
+                mb={null}
+                role="group"
+              >
+                <div
+                  className="css-0"
+                  role="group"
+                >
+                  <FormLabel
+                    htmlFor="00000000-0000-0000-0000-000000000000"
+                  >
+                    <Box
+                      as="label"
+                      display="inline-block"
+                      fontSize="md"
+                      fontWeight="medium"
+                      htmlFor="00000000-0000-0000-0000-000000000000"
+                      opacity="1"
+                      pb="4px"
+                      pr="12px"
+                      textAlign="left"
+                      verticalAlign="middle"
+                    >
+                      <label
+                        className="css-176s5fq"
+                        htmlFor="00000000-0000-0000-0000-000000000000"
+                      >
+                        Scale speed by
+                      </label>
+                    </Box>
+                  </FormLabel>
+                  <InputGroup>
+                    <Box
+                      display="flex"
+                      position="relative"
+                    >
+                      <div
+                        className="css-kjafn5"
+                      >
+                        <Input
+                          as="input"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          id="00000000-0000-0000-0000-000000000000"
+                          isFullWidth={true}
+                          isInvalid={true}
+                          isValid={false}
+                          key=".0"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          pl={null}
+                          placeholder=""
+                          pr={null}
+                          size="md"
+                          type="text"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-disabled={false}
+                            aria-invalid={true}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            disabled={false}
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            id="00000000-0000-0000-0000-000000000000"
+                            isValid={false}
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            outline="none"
+                            pl={null}
+                            placeholder=""
+                            position="relative"
+                            pr={null}
+                            px={4}
+                            rounded="md"
+                            transition="all 0.2s"
+                            type="text"
+                            width="100%"
+                          >
+                            <input
+                              aria-disabled={false}
+                              aria-invalid={true}
+                              className="css-1ga4kqw"
+                              disabled={false}
+                              id="00000000-0000-0000-0000-000000000000"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              placeholder=""
+                              type="text"
+                            />
+                          </PseudoBox>
+                        </Input>
+                      </div>
+                    </Box>
+                  </InputGroup>
+                </div>
+              </Box>
+            </FormControl>
+          </NumberInput>
+        </div>
+      </Box>
+    </Flex>
+  </ForwardRef>
 </AdjustSpeedComponent>
 `;

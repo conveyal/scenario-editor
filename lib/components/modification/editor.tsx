@@ -26,11 +26,20 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import debounce from 'lodash/debounce'
 import get from 'lodash/get'
-import dynamic from 'next/dynamic'
-import React, {useState} from 'react'
+import {Component, useCallback, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 
+import {
+  copy as copyModification,
+  deleteModification,
+  updateModification as updateAndRetrieveFeedData
+} from 'lib/actions/modifications'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
+import selectModificationFeed from 'lib/selectors/modification-feed'
+import selectFeedIsLoaded from 'lib/selectors/modification-feed-is-loaded'
+import selectSaveInProgress from 'lib/selectors/modification-save-in-progress'
+import selectVariants from 'lib/selectors/variants'
 
 import {ConfirmDialog} from '../confirm-button'
 import Editable from '../editable'
@@ -44,9 +53,6 @@ import JSONEditor from './json-editor'
 import ModificationType from './type'
 import Variants from './variants'
 
-// Not every modification still uses this editor. Load dynamically
-const ModificationMapEdit = dynamic(() => import('../modifications-map/edit'))
-
 // Debounce the update function for five seconds
 const DEBOUNCE_MS = 10 * 1000
 
@@ -59,7 +65,7 @@ const nameIsValid = (s) => s && s.length > 0
 /**
  * Use a wrapper class to handle debouncing the updates
  */
-export default class DebouncedUpdate extends React.Component<any> {
+export default class DebouncedUpdate extends Component<any> {
   componentDidMount() {
     window.addEventListener('beforeunload', this.debouncedSaveToServer.flush)
   }
@@ -88,8 +94,9 @@ export default class DebouncedUpdate extends React.Component<any> {
   render() {
     return (
       <ModificationEditor
-        {...this.props}
         debouncedSaveToServer={this.debouncedSaveToServer}
+        modification={this.props.modification}
+        query={this.props.query}
         updateLocally={this.updateLocally}
       />
     )
@@ -128,35 +135,63 @@ function CopiedModificationToast({modification, onClose, regionId}) {
   )
 }
 
-function ModificationEditor(p) {
+function ModificationEditor({
+  debouncedSaveToServer,
+  modification,
+  query,
+  updateLocally
+}) {
+  const dispatch = useDispatch()
+  const allVariants = useSelector(selectVariants)
+  const feed = useSelector(selectModificationFeed)
+  const feedIsLoaded = useSelector(selectFeedIsLoaded)
+  const saveInProgress = useSelector(selectSaveInProgress)
   const [isDeleting, setIsDeleting] = useState(false)
-  const [mapState, setMapState] = useState(null)
   const deleteDisclosure = useDisclosure()
   const toast = useToast()
 
   const goToAllModifications = useRouteTo('modifications', {
-    regionId: p.query.regionId,
-    projectId: p.query.projectId
+    regionId: query.regionId,
+    projectId: query.projectId
   })
 
-  function _remove() {
+  const _remove = useCallback(async () => {
     setIsDeleting(true)
     // Cancel any pending updates
-    p.debouncedSaveToServer.cancel()
+    debouncedSaveToServer.cancel()
     // Delete the modification
-    p.removeModification(p.modification)
-  }
-
-  function _updateAndRetrieveFeedData(properties) {
-    p.updateAndRetrieveFeedData({
-      ...p.modification,
-      ...properties
+    await dispatch(deleteModification(modification._id))
+    // Go to the all modifications page
+    goToAllModifications()
+    // Show a toast confirming deletion
+    toast({
+      position: 'top',
+      title: `Modification "${modification.name}" deleted successfully`,
+      status: 'success'
     })
-  }
+  }, [
+    dispatch,
+    debouncedSaveToServer,
+    modification,
+    goToAllModifications,
+    toast
+  ])
 
-  function _removeFeed() {
-    if (p.modification) {
-      const m = p.modification
+  const _updateAndRetrieveFeedData = useCallback(
+    (properties) => {
+      dispatch(
+        updateAndRetrieveFeedData({
+          ...modification,
+          ...properties
+        })
+      )
+    },
+    [dispatch, modification]
+  )
+
+  const _removeFeed = useCallback(() => {
+    if (modification) {
+      const m = modification
       const update = {feed: null}
       if (hasOwnProperty(m, 'routes')) m.routes = null
       if (hasOwnProperty(m, 'stops')) m.stops = null
@@ -165,42 +200,45 @@ function ModificationEditor(p) {
       if (hasOwnProperty(m, 'toStop')) m.toStop = null
       _updateAndRetrieveFeedData(update)
     }
-  }
+  }, [modification, _updateAndRetrieveFeedData])
 
-  function _setVariant(variantIndex, active) {
-    const variants = get(p, 'modification.variants', [])
+  const _setVariant = useCallback(
+    (variantIndex, active) => {
+      const variants = get(modification, 'variants', [])
 
-    // Could come from a bitset on the Java side so may be of varying length
-    for (let i = 0; i < variants.length; i++) {
-      if (variants[i] === undefined) variants[i] = false
-    }
+      // Could come from a bitset on the Java side so may be of varying length
+      for (let i = 0; i < variants.length; i++) {
+        if (variants[i] === undefined) variants[i] = false
+      }
 
-    variants[variantIndex] = active
+      variants[variantIndex] = active
 
-    p.updateLocally({
-      variants: [...variants]
-    })
-  }
-
-  function _copyModification() {
-    p.debouncedSaveToServer.flush()
-    p.copyModification(p.modification).then((m) => {
-      toast({
-        position: 'top',
-        render: ({onClose}) => (
-          <CopiedModificationToast
-            modification={m}
-            onClose={onClose}
-            regionId={p.query.regionId}
-          />
-        )
+      updateLocally({
+        variants: [...variants]
       })
+    },
+    [modification, updateLocally]
+  )
+
+  const _copyModification = useCallback(async () => {
+    debouncedSaveToServer.flush()
+    const m = await dispatch(copyModification(modification._id))
+    toast({
+      position: 'top',
+      render: ({onClose}) => (
+        <CopiedModificationToast
+          modification={m}
+          onClose={onClose}
+          regionId={query.regionId}
+        />
+      )
     })
-  }
+  }, [debouncedSaveToServer, dispatch, modification, query, toast])
 
   if (isDeleting) return null
 
-  const disableAndDim = `block ${p.saveInProgress ? 'disableAndDim' : ''}`
+  const disableAndDim = `block ${saveInProgress ? 'disableAndDim' : ''}`
+
   return (
     <>
       <AllModificationsMapDisplay isEditing={true} />
@@ -217,7 +255,7 @@ function ModificationEditor(p) {
       <Flex
         align='center'
         borderBottom='1px solid #E2E8F0'
-        className={p.saveInProgress ? 'disableAndDim' : ''}
+        className={saveInProgress ? 'disableAndDim' : ''}
         p={2}
         width='320px'
       >
@@ -230,8 +268,8 @@ function ModificationEditor(p) {
         <Box flex='1' fontSize='xl' fontWeight='bold' ml={2} overflow='hidden'>
           <Editable
             isValid={nameIsValid}
-            onChange={(name) => p.updateLocally({name})}
-            value={p.modification.name}
+            onChange={(name) => updateLocally({name})}
+            value={modification.name}
           />
         </Box>
 
@@ -253,81 +291,64 @@ function ModificationEditor(p) {
         </Flex>
       </Flex>
       <InnerDock className={disableAndDim}>
-        {p.feedIsLoaded ? (
-          p.modification ? (
-            <>
-              {mapState && (
-                <ModificationMapEdit
-                  feed={p.feed}
-                  key={`mme-${p.modification._id}`}
-                  mapState={mapState}
-                  modification={p.modification}
-                  setMapState={setMapState}
-                  updateModification={p.updateLocally}
-                />
-              )}
+        {feedIsLoaded ? (
+          modification ? (
+            <Tabs align='end' variant='soft-rounded'>
+              <TabPanels>
+                <TabPanel>
+                  <Stack spacing={4}>
+                    <Box>
+                      <Editable
+                        onChange={(description) => updateLocally({description})}
+                        placeholder={message('modification.addDescription')}
+                        value={modification.description}
+                      />
+                    </Box>
 
-              <Tabs align='end' variant='soft-rounded'>
-                <TabPanels>
-                  <TabPanel>
-                    <Stack spacing={4}>
-                      <Box>
-                        <Editable
-                          onChange={(description) =>
-                            p.updateLocally({description})
-                          }
-                          placeholder={message('modification.addDescription')}
-                          value={p.modification.description}
-                        />
-                      </Box>
+                    {get(modification, 'routes.length') > 1 && (
+                      <Alert status='warning'>
+                        {message('modification.onlyOneRoute')}
+                      </Alert>
+                    )}
 
-                      {get(p, 'modification.routes.length') > 1 && (
-                        <Alert status='warning'>
-                          {message('modification.onlyOneRoute')}
-                        </Alert>
-                      )}
+                    <Box>
+                      <ModificationType
+                        modification={modification}
+                        selectedFeed={feed}
+                        type={modification.type}
+                        update={updateLocally}
+                        updateAndRetrieveFeedData={_updateAndRetrieveFeedData}
+                      />
+                    </Box>
 
-                      <Box>
-                        <ModificationType
-                          mapState={mapState}
-                          modification={p.modification}
-                          selectedFeed={p.feed}
-                          setMapState={setMapState}
-                          type={p.modification.type}
-                          update={p.updateLocally}
-                          updateAndRetrieveFeedData={_updateAndRetrieveFeedData}
-                        />
-                      </Box>
+                    <Box>
+                      <Variants
+                        activeVariants={modification.variants}
+                        allVariants={allVariants}
+                        setVariant={_setVariant}
+                      />
+                    </Box>
+                  </Stack>
+                </TabPanel>
+                <TabPanel>
+                  <JSONEditor
+                    modification={modification}
+                    save={updateLocally}
+                  />
+                </TabPanel>
+              </TabPanels>
 
-                      <Box>
-                        <Variants
-                          activeVariants={p.modification.variants}
-                          allVariants={p.allVariants}
-                          setVariant={_setVariant}
-                        />
-                      </Box>
-                    </Stack>
-                  </TabPanel>
-                  <TabPanel>
-                    <JSONEditor
-                      modification={p.modification}
-                      save={p.updateLocally}
-                    />
-                  </TabPanel>
-                </TabPanels>
+              <Divider my={4} />
 
-                <Divider my={4} />
-
-                <TabList>
-                  <Tab>
-                    <Icon icon={faMousePointer} />
-                  </Tab>
-                  <Tab>
-                    <Icon icon={faCode} />
-                  </Tab>
-                </TabList>
-              </Tabs>
-            </>
+              <TabList>
+                <Tab>
+                  <Icon icon={faMousePointer} />
+                </Tab>
+                <Tab>
+                  <Icon icon={faCode} />
+                </Tab>
+              </TabList>
+            </Tabs>
           ) : (
             <Text>Loading modification...</Text>
           )

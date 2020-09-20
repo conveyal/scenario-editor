@@ -176,12 +176,12 @@ export default function Settings({
         })
       }
     },
-    [comparisonProject, dispatch, profileRequest, setComparisonPR]
+    [comparisonProject, profileRequest, setComparisonPR]
   )
 
   const _setComparisonVariant = useCallback(
     (e) => setComparisonPR({variantIndex: parseInt(e.value)}),
-    [dispatch]
+    [setComparisonPR]
   )
 
   return (
@@ -309,7 +309,6 @@ function RequestHeading({
   opportunityDataset,
   profileRequest,
   project,
-  regionalAnalyses,
   scenario,
   ...p
 }) {

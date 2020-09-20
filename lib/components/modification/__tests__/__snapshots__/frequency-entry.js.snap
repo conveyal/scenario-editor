@@ -5,47 +5,170 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
   heading={[Function]}
 >
   <Body>
-    <Text
-      name="Name"
-      onChange={[Function]}
-      value="Test timetable"
-    />
-    <SelectPatterns
-      onChange={[Function]}
-      routePatterns={
-        Array [
-          Object {
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.0246,
-                  36.9707,
+    <ForwardRef
+      spacing={4}
+    >
+      <FormControl
+        isInvalid={false}
+      >
+        <FormLabel
+          htmlFor="00000000-0000-0000-0000-000000000000"
+        >
+          Name
+        </FormLabel>
+        <Input
+          as="input"
+          errorBorderColor="red.500"
+          focusBorderColor="blue.500"
+          id="00000000-0000-0000-0000-000000000000"
+          isFullWidth={true}
+          isInvalid={false}
+          isValid={true}
+          onChange={[Function]}
+          size="md"
+          value="Test timetable"
+          variant="outline"
+        />
+      </FormControl>
+      <SelectPatterns
+        onChange={[Function]}
+        routePatterns={
+          Array [
+            Object {
+              "geometry": Object {
+                "coordinates": Array [
+                  Array [
+                    -122.0246,
+                    36.9707,
+                  ],
+                  Array [
+                    -122.0279,
+                    37.049,
+                  ],
+                  Array [
+                    -121.9799,
+                    37.2299,
+                  ],
+                  Array [
+                    -121.9445,
+                    37.324,
+                  ],
+                  Array [
+                    -121.936,
+                    37.353,
+                  ],
+                  Array [
+                    -121.924,
+                    37.365,
+                  ],
                 ],
-                Array [
-                  -122.0279,
-                  37.049,
-                ],
-                Array [
-                  -121.9799,
-                  37.2299,
-                ],
-                Array [
-                  -121.9445,
-                  37.324,
-                ],
-                Array [
-                  -121.936,
-                  37.353,
-                ],
-                Array [
-                  -121.924,
-                  37.365,
-                ],
+                "type": "LineString",
+              },
+              "name": "Mock Pattern",
+              "pattern_id": "mock-pattern-id",
+              "stops": Array [
+                Object {
+                  "stop_id": "1",
+                  "stop_lat": 36.9707,
+                  "stop_lon": -122.0246,
+                  "stop_name": "Santa Cruz",
+                },
+                Object {
+                  "stop_id": "2",
+                  "stop_lat": 37.049,
+                  "stop_lon": -122.0279,
+                  "stop_name": "Scotts Valley",
+                },
               ],
-              "type": "LineString",
+              "trips": Array [
+                Object {
+                  "duration": 1234,
+                  "end_time": 13579,
+                  "start_time": 12345,
+                  "trip_headsign": "To Downtown",
+                  "trip_id": "abcd",
+                  "trip_short_name": "The Express",
+                },
+              ],
             },
-            "name": "Mock Pattern",
-            "pattern_id": "mock-pattern-id",
+          ]
+        }
+        trips={
+          Array [
+            "abcd",
+          ]
+        }
+      />
+      <SelectTrip
+        feed={
+          Object {
+            "checksum": "MOCK",
+            "id": "1",
+            "routes": Array [
+              Object {
+                "label": "mock-route-label",
+                "patterns": Array [
+                  Object {
+                    "geometry": Object {
+                      "coordinates": Array [
+                        Array [
+                          -122.0246,
+                          36.9707,
+                        ],
+                        Array [
+                          -122.0279,
+                          37.049,
+                        ],
+                        Array [
+                          -121.9799,
+                          37.2299,
+                        ],
+                        Array [
+                          -121.9445,
+                          37.324,
+                        ],
+                        Array [
+                          -121.936,
+                          37.353,
+                        ],
+                        Array [
+                          -121.924,
+                          37.365,
+                        ],
+                      ],
+                      "type": "LineString",
+                    },
+                    "name": "Mock Pattern",
+                    "pattern_id": "mock-pattern-id",
+                    "stops": Array [
+                      Object {
+                        "stop_id": "1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
+                      },
+                      Object {
+                        "stop_id": "2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
+                      },
+                    ],
+                    "trips": Array [
+                      Object {
+                        "duration": 1234,
+                        "end_time": 13579,
+                        "start_time": 12345,
+                        "trip_headsign": "To Downtown",
+                        "trip_id": "abcd",
+                        "trip_short_name": "The Express",
+                      },
+                    ],
+                  },
+                ],
+                "route_id": "route1",
+              },
+            ],
             "stops": Array [
               Object {
                 "stop_id": "1",
@@ -60,193 +183,80 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                 "stop_name": "Scotts Valley",
               },
             ],
-            "trips": Array [
-              Object {
-                "duration": 1234,
-                "end_time": 13579,
-                "start_time": 12345,
-                "trip_headsign": "To Downtown",
-                "trip_id": "abcd",
-                "trip_short_name": "The Express",
+            "stopsById": Object {
+              "1": Object {
+                "stop_id": "1",
+                "stop_lat": 36.9707,
+                "stop_lon": -122.0246,
+                "stop_name": "Santa Cruz",
               },
-            ],
-          },
-        ]
-      }
-      trips={
-        Array [
-          "abcd",
-        ]
-      }
-    />
-    <SelectTrip
-      feed={
-        Object {
-          "checksum": "MOCK",
-          "id": "1",
-          "routes": Array [
-            Object {
-              "label": "mock-route-label",
-              "patterns": Array [
-                Object {
-                  "geometry": Object {
-                    "coordinates": Array [
-                      Array [
-                        -122.0246,
-                        36.9707,
-                      ],
-                      Array [
-                        -122.0279,
-                        37.049,
-                      ],
-                      Array [
-                        -121.9799,
-                        37.2299,
-                      ],
-                      Array [
-                        -121.9445,
-                        37.324,
-                      ],
-                      Array [
-                        -121.936,
-                        37.353,
-                      ],
-                      Array [
-                        -121.924,
-                        37.365,
-                      ],
-                    ],
-                    "type": "LineString",
-                  },
-                  "name": "Mock Pattern",
-                  "pattern_id": "mock-pattern-id",
-                  "stops": Array [
-                    Object {
-                      "stop_id": "1",
-                      "stop_lat": 36.9707,
-                      "stop_lon": -122.0246,
-                      "stop_name": "Santa Cruz",
-                    },
-                    Object {
-                      "stop_id": "2",
-                      "stop_lat": 37.049,
-                      "stop_lon": -122.0279,
-                      "stop_name": "Scotts Valley",
-                    },
-                  ],
-                  "trips": Array [
-                    Object {
-                      "duration": 1234,
-                      "end_time": 13579,
-                      "start_time": 12345,
-                      "trip_headsign": "To Downtown",
-                      "trip_id": "abcd",
-                      "trip_short_name": "The Express",
-                    },
-                  ],
-                },
-              ],
-              "route_id": "route1",
+              "2": Object {
+                "stop_id": "2",
+                "stop_lat": 37.049,
+                "stop_lon": -122.0279,
+                "stop_name": "Scotts Valley",
+              },
             },
-          ],
-          "stops": Array [
-            Object {
-              "stop_id": "1",
-              "stop_lat": 36.9707,
-              "stop_lon": -122.0246,
-              "stop_name": "Santa Cruz",
-            },
-            Object {
-              "stop_id": "2",
-              "stop_lat": 37.049,
-              "stop_lon": -122.0279,
-              "stop_name": "Scotts Valley",
-            },
-          ],
-          "stopsById": Object {
-            "1": Object {
-              "stop_id": "1",
-              "stop_lat": 36.9707,
-              "stop_lon": -122.0246,
-              "stop_name": "Santa Cruz",
-            },
-            "2": Object {
-              "stop_id": "2",
-              "stop_lat": 37.049,
-              "stop_lon": -122.0279,
-              "stop_name": "Scotts Valley",
-            },
-          },
-        }
-      }
-      onChange={[Function]}
-      patternTrips={
-        Array [
-          "abcd",
-        ]
-      }
-      routes={
-        Array [
-          "route1",
-        ]
-      }
-      trip="abcd"
-    />
-    <TimetableEntry
-      bidirectional={false}
-      modificationStops={Array []}
-      projectTimetables={Array []}
-      timetable={
-        Object {
-          "_id": "timetable-id",
-          "dwellTime": 10,
-          "dwellTimes": Array [
-            12,
-          ],
-          "endTime": 57600,
-          "exactTimes": false,
-          "friday": true,
-          "headwaySecs": 900,
-          "modificationId": "1234",
-          "modificationName": "Test Modification",
-          "monday": true,
-          "name": "Test timetable",
-          "patternTrips": Array [
-            "abcd",
-          ],
-          "phaseAtStop": "",
-          "phaseFromStop": "",
-          "phaseFromTimetable": "",
-          "phaseSeconds": 300,
-          "saturday": false,
-          "segmentSpeeds": Array [],
-          "sourceTrip": "abcd",
-          "startTime": 28800,
-          "sunday": false,
-          "thursday": true,
-          "tuesday": true,
-          "wednesday": true,
-        }
-      }
-      update={[MockFunction]}
-    />
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="danger"
-      title="Delete frequency entry"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "times",
-            "prefix": "fas",
           }
         }
+        onChange={[Function]}
+        patternTrips={
+          Array [
+            "abcd",
+          ]
+        }
+        routes={
+          Array [
+            "route1",
+          ]
+        }
+        trip="abcd"
       />
-       Delete frequency entry
-    </Button>
+      <TimetableEntry
+        modificationStops={Array []}
+        timetable={
+          Object {
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          }
+        }
+        update={[MockFunction]}
+      />
+      <ConfirmButton
+        action="Delete frequency entry"
+        description="Are you sure you would like to remove this frequency entry?"
+        isFullWidth={true}
+        leftIcon="delete"
+        onConfirm={[MockFunction]}
+        variantColor="red"
+      />
+    </ForwardRef>
   </Body>
 </Collapsible>
 `;

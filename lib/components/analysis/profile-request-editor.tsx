@@ -19,6 +19,7 @@ import message from 'lib/message'
 
 import TimePicker from '../time-picker'
 
+const TenPM = 22 * 60 * 60
 const bold = (b) => `<strong>${b}</strong>`
 
 function bundleIsOutOfDate(bundle, dateString, project) {
@@ -73,7 +74,7 @@ const testWalkSpeed = valueWithin(3, 15)
 const testWalkTime = modeLessThanMax(60)
 const testBikeSpeed = valueWithin(5, 20)
 const testBikeTime = modeLessThanMax(60)
-const testMonteCarlo = valueWithin(1, 10000)
+const testMonteCarlo = valueWithin(1, 1200)
 const testMaxTransfers = valueWithin(0, 7)
 
 // Check modes for the type given
@@ -94,9 +95,29 @@ export default function ProfileRequestEditor({
   setProfileRequest,
   ...p
 }) {
-  const setFromTime = (fromTime) =>
-    setProfileRequest({fromTime: parseInt(fromTime)})
-  const setToTime = (toTime) => setProfileRequest({toTime: parseInt(toTime)})
+  // Keep times in order when setting.
+  const setFromTime = useCallback(
+    (timeString) => {
+      const fromTime = parseInt(timeString)
+      if (fromTime >= profileRequest.toTime) {
+        setProfileRequest({fromTime, toTime: fromTime + 60 * 60})
+      } else {
+        setProfileRequest({fromTime})
+      }
+    },
+    [profileRequest, setProfileRequest]
+  )
+  const setToTime = useCallback(
+    (timeString) => {
+      const toTime = parseInt(timeString)
+      if (profileRequest.fromTime >= toTime) {
+        setProfileRequest({fromTime: toTime - 60 * 60, toTime})
+      } else {
+        setProfileRequest({toTime})
+      }
+    },
+    [profileRequest, setProfileRequest]
+  )
 
   const {fromTime, toTime} = profileRequest
   const bundleOutOfDate = bundleIsOutOfDate(
@@ -216,6 +237,12 @@ export default function ProfileRequestEditor({
             value={toTime}
             onChange={setToTime}
           />
+
+          {toTime >= TenPM && (
+            <Alert status='error' gridColumn='1 / span 3'>
+              <AlertIcon /> Trips over midnight may not work correctly.
+            </Alert>
+          )}
 
           {bundleOutOfDate && (
             <Alert status='error' gridColumn='1 / span 3'>

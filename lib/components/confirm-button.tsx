@@ -35,10 +35,9 @@ export function ConfirmDialog({action, description, onClose, onConfirm}) {
   const [confirming, setConfirming] = useState(false)
   const cancelRef = useRef()
 
-  async function doAction() {
+  function doAction() {
     setConfirming(true)
-    await onConfirm()
-    onClose()
+    onConfirm()
   }
 
   return (

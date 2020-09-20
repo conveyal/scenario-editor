@@ -22,7 +22,7 @@ exports[`Report > RemoveTrips renders correctly 1`] = `
       }
     }
   >
-    <Memo(PatternLayer)
+    <PatternLayer
       color="#c92336"
       feed={
         Object {

@@ -447,7 +447,8 @@
     "adjustSpeed": {
       "scale": "Scale speed by %(scale)x",
       "scaleLabel": "Scale speed by",
-      "selectInstructions": "Select the stop-to-stop segment(s) of the pattern(s) to scale the speed on."
+      "noHopsInstructions": "Speed adjustment will apply to entire pattern(s). Use button below to limit the adjustment to certain segments.",
+      "selectInstructions": "Speed adjustment will apply only to selected segments."
     },
     "patternLength": "Length",
     "patternName": "Pattern",

@@ -243,6 +243,7 @@ exports[`Component > SelectProject 1`] = `
                                         <Button
                                           aria-label="Edit region settings"
                                           isActive={false}
+                                          isDisabled={false}
                                           onBlur={[Function]}
                                           onClick={[Function]}
                                           onFocus={[Function]}

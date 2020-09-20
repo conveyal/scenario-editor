@@ -1,531 +1,219 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Modification > CopyTimetable renders correctly 1`] = `
-<ModalBody>
-  <Select
-    label="Region"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="r1"
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <option
-      key="regionOption-r1"
-      value="r1"
-    >
-      mock region
-    </option>
-  </Select>
-  <Select
-    label="Project"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="p1"
+    Copy existing timetable
+  </Button>
+</Fragment>
+`;
+
+exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <option
-      key="projectOption-p1"
-      value="p1"
-    >
-      mock project
-    </option>
-  </Select>
-  <Select
-    label="Modification"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="m1"
+    Copy existing timetable
+  </Button>
+  <Modal
+    isOpen={true}
+    onClose={[Function]}
   >
-    <option
-      key="modificationOption-m1"
-      value="m1"
-    >
-      mock modification
-    </option>
-  </Select>
-  <Select
-    label="Timetable"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="t1"
-  >
-    <option
-      key="timetableOption-t1"
-      value="t1"
-    >
-      M-F
-    </option>
-  </Select>
-  <P>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="success"
-    >
-      <Icon
-        icon={
+    <ModalOverlay />
+    <ModalContent>
+      <ModalHeader>
+        Copy timetable
+      </ModalHeader>
+      <ModalCloseButton />
+      <CopyTimetableContent
+        create={[MockFunction]}
+        intoModification={
           Object {
-            "icon": Array [],
-            "iconName": "plus",
-            "prefix": "fas",
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
+            ],
+            "segments": Array [
+              {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+            ],
+            "timetables": Array [
+              Object {
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
+                ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
+            ],
           }
         }
+        onClose={[Function]}
       />
-       Copy into new timetable
-    </Button>
-  </P>
-</ModalBody>
+    </ModalContent>
+  </Modal>
+</Fragment>
 `;
 
 exports[`Component > Modification > CopyTimetable renders when no timetables exist in database 1`] = `
-<ModalBody>
-  <div
-    className="alert alert-danger"
-    role="alert"
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <Icon
-      icon={
-        Object {
-          "icon": Array [],
-          "iconName": "exclamation-circle",
-          "prefix": "fas",
-        }
-      }
-    />
-    No timetables available to copy from! Please create a timetable manually.
-  </div>
-</ModalBody>
+    Copy existing timetable
+  </Button>
+</Fragment>
 `;
 
 exports[`Component > Modification > CopyTimetable renders with a region without timetables 1`] = `
-<ModalBody>
-  <Select
-    label="Region"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="r1"
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <option
-      key="regionOption-r1"
-      value="r1"
-    >
-      mock region
-    </option>
-  </Select>
-  <Select
-    label="Project"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="p1"
-  >
-    <option
-      key="projectOption-p1"
-      value="p1"
-    >
-      mock project
-    </option>
-  </Select>
-  <Select
-    label="Modification"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="m1"
-  >
-    <option
-      key="modificationOption-m1"
-      value="m1"
-    >
-      mock modification
-    </option>
-  </Select>
-  <Select
-    label="Timetable"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="t1"
-  >
-    <option
-      key="timetableOption-t1"
-      value="t1"
-    >
-      M-F
-    </option>
-  </Select>
-  <P>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="success"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "plus",
-            "prefix": "fas",
-          }
-        }
-      />
-       Copy into new timetable
-    </Button>
-  </P>
-</ModalBody>
+    Copy existing timetable
+  </Button>
+</Fragment>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when current modification has no segments 1`] = `
-<ModalBody>
-  <Select
-    label="Region"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="r1"
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <option
-      key="regionOption-r1"
-      value="r1"
-    >
-      mock region
-    </option>
-  </Select>
-  <Select
-    label="Project"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="p1"
-  >
-    <option
-      key="projectOption-p1"
-      value="p1"
-    >
-      mock project
-    </option>
-  </Select>
-  <Select
-    label="Modification"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="m1"
-  >
-    <option
-      key="modificationOption-m1"
-      value="m1"
-    >
-      mock modification
-    </option>
-  </Select>
-  <Select
-    label="Timetable"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="t1"
-  >
-    <option
-      key="timetableOption-t1"
-      value="t1"
-    >
-      M-F
-    </option>
-  </Select>
-  <div
-    className="alert alert-info"
-    role="alert"
-  >
-    <Icon
-      icon={
-        Object {
-          "icon": Array [],
-          "iconName": "exclamation-circle",
-          "prefix": "fas",
-        }
-      }
-    />
-    The modification being copied to and/or from does not have any segments. The default segment speed of 15 km/h will be used.
-  </div>
-  <P>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="success"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "plus",
-            "prefix": "fas",
-          }
-        }
-      />
-       Copy into new timetable
-    </Button>
-  </P>
-</ModalBody>
+    Copy existing timetable
+  </Button>
+</Fragment>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has less segments 1`] = `
-<ModalBody>
-  <Select
-    label="Region"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="r1"
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <option
-      key="regionOption-r1"
-      value="r1"
-    >
-      mock region
-    </option>
-  </Select>
-  <Select
-    label="Project"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="p1"
-  >
-    <option
-      key="projectOption-p1"
-      value="p1"
-    >
-      mock project
-    </option>
-  </Select>
-  <Select
-    label="Modification"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="m1"
-  >
-    <option
-      key="modificationOption-m1"
-      value="m1"
-    >
-      mock modification
-    </option>
-  </Select>
-  <Select
-    label="Timetable"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="t1"
-  >
-    <option
-      key="timetableOption-t1"
-      value="t1"
-    >
-      M-F
-    </option>
-  </Select>
-  <div
-    className="alert alert-info"
-    role="alert"
-  >
-    <Icon
-      icon={
-        Object {
-          "icon": Array [],
-          "iconName": "exclamation-circle",
-          "prefix": "fas",
-        }
-      }
-    />
-    The modification of the timetable you are copying from has less segments than the modification you are copying to. The segment speeds will be copied 1 segment(s) and after that, the default segment speed of 15 km/h will be used.
-  </div>
-  <P>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="success"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "plus",
-            "prefix": "fas",
-          }
-        }
-      />
-       Copy into new timetable
-    </Button>
-  </P>
-</ModalBody>
+    Copy existing timetable
+  </Button>
+</Fragment>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has more segments 1`] = `
-<ModalBody>
-  <Select
-    label="Region"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="r1"
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <option
-      key="regionOption-r1"
-      value="r1"
-    >
-      mock region
-    </option>
-  </Select>
-  <Select
-    label="Project"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="p1"
-  >
-    <option
-      key="projectOption-p1"
-      value="p1"
-    >
-      mock project
-    </option>
-  </Select>
-  <Select
-    label="Modification"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="m1"
-  >
-    <option
-      key="modificationOption-m1"
-      value="m1"
-    >
-      mock modification
-    </option>
-  </Select>
-  <Select
-    label="Timetable"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="t1"
-  >
-    <option
-      key="timetableOption-t1"
-      value="t1"
-    >
-      M-F
-    </option>
-  </Select>
-  <div
-    className="alert alert-info"
-    role="alert"
-  >
-    <Icon
-      icon={
-        Object {
-          "icon": Array [],
-          "iconName": "exclamation-circle",
-          "prefix": "fas",
-        }
-      }
-    />
-    The modification of the timetable you are copying to has less segments than the modification you are copying from. The segment speeds will be copied 1 segment(s).
-  </div>
-  <P>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="success"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "plus",
-            "prefix": "fas",
-          }
-        }
-      />
-       Copy into new timetable
-    </Button>
-  </P>
-</ModalBody>
+    Copy existing timetable
+  </Button>
+</Fragment>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has no segments 1`] = `
-<ModalBody>
-  <Select
-    label="Region"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="r1"
+<Fragment>
+  <Button
+    isFullWidth={true}
+    leftIcon="copy"
+    onClick={[Function]}
+    variantColor="green"
   >
-    <option
-      key="regionOption-r1"
-      value="r1"
-    >
-      mock region
-    </option>
-  </Select>
-  <Select
-    label="Project"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="p1"
-  >
-    <option
-      key="projectOption-p1"
-      value="p1"
-    >
-      mock project
-    </option>
-  </Select>
-  <Select
-    label="Modification"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="m1"
-  >
-    <option
-      key="modificationOption-m1"
-      value="m1"
-    >
-      mock modification
-    </option>
-  </Select>
-  <Select
-    label="Timetable"
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="t1"
-  >
-    <option
-      key="timetableOption-t1"
-      value="t1"
-    >
-      M-F
-    </option>
-  </Select>
-  <div
-    className="alert alert-info"
-    role="alert"
-  >
-    <Icon
-      icon={
-        Object {
-          "icon": Array [],
-          "iconName": "exclamation-circle",
-          "prefix": "fas",
-        }
-      }
-    />
-    The modification being copied to and/or from does not have any segments. The default segment speed of 15 km/h will be used.
-  </div>
-  <P>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="success"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "plus",
-            "prefix": "fas",
-          }
-        }
-      />
-       Copy into new timetable
-    </Button>
-  </P>
-</ModalBody>
+    Copy existing timetable
+  </Button>
+</Fragment>
 `;

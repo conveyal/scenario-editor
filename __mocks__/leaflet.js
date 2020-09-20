@@ -1,5 +1,3 @@
-/* global jest, module, require */
-
 import assign from 'lodash/assign'
 
 const L = jest.requireActual('leaflet')

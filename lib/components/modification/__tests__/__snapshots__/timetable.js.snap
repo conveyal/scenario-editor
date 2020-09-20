@@ -10,7 +10,6 @@ exports[`Component > Timetable renders correctly 1`] = `
   qualifiedStops={Array []}
   remove={[MockFunction]}
   segmentDistances={Array []}
-  setMapState={[MockFunction]}
   timetable={
     Object {
       "_id": "timetable-id",
@@ -201,7 +200,6 @@ exports[`Component > Timetable renders correctly 2`] = `
   qualifiedStops={Array []}
   remove={[MockFunction]}
   segmentDistances={Array []}
-  setMapState={[MockFunction]}
   timetable={
     Object {
       "_id": "timetable-id",
@@ -508,11 +506,9 @@ exports[`Component > Timetable renders correctly 2`] = `
                       </Box>
                     </FormControl>
                     <TimetableEntry
-                      bidirectional={false}
                       key=".1"
                       mb={4}
                       modificationStops={Array []}
-                      projectTimetables={Array []}
                       timetable={
                         Object {
                           "_id": "timetable-id",
@@ -2275,16 +2271,42 @@ exports[`Component > Timetable renders correctly 2`] = `
                                 </Box>
                               </ForwardRef>
                               <Phase
-                                availableTimetables={Array []}
                                 disabled={false}
                                 key=".6"
                                 mb={null}
                                 modificationStops={Array []}
-                                phaseAtStop=""
-                                phaseFromStop=""
-                                phaseFromTimetable=""
-                                phaseSeconds={300}
-                                timetableHeadway={900}
+                                timetable={
+                                  Object {
+                                    "_id": "timetable-id",
+                                    "dwellTime": 10,
+                                    "dwellTimes": Array [
+                                      12,
+                                    ],
+                                    "endTime": 57600,
+                                    "exactTimes": false,
+                                    "friday": true,
+                                    "headwaySecs": 900,
+                                    "modificationId": "1234",
+                                    "modificationName": "Test Modification",
+                                    "monday": true,
+                                    "name": "Test timetable",
+                                    "patternTrips": Array [
+                                      "abcd",
+                                    ],
+                                    "phaseAtStop": "",
+                                    "phaseFromStop": "",
+                                    "phaseFromTimetable": "",
+                                    "phaseSeconds": 300,
+                                    "saturday": false,
+                                    "segmentSpeeds": Array [],
+                                    "sourceTrip": "abcd",
+                                    "startTime": 28800,
+                                    "sunday": false,
+                                    "thursday": true,
+                                    "tuesday": true,
+                                    "wednesday": true,
+                                  }
+                                }
                                 update={[MockFunction]}
                               >
                                 <ForwardRef

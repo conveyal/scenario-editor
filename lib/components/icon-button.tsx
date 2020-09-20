@@ -7,6 +7,7 @@ import Icon from './icon'
 type SimpleIconButtonProps = {
   icon: IconDefinition
   isActive?: boolean
+  isDisabled?: boolean
   label: string
   onClick: (e: MouseEvent) => void
   placement?: PopperProps['placement']
@@ -18,6 +19,7 @@ type SimpleIconButtonProps = {
 export default function SimpleIconButton({
   icon,
   isActive = false,
+  isDisabled = false,
   label,
   onClick,
   placement,
@@ -38,6 +40,7 @@ export default function SimpleIconButton({
         <Button
           aria-label={label}
           isActive={isActive}
+          isDisabled={isDisabled}
           onClick={onClick}
           size={size}
           variant={variant}

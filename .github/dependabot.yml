@@ -13,3 +13,6 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "dev"
+    # Increase the version requirements for package.json
+    # only when required
+    versioning-strategy: increase-if-necessary

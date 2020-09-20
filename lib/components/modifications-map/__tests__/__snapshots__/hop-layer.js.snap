@@ -10,5 +10,6 @@ exports[`Project-Map > HopLayer renders correctly 1`] = `
 }
   }
   key="00000000-0000-0000-0000-000000000000"
+  zIndex={10000}
 />
 `;

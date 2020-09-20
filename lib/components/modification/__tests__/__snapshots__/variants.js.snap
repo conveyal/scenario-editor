@@ -19,6 +19,7 @@ exports[`Components > Modification > Variants 1`] = `
       name="a"
       onChange={[Function]}
       value={0}
+      wordBreak="break-all"
     >
       1
       . 
@@ -31,6 +32,7 @@ exports[`Components > Modification > Variants 1`] = `
       name="b"
       onChange={[Function]}
       value={1}
+      wordBreak="break-all"
     >
       2
       . 

@@ -879,6 +879,7 @@ exports[`Modification > List 1`] = `
                                         <Button
                                           aria-label="Import modifications from another project"
                                           isActive={false}
+                                          isDisabled={false}
                                           onBlur={[Function]}
                                           onClick={[Function]}
                                           onFocus={[Function]}
@@ -1083,6 +1084,7 @@ exports[`Modification > List 1`] = `
                                         <Button
                                           aria-label="Show all modifications"
                                           isActive={false}
+                                          isDisabled={false}
                                           onBlur={[Function]}
                                           onClick={[Function]}
                                           onFocus={[Function]}
@@ -1287,6 +1289,7 @@ exports[`Modification > List 1`] = `
                                         <Button
                                           aria-label="Hide all modifications"
                                           isActive={false}
+                                          isDisabled={false}
                                           onBlur={[Function]}
                                           onClick={[Function]}
                                           onFocus={[Function]}
@@ -1986,6 +1989,7 @@ exports[`Modification > List 1`] = `
                                                                                                 <Button
                                                                                                   aria-label="Show on map"
                                                                                                   isActive={false}
+                                                                                                  isDisabled={false}
                                                                                                   onBlur={[Function]}
                                                                                                   onClick={[Function]}
                                                                                                   onFocus={[Function]}
@@ -2695,354 +2699,285 @@ exports[`Modification > List 1`] = `
                                   />
                                 </Box>
                               </ForwardRef>
-                              <ForwardRef
-                                id="scenarios"
+                              <InnerDock
                                 key=".2"
                                 mb={null}
-                                pl={4}
-                                pr={2}
-                                pt={2}
-                                spacing={3}
                               >
-                                <Flex
-                                  direction="column"
-                                  id="scenarios"
-                                  mb={null}
-                                  pl={4}
-                                  pr={2}
-                                  pt={2}
+                                <SimpleBar
+                                  className="InnerDock "
+                                  style={
+                                    Object {
+                                      "height": 768,
+                                    }
+                                  }
                                 >
-                                  <Box
-                                    display="flex"
-                                    flexDirection="column"
-                                    id="scenarios"
-                                    mb={null}
-                                    pl={4}
-                                    pr={2}
-                                    pt={2}
+                                  <div
+                                    className="InnerDock "
+                                    data-simplebar={true}
+                                    style={
+                                      Object {
+                                        "height": 768,
+                                      }
+                                    }
                                   >
                                     <div
-                                      className="css-1pygc6s"
-                                      id="scenarios"
+                                      className="simplebar-wrapper"
                                     >
-                                      <Flex
-                                        key=".0"
-                                        mb={3}
-                                        pr={2}
-                                      >
-                                        <Box
-                                          display="flex"
-                                          mb={3}
-                                          pr={2}
-                                        >
-                                          <div
-                                            className="css-1s61t2b"
-                                          >
-                                            <Text
-                                              flex="1"
-                                              fontWeight="bold"
-                                            >
-                                              <Box
-                                                as="p"
-                                                flex="1"
-                                                fontFamily="body"
-                                                fontWeight="bold"
-                                              >
-                                                <p
-                                                  className="css-13c2z23"
-                                                >
-                                                  Baseline
-                                                </p>
-                                              </Box>
-                                            </Text>
-                                            <Tooltip
-                                              aria-label="Baseline (empty scenario) cannot be modified"
-                                              hasArrow={true}
-                                              label="Baseline (empty scenario) cannot be modified"
-                                              zIndex={1000}
-                                            >
-                                              <Icon
-                                                mr={1}
-                                                name="lock"
-                                                onBlur={[Function]}
-                                                onClick={[Function]}
-                                                onFocus={[Function]}
-                                                onMouseEnter={[Function]}
-                                                onMouseLeave={[Function]}
-                                              >
-                                                <Styled(div)
-                                                  as="svg"
-                                                  color="currentColor"
-                                                  display="inline-block"
-                                                  focusable={false}
-                                                  mr={1}
-                                                  onBlur={[Function]}
-                                                  onClick={[Function]}
-                                                  onFocus={[Function]}
-                                                  onMouseEnter={[Function]}
-                                                  onMouseLeave={[Function]}
-                                                  role="presentation"
-                                                  size="1em"
-                                                  verticalAlign="middle"
-                                                  viewBox="0 0 24 24"
-                                                >
-                                                  <svg
-                                                    className="css-11vxqx9"
-                                                    focusable={false}
-                                                    onBlur={[Function]}
-                                                    onClick={[Function]}
-                                                    onFocus={[Function]}
-                                                    onMouseEnter={[Function]}
-                                                    onMouseLeave={[Function]}
-                                                    role="presentation"
-                                                    viewBox="0 0 24 24"
-                                                  >
-                                                    <path
-                                                      d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
-                                                      fill="currentColor"
-                                                    />
-                                                  </svg>
-                                                </Styled(div)>
-                                              </Icon>
-                                              <ForwardRef
-                                                anchorEl={
-                                                  <svg
-                                                    class="css-11vxqx9"
-                                                    focusable="false"
-                                                    role="presentation"
-                                                    viewBox="0 0 24 24"
-                                                  >
-                                                    <path
-                                                      d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
-                                                      fill="currentColor"
-                                                    />
-                                                  </svg>
-                                                }
-                                                arrowSize="10px"
-                                                bg="gray.700"
-                                                borderRadius="sm"
-                                                color="whiteAlpha.900"
-                                                fontSize="sm"
-                                                fontWeight="medium"
-                                                hasArrow={true}
-                                                isOpen={false}
-                                                maxW="320px"
-                                                modifiers={
-                                                  Object {
-                                                    "offset": Object {
-                                                      "enabled": true,
-                                                      "offset": "0, 8",
-                                                    },
-                                                  }
-                                                }
-                                                placement="auto"
-                                                pointerEvents="none"
-                                                px="8px"
-                                                py="2px"
-                                                shadow="md"
-                                                timeout={200}
-                                                usePortal={true}
-                                                zIndex={1000}
-                                              />
-                                            </Tooltip>
-                                          </div>
-                                        </Box>
-                                      </Flex>
-                                      <Box
-                                        key=".1:$0"
-                                        mb={null}
+                                      <div
+                                        className="simplebar-height-auto-observer-wrapper"
                                       >
                                         <div
-                                          className="css-0"
+                                          className="simplebar-height-auto-observer"
+                                        />
+                                      </div>
+                                      <div
+                                        className="simplebar-mask"
+                                      >
+                                        <div
+                                          className="simplebar-offset"
                                         >
-                                          <Variant
-                                            copyVariant={[Function]}
-                                            deleteVariant={[Function]}
-                                            index={0}
-                                            name="Default"
-                                            onChangeName={[Function]}
-                                            showVariant={[Function]}
+                                          <div
+                                            className="simplebar-content-wrapper"
                                           >
-                                            <Flex
-                                              align="center"
+                                            <div
+                                              className="simplebar-content"
                                             >
-                                              <Box
-                                                alignItems="center"
-                                                display="flex"
+                                              <ForwardRef
+                                                id="scenarios"
+                                                pl={4}
+                                                pr={2}
+                                                pt={2}
+                                                spacing={3}
                                               >
-                                                <div
-                                                  className="css-70qvj9"
+                                                <Flex
+                                                  direction="column"
+                                                  id="scenarios"
+                                                  pl={4}
+                                                  pr={2}
+                                                  pt={2}
                                                 >
-                                                  <Text
-                                                    mr={2}
-                                                  >
-                                                    <Box
-                                                      as="p"
-                                                      fontFamily="body"
-                                                      mr={2}
-                                                    >
-                                                      <p
-                                                        className="css-189pxvf"
-                                                      >
-                                                        1
-                                                        .
-                                                      </p>
-                                                    </Box>
-                                                  </Text>
                                                   <Box
-                                                    flex="1"
-                                                    fontWeight="bold"
+                                                    display="flex"
+                                                    flexDirection="column"
+                                                    id="scenarios"
+                                                    pl={4}
+                                                    pr={2}
+                                                    pt={2}
                                                   >
                                                     <div
-                                                      className="css-1w1y9ry"
+                                                      className="css-1pygc6s"
+                                                      id="scenarios"
                                                     >
-                                                      <Editable
-                                                        isValid={[Function]}
-                                                        onChange={[Function]}
-                                                        value="Default"
+                                                      <Flex
+                                                        key=".0"
+                                                        mb={3}
+                                                        pr={2}
                                                       >
-                                                        <PseudoBox
-                                                          alignItems="center"
-                                                          cursor="pointer"
+                                                        <Box
                                                           display="flex"
-                                                          onClick={[Function]}
-                                                          role="group"
+                                                          mb={3}
+                                                          pr={2}
                                                         >
                                                           <div
-                                                            className="css-3ie40y"
-                                                            onClick={[Function]}
-                                                            role="group"
+                                                            className="css-1s61t2b"
                                                           >
-                                                            <Box
+                                                            <Text
                                                               flex="1"
+                                                              fontWeight="bold"
                                                             >
-                                                              <div
-                                                                className="css-1rr4qq7"
+                                                              <Box
+                                                                as="p"
+                                                                flex="1"
+                                                                fontFamily="body"
+                                                                fontWeight="bold"
                                                               >
-                                                                Default
-                                                              </div>
-                                                            </Box>
-                                                            <PseudoBox
-                                                              _groupHover={
-                                                                Object {
-                                                                  "visibility": "unset",
-                                                                }
-                                                              }
-                                                              visibility="hidden"
-                                                            >
-                                                              <div
-                                                                className="css-3icrxw"
-                                                              >
-                                                                <SimpleIconButton
-                                                                  icon={
-                                                                    Object {
-                                                                      "icon": Array [],
-                                                                      "iconName": "pencil-alt",
-                                                                      "prefix": "fas",
-                                                                    }
-                                                                  }
-                                                                  label="Click to edit"
-                                                                  onClick={[Function]}
+                                                                <p
+                                                                  className="css-13c2z23"
                                                                 >
-                                                                  <Box>
-                                                                    <div
-                                                                      className="css-0"
+                                                                  Baseline
+                                                                </p>
+                                                              </Box>
+                                                            </Text>
+                                                            <Tooltip
+                                                              aria-label="Baseline (empty scenario) cannot be modified"
+                                                              hasArrow={true}
+                                                              label="Baseline (empty scenario) cannot be modified"
+                                                              zIndex={1000}
+                                                            >
+                                                              <Icon
+                                                                mr={1}
+                                                                name="lock"
+                                                                onBlur={[Function]}
+                                                                onClick={[Function]}
+                                                                onFocus={[Function]}
+                                                                onMouseEnter={[Function]}
+                                                                onMouseLeave={[Function]}
+                                                              >
+                                                                <Styled(div)
+                                                                  as="svg"
+                                                                  color="currentColor"
+                                                                  display="inline-block"
+                                                                  focusable={false}
+                                                                  mr={1}
+                                                                  onBlur={[Function]}
+                                                                  onClick={[Function]}
+                                                                  onFocus={[Function]}
+                                                                  onMouseEnter={[Function]}
+                                                                  onMouseLeave={[Function]}
+                                                                  role="presentation"
+                                                                  size="1em"
+                                                                  verticalAlign="middle"
+                                                                  viewBox="0 0 24 24"
+                                                                >
+                                                                  <svg
+                                                                    className="css-11vxqx9"
+                                                                    focusable={false}
+                                                                    onBlur={[Function]}
+                                                                    onClick={[Function]}
+                                                                    onFocus={[Function]}
+                                                                    onMouseEnter={[Function]}
+                                                                    onMouseLeave={[Function]}
+                                                                    role="presentation"
+                                                                    viewBox="0 0 24 24"
+                                                                  >
+                                                                    <path
+                                                                      d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
+                                                                      fill="currentColor"
+                                                                    />
+                                                                  </svg>
+                                                                </Styled(div)>
+                                                              </Icon>
+                                                              <ForwardRef
+                                                                anchorEl={
+                                                                  <svg
+                                                                    class="css-11vxqx9"
+                                                                    focusable="false"
+                                                                    role="presentation"
+                                                                    viewBox="0 0 24 24"
+                                                                  >
+                                                                    <path
+                                                                      d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
+                                                                      fill="currentColor"
+                                                                    />
+                                                                  </svg>
+                                                                }
+                                                                arrowSize="10px"
+                                                                bg="gray.700"
+                                                                borderRadius="sm"
+                                                                color="whiteAlpha.900"
+                                                                fontSize="sm"
+                                                                fontWeight="medium"
+                                                                hasArrow={true}
+                                                                isOpen={false}
+                                                                maxW="320px"
+                                                                modifiers={
+                                                                  Object {
+                                                                    "offset": Object {
+                                                                      "enabled": true,
+                                                                      "offset": "0, 8",
+                                                                    },
+                                                                  }
+                                                                }
+                                                                placement="auto"
+                                                                pointerEvents="none"
+                                                                px="8px"
+                                                                py="2px"
+                                                                shadow="md"
+                                                                timeout={200}
+                                                                usePortal={true}
+                                                                zIndex={1000}
+                                                              />
+                                                            </Tooltip>
+                                                          </div>
+                                                        </Box>
+                                                      </Flex>
+                                                      <Box
+                                                        key=".1:$0"
+                                                        mb={null}
+                                                      >
+                                                        <div
+                                                          className="css-0"
+                                                        >
+                                                          <Variant
+                                                            copyVariant={[Function]}
+                                                            deleteVariant={[Function]}
+                                                            index={0}
+                                                            name="Default"
+                                                            onChangeName={[Function]}
+                                                            showVariant={[Function]}
+                                                          >
+                                                            <Flex
+                                                              align="center"
+                                                            >
+                                                              <Box
+                                                                alignItems="center"
+                                                                display="flex"
+                                                              >
+                                                                <div
+                                                                  className="css-70qvj9"
+                                                                >
+                                                                  <Text
+                                                                    mr={2}
+                                                                  >
+                                                                    <Box
+                                                                      as="p"
+                                                                      fontFamily="body"
+                                                                      mr={2}
                                                                     >
-                                                                      <Tooltip
-                                                                        aria-label="Click to edit"
-                                                                        hasArrow={true}
-                                                                        label="Click to edit"
-                                                                        placement="auto"
-                                                                        zIndex={1000}
+                                                                      <p
+                                                                        className="css-189pxvf"
                                                                       >
-                                                                        <Button
-                                                                          aria-label="Click to edit"
-                                                                          isActive={false}
-                                                                          onBlur={[Function]}
+                                                                        1
+                                                                        .
+                                                                      </p>
+                                                                    </Box>
+                                                                  </Text>
+                                                                  <Box
+                                                                    flex="1"
+                                                                    fontWeight="bold"
+                                                                  >
+                                                                    <div
+                                                                      className="css-1w1y9ry"
+                                                                    >
+                                                                      <Editable
+                                                                        isValid={[Function]}
+                                                                        onChange={[Function]}
+                                                                        value="Default"
+                                                                      >
+                                                                        <PseudoBox
+                                                                          alignItems="center"
+                                                                          cursor="pointer"
+                                                                          display="flex"
                                                                           onClick={[Function]}
-                                                                          onFocus={[Function]}
-                                                                          onMouseEnter={[Function]}
-                                                                          onMouseLeave={[Function]}
-                                                                          size="sm"
-                                                                          variant="ghost"
-                                                                          variantColor="blue"
+                                                                          role="group"
                                                                         >
-                                                                          <PseudoBox
-                                                                            _active={
-                                                                              Object {
-                                                                                "bg": "blue.100",
-                                                                              }
-                                                                            }
-                                                                            _disabled={
-                                                                              Object {
-                                                                                "boxShadow": "none",
-                                                                                "cursor": "not-allowed",
-                                                                                "opacity": "40%",
-                                                                              }
-                                                                            }
-                                                                            _focus={
-                                                                              Object {
-                                                                                "boxShadow": "outline",
-                                                                              }
-                                                                            }
-                                                                            _hover={
-                                                                              Object {
-                                                                                "bg": "blue.50",
-                                                                              }
-                                                                            }
-                                                                            alignItems="center"
-                                                                            appearance="none"
-                                                                            aria-label="Click to edit"
-                                                                            as="button"
-                                                                            bg="transparent"
-                                                                            borderRadius="md"
-                                                                            color="blue.500"
-                                                                            display="inline-flex"
-                                                                            fontSize="sm"
-                                                                            fontWeight="semibold"
-                                                                            height={8}
-                                                                            justifyContent="center"
-                                                                            lineHeight="1.2"
-                                                                            minWidth={8}
-                                                                            onBlur={[Function]}
+                                                                          <div
+                                                                            className="css-3ie40y"
                                                                             onClick={[Function]}
-                                                                            onFocus={[Function]}
-                                                                            onMouseEnter={[Function]}
-                                                                            onMouseLeave={[Function]}
-                                                                            outline="none"
-                                                                            position="relative"
-                                                                            px={3}
-                                                                            transition="all 250ms"
-                                                                            type="button"
-                                                                            userSelect="none"
-                                                                            verticalAlign="middle"
-                                                                            whiteSpace="nowrap"
+                                                                            role="group"
                                                                           >
-                                                                            <button
-                                                                              aria-label="Click to edit"
-                                                                              className="css-ig2uvu"
-                                                                              onBlur={[Function]}
-                                                                              onClick={[Function]}
-                                                                              onFocus={[Function]}
-                                                                              onMouseEnter={[Function]}
-                                                                              onMouseLeave={[Function]}
-                                                                              type="button"
+                                                                            <Box
+                                                                              flex="1"
+                                                                              wordBreak="break-all"
                                                                             >
-                                                                              <Icon
-                                                                                fixedWidth={false}
-                                                                                icon={
-                                                                                  Object {
-                                                                                    "icon": Array [],
-                                                                                    "iconName": "pencil-alt",
-                                                                                    "prefix": "fas",
-                                                                                  }
-                                                                                }
+                                                                              <div
+                                                                                className="css-1taykz1"
                                                                               >
-                                                                                <FontAwesomeIcon
-                                                                                  border={false}
-                                                                                  className=""
-                                                                                  fixedWidth={false}
-                                                                                  flip={null}
+                                                                                Default
+                                                                              </div>
+                                                                            </Box>
+                                                                            <PseudoBox
+                                                                              _groupHover={
+                                                                                Object {
+                                                                                  "visibility": "unset",
+                                                                                }
+                                                                              }
+                                                                              visibility="hidden"
+                                                                            >
+                                                                              <div
+                                                                                className="css-3icrxw"
+                                                                              >
+                                                                                <SimpleIconButton
                                                                                   icon={
                                                                                     Object {
                                                                                       "icon": Array [],
@@ -3050,228 +2985,225 @@ exports[`Modification > List 1`] = `
                                                                                       "prefix": "fas",
                                                                                     }
                                                                                   }
-                                                                                  inverse={false}
-                                                                                  listItem={false}
-                                                                                  mask={null}
-                                                                                  pull={null}
-                                                                                  pulse={false}
-                                                                                  rotation={null}
-                                                                                  size={null}
-                                                                                  spin={false}
-                                                                                  swapOpacity={false}
-                                                                                  symbol={false}
-                                                                                  title=""
-                                                                                  transform={null}
+                                                                                  label="Click to edit"
+                                                                                  onClick={[Function]}
                                                                                 >
-                                                                                  <svg
-                                                                                    aria-hidden="true"
-                                                                                    className="svg-inline--fa fa-pencil-alt fa-w-NaN "
-                                                                                    data-icon="pencil-alt"
-                                                                                    data-prefix="fas"
-                                                                                    focusable="false"
-                                                                                    role="img"
-                                                                                    style={Object {}}
-                                                                                    viewBox="0 0 undefined undefined"
-                                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                                  >
-                                                                                    <path
-                                                                                      fill="currentColor"
-                                                                                      style={Object {}}
-                                                                                    />
-                                                                                  </svg>
-                                                                                </FontAwesomeIcon>
-                                                                              </Icon>
-                                                                            </button>
-                                                                          </PseudoBox>
-                                                                        </Button>
-                                                                        <ForwardRef
-                                                                          anchorEl={
-                                                                            <button
-                                                                              aria-label="Click to edit"
-                                                                              class="css-ig2uvu"
-                                                                              type="button"
-                                                                            >
-                                                                              <svg
-                                                                                aria-hidden="true"
-                                                                                class="svg-inline--fa fa-pencil-alt fa-w-NaN "
-                                                                                data-icon="pencil-alt"
-                                                                                data-prefix="fas"
-                                                                                focusable="false"
-                                                                                role="img"
-                                                                                viewBox="0 0 undefined undefined"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                              >
-                                                                                <path
-                                                                                  fill="currentColor"
-                                                                                />
-                                                                              </svg>
-                                                                            </button>
-                                                                          }
-                                                                          arrowSize="10px"
-                                                                          bg="gray.700"
-                                                                          borderRadius="sm"
-                                                                          color="whiteAlpha.900"
-                                                                          fontSize="sm"
-                                                                          fontWeight="medium"
-                                                                          hasArrow={true}
-                                                                          isOpen={false}
-                                                                          maxW="320px"
-                                                                          modifiers={
-                                                                            Object {
-                                                                              "offset": Object {
-                                                                                "enabled": true,
-                                                                                "offset": "0, 8",
-                                                                              },
-                                                                            }
-                                                                          }
-                                                                          placement="auto"
-                                                                          pointerEvents="none"
-                                                                          px="8px"
-                                                                          py="2px"
-                                                                          shadow="md"
-                                                                          timeout={200}
-                                                                          usePortal={true}
-                                                                          zIndex={1000}
-                                                                        />
-                                                                      </Tooltip>
+                                                                                  <Box>
+                                                                                    <div
+                                                                                      className="css-0"
+                                                                                    >
+                                                                                      <Tooltip
+                                                                                        aria-label="Click to edit"
+                                                                                        hasArrow={true}
+                                                                                        label="Click to edit"
+                                                                                        placement="auto"
+                                                                                        zIndex={1000}
+                                                                                      >
+                                                                                        <Button
+                                                                                          aria-label="Click to edit"
+                                                                                          isActive={false}
+                                                                                          isDisabled={false}
+                                                                                          onBlur={[Function]}
+                                                                                          onClick={[Function]}
+                                                                                          onFocus={[Function]}
+                                                                                          onMouseEnter={[Function]}
+                                                                                          onMouseLeave={[Function]}
+                                                                                          size="sm"
+                                                                                          variant="ghost"
+                                                                                          variantColor="blue"
+                                                                                        >
+                                                                                          <PseudoBox
+                                                                                            _active={
+                                                                                              Object {
+                                                                                                "bg": "blue.100",
+                                                                                              }
+                                                                                            }
+                                                                                            _disabled={
+                                                                                              Object {
+                                                                                                "boxShadow": "none",
+                                                                                                "cursor": "not-allowed",
+                                                                                                "opacity": "40%",
+                                                                                              }
+                                                                                            }
+                                                                                            _focus={
+                                                                                              Object {
+                                                                                                "boxShadow": "outline",
+                                                                                              }
+                                                                                            }
+                                                                                            _hover={
+                                                                                              Object {
+                                                                                                "bg": "blue.50",
+                                                                                              }
+                                                                                            }
+                                                                                            alignItems="center"
+                                                                                            appearance="none"
+                                                                                            aria-label="Click to edit"
+                                                                                            as="button"
+                                                                                            bg="transparent"
+                                                                                            borderRadius="md"
+                                                                                            color="blue.500"
+                                                                                            display="inline-flex"
+                                                                                            fontSize="sm"
+                                                                                            fontWeight="semibold"
+                                                                                            height={8}
+                                                                                            justifyContent="center"
+                                                                                            lineHeight="1.2"
+                                                                                            minWidth={8}
+                                                                                            onBlur={[Function]}
+                                                                                            onClick={[Function]}
+                                                                                            onFocus={[Function]}
+                                                                                            onMouseEnter={[Function]}
+                                                                                            onMouseLeave={[Function]}
+                                                                                            outline="none"
+                                                                                            position="relative"
+                                                                                            px={3}
+                                                                                            transition="all 250ms"
+                                                                                            type="button"
+                                                                                            userSelect="none"
+                                                                                            verticalAlign="middle"
+                                                                                            whiteSpace="nowrap"
+                                                                                          >
+                                                                                            <button
+                                                                                              aria-label="Click to edit"
+                                                                                              className="css-ig2uvu"
+                                                                                              onBlur={[Function]}
+                                                                                              onClick={[Function]}
+                                                                                              onFocus={[Function]}
+                                                                                              onMouseEnter={[Function]}
+                                                                                              onMouseLeave={[Function]}
+                                                                                              type="button"
+                                                                                            >
+                                                                                              <Icon
+                                                                                                fixedWidth={false}
+                                                                                                icon={
+                                                                                                  Object {
+                                                                                                    "icon": Array [],
+                                                                                                    "iconName": "pencil-alt",
+                                                                                                    "prefix": "fas",
+                                                                                                  }
+                                                                                                }
+                                                                                              >
+                                                                                                <FontAwesomeIcon
+                                                                                                  border={false}
+                                                                                                  className=""
+                                                                                                  fixedWidth={false}
+                                                                                                  flip={null}
+                                                                                                  icon={
+                                                                                                    Object {
+                                                                                                      "icon": Array [],
+                                                                                                      "iconName": "pencil-alt",
+                                                                                                      "prefix": "fas",
+                                                                                                    }
+                                                                                                  }
+                                                                                                  inverse={false}
+                                                                                                  listItem={false}
+                                                                                                  mask={null}
+                                                                                                  pull={null}
+                                                                                                  pulse={false}
+                                                                                                  rotation={null}
+                                                                                                  size={null}
+                                                                                                  spin={false}
+                                                                                                  swapOpacity={false}
+                                                                                                  symbol={false}
+                                                                                                  title=""
+                                                                                                  transform={null}
+                                                                                                >
+                                                                                                  <svg
+                                                                                                    aria-hidden="true"
+                                                                                                    className="svg-inline--fa fa-pencil-alt fa-w-NaN "
+                                                                                                    data-icon="pencil-alt"
+                                                                                                    data-prefix="fas"
+                                                                                                    focusable="false"
+                                                                                                    role="img"
+                                                                                                    style={Object {}}
+                                                                                                    viewBox="0 0 undefined undefined"
+                                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                                  >
+                                                                                                    <path
+                                                                                                      fill="currentColor"
+                                                                                                      style={Object {}}
+                                                                                                    />
+                                                                                                  </svg>
+                                                                                                </FontAwesomeIcon>
+                                                                                              </Icon>
+                                                                                            </button>
+                                                                                          </PseudoBox>
+                                                                                        </Button>
+                                                                                        <ForwardRef
+                                                                                          anchorEl={
+                                                                                            <button
+                                                                                              aria-label="Click to edit"
+                                                                                              class="css-ig2uvu"
+                                                                                              type="button"
+                                                                                            >
+                                                                                              <svg
+                                                                                                aria-hidden="true"
+                                                                                                class="svg-inline--fa fa-pencil-alt fa-w-NaN "
+                                                                                                data-icon="pencil-alt"
+                                                                                                data-prefix="fas"
+                                                                                                focusable="false"
+                                                                                                role="img"
+                                                                                                viewBox="0 0 undefined undefined"
+                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                              >
+                                                                                                <path
+                                                                                                  fill="currentColor"
+                                                                                                />
+                                                                                              </svg>
+                                                                                            </button>
+                                                                                          }
+                                                                                          arrowSize="10px"
+                                                                                          bg="gray.700"
+                                                                                          borderRadius="sm"
+                                                                                          color="whiteAlpha.900"
+                                                                                          fontSize="sm"
+                                                                                          fontWeight="medium"
+                                                                                          hasArrow={true}
+                                                                                          isOpen={false}
+                                                                                          maxW="320px"
+                                                                                          modifiers={
+                                                                                            Object {
+                                                                                              "offset": Object {
+                                                                                                "enabled": true,
+                                                                                                "offset": "0, 8",
+                                                                                              },
+                                                                                            }
+                                                                                          }
+                                                                                          placement="auto"
+                                                                                          pointerEvents="none"
+                                                                                          px="8px"
+                                                                                          py="2px"
+                                                                                          shadow="md"
+                                                                                          timeout={200}
+                                                                                          usePortal={true}
+                                                                                          zIndex={1000}
+                                                                                        />
+                                                                                      </Tooltip>
+                                                                                    </div>
+                                                                                  </Box>
+                                                                                </SimpleIconButton>
+                                                                              </div>
+                                                                            </PseudoBox>
+                                                                          </div>
+                                                                        </PseudoBox>
+                                                                      </Editable>
                                                                     </div>
                                                                   </Box>
-                                                                </SimpleIconButton>
-                                                              </div>
-                                                            </PseudoBox>
-                                                          </div>
-                                                        </PseudoBox>
-                                                      </Editable>
-                                                    </div>
-                                                  </Box>
-                                                  <ForwardRef
-                                                    isInline={true}
-                                                    spacing={0}
-                                                  >
-                                                    <Flex
-                                                      direction="row"
-                                                    >
-                                                      <Box
-                                                        display="flex"
-                                                        flexDirection="row"
-                                                      >
-                                                        <div
-                                                          className="css-1xhj18k"
-                                                        >
-                                                          <SimpleIconButton
-                                                            icon={
-                                                              Object {
-                                                                "icon": Array [],
-                                                                "iconName": "copy",
-                                                                "prefix": "fas",
-                                                              }
-                                                            }
-                                                            key=".1"
-                                                            label="Copy scenario"
-                                                            mr={0}
-                                                            onClick={[Function]}
-                                                          >
-                                                            <Box
-                                                              mr={0}
-                                                            >
-                                                              <div
-                                                                className="css-1xzanuf"
-                                                              >
-                                                                <Tooltip
-                                                                  aria-label="Copy scenario"
-                                                                  hasArrow={true}
-                                                                  label="Copy scenario"
-                                                                  placement="auto"
-                                                                  zIndex={1000}
-                                                                >
-                                                                  <Button
-                                                                    aria-label="Copy scenario"
-                                                                    isActive={false}
-                                                                    onBlur={[Function]}
-                                                                    onClick={[Function]}
-                                                                    onFocus={[Function]}
-                                                                    onMouseEnter={[Function]}
-                                                                    onMouseLeave={[Function]}
-                                                                    size="sm"
-                                                                    variant="ghost"
-                                                                    variantColor="blue"
+                                                                  <ForwardRef
+                                                                    isInline={true}
+                                                                    spacing={0}
                                                                   >
-                                                                    <PseudoBox
-                                                                      _active={
-                                                                        Object {
-                                                                          "bg": "blue.100",
-                                                                        }
-                                                                      }
-                                                                      _disabled={
-                                                                        Object {
-                                                                          "boxShadow": "none",
-                                                                          "cursor": "not-allowed",
-                                                                          "opacity": "40%",
-                                                                        }
-                                                                      }
-                                                                      _focus={
-                                                                        Object {
-                                                                          "boxShadow": "outline",
-                                                                        }
-                                                                      }
-                                                                      _hover={
-                                                                        Object {
-                                                                          "bg": "blue.50",
-                                                                        }
-                                                                      }
-                                                                      alignItems="center"
-                                                                      appearance="none"
-                                                                      aria-label="Copy scenario"
-                                                                      as="button"
-                                                                      bg="transparent"
-                                                                      borderRadius="md"
-                                                                      color="blue.500"
-                                                                      display="inline-flex"
-                                                                      fontSize="sm"
-                                                                      fontWeight="semibold"
-                                                                      height={8}
-                                                                      justifyContent="center"
-                                                                      lineHeight="1.2"
-                                                                      minWidth={8}
-                                                                      onBlur={[Function]}
-                                                                      onClick={[Function]}
-                                                                      onFocus={[Function]}
-                                                                      onMouseEnter={[Function]}
-                                                                      onMouseLeave={[Function]}
-                                                                      outline="none"
-                                                                      position="relative"
-                                                                      px={3}
-                                                                      transition="all 250ms"
-                                                                      type="button"
-                                                                      userSelect="none"
-                                                                      verticalAlign="middle"
-                                                                      whiteSpace="nowrap"
+                                                                    <Flex
+                                                                      direction="row"
                                                                     >
-                                                                      <button
-                                                                        aria-label="Copy scenario"
-                                                                        className="css-ig2uvu"
-                                                                        onBlur={[Function]}
-                                                                        onClick={[Function]}
-                                                                        onFocus={[Function]}
-                                                                        onMouseEnter={[Function]}
-                                                                        onMouseLeave={[Function]}
-                                                                        type="button"
+                                                                      <Box
+                                                                        display="flex"
+                                                                        flexDirection="row"
                                                                       >
-                                                                        <Icon
-                                                                          fixedWidth={false}
-                                                                          icon={
-                                                                            Object {
-                                                                              "icon": Array [],
-                                                                              "iconName": "copy",
-                                                                              "prefix": "fas",
-                                                                            }
-                                                                          }
+                                                                        <div
+                                                                          className="css-1xhj18k"
                                                                         >
-                                                                          <FontAwesomeIcon
-                                                                            border={false}
-                                                                            className=""
-                                                                            fixedWidth={false}
-                                                                            flip={null}
+                                                                          <SimpleIconButton
                                                                             icon={
                                                                               Object {
                                                                                 "icon": Array [],
@@ -3279,207 +3211,208 @@ exports[`Modification > List 1`] = `
                                                                                 "prefix": "fas",
                                                                               }
                                                                             }
-                                                                            inverse={false}
-                                                                            listItem={false}
-                                                                            mask={null}
-                                                                            pull={null}
-                                                                            pulse={false}
-                                                                            rotation={null}
-                                                                            size={null}
-                                                                            spin={false}
-                                                                            swapOpacity={false}
-                                                                            symbol={false}
-                                                                            title=""
-                                                                            transform={null}
+                                                                            key=".1"
+                                                                            label="Copy scenario"
+                                                                            mr={0}
+                                                                            onClick={[Function]}
                                                                           >
-                                                                            <svg
-                                                                              aria-hidden="true"
-                                                                              className="svg-inline--fa fa-copy fa-w-NaN "
-                                                                              data-icon="copy"
-                                                                              data-prefix="fas"
-                                                                              focusable="false"
-                                                                              role="img"
-                                                                              style={Object {}}
-                                                                              viewBox="0 0 undefined undefined"
-                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                            <Box
+                                                                              mr={0}
                                                                             >
-                                                                              <path
-                                                                                fill="currentColor"
-                                                                                style={Object {}}
-                                                                              />
-                                                                            </svg>
-                                                                          </FontAwesomeIcon>
-                                                                        </Icon>
-                                                                      </button>
-                                                                    </PseudoBox>
-                                                                  </Button>
-                                                                  <ForwardRef
-                                                                    anchorEl={
-                                                                      <button
-                                                                        aria-label="Copy scenario"
-                                                                        class="css-ig2uvu"
-                                                                        type="button"
-                                                                      >
-                                                                        <svg
-                                                                          aria-hidden="true"
-                                                                          class="svg-inline--fa fa-copy fa-w-NaN "
-                                                                          data-icon="copy"
-                                                                          data-prefix="fas"
-                                                                          focusable="false"
-                                                                          role="img"
-                                                                          viewBox="0 0 undefined undefined"
-                                                                          xmlns="http://www.w3.org/2000/svg"
-                                                                        >
-                                                                          <path
-                                                                            fill="currentColor"
-                                                                          />
-                                                                        </svg>
-                                                                      </button>
-                                                                    }
-                                                                    arrowSize="10px"
-                                                                    bg="gray.700"
-                                                                    borderRadius="sm"
-                                                                    color="whiteAlpha.900"
-                                                                    fontSize="sm"
-                                                                    fontWeight="medium"
-                                                                    hasArrow={true}
-                                                                    isOpen={false}
-                                                                    maxW="320px"
-                                                                    modifiers={
-                                                                      Object {
-                                                                        "offset": Object {
-                                                                          "enabled": true,
-                                                                          "offset": "0, 8",
-                                                                        },
-                                                                      }
-                                                                    }
-                                                                    placement="auto"
-                                                                    pointerEvents="none"
-                                                                    px="8px"
-                                                                    py="2px"
-                                                                    shadow="md"
-                                                                    timeout={200}
-                                                                    usePortal={true}
-                                                                    zIndex={1000}
-                                                                  />
-                                                                </Tooltip>
-                                                              </div>
-                                                            </Box>
-                                                          </SimpleIconButton>
-                                                          <SimpleIconButton
-                                                            icon={
-                                                              Object {
-                                                                "icon": Array [],
-                                                                "iconName": "eye",
-                                                                "prefix": "fas",
-                                                              }
-                                                            }
-                                                            key=".2"
-                                                            label="Show modifications for this scenario on the map"
-                                                            mr={null}
-                                                            onClick={[Function]}
-                                                          >
-                                                            <Box
-                                                              mr={null}
-                                                            >
-                                                              <div
-                                                                className="css-0"
-                                                              >
-                                                                <Tooltip
-                                                                  aria-label="Show modifications for this scenario on the map"
-                                                                  hasArrow={true}
-                                                                  label="Show modifications for this scenario on the map"
-                                                                  placement="auto"
-                                                                  zIndex={1000}
-                                                                >
-                                                                  <Button
-                                                                    aria-label="Show modifications for this scenario on the map"
-                                                                    isActive={false}
-                                                                    onBlur={[Function]}
-                                                                    onClick={[Function]}
-                                                                    onFocus={[Function]}
-                                                                    onMouseEnter={[Function]}
-                                                                    onMouseLeave={[Function]}
-                                                                    size="sm"
-                                                                    variant="ghost"
-                                                                    variantColor="blue"
-                                                                  >
-                                                                    <PseudoBox
-                                                                      _active={
-                                                                        Object {
-                                                                          "bg": "blue.100",
-                                                                        }
-                                                                      }
-                                                                      _disabled={
-                                                                        Object {
-                                                                          "boxShadow": "none",
-                                                                          "cursor": "not-allowed",
-                                                                          "opacity": "40%",
-                                                                        }
-                                                                      }
-                                                                      _focus={
-                                                                        Object {
-                                                                          "boxShadow": "outline",
-                                                                        }
-                                                                      }
-                                                                      _hover={
-                                                                        Object {
-                                                                          "bg": "blue.50",
-                                                                        }
-                                                                      }
-                                                                      alignItems="center"
-                                                                      appearance="none"
-                                                                      aria-label="Show modifications for this scenario on the map"
-                                                                      as="button"
-                                                                      bg="transparent"
-                                                                      borderRadius="md"
-                                                                      color="blue.500"
-                                                                      display="inline-flex"
-                                                                      fontSize="sm"
-                                                                      fontWeight="semibold"
-                                                                      height={8}
-                                                                      justifyContent="center"
-                                                                      lineHeight="1.2"
-                                                                      minWidth={8}
-                                                                      onBlur={[Function]}
-                                                                      onClick={[Function]}
-                                                                      onFocus={[Function]}
-                                                                      onMouseEnter={[Function]}
-                                                                      onMouseLeave={[Function]}
-                                                                      outline="none"
-                                                                      position="relative"
-                                                                      px={3}
-                                                                      transition="all 250ms"
-                                                                      type="button"
-                                                                      userSelect="none"
-                                                                      verticalAlign="middle"
-                                                                      whiteSpace="nowrap"
-                                                                    >
-                                                                      <button
-                                                                        aria-label="Show modifications for this scenario on the map"
-                                                                        className="css-ig2uvu"
-                                                                        onBlur={[Function]}
-                                                                        onClick={[Function]}
-                                                                        onFocus={[Function]}
-                                                                        onMouseEnter={[Function]}
-                                                                        onMouseLeave={[Function]}
-                                                                        type="button"
-                                                                      >
-                                                                        <Icon
-                                                                          fixedWidth={false}
-                                                                          icon={
-                                                                            Object {
-                                                                              "icon": Array [],
-                                                                              "iconName": "eye",
-                                                                              "prefix": "fas",
-                                                                            }
-                                                                          }
-                                                                        >
-                                                                          <FontAwesomeIcon
-                                                                            border={false}
-                                                                            className=""
-                                                                            fixedWidth={false}
-                                                                            flip={null}
+                                                                              <div
+                                                                                className="css-1xzanuf"
+                                                                              >
+                                                                                <Tooltip
+                                                                                  aria-label="Copy scenario"
+                                                                                  hasArrow={true}
+                                                                                  label="Copy scenario"
+                                                                                  placement="auto"
+                                                                                  zIndex={1000}
+                                                                                >
+                                                                                  <Button
+                                                                                    aria-label="Copy scenario"
+                                                                                    isActive={false}
+                                                                                    isDisabled={false}
+                                                                                    onBlur={[Function]}
+                                                                                    onClick={[Function]}
+                                                                                    onFocus={[Function]}
+                                                                                    onMouseEnter={[Function]}
+                                                                                    onMouseLeave={[Function]}
+                                                                                    size="sm"
+                                                                                    variant="ghost"
+                                                                                    variantColor="blue"
+                                                                                  >
+                                                                                    <PseudoBox
+                                                                                      _active={
+                                                                                        Object {
+                                                                                          "bg": "blue.100",
+                                                                                        }
+                                                                                      }
+                                                                                      _disabled={
+                                                                                        Object {
+                                                                                          "boxShadow": "none",
+                                                                                          "cursor": "not-allowed",
+                                                                                          "opacity": "40%",
+                                                                                        }
+                                                                                      }
+                                                                                      _focus={
+                                                                                        Object {
+                                                                                          "boxShadow": "outline",
+                                                                                        }
+                                                                                      }
+                                                                                      _hover={
+                                                                                        Object {
+                                                                                          "bg": "blue.50",
+                                                                                        }
+                                                                                      }
+                                                                                      alignItems="center"
+                                                                                      appearance="none"
+                                                                                      aria-label="Copy scenario"
+                                                                                      as="button"
+                                                                                      bg="transparent"
+                                                                                      borderRadius="md"
+                                                                                      color="blue.500"
+                                                                                      display="inline-flex"
+                                                                                      fontSize="sm"
+                                                                                      fontWeight="semibold"
+                                                                                      height={8}
+                                                                                      justifyContent="center"
+                                                                                      lineHeight="1.2"
+                                                                                      minWidth={8}
+                                                                                      onBlur={[Function]}
+                                                                                      onClick={[Function]}
+                                                                                      onFocus={[Function]}
+                                                                                      onMouseEnter={[Function]}
+                                                                                      onMouseLeave={[Function]}
+                                                                                      outline="none"
+                                                                                      position="relative"
+                                                                                      px={3}
+                                                                                      transition="all 250ms"
+                                                                                      type="button"
+                                                                                      userSelect="none"
+                                                                                      verticalAlign="middle"
+                                                                                      whiteSpace="nowrap"
+                                                                                    >
+                                                                                      <button
+                                                                                        aria-label="Copy scenario"
+                                                                                        className="css-ig2uvu"
+                                                                                        onBlur={[Function]}
+                                                                                        onClick={[Function]}
+                                                                                        onFocus={[Function]}
+                                                                                        onMouseEnter={[Function]}
+                                                                                        onMouseLeave={[Function]}
+                                                                                        type="button"
+                                                                                      >
+                                                                                        <Icon
+                                                                                          fixedWidth={false}
+                                                                                          icon={
+                                                                                            Object {
+                                                                                              "icon": Array [],
+                                                                                              "iconName": "copy",
+                                                                                              "prefix": "fas",
+                                                                                            }
+                                                                                          }
+                                                                                        >
+                                                                                          <FontAwesomeIcon
+                                                                                            border={false}
+                                                                                            className=""
+                                                                                            fixedWidth={false}
+                                                                                            flip={null}
+                                                                                            icon={
+                                                                                              Object {
+                                                                                                "icon": Array [],
+                                                                                                "iconName": "copy",
+                                                                                                "prefix": "fas",
+                                                                                              }
+                                                                                            }
+                                                                                            inverse={false}
+                                                                                            listItem={false}
+                                                                                            mask={null}
+                                                                                            pull={null}
+                                                                                            pulse={false}
+                                                                                            rotation={null}
+                                                                                            size={null}
+                                                                                            spin={false}
+                                                                                            swapOpacity={false}
+                                                                                            symbol={false}
+                                                                                            title=""
+                                                                                            transform={null}
+                                                                                          >
+                                                                                            <svg
+                                                                                              aria-hidden="true"
+                                                                                              className="svg-inline--fa fa-copy fa-w-NaN "
+                                                                                              data-icon="copy"
+                                                                                              data-prefix="fas"
+                                                                                              focusable="false"
+                                                                                              role="img"
+                                                                                              style={Object {}}
+                                                                                              viewBox="0 0 undefined undefined"
+                                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                                            >
+                                                                                              <path
+                                                                                                fill="currentColor"
+                                                                                                style={Object {}}
+                                                                                              />
+                                                                                            </svg>
+                                                                                          </FontAwesomeIcon>
+                                                                                        </Icon>
+                                                                                      </button>
+                                                                                    </PseudoBox>
+                                                                                  </Button>
+                                                                                  <ForwardRef
+                                                                                    anchorEl={
+                                                                                      <button
+                                                                                        aria-label="Copy scenario"
+                                                                                        class="css-ig2uvu"
+                                                                                        type="button"
+                                                                                      >
+                                                                                        <svg
+                                                                                          aria-hidden="true"
+                                                                                          class="svg-inline--fa fa-copy fa-w-NaN "
+                                                                                          data-icon="copy"
+                                                                                          data-prefix="fas"
+                                                                                          focusable="false"
+                                                                                          role="img"
+                                                                                          viewBox="0 0 undefined undefined"
+                                                                                          xmlns="http://www.w3.org/2000/svg"
+                                                                                        >
+                                                                                          <path
+                                                                                            fill="currentColor"
+                                                                                          />
+                                                                                        </svg>
+                                                                                      </button>
+                                                                                    }
+                                                                                    arrowSize="10px"
+                                                                                    bg="gray.700"
+                                                                                    borderRadius="sm"
+                                                                                    color="whiteAlpha.900"
+                                                                                    fontSize="sm"
+                                                                                    fontWeight="medium"
+                                                                                    hasArrow={true}
+                                                                                    isOpen={false}
+                                                                                    maxW="320px"
+                                                                                    modifiers={
+                                                                                      Object {
+                                                                                        "offset": Object {
+                                                                                          "enabled": true,
+                                                                                          "offset": "0, 8",
+                                                                                        },
+                                                                                      }
+                                                                                    }
+                                                                                    placement="auto"
+                                                                                    pointerEvents="none"
+                                                                                    px="8px"
+                                                                                    py="2px"
+                                                                                    shadow="md"
+                                                                                    timeout={200}
+                                                                                    usePortal={true}
+                                                                                    zIndex={1000}
+                                                                                  />
+                                                                                </Tooltip>
+                                                                              </div>
+                                                                            </Box>
+                                                                          </SimpleIconButton>
+                                                                          <SimpleIconButton
                                                                             icon={
                                                                               Object {
                                                                                 "icon": Array [],
@@ -3487,107 +3420,246 @@ exports[`Modification > List 1`] = `
                                                                                 "prefix": "fas",
                                                                               }
                                                                             }
-                                                                            inverse={false}
-                                                                            listItem={false}
-                                                                            mask={null}
-                                                                            pull={null}
-                                                                            pulse={false}
-                                                                            rotation={null}
-                                                                            size={null}
-                                                                            spin={false}
-                                                                            swapOpacity={false}
-                                                                            symbol={false}
-                                                                            title=""
-                                                                            transform={null}
+                                                                            key=".2"
+                                                                            label="Show modifications for this scenario on the map"
+                                                                            mr={null}
+                                                                            onClick={[Function]}
                                                                           >
-                                                                            <svg
-                                                                              aria-hidden="true"
-                                                                              className="svg-inline--fa fa-eye fa-w-NaN "
-                                                                              data-icon="eye"
-                                                                              data-prefix="fas"
-                                                                              focusable="false"
-                                                                              role="img"
-                                                                              style={Object {}}
-                                                                              viewBox="0 0 undefined undefined"
-                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                            <Box
+                                                                              mr={null}
                                                                             >
-                                                                              <path
-                                                                                fill="currentColor"
-                                                                                style={Object {}}
-                                                                              />
-                                                                            </svg>
-                                                                          </FontAwesomeIcon>
-                                                                        </Icon>
-                                                                      </button>
-                                                                    </PseudoBox>
-                                                                  </Button>
-                                                                  <ForwardRef
-                                                                    anchorEl={
-                                                                      <button
-                                                                        aria-label="Show modifications for this scenario on the map"
-                                                                        class="css-ig2uvu"
-                                                                        type="button"
-                                                                      >
-                                                                        <svg
-                                                                          aria-hidden="true"
-                                                                          class="svg-inline--fa fa-eye fa-w-NaN "
-                                                                          data-icon="eye"
-                                                                          data-prefix="fas"
-                                                                          focusable="false"
-                                                                          role="img"
-                                                                          viewBox="0 0 undefined undefined"
-                                                                          xmlns="http://www.w3.org/2000/svg"
-                                                                        >
-                                                                          <path
-                                                                            fill="currentColor"
-                                                                          />
-                                                                        </svg>
-                                                                      </button>
-                                                                    }
-                                                                    arrowSize="10px"
-                                                                    bg="gray.700"
-                                                                    borderRadius="sm"
-                                                                    color="whiteAlpha.900"
-                                                                    fontSize="sm"
-                                                                    fontWeight="medium"
-                                                                    hasArrow={true}
-                                                                    isOpen={false}
-                                                                    maxW="320px"
-                                                                    modifiers={
-                                                                      Object {
-                                                                        "offset": Object {
-                                                                          "enabled": true,
-                                                                          "offset": "0, 8",
-                                                                        },
-                                                                      }
-                                                                    }
-                                                                    placement="auto"
-                                                                    pointerEvents="none"
-                                                                    px="8px"
-                                                                    py="2px"
-                                                                    shadow="md"
-                                                                    timeout={200}
-                                                                    usePortal={true}
-                                                                    zIndex={1000}
-                                                                  />
-                                                                </Tooltip>
-                                                              </div>
-                                                            </Box>
-                                                          </SimpleIconButton>
+                                                                              <div
+                                                                                className="css-0"
+                                                                              >
+                                                                                <Tooltip
+                                                                                  aria-label="Show modifications for this scenario on the map"
+                                                                                  hasArrow={true}
+                                                                                  label="Show modifications for this scenario on the map"
+                                                                                  placement="auto"
+                                                                                  zIndex={1000}
+                                                                                >
+                                                                                  <Button
+                                                                                    aria-label="Show modifications for this scenario on the map"
+                                                                                    isActive={false}
+                                                                                    isDisabled={false}
+                                                                                    onBlur={[Function]}
+                                                                                    onClick={[Function]}
+                                                                                    onFocus={[Function]}
+                                                                                    onMouseEnter={[Function]}
+                                                                                    onMouseLeave={[Function]}
+                                                                                    size="sm"
+                                                                                    variant="ghost"
+                                                                                    variantColor="blue"
+                                                                                  >
+                                                                                    <PseudoBox
+                                                                                      _active={
+                                                                                        Object {
+                                                                                          "bg": "blue.100",
+                                                                                        }
+                                                                                      }
+                                                                                      _disabled={
+                                                                                        Object {
+                                                                                          "boxShadow": "none",
+                                                                                          "cursor": "not-allowed",
+                                                                                          "opacity": "40%",
+                                                                                        }
+                                                                                      }
+                                                                                      _focus={
+                                                                                        Object {
+                                                                                          "boxShadow": "outline",
+                                                                                        }
+                                                                                      }
+                                                                                      _hover={
+                                                                                        Object {
+                                                                                          "bg": "blue.50",
+                                                                                        }
+                                                                                      }
+                                                                                      alignItems="center"
+                                                                                      appearance="none"
+                                                                                      aria-label="Show modifications for this scenario on the map"
+                                                                                      as="button"
+                                                                                      bg="transparent"
+                                                                                      borderRadius="md"
+                                                                                      color="blue.500"
+                                                                                      display="inline-flex"
+                                                                                      fontSize="sm"
+                                                                                      fontWeight="semibold"
+                                                                                      height={8}
+                                                                                      justifyContent="center"
+                                                                                      lineHeight="1.2"
+                                                                                      minWidth={8}
+                                                                                      onBlur={[Function]}
+                                                                                      onClick={[Function]}
+                                                                                      onFocus={[Function]}
+                                                                                      onMouseEnter={[Function]}
+                                                                                      onMouseLeave={[Function]}
+                                                                                      outline="none"
+                                                                                      position="relative"
+                                                                                      px={3}
+                                                                                      transition="all 250ms"
+                                                                                      type="button"
+                                                                                      userSelect="none"
+                                                                                      verticalAlign="middle"
+                                                                                      whiteSpace="nowrap"
+                                                                                    >
+                                                                                      <button
+                                                                                        aria-label="Show modifications for this scenario on the map"
+                                                                                        className="css-ig2uvu"
+                                                                                        onBlur={[Function]}
+                                                                                        onClick={[Function]}
+                                                                                        onFocus={[Function]}
+                                                                                        onMouseEnter={[Function]}
+                                                                                        onMouseLeave={[Function]}
+                                                                                        type="button"
+                                                                                      >
+                                                                                        <Icon
+                                                                                          fixedWidth={false}
+                                                                                          icon={
+                                                                                            Object {
+                                                                                              "icon": Array [],
+                                                                                              "iconName": "eye",
+                                                                                              "prefix": "fas",
+                                                                                            }
+                                                                                          }
+                                                                                        >
+                                                                                          <FontAwesomeIcon
+                                                                                            border={false}
+                                                                                            className=""
+                                                                                            fixedWidth={false}
+                                                                                            flip={null}
+                                                                                            icon={
+                                                                                              Object {
+                                                                                                "icon": Array [],
+                                                                                                "iconName": "eye",
+                                                                                                "prefix": "fas",
+                                                                                              }
+                                                                                            }
+                                                                                            inverse={false}
+                                                                                            listItem={false}
+                                                                                            mask={null}
+                                                                                            pull={null}
+                                                                                            pulse={false}
+                                                                                            rotation={null}
+                                                                                            size={null}
+                                                                                            spin={false}
+                                                                                            swapOpacity={false}
+                                                                                            symbol={false}
+                                                                                            title=""
+                                                                                            transform={null}
+                                                                                          >
+                                                                                            <svg
+                                                                                              aria-hidden="true"
+                                                                                              className="svg-inline--fa fa-eye fa-w-NaN "
+                                                                                              data-icon="eye"
+                                                                                              data-prefix="fas"
+                                                                                              focusable="false"
+                                                                                              role="img"
+                                                                                              style={Object {}}
+                                                                                              viewBox="0 0 undefined undefined"
+                                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                                            >
+                                                                                              <path
+                                                                                                fill="currentColor"
+                                                                                                style={Object {}}
+                                                                                              />
+                                                                                            </svg>
+                                                                                          </FontAwesomeIcon>
+                                                                                        </Icon>
+                                                                                      </button>
+                                                                                    </PseudoBox>
+                                                                                  </Button>
+                                                                                  <ForwardRef
+                                                                                    anchorEl={
+                                                                                      <button
+                                                                                        aria-label="Show modifications for this scenario on the map"
+                                                                                        class="css-ig2uvu"
+                                                                                        type="button"
+                                                                                      >
+                                                                                        <svg
+                                                                                          aria-hidden="true"
+                                                                                          class="svg-inline--fa fa-eye fa-w-NaN "
+                                                                                          data-icon="eye"
+                                                                                          data-prefix="fas"
+                                                                                          focusable="false"
+                                                                                          role="img"
+                                                                                          viewBox="0 0 undefined undefined"
+                                                                                          xmlns="http://www.w3.org/2000/svg"
+                                                                                        >
+                                                                                          <path
+                                                                                            fill="currentColor"
+                                                                                          />
+                                                                                        </svg>
+                                                                                      </button>
+                                                                                    }
+                                                                                    arrowSize="10px"
+                                                                                    bg="gray.700"
+                                                                                    borderRadius="sm"
+                                                                                    color="whiteAlpha.900"
+                                                                                    fontSize="sm"
+                                                                                    fontWeight="medium"
+                                                                                    hasArrow={true}
+                                                                                    isOpen={false}
+                                                                                    maxW="320px"
+                                                                                    modifiers={
+                                                                                      Object {
+                                                                                        "offset": Object {
+                                                                                          "enabled": true,
+                                                                                          "offset": "0, 8",
+                                                                                        },
+                                                                                      }
+                                                                                    }
+                                                                                    placement="auto"
+                                                                                    pointerEvents="none"
+                                                                                    px="8px"
+                                                                                    py="2px"
+                                                                                    shadow="md"
+                                                                                    timeout={200}
+                                                                                    usePortal={true}
+                                                                                    zIndex={1000}
+                                                                                  />
+                                                                                </Tooltip>
+                                                                              </div>
+                                                                            </Box>
+                                                                          </SimpleIconButton>
+                                                                        </div>
+                                                                      </Box>
+                                                                    </Flex>
+                                                                  </ForwardRef>
+                                                                </div>
+                                                              </Box>
+                                                            </Flex>
+                                                          </Variant>
                                                         </div>
                                                       </Box>
-                                                    </Flex>
-                                                  </ForwardRef>
-                                                </div>
-                                              </Box>
-                                            </Flex>
-                                          </Variant>
+                                                    </div>
+                                                  </Box>
+                                                </Flex>
+                                              </ForwardRef>
+                                            </div>
+                                          </div>
                                         </div>
-                                      </Box>
+                                      </div>
+                                      <div
+                                        className="simplebar-placeholder"
+                                      />
                                     </div>
-                                  </Box>
-                                </Flex>
-                              </ForwardRef>
+                                    <div
+                                      className="simplebar-track simplebar-horizontal"
+                                    >
+                                      <div
+                                        className="simplebar-scrollbar"
+                                      />
+                                    </div>
+                                    <div
+                                      className="simplebar-track simplebar-vertical"
+                                    >
+                                      <div
+                                        className="simplebar-scrollbar"
+                                      />
+                                    </div>
+                                  </div>
+                                </SimpleBar>
+                              </InnerDock>
                             </div>
                           </Box>
                         </Flex>

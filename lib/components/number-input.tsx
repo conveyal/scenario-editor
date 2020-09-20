@@ -15,7 +15,7 @@ const noop = () => {}
 
 export default function NumberInput({
   isDisabled = false,
-  label,
+  label = '',
   onBlur = noop,
   onChange,
   onFocus = noop,
@@ -35,7 +35,7 @@ export default function NumberInput({
 
   return (
     <FormControl isDisabled={isDisabled} isInvalid={input.isInvalid} {...p}>
-      <FormLabel htmlFor={input.id}>{label}</FormLabel>
+      {label && <FormLabel htmlFor={input.id}>{label}</FormLabel>}
       <InputGroup>
         <Input
           {...input}

@@ -22,7 +22,7 @@ exports[`Report > AdjustDwellTime renders correctly 1`] = `
       }
     }
   >
-    <Memo(PatternLayer)
+    <PatternLayer
       color="#777777"
       feed={
         Object {

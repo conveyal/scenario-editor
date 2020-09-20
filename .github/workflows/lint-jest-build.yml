@@ -120,10 +120,14 @@ jobs:
         run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ github.workspace }}/${{ matrix.backend }}.jar
 
       - uses: cypress-io/github-action@v2
+        # env:
+        # pass the Dashboard record key as an environment variable
+        # CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        # pass GitHub token to allow accurately detecting a build vs a re-run build
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          env: ${{ secrets.CYPRESS_GITHUB_ENV }}
           install: false
-          spec: cypress/integration/local/all.js
+          # record: true
           start: yarn action # runs frontend and java server together
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60

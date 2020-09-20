@@ -18,41 +18,6 @@ Object {
 }
 `;
 
-exports[`reducers > region should handle set all regions 1`] = `
-Object {
-  "aggregationAreas": Array [],
-  "bookmarks": Array [],
-  "bundles": Array [],
-  "regions": Array [
-    Object {
-      "_id": "1",
-      "accessGroup": "accessGroupName",
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "createdAt": "2017-11-08T12:30:50.133Z",
-      "createdBy": "person@gmail.com",
-      "description": "Region description",
-      "name": "Mock Region",
-      "nonce": "12345",
-      "opportunityDatasets": Array [
-        Object {
-          "_id": "Workers_total",
-          "name": "Workers total",
-          "sourceName": "lodes-data-2014",
-        },
-      ],
-      "statusCode": "DONE",
-      "updatedAt": "2017-11-08T12:31:19.602Z",
-      "updatedBy": "person@gmail.com",
-    },
-  ],
-}
-`;
-
 exports[`reducers > region should handle set region 1`] = `
 Object {
   "aggregationAreas": Array [],

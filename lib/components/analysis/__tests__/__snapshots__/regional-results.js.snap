@@ -2944,6 +2944,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                         <Button
                                                           aria-label="Download scenario info and modifications used to create this analysis."
                                                           isActive={false}
+                                                          isDisabled={false}
                                                           onBlur={[Function]}
                                                           onClick={[Function]}
                                                           onFocus={[Function]}

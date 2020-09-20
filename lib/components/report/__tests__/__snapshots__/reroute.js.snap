@@ -22,7 +22,7 @@ exports[`Report > Reroute renders correctly 1`] = `
       }
     }
   >
-    <Memo(RerouteLayer)
+    <RerouteLayer
       feed={
         Object {
           "checksum": "MOCK",

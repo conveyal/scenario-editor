@@ -164,6 +164,13 @@ This modification type can be used to represent detours, extensions,and curtailm
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
 <br> then clicking an existing stop on the baseline pattern.
 
+Note that every selected pattern must stop at the selected start-of-reroute stop and end-of-reroute stop. For example, consider these three patterns:
+1) A-B-C-D-E
+2) A-B---D-E
+3) A---C-D-E
+
+If B was selected as the start-of-reroute, and D was selected as the end-of-reroute, patterns 1 and 2 could be included in the reroute modification, but not pattern 3.
+
 <figure>
   <img src="../static/img/reroute.png" alt="Rerouting" />
   <figcaption>A trip pattern being extended from a selected stop at the end of the line.</figcaption>
@@ -229,9 +236,9 @@ You can also edit previously drawn lines by clicking on the edit layers icon. Th
 
 This modification allows you to assign new access and impedance properties to existing streets in your [baseline network](../glossary.md#baseline-network). Rather than selecting individual streets, it uses a polygon selection to apply the modification to all streets within the selected area. This is useful for applying changes to areas or corridors. 
 As an example, you might use this to identify a neighborhood or corridor where traffic calming measures will be implemented and model this by reducing bicycle traffic stress and decreasing driving speeds or eliminating automotive access altogether.
-Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas. 
+Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas.
 
-To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. 
+To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. Overlapping polygons are not yet supported.
 
 <figure>
   <img src="../static/img/draw-a-polygon.png" alt="modifying streets"/>

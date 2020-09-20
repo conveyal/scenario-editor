@@ -1,9 +1,10 @@
 import {memo} from 'react'
 
-type BoxplotProps = {
+interface BoxplotProps {
   color: string
   positions: number[]
   scale: (number) => number
+  strokeWidth?: number
   width: number
 }
 
@@ -14,11 +15,11 @@ export default memo<BoxplotProps>(function Boxplot({
   color,
   positions,
   scale,
+  strokeWidth = 0.5,
   width
 }) {
   const [low, iqrLow, med, iqrHigh, high] = positions
   const stroke = color
-  const strokeWidth = 0.5
 
   const center = 0.5 * width
   const whiskerLeft = 0.2 * width

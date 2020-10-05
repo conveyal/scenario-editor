@@ -100,7 +100,7 @@
     "lodash": "^4.17.15",
     "logrocket": "^1.0.7",
     "mapbox-gl": "^1.10.1",
-    "mapbox-gl-leaflet": "^0.0.12",
+    "mapbox-gl-leaflet": "^0.0.13",
     "memoize-one": "^5.1.1",
     "migrate": "^1.6.2",
     "mongodb": "^3.5.7",

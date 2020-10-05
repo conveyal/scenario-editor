@@ -9505,10 +9505,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mapbox-gl-leaflet@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/mapbox-gl-leaflet/-/mapbox-gl-leaflet-0.0.12.tgz#1b6bec0db56e28a349c6e1e685c97715cb43f226"
-  integrity sha512-bfGl+CdAYc51ua8s9OOq5J0EcAnHuxS0OoQP5EWsVmSUGFvKkgOD+Od2sFmDOl+zBUjdBEvqLaf9t/tf2BtrWw==
+mapbox-gl-leaflet@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/mapbox-gl-leaflet/-/mapbox-gl-leaflet-0.0.13.tgz#37e5153dcb81017a61d37b5d1965c0647646f06d"
+  integrity sha512-YNluTgZsGTdwl7KFkPwsdpkKlaywLhphJnpj80GWrFnlGptAptBaNmQdvBYFLzA5nCvT/V5kOOnoWuM0S5JvEQ==
 
 mapbox-gl@^1.10.1:
   version "1.12.0"

@@ -2461,10 +2461,10 @@
   resolved "https://registry.yarnpkg.com/@types/d3-path/-/d3-path-1.0.9.tgz#73526b150d14cd96e701597cbf346cfd1fd4a58c"
   integrity sha512-NaIeSIBiFgSC6IGUBjZWcscUJEq7vpVu7KthHN8eieTV9d9MqkSOZLH4chq1PmcKy06PNe3axLeKmRIyxJ+PZQ==
 
-"@types/d3-scale@^2.2.1":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@types/d3-scale/-/d3-scale-2.2.2.tgz#3e6d57a41501236898a19550e543482b3e72dca1"
-  integrity sha512-7a2xvhDJIhPAXPbEGBVaInMySdb/jIMPlBCAVyLsgVqfjOvZBGo2inbS0P5E9Po3bq+G+AiEJ2KiGooZEZTVJw==
+"@types/d3-scale@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/d3-scale/-/d3-scale-3.0.0.tgz#9d2264aa42236bc67f2ce275bb24f8a66d72d971"
+  integrity sha512-IDZuzAFczo2QaEvyNCzIlhANki5DD8N2ZPrI16MftGVxezrSrZ5wOIXu0cjTAbhjBcjA4R9KqGwtyfZZmAUbLQ==
   dependencies:
     "@types/d3-time" "*"
 

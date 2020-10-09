@@ -1,6 +1,16 @@
 import get from 'lodash/get'
-import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {
+  SyntheticEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import {v4 as uuid} from 'uuid'
+
+import FormContext from 'lib/contexts/controlled-form'
 
 const alwaysValid = (p: any, r?: any) => true // eslint-disable-line
 const identityFn = (v) => v
@@ -22,6 +32,8 @@ function getRawValueFromInput(input) {
 }
 
 type ControlledInput = {
+  onBlur: () => void
+  onFocus: (e: SyntheticEvent) => void
   onChange: (input: any) => Promise<void>
   id: string
   isInvalid: boolean
@@ -40,6 +52,7 @@ export default function useControlledInput({
   test: checkValid = alwaysValid,
   value
 }): ControlledInput {
+  const form = useContext(FormContext)
   const [inputValue, setInputValue] = useState(value)
   const [isValid, setIsValid] = useState(() =>
     checkValid(parse(inputValue), inputValue)
@@ -76,8 +89,21 @@ export default function useControlledInput({
     [onChange, parse, setInputValue, setIsValid, checkValid]
   )
 
+  // Revert to previous value if current value is invalid
+  const onBlur = useCallback(() => {
+    if (!isValid && checkValid(parse(value), value)) {
+      setInputValue(value)
+      setIsValid(true)
+    }
+  }, [checkValid, isValid, parse, value])
+
+  // On input focus select all of the text by default
+  const onFocus = useCallback((e) => e.target.select(), [])
+
   return {
+    onBlur,
     onChange: inputOnChange,
+    onFocus,
     id: autoId,
     isInvalid: !isValid,
     isValid,

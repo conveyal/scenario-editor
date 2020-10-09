@@ -9,7 +9,6 @@ import {
   useToast
 } from '@chakra-ui/core'
 import {faMap} from '@fortawesome/free-solid-svg-icons'
-import dynamic from 'next/dynamic'
 import {useState} from 'react'
 
 import EditBoundsForm from 'lib/components/edit-bounds-form'
@@ -21,12 +20,9 @@ import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
 import MapLayout from 'lib/layouts/map'
 import message from 'lib/message'
+import {boundsAreValid} from 'lib/utils/bounds'
 import {postJSON} from 'lib/utils/safe-fetch'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
-
-const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
-  ssr: false
-})
 
 /// Name cannot be empty
 const testName = (n) => n && n.length > 0
@@ -81,8 +77,6 @@ export default function CreateRegionPage() {
 
   return (
     <InnerDock>
-      <EditBounds bounds={bounds} save={setBounds} />
-
       <Stack as='form' p={SPACING_FORM} spacing={SPACING_FORM}>
         <Heading size='md'>
           <Icon icon={faMap} /> <span> {message('region.createAction')}</span>
@@ -96,7 +90,11 @@ export default function CreateRegionPage() {
           isInvalid={nameInput.isInvalid}
         >
           <FormLabel htmlFor={nameInput.id}>{message('region.name')}</FormLabel>
-          <Input {...nameInput} placeholder={message('region.name')} />
+          <Input
+            {...nameInput}
+            autoFocus
+            placeholder={message('region.name')}
+          />
         </FormControl>
 
         <FormControl isDisabled={uploading}>
@@ -112,12 +110,12 @@ export default function CreateRegionPage() {
         <EditBoundsForm
           bounds={bounds}
           isDisabled={uploading}
-          onChange={(d, v) => setBounds((b) => ({...b, [d]: v}))}
+          setBounds={setBounds}
         />
 
         <Button
           isFullWidth
-          isDisabled={nameInput.isInvalid}
+          isDisabled={nameInput.isInvalid || !boundsAreValid(bounds)}
           isLoading={uploading}
           leftIcon='check'
           loadingText='Creating region...'

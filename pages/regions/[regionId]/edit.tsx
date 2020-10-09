@@ -7,9 +7,8 @@ import {
   Stack,
   useToast
 } from '@chakra-ui/core'
-import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
-import {useState, useCallback} from 'react'
+import {useState} from 'react'
 
 import ConfirmButton from 'lib/components/confirm-button'
 import EditBoundsForm from 'lib/components/edit-bounds-form'
@@ -21,11 +20,8 @@ import {useRegion} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import MapLayout from 'lib/layouts/map'
 import message from 'lib/message'
+import {boundsAreValid} from 'lib/utils/bounds'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
-
-const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
-  ssr: false
-})
 
 const hasLength = (s: void | string) => s && s.length > 0
 
@@ -124,14 +120,6 @@ function EditRegion({region, remove, update}) {
     }
   }
 
-  // Helper function to set a specific direction of the bounds
-  const setBoundsFor = useCallback(
-    (direction: string, newValue: number) => {
-      setBounds((bounds) => ({...bounds, [direction]: newValue}))
-    },
-    [setBounds]
-  )
-
   const isEqual =
     region.bounds === bounds &&
     region.name === nameInput.value &&
@@ -139,8 +127,6 @@ function EditRegion({region, remove, update}) {
 
   return (
     <InnerDock>
-      <EditBounds bounds={bounds} save={(b) => setBounds(b)} />
-
       <Stack p={SPACING_FORM} spacing={SPACING_FORM}>
         <Heading size='md'>{message('region.editTitle')}</Heading>
 
@@ -162,11 +148,11 @@ function EditRegion({region, remove, update}) {
         <EditBoundsForm
           bounds={bounds}
           isDisabled={saving}
-          onChange={setBoundsFor}
+          setBounds={setBounds}
         />
 
         <Button
-          isDisabled={isEqual}
+          isDisabled={isEqual || !boundsAreValid(bounds)}
           isFullWidth
           isLoading={saving}
           onClick={_save}

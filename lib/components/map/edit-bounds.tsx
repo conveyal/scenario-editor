@@ -1,6 +1,5 @@
 import lonlat from '@conveyal/lonlat'
 import turfDestination from '@turf/destination'
-import React from 'react'
 import {Marker, Rectangle, withLeaflet} from 'react-leaflet'
 
 import useOnMount from 'lib/hooks/use-on-mount'
@@ -17,10 +16,10 @@ export default withLeaflet(EditBounds)
 /**
  * Edit bounds on a map. Input/outputs: `bounds { north, south, east, west }`
  */
-export function EditBounds(p) {
+export function EditBounds({bounds, leaflet, save}) {
   // On initial load, fit the bounds
   useOnMount(() => {
-    p.leaflet.map.fitBounds(toLatLngBounds(p.bounds), {
+    leaflet.map.fitBounds(toLatLngBounds(bounds), {
       maxZoom: DEFAULT_MAX_ZOOM
     })
 
@@ -28,28 +27,28 @@ export function EditBounds(p) {
     function onGeocode(r) {
       if (r.bbox) {
         const [west, south, east, north] = r.bbox
-        p.save({north, south, east, west})
+        save({north, south, east, west})
       } else {
         const c1 = turfDestination(r.center, 5, 45)
         const c2 = turfDestination(r.center, 5, -135)
         const [east, north] = c1.geometry.coordinates
         const [west, south] = c2.geometry.coordinates
         const newBounds = {north, south, east, west}
-        p.save(newBounds)
-        p.leaflet.map.fitBounds(toLatLngBounds(newBounds))
+        save(newBounds)
+        leaflet.map.fitBounds(toLatLngBounds(newBounds))
       }
     }
 
-    p.leaflet.map.on('geocode', onGeocode)
+    leaflet.map.on('geocode', onGeocode)
 
-    return () => p.leaflet.map.off('geocode', onGeocode)
+    return () => leaflet.map.off('geocode', onGeocode)
   })
 
   // Use leaflet utilities to generate a new set of boundaries
   const onDragEnd = (oppositeCorner) => (e) => {
     // A wrapped latLng ensures it's lon is between -180 and 180
     const newLatLng = e.target.getLatLng().wrap()
-    p.save(
+    save(
       fromLatLngBounds(
         new L.LatLngBounds(
           lonlat.toLeaflet(reprojectCoordinates(newLatLng)),
@@ -60,7 +59,7 @@ export function EditBounds(p) {
   }
 
   try {
-    const leafletBounds = toLatLngBounds(p.bounds)
+    const leafletBounds = toLatLngBounds(bounds)
     const ne = leafletBounds.getNorthEast()
     const nw = leafletBounds.getNorthWest()
     const se = leafletBounds.getSouthEast()

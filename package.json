@@ -71,7 +71,7 @@
     "@types/http-proxy": "^1.17.4",
     "@types/jest": "^26.0.14",
     "@types/lodash": "^4.14.162",
-    "@types/mongodb": "^3.5.28",
+    "@types/mongodb": "^3.5.31",
     "@types/ms": "^0.7.31",
     "@types/react": "^16.9.53",
     "@types/react-leaflet": "^2.5.2",

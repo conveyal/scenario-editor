@@ -149,7 +149,7 @@
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
     "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-prettier": "^6.14.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jest": "^24.1.0",

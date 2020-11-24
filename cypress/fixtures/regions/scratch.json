@@ -8,10 +8,12 @@
   "sampleRouteName": "Southbank Shuttle",
   "searchTerm": "covington",
   "foundName": "Covington, Kentucky, United States",
-  "north": 39.1199,
-  "south": 38.9268,
-  "east": -84.3592,
-  "west": -84.706,
+  "bounds": {
+    "north": 39.1199,
+    "south": 38.9268,
+    "east": -84.3592,
+    "west": -84.706
+  },
   "center": [39.02335, -84.5326],
   "date": "2020-07-20",
   "newRoute": [

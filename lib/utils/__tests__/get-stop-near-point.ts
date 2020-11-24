@@ -24,6 +24,6 @@ describe('Utils > Get Stop Near Point', () => {
 
   it('should fail to return a stop if none are close enough', () => {
     const stop = getStopNearPoint([-70.1, 40.1], stops, 20)
-    expect(stop).toBeUndefined()
+    expect(stop).toBeNull()
   })
 })

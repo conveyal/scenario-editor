@@ -1,13 +1,27 @@
-import useSWR, {ConfigInterface} from 'swr'
+import useSWR, {ConfigInterface, responseInterface} from 'swr'
 import {useCallback, useContext} from 'react'
 
 import LogRocket from 'lib/logrocket'
 import {UserContext} from 'lib/user'
-import {postJSON, putJSON, safeDelete} from 'lib/utils/safe-fetch'
+import {
+  postJSON,
+  putJSON,
+  ResponseError,
+  safeDelete,
+  SafeResponse
+} from 'lib/utils/safe-fetch'
 
 interface UseCollection extends ConfigInterface {
   query?: Record<string, unknown>
   options?: Record<string, unknown>
+}
+
+type UseCollectionResponse<T> = {
+  create: (properties: T) => Promise<SafeResponse>
+  data: T[]
+  remove: (_id: string) => Promise<SafeResponse>
+  response: responseInterface<T[], ResponseError>
+  update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse>
 }
 
 const encode = (o: Record<string, unknown> | void) => {
@@ -31,31 +45,34 @@ const configToQueryParams = (config?: UseCollection): string => {
 /**
  * Factory function for creating a hook to use a collection.
  */
-export function createUseCollection(collectionName) {
-  return function useCollection(config?: UseCollection) {
+export function createUseCollection<T extends CL.IModel>(
+  collectionName: string
+) {
+  return function useCollection(
+    config?: UseCollection
+  ): UseCollectionResponse<T> {
     const user = useContext(UserContext)
     const url = [`/api/db/${collectionName}`]
     const queryParams = configToQueryParams(config)
     if (queryParams) url.push(queryParams)
-    const results = useSWR([url.join('?'), user], config)
-
-    const {mutate, revalidate} = results
+    const response = useSWR<T[], ResponseError>([url.join('?'), user], config)
+    const {mutate, revalidate} = response
     // Helper function for updating values when using a collection
     const update = useCallback(
-      async (_id: string, newProperties: Record<string, unknown>) => {
+      async (_id: string, newProperties: Partial<T>) => {
         try {
-          const data = await mutate(async (data) => {
+          const data = await mutate(async (data: T[]) => {
             const obj = data.find((d) => d._id === _id)
             const res = await putJSON(`/api/db/${collectionName}/${_id}`, {
               ...obj,
               ...newProperties
             })
             if (res.ok) {
-              return data.map((d) => (d._id === _id ? res.data : d))
+              return data.map((d) => (d._id === _id ? (res.data as T) : d))
             } else {
               throw res
             }
-          })
+          }, false)
           return {ok: true, data}
         } catch (res) {
           return res
@@ -66,7 +83,7 @@ export function createUseCollection(collectionName) {
 
     // Helper function for creating new values and revalidating
     const create = useCallback(
-      async (properties: Record<string, unknown>) => {
+      async (properties: T) => {
         const res = await postJSON(`/api/db/${collectionName}`, properties)
         if (res.ok) {
           revalidate()
@@ -89,14 +106,15 @@ export function createUseCollection(collectionName) {
     )
 
     return {
-      ...results,
       create,
+      data: response.data,
       remove,
+      response,
       update
     }
   }
 }
 
 // Create an instance of each collection type
-export const usePresets = createUseCollection('presets')
-export const useRegions = createUseCollection('regions')
+export const usePresets = createUseCollection<CL.Preset>('presets')
+export const useRegions = createUseCollection<CL.Region>('regions')

@@ -1,9 +1,13 @@
-import lonlat from '@conveyal/lonlat'
+import lonlat, {LonLatCompatible} from '@conveyal/lonlat'
 import {lineString} from '@turf/helpers'
 
 import getRoutePolyline from './get-route-polyline'
 
-export default async function getLineString(from, to, {followRoad}) {
+export default async function getLineString(
+  from: LonLatCompatible,
+  to: LonLatCompatible,
+  {followRoad}: {followRoad: boolean}
+): Promise<GeoJSON.LineString> {
   try {
     if (followRoad) {
       return await getRoutePolyline(from, to)

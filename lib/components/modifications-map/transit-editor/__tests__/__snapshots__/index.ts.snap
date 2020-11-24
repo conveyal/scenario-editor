@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component WithContext(WithMap(TransitEditor)) snapshot(shallow) 1`] = `
+<Map>
+  <TransitEditor
+    allStops={
+      Array [
+        Object {
+          "stop_id": "1",
+          "stop_lat": 36.9707,
+          "stop_lon": -122.0246,
+          "stop_name": "Santa Cruz",
+        },
+        Object {
+          "stop_id": "2",
+          "stop_lat": 37.049,
+          "stop_lon": -122.0279,
+          "stop_name": "Scotts Valley",
+        },
+      ]
+    }
+    allowExtend={true}
+    extendFromEnd={true}
+    followRoad={true}
+    modification={
+      Object {
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
+        ],
+        "segments": Array [
+          Object {
+            "fromStopId": "1",
+            "geometry": Object {
+              "coordinates": Array [
+                Array [
+                  -122.0246,
+                  36.9707,
+                ],
+                Array [
+                  -122.0279,
+                  37.049,
+                ],
+                Array [
+                  -121.9799,
+                  37.2299,
+                ],
+                Array [
+                  -121.9445,
+                  37.324,
+                ],
+                Array [
+                  -121.936,
+                  37.353,
+                ],
+                Array [
+                  -121.924,
+                  37.365,
+                ],
+              ],
+              "type": "LineString",
+            },
+            "spacing": 3000,
+            "stopAtEnd": false,
+            "stopAtStart": false,
+            "toStopId": null,
+          },
+        ],
+        "timetables": Array [
+          Object {
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
+        ],
+      }
+    }
+    spacing={0}
+    updateModification={[MockFunction]}
+  />
+</Map>
+`;

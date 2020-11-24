@@ -57,7 +57,7 @@ export const wrapComponent = testComponent
 /**
  * Helper function to create quick snapshot tests for components.
  */
-export function testAndSnapshot(C, p, id) {
+export function testAndSnapshot(C, p, id?: any) {
   test(`Component ${getName(C)} snapshot(mount)`, () => {
     const c = testComponent(C, p, id)
     const t = c.mount()
@@ -69,7 +69,7 @@ export function testAndSnapshot(C, p, id) {
 /**
  * Test and snapshot map component
  */
-export function wrapMapComponent(C, p, id) {
+export function wrapMapComponent(C, p, id?: any) {
   const MapWrapper = (props) => (
     <Map>
       <C {...props} />

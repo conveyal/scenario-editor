@@ -59,7 +59,7 @@ const NavItemContents = memo<PseudoBoxProps>(({children, ...p}) => {
   )
 })
 
-function useIsActive(to, params = {}) {
+function useIsActive(to: string, params = {}) {
   const [, pathname] = useRouteChanging()
   const route = routeTo(to, params)
   route.href = route.href.split('?')[0]
@@ -152,7 +152,7 @@ export default function Sidebar() {
               icon={faDatabase}
               label={message('nav.networkBundles')}
               to='bundles'
-              params={queryParams}
+              params={regionOnly}
             />
             <ItemLink
               icon={faTh}

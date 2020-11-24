@@ -43,8 +43,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             options={
               Array [
                 Object {
-                  "label": "v6.0.0 (recommended)",
-                  "value": "v6.0.0",
+                  "label": "v6.0.1 (recommended)",
+                  "value": "v6.0.1",
                 },
                 Object {
                   "label": <span

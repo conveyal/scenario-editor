@@ -1,4 +1,4 @@
-import lonlat from '@conveyal/lonlat'
+import lonlat, {LonLatCompatible} from '@conveyal/lonlat'
 import {toGeoJSON} from '@mapbox/polyline'
 
 import {MB_TOKEN} from 'lib/constants'
@@ -12,10 +12,11 @@ export const getMBUrl = (c) =>
 /**
  * Get a route between two points from Mapbox. If the start and end coordinates
  * received are outside the maximum, append the original start and end points.
- *
- * @returns GeoJSON LineString
  */
-export default function getRoutePolyline(start, end) {
+export default function getRoutePolyline(
+  start: LonLatCompatible,
+  end: LonLatCompatible
+): Promise<GeoJSON.LineString> {
   const coordinates = encodeURIComponent(
     `${lonlat.toString(start)};${lonlat.toString(end)}`
   )

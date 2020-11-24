@@ -52,6 +52,9 @@ import AggregateAccessibility from './aggregate-accessibility'
 const getName = fpGet('name')
 const getId = fpGet('_id')
 
+// Get full qualifier for opportunity datasets
+const getFullODName = (od) => `${od?.sourceName}: ${od?.name}`
+
 // Cannot pass `parseInt` directly because
 const parseCutoff = (c) => parseInt(c)
 
@@ -322,7 +325,7 @@ function ComparisonDisplay({analysis, comparisonAnalysis}) {
           <ChakraSelect {...destinationPointSetInput}>
             {comparisonAnalysis.destinationPointSetIds.map((id) => (
               <option key={id} value={id}>
-                {get(find(opportunityDatasets, ['_id', id]), 'name')}
+                {getFullODName(find(opportunityDatasets, ['_id', id]))}
               </option>
             ))}
           </ChakraSelect>

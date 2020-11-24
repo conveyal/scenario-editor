@@ -83,7 +83,11 @@ export default function ModificationsList(p) {
   // Array of ids for currently displayed modifications
   const [modificationsOnMap, setModificationsOnMap] = useState<Modification[]>(
     () => {
-      const _idsOnMap: string[] = get(getParsedItem(LS_MOM), projectId, [])
+      const _idsOnMap: string[] = get(
+        getParsedItem(LS_MOM),
+        projectId,
+        []
+      ) as string[]
       return modifications.filter((m) => _idsOnMap.includes(m._id))
     }
   )
@@ -293,7 +297,7 @@ const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
     <Flex align='center' px={1}>
       <ButtonLink
-        aria-label='Edit modification'
+        aria-label={`Edit modification ${modification.name}`}
         flex='1'
         justifyContent='start'
         overflow='hidden'

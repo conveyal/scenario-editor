@@ -27,13 +27,9 @@ const hasLength = (s: void | string) => s && s.length > 0
 
 export default function LoadRegion() {
   const router = useRouter()
-  const {update, error, data: region, remove} = useRegion(
-    router.query.regionId as string,
-    {
-      revalidateOnFocus: false
-    }
-  )
-  if (error) return <p>{error.problem}</p>
+  const regionId = router.query.regionId as string
+  const {data: region, response, update, remove} = useRegion(regionId)
+  if (response.error) return <p>{response.error.problem}</p>
   if (!region) return <FullSpinner />
   return <EditRegion region={region} remove={remove} update={update} />
 }

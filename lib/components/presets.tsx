@@ -142,7 +142,10 @@ export default memo<Props>(function PresetChooser({
   )
 
   return (
-    <FormControl isDisabled={isDisabled} isInvalid={presetsCollection.error}>
+    <FormControl
+      isDisabled={isDisabled}
+      isInvalid={!!presetsCollection.response.error}
+    >
       <Flex justify='space-between'>
         <FormLabel htmlFor={id}>Active preset</FormLabel>
         <Stack isInline spacing={1}>
@@ -187,7 +190,7 @@ export default memo<Props>(function PresetChooser({
             key={getId(selectedPreset)}
             getOptionLabel={getOptionLabel}
             getOptionValue={getId}
-            options={presets}
+            options={presets as any}
             onChange={_selectPreset}
             placeholder='Select a preset'
             value={selectedPreset}
@@ -196,7 +199,7 @@ export default memo<Props>(function PresetChooser({
           <Alert status='info'>Save presets to be used later.</Alert>
         )}
       </div>
-      {presetsCollection.error && (
+      {presetsCollection.response.error && (
         <FormErrorMessage>Error loading presets.</FormErrorMessage>
       )}
 

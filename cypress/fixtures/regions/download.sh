@@ -22,6 +22,6 @@ rm portland/streets.osm
 
 # download Portland OSM XML
 wget -O mcpherson/streets.osm --post-file=mcpherson/overpass-query.txt https://overpass-api.de/api/interpreter
-# convert to xml
+# convert XML data to OSM PBF binary format expected by R5
 osmium cat --overwrite mcpherson/streets.osm -o mcpherson/streets.osm.pbf
 rm mcpherson/streets.osm

@@ -31,6 +31,7 @@ export default function Editable({
   } else {
     return (
       <PseudoBox
+        aria-label={placeholder}
         alignItems='center'
         cursor='pointer'
         display='flex'

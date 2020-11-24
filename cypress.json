@@ -8,12 +8,14 @@
   "video": false,
   "env": {
     "accessGroup": "testing",
+    "failOnSnapshotDiff": true,
     "username": "testing@conveyal.com",
     "password": "fakepassword",
     "authZeroClientId": "",
     "authZeroDomain": "",
     "region": "scratch",
     "dataPrefix": "CYP_",
+    "localFixturePath": "cypress/fixtures/regions/.scratch.json",
     "resetDataBeforeEachRun": false
   },
   "projectId": "cvhnxt"

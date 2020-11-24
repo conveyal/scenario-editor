@@ -7,7 +7,7 @@ export const SERVER_ERROR = 'SERVER_ERROR'
 // const TIMEOUT_ERROR = 'TIMEOUT_ERROR'
 // const CONNECTION_ERROR = 'CONNECTION_ERROR'
 // const NETWORK_ERROR = 'NETWORK_ERROR'
-// const UNKNOWN_ERROR = 'UNKNOWN_ERROR'
+const UNKNOWN_ERROR = 'UNKNOWN_ERROR'
 
 // const TIMEOUT_ERROR_CODES = ['ECONNABORTED']
 // const NODEJS_CONNECTION_ERROR_CODES = ['ENOTFOUND', 'ECONNREFUSED', 'ECONNRESET']
@@ -57,15 +57,17 @@ async function safeParseResponse(res: Response) {
   return {...res, ...problem, data}
 }
 
-type SafeResponse =
-  | {
-      ok: false
-      data: Error
-      problem: string
-    }
+export type ResponseError = {
+  ok: false
+  data: Error
+  problem: string
+}
+
+export type SafeResponse =
+  | ResponseError
   | (Response & {
       ok: boolean
-      data: any
+      data: unknown
       problem: string
     })
 
@@ -79,13 +81,21 @@ export async function safeFetch(
   try {
     const res = await fetch(url, options)
     return await safeParseResponse(res)
-  } catch (e) {
-    LogRocket.captureException(e)
-    // TODO parse error see: https://github.com/infinitered/apisauce/blob/master/lib/apisauce.ts
-    return {
-      data: e,
-      ok: false,
-      problem: getProblemFromError(e)
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      LogRocket.captureException(e)
+      // TODO parse error see: https://github.com/infinitered/apisauce/blob/master/lib/apisauce.ts
+      return {
+        data: e,
+        ok: false,
+        problem: getProblemFromError(e)
+      }
+    } else {
+      return {
+        data: new Error(JSON.stringify(e)),
+        ok: false,
+        problem: UNKNOWN_ERROR
+      }
     }
   }
 }
@@ -93,7 +103,7 @@ export async function safeFetch(
 /**
  * Throw the response when using SWR.
  */
-export const swrFetcher = (url) =>
+export const swrFetcher = (url: string) =>
   safeFetch(url).then((res) => {
     if (res.ok) return res.data
     else throw res
@@ -102,7 +112,7 @@ export const swrFetcher = (url) =>
 /**
  * Safe DELETE
  */
-export function safeDelete(url) {
+export function safeDelete(url: string) {
   return safeFetch(url, {
     method: 'DELETE'
   })
@@ -111,14 +121,14 @@ export function safeDelete(url) {
 /**
  * Simple GET
  */
-export function getJSON(url) {
+export function getJSON(url: string) {
   return safeFetch(url, {headers: defaultHeaders})
 }
 
 /**
  * Simple POST
  */
-export function postJSON(url, json) {
+export function postJSON(url: string, json: unknown) {
   return safeFetch(url, {
     body: JSON.stringify(json),
     headers: defaultHeaders,
@@ -129,7 +139,7 @@ export function postJSON(url, json) {
 /**
  * Simple PUT
  */
-export function putJSON(url, json) {
+export function putJSON(url: string, json: unknown) {
   return safeFetch(url, {
     body: JSON.stringify(json),
     headers: defaultHeaders,

@@ -52,6 +52,9 @@ const RegionalResults = dynamic(() => import('./regional-results'), {
 // Ensure valid analysis name
 const nameIsValid = (s) => s && s.length > 0
 
+// Get full qualifier for opportunity datasets
+const getFullODName = (od) => `${od?.sourceName}: ${od?.name}`
+
 export default function Regional(p) {
   const deleteDisclosure = useDisclosure()
   const isComplete = !p.job
@@ -184,7 +187,7 @@ export default function Regional(p) {
           <Select {...destinationPointSetInput}>
             {analysis.destinationPointSetIds.map((id) => (
               <option key={id} value={id}>
-                {get(find(p.opportunityDatasets, ['_id', id]), 'name')}
+                {getFullODName(find(p.opportunityDatasets, ['_id', id]))}
               </option>
             ))}
           </Select>

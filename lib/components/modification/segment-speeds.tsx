@@ -138,10 +138,7 @@ export default function SegmentSpeeds({
 
       {highlightStop > -1 && qualifiedStops[highlightStop] != null && (
         <CircleMarker
-          center={[
-            qualifiedStops[highlightStop].lat,
-            qualifiedStops[highlightStop].lon
-          ]}
+          center={qualifiedStops[highlightStop]}
           fillOpacity={1}
           color={colors.ACTIVE}
           radius={5}

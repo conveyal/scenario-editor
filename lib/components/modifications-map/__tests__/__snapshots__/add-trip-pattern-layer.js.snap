@@ -6,43 +6,42 @@ exports[`Component WithContext(WithMap(AddTripPatternLayer)) snapshot(shallow) 1
     bidirectional={false}
     segments={
       Array [
-        {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
+        Object {
+          "fromStopId": "1",
+          "geometry": Object {
+            "coordinates": Array [
+              Array [
+                -122.0246,
+                36.9707,
+              ],
+              Array [
+                -122.0279,
+                37.049,
+              ],
+              Array [
+                -121.9799,
+                37.2299,
+              ],
+              Array [
+                -121.9445,
+                37.324,
+              ],
+              Array [
+                -121.936,
+                37.353,
+              ],
+              Array [
+                -121.924,
+                37.365,
+              ],
+            ],
+            "type": "LineString",
+          },
+          "spacing": 3000,
+          "stopAtEnd": false,
+          "stopAtStart": false,
+          "toStopId": null,
+        },
       ]
     }
   />

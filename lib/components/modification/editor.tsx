@@ -339,10 +339,10 @@ function ModificationEditor({
               <Divider my={4} />
 
               <TabList>
-                <Tab>
+                <Tab aria-label='Edit value'>
                   <Icon icon={faMousePointer} />
                 </Tab>
-                <Tab>
+                <Tab aria-label='Edit JSON'>
                   <Icon icon={faCode} />
                 </Tab>
               </TabList>

@@ -2060,7 +2060,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                         <option
                                           key="Jobs_total"
                                           value="Jobs_total"
-                                        />
+                                        >
+                                          undefined: undefined
+                                        </option>
                                       </select>
                                     </PseudoBox>
                                   </Input>

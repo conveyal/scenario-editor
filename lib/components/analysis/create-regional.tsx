@@ -37,8 +37,10 @@ import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 import Select from '../select'
 
 // For react-select options
-const getName = fpGet('name')
 const getId = fpGet('_id')
+
+// Combine the source name with the name
+const getFullODName = (od) => `${od.sourceName}: ${od.name}`
 
 const testContent = (s) => s && s.length > 0
 
@@ -228,7 +230,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 <Select
                   isClearable={false}
                   isDisabled={isCreating}
-                  getOptionLabel={getName}
+                  getOptionLabel={getFullODName}
                   getOptionValue={getId}
                   inputId='destinationPointSets'
                   isMulti={workerVersionHandlesMultipleDimensions}

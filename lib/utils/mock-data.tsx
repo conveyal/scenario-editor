@@ -37,7 +37,7 @@ export const mockModel = {
   updatedBy: 'person@gmail.com'
 }
 
-export const mockSegmentGeom = {
+export const mockSegmentGeom: GeoJSON.LineString = {
   type: 'LineString',
   coordinates: [
     [-122.0246, 36.9707],
@@ -49,14 +49,13 @@ export const mockSegmentGeom = {
   ]
 }
 
-export const mockSegment = {
+export const mockSegment: CL.ModificationSegment = {
   fromStopId: '1',
+  toStopId: null,
   geometry: mockSegmentGeom,
-  properties: {},
   spacing: 3000,
   stopAtEnd: false,
-  stopAtStart: false,
-  type: 'Feature'
+  stopAtStart: false
 }
 
 export const mockStop1 = {

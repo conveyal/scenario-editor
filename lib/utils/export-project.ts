@@ -75,7 +75,7 @@ export const downloadStops = (project, modifications, index) => {
             },
             geometry: {
               type: 'Point',
-              coordinates: [stop.lon, stop.lat]
+              coordinates: [stop.lng, stop.lat]
             }
           })
         })

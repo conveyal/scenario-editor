@@ -28,7 +28,7 @@ export default function FitBounds() {
   return (
     <Tip label={label}>
       <Button
-        id='zoom-to-modification'
+        aria-label={label}
         onClick={() => setFitBoundsTriggered(Date.now())}
         size='sm'
         variant='ghost'

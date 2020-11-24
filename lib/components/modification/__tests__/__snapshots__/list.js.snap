@@ -572,7 +572,7 @@ exports[`Modification > List 1`] = `
                                                 class="css-1nnba2j"
                                               >
                                                 <button
-                                                  aria-label="Edit modification"
+                                                  aria-label="Edit modification Test Modification"
                                                   class="css-5ird7u"
                                                   href="/regions/1/projects/1/modifications/1234"
                                                   style="text-overflow: ellipsis;"
@@ -1921,43 +1921,42 @@ exports[`Modification > List 1`] = `
                                                                                 "route1",
                                                                               ],
                                                                               "segments": Array [
-                                                                                {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
+                                                                                Object {
+                                                                                  "fromStopId": "1",
+                                                                                  "geometry": Object {
+                                                                                    "coordinates": Array [
+                                                                                      Array [
+                                                                                        -122.0246,
+                                                                                        36.9707,
+                                                                                      ],
+                                                                                      Array [
+                                                                                        -122.0279,
+                                                                                        37.049,
+                                                                                      ],
+                                                                                      Array [
+                                                                                        -121.9799,
+                                                                                        37.2299,
+                                                                                      ],
+                                                                                      Array [
+                                                                                        -121.9445,
+                                                                                        37.324,
+                                                                                      ],
+                                                                                      Array [
+                                                                                        -121.936,
+                                                                                        37.353,
+                                                                                      ],
+                                                                                      Array [
+                                                                                        -121.924,
+                                                                                        37.365,
+                                                                                      ],
+                                                                                    ],
+                                                                                    "type": "LineString",
+                                                                                  },
+                                                                                  "spacing": 3000,
+                                                                                  "stopAtEnd": false,
+                                                                                  "stopAtStart": false,
+                                                                                  "toStopId": null,
+                                                                                },
                                                                               ],
                                                                               "timetables": Array [
                                                                                 Object {
@@ -2018,7 +2017,7 @@ exports[`Modification > List 1`] = `
                                                                                 className="css-1nnba2j"
                                                                               >
                                                                                 <ForwardRef
-                                                                                  aria-label="Edit modification"
+                                                                                  aria-label="Edit modification Test Modification"
                                                                                   flex="1"
                                                                                   justifyContent="start"
                                                                                   overflow="hidden"
@@ -2057,7 +2056,7 @@ exports[`Modification > List 1`] = `
                                                                                       passHref={true}
                                                                                     >
                                                                                       <Button
-                                                                                        aria-label="Edit modification"
+                                                                                        aria-label="Edit modification Test Modification"
                                                                                         flex="1"
                                                                                         href="/regions/1/projects/1/modifications/1234"
                                                                                         justifyContent="start"
@@ -2099,7 +2098,7 @@ exports[`Modification > List 1`] = `
                                                                                           }
                                                                                           alignItems="center"
                                                                                           appearance="none"
-                                                                                          aria-label="Edit modification"
+                                                                                          aria-label="Edit modification Test Modification"
                                                                                           as="button"
                                                                                           bg="transparent"
                                                                                           borderRadius="md"
@@ -2131,7 +2130,7 @@ exports[`Modification > List 1`] = `
                                                                                           whiteSpace="nowrap"
                                                                                         >
                                                                                           <button
-                                                                                            aria-label="Edit modification"
+                                                                                            aria-label="Edit modification Test Modification"
                                                                                             className="css-5ird7u"
                                                                                             href="/regions/1/projects/1/modifications/1234"
                                                                                             onClick={[Function]}
@@ -2644,7 +2643,7 @@ exports[`Modification > List 1`] = `
                                                 class="css-1nnba2j"
                                               >
                                                 <button
-                                                  aria-label="Edit modification"
+                                                  aria-label="Edit modification Test Modification"
                                                   class="css-5ird7u"
                                                   href="/regions/1/projects/1/modifications/1234"
                                                   style="text-overflow: ellipsis;"
@@ -3159,12 +3158,14 @@ exports[`Modification > List 1`] = `
                                                                       >
                                                                         <PseudoBox
                                                                           alignItems="center"
+                                                                          aria-label="Add value"
                                                                           cursor="pointer"
                                                                           display="flex"
                                                                           onClick={[Function]}
                                                                           role="group"
                                                                         >
                                                                           <div
+                                                                            aria-label="Add value"
                                                                             className="css-3ie40y"
                                                                             onClick={[Function]}
                                                                             role="group"

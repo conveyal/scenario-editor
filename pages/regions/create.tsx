@@ -63,7 +63,7 @@ export default function CreateRegionPage() {
     })
 
     if (res.ok) {
-      goToProjects({regionId: res.data._id})
+      goToProjects({regionId: (res.data as CL.Region)._id})
       toast({
         title: 'Region created',
         position: 'top',
@@ -71,7 +71,7 @@ export default function CreateRegionPage() {
       })
     } else {
       setUploading(false)
-      setError(res.data.message)
+      setError((res.data as Error).message)
     }
   }
 

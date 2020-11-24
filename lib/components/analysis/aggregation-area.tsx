@@ -161,13 +161,10 @@ function UploadNewAggregationArea({onClose, regionId}) {
 
       {!union && (
         <Stack spacing={4}>
-          <Alert status='warning'>
-            A separate aggregation area will be created for each feature (up to
-            60) in the uploaded shapefile.
-          </Alert>
+          <Alert status='warning'>{message('analysis.separateFeatures')}</Alert>
           <FormControl isDisabled={uploading} isRequired>
             <FormLabel htmlFor={attributeInput.id}>
-              Attribute name to lookup on the shapefile
+              {message('analysis.attributeName')}
             </FormLabel>
             <Input {...attributeInput} />
           </FormControl>
@@ -182,7 +179,7 @@ function UploadNewAggregationArea({onClose, regionId}) {
         onClick={upload}
         variantColor='green'
       >
-        {message('analysis.uploadAggregationArea')}
+        {message('common.upload')}
       </Button>
     </Stack>
   )

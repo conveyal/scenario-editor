@@ -116,7 +116,7 @@ export default function SelectFeedAndRoutes({
             inputId='Route'
             getOptionLabel={getRouteLabel}
             getOptionValue={getRouteValue}
-            isMulti={allowMultipleRoutes}
+            isMulti={allowMultipleRoutes as any}
             onChange={_selectRoute}
             options={selectedFeed.routes}
             placeholder='Select route'

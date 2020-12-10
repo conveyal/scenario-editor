@@ -50,7 +50,7 @@ export default function SelectPatterns({onChange, trips, ...p}) {
         inputId='Patterns'
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
-        isMulti
+        isMulti={true as any}
         onChange={selectPatterns}
         options={routePatterns}
         placeholder='Select patterns'

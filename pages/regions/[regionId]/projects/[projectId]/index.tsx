@@ -1,4 +1,4 @@
-import {loadBundles} from 'lib/actions'
+import {loadBundle, loadBundles} from 'lib/actions'
 import {getForProject as loadModifications} from 'lib/actions/modifications'
 import {loadProject, loadProjects} from 'lib/actions/project'
 import {loadRegion} from 'lib/actions/region'
@@ -14,7 +14,7 @@ const noProjectId = (pid) => !pid || pid === 'undefined'
  * Show Select Project if a project has not been selected
  */
 const ModificationsPage: any = withInitialFetch(
-  ({bundles, modifications, project, projects, region}) => {
+  ({bundle, bundles, project, projects, region}) => {
     if (!project) {
       return (
         <SelectProject bundles={bundles} projects={projects} region={region} />
@@ -23,7 +23,7 @@ const ModificationsPage: any = withInitialFetch(
       return (
         <>
           <ProjectTitle project={project} />
-          <List modifications={modifications} project={project} />
+          <List bundle={bundle} project={project} />
         </>
       )
     }
@@ -42,7 +42,13 @@ const ModificationsPage: any = withInitialFetch(
         dispatch(loadProject(projectId)),
         dispatch(loadModifications(projectId))
       ])
-      return {project: results[0], modifications: results[1]}
+      const project = results[1]
+      const bundle = await dispatch(loadBundle(project.bundleId))
+      return {
+        bundle,
+        project,
+        modifications: results[1]
+      }
     }
   }
 )

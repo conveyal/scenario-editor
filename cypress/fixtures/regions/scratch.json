@@ -1,6 +1,6 @@
 {
-  "name": "Northern Kentucky",
-  "description": "Cypress stratch testing region",
+  "name": "NK",
+  "description": "Test description",
   "PBFfile": "regions/nky/streets.osm.pbf",
   "GTFSfile": "regions/nky/TANK-GTFS.zip",
   "corruptGTFSfile": "regions/nky/null-GTFS.zip",

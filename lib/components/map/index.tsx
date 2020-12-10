@@ -86,6 +86,7 @@ export default function Map({children, setLeafletContext}) {
         onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
         preferCanvas={true}
         ref={leafletMapRef}
+        tap={false}
         viewport={viewport || DEFAULT_VIEWPORT}
         zoomControl={false}
       >

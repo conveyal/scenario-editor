@@ -1,10 +1,35 @@
 import Model from './model'
 
 export default class OpportunityData extends Model {
-  delete() {
-    this.navTo()
+  filePath: string
+
+  constructor(parentName: string, name: string, filePath: string) {
+    super(parentName, name, 'opportunityDataset')
+    this.filePath = filePath
+  }
+
+  _delete() {
     // window.confirm is auto-confirmed by Cypress
     cy.findByRole('button', {name: /Delete entire dataset/i}).click()
+  }
+
+  findOrCreate() {
+    // Check for the existing ods
+    cy.navTo('opportunity datasets')
+    cy.findByText(/Select\.\.\./)
+      .click()
+      .type(`${this.name} {enter}`)
+    cy.navComplete()
+    cy.location('href').then((href) => {
+      if (!href.match(/.*DatasetId=\w{24}$/)) {
+        cy.createOpportunityDataset(this.name, this.filePath)
+      }
+    })
+    cy.location('href')
+      .should('match', /.*DatasetId=\w{24}$/)
+      .then((href) => {
+        this.path = href
+      })
     cy.navComplete()
   }
 

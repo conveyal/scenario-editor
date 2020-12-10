@@ -112,7 +112,11 @@ export default function Reroute({
 
   return (
     <Stack spacing={4}>
-      <RerouteLayer feed={selectedFeed} modification={modification} />
+      <RerouteLayer
+        feed={selectedFeed}
+        isEditing={isEditing}
+        modification={modification}
+      />
 
       {selectStop !== 'none' && (
         <StopLayer
@@ -141,19 +145,22 @@ export default function Reroute({
               <Flex>
                 <IconButton
                   icon={faCrosshairs}
+                  isDisabled={isEditing}
                   label='Select from stop'
                   onClick={() => setSelectStop('fromStop')}
                   size='md'
                   variantColor='blue'
                 />
-                <IconButton
-                  icon={faTimes}
-                  isDisabled={!modification.fromStop}
-                  label='Clear from stop'
-                  onClick={_clearFromStop}
-                  size='md'
-                  variantColor='red'
-                />
+                {modification.fromStop != null && (
+                  <IconButton
+                    icon={faTimes}
+                    isDisabled={isEditing}
+                    label='Clear from stop'
+                    onClick={_clearFromStop}
+                    size='md'
+                    variantColor='red'
+                  />
+                )}
               </Flex>
             </Flex>
 
@@ -165,19 +172,22 @@ export default function Reroute({
               <Flex>
                 <IconButton
                   icon={faCrosshairs}
+                  isDisabled={isEditing}
                   label='Select to stop'
                   onClick={() => setSelectStop('toStop')}
                   size='md'
                   variantColor='blue'
                 />
-                <IconButton
-                  icon={faTimes}
-                  isDisabled={!modification.toStop}
-                  label='Clear to stop'
-                  onClick={_clearToStop}
-                  size='md'
-                  variantColor='red'
-                />
+                {modification.toStop != null && (
+                  <IconButton
+                    icon={faTimes}
+                    isDisabled={isEditing}
+                    label='Clear to stop'
+                    onClick={_clearToStop}
+                    size='md'
+                    variantColor='red'
+                  />
+                )}
               </Flex>
             </Flex>
 

@@ -73,26 +73,24 @@ describe('Modification drawing over anti-meridian', () => {
 
     it('should handle anti-meridian drawing', () => {
       cy.findByLabelText(/Select from stop/).click()
+      cy.clickStopOnMap(/Bakewell at 3rd - Out/)
 
-      cy.waitForMapToLoad()
-      cy.clickMapAtCoord([39.085704, -84.515856])
-
-      cy.findByRole('button', {name: /Edit route geometry/}).click()
+      cy.findButton(/Edit route geometry/).click()
       coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
       cy.get('#react-toast').findByRole('alert') // Alert should pop up
-      cy.findByRole('button', {name: /Stop editing/i}).click()
+      cy.findButton(/Stop editing/i).click()
 
       // Save and re-open
-      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.findButton(/^Modifications$/).click()
       mod.navTo()
 
       // Edit the JSON directly
       cy.editModificationJSON({segments: [addTripSegment]})
 
       // Save and re-open and attempt to edit the route geometry
-      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.findButton(/^Modifications$/).click()
       mod.navTo()
-      cy.findByRole('button', {name: /Edit route geometry/i}).click()
+      cy.findButton(/Edit route geometry/i).click()
     })
   })
 

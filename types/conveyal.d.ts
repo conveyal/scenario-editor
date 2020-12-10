@@ -98,6 +98,7 @@ declare namespace CL {
    * Base modification
    */
   export interface IModification extends IModel {
+    projectId: string
     type: ModificationTypes
   }
 

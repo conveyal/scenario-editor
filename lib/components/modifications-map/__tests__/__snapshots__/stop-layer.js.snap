@@ -4,29 +4,31 @@ exports[`Project-Map > StopLayer renders correctly 1`] = `
 <InternalPane
   zIndex={503}
 >
-  <ForwardRef(Leaflet(CircleMarker))
-    center={
-      Array [
-        36.9707,
-        -122.0246,
-      ]
-    }
+  <Memo()
     color="blue"
     key="1"
-    onClick={[Function]}
-    radius={4}
-  />
-  <ForwardRef(Leaflet(CircleMarker))
-    center={
-      Array [
-        37.049,
-        -122.0279,
-      ]
+    onSelect={[MockFunction]}
+    stop={
+      Object {
+        "stop_id": "1",
+        "stop_lat": 36.9707,
+        "stop_lon": -122.0246,
+        "stop_name": "Santa Cruz",
+      }
     }
+  />
+  <Memo()
     color="blue"
     key="2"
-    onClick={[Function]}
-    radius={4}
+    onSelect={[MockFunction]}
+    stop={
+      Object {
+        "stop_id": "2",
+        "stop_lat": 37.049,
+        "stop_lon": -122.0279,
+        "stop_name": "Scotts Valley",
+      }
+    }
   />
 </InternalPane>
 `;

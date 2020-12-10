@@ -181,6 +181,7 @@ export const TRAVEL_TIME_PERCENTILES = [5, 25, 50, 75, 95]
 export const PROFILE_REQUEST_DEFAULTS = {
   accessModes: 'WALK',
   bikeSpeed: 4.166666666666667,
+  bikeTrafficStress: 4,
   date:
     process.env.NODE_ENV === 'test'
       ? '2020-06-10'

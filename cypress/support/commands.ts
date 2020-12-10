@@ -1,5 +1,8 @@
 const unlog = {log: false}
 
+// Shortened helper for `findByRole('button', {name: /Name/})
+Cypress.Commands.add('findButton', (name) => cy.findByRole('button', {name}))
+
 // Load the home page. Wait for the "Skeleton" to disappear
 Cypress.Commands.add('visitHome', () => {
   cy.log('visitHome')
@@ -91,7 +94,7 @@ const navToPages = {
     path: /\/regions\/[a-z0-9]+\/projects*/
   },
   analyze: {
-    lookFor: /Comparison Project/i,
+    lookFor: /Fetch results/i,
     path: /\/regions\/[a-z0-9]+\/analysis*/
   },
   'regional analyses': {

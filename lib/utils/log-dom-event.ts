@@ -1,7 +1,5 @@
-export default function createLogEvent(filename) {
-  return function logEvent(functionName, evt) {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`${filename}.${functionName}`, evt)
-    }
+export default function createLogEvent(filename: string) {
+  return function logEvent(functionName: string, evt: unknown) {
+    console.log(`${filename}.${functionName}`, evt)
   }
 }

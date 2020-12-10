@@ -1,10 +1,11 @@
-import scratchRegion from '../fixtures/regions/scratch.json'
+import {latLngBounds} from 'leaflet'
+import {defaultAnalysisSettings, scratchRegion} from '../integration/utils'
 
 import Bundle from './bundle'
 import Model from './model'
 import OpportunityData from './opportunity-data'
 import Project from './project'
-import RegionalAnalysis from './regional-analysis'
+import RegionalAnalysis, {RegionalAnalysisOptions} from './regional-analysis'
 
 type ProjectAnalysisSettings = {
   project?: Project
@@ -12,27 +13,29 @@ type ProjectAnalysisSettings = {
   settings?: Record<string, unknown>
 }
 
-type RegionalAnalysisOptions = {
-  project?: Project
-  scenario?: string
-  settings?: Record<string, unknown>
-  opportunityDatasets?: string[]
-  cutoffs?: number[]
-  percentiles?: number[]
-}
-
 export default class Region extends Model {
+  bounds: CL.Bounds
+  center: L.LatLngTuple
   defaultBundle: Bundle
   defaultOpportunityDataset: OpportunityData
   defaultProject: Project
 
-  delete() {
-    this.navTo()
+  constructor(name: string, bounds: CL.Bounds) {
+    super('Conveyal', name, 'region')
+    this.bounds = bounds
+    const center = latLngBounds(
+      [bounds.north, bounds.west],
+      [bounds.south, bounds.east]
+    ).getCenter()
+    this.center = [center.lat, center.lng]
+  }
+
+  _delete() {
     cy.navTo('region settings')
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()
-    return cy.findByRole('dialog').should('not.exist')
+    cy.findByRole('dialog').should('not.exist')
   }
 
   /**
@@ -44,7 +47,6 @@ export default class Region extends Model {
   ): Cypress.Chainable<[number, number]> {
     cy.setOrigin(coords)
     ;(opportunityDataset ?? this.defaultOpportunityDataset).select()
-
     cy.fetchResults()
 
     return cy
@@ -60,38 +62,59 @@ export default class Region extends Model {
       )
   }
 
+  findOrCreate() {
+    cy.visitHome()
+    cy.get('button').then((buttons) => {
+      const pb = buttons.filter((_, el) => el.textContent === this.name)
+      if (pb.length === 0) {
+        cy.findButton(/Set up a new region/).click()
+        cy.findByLabelText(/Region Name/).type(this.name, {delay: 0})
+        cy.findByLabelText(/North bound/)
+          .clear()
+          .type(this.bounds.north.toString(), {delay: 0})
+        cy.findByLabelText(/South bound/)
+          .clear()
+          .type(this.bounds.south.toString(), {delay: 0})
+        cy.findByLabelText(/West bound/)
+          .clear()
+          .type(this.bounds.west.toString(), {delay: 0})
+        cy.findByLabelText(/East bound/)
+          .clear()
+          .type(this.bounds.east.toString(), {delay: 0})
+        cy.findByRole('button', {name: /Set up a new region/}).click()
+        cy.findByRole('button', {name: /Creating region/}).should('not.exist')
+      } else {
+        cy.wrap(pb.first()).click()
+      }
+      cy.location('pathname')
+        .should('match', /regions\/\w{24}$/)
+        .then((path) => {
+          this.path = path
+        })
+      cy.navComplete()
+    })
+  }
+
   getBundle(
     name: string,
     gtfsFilePath: string,
     osmFilePath: string,
     serviceDate: string = scratchRegion.date
   ): Bundle {
-    const bundle = new Bundle(name, serviceDate)
+    const bundle = new Bundle(
+      this.key,
+      name,
+      serviceDate,
+      gtfsFilePath,
+      osmFilePath
+    )
 
     // Store as default if there is none.
     if (!this.defaultBundle) this.defaultBundle = bundle
 
     before(`getBundle(${bundle.name})`, () => {
       this.navTo()
-
-      // Check for the existing bundle. If it does not exist, create one.
-      cy.navTo('network bundles')
-      cy.findByLabelText(/or select an existing one/)
-        .click({force: true})
-        .type(bundle.name + '{enter}')
-      cy.navComplete()
-      cy.location('pathname').then((path) => {
-        if (!path.match(/bundles\/\w{24}$/)) {
-          // Does not exist, create the bundle
-          cy.createBundle(bundle.name, gtfsFilePath, osmFilePath)
-        }
-      })
-      cy.location('pathname')
-        .should('match', /bundles\/\w{24}$/)
-        .then((path) => {
-          bundle.path = path
-        })
-      cy.navComplete()
+      bundle.initialize()
     })
 
     return bundle
@@ -99,111 +122,53 @@ export default class Region extends Model {
 
   getProject(name: string, bundle?: Bundle): Project {
     bundle ??= this.defaultBundle
-    const project = new Project(name, bundle)
+    const project = new Project(this.key, name, bundle)
 
     // Store as default if there is none.
     if (!this.defaultProject) this.defaultProject = project
 
     before(`getProject(${project.name})`, () => {
       this.navTo()
-
-      // Create a project if it does not exist.
-      cy.navTo('projects')
-      cy.get('button').then((buttons) => {
-        const pb = buttons.filter((_, el) => el.textContent === project.name)
-        if (pb.length === 0) {
-          cy.findByText(/Create new Project/i).click()
-          cy.findByLabelText(/Project name/).type(project.name)
-          cy.findByLabelText(/Associated network bundle/i)
-            .click({force: true})
-            .type(bundle.name + '{enter}')
-          cy.findByText(/^Create$/).click()
-        } else {
-          cy.wrap(pb.first()).click()
-        }
-
-        // Store the project id
-        cy.location('pathname')
-          .should('match', /regions\/\w{24}\/projects\/\w{24}\/modifications$/)
-          .then((path) => {
-            project.path = path
-          })
-        cy.navComplete()
-      })
+      project.initialize()
     })
 
     return project
   }
 
   getOpportunityDataset(name: string, filePath: string): OpportunityData {
-    const od = new OpportunityData(name)
+    const od = new OpportunityData(this.key, name, filePath)
 
     if (!this.defaultOpportunityDataset) this.defaultOpportunityDataset = od
 
     before(`getOpportunityDataset(${od.name})`, () => {
       this.navTo()
-
-      // Check for the existing ods
-      cy.navTo('opportunity datasets')
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`${od.name} {enter}`)
-      cy.navComplete()
-      cy.location('href').then((href) => {
-        if (!href.match(/.*DatasetId=\w{24}$/)) {
-          cy.createOpportunityDataset(od.name, filePath)
-        }
-      })
-      cy.location('href')
-        .should('match', /.*DatasetId=\w{24}$/)
-        .then((href) => {
-          od.path = href
-        })
-      cy.navComplete()
+      od.initialize()
     })
 
     return od
   }
 
   getRegionalAnalysis(name: string, options?: RegionalAnalysisOptions) {
-    const ra = new RegionalAnalysis(name)
+    const ra = new RegionalAnalysis(
+      this.key,
+      name,
+      options?.opportunityDatasets || [this.defaultOpportunityDataset.name],
+      options,
+      this
+    )
 
     before('getRegionalAnalysis', () => {
       this.navTo()
-      cy.navTo('regional analyses')
-      cy.findByText(/View a regional analysis/)
-        .click()
-        .type(`${ra.name}{enter}`)
-
-      cy.location('href').then((href) => {
-        if (!href.match(/analysisId=\w{24}/)) {
-          this.setupAnalysis(options)
-
-          cy.fetchResults()
-
-          cy.createRegionalAnalysis(
-            ra.name,
-            options?.opportunityDatasets || [
-              this.defaultOpportunityDataset.name
-            ],
-            options
-          )
-        }
-
-        cy.location('href')
-          .should('match', /.*analysisId=\w{24}$/)
-          .then((href) => {
-            ra.path = href
-          })
-        cy.navComplete()
-      })
+      ra.initialize()
     })
 
     return ra
   }
 
+  /**
+   * Navigate to a section of a region
+   */
   navTo(section?: Cypress.NavToOption) {
-    cy.navComplete()
     cy.location('pathname', {log: false}).then((path) => {
       if (!path.startsWith(this.path)) {
         cy.visit(this.path)
@@ -224,6 +189,23 @@ export default class Region extends Model {
         cy.navComplete()
       }
     })
+  }
+
+  /**
+   * Set default analysis settings.
+   */
+  initializeAnalysisDefaults() {
+    this.navToAnalysis()
+    this.setupAnalysis({
+      project: this.defaultProject,
+      settings: {
+        ...defaultAnalysisSettings,
+        bounds: this.bounds,
+        date: this.defaultBundle.date
+      }
+    })
+    cy.setOrigin(this.center)
+    cy.fetchResults()
   }
 
   /**

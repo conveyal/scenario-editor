@@ -18,6 +18,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -70,6 +71,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -122,6 +124,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -174,6 +177,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -226,6 +230,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -278,6 +283,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -340,6 +346,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -392,6 +399,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,
@@ -452,6 +460,7 @@ Object {
     Object {
       "accessModes": "WALK",
       "bikeSpeed": 4.166666666666667,
+      "bikeTrafficStress": 4,
       "date": "2020-06-10",
       "decayFunction": Object {
         "standardDeviationMinutes": 10,

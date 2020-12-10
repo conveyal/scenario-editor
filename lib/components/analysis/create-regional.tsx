@@ -106,7 +106,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const maxTripDurationMinutes = useSelector(selectMaxTripDurationMinutes)
   const travelTimePercentile = useSelector(selectTravelTimePercentile)
   const workerVersion = get(profileRequest, 'workerVersion', '')
-  const workerVersionHandlesMultipleDimensions =
+  const workerVersionHandlesMultipleDimensions: any =
     versionToNumber(workerVersion) > 50900 ||
     (workerVersion.length == 7 && workerVersion.indexOf('.') == -1)
 
@@ -236,9 +236,11 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                   isMulti={workerVersionHandlesMultipleDimensions}
                   onChange={onChangeDestinationPointSets}
                   options={opportunityDatasets}
-                  value={opportunityDatasets.filter((o) =>
-                    destinationPointSets.includes(o._id)
-                  )}
+                  value={
+                    opportunityDatasets.filter((o) =>
+                      destinationPointSets.includes(o._id)
+                    ) as any
+                  }
                 />
               </div>
               {workerVersionHandlesMultipleDimensions && (

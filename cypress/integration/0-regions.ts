@@ -7,8 +7,8 @@ const getNorth = () => cy.findByLabelText(/North bound/)
 const getSouth = () => cy.findByLabelText(/South bound/)
 const getEast = () => cy.findByLabelText(/East bound/)
 const getWest = () => cy.findByLabelText(/West bound/)
-const getCreate = () => cy.findByRole('button', {name: /Set up a new region/})
-const getSave = () => cy.findByRole('button', {name: /Save changes/})
+const getCreate = () => cy.findButton(/Set up a new region/)
+const getSave = () => cy.findButton(/Save changes/)
 const getSearch = () => cy.get('#geocoder')
 
 /**
@@ -60,9 +60,9 @@ function testInvalidCoordinates() {
  */
 function deleteThisRegion() {
   // Delete region
-  cy.findByText(/Delete this region/).click()
-  cy.findByText(/Confirm: Delete this region/).click()
-  return cy.findByRole('dialog').should('not.exist')
+  cy.findButton(/Delete this region/).click()
+  cy.findButton(/Confirm: Delete this region/).click()
+  cy.findByRole('dialog').should('not.exist')
 }
 
 /**
@@ -92,7 +92,7 @@ describe('Regions', () => {
   before(() => deleteOldScratchRegions())
 
   it('CRUD', function () {
-    cy.findByText('Set up a new region').click()
+    cy.findButton('Set up a new region').click()
     cy.location('pathname').should('eq', '/regions/create')
 
     // Test invalid coordinates in the create form
@@ -179,7 +179,7 @@ describe('Regions', () => {
     getName().clear().type(newName)
     getSave().should('be.enabled').click()
     cy.navTo('regions')
-    cy.findByText(newName).click()
+    cy.findButton(newName).click()
     cy.navComplete()
     cy.navTo('region settings') // will go to bundle page otherwise
     getDesc().should('have.value', newDescription)
@@ -191,6 +191,7 @@ describe('Regions', () => {
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
-    cy.findByText(newName).should('not.exist')
+    cy.get('#react-toast').findByRole('alert').should('not.exist')
+    cy.findButton(newName).should('not.exist')
   })
 })

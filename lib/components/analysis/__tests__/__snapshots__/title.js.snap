@@ -140,7 +140,7 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
           isDisabled={false}
           onClick={[Function]}
           rightIcon="repeat"
-          title=""
+          title="Fetch results"
           variantColor="blue"
         >
           <PseudoBox
@@ -183,7 +183,7 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
             outline="none"
             position="relative"
             px={4}
-            title=""
+            title="Fetch results"
             transition="all 250ms"
             type="button"
             userSelect="none"
@@ -193,7 +193,7 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
             <button
               className="css-1or62k6"
               onClick={[Function]}
-              title=""
+              title="Fetch results"
               type="button"
             >
               Fetch results

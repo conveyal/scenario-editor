@@ -392,6 +392,7 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                 },
               }
             }
+            isEditing={false}
             key=".0"
             mb={4}
             modification={
@@ -2584,6 +2585,7 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                             "prefix": "fas",
                                           }
                                         }
+                                        isDisabled={false}
                                         label="Select from stop"
                                         onClick={[Function]}
                                         size="md"
@@ -3095,6 +3097,7 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                             "prefix": "fas",
                                           }
                                         }
+                                        isDisabled={false}
                                         label="Select to stop"
                                         onClick={[Function]}
                                         size="md"

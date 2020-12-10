@@ -18,6 +18,9 @@ describe('Adjust Speed', () => {
   // Set up the scenarios ahead of time for consistent variant lengths
   project.getScenarios(['All Routes', 'Single Route', 'Segments', 'Patterns'])
 
+  // Run a quick analysis to save settings
+  before(() => region.initializeAnalysisDefaults())
+
   describe('all routes selected', () => {
     const mod = project.getModification({
       data: {

@@ -74,7 +74,11 @@ export default function AnalysisTitle() {
           rightIcon='repeat'
           onClick={() => dispatch(fetchTravelTimeSurface())}
           variantColor='blue'
-          title={!currentProject ? message('analysis.disableFetch') : ''}
+          title={
+            !currentProject
+              ? message('analysis.disableFetch')
+              : message('analysis.refresh')
+          }
         >
           {message('analysis.refresh')}
         </Button>

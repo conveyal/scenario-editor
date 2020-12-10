@@ -89,12 +89,14 @@ Cypress.Commands.add('setOrigin', (newOrigin: L.LatLngTuple) => {
 })
 
 Cypress.Commands.add('fetchResults', () => {
-  cy.findByText(/Fetch results/i) // eslint-disable-line cypress/no-unnecessary-waiting
+  cy.findButton(/^Fetch results$/i) // eslint-disable-line cypress/no-unnecessary-waiting
     .click()
     .wait(200)
   // fetch results button usually disappears when clicked, but may not always
   // when it returns, we know the results have been fetched
-  cy.findByText(/Fetch results/i, {timeout: 240000}).should('exist')
+  cy.findByRole('button', {name: /^Fetch results$/i, timeout: 240000}).should(
+    'exist'
+  )
 })
 
 Cypress.Commands.add('setTimeCutoff', (minutes) => {

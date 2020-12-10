@@ -2,15 +2,6 @@ import Bundle from './bundle'
 import Model from './model'
 import Modification from './modification'
 
-const typeUsesFeed = new Set([
-  'Adjust Dwell Time',
-  'Adjust Speed',
-  'Convert To Frequency',
-  'Remove Stops',
-  'Remove Trips',
-  'Reroute'
-])
-
 type ModificationProps = {
   data?: Record<string, unknown>
   onCreate?: () => void
@@ -22,18 +13,16 @@ export default class Project extends Model {
   bundle: Bundle
   modificationNames: Set<string> = new Set()
 
-  constructor(name: string, bundle: Bundle) {
-    super(name)
+  constructor(parentKey: string, name: string, bundle: Bundle) {
+    super(parentKey, name, 'project')
     this.bundle = bundle
   }
 
-  delete() {
-    this.navTo()
+  _delete() {
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()
     cy.findByText(/Delete project/i).click()
     cy.findByRole('button', {name: /Confirm: Delete project/i}).click()
-    cy.navComplete()
   }
 
   deleteModification(modificationName: string) {
@@ -50,10 +39,35 @@ export default class Project extends Model {
     })
   }
 
+  // Create a project if it does not exist.
+  findOrCreate() {
+    cy.navTo('projects')
+    cy.get('button').then((buttons) => {
+      const pb = buttons.filter((_, el) => el.textContent === this.name)
+      if (pb.length === 0) {
+        cy.findByText(/Create new Project/i).click()
+        cy.findByLabelText(/Project name/).type(this.name)
+        cy.findByLabelText(/Associated network bundle/i)
+          .click({force: true})
+          .type(this.bundle.name + '{enter}')
+        cy.findByText(/^Create$/).click()
+      } else {
+        cy.wrap(pb.first()).click()
+      }
+
+      // Store the project id
+      cy.location('pathname')
+        .should('match', /regions\/\w{24}\/projects\/\w{24}\/modifications$/)
+        .then((path) => {
+          this.path = path
+        })
+    })
+  }
+
   getModification({
     data,
-    name,
     onCreate,
+    name,
     type
   }: ModificationProps): Modification {
     name ??= type + this.modificationNames.size
@@ -62,43 +76,17 @@ export default class Project extends Model {
     } else {
       this.modificationNames.add(name)
     }
-    const modification = new Modification(name)
+    const modification = new Modification(this.key, name, type, onCreate)
 
-    before(`findOrCreateModification(${modification.name})`, () => {
+    before(`getModification(${modification.name})`, () => {
       this.navTo()
-      // Create if it does not exist
-      cy.findAllByRole('button').then((buttons) => {
-        const pb = buttons.filter(
-          (_, el) => el.textContent === modification.name
-        )
-        if (pb.length === 0) {
-          cy.createModification(type, modification.name)
+      modification.initialize()
 
-          // Set the feed and route to the default
-          if (typeUsesFeed.has(type)) {
-            cy.selectDefaultFeedAndRoute()
-          }
-
-          if (onCreate) onCreate()
-        } else {
-          cy.wrap(pb.first()).click()
-          cy.navComplete()
-          cy.findByText(modification.name)
-        }
-
-        // On each test run ensure it starts with the same data.
-        if (data) {
-          cy.editModificationJSON(data)
-        }
-
-        // Store the modification path
-        cy.location('pathname')
-          .should('match', /projects\/\w{24}\/modifications\/\w{24}$/)
-          .then((path) => {
-            modification.path = path
-          })
-        cy.navComplete()
-      })
+      // On each test run ensure it starts with the same data.
+      if (data) {
+        modification.navTo()
+        cy.editModificationJSON(data)
+      }
     })
 
     return modification

@@ -61,12 +61,13 @@ const streetModificationTypes = [ADD_STREETS, MODIFY_STREETS]
  * Modal for creating a modification.
  */
 export default function CreateModification({
+  feeds,
   projectId,
   regionId,
   variants,
   ...p
 }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const router = useRouter()
   const [isCreating, setIsCreating] = useState(false)
   const {isOpen, onClose, onOpen} = useDisclosure()
@@ -78,9 +79,9 @@ export default function CreateModification({
   async function create() {
     setIsCreating(true)
     const type = tabIndex === 0 ? transitTypeInput.value : streetTypeInput.value
-    const m = await dispatch(
+    const m: CL.IModification = await dispatch(
       createModification({
-        feedId: get(p, 'feeds[0].id'), // default to the first feed
+        feedId: get(feeds, '[0].feedId'), // default to the first feed
         name: nameInput.value,
         projectId,
         type,
@@ -90,7 +91,7 @@ export default function CreateModification({
     const {href, as} = routeTo('modificationEdit', {
       regionId,
       projectId,
-      modificationId: get(m, '_id')
+      modificationId: m?._id
     })
     router.push(href, as)
   }

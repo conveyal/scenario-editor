@@ -98,7 +98,7 @@ export const createMultiple = (modifications) =>
 
 export const updateModification = (modification) => (dispatch, getState) => {
   const state = getState()
-  const bundleId = selectBundleId(state, {})
+  const bundleId = selectBundleId(state)
 
   if (!isValid(modification)) {
     window.alert('Modification is not valid after edit.')

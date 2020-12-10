@@ -248,6 +248,28 @@ function testAddTripPattern() {
   cy.findByLabelText(/Phase at stop/i)
   // drawing a route activates the following elements
   cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngTuple[])
+
+  // convert an arbitrary stop to a control point
+  cy.findButton(/Edit route geometry/i).click()
+  const stop = scratchRegion.newRoute[
+    scratchRegion.newRoute.length - 2
+  ] as L.LatLngTuple
+  cy.clickMapAtCoord(stop)
+  cy.findButton(/make control point/i).click()
+
+  // control point not counted as stop
+  cy.contains(
+    new RegExp(scratchRegion.newRoute.length - 1 + ' stops over \\d\\.\\d+ km')
+  )
+
+  // convert control point back to stop
+  cy.clickMapAtCoord(stop)
+  cy.findButton(/make stop/i).click()
+  cy.contains(
+    new RegExp(scratchRegion.newRoute.length + ' stops over \\d\\.\\d+ km')
+  )
+  cy.findButton(/Stop editing/i).click()
+
   cy.findAllByRole('alert')
     .contains(/must have at least 2 stops/)
     .should('not.exist')
@@ -325,7 +347,7 @@ function testConvertToFrequency() {
   cy.findByText(/Add frequency entry/i).click()
   cy.findByLabelText(/Select patterns/i)
     .click({force: true})
-    .type('Bakewell{enter}')
+    .type('BAWAC{enter}')
   cy.findByLabelText(/Frequency/i)
     .clear()
     .type('00:20:00')
@@ -337,7 +359,7 @@ function testConvertToFrequency() {
     .type('23:00')
   cy.findByLabelText(/Phase at stop/i)
     .click({force: true})
-    .type('Fountain Square{enter}')
+    .type('Florence Mall{enter}')
   cy.findByRole('button', {name: 'Delete frequency entry'}).click()
   cy.findByRole('button', {name: 'Confirm: Delete frequency entry'}).click()
 }
@@ -392,16 +414,17 @@ function testReroute() {
 
   // Select from stop and to stop
   cy.findByLabelText(/Select from stop/).click()
-  cy.clickMapAtCoord([39.0877, -84.5192])
+  cy.clickStopOnMap(/Race at 3rd - Out/)
   // test clearing the from stop
   cy.findByLabelText(/Clear from stop/).click()
 
   // Re-select the from stop
   cy.findByLabelText(/Select from stop/).click()
-  cy.clickMapAtCoord([39.0877, -84.5192])
+  cy.clickStopOnMap(/Race at 3rd - Out/)
 
   // Select the to stop
   cy.findByLabelText(/Select to stop/).click()
+  cy.clickStopOnMap(/Dixie at Edgewood - Out/)
   cy.clickMapAtCoord([39.1003, -84.4855])
 
   cy.findByLabelText(/Default dwell time/i).type('00:10:00')

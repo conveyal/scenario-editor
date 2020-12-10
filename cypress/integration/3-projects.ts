@@ -20,7 +20,7 @@ describe('Projects', function () {
 
     // make sure it's listed on the projects page
     region.navTo('projects')
-    cy.findByText(projectName).click()
+    cy.findAllByText(projectName).first().click()
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()
 
@@ -36,21 +36,23 @@ describe('Projects', function () {
       .should('equal', region.defaultBundle.name)
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     cy.contains(/Currently used by \d+ project/i)
+
     // should be selectable in analysis
     region.navTo('analyze')
-    cy.findAllByLabelText(/^Project$/)
-      .first()
-      .click({force: true})
-      .type(projectName + '{enter}')
-    cy.contains(projectName)
-    cy.findAllByLabelText(/^Scenario$/)
-      .first()
-      .click({force: true})
-      .type('Baseline{enter}')
-    cy.contains(/Baseline/)
+    cy.getPrimaryAnalysisSettings().within(() => {
+      cy.findByLabelText(/^Project$/)
+        .click({force: true})
+        .type(projectName + '{enter}')
+      cy.contains(projectName)
+      cy.findByLabelText(/^Scenario$/)
+        .click({force: true})
+        .type('Baseline{enter}')
+      cy.contains(/Baseline/)
+    })
+
     // delete the project
     region.navTo('projects')
-    cy.findByText(projectName).click()
+    cy.findAllByText(projectName).first().click()
     cy.navComplete()
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()

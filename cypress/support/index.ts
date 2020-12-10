@@ -26,33 +26,13 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
-})
-
-// Should data be reset?
-const resetData = Cypress.env('resetDataBeforeEachRun')
-const localFixturePath = Cypress.env('localFixturePath')
-
-/**
- * TODO do this directly via MongoDB
- */
-before('Optionally wipe configured state', () => {
-  if (resetData === true) {
-    Cypress.log({
-      displayName: 'clearDB',
-      message: 'Deleting region saved in .scratch.json'
-    })
-    cy.task('ensureExists', localFixturePath)
-    cy.readFile(localFixturePath).then((storedVals) => {
-      if ('regionId' in storedVals) {
-        cy.visit(`/regions/${storedVals.regionId}/edit`)
-        cy.findByRole('button', {name: /Delete this region/i}).click()
-        cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
-        cy.location('pathname').should('eq', '/')
-      }
-    })
-    cy.writeFile(localFixturePath, '{}')
-  }
+  preserve: [
+    'a0:state',
+    'a0:session',
+    'a0:redirectTo',
+    'adminTempAccessGroup',
+    'cypressTestData'
+  ]
 })
 
 /**

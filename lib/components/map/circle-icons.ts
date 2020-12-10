@@ -16,9 +16,9 @@ export const getSnappedStopIconForZoom = createGetCircleIconForZoom(
  * Take an HTML string for a DivIcon and return a memoized function to generate
  * a DivIcon based on the current zoom level.
  */
-function createGetCircleIconForZoom(type) {
+function createGetCircleIconForZoom(type: string) {
   const className = `CircleIconMarker ${type}`
-  return memoize((zoom) => {
+  return memoize((zoom: number) => {
     const radius = getStopRadius(zoom)
     const divIconOpts: DivIconOptions = {
       iconAnchor: undefined,

@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Modification > List 1`] = `
+exports[`Component ModificationsList snapshot(mount) 1`] = `
 <ModificationsList
+  bundle={
+    Object {
+      "feeds": Array [],
+    }
+  }
   project={
     Object {
       "_id": "1",
@@ -667,6 +672,7 @@ exports[`Modification > List 1`] = `
                         className="css-1ozu5o9"
                       >
                         <CreateModification
+                          feeds={Array []}
                           projectId="1"
                           regionId="1"
                           variants={

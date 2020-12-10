@@ -15,7 +15,7 @@ type UseModelResponse<T> = {
 export function createUseModel<T extends CL.IModel>(collectionName: string) {
   const SWRConfigDefaults: ConfigInterface = {
     // When using a model directly, there's a good chance we are editing it.
-    // Revalidating on focus could overwrite local cahnges.
+    // Revalidating on focus could overwrite local changes.
     revalidateOnFocus: false
   }
 

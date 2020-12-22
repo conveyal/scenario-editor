@@ -183,7 +183,7 @@ declare namespace Cypress {
 
     /**
      * Get the text as a numberic value.
-     * @example cy.findByText('Opportunities).itsNumericText().should('be', 18200)
+     * @example cy.findByText('Opportunities').itsNumericText().should('be', 18200)
      */
     itsNumericText(): Chainable<number>
 

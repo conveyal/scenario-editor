@@ -9,8 +9,8 @@ export default class OpportunityData extends Model {
   }
 
   _delete() {
-    // window.confirm is auto-confirmed by Cypress
-    cy.findByRole('button', {name: /Delete entire dataset/i}).click()
+    cy.findButton(/Delete entire dataset/i).click()
+    cy.findButton(/Confirm: Delete entire dataset/i).click()
   }
 
   findOrCreate() {

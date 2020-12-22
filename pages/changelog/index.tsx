@@ -5,6 +5,7 @@ import React from 'react'
 import Icon from 'lib/components/icon'
 import {ALink} from 'lib/components/link'
 
+import C202012 from './202012.mdx'
 import C20200228 from './20200228.mdx'
 import C201909 from './201909.mdx'
 import C201910 from './201910.mdx'
@@ -15,6 +16,7 @@ import C20200803 from './20200803.mdx'
 import C20201007 from './20201007.mdx'
 
 const changes = [
+  ['December, 2020', C202012],
   ['October, 2020', C20201007],
   ['August, 2020', C20200803],
   ['June, 2020', C202006],

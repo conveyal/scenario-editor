@@ -35,7 +35,7 @@ export default function ConfirmButton({
 
       {isOpen && (
         <ConfirmDialog
-          action={children}
+          action={p.title || children}
           description={description}
           onClose={onClose}
           onConfirm={onConfirm}

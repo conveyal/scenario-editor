@@ -1,4 +1,11 @@
-import {Box, Flex, Input, PseudoBox, useDisclosure} from '@chakra-ui/core'
+import {
+  Box,
+  ButtonProps,
+  Flex,
+  Input,
+  PseudoBox,
+  useDisclosure
+} from '@chakra-ui/core'
 import {faCheck, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
 import {useEffect, useCallback, useState} from 'react'
 
@@ -10,17 +17,27 @@ const defaultEditLabel = 'Click to edit'
 
 const alwaysValid = (_?: any) => true
 
+type EditableProps = {
+  iconSize?: ButtonProps['size']
+  isValid?: (_?: string) => boolean
+  onChange: (newValue: string) => void
+  placeholder?: string
+  value: string
+}
+
 export default function Editable({
+  iconSize,
   isValid = alwaysValid,
   onChange,
   placeholder = 'Add value',
   value
-}): JSX.Element {
+}: EditableProps): JSX.Element {
   const {isOpen, onClose, onOpen} = useDisclosure()
 
   if (isOpen) {
     return (
       <HiddenInput
+        iconSize={iconSize}
         isValid={isValid}
         onChange={onChange}
         onClose={onClose}
@@ -52,6 +69,7 @@ export default function Editable({
             icon={faPencilAlt}
             label={defaultEditLabel}
             onClick={onOpen}
+            size={iconSize}
           />
         </PseudoBox>
       </PseudoBox>
@@ -59,7 +77,14 @@ export default function Editable({
   }
 }
 
-function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
+function HiddenInput({
+  iconSize,
+  isValid,
+  onChange,
+  onClose,
+  placeholder,
+  value
+}) {
   const input = useInput({
     test: isValid,
     value
@@ -112,6 +137,7 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
           isDisabled={isSaving}
           label='Save'
           onClick={save}
+          size={iconSize}
         />
       )}
     </Flex>

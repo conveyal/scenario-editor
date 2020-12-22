@@ -4,6 +4,11 @@ function generateName(type, name) {
   return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
 }
 
+function deleteEntireDataset() {
+  cy.findButton(/Delete entire dataset source/i).click()
+  cy.findButton(/Confirm: Delete entire dataset source/i).click()
+}
+
 // How long should it take to create an OD
 const timeout = 240000
 
@@ -17,7 +22,21 @@ describe('Opportunity Datasets', function () {
     scratchRegion.opportunities.grid.file
   )
 
-  after(() => importedWithGrid.delete())
+  it('create, read, edit, delete', () => {
+    const name = generateName('OD', 'test')
+    const newName = generateName('OD', 'newName')
+    cy.createOpportunityDataset(name, scratchRegion.opportunities.grid.file)
+    cy.get('#totalOpportunities').itsNumericText().should('eq', 227903)
+    cy.findByRole('group', {name: /Opportunity dataset name/}).click()
+    cy.focused().type(newName).blur()
+    cy.navTo('projects')
+    cy.navTo('opportunity datasets')
+    cy.findByLabelText(/or select an existing one/)
+      .click({force: true})
+      .type(`${newName}{enter}`)
+    cy.findButton(/Delete this dataset/).click()
+    cy.findButton(/Confirm: Delete this dataset/).click()
+  })
 
   describe('can be imported', () => {
     it('from CSV', () => {
@@ -25,14 +44,15 @@ describe('Opportunity Datasets', function () {
       const oppName = generateName('opportunities', opportunity.name)
       const expectedFieldCount = 1 + opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
-      cy.location('pathname').should('match', /\/opportunities\/upload$/)
+      cy.navComplete()
+
       cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
         opportunity.file
       )
       cy.findByLabelText(/Latitude/).type(opportunity.latitudeField)
       cy.findByLabelText(/Longitude/).type(opportunity.longitudeField)
-      cy.findByRole('button', {name: /Upload/}).click()
+      cy.findButton(/Upload/).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
@@ -53,22 +73,23 @@ describe('Opportunity Datasets', function () {
           force: true
         }
       )
-      cy.contains(/Delete entire dataset/i).click()
+      deleteEntireDataset()
     })
 
     it('from shapefile', () => {
       const opportunity = scratchRegion.opportunities.shapefile
       const oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       const expectedFieldCount = opportunity.numericFields.length
-      cy.findByText(/Upload a new dataset/i).click()
-      cy.location('pathname').should('match', /\/opportunities\/upload$/)
+      cy.findButton(/Upload a new dataset/i).click()
+      cy.navComplete()
+
       cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/Select opportunity dataset/)
         .attachFile({filePath: opportunity.files[0], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[2], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[3], encoding: 'base64'})
-      cy.findByRole('button', {name: /Upload/}).click()
+      cy.findButton(/Upload/).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
@@ -89,7 +110,7 @@ describe('Opportunity Datasets', function () {
           force: true
         }
       )
-      cy.contains(/Delete entire dataset/i).click()
+      deleteEntireDataset()
     })
 
     it('from .grid', () => {
@@ -103,7 +124,7 @@ describe('Opportunity Datasets', function () {
   describe('can be downloaded', () => {
     it('as .grid', () => {
       importedWithGrid.navTo()
-      cy.contains(/Download as \.grid/)
+      cy.contains(/\.grid/)
       cy.location('href')
         .should('match', /opportunityDatasetId=\w{24}$/)
         .then((href) => {
@@ -123,6 +144,10 @@ describe('Opportunity Datasets', function () {
         })
     })
 
-    it('as TIFF') // produces an error
+    // This currently crahes Cypress
+    it.skip('as TIFF', () => {
+      importedWithGrid.navTo()
+      cy.findButton(/\.tiff/i)
+    })
   })
 })

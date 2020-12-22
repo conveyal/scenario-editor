@@ -12,7 +12,7 @@ updates:
     reviewers:
       - 'trevorgerhardt'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     target-branch: 'dev'
     # Increase the version requirements for package.json
     # only when required

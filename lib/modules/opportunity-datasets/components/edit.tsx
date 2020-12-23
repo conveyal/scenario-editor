@@ -80,6 +80,13 @@ export default function EditOpportunityDatatset(p) {
         </Heading>
       </Stack>
 
+      <Stack>
+        <LabelHeading>format</LabelHeading>
+        <Heading id='format' size='md'>
+          {p.opportunityDataset.format}
+        </Heading>
+      </Stack>
+
       {(totalOpportunities || createdAt >= cutoffTimestamp) && (
         <Stack spacing={1}>
           <LabelHeading>total opportunities</LabelHeading>

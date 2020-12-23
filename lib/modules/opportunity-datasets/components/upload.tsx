@@ -72,71 +72,71 @@ export default function UploadOpportunityDataset({regionId}) {
 
           {isCSV && (
             <Stack spacing={4}>
-              <FormControl isRequired>
-                <FormLabel htmlFor='latField'>
-                  {message('analysis.latField')}
-                </FormLabel>
-                <Input id='latField' name='latField' />
-              </FormControl>
+              <Stack isInline>
+                <FormControl flex='1' isRequired>
+                  <FormLabel htmlFor='latField'>
+                    {message('analysis.latField')}
+                  </FormLabel>
+                  <Input defaultValue='lat' id='latField' name='latField' />
+                </FormControl>
 
-              <FormControl isRequired>
-                <FormLabel htmlFor='lonField'>
-                  {message('analysis.lonField')}
-                </FormLabel>
-                <Input id='lonField' name='lonField' />
-              </FormControl>
-
-              <Stack className='DEV' spacing={4}>
-                <Checkbox
-                  isChecked={freeform}
-                  onChange={(e) => setFreeForm(e.target.checked)}
-                >
-                  {message('opportunityDatasets.freeform')}
-                </Checkbox>
-
-                {freeform && (
-                  <Stack spacing={4}>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor='idField'>
-                        {message('analysis.idField')}
-                      </FormLabel>
-                      <Input id='idField' name='idField' />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                      <FormLabel htmlFor='countField'>
-                        {message('analysis.countField')}
-                      </FormLabel>
-                      <Input id='countField' name='countField' />
-                    </FormControl>
-
-                    <Checkbox
-                      isChecked={paired}
-                      onChange={(e) => setPaired(e.target.checked)}
-                    >
-                      {message('opportunityDatasets.paired')}
-                    </Checkbox>
-
-                    {paired && (
-                      <Stack spacing={4}>
-                        <FormControl isRequired>
-                          <FormLabel htmlFor='latField2'>
-                            {message('analysis.latField')}
-                          </FormLabel>
-                          <Input id='latField2' name='latField2' />
-                        </FormControl>
-
-                        <FormControl isRequired>
-                          <FormLabel htmlFor='lonField2'>
-                            {message('analysis.lonField')}
-                          </FormLabel>
-                          <Input id='lonField2' name='lonField2' />
-                        </FormControl>
-                      </Stack>
-                    )}
-                  </Stack>
-                )}
+                <FormControl flex='1' isRequired>
+                  <FormLabel htmlFor='lonField'>
+                    {message('analysis.lonField')}
+                  </FormLabel>
+                  <Input defaultValue='lon' id='lonField' name='lonField' />
+                </FormControl>
               </Stack>
+
+              <Checkbox
+                isChecked={freeform}
+                onChange={(e) => setFreeForm(e.target.checked)}
+              >
+                {message('opportunityDatasets.freeform')}
+              </Checkbox>
+
+              {freeform && (
+                <Stack spacing={4}>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor='idField'>
+                      {message('analysis.idField')}
+                    </FormLabel>
+                    <Input id='idField' name='idField' />
+                  </FormControl>
+
+                  <FormControl>
+                    <FormLabel htmlFor='countField'>
+                      {message('analysis.countField')}
+                    </FormLabel>
+                    <Input id='countField' name='countField' />
+                  </FormControl>
+
+                  <Checkbox
+                    isChecked={paired}
+                    onChange={(e) => setPaired(e.target.checked)}
+                  >
+                    {message('opportunityDatasets.paired')}
+                  </Checkbox>
+
+                  {paired && (
+                    <Stack isInline>
+                      <FormControl isRequired>
+                        <FormLabel htmlFor='latField2'>
+                          {message('analysis.latField')}
+                        </FormLabel>
+                        <Input id='latField2' name='latField2' />
+                      </FormControl>
+
+                      <FormControl isRequired>
+                        <FormLabel htmlFor='lonField2'>
+                          {message('analysis.lonField')}
+                        </FormLabel>
+                        <Input id='lonField2' name='lonField2' />
+                      </FormControl>
+                    </Stack>
+                  )}
+                </Stack>
+              )}
             </Stack>
           )}
 

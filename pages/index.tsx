@@ -1,13 +1,17 @@
 import {GetServerSideProps} from 'next'
+import {useRouter} from 'next/router'
 
 import {getUser} from 'lib/auth0'
 import {IUser, useFetchUser} from 'lib/user'
 import LoadingScreen from 'lib/components/loading-screen'
 
 export default function IndexPage() {
-  const user = useFetchUser()
-  if (user.isValidating) return <LoadingScreen />
-  else return null
+  const {isValidating, user} = useFetchUser()
+  const router = useRouter()
+  if (!isValidating) {
+    router.push(`/${user.accessGroup}`)
+  }
+  return <LoadingScreen />
 }
 
 /**

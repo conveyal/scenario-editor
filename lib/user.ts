@@ -83,8 +83,8 @@ function goToLogin() {
 export function useFetchUser(
   serverSideUser?: IUser
 ): {
-  user: void | IUser
-  loading: boolean
+  user?: IUser
+  isValidating?: boolean
 } {
   const {data: user, error, isValidating} = useSWR('/api/session', {
     initialData: getUser(serverSideUser)
@@ -99,5 +99,6 @@ export function useFetchUser(
     if (user) storeUser(user)
   }, [user])
 
-  return {user, loading: isValidating}
+  if (user) return {user}
+  else return {isValidating}
 }

@@ -23,7 +23,7 @@ type AccessGroupPageProps = {
 }
 
 export default function AccessGroupPage(p: AccessGroupPageProps) {
-  const {user, isValidating} = useFetchUser()
+  const userFetch = useFetchUser()
   const {data: regions, response} = useRegions({
     initialData: p.regions,
     options: {
@@ -45,11 +45,14 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
         <Logo />
       </Box>
       <Stack spacing={4} textAlign='center' width='320px'>
-        <Skeleton height='15px' isLoaded={user && !isValidating}>
+        <Skeleton
+          height='15px'
+          isLoaded={userFetch.user && !userFetch.isValidating}
+        >
           <Box>
             <span>signed in as </span>
             <strong>
-              {user?.email} ({user?.accessGroup})
+              {userFetch.user?.email} ({userFetch.user?.accessGroup})
             </strong>
           </Box>
         </Skeleton>
@@ -72,13 +75,14 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
             </Button>
           </Link>
         </Box>
-        {!regions && response.isValidating && (
-          <Skeleton id='LoadingSkeleton' height='30px' />
-        )}
-        {regions && regions.length > 0 && (
+        {userFetch.isValidating ||
+          (!regions && response.isValidating && (
+            <Skeleton id='LoadingSkeleton' height='30px' />
+          ))}
+        {!userFetch.isValidating && regions && regions.length > 0 && (
           <Box>or go to an existing region</Box>
         )}
-        {regions && regions.length > 0 && (
+        {!userFetch.isValidating && regions && regions.length > 0 && (
           <Stack spacing={0}>
             {regions.map((region) => (
               <Link href={`/regions/${region._id}`} key={region._id}>

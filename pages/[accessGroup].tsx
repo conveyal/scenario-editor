@@ -53,7 +53,7 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
           <Box>
             <span>signed in as </span>
             <strong>
-              {userFetch.user?.email} ({userFetch.user?.accessGroup})
+              {user?.email} ({user?.accessGroup})
             </strong>
           </Box>
         </Skeleton>

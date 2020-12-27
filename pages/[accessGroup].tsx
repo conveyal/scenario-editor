@@ -23,8 +23,8 @@ type AccessGroupPageProps = {
 }
 
 export default function AccessGroupPage(p: AccessGroupPageProps) {
-  const userFetch = useFetchUser()
-  const {data: regions, response} = useRegions({
+  const {user, isValidating} = useFetchUser()
+  const {data: regions} = useRegions({
     initialData: p.regions,
     options: {
       sort: {name: 1}
@@ -32,7 +32,11 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
   })
   const router = useRouter()
 
-  if (router.isFallback) return <LoadingScreen />
+  if (router.isFallback) {
+    return <LoadingScreen />
+  }
+
+  const userLoaded = user && !isValidating
 
   return (
     <Flex
@@ -45,10 +49,7 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
         <Logo />
       </Box>
       <Stack spacing={4} textAlign='center' width='320px'>
-        <Skeleton
-          height='15px'
-          isLoaded={userFetch.user && !userFetch.isValidating}
-        >
+        <Skeleton height='15px' isLoaded={userLoaded}>
           <Box>
             <span>signed in as </span>
             <strong>
@@ -75,31 +76,32 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
             </Button>
           </Link>
         </Box>
-        {userFetch.isValidating ||
-          (!regions && response.isValidating && (
-            <Skeleton id='LoadingSkeleton' height='30px' />
-          ))}
-        {!userFetch.isValidating && regions && regions.length > 0 && (
-          <Box>or go to an existing region</Box>
+        {userLoaded ? (
+          regions &&
+          regions.length > 0 && (
+            <Stack spacing={4}>
+              <Box>or go to an existing region</Box>
+              <Stack spacing={0}>
+                {regions.map((region) => (
+                  <Link href={`/regions/${region._id}`} key={region._id}>
+                    <ListGroupItem
+                      leftIcon={() => (
+                        <Box pr={3}>
+                          <Icon icon={faMap} />
+                        </Box>
+                      )}
+                    >
+                      {region.name}
+                    </ListGroupItem>
+                  </Link>
+                ))}
+              </Stack>
+            </Stack>
+          )
+        ) : (
+          <Skeleton id='LoadingSkeleton' height='30px' />
         )}
-        {!userFetch.isValidating && regions && regions.length > 0 && (
-          <Stack spacing={0}>
-            {regions.map((region) => (
-              <Link href={`/regions/${region._id}`} key={region._id}>
-                <ListGroupItem
-                  leftIcon={() => (
-                    <Box pr={3}>
-                      <Icon icon={faMap} />
-                    </Box>
-                  )}
-                >
-                  {region.name}
-                </ListGroupItem>
-              </Link>
-            ))}
-          </Stack>
-        )}
-        {process.env.NEXT_PUBLIC_AUTH_DISABLED !== 'true' && (
+        {process.env.NEXT_PUBLIC_AUTH_DISABLED !== 'true' && userLoaded && (
           <Box>
             <ALink to='logout'>
               <Icon icon={faSignOutAlt} /> Log out

@@ -1,6 +1,7 @@
 import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/core'
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 import {GetStaticProps} from 'next'
+import Link from 'next/link'
 import {useRouter} from 'next/router'
 
 import Icon from 'lib/components/icon'
@@ -10,7 +11,6 @@ import Logo from 'lib/components/logo'
 import {connectToDatabase} from 'lib/db/connect'
 import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
-import useRouteTo from 'lib/hooks/use-route-to'
 import {useFetchUser} from 'lib/user'
 import LoadingScreen from 'lib/components/loading-screen'
 
@@ -31,7 +31,6 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
     }
   })
   const router = useRouter()
-  const goToRegionCreate = useRouteTo('regionCreate')
 
   if (router.isFallback) return <LoadingScreen />
 
@@ -59,19 +58,20 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
             <Box>
               <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
             </Box>
-            <Box>
-              <ALink to='changelog'>Click here to learn more.</ALink>
+            <Box color='blue.500'>
+              <Link href='/changelog'>
+                <a>Click here to learn more.</a>
+              </Link>
             </Box>
           </Stack>
         </Alert>
-        <Button
-          isFullWidth
-          leftIcon='small-add'
-          onClick={goToRegionCreate}
-          variantColor='green'
-        >
-          Set up a new region
-        </Button>
+        <Box>
+          <Link href='/regions/create'>
+            <Button isFullWidth leftIcon='small-add' variantColor='green'>
+              Set up a new region
+            </Button>
+          </Link>
+        </Box>
         {!regions && response.isValidating && (
           <Skeleton id='LoadingSkeleton' height='30px' />
         )}
@@ -81,7 +81,17 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
         {regions && regions.length > 0 && (
           <Stack spacing={0}>
             {regions.map((region) => (
-              <RegionItem key={region._id} region={region} />
+              <Link href={`/regions/${region._id}`} key={region._id}>
+                <ListGroupItem
+                  leftIcon={() => (
+                    <Box pr={3}>
+                      <Icon icon={faMap} />
+                    </Box>
+                  )}
+                >
+                  {region.name}
+                </ListGroupItem>
+              </Link>
             ))}
           </Stack>
         )}
@@ -94,27 +104,6 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
         )}
       </Stack>
     </Flex>
-  )
-}
-
-interface RegionItemProps {
-  region: CL.Region
-}
-
-function RegionItem({region, ...p}: RegionItemProps) {
-  const goToRegion = useRouteTo('projects', {regionId: region._id})
-  return (
-    <ListGroupItem
-      {...p}
-      leftIcon={() => (
-        <Box pr={3}>
-          <Icon icon={faMap} />
-        </Box>
-      )}
-      onClick={goToRegion}
-    >
-      {region.name}
-    </ListGroupItem>
   )
 }
 
@@ -140,7 +129,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
       {
         accessGroup: context.params.accessGroup
       },
-      {sort: {name: 1}}
+      {
+        projection: {
+          _id: 1,
+          name: 1
+        },
+        sort: {name: 1}
+      }
     )
     .toArray()
 

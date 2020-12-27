@@ -23,7 +23,7 @@ type AccessGroupPageProps = {
 }
 
 export default function AccessGroupPage(p: AccessGroupPageProps) {
-  const {user} = useFetchUser()
+  const {user, isValidating} = useFetchUser()
   const {data: regions, response} = useRegions({
     initialData: p.regions,
     options: {
@@ -46,7 +46,7 @@ export default function AccessGroupPage(p: AccessGroupPageProps) {
         <Logo />
       </Box>
       <Stack spacing={4} textAlign='center' width='320px'>
-        <Skeleton isLoaded={!!user}>
+        <Skeleton height='15px' isLoaded={user && !isValidating}>
           <Box>
             <span>signed in as </span>
             <strong>

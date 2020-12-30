@@ -6,7 +6,6 @@ import {
   faDatabase,
   faGlobe,
   faLayerGroup,
-  faMap,
   faPencilAlt,
   faQuestionCircle,
   faServer,
@@ -136,12 +135,6 @@ export default function Sidebar() {
         <ItemLink icon={faGlobe} label={message('nav.regions')} to='regions' />
         {queryParams.regionId && queryParams.regionId !== CREATING_ID && (
           <>
-            <ItemLink
-              icon={faMap}
-              label={message('nav.regionSettings')}
-              to='regionSettings'
-              params={regionOnly}
-            />
             <ItemLink
               icon={faCubes}
               label={message('nav.projects')}

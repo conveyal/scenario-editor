@@ -60,7 +60,9 @@ export default function Status({
           </AlertDescription>
         )}
         {message && message.length > 0 && (
-          <AlertDescription>{message}</AlertDescription>
+          <AlertDescription fontFamily='mono' wordBreak='break-all'>
+            {message}
+          </AlertDescription>
         )}
       </Stack>
 

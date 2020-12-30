@@ -3,17 +3,24 @@
 exports[`upload should render without errors 1`] = `
 <UploadOpportunityDataset>
   <ForwardRef
+    as="form"
+    onSubmit={[Function]}
     spacing={4}
   >
     <Flex
+      as="form"
       direction="column"
+      onSubmit={[Function]}
     >
       <Box
+        as="form"
         display="flex"
         flexDirection="column"
+        onSubmit={[Function]}
       >
-        <div
+        <form
           className="css-j7qwjs"
+          onSubmit={[Function]}
         >
           <Heading
             key=".0"
@@ -45,415 +52,1706 @@ exports[`upload should render without errors 1`] = `
               Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
             </div>
           </Box>
-          <Box
-            as="form"
+          <FormControl
+            isRequired={true}
             key=".2"
-            mb={null}
+            mb={4}
           >
-            <form
-              className="css-0"
+            <Box
+              mb={4}
+              role="group"
             >
-              <ForwardRef
-                spacing={4}
+              <div
+                className="css-acwcvw"
+                role="group"
               >
-                <Flex
-                  direction="column"
+                <FormLabel
+                  htmlFor="Name"
                 >
                   <Box
-                    display="flex"
-                    flexDirection="column"
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="Name"
+                    opacity="1"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
                   >
-                    <div
-                      className="css-j7qwjs"
+                    <label
+                      className="css-176s5fq"
+                      htmlFor="Name"
                     >
-                      <FormControl
-                        isInvalid={false}
-                        isRequired={true}
-                        key=".0"
-                        mb={4}
-                      >
+                      Opportunity dataset
+                       name
+                      <RequiredIndicator>
                         <Box
-                          mb={4}
-                          role="group"
+                          aria-hidden="true"
+                          as="span"
+                          color="red.500"
+                          ml={1}
                         >
-                          <div
-                            className="css-acwcvw"
-                            role="group"
+                          <span
+                            aria-hidden="true"
+                            className="css-i02c70"
                           >
-                            <FormLabel
-                              htmlFor="00000000-0000-0000-0000-000000000000"
-                            >
-                              <Box
-                                as="label"
-                                display="inline-block"
-                                fontSize="md"
-                                fontWeight="medium"
-                                htmlFor="00000000-0000-0000-0000-000000000000"
-                                opacity="1"
-                                pb="4px"
-                                pr="12px"
-                                textAlign="left"
-                                verticalAlign="middle"
-                              >
-                                <label
-                                  className="css-176s5fq"
-                                  htmlFor="00000000-0000-0000-0000-000000000000"
-                                >
-                                  Opportunity dataset
-                                   name
-                                  <RequiredIndicator>
-                                    <Box
-                                      aria-hidden="true"
-                                      as="span"
-                                      color="red.500"
-                                      ml={1}
-                                    >
-                                      <span
-                                        aria-hidden="true"
-                                        className="css-i02c70"
-                                      >
-                                        *
-                                      </span>
-                                    </Box>
-                                  </RequiredIndicator>
-                                </label>
-                              </Box>
-                            </FormLabel>
-                            <Input
-                              as="input"
-                              errorBorderColor="red.500"
-                              focusBorderColor="blue.500"
-                              id="00000000-0000-0000-0000-000000000000"
-                              isFullWidth={true}
-                              isInvalid={false}
-                              isValid={true}
-                              onChange={[Function]}
-                              size="md"
-                              value=""
-                              variant="outline"
-                            >
-                              <PseudoBox
-                                _disabled={
-                                  Object {
-                                    "cursor": "not-allowed",
-                                    "opacity": "0.4",
-                                  }
-                                }
-                                _focus={
-                                  Object {
-                                    "borderColor": "#3182ce",
-                                    "boxShadow": "0 0 0 1px #3182ce",
-                                    "zIndex": 1,
-                                  }
-                                }
-                                _hover={
-                                  Object {
-                                    "borderColor": "gray.300",
-                                  }
-                                }
-                                _invalid={
-                                  Object {
-                                    "borderColor": "#e53e3e",
-                                    "boxShadow": "0 0 0 1px #e53e3e",
-                                  }
-                                }
-                                _readOnly={
-                                  Object {
-                                    "bg": "transparent",
-                                    "boxShadow": "none !important",
-                                    "userSelect": "all",
-                                  }
-                                }
-                                alignItems="center"
-                                appearance="none"
-                                aria-invalid={false}
-                                aria-required={true}
-                                as="input"
-                                bg="white"
-                                border="1px"
-                                borderColor="inherit"
-                                display="flex"
-                                fontSize="md"
-                                height={10}
-                                id="00000000-0000-0000-0000-000000000000"
-                                isValid={true}
-                                onChange={[Function]}
-                                outline="none"
-                                position="relative"
-                                px={4}
-                                required={true}
-                                rounded="md"
-                                transition="all 0.2s"
-                                value=""
-                                width="100%"
-                              >
-                                <input
-                                  aria-invalid={false}
-                                  aria-required={true}
-                                  className="css-1ga4kqw"
-                                  id="00000000-0000-0000-0000-000000000000"
-                                  onChange={[Function]}
-                                  required={true}
-                                  value=""
-                                />
-                              </PseudoBox>
-                            </Input>
-                          </div>
+                            *
+                          </span>
                         </Box>
-                      </FormControl>
-                      <FormControl
-                        isRequired={true}
-                        key=".1"
-                        mb={4}
-                      >
+                      </RequiredIndicator>
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Input
+                  as="input"
+                  errorBorderColor="red.500"
+                  focusBorderColor="blue.500"
+                  id="Name"
+                  isFullWidth={true}
+                  name="Name"
+                  size="md"
+                  variant="outline"
+                >
+                  <PseudoBox
+                    _disabled={
+                      Object {
+                        "cursor": "not-allowed",
+                        "opacity": "0.4",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "borderColor": "#3182ce",
+                        "boxShadow": "0 0 0 1px #3182ce",
+                        "zIndex": 1,
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "borderColor": "gray.300",
+                      }
+                    }
+                    _invalid={
+                      Object {
+                        "borderColor": "#e53e3e",
+                        "boxShadow": "0 0 0 1px #e53e3e",
+                      }
+                    }
+                    _readOnly={
+                      Object {
+                        "bg": "transparent",
+                        "boxShadow": "none !important",
+                        "userSelect": "all",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-required={true}
+                    as="input"
+                    bg="white"
+                    border="1px"
+                    borderColor="inherit"
+                    display="flex"
+                    fontSize="md"
+                    height={10}
+                    id="Name"
+                    name="Name"
+                    outline="none"
+                    position="relative"
+                    px={4}
+                    required={true}
+                    rounded="md"
+                    transition="all 0.2s"
+                    width="100%"
+                  >
+                    <input
+                      aria-required={true}
+                      className="css-1ga4kqw"
+                      id="Name"
+                      name="Name"
+                      required={true}
+                    />
+                  </PseudoBox>
+                </Input>
+              </div>
+            </Box>
+          </FormControl>
+          <FormControl
+            isRequired={true}
+            key=".3"
+            mb={4}
+          >
+            <Box
+              mb={4}
+              role="group"
+            >
+              <div
+                className="css-acwcvw"
+                role="group"
+              >
+                <FormLabel
+                  htmlFor="files"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="files"
+                    opacity="1"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-176s5fq"
+                      htmlFor="files"
+                    >
+                      Select opportunity dataset
+                      <RequiredIndicator>
                         <Box
-                          mb={4}
-                          role="group"
+                          aria-hidden="true"
+                          as="span"
+                          color="red.500"
+                          ml={1}
                         >
-                          <div
-                            className="css-acwcvw"
-                            role="group"
+                          <span
+                            aria-hidden="true"
+                            className="css-i02c70"
                           >
-                            <FormLabel
-                              htmlFor="files"
-                            >
-                              <Box
-                                as="label"
-                                display="inline-block"
-                                fontSize="md"
-                                fontWeight="medium"
-                                htmlFor="files"
-                                opacity="1"
-                                pb="4px"
-                                pr="12px"
-                                textAlign="left"
-                                verticalAlign="middle"
-                              >
-                                <label
-                                  className="css-176s5fq"
-                                  htmlFor="files"
-                                >
-                                  Select opportunity dataset
-                                  <RequiredIndicator>
-                                    <Box
-                                      aria-hidden="true"
-                                      as="span"
-                                      color="red.500"
-                                      ml={1}
-                                    >
-                                      <span
-                                        aria-hidden="true"
-                                        className="css-i02c70"
-                                      >
-                                        *
-                                      </span>
-                                    </Box>
-                                  </RequiredIndicator>
-                                </label>
-                              </Box>
-                            </FormLabel>
-                            <Input
-                              as="input"
-                              errorBorderColor="red.500"
-                              focusBorderColor="blue.500"
-                              id="files"
-                              isFullWidth={true}
-                              multiple={true}
-                              name="files"
-                              onChange={[Function]}
-                              size="md"
-                              type="file"
-                              variant="outline"
-                            >
-                              <PseudoBox
-                                _disabled={
-                                  Object {
-                                    "cursor": "not-allowed",
-                                    "opacity": "0.4",
-                                  }
-                                }
-                                _focus={
-                                  Object {
-                                    "borderColor": "#3182ce",
-                                    "boxShadow": "0 0 0 1px #3182ce",
-                                    "zIndex": 1,
-                                  }
-                                }
-                                _hover={
-                                  Object {
-                                    "borderColor": "gray.300",
-                                  }
-                                }
-                                _invalid={
-                                  Object {
-                                    "borderColor": "#e53e3e",
-                                    "boxShadow": "0 0 0 1px #e53e3e",
-                                  }
-                                }
-                                _readOnly={
-                                  Object {
-                                    "bg": "transparent",
-                                    "boxShadow": "none !important",
-                                    "userSelect": "all",
-                                  }
-                                }
-                                alignItems="center"
-                                appearance="none"
-                                aria-required={true}
-                                as="input"
-                                bg="white"
-                                border="1px"
-                                borderColor="inherit"
-                                display="flex"
-                                fontSize="md"
-                                height={10}
-                                id="files"
-                                multiple={true}
-                                name="files"
-                                onChange={[Function]}
-                                outline="none"
-                                position="relative"
-                                px={4}
-                                required={true}
-                                rounded="md"
-                                transition="all 0.2s"
-                                type="file"
-                                width="100%"
-                              >
-                                <input
-                                  aria-required={true}
-                                  className="css-1ga4kqw"
-                                  id="files"
-                                  multiple={true}
-                                  name="files"
-                                  onChange={[Function]}
-                                  required={true}
-                                  type="file"
-                                />
-                              </PseudoBox>
-                            </Input>
-                          </div>
+                            *
+                          </span>
                         </Box>
-                      </FormControl>
-                      <Button
-                        isDisabled={true}
-                        isLoading={false}
-                        key=".3"
-                        leftIcon="small-add"
-                        loadingText="uploading…"
-                        mb={null}
-                        onClick={[Function]}
-                        variantColor="green"
+                      </RequiredIndicator>
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Input
+                  as="input"
+                  errorBorderColor="red.500"
+                  focusBorderColor="blue.500"
+                  id="files"
+                  isFullWidth={true}
+                  multiple={true}
+                  name="files"
+                  onChange={[Function]}
+                  size="md"
+                  type="file"
+                  variant="outline"
+                >
+                  <PseudoBox
+                    _disabled={
+                      Object {
+                        "cursor": "not-allowed",
+                        "opacity": "0.4",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "borderColor": "#3182ce",
+                        "boxShadow": "0 0 0 1px #3182ce",
+                        "zIndex": 1,
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "borderColor": "gray.300",
+                      }
+                    }
+                    _invalid={
+                      Object {
+                        "borderColor": "#e53e3e",
+                        "boxShadow": "0 0 0 1px #e53e3e",
+                      }
+                    }
+                    _readOnly={
+                      Object {
+                        "bg": "transparent",
+                        "boxShadow": "none !important",
+                        "userSelect": "all",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-required={true}
+                    as="input"
+                    bg="white"
+                    border="1px"
+                    borderColor="inherit"
+                    display="flex"
+                    fontSize="md"
+                    height={10}
+                    id="files"
+                    multiple={true}
+                    name="files"
+                    onChange={[Function]}
+                    outline="none"
+                    position="relative"
+                    px={4}
+                    required={true}
+                    rounded="md"
+                    transition="all 0.2s"
+                    type="file"
+                    width="100%"
+                  >
+                    <input
+                      aria-required={true}
+                      className="css-1ga4kqw"
+                      id="files"
+                      multiple={true}
+                      name="files"
+                      onChange={[Function]}
+                      required={true}
+                      type="file"
+                    />
+                  </PseudoBox>
+                </Input>
+              </div>
+            </Box>
+          </FormControl>
+          <Heading
+            key=".4"
+            mb={4}
+            size="sm"
+          >
+            <Box
+              as="h2"
+              fontFamily="heading"
+              fontSize="md"
+              fontWeight="bold"
+              lineHeight="shorter"
+              mb={4}
+            >
+              <h2
+                className="css-35hltn"
+              >
+                CSV Options
+              </h2>
+            </Box>
+          </Heading>
+          <ForwardRef
+            isInline={true}
+            key=".5"
+            mb={4}
+          >
+            <Flex
+              direction="row"
+              mb={4}
+            >
+              <Box
+                display="flex"
+                flexDirection="row"
+                mb={4}
+              >
+                <div
+                  className="css-qml3vj"
+                >
+                  <FormControl
+                    flex="1"
+                    isDisabled={true}
+                    isRequired={true}
+                    key=".0"
+                    mr={2}
+                  >
+                    <Box
+                      flex="1"
+                      mr={2}
+                      role="group"
+                    >
+                      <div
+                        className="css-1ne8nzs"
+                        role="group"
                       >
-                        <PseudoBox
-                          _active={
-                            Object {
-                              "bg": "green.700",
-                            }
-                          }
-                          _disabled={
-                            Object {
-                              "boxShadow": "none",
-                              "cursor": "not-allowed",
-                              "opacity": "40%",
-                            }
-                          }
-                          _focus={
-                            Object {
-                              "boxShadow": "outline",
-                            }
-                          }
-                          _hover={
-                            Object {
-                              "bg": "green.600",
-                            }
-                          }
-                          alignItems="center"
-                          appearance="none"
-                          aria-disabled={true}
-                          as="button"
-                          bg="green.500"
-                          borderRadius="md"
-                          color="white"
-                          disabled={true}
-                          display="inline-flex"
-                          fontSize="md"
-                          fontWeight="semibold"
-                          height={10}
-                          justifyContent="center"
-                          lineHeight="1.2"
-                          mb={null}
-                          minWidth={10}
-                          onClick={[Function]}
-                          outline="none"
-                          position="relative"
-                          px={4}
-                          transition="all 250ms"
-                          type="button"
-                          userSelect="none"
-                          verticalAlign="middle"
-                          whiteSpace="nowrap"
+                        <FormLabel
+                          htmlFor="latField"
                         >
-                          <button
-                            aria-disabled={true}
-                            className="css-6cthfa"
-                            disabled={true}
-                            onClick={[Function]}
-                            type="button"
+                          <Box
+                            as="label"
+                            display="inline-block"
+                            fontSize="md"
+                            fontWeight="medium"
+                            htmlFor="latField"
+                            opacity="0.4"
+                            pb="4px"
+                            pr="12px"
+                            textAlign="left"
+                            verticalAlign="middle"
                           >
-                            <ButtonIcon
-                              icon="small-add"
-                              ml={-1}
-                              mr={2}
+                            <label
+                              className="css-e07mjy"
+                              htmlFor="latField"
                             >
-                              <Icon
-                                aria-hidden="true"
-                                color="currentColor"
-                                focusable="false"
-                                ml={-1}
-                                mr={2}
-                                name="small-add"
-                              >
-                                <Styled(div)
+                              Latitude field
+                              <RequiredIndicator>
+                                <Box
                                   aria-hidden="true"
-                                  as="svg"
-                                  color="currentColor"
-                                  display="inline-block"
-                                  focusable="false"
-                                  ml={-1}
-                                  mr={2}
-                                  role="presentation"
-                                  size="1em"
-                                  verticalAlign="middle"
-                                  viewBox="0 0 20 20"
+                                  as="span"
+                                  color="red.500"
+                                  ml={1}
+                                >
+                                  <span
+                                    aria-hidden="true"
+                                    className="css-i02c70"
+                                  >
+                                    *
+                                  </span>
+                                </Box>
+                              </RequiredIndicator>
+                            </label>
+                          </Box>
+                        </FormLabel>
+                        <Input
+                          as="input"
+                          defaultValue="lat"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          id="latField"
+                          isFullWidth={true}
+                          name="latField"
+                          size="md"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-disabled={true}
+                            aria-required={true}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            defaultValue="lat"
+                            disabled={true}
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            id="latField"
+                            name="latField"
+                            outline="none"
+                            position="relative"
+                            px={4}
+                            required={true}
+                            rounded="md"
+                            transition="all 0.2s"
+                            width="100%"
+                          >
+                            <input
+                              aria-disabled={true}
+                              aria-required={true}
+                              className="css-1ga4kqw"
+                              defaultValue="lat"
+                              disabled={true}
+                              id="latField"
+                              name="latField"
+                              required={true}
+                            />
+                          </PseudoBox>
+                        </Input>
+                      </div>
+                    </Box>
+                  </FormControl>
+                  <FormControl
+                    flex="1"
+                    isDisabled={true}
+                    isRequired={true}
+                    key=".1"
+                    mr={null}
+                  >
+                    <Box
+                      flex="1"
+                      mr={null}
+                      role="group"
+                    >
+                      <div
+                        className="css-1rr4qq7"
+                        role="group"
+                      >
+                        <FormLabel
+                          htmlFor="lonField"
+                        >
+                          <Box
+                            as="label"
+                            display="inline-block"
+                            fontSize="md"
+                            fontWeight="medium"
+                            htmlFor="lonField"
+                            opacity="0.4"
+                            pb="4px"
+                            pr="12px"
+                            textAlign="left"
+                            verticalAlign="middle"
+                          >
+                            <label
+                              className="css-e07mjy"
+                              htmlFor="lonField"
+                            >
+                              Longitude field
+                              <RequiredIndicator>
+                                <Box
+                                  aria-hidden="true"
+                                  as="span"
+                                  color="red.500"
+                                  ml={1}
+                                >
+                                  <span
+                                    aria-hidden="true"
+                                    className="css-i02c70"
+                                  >
+                                    *
+                                  </span>
+                                </Box>
+                              </RequiredIndicator>
+                            </label>
+                          </Box>
+                        </FormLabel>
+                        <Input
+                          as="input"
+                          defaultValue="lon"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          id="lonField"
+                          isFullWidth={true}
+                          name="lonField"
+                          size="md"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-disabled={true}
+                            aria-required={true}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            defaultValue="lon"
+                            disabled={true}
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            id="lonField"
+                            name="lonField"
+                            outline="none"
+                            position="relative"
+                            px={4}
+                            required={true}
+                            rounded="md"
+                            transition="all 0.2s"
+                            width="100%"
+                          >
+                            <input
+                              aria-disabled={true}
+                              aria-required={true}
+                              className="css-1ga4kqw"
+                              defaultValue="lon"
+                              disabled={true}
+                              id="lonField"
+                              name="lonField"
+                              required={true}
+                            />
+                          </PseudoBox>
+                        </Input>
+                      </div>
+                    </Box>
+                  </FormControl>
+                </div>
+              </Box>
+            </Flex>
+          </ForwardRef>
+          <FormControl
+            alignItems="center"
+            display="flex"
+            isDisabled={true}
+            justifyContent="space-between"
+            key=".6"
+            mb={4}
+          >
+            <Box
+              alignItems="center"
+              display="flex"
+              justifyContent="space-between"
+              mb={4}
+              role="group"
+            >
+              <div
+                className="css-kh0pwy"
+                role="group"
+              >
+                <FormLabel
+                  htmlFor="freeform"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="freeform"
+                    opacity="0.4"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-e07mjy"
+                      htmlFor="freeform"
+                    >
+                      Enable free form
+                       
+                      <DocsLink
+                        pl={1}
+                        to="/prepare-inputs/upload-opportunity-data#csv"
+                      >
+                        <Tip
+                          label="View docs to learn more"
+                        >
+                          <Tooltip
+                            aria-label="Tooltip: View docs to learn more"
+                            fontSize="md"
+                            hasArrow={true}
+                            label="View docs to learn more"
+                            zIndex={1500}
+                          >
+                            <Link
+                              _hover={
+                                Object {
+                                  "color": "blue.700",
+                                }
+                              }
+                              color="blue.500"
+                              href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
+                              isExternal={true}
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
+                              pl={1}
+                            >
+                              <PseudoBox
+                                _disabled={
+                                  Object {
+                                    "cursor": "not-allowed",
+                                    "opacity": "0.4",
+                                    "textDecoration": "none",
+                                  }
+                                }
+                                _focus={
+                                  Object {
+                                    "boxShadow": "outline",
+                                  }
+                                }
+                                _hover={
+                                  Object {
+                                    "color": "blue.700",
+                                  }
+                                }
+                                as="a"
+                                color="blue.500"
+                                cursor="pointer"
+                                href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
+                                onBlur={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                outline="none"
+                                pl={1}
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                textDecoration="none"
+                                transition="all 0.15s ease-out"
+                              >
+                                <a
+                                  className="css-7mcnif"
+                                  href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  rel="noopener noreferrer"
+                                  target="_blank"
+                                >
+                                  <Icon
+                                    icon={
+                                      Object {
+                                        "icon": Array [],
+                                        "iconName": "question-circle",
+                                        "prefix": "fas",
+                                      }
+                                    }
+                                  >
+                                    <FontAwesomeIcon
+                                      border={false}
+                                      className=""
+                                      fixedWidth={true}
+                                      flip={null}
+                                      icon={
+                                        Object {
+                                          "icon": Array [],
+                                          "iconName": "question-circle",
+                                          "prefix": "fas",
+                                        }
+                                      }
+                                      inverse={false}
+                                      listItem={false}
+                                      mask={null}
+                                      pull={null}
+                                      pulse={false}
+                                      rotation={null}
+                                      size={null}
+                                      spin={false}
+                                      swapOpacity={false}
+                                      symbol={false}
+                                      title=""
+                                      transform={null}
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        className="svg-inline--fa fa-question-circle fa-w-NaN fa-fw "
+                                        data-icon="question-circle"
+                                        data-prefix="fas"
+                                        focusable="false"
+                                        role="img"
+                                        style={Object {}}
+                                        viewBox="0 0 undefined undefined"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          fill="currentColor"
+                                          style={Object {}}
+                                        />
+                                      </svg>
+                                    </FontAwesomeIcon>
+                                  </Icon>
+                                </a>
+                              </PseudoBox>
+                            </Link>
+                            <ForwardRef
+                              anchorEl={
+                                <a
+                                  class="css-7mcnif"
+                                  href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
+                                  rel="noopener noreferrer"
+                                  target="_blank"
                                 >
                                   <svg
                                     aria-hidden="true"
-                                    className="css-yxiis9"
+                                    class="svg-inline--fa fa-question-circle fa-w-NaN fa-fw "
+                                    data-icon="question-circle"
+                                    data-prefix="fas"
                                     focusable="false"
-                                    role="presentation"
-                                    viewBox="0 0 20 20"
+                                    role="img"
+                                    viewBox="0 0 undefined undefined"
+                                    xmlns="http://www.w3.org/2000/svg"
                                   >
                                     <path
-                                      d="M14 9h-3V6c0-.55-.45-1-1-1s-1 .45-1 1v3H6c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1z"
                                       fill="currentColor"
-                                      fillRule="evenodd"
                                     />
                                   </svg>
-                                </Styled(div)>
-                              </Icon>
-                            </ButtonIcon>
-                            Upload a new opportunity dataset
-                          </button>
-                        </PseudoBox>
-                      </Button>
-                    </div>
+                                </a>
+                              }
+                              arrowSize="10px"
+                              bg="gray.700"
+                              borderRadius="sm"
+                              color="whiteAlpha.900"
+                              fontSize="md"
+                              fontWeight="medium"
+                              hasArrow={true}
+                              isOpen={false}
+                              maxW="320px"
+                              modifiers={
+                                Object {
+                                  "offset": Object {
+                                    "enabled": true,
+                                    "offset": "0, 8",
+                                  },
+                                }
+                              }
+                              placement="auto"
+                              pointerEvents="none"
+                              px="8px"
+                              py="2px"
+                              shadow="md"
+                              timeout={200}
+                              usePortal={true}
+                              zIndex={1500}
+                            />
+                          </Tooltip>
+                        </Tip>
+                      </DocsLink>
+                    </label>
                   </Box>
-                </Flex>
-              </ForwardRef>
-            </form>
-          </Box>
-        </div>
+                </FormLabel>
+                <Switch
+                  color="blue"
+                  id="freeform"
+                  isChecked={false}
+                  isDisabled={true}
+                  onChange={[Function]}
+                  size="md"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-v7ibj3"
+                    >
+                      <VisuallyHidden
+                        as="input"
+                        checked={false}
+                        disabled={true}
+                        id="freeform"
+                        onChange={[Function]}
+                        type="checkbox"
+                      >
+                        <input
+                          checked={false}
+                          className="css-1gy22ay"
+                          disabled={true}
+                          id="freeform"
+                          onChange={[Function]}
+                          type="checkbox"
+                        />
+                      </VisuallyHidden>
+                      <ControlBox
+                        _checked={
+                          Object {
+                            "bg": "blue.500",
+                          }
+                        }
+                        _checkedAndChild={
+                          Object {
+                            "transform": "translateX(calc(1.875rem - 1rem))",
+                          }
+                        }
+                        _checkedAndHover={
+                          Object {
+                            "cursor": "pointer",
+                          }
+                        }
+                        _child={
+                          Object {
+                            "transform": "translateX(0)",
+                          }
+                        }
+                        _disabled={
+                          Object {
+                            "cursor": "not-allowed",
+                            "opacity": 0.4,
+                          }
+                        }
+                        _focus={
+                          Object {
+                            "boxShadow": "outline",
+                          }
+                        }
+                        _hover={
+                          Object {
+                            "cursor": "pointer",
+                          }
+                        }
+                        alignItems="center"
+                        aria-hidden="true"
+                        bg="gray.300"
+                        boxSizing="content-box"
+                        display="inline-flex"
+                        flexShrink="0"
+                        height="1rem"
+                        justifyContent="flex-start"
+                        p="2px"
+                        rounded="full"
+                        transition="all 120ms"
+                        width="1.875rem"
+                      >
+                        <div
+                          aria-hidden="true"
+                          className="css-9yrka1"
+                        >
+                          <Box
+                            bg="white"
+                            rounded="full"
+                            size="1rem"
+                            transition="transform 250ms"
+                          >
+                            <div
+                              className="css-1fh8wk"
+                            />
+                          </Box>
+                        </div>
+                      </ControlBox>
+                    </label>
+                  </Box>
+                </Switch>
+              </div>
+            </Box>
+          </FormControl>
+          <FormControl
+            isDisabled={true}
+            isRequired={true}
+            key=".7"
+            mb={4}
+          >
+            <Box
+              mb={4}
+              role="group"
+            >
+              <div
+                className="css-acwcvw"
+                role="group"
+              >
+                <FormLabel
+                  htmlFor="idField"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="idField"
+                    opacity="0.4"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-e07mjy"
+                      htmlFor="idField"
+                    >
+                      ID field
+                      <RequiredIndicator>
+                        <Box
+                          aria-hidden="true"
+                          as="span"
+                          color="red.500"
+                          ml={1}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="css-i02c70"
+                          >
+                            *
+                          </span>
+                        </Box>
+                      </RequiredIndicator>
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Input
+                  as="input"
+                  errorBorderColor="red.500"
+                  focusBorderColor="blue.500"
+                  id="idField"
+                  isFullWidth={true}
+                  name="idField"
+                  size="md"
+                  variant="outline"
+                >
+                  <PseudoBox
+                    _disabled={
+                      Object {
+                        "cursor": "not-allowed",
+                        "opacity": "0.4",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "borderColor": "#3182ce",
+                        "boxShadow": "0 0 0 1px #3182ce",
+                        "zIndex": 1,
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "borderColor": "gray.300",
+                      }
+                    }
+                    _invalid={
+                      Object {
+                        "borderColor": "#e53e3e",
+                        "boxShadow": "0 0 0 1px #e53e3e",
+                      }
+                    }
+                    _readOnly={
+                      Object {
+                        "bg": "transparent",
+                        "boxShadow": "none !important",
+                        "userSelect": "all",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-disabled={true}
+                    aria-required={true}
+                    as="input"
+                    bg="white"
+                    border="1px"
+                    borderColor="inherit"
+                    disabled={true}
+                    display="flex"
+                    fontSize="md"
+                    height={10}
+                    id="idField"
+                    name="idField"
+                    outline="none"
+                    position="relative"
+                    px={4}
+                    required={true}
+                    rounded="md"
+                    transition="all 0.2s"
+                    width="100%"
+                  >
+                    <input
+                      aria-disabled={true}
+                      aria-required={true}
+                      className="css-1ga4kqw"
+                      disabled={true}
+                      id="idField"
+                      name="idField"
+                      required={true}
+                    />
+                  </PseudoBox>
+                </Input>
+              </div>
+            </Box>
+          </FormControl>
+          <FormControl
+            isDisabled={true}
+            isRequired={true}
+            key=".8"
+            mb={4}
+          >
+            <Box
+              mb={4}
+              role="group"
+            >
+              <div
+                className="css-acwcvw"
+                role="group"
+              >
+                <FormLabel
+                  htmlFor="countField"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="countField"
+                    opacity="0.4"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-e07mjy"
+                      htmlFor="countField"
+                    >
+                      Opportunity count field
+                      <RequiredIndicator>
+                        <Box
+                          aria-hidden="true"
+                          as="span"
+                          color="red.500"
+                          ml={1}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="css-i02c70"
+                          >
+                            *
+                          </span>
+                        </Box>
+                      </RequiredIndicator>
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Input
+                  as="input"
+                  errorBorderColor="red.500"
+                  focusBorderColor="blue.500"
+                  id="countField"
+                  isFullWidth={true}
+                  name="countField"
+                  size="md"
+                  variant="outline"
+                >
+                  <PseudoBox
+                    _disabled={
+                      Object {
+                        "cursor": "not-allowed",
+                        "opacity": "0.4",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "borderColor": "#3182ce",
+                        "boxShadow": "0 0 0 1px #3182ce",
+                        "zIndex": 1,
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "borderColor": "gray.300",
+                      }
+                    }
+                    _invalid={
+                      Object {
+                        "borderColor": "#e53e3e",
+                        "boxShadow": "0 0 0 1px #e53e3e",
+                      }
+                    }
+                    _readOnly={
+                      Object {
+                        "bg": "transparent",
+                        "boxShadow": "none !important",
+                        "userSelect": "all",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-disabled={true}
+                    aria-required={true}
+                    as="input"
+                    bg="white"
+                    border="1px"
+                    borderColor="inherit"
+                    disabled={true}
+                    display="flex"
+                    fontSize="md"
+                    height={10}
+                    id="countField"
+                    name="countField"
+                    outline="none"
+                    position="relative"
+                    px={4}
+                    required={true}
+                    rounded="md"
+                    transition="all 0.2s"
+                    width="100%"
+                  >
+                    <input
+                      aria-disabled={true}
+                      aria-required={true}
+                      className="css-1ga4kqw"
+                      disabled={true}
+                      id="countField"
+                      name="countField"
+                      required={true}
+                    />
+                  </PseudoBox>
+                </Input>
+              </div>
+            </Box>
+          </FormControl>
+          <FormControl
+            alignItems="center"
+            display="flex"
+            isDisabled={true}
+            justifyContent="space-between"
+            key=".9"
+            mb={4}
+          >
+            <Box
+              alignItems="center"
+              display="flex"
+              justifyContent="space-between"
+              mb={4}
+              role="group"
+            >
+              <div
+                className="css-kh0pwy"
+                role="group"
+              >
+                <FormLabel
+                  htmlFor="paired"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="paired"
+                    opacity="0.4"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-e07mjy"
+                      htmlFor="paired"
+                    >
+                      Paired origin/destination file
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Switch
+                  color="blue"
+                  id="paired"
+                  isChecked={false}
+                  isDisabled={true}
+                  onChange={[Function]}
+                  size="md"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-v7ibj3"
+                    >
+                      <VisuallyHidden
+                        as="input"
+                        checked={false}
+                        disabled={true}
+                        id="paired"
+                        onChange={[Function]}
+                        type="checkbox"
+                      >
+                        <input
+                          checked={false}
+                          className="css-1gy22ay"
+                          disabled={true}
+                          id="paired"
+                          onChange={[Function]}
+                          type="checkbox"
+                        />
+                      </VisuallyHidden>
+                      <ControlBox
+                        _checked={
+                          Object {
+                            "bg": "blue.500",
+                          }
+                        }
+                        _checkedAndChild={
+                          Object {
+                            "transform": "translateX(calc(1.875rem - 1rem))",
+                          }
+                        }
+                        _checkedAndHover={
+                          Object {
+                            "cursor": "pointer",
+                          }
+                        }
+                        _child={
+                          Object {
+                            "transform": "translateX(0)",
+                          }
+                        }
+                        _disabled={
+                          Object {
+                            "cursor": "not-allowed",
+                            "opacity": 0.4,
+                          }
+                        }
+                        _focus={
+                          Object {
+                            "boxShadow": "outline",
+                          }
+                        }
+                        _hover={
+                          Object {
+                            "cursor": "pointer",
+                          }
+                        }
+                        alignItems="center"
+                        aria-hidden="true"
+                        bg="gray.300"
+                        boxSizing="content-box"
+                        display="inline-flex"
+                        flexShrink="0"
+                        height="1rem"
+                        justifyContent="flex-start"
+                        p="2px"
+                        rounded="full"
+                        transition="all 120ms"
+                        width="1.875rem"
+                      >
+                        <div
+                          aria-hidden="true"
+                          className="css-9yrka1"
+                        >
+                          <Box
+                            bg="white"
+                            rounded="full"
+                            size="1rem"
+                            transition="transform 250ms"
+                          >
+                            <div
+                              className="css-1fh8wk"
+                            />
+                          </Box>
+                        </div>
+                      </ControlBox>
+                    </label>
+                  </Box>
+                </Switch>
+              </div>
+            </Box>
+          </FormControl>
+          <ForwardRef
+            isInline={true}
+            key=".a"
+            mb={4}
+          >
+            <Flex
+              direction="row"
+              mb={4}
+            >
+              <Box
+                display="flex"
+                flexDirection="row"
+                mb={4}
+              >
+                <div
+                  className="css-qml3vj"
+                >
+                  <FormControl
+                    isDisabled={true}
+                    isRequired={true}
+                    key=".0"
+                    mr={2}
+                  >
+                    <Box
+                      mr={2}
+                      role="group"
+                    >
+                      <div
+                        className="css-9u48bm"
+                        role="group"
+                      >
+                        <FormLabel
+                          htmlFor="latField2"
+                        >
+                          <Box
+                            as="label"
+                            display="inline-block"
+                            fontSize="md"
+                            fontWeight="medium"
+                            htmlFor="latField2"
+                            opacity="0.4"
+                            pb="4px"
+                            pr="12px"
+                            textAlign="left"
+                            verticalAlign="middle"
+                          >
+                            <label
+                              className="css-e07mjy"
+                              htmlFor="latField2"
+                            >
+                              Latitude field
+                              <RequiredIndicator>
+                                <Box
+                                  aria-hidden="true"
+                                  as="span"
+                                  color="red.500"
+                                  ml={1}
+                                >
+                                  <span
+                                    aria-hidden="true"
+                                    className="css-i02c70"
+                                  >
+                                    *
+                                  </span>
+                                </Box>
+                              </RequiredIndicator>
+                            </label>
+                          </Box>
+                        </FormLabel>
+                        <Input
+                          as="input"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          id="latField2"
+                          isFullWidth={true}
+                          name="latField2"
+                          size="md"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-disabled={true}
+                            aria-required={true}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            disabled={true}
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            id="latField2"
+                            name="latField2"
+                            outline="none"
+                            position="relative"
+                            px={4}
+                            required={true}
+                            rounded="md"
+                            transition="all 0.2s"
+                            width="100%"
+                          >
+                            <input
+                              aria-disabled={true}
+                              aria-required={true}
+                              className="css-1ga4kqw"
+                              disabled={true}
+                              id="latField2"
+                              name="latField2"
+                              required={true}
+                            />
+                          </PseudoBox>
+                        </Input>
+                      </div>
+                    </Box>
+                  </FormControl>
+                  <FormControl
+                    isDisabled={true}
+                    isRequired={true}
+                    key=".1"
+                    mr={null}
+                  >
+                    <Box
+                      mr={null}
+                      role="group"
+                    >
+                      <div
+                        className="css-0"
+                        role="group"
+                      >
+                        <FormLabel
+                          htmlFor="lonField2"
+                        >
+                          <Box
+                            as="label"
+                            display="inline-block"
+                            fontSize="md"
+                            fontWeight="medium"
+                            htmlFor="lonField2"
+                            opacity="0.4"
+                            pb="4px"
+                            pr="12px"
+                            textAlign="left"
+                            verticalAlign="middle"
+                          >
+                            <label
+                              className="css-e07mjy"
+                              htmlFor="lonField2"
+                            >
+                              Longitude field
+                              <RequiredIndicator>
+                                <Box
+                                  aria-hidden="true"
+                                  as="span"
+                                  color="red.500"
+                                  ml={1}
+                                >
+                                  <span
+                                    aria-hidden="true"
+                                    className="css-i02c70"
+                                  >
+                                    *
+                                  </span>
+                                </Box>
+                              </RequiredIndicator>
+                            </label>
+                          </Box>
+                        </FormLabel>
+                        <Input
+                          as="input"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          id="lonField2"
+                          isFullWidth={true}
+                          name="lonField2"
+                          size="md"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-disabled={true}
+                            aria-required={true}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            disabled={true}
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            id="lonField2"
+                            name="lonField2"
+                            outline="none"
+                            position="relative"
+                            px={4}
+                            required={true}
+                            rounded="md"
+                            transition="all 0.2s"
+                            width="100%"
+                          >
+                            <input
+                              aria-disabled={true}
+                              aria-required={true}
+                              className="css-1ga4kqw"
+                              disabled={true}
+                              id="lonField2"
+                              name="lonField2"
+                              required={true}
+                            />
+                          </PseudoBox>
+                        </Input>
+                      </div>
+                    </Box>
+                  </FormControl>
+                </div>
+              </Box>
+            </Flex>
+          </ForwardRef>
+          <Button
+            isLoading={false}
+            key=".b"
+            leftIcon="small-add"
+            loadingText="uploading…"
+            mb={null}
+            type="submit"
+            variantColor="green"
+          >
+            <PseudoBox
+              _active={
+                Object {
+                  "bg": "green.700",
+                }
+              }
+              _disabled={
+                Object {
+                  "boxShadow": "none",
+                  "cursor": "not-allowed",
+                  "opacity": "40%",
+                }
+              }
+              _focus={
+                Object {
+                  "boxShadow": "outline",
+                }
+              }
+              _hover={
+                Object {
+                  "bg": "green.600",
+                }
+              }
+              alignItems="center"
+              appearance="none"
+              aria-disabled={false}
+              as="button"
+              bg="green.500"
+              borderRadius="md"
+              color="white"
+              disabled={false}
+              display="inline-flex"
+              fontSize="md"
+              fontWeight="semibold"
+              height={10}
+              justifyContent="center"
+              lineHeight="1.2"
+              mb={null}
+              minWidth={10}
+              outline="none"
+              position="relative"
+              px={4}
+              transition="all 250ms"
+              type="submit"
+              userSelect="none"
+              verticalAlign="middle"
+              whiteSpace="nowrap"
+            >
+              <button
+                aria-disabled={false}
+                className="css-6cthfa"
+                disabled={false}
+                type="submit"
+              >
+                <ButtonIcon
+                  icon="small-add"
+                  ml={-1}
+                  mr={2}
+                >
+                  <Icon
+                    aria-hidden="true"
+                    color="currentColor"
+                    focusable="false"
+                    ml={-1}
+                    mr={2}
+                    name="small-add"
+                  >
+                    <Styled(div)
+                      aria-hidden="true"
+                      as="svg"
+                      color="currentColor"
+                      display="inline-block"
+                      focusable="false"
+                      ml={-1}
+                      mr={2}
+                      role="presentation"
+                      size="1em"
+                      verticalAlign="middle"
+                      viewBox="0 0 20 20"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="css-yxiis9"
+                        focusable="false"
+                        role="presentation"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M14 9h-3V6c0-.55-.45-1-1-1s-1 .45-1 1v3H6c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1z"
+                          fill="currentColor"
+                          fillRule="evenodd"
+                        />
+                      </svg>
+                    </Styled(div)>
+                  </Icon>
+                </ButtonIcon>
+                Upload a new opportunity dataset
+              </button>
+            </PseudoBox>
+          </Button>
+        </form>
       </Box>
     </Flex>
   </ForwardRef>

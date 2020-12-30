@@ -81,7 +81,7 @@ function deleteOldScratchRegions() {
     .then((regions) => {
       if (regions.length > 0) {
         cy.wrap(regions[0]).click()
-        cy.navTo('region settings')
+        cy.findButton(/Edit region settings/).click()
         deleteThisRegion()
         deleteOldScratchRegions()
       }
@@ -157,7 +157,7 @@ describe('Regions', () => {
     cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
-    cy.navTo('region settings')
+    cy.findButton(/Edit region settings/).click()
     // check setting values
     getName().should('have.value', regionName)
     getDesc().should('have.value', regionData.description)
@@ -181,7 +181,7 @@ describe('Regions', () => {
     cy.navTo('regions')
     cy.findButton(newName).click()
     cy.navComplete()
-    cy.navTo('region settings') // will go to bundle page otherwise
+    cy.findButton(/Edit region settings/).click() // will go to bundle page otherwise
     getDesc().should('have.value', newDescription)
     getName().should('have.value', newName)
 

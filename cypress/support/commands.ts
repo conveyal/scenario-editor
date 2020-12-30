@@ -73,10 +73,6 @@ const navToPages = {
     lookFor: /Set up a new region/i,
     path: /\//
   },
-  'region settings': {
-    lookFor: /Delete this region/i,
-    path: /\/regions\/[a-z0-9]+\/edit/
-  },
   projects: {
     lookFor: /Create new Project|Upload a .* Bundle/i,
     path: /\/regions\/[a-z0-9]+/

@@ -125,7 +125,7 @@ describe('Opportunity Datasets', function () {
     it('from LODES importer')
   })
 
-  it.only('can import CSV as Freeform', () => {
+  it('can import CSV as Freeform', () => {
     const opportunity = scratchRegion.opportunities.csv
     const oppName = generateName('opportunities', opportunity.name)
     const expectedFieldCount = 1 + opportunity.numericFields.length

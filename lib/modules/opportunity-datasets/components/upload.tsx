@@ -67,14 +67,14 @@ export default function UploadOpportunityDataset({regionId}) {
           <FormLabel htmlFor='latField'>
             {message('analysis.latField')}
           </FormLabel>
-          <Input defaultValue='lat' id='latField' name='latField' />
+          <Input placeholder='lat' id='latField' name='latField' />
         </FormControl>
 
         <FormControl flex='1' isRequired isDisabled={!isCSV}>
           <FormLabel htmlFor='lonField'>
             {message('analysis.lonField')}
           </FormLabel>
-          <Input defaultValue='lon' id='lonField' name='lonField' />
+          <Input placeholder='lon' id='lonField' name='lonField' />
         </FormControl>
       </Stack>
 
@@ -99,14 +99,14 @@ export default function UploadOpportunityDataset({regionId}) {
 
       <FormControl isRequired isDisabled={!isCSV || !freeform}>
         <FormLabel htmlFor='idField'>{message('analysis.idField')}</FormLabel>
-        <Input id='idField' name='idField' />
+        <Input id='idField' name='idField' placeholder='id' />
       </FormControl>
 
       <FormControl isRequired isDisabled={!isCSV || !freeform}>
         <FormLabel htmlFor='countField'>
           {message('analysis.countField')}
         </FormLabel>
-        <Input id='countField' name='countField' />
+        <Input id='countField' name='countField' placeholder='count' />
       </FormControl>
 
       <FormControl
@@ -125,21 +125,19 @@ export default function UploadOpportunityDataset({regionId}) {
         />
       </FormControl>
 
-      <Stack isInline>
-        <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
-          <FormLabel htmlFor='latField2'>
-            {message('analysis.latField')}
-          </FormLabel>
-          <Input id='latField2' name='latField2' />
-        </FormControl>
+      <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
+        <FormLabel htmlFor='latField2'>
+          Destination {message('analysis.latField').toLowerCase()}
+        </FormLabel>
+        <Input id='latField2' name='latField2' />
+      </FormControl>
 
-        <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
-          <FormLabel htmlFor='lonField2'>
-            {message('analysis.lonField')}
-          </FormLabel>
-          <Input id='lonField2' name='lonField2' />
-        </FormControl>
-      </Stack>
+      <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
+        <FormLabel htmlFor='lonField2'>
+          Destination {message('analysis.lonField').toLowerCase()}
+        </FormLabel>
+        <Input id='lonField2' name='lonField2' />
+      </FormControl>
 
       <Button
         type='submit'

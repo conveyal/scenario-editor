@@ -50,8 +50,12 @@ describe('Opportunity Datasets', function () {
       cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
         opportunity.file
       )
-      cy.findByLabelText(/Latitude/).type(opportunity.latitudeField)
-      cy.findByLabelText(/Longitude/).type(opportunity.longitudeField)
+      cy.findByLabelText(/^Latitude/)
+        .clear()
+        .type(opportunity.latitudeField)
+      cy.findByLabelText(/^Longitude/)
+        .clear()
+        .type(opportunity.longitudeField)
       cy.findButton(/Upload/).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
@@ -119,6 +123,53 @@ describe('Opportunity Datasets', function () {
 
     // doesn't work in offline mode
     it('from LODES importer')
+  })
+
+  it.only('can import CSV as Freeform', () => {
+    const opportunity = scratchRegion.opportunities.csv
+    const oppName = generateName('opportunities', opportunity.name)
+    const expectedFieldCount = 1 + opportunity.numericFields.length
+    cy.findByText(/Upload a new dataset/i).click()
+    cy.navComplete()
+
+    cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
+    cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
+      opportunity.file
+    )
+    cy.findByLabelText(/^Latitude/)
+      .clear()
+      .type(opportunity.latitudeField)
+    cy.findByLabelText(/^Longitude/)
+      .clear()
+      .type(opportunity.longitudeField)
+
+    cy.findByLabelText(/Enable free form/).check({force: true})
+    cy.findByLabelText(/ID field/).type('sport')
+    cy.findByLabelText(/Opportunity count field/).type('count')
+
+    cy.findButton(/Upload/).click()
+    cy.navComplete()
+    cy.location('pathname').should('match', /opportunities$/)
+    // find the message showing this upload is complete
+    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
+      .parent()
+      .parent()
+      .as('notice')
+    // check number of fields uploaded
+    cy.get('@notice').contains(
+      `Finished uploading ${expectedFieldCount} features`
+    )
+    // close the message
+    cy.get('@notice').findByRole('button', {name: /Close/}).click()
+    // select in the dropdown
+    cy.findByLabelText(/or select an existing one/).type(
+      `${oppName}: ${opportunity.numericFields[0]} (freeform) {enter}`,
+      {
+        force: true
+      }
+    )
+    cy.get('#format').should('contain', 'FREEFORM')
+    deleteEntireDataset()
   })
 
   describe('can be downloaded', () => {

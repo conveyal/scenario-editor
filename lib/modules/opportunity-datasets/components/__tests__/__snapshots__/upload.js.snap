@@ -405,12 +405,12 @@ exports[`upload should render without errors 1`] = `
                         </FormLabel>
                         <Input
                           as="input"
-                          defaultValue="lat"
                           errorBorderColor="red.500"
                           focusBorderColor="blue.500"
                           id="latField"
                           isFullWidth={true}
                           name="latField"
+                          placeholder="lat"
                           size="md"
                           variant="outline"
                         >
@@ -454,7 +454,6 @@ exports[`upload should render without errors 1`] = `
                             bg="white"
                             border="1px"
                             borderColor="inherit"
-                            defaultValue="lat"
                             disabled={true}
                             display="flex"
                             fontSize="md"
@@ -462,6 +461,7 @@ exports[`upload should render without errors 1`] = `
                             id="latField"
                             name="latField"
                             outline="none"
+                            placeholder="lat"
                             position="relative"
                             px={4}
                             required={true}
@@ -473,10 +473,10 @@ exports[`upload should render without errors 1`] = `
                               aria-disabled={true}
                               aria-required={true}
                               className="css-1ga4kqw"
-                              defaultValue="lat"
                               disabled={true}
                               id="latField"
                               name="latField"
+                              placeholder="lat"
                               required={true}
                             />
                           </PseudoBox>
@@ -540,12 +540,12 @@ exports[`upload should render without errors 1`] = `
                         </FormLabel>
                         <Input
                           as="input"
-                          defaultValue="lon"
                           errorBorderColor="red.500"
                           focusBorderColor="blue.500"
                           id="lonField"
                           isFullWidth={true}
                           name="lonField"
+                          placeholder="lon"
                           size="md"
                           variant="outline"
                         >
@@ -589,7 +589,6 @@ exports[`upload should render without errors 1`] = `
                             bg="white"
                             border="1px"
                             borderColor="inherit"
-                            defaultValue="lon"
                             disabled={true}
                             display="flex"
                             fontSize="md"
@@ -597,6 +596,7 @@ exports[`upload should render without errors 1`] = `
                             id="lonField"
                             name="lonField"
                             outline="none"
+                            placeholder="lon"
                             position="relative"
                             px={4}
                             required={true}
@@ -608,10 +608,10 @@ exports[`upload should render without errors 1`] = `
                               aria-disabled={true}
                               aria-required={true}
                               className="css-1ga4kqw"
-                              defaultValue="lon"
                               disabled={true}
                               id="lonField"
                               name="lonField"
+                              placeholder="lon"
                               required={true}
                             />
                           </PseudoBox>
@@ -1013,6 +1013,7 @@ exports[`upload should render without errors 1`] = `
                   id="idField"
                   isFullWidth={true}
                   name="idField"
+                  placeholder="id"
                   size="md"
                   variant="outline"
                 >
@@ -1063,6 +1064,7 @@ exports[`upload should render without errors 1`] = `
                     id="idField"
                     name="idField"
                     outline="none"
+                    placeholder="id"
                     position="relative"
                     px={4}
                     required={true}
@@ -1077,6 +1079,7 @@ exports[`upload should render without errors 1`] = `
                       disabled={true}
                       id="idField"
                       name="idField"
+                      placeholder="id"
                       required={true}
                     />
                   </PseudoBox>
@@ -1143,6 +1146,7 @@ exports[`upload should render without errors 1`] = `
                   id="countField"
                   isFullWidth={true}
                   name="countField"
+                  placeholder="count"
                   size="md"
                   variant="outline"
                 >
@@ -1193,6 +1197,7 @@ exports[`upload should render without errors 1`] = `
                     id="countField"
                     name="countField"
                     outline="none"
+                    placeholder="count"
                     position="relative"
                     px={4}
                     required={true}
@@ -1207,6 +1212,7 @@ exports[`upload should render without errors 1`] = `
                       disabled={true}
                       id="countField"
                       name="countField"
+                      placeholder="count"
                       required={true}
                     />
                   </PseudoBox>
@@ -1361,290 +1367,271 @@ exports[`upload should render without errors 1`] = `
               </div>
             </Box>
           </FormControl>
-          <ForwardRef
-            isInline={true}
+          <FormControl
+            isDisabled={true}
+            isRequired={true}
             key=".a"
             mb={4}
           >
-            <Flex
-              direction="row"
+            <Box
               mb={4}
+              role="group"
             >
-              <Box
-                display="flex"
-                flexDirection="row"
-                mb={4}
+              <div
+                className="css-acwcvw"
+                role="group"
               >
-                <div
-                  className="css-qml3vj"
+                <FormLabel
+                  htmlFor="latField2"
                 >
-                  <FormControl
-                    isDisabled={true}
-                    isRequired={true}
-                    key=".0"
-                    mr={2}
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="latField2"
+                    opacity="0.4"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
                   >
-                    <Box
-                      mr={2}
-                      role="group"
+                    <label
+                      className="css-e07mjy"
+                      htmlFor="latField2"
                     >
-                      <div
-                        className="css-9u48bm"
-                        role="group"
-                      >
-                        <FormLabel
-                          htmlFor="latField2"
+                      Destination 
+                      latitude field
+                      <RequiredIndicator>
+                        <Box
+                          aria-hidden="true"
+                          as="span"
+                          color="red.500"
+                          ml={1}
                         >
-                          <Box
-                            as="label"
-                            display="inline-block"
-                            fontSize="md"
-                            fontWeight="medium"
-                            htmlFor="latField2"
-                            opacity="0.4"
-                            pb="4px"
-                            pr="12px"
-                            textAlign="left"
-                            verticalAlign="middle"
+                          <span
+                            aria-hidden="true"
+                            className="css-i02c70"
                           >
-                            <label
-                              className="css-e07mjy"
-                              htmlFor="latField2"
-                            >
-                              Latitude field
-                              <RequiredIndicator>
-                                <Box
-                                  aria-hidden="true"
-                                  as="span"
-                                  color="red.500"
-                                  ml={1}
-                                >
-                                  <span
-                                    aria-hidden="true"
-                                    className="css-i02c70"
-                                  >
-                                    *
-                                  </span>
-                                </Box>
-                              </RequiredIndicator>
-                            </label>
-                          </Box>
-                        </FormLabel>
-                        <Input
-                          as="input"
-                          errorBorderColor="red.500"
-                          focusBorderColor="blue.500"
-                          id="latField2"
-                          isFullWidth={true}
-                          name="latField2"
-                          size="md"
-                          variant="outline"
-                        >
-                          <PseudoBox
-                            _disabled={
-                              Object {
-                                "cursor": "not-allowed",
-                                "opacity": "0.4",
-                              }
-                            }
-                            _focus={
-                              Object {
-                                "borderColor": "#3182ce",
-                                "boxShadow": "0 0 0 1px #3182ce",
-                                "zIndex": 1,
-                              }
-                            }
-                            _hover={
-                              Object {
-                                "borderColor": "gray.300",
-                              }
-                            }
-                            _invalid={
-                              Object {
-                                "borderColor": "#e53e3e",
-                                "boxShadow": "0 0 0 1px #e53e3e",
-                              }
-                            }
-                            _readOnly={
-                              Object {
-                                "bg": "transparent",
-                                "boxShadow": "none !important",
-                                "userSelect": "all",
-                              }
-                            }
-                            alignItems="center"
-                            appearance="none"
-                            aria-disabled={true}
-                            aria-required={true}
-                            as="input"
-                            bg="white"
-                            border="1px"
-                            borderColor="inherit"
-                            disabled={true}
-                            display="flex"
-                            fontSize="md"
-                            height={10}
-                            id="latField2"
-                            name="latField2"
-                            outline="none"
-                            position="relative"
-                            px={4}
-                            required={true}
-                            rounded="md"
-                            transition="all 0.2s"
-                            width="100%"
-                          >
-                            <input
-                              aria-disabled={true}
-                              aria-required={true}
-                              className="css-1ga4kqw"
-                              disabled={true}
-                              id="latField2"
-                              name="latField2"
-                              required={true}
-                            />
-                          </PseudoBox>
-                        </Input>
-                      </div>
-                    </Box>
-                  </FormControl>
-                  <FormControl
-                    isDisabled={true}
-                    isRequired={true}
-                    key=".1"
-                    mr={null}
+                            *
+                          </span>
+                        </Box>
+                      </RequiredIndicator>
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Input
+                  as="input"
+                  errorBorderColor="red.500"
+                  focusBorderColor="blue.500"
+                  id="latField2"
+                  isFullWidth={true}
+                  name="latField2"
+                  size="md"
+                  variant="outline"
+                >
+                  <PseudoBox
+                    _disabled={
+                      Object {
+                        "cursor": "not-allowed",
+                        "opacity": "0.4",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "borderColor": "#3182ce",
+                        "boxShadow": "0 0 0 1px #3182ce",
+                        "zIndex": 1,
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "borderColor": "gray.300",
+                      }
+                    }
+                    _invalid={
+                      Object {
+                        "borderColor": "#e53e3e",
+                        "boxShadow": "0 0 0 1px #e53e3e",
+                      }
+                    }
+                    _readOnly={
+                      Object {
+                        "bg": "transparent",
+                        "boxShadow": "none !important",
+                        "userSelect": "all",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-disabled={true}
+                    aria-required={true}
+                    as="input"
+                    bg="white"
+                    border="1px"
+                    borderColor="inherit"
+                    disabled={true}
+                    display="flex"
+                    fontSize="md"
+                    height={10}
+                    id="latField2"
+                    name="latField2"
+                    outline="none"
+                    position="relative"
+                    px={4}
+                    required={true}
+                    rounded="md"
+                    transition="all 0.2s"
+                    width="100%"
                   >
-                    <Box
-                      mr={null}
-                      role="group"
+                    <input
+                      aria-disabled={true}
+                      aria-required={true}
+                      className="css-1ga4kqw"
+                      disabled={true}
+                      id="latField2"
+                      name="latField2"
+                      required={true}
+                    />
+                  </PseudoBox>
+                </Input>
+              </div>
+            </Box>
+          </FormControl>
+          <FormControl
+            isDisabled={true}
+            isRequired={true}
+            key=".b"
+            mb={4}
+          >
+            <Box
+              mb={4}
+              role="group"
+            >
+              <div
+                className="css-acwcvw"
+                role="group"
+              >
+                <FormLabel
+                  htmlFor="lonField2"
+                >
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    htmlFor="lonField2"
+                    opacity="0.4"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-e07mjy"
+                      htmlFor="lonField2"
                     >
-                      <div
-                        className="css-0"
-                        role="group"
-                      >
-                        <FormLabel
-                          htmlFor="lonField2"
+                      Destination 
+                      longitude field
+                      <RequiredIndicator>
+                        <Box
+                          aria-hidden="true"
+                          as="span"
+                          color="red.500"
+                          ml={1}
                         >
-                          <Box
-                            as="label"
-                            display="inline-block"
-                            fontSize="md"
-                            fontWeight="medium"
-                            htmlFor="lonField2"
-                            opacity="0.4"
-                            pb="4px"
-                            pr="12px"
-                            textAlign="left"
-                            verticalAlign="middle"
+                          <span
+                            aria-hidden="true"
+                            className="css-i02c70"
                           >
-                            <label
-                              className="css-e07mjy"
-                              htmlFor="lonField2"
-                            >
-                              Longitude field
-                              <RequiredIndicator>
-                                <Box
-                                  aria-hidden="true"
-                                  as="span"
-                                  color="red.500"
-                                  ml={1}
-                                >
-                                  <span
-                                    aria-hidden="true"
-                                    className="css-i02c70"
-                                  >
-                                    *
-                                  </span>
-                                </Box>
-                              </RequiredIndicator>
-                            </label>
-                          </Box>
-                        </FormLabel>
-                        <Input
-                          as="input"
-                          errorBorderColor="red.500"
-                          focusBorderColor="blue.500"
-                          id="lonField2"
-                          isFullWidth={true}
-                          name="lonField2"
-                          size="md"
-                          variant="outline"
-                        >
-                          <PseudoBox
-                            _disabled={
-                              Object {
-                                "cursor": "not-allowed",
-                                "opacity": "0.4",
-                              }
-                            }
-                            _focus={
-                              Object {
-                                "borderColor": "#3182ce",
-                                "boxShadow": "0 0 0 1px #3182ce",
-                                "zIndex": 1,
-                              }
-                            }
-                            _hover={
-                              Object {
-                                "borderColor": "gray.300",
-                              }
-                            }
-                            _invalid={
-                              Object {
-                                "borderColor": "#e53e3e",
-                                "boxShadow": "0 0 0 1px #e53e3e",
-                              }
-                            }
-                            _readOnly={
-                              Object {
-                                "bg": "transparent",
-                                "boxShadow": "none !important",
-                                "userSelect": "all",
-                              }
-                            }
-                            alignItems="center"
-                            appearance="none"
-                            aria-disabled={true}
-                            aria-required={true}
-                            as="input"
-                            bg="white"
-                            border="1px"
-                            borderColor="inherit"
-                            disabled={true}
-                            display="flex"
-                            fontSize="md"
-                            height={10}
-                            id="lonField2"
-                            name="lonField2"
-                            outline="none"
-                            position="relative"
-                            px={4}
-                            required={true}
-                            rounded="md"
-                            transition="all 0.2s"
-                            width="100%"
-                          >
-                            <input
-                              aria-disabled={true}
-                              aria-required={true}
-                              className="css-1ga4kqw"
-                              disabled={true}
-                              id="lonField2"
-                              name="lonField2"
-                              required={true}
-                            />
-                          </PseudoBox>
-                        </Input>
-                      </div>
-                    </Box>
-                  </FormControl>
-                </div>
-              </Box>
-            </Flex>
-          </ForwardRef>
+                            *
+                          </span>
+                        </Box>
+                      </RequiredIndicator>
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Input
+                  as="input"
+                  errorBorderColor="red.500"
+                  focusBorderColor="blue.500"
+                  id="lonField2"
+                  isFullWidth={true}
+                  name="lonField2"
+                  size="md"
+                  variant="outline"
+                >
+                  <PseudoBox
+                    _disabled={
+                      Object {
+                        "cursor": "not-allowed",
+                        "opacity": "0.4",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "borderColor": "#3182ce",
+                        "boxShadow": "0 0 0 1px #3182ce",
+                        "zIndex": 1,
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "borderColor": "gray.300",
+                      }
+                    }
+                    _invalid={
+                      Object {
+                        "borderColor": "#e53e3e",
+                        "boxShadow": "0 0 0 1px #e53e3e",
+                      }
+                    }
+                    _readOnly={
+                      Object {
+                        "bg": "transparent",
+                        "boxShadow": "none !important",
+                        "userSelect": "all",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-disabled={true}
+                    aria-required={true}
+                    as="input"
+                    bg="white"
+                    border="1px"
+                    borderColor="inherit"
+                    disabled={true}
+                    display="flex"
+                    fontSize="md"
+                    height={10}
+                    id="lonField2"
+                    name="lonField2"
+                    outline="none"
+                    position="relative"
+                    px={4}
+                    required={true}
+                    rounded="md"
+                    transition="all 0.2s"
+                    width="100%"
+                  >
+                    <input
+                      aria-disabled={true}
+                      aria-required={true}
+                      className="css-1ga4kqw"
+                      disabled={true}
+                      id="lonField2"
+                      name="lonField2"
+                      required={true}
+                    />
+                  </PseudoBox>
+                </Input>
+              </div>
+            </Box>
+          </FormControl>
           <Button
             isLoading={false}
-            key=".b"
+            key=".c"
             leftIcon="small-add"
             loadingText="uploading…"
             mb={null}

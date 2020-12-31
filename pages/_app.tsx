@@ -1,29 +1,19 @@
 import {useToast} from '@chakra-ui/core'
 import fpHas from 'lodash/fp/has'
 import {NextComponentType} from 'next'
-import App, {NextWebVitalsMetric} from 'next/app'
+import App from 'next/app'
 import Head from 'next/head'
-import Router from 'next/router'
 import React, {ComponentType, ErrorInfo} from 'react'
 import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
 import ErrorModal from 'lib/components/error-modal'
 import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
-import * as gtag from 'lib/gtag'
 import LogRocket from 'lib/logrocket'
 import {swrFetcher} from 'lib/utils/safe-fetch'
 
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
-
-// Log page views if tracking ID is provided
-if (process.env.NEXT_PUBLIC_GA_TRACKING_ID) {
-  // Log all page views
-  Router.events.on('routeChangeComplete', (url) => {
-    gtag.pageView(url)
-  })
-}
 
 // Re-use for Component's without a Layout
 const EmptyLayout = ({children}) => <>{children}</>
@@ -107,22 +97,5 @@ export default class ConveyalAnalysis extends App {
         </ErrorHandler>
       </ChakraTheme>
     )
-  }
-}
-
-/**
- * Track UI performance. Learn more here: https://nextjs.org/docs/advanced-features/measuring-performance
- */
-export function reportWebVitals(metric: NextWebVitalsMetric) {
-  if (process.env.NEXT_PUBLIC_GA_TRACKING_ID) {
-    gtag.event({
-      category:
-        metric.label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-      label: metric.id, // id unique to current page load
-      name: metric.name,
-      value: Math.round(
-        metric.name === 'CLS' ? metric.value * 1000 : metric.value
-      ) // values must be integers
-    })
   }
 }

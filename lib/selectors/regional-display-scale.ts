@@ -63,114 +63,128 @@ export default createSelector(selectDisplayGrid, (grid) => {
     }
   }
 
-  // All values are positive
-  if (grid.min >= 0) {
-    const values = selectRandomGridValues(grid)
-    const clusters = ckmeans(values, colorRangePositive.length)
-    const breaks = [0, ...findBreaks(clusters)]
-    const colorRange = [zeroColor, ...colorRangePositive]
+  // CKMeans throws an error when clusters requested > total values
+  try {
+    // All values are positive
+    if (grid.min >= 0) {
+      const values = selectRandomGridValues(grid)
+      const clusters = ckmeans(values, colorRangePositive.length)
+      const breaks = [0, ...findBreaks(clusters)]
+      const colorRange = [zeroColor, ...colorRangePositive]
 
-    // Ensure that the max is included. Random sampling may have missed it.
-    breaks[breaks.length - 1] = grid.max
+      // Ensure that the max is included. Random sampling may have missed it.
+      breaks[breaks.length - 1] = grid.max
 
-    const scale = {
-      breaks,
-      colorizer: createColorizer(breaks, colorRange),
-      colorRange
+      const scale = {
+        breaks,
+        colorizer: createColorizer(breaks, colorRange),
+        colorRange,
+        error: false
+      }
+      return scale
     }
-    return scale
-  }
 
-  // All values are negative
-  if (grid.max <= 0) {
-    const values = selectRandomGridValues(grid)
-    const clusters = ckmeans(values, colorRangeNegative.length)
-    const breaks = [...findBreaks(clusters), 0]
-    const colorRange = [...colorRangeNegative, zeroColor]
+    // All values are negative
+    if (grid.max <= 0) {
+      const values = selectRandomGridValues(grid)
+      const clusters = ckmeans(values, colorRangeNegative.length)
+      const breaks = [...findBreaks(clusters), 0]
+      const colorRange = [...colorRangeNegative, zeroColor]
+      return {
+        breaks,
+        colorizer: createColorizer(breaks, colorRange),
+        colorRange,
+        error: false
+      }
+    }
+
+    if (grid.max > Math.abs(grid.min)) {
+      // Sample only the positive numbers
+      const positiveValues = selectRandomGridValues(grid, (v) => v > 0)
+      // Add an additional break because the cluster around 0 is transparent
+      const positiveClusters = ckmeans(
+        positiveValues,
+        colorRangePositive.length + 1
+      )
+      const positiveBreaks = findBreaks(positiveClusters)
+
+      // Ensure that the breaks include the grid.max. Random sampling may have
+      // missed it.
+      positiveBreaks[positiveBreaks.length - 1] = grid.max
+
+      // Find the min bin. Iterate until a bin is found that contains the
+      // absolute value of the min.
+      const minBin = positiveBreaks.findIndex((b) => b >= Math.abs(grid.min))
+      // Slice off the end (creates new array), reverse (mutates) and negate.
+      // [1, 10, 100] => [1, 10] => [10, 1] => [-10, -1]
+      const negativeBreaks = positiveBreaks
+        .slice(0, minBin)
+        .reverse()
+        .map((b) => -b)
+
+      const breaks = [...negativeBreaks, ...positiveBreaks]
+      const colorRange = [
+        // Less negative, less negative colors,
+        ...colorRangeNegative.slice(
+          colorRangeNegative.length - negativeBreaks.length
+        ),
+        zeroColor,
+        ...colorRangePositive
+      ]
+
+      return {
+        breaks,
+        colorizer: createColorizer(breaks, colorRange),
+        colorRange,
+        error: false
+      }
+    }
+
+    if (grid.max <= Math.abs(grid.min)) {
+      // Sample only the negative numbers
+      const negativeValues = selectRandomGridValues(grid, (v) => v < 0)
+      // Add an additional break because the cluster around 0 is transparent
+      const negativeClusters = ckmeans(
+        negativeValues,
+        colorRangeNegative.length + 1
+      )
+      // Find the breaks and revmove the one closest to 0.
+      const negativeBreaks = findBreaks(negativeClusters).slice(0, -1)
+
+      // Find the max bin. Flip the breaks. Iterate until a bin is found that
+      // contains the max value.
+      const maxBin = negativeBreaks.findIndex((b) => -b <= grid.max)
+
+      // Slice (create a new array), negate and reverse (mutates array).
+      // [-100, -10 -1] => [-10, -1] => [10, 1] => [1, 10]
+      const positiveBreaks = negativeBreaks.slice(maxBin).map(negate).reverse()
+
+      // Ensure that the largest value is contained.
+      if (positiveBreaks[positiveBreaks.length - 1] < grid.max) {
+        positiveBreaks.push(grid.max)
+      }
+
+      const breaks = [...negativeBreaks, ...positiveBreaks]
+      const colorRange = [
+        ...colorRangeNegative,
+        zeroColor,
+        // Less positive breaks, less positive colors
+        ...colorRangePositive.slice(0, positiveBreaks.length)
+      ]
+
+      return {
+        breaks,
+        colorizer: createColorizer(breaks, colorRange),
+        colorRange,
+        error: false
+      }
+    }
+  } catch (e: unknown) {
     return {
-      breaks,
-      colorizer: createColorizer(breaks, colorRange),
-      colorRange
-    }
-  }
-
-  if (grid.max > Math.abs(grid.min)) {
-    // Sample only the positive numbers
-    const positiveValues = selectRandomGridValues(grid, (v) => v > 0)
-    // Add an additional break because the cluster around 0 is transparent
-    const positiveClusters = ckmeans(
-      positiveValues,
-      colorRangePositive.length + 1
-    )
-    const positiveBreaks = findBreaks(positiveClusters)
-
-    // Ensure that the breaks include the grid.max. Random sampling may have
-    // missed it.
-    positiveBreaks[positiveBreaks.length - 1] = grid.max
-
-    // Find the min bin. Iterate until a bin is found that contains the
-    // absolute value of the min.
-    const minBin = positiveBreaks.findIndex((b) => b >= Math.abs(grid.min))
-    // Slice off the end (creates new array), reverse (mutates) and negate.
-    // [1, 10, 100] => [1, 10] => [10, 1] => [-10, -1]
-    const negativeBreaks = positiveBreaks
-      .slice(0, minBin)
-      .reverse()
-      .map((b) => -b)
-
-    const breaks = [...negativeBreaks, ...positiveBreaks]
-    const colorRange = [
-      // Less negative, less negative colors,
-      ...colorRangeNegative.slice(
-        colorRangeNegative.length - negativeBreaks.length
-      ),
-      zeroColor,
-      ...colorRangePositive
-    ]
-
-    return {
-      breaks,
-      colorizer: createColorizer(breaks, colorRange),
-      colorRange
-    }
-  }
-
-  if (grid.max <= Math.abs(grid.min)) {
-    // Sample only the negative numbers
-    const negativeValues = selectRandomGridValues(grid, (v) => v < 0)
-    // Add an additional break because the cluster around 0 is transparent
-    const negativeClusters = ckmeans(
-      negativeValues,
-      colorRangeNegative.length + 1
-    )
-    // Find the breaks and revmove the one closest to 0.
-    const negativeBreaks = findBreaks(negativeClusters).slice(0, -1)
-
-    // Find the max bin. Flip the breaks. Iterate until a bin is found that
-    // contains the max value.
-    const maxBin = negativeBreaks.findIndex((b) => -b <= grid.max)
-
-    // Slice (create a new array), negate and reverse (mutates array).
-    // [-100, -10 -1] => [-10, -1] => [10, 1] => [1, 10]
-    const positiveBreaks = negativeBreaks.slice(maxBin).map(negate).reverse()
-
-    // Ensure that the largest value is contained.
-    if (positiveBreaks[positiveBreaks.length - 1] < grid.max) {
-      positiveBreaks.push(grid.max)
-    }
-
-    const breaks = [...negativeBreaks, ...positiveBreaks]
-    const colorRange = [
-      ...colorRangeNegative,
-      zeroColor,
-      // Less positive breaks, less positive colors
-      ...colorRangePositive.slice(0, positiveBreaks.length)
-    ]
-
-    return {
-      breaks,
-      colorizer: createColorizer(breaks, colorRange),
-      colorRange
+      breaks: [],
+      colorRange: [],
+      colorizer: () => [0, 0, 0, 0],
+      error: e
     }
   }
 })

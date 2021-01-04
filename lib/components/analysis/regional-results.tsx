@@ -199,17 +199,22 @@ export default function RegionalResults({analysis}) {
           )}
 
           {displayGrid && displayScale ? (
-            displayScale.breaks.length > 0 ? (
+            displayScale.error ? (
+              <Alert roundedBottom='md' status='warning'>
+                <AlertIcon />
+                Data not suitable for generating a color scale.
+              </Alert>
+            ) : displayScale.breaks.length === 0 ? (
+              <Alert roundedBottom='md' status='warning'>
+                <AlertIcon />
+                There is no data to show.
+              </Alert>
+            ) : (
               <Legend
                 breaks={displayScale.breaks}
                 min={displayGrid.min}
                 colors={displayScale.colorRange}
               />
-            ) : (
-              <Alert roundedBottom='md' status='warning'>
-                <AlertIcon />
-                There is no data to show.
-              </Alert>
             )
           ) : (
             <Text p={4}>Loading grids...</Text>

@@ -704,7 +704,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                             }
                             colors={
                               Array [
-                                Object {
+                                Rgb {
                                   "b": 255,
                                   "g": 255,
                                   "opacity": 0,
@@ -4322,7 +4322,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                   "opacity": 0.42,
                                   "r": 252,
                                 },
-                                Object {
+                                Rgb {
                                   "b": 255,
                                   "g": 255,
                                   "opacity": 0,

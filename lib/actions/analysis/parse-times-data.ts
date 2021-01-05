@@ -6,9 +6,9 @@ const TIMES_GRID_TYPE = 'ACCESSGR'
 /**
  * Parse a grid header created by a GridResultWriter
  */
-export function parseGridHeader(ab: ArrayBuffer) {
+export function parseGridHeader(ab: ArrayBuffer): CL.AccessGridHeader {
   const headerData = new Int8Array(ab, 0, TIMES_GRID_TYPE.length)
-  const headerType = String.fromCharCode.apply(null, headerData)
+  const headerType: string = String.fromCharCode.apply(null, headerData)
   if (headerType !== TIMES_GRID_TYPE) {
     throw new Error(
       `Retrieved grid header ${headerType} !== ${TIMES_GRID_TYPE}. Please check your data.`
@@ -42,7 +42,7 @@ export function parseGridHeader(ab: ArrayBuffer) {
 /**
  * Parse the ArrayBuffer from a `*_times.dat` file for a point in a network.
  */
-export function parseTimesData(ab: ArrayBuffer) {
+export function parseTimesData(ab: ArrayBuffer): CL.AccessGrid {
   const header = parseGridHeader(ab)
   const gridSize = header.width * header.height
 
@@ -68,7 +68,7 @@ export function parseTimesData(ab: ArrayBuffer) {
     (HEADER_LENGTH + header.width * header.height * header.depth) *
       Int32Array.BYTES_PER_ELEMENT
   )
-  const metadata = decodeMetadata(rawMetadata)
+  const metadata: Record<string, unknown> = decodeMetadata(rawMetadata)
 
   function contains(x: number, y: number, z: number) {
     return (

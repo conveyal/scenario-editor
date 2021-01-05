@@ -7,7 +7,7 @@ export default createSelector(
   selectGrid.active,
   selectGrid.comparison,
   selectComparisonId,
-  (activeGrid, comparisonGrid, comparisonId) => {
+  (activeGrid, comparisonGrid, comparisonId: string) => {
     if (comparisonId) {
       if (activeGrid && comparisonGrid) {
         return subtract(activeGrid, comparisonGrid)
@@ -21,7 +21,7 @@ export default createSelector(
 /**
  * Non-destructively subtract grid B from grid A
  */
-function subtract(a, b) {
+function subtract(a: CL.RegionalGrid, b: CL.RegionalGrid): CL.RegionalGrid {
   const gridsDoNotAlign =
     a.west !== b.west ||
     a.north !== b.north ||

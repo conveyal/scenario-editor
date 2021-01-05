@@ -103,15 +103,19 @@ export const loadRegionalAnalysisGrid = (
         `${REGIONAL_URL}/${analysis._id}/grid/grid?cutoff=${cutoff}&percentile=${percentile}&destinationPointSetId=${pointSetId}`
       )
     )
-    // Parse the headers and create a usable grid.
-    const grid = createGrid(rawGrid)
-    // Assign the regional analysis _id and display parameters
-    grid.analysisId = analysis._id
-    grid.cutoff = cutoff || get(analysis, 'cutoffMinutes')
-    grid.percentile = percentile || get(analysis, 'travelTimePercentile')
-    grid.pointSetId = pointSetId
+
     // Pass into the store
-    dispatch(setRegionalAnalysisGrid(grid))
+    dispatch(
+      setRegionalAnalysisGrid({
+        // Parse the headers and create a usable grid.
+        ...createGrid(rawGrid),
+        // Assign the regional analysis _id and display parameters
+        analysisId: analysis._id,
+        cutoff: cutoff || get(analysis, 'cutoffMinutes'),
+        percentile: percentile || get(analysis, 'travelTimePercentile'),
+        pointSetId
+      })
+    )
   }
 }
 

@@ -31,7 +31,6 @@ declare namespace Cypress {
     | 'projects'
     | 'regions'
     | 'regional analyses'
-    | 'region settings'
 
   export type ProjectScenario = {
     project?: string

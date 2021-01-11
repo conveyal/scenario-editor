@@ -1,10 +1,10 @@
-import React from 'react'
+import {Stack} from '@chakra-ui/core'
+import {CSSProperties} from 'react'
 
 import Logo from './logo'
 import Spinner from './spinner'
 
-const style = {
-  fontSize: '36px',
+const style: CSSProperties = {
   position: 'absolute',
   left: 0,
   right: 0,
@@ -15,11 +15,11 @@ const style = {
 
 export default function LoadingScreen() {
   return (
-    <div style={style}>
+    <Stack alignItems='center' style={style}>
       <Logo />
-      <h1 style={{color: '#2389c9'}}>
+      <h1 style={{color: '#2389c9', fontSize: '36px'}}>
         <Spinner />
       </h1>
-    </div>
+    </Stack>
   )
 }

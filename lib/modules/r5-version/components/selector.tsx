@@ -1,7 +1,8 @@
-import {Alert, FormControl, FormLabel} from '@chakra-ui/core'
+import {Alert, Box, Flex, FormControl, FormLabel} from '@chakra-ui/core'
 import get from 'lodash/get'
 import {useSelector} from 'react-redux'
 import Creatable from 'react-select/creatable'
+import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons'
 
 import {selectStyles} from 'lib/components/select'
 import message from 'lib/message'
@@ -9,6 +10,8 @@ import message from 'lib/message'
 import {MINIMUM_R5_VERSION, RECOMMENDED_R5_VERSION} from '../constants'
 import * as select from '../selectors'
 import {versionToNumber} from '../utils'
+import Tip from 'lib/components/tip'
+import Icon from 'lib/components/icon'
 
 // Minimum version number
 const MIN_VERSION = versionToNumber(MINIMUM_R5_VERSION)
@@ -80,9 +83,20 @@ export default function SelectR5Version({onChange, value, ...p}) {
 
   return (
     <FormControl {...p}>
-      <FormLabel htmlFor='select-r5-version'>
-        {message('r5Version.title')}
-      </FormLabel>
+      <Flex justify='space-between'>
+        <FormLabel htmlFor='select-r5-version'>
+          {message('r5Version.title')}
+        </FormLabel>
+        <div>
+          {lastUsedVersion && lastUsedVersion !== value && (
+            <Tip label={message('r5Version.analysisVersionDifferent')}>
+              <Box color='yellow.500'>
+                <Icon icon={faExclamationCircle} />
+              </Box>
+            </Tip>
+          )}
+        </div>
+      </Flex>
       <div>
         <Creatable
           name='select-r5-version'
@@ -99,12 +113,6 @@ export default function SelectR5Version({onChange, value, ...p}) {
       {currentVersionNumber < versionToNumber(RECOMMENDED_R5_VERSION) && (
         <Alert status='warning'>
           {message('r5Version.latestReleaseVersionNotSelected')}
-        </Alert>
-      )}
-
-      {lastUsedVersion && lastUsedVersion !== value && (
-        <Alert status='warning'>
-          {message('r5Version.analysisVersionDifferent')}
         </Alert>
       )}
     </FormControl>

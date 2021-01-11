@@ -123,13 +123,10 @@
     "exactTimesWarning": "Exact times is not available because phasing is enabled on this timetable."
   },
   "r5Version": {
-    "analysisVersionDifferent": "WARNING! You have completed regional analyses with a different routing engine. Using different routing engines may change results.",
+    "analysisVersionDifferent": "You have run regional analyses with a different routing engine version. If you want to compare scenarios, consider re-running them with the same version.",
     "comparisonIsDifferent": "WARNING! The analyses you are comparing ran on different routing engines. Changes in accessibility may be due to differences in the routing engines, rather than the transport scenarios.",
-    "latestReleaseVersionNotSelected": "An updated version of the Routing engine is available. Changing versions should improve performance but may change analysis results.",
-    "title": "Routing engine",
-    "showAll": "Show all routing engine versions (advanced)",
-    "showRelease": "Show only stable routing engine versions",
-    "invalidVersion": "Version %(version) is not a valid version. Please select an option > %(minimum)."
+    "latestReleaseVersionNotSelected": "An updated version of the routing engine is available. Changing versions should improve performance but may change analysis results.",
+    "title": "Routing engine"
   },
   "region": {
     "welcome": "welcome",

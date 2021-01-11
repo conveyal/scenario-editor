@@ -10,29 +10,43 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
         className="css-0"
         role="group"
       >
-        <FormLabel
-          htmlFor="select-r5-version"
+        <Flex
+          justify="space-between"
         >
           <Box
-            as="label"
-            display="inline-block"
-            fontSize="md"
-            fontWeight="medium"
-            htmlFor="select-r5-version"
-            opacity="1"
-            pb="4px"
-            pr="12px"
-            textAlign="left"
-            verticalAlign="middle"
+            display="flex"
+            justifyContent="space-between"
           >
-            <label
-              className="css-176s5fq"
-              htmlFor="select-r5-version"
+            <div
+              className="css-gg4vpm"
             >
-              Routing engine
-            </label>
+              <FormLabel
+                htmlFor="select-r5-version"
+              >
+                <Box
+                  as="label"
+                  display="inline-block"
+                  fontSize="md"
+                  fontWeight="medium"
+                  htmlFor="select-r5-version"
+                  opacity="1"
+                  pb="4px"
+                  pr="12px"
+                  textAlign="left"
+                  verticalAlign="middle"
+                >
+                  <label
+                    className="css-176s5fq"
+                    htmlFor="select-r5-version"
+                  >
+                    Routing engine
+                  </label>
+                </Box>
+              </FormLabel>
+              <div />
+            </div>
           </Box>
-        </FormLabel>
+        </Flex>
         <div>
           <Creatable
             formatCreateLabel={[Function]}
@@ -102,7 +116,7 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
               className="css-elg79j"
               role="alert"
             >
-              An updated version of the Routing engine is available. Changing versions should improve performance but may change analysis results.
+              An updated version of the routing engine is available. Changing versions should improve performance but may change analysis results.
             </div>
           </Box>
         </Alert>

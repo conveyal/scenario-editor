@@ -31,7 +31,8 @@ export default class Region extends Model {
   }
 
   _delete() {
-    cy.navTo('region settings')
+    cy.navTo('projects')
+    cy.findButton(/Edit region settings/).click()
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()

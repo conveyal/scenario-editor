@@ -1,4 +1,4 @@
-import {Box, Flex, Image, PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
+import {Box, Flex, PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
 import {
   faChartArea,
   faCompass,
@@ -6,7 +6,6 @@ import {
   faDatabase,
   faGlobe,
   faLayerGroup,
-  faMap,
   faPencilAlt,
   faQuestionCircle,
   faServer,
@@ -17,6 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
+import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {memo, useCallback, useContext, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
@@ -137,12 +137,6 @@ export default function Sidebar() {
         {queryParams.regionId && queryParams.regionId !== CREATING_ID && (
           <>
             <ItemLink
-              icon={faMap}
-              label={message('nav.regionSettings')}
-              to='regionSettings'
-              params={regionOnly}
-            />
-            <ItemLink
               icon={faCubes}
               label={message('nav.projects')}
               to='projects'
@@ -241,7 +235,7 @@ const LogoSpinner = memo(() => {
     return <Icon color={CB_HEX} icon={faCompass} spin id='sidebar-spinner' />
   }
 
-  return <Image display='inline-block' size='20px' src={LOGO_URL} />
+  return <Image priority height='20px' width='20px' src={LOGO_URL} />
 })
 
 const isOnline = () => (isServer ? true : navigator.onLine)

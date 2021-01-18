@@ -457,7 +457,7 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
   const newStopIcon = useNewStopIcon()
   const zoom = useZoom()
 
-  function toggleStop(stopIndex: number, segments: CL.ModificationSegment[]) {
+  function toggleStop(stopIndex: number) {
     if (stopIndex < segments.length) {
       segments[stopIndex] = {
         ...segments[stopIndex],
@@ -497,7 +497,7 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
               <Stack>
                 <Heading size='sm'>{stopKey(index)}</Heading>
                 <Button
-                  onClick={() => toggleStop(stop.index, segments)}
+                  onClick={() => toggleStop(stop.index)}
                   variantColor='blue'
                 >
                   {message('transitEditor.makeControlPoint')}
@@ -557,7 +557,7 @@ function ControlPoints({
   const controlPointIcon = useControlPointIcon()
   const zoom = useZoom()
 
-  function togglePoint(pointIndex: number, segments: CL.ModificationSegment[]) {
+  function togglePoint(pointIndex: number) {
     if (pointIndex < segments.length) {
       segments[pointIndex] = {
         ...segments[pointIndex],
@@ -593,10 +593,7 @@ function ControlPoints({
           <Popup>
             <Stack>
               <Heading size='sm'>{controlPointKey(index)}</Heading>
-              <Button
-                onClick={() => togglePoint(cp.index, segments)}
-                variantColor='blue'
-              >
+              <Button onClick={() => togglePoint(cp.index)} variantColor='blue'>
                 {message('transitEditor.makeStop')}
               </Button>
               <Button onClick={() => deletePoint(cp.index)} variantColor='red'>

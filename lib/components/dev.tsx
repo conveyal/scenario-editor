@@ -27,7 +27,7 @@ export default function Durations({durations}: DurationsProps) {
       </Box>
       <table>
         <tbody>
-          {Object.entries(durations).map(([name, ms]) => (
+          {Object.entries(durations || {}).map(([name, ms]) => (
             <tr key={name}>
               <Box as='td' pr={2} textAlign='right'>
                 {name}

@@ -33,12 +33,13 @@ export default function withAuth(PageComponent) {
     if (!user) return <LoadingScreen />
     return (
       <UserContext.Provider value={user}>
-        {isAdmin(user) ? (
-          <DevBar />
-        ) : (
-          <Head>
-            <style id='DEVSTYLE'>{`.DEV{display: none;}`}</style>
-          </Head>
+        {isAdmin(user) && (
+          <>
+            <DevBar />
+            <Head>
+              <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
+            </Head>
+          </>
         )}
         <PageComponent {...p} />
       </UserContext.Provider>

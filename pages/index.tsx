@@ -3,12 +3,14 @@ import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 import {GetServerSideProps} from 'next'
 
 import {getUser} from 'lib/auth0'
+import DevBox from 'lib/components/dev'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
 import {serializeCollection} from 'lib/db/utils'
+import Durations from 'lib/durations'
 import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
 import withAuth from 'lib/with-auth'
@@ -19,6 +21,7 @@ const alertStatus = 'warning'
 const alertText = 'Minor changes and a few bug fixes related to modifications.'
 
 type SelectRegionPageProps = {
+  durations: Record<string, number>
   regions: CL.Region[]
   user: IUser
 }
@@ -40,6 +43,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
       py={10}
       zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
     >
+      <DevBox durations={p.durations} />
       <Box mt={8} mb={6}>
         <Logo />
       </Box>
@@ -119,6 +123,9 @@ function RegionItem({region, ...p}: RegionItemProps) {
  * Comment out to disable. Page load should still work.
  */
 export const getServerSideProps: GetServerSideProps = async ({req}) => {
+  const durations = new Durations()
+  const authDuration = durations.start('auth.getUser')
+
   let user: IUser = null
   try {
     user = await getUser(req)
@@ -130,12 +137,16 @@ export const getServerSideProps: GetServerSideProps = async ({req}) => {
       }
     }
   }
+  authDuration.mark()
 
+  const findAllDuration = durations.start('regions.findAll')
   const collection = await AuthenticatedCollection.initFromUser('regions', user)
   const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
+  findAllDuration.mark()
 
   return {
     props: {
+      durations: durations.current,
       regions: serializeCollection(regions),
       user
     }

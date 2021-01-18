@@ -5,12 +5,15 @@ import {
   AlertDescription,
   Stack
 } from '@chakra-ui/core'
+import concat from 'lodash/concat'
 import {useRouter} from 'next/router'
-import {FunctionComponent, useCallback} from 'react'
+import {FunctionComponent, useCallback, useEffect, useMemo} from 'react'
 import {useDispatch} from 'react-redux'
 
 import FullSpinner from './components/full-spinner'
 import {ExternalLink} from './components/link'
+import durations from './durations'
+import Durations from './durations'
 import usePromise from './hooks/use-promise'
 import message from './message'
 
@@ -46,6 +49,10 @@ export default function withInitialFetch(
   initialFetch: InitialFetchFn
 ): LayoutComponent {
   return function InitialFetch(p: any) {
+    const initialFetchDuration = useMemo(
+      () => durations.start('InitialFetch'),
+      []
+    )
     const router = useRouter()
     const dispatch = useDispatch()
 
@@ -59,8 +66,13 @@ export default function withInitialFetch(
     )
     const [loading, error, results] = usePromise(getInitialFetch)
 
+    // Update on each render
+    initialFetchDuration.mark()
+
     if (error) return <ShowError>{error}</ShowError>
     if (loading) return <FullSpinner />
-    if (results) return <PageComponent query={query} {...p} {...results} />
+    if (results) {
+      return <PageComponent query={query} {...p} {...results} />
+    }
   }
 }

@@ -1,7 +1,5 @@
 import {Box} from '@chakra-ui/core'
 
-import AllDurations from 'lib/durations'
-
 type DurationsProps = {
   durations?: Record<string, number>
 }
@@ -10,7 +8,7 @@ const color = (ms: number) =>
   ms < 500 ? 'green.500' : ms > 1000 ? 'red.500' : 'black.500'
 
 export default function Durations({durations}: DurationsProps) {
-  // Log for the developer console.
+  // Always log to the developer console.
   console.log('durations', durations)
   return (
     <Box
@@ -29,18 +27,16 @@ export default function Durations({durations}: DurationsProps) {
       </Box>
       <table>
         <tbody>
-          {Object.entries(durations || AllDurations.current).map(
-            ([name, ms]) => (
-              <tr key={name}>
-                <Box as='td' pr={2} textAlign='right'>
-                  {name}
-                </Box>
-                <Box as='td' color={color(ms)} fontWeight='bold'>
-                  {ms / 1000}s
-                </Box>
-              </tr>
-            )
-          )}
+          {Object.entries(durations).map(([name, ms]) => (
+            <tr key={name}>
+              <Box as='td' pr={2} textAlign='right'>
+                {name}
+              </Box>
+              <Box as='td' color={color(ms)} fontWeight='bold'>
+                {ms / 1000}s
+              </Box>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Box>

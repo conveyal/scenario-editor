@@ -130,13 +130,13 @@ describe('Add Trip Pattern', () => {
       const newCoord: L.LatLngTuple = [39.08, -84.5]
       const tempCoord: L.LatLngTuple = [39.09, -84.5]
 
-      cy.dragMarker('Stop 1', lastCoord, newCoord)
+      cy.dragMarker('Stop 2', lastCoord, newCoord)
       cy.findByText(/2 stops over 1.7/)
 
-      cy.dragMarker('Stop 1', newCoord, tempCoord)
+      cy.dragMarker('Stop 2', newCoord, tempCoord)
       cy.findByText(/2 stops over 2/)
 
-      cy.dragMarker('Stop 1', tempCoord, newCoord)
+      cy.dragMarker('Stop 2', tempCoord, newCoord)
       cy.findByText(/2 stops over 1.7/)
     })
 
@@ -159,7 +159,7 @@ describe('Add Trip Pattern', () => {
       const coord: L.LatLngTuple = [39.08, -84.49]
       const newCoord: L.LatLngTuple = [39.09, -84.49]
       cy.clickMapAtCoord(coord)
-      cy.dragMarker('Stop 1', coord, newCoord)
+      cy.dragMarker('Stop 2', coord, newCoord)
       cy.findByText(/3 stops over 2/)
     })
 
@@ -194,7 +194,7 @@ describe('Add Trip Pattern', () => {
         const even = i % 2 === 0
         const latInc = even ? step : 0
         const lonInc = even ? 0 : step
-        cy.dragMarker(`Stop ${i}`, [lat, lon], [lat + latInc, lon + lonInc])
+        cy.dragMarker(`Stop ${i + 1}`, [lat, lon], [lat + latInc, lon + lonInc])
         lat += step
         lon += step
       }

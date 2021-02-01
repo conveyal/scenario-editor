@@ -121,7 +121,7 @@
     "@types/jest": "^26.0.19",
     "@types/lodash": "^4.14.164",
     "@types/mapbox__polyline": "^1.0.1",
-    "@types/mongodb": "^3.5.32",
+    "@types/mongodb": "^3.6.3",
     "@types/ms": "^0.7.31",
     "@types/react": "^17.0.0",
     "@types/react-leaflet": "^2.5.2",

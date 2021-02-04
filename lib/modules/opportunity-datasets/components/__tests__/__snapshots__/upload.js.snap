@@ -405,6 +405,7 @@ exports[`upload should render without errors 1`] = `
                         </FormLabel>
                         <Input
                           as="input"
+                          defaultValue="lat"
                           errorBorderColor="red.500"
                           focusBorderColor="blue.500"
                           id="latField"
@@ -454,6 +455,7 @@ exports[`upload should render without errors 1`] = `
                             bg="white"
                             border="1px"
                             borderColor="inherit"
+                            defaultValue="lat"
                             disabled={true}
                             display="flex"
                             fontSize="md"
@@ -473,6 +475,7 @@ exports[`upload should render without errors 1`] = `
                               aria-disabled={true}
                               aria-required={true}
                               className="css-1ga4kqw"
+                              defaultValue="lat"
                               disabled={true}
                               id="latField"
                               name="latField"
@@ -540,6 +543,7 @@ exports[`upload should render without errors 1`] = `
                         </FormLabel>
                         <Input
                           as="input"
+                          defaultValue="lon"
                           errorBorderColor="red.500"
                           focusBorderColor="blue.500"
                           id="lonField"
@@ -589,6 +593,7 @@ exports[`upload should render without errors 1`] = `
                             bg="white"
                             border="1px"
                             borderColor="inherit"
+                            defaultValue="lon"
                             disabled={true}
                             display="flex"
                             fontSize="md"
@@ -608,6 +613,7 @@ exports[`upload should render without errors 1`] = `
                               aria-disabled={true}
                               aria-required={true}
                               className="css-1ga4kqw"
+                              defaultValue="lon"
                               disabled={true}
                               id="lonField"
                               name="lonField"
@@ -1089,7 +1095,6 @@ exports[`upload should render without errors 1`] = `
           </FormControl>
           <FormControl
             isDisabled={true}
-            isRequired={true}
             key=".8"
             mb={4}
           >
@@ -1121,21 +1126,6 @@ exports[`upload should render without errors 1`] = `
                       htmlFor="countField"
                     >
                       Opportunity count field
-                      <RequiredIndicator>
-                        <Box
-                          aria-hidden="true"
-                          as="span"
-                          color="red.500"
-                          ml={1}
-                        >
-                          <span
-                            aria-hidden="true"
-                            className="css-i02c70"
-                          >
-                            *
-                          </span>
-                        </Box>
-                      </RequiredIndicator>
                     </label>
                   </Box>
                 </FormLabel>
@@ -1185,7 +1175,6 @@ exports[`upload should render without errors 1`] = `
                     alignItems="center"
                     appearance="none"
                     aria-disabled={true}
-                    aria-required={true}
                     as="input"
                     bg="white"
                     border="1px"
@@ -1200,20 +1189,17 @@ exports[`upload should render without errors 1`] = `
                     placeholder="count"
                     position="relative"
                     px={4}
-                    required={true}
                     rounded="md"
                     transition="all 0.2s"
                     width="100%"
                   >
                     <input
                       aria-disabled={true}
-                      aria-required={true}
                       className="css-1ga4kqw"
                       disabled={true}
                       id="countField"
                       name="countField"
                       placeholder="count"
-                      required={true}
                     />
                   </PseudoBox>
                 </Input>

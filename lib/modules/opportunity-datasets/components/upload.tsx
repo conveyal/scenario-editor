@@ -8,8 +8,7 @@ import {
   Stack,
   Switch
 } from '@chakra-ui/core'
-import get from 'lodash/get'
-import {FormEvent, useState} from 'react'
+import {ChangeEvent, FormEvent, useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import message from 'lib/message'
@@ -19,7 +18,7 @@ import {uploadOpportunityDataset} from '../actions'
 
 /** Create an opportunity dataset by uploading files */
 export default function UploadOpportunityDataset({regionId}) {
-  const [files, setFiles] = useState()
+  const [files, setFiles] = useState<FileList | void>()
   const [uploading, setUploading] = useState(false)
   const [freeform, setFreeForm] = useState(false)
   const [paired, setPaired] = useState(false)
@@ -31,13 +30,19 @@ export default function UploadOpportunityDataset({regionId}) {
     body.set('regionId', regionId)
     body.set('freeform', `${freeform}`)
     setUploading(true)
+
+    // Remove count field if it's empty
+    if (freeform && body.has('countField')) {
+      const countField = body.get('countField').toString()
+      if (countField === '') body.delete('countField')
+    }
+
     dispatch(uploadOpportunityDataset(body))
   }
 
   // Enable extra fields if it's a CSV file
   const isCSV =
-    get(files, 'length') === 1 &&
-    get(files, '[0].name', '').toLowerCase().endsWith('.csv')
+    files && files.length === 1 && files[0].name.toLowerCase().endsWith('.csv')
 
   return (
     <Stack as='form' spacing={4} onSubmit={submit}>
@@ -56,7 +61,9 @@ export default function UploadOpportunityDataset({regionId}) {
           id='files'
           name='files'
           multiple
-          onChange={(e) => setFiles(e.target.files)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setFiles(e.target.files)
+          }
           type='file'
         />
       </FormControl>
@@ -67,14 +74,24 @@ export default function UploadOpportunityDataset({regionId}) {
           <FormLabel htmlFor='latField'>
             {message('analysis.latField')}
           </FormLabel>
-          <Input placeholder='lat' id='latField' name='latField' />
+          <Input
+            defaultValue='lat'
+            placeholder='lat'
+            id='latField'
+            name='latField'
+          />
         </FormControl>
 
         <FormControl flex='1' isRequired isDisabled={!isCSV}>
           <FormLabel htmlFor='lonField'>
             {message('analysis.lonField')}
           </FormLabel>
-          <Input placeholder='lon' id='lonField' name='lonField' />
+          <Input
+            defaultValue='lon'
+            placeholder='lon'
+            id='lonField'
+            name='lonField'
+          />
         </FormControl>
       </Stack>
 
@@ -102,7 +119,7 @@ export default function UploadOpportunityDataset({regionId}) {
         <Input id='idField' name='idField' placeholder='id' />
       </FormControl>
 
-      <FormControl isRequired isDisabled={!isCSV || !freeform}>
+      <FormControl isDisabled={!isCSV || !freeform}>
         <FormLabel htmlFor='countField'>
           {message('analysis.countField')}
         </FormLabel>

@@ -76,10 +76,10 @@ export default function StreetForm({modification, update, ...p}) {
 
   return (
     <Stack {...p} spacing={6}>
-      <Alert status='error'>
+      <Alert status='warning'>
         <AlertIcon />
         EXPERIMENTAL: ongoing compatibility not guaranteed, routing engine
-        v5.9.0 required.
+        v5.9.0 or higher required.
       </Alert>
       <Box>
         <Flex justify='space-between'>

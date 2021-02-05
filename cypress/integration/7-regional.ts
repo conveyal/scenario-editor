@@ -31,12 +31,8 @@ describe('Regional', () => {
       .parent()
       .select('60 minutes')
     cy.get('@legend').should('not.contain', 'Loading grids')
-    // TODO more semantic selector would be preferable
-    // TODO export to GIS produces error locally
-    cy.get('button[aria-label*="Export to GIS"')
     // test aggreation area upload
     cy.findByText(/upload new aggregation area/i).click()
-    //.click() // TODO export gives an error when running locally
     cy.findByRole('button', {name: 'Upload'}).as('upload').should('be.disabled')
     cy.findByLabelText(/Aggregation area name/i).type('cities')
     cy.findByLabelText(/Select aggregation area files/i)

@@ -10,7 +10,13 @@ import selectDisplayCutoff from './regional-display-cutoff'
 import selectDisplayPercentile from './regional-display-percentile'
 import selectDisplayPointSet from './regional-display-destination-pointset'
 
-const findGrid = (grids, analysisId, cutoff, percentile, pointSet) =>
+const findGrid = (
+  grids: CL.RegionalGrid[],
+  analysisId: string,
+  cutoff: number,
+  percentile: number,
+  pointSet: string
+) =>
   grids.find(
     (g) =>
       g.analysisId === analysisId &&

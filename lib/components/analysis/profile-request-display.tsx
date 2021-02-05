@@ -1,27 +1,11 @@
-import {
-  Box,
-  Button,
-  Flex,
-  PseudoBox,
-  Stack,
-  useDisclosure
-} from '@chakra-ui/core'
-import {
-  faChevronUp,
-  faChevronDown,
-  faDownload
-} from '@fortawesome/free-solid-svg-icons'
+import {Box, Button, PseudoBox, Stack, useDisclosure} from '@chakra-ui/core'
+import {faChevronUp, faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
-import {useState, useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 
-import fetchAction from 'lib/actions/fetch'
-import {API_URL} from 'lib/constants'
-import downloadJSON from 'lib/utils/download-json'
 import {secondsToHhMmString} from 'lib/utils/time'
 
-import IconButton from '../icon-button'
 import Icon from '../icon'
 import {ALink} from '../link'
 import Tip from '../tip'
@@ -61,8 +45,6 @@ const TDValue = ({children}) => (
 
 const PROJECT_CHANGE_NOTE =
   'Notice: project may have changed since the analysis was run.'
-const SCENARIO_DOWNLOAD_NOTE =
-  'Download scenario info and modifications used to create this analysis.'
 
 /** Display the parameters of a profile request */
 export default function ProfileRequestDisplay({
@@ -71,17 +53,6 @@ export default function ProfileRequestDisplay({
   profileRequest,
   projectId
 }) {
-  const dispatch = useDispatch<any>()
-  const [requestJSON, setRequestJSON] = useState()
-  const id = profileRequest._id
-  useEffect(() => {
-    dispatch(fetchAction({url: `${API_URL}/regional/${id}`})).then(
-      (response) => {
-        setRequestJSON(response)
-      }
-    )
-  }, [dispatch, id])
-
   const projects = useSelector(selectProjects)
   const bundles = useSelector(selectBundles)
 
@@ -94,13 +65,6 @@ export default function ProfileRequestDisplay({
     profileRequest.variant > -1
       ? get(project, `variants[${profileRequest.variant}]`, 'Unknown')
       : 'Baseline'
-
-  function downloadRequestJSON() {
-    downloadJSON({
-      data: requestJSON,
-      filename: profileRequest.name + '.json'
-    })
-  }
 
   return (
     <Stack>
@@ -146,16 +110,7 @@ export default function ProfileRequestDisplay({
           )}
           <tr>
             <TDTitle>Scenario</TDTitle>
-            <TDValue>
-              <Flex align='center'>
-                <Box pr={1}>{scenarioName}</Box>
-                <IconButton
-                  icon={faDownload}
-                  label={SCENARIO_DOWNLOAD_NOTE}
-                  onClick={downloadRequestJSON}
-                />
-              </Flex>
-            </TDValue>
+            <TDValue>{scenarioName}</TDValue>
           </tr>
           <tr>
             <TDTitle>Service Date</TDTitle>
@@ -230,7 +185,14 @@ export function ObjectToTable({color = 'blue', object}) {
           >
             <TDTitle>{k}</TDTitle>
             <TDValue>
-              <Box as='pre' bg='transparent' border='none' pr={3} py={2}>
+              <Box
+                as='pre'
+                bg='transparent'
+                border='none'
+                overflowX='auto'
+                pr={3}
+                py={2}
+              >
                 {stringifyIfObject(object[k])}
               </Box>
             </TDValue>

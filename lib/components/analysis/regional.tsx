@@ -1,4 +1,15 @@
-import {Box, Select, Stack, Flex, useDisclosure} from '@chakra-ui/core'
+import {
+  Box,
+  Select,
+  Stack,
+  Flex,
+  useDisclosure,
+  Menu,
+  MenuButton,
+  Button,
+  MenuList,
+  MenuItem
+} from '@chakra-ui/core'
 import {
   faChevronLeft,
   faDownload,
@@ -24,6 +35,7 @@ import selectActiveAnalysis from 'lib/selectors/active-regional-analysis'
 import selectCutoff from 'lib/selectors/regional-display-cutoff'
 import selectPercentile from 'lib/selectors/regional-display-percentile'
 import selectPointset from 'lib/selectors/regional-display-destination-pointset'
+import downloadObjectAsJson from 'lib/utils/download-json'
 
 import {ConfirmDialog} from '../confirm-button'
 import Editable from '../editable'
@@ -31,6 +43,7 @@ import IconButton from '../icon-button'
 import RunningAnalysis from '../running-analysis'
 
 import ProfileRequestDisplay from './profile-request-display'
+import Icon from '../icon'
 
 const AggregationArea = dynamic(() => import('../map/aggregation-area'), {
   ssr: false
@@ -55,11 +68,18 @@ const nameIsValid = (s) => s && s.length > 0
 // Get full qualifier for opportunity datasets
 const getFullODName = (od) => `${od?.sourceName}: ${od?.name}`
 
+// Type to title
+const csvResultsTypeToTitle = {
+  ACCESS: 'Access CSV',
+  PATHS: 'Paths CSV',
+  TIMES: 'Times CSV'
+}
+
 export default function Regional(p) {
   const deleteDisclosure = useDisclosure()
   const isComplete = !p.job
   const analysis = useSelector(selectActiveAnalysis)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const cutoffsMinutes = analysis.cutoffsMinutes
   const percentiles = analysis.travelTimePercentiles
 
@@ -97,6 +117,20 @@ export default function Regional(p) {
   async function _remove() {
     await dispatch(deleteRegionalAnalysis(analysis._id))
     return dispatch(setSearchParameter('analysisId'))
+  }
+
+  async function _downloadCSVResults(type) {
+    const url = await dispatch(
+      fetchAction({url: `${API.Regional}/${analysis._id}/csv/${type}`})
+    )
+    window.open(url)
+  }
+
+  async function _downloadRequestJSON() {
+    const data = await dispatch(
+      fetchAction({url: `${API.Regional}/${analysis._id}`})
+    )
+    downloadObjectAsJson({data, filename: analysis.name + '.json'})
   }
 
   /**
@@ -158,19 +192,6 @@ export default function Regional(p) {
         </Box>
 
         <Flex>
-          {isComplete && (
-            <IconButton
-              icon={faDownload}
-              label={
-                message('analysis.gisExport') +
-                ': ' +
-                message('analysis.downloadRegional', {
-                  name: analysis.name
-                })
-              }
-              onClick={_downloadProjectGIS}
-            />
-          )}
           <IconButton
             icon={faTrash}
             label={message('analysis.deleteRegionalAnalysis')}
@@ -214,6 +235,26 @@ export default function Regional(p) {
             </Select>
           )}
         </Stack>
+
+        {isComplete && (
+          <Menu>
+            <MenuButton as={Button} {...{variant: 'outline'}}>
+              <Icon icon={faDownload} />
+              &nbsp;&nbsp;Export data
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={_downloadProjectGIS}>GeoTIFF</MenuItem>
+              <MenuItem onClick={_downloadRequestJSON}>
+                Scenario and modification JSON
+              </MenuItem>
+              {Object.keys(analysis.resultStorage || {}).map((type) => (
+                <MenuItem key={type} onClick={() => _downloadCSVResults(type)}>
+                  {csvResultsTypeToTitle[type]}
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+        )}
       </Stack>
 
       <ProfileRequestDisplay

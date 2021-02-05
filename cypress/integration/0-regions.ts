@@ -16,7 +16,7 @@ const getSearch = () => cy.get('#geocoder')
  */
 const regionData = {
   description: 'Cypress stratch testing region',
-  searchTerm: 'covington',
+  searchTerm: 'covington kentucky',
   foundName: 'Covington, Kentucky, United States',
   north: 39.1199,
   south: 38.9268,
@@ -101,19 +101,14 @@ describe('Regions', () => {
     // Test geocoder search
     const testLocations = [
       {
-        searchTerm: 'cincinnati',
+        searchTerm: 'cincinnati oh',
         findText: /^Cincinnati, Ohio/,
         coord: [39.1, -84.5]
       },
       {
-        searchTerm: 'tulsa',
+        searchTerm: 'tulsa ok',
         findText: /^Tulsa, Oklahoma/,
         coord: [36.1, -95.9]
-      },
-      {
-        searchTerm: 'greenwich',
-        findText: /^Greenwich,.* England/,
-        coord: [51.5, 0]
       }
     ]
     const maxOffset = 10000 // meters

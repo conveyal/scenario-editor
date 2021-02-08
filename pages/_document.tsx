@@ -26,6 +26,14 @@ const Analytics = () => (
   </>
 )
 
+const ZenDeskWidget = () =>
+  process.env.ZENDESK_KEY != null && (
+    <script
+      id='ze-snippet'
+      src={`https://static.zdassets.com/ekr/snippet.js?key=${process.env.ZENDESK_KEY}`}
+    />
+  )
+
 export default class extends Document {
   render() {
     return (
@@ -39,6 +47,7 @@ export default class extends Document {
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
           <Stylesheets />
           <Analytics />
+          <ZenDeskWidget />
         </Head>
         <body>
           <Main />

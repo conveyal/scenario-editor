@@ -59,7 +59,8 @@ export function storeUser(user: IUser): void {
   if (window.zE) {
     window.zE(() => {
       window.zE.identify({
-        emai: user.email,
+        name: user.email,
+        email: user.email,
         organization: user.accessGroup
       })
     })

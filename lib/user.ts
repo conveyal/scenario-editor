@@ -19,6 +19,7 @@ export interface IUser {
 declare global {
   interface Window {
     __user?: IUser
+    zE: any
   }
 }
 
@@ -53,6 +54,16 @@ export function storeUser(user: IUser): void {
     accessGroup: user.accessGroup,
     email: user.email
   })
+
+  // Identify the user for ZenDesk
+  if (window.zE) {
+    window.zE(() => {
+      window.zE.identify({
+        emai: user.email,
+        organization: user.accessGroup
+      })
+    })
+  }
 
   // Store the user on window, requiring a new session on each tab/page
   window.__user = user

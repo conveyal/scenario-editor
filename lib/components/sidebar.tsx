@@ -5,9 +5,9 @@ import {
   faCubes,
   faDatabase,
   faGlobe,
+  faInfoCircle,
   faLayerGroup,
   faPencilAlt,
-  faQuestionCircle,
   faServer,
   faSignOutAlt,
   faTh,
@@ -197,9 +197,9 @@ export default function Sidebar() {
           />
         )}
         <ExternalLink
-          icon={faQuestionCircle}
+          icon={faInfoCircle}
           label={message('nav.help')}
-          href='http://docs.conveyal.com'
+          href='https://docs.conveyal.com'
         />
         <OnlineIndicator />
       </div>

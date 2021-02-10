@@ -33,7 +33,10 @@ const PADDING = 4
 const FONT_SIZE = 10
 const STROKE_WIDTH = 1
 
-function createDistribution(latlng, travelTimeSurface) {
+function createDistribution(
+  latlng: LatLng,
+  travelTimeSurface: CL.AccessGrid
+): null | number[] {
   const pixel = lonlat.toPixel(
     lonlat.fromLeaflet(latlng),
     travelTimeSurface.zoom
@@ -66,7 +69,7 @@ const selectSurface = fpGet('analysis.travelTimeSurface')
 const selectComparisonSurface = fpGet('analysis.comparisonTravelTimeSurface')
 
 // Grids contain high values for inaccessible locations
-const isValidTime = (m) => m >= 0 && m <= 120
+const isValidTime = (m: number) => m >= 0 && m <= 120
 
 /**
  * Show a popup with the travel time distribution from the origin to a location
@@ -75,18 +78,26 @@ const isValidTime = (m) => m >= 0 && m <= 120
 export default memo(function DestinationTravelTimeDistribution() {
   const markerRef = useRef<CircleMarker>()
   const dispatch = useDispatch()
-  const [latlng, setLatLng] = useState(null)
-  const [locked, setLocked] = useState<LatLng | false>(false)
+  const [mouseLatLng, setMouseLatLng] = useState<LatLng | null>(null)
+  const [lockedLatLng, setLockedLatLng] = useState<LatLng | false>(false)
+  const [latlng, setLatLng] = useState<LatLng | null>(null)
   const [distribution, setDistribution] = useState<void | number[]>()
   const [comparisonDistribution, setComparisonDistribution] = useState<
     void | number[]
   >()
-  const surface = useSelector(selectSurface)
-  const comparisonSurface = useSelector(selectComparisonSurface)
+  const surface: CL.AccessGrid = useSelector(selectSurface)
+  const comparisonSurface: CL.AccessGrid = useSelector(selectComparisonSurface)
   const leaflet = useLeaflet()
   const percentileIndex = nearestPercentileIndex(
     useSelector(selectTravelTimePercentile)
   )
+
+  // Set the current latlng to use
+  useEffect(() => {
+    if (lockedLatLng) setLatLng(lockedLatLng)
+    else if (mouseLatLng) setLatLng(mouseLatLng)
+    else setLatLng(null)
+  }, [mouseLatLng, lockedLatLng])
 
   // Bring the marker to the front on each render.
   useEffect(() => {
@@ -114,7 +125,7 @@ export default memo(function DestinationTravelTimeDistribution() {
   // Set the destination on mouse move
   useEffect(() => {
     function onMove(e: LeafletMouseEvent) {
-      setLatLng(e.latlng)
+      setMouseLatLng(e.latlng)
     }
     leaflet.map.on('mousemove', onMove)
     return () => {
@@ -126,7 +137,7 @@ export default memo(function DestinationTravelTimeDistribution() {
   const lockMarker = useCallback(
     (e: LeafletMouseEvent) => {
       const {latlng} = e
-      setLocked(latlng)
+      setLockedLatLng(latlng)
       dispatch(
         updateRequestsSettings({
           index: 0,
@@ -137,7 +148,7 @@ export default memo(function DestinationTravelTimeDistribution() {
         })
       )
     },
-    [dispatch, setLocked]
+    [dispatch, setLockedLatLng]
   )
 
   const fullHeight =
@@ -145,18 +156,18 @@ export default memo(function DestinationTravelTimeDistribution() {
 
   return (
     <>
-      {latlng && (
+      {mouseLatLng && (
         <Pane zIndex={600}>
-          {locked !== false ? (
+          {lockedLatLng !== false ? (
             <CircleMarker
-              center={locked}
+              center={lockedLatLng}
               color='#333'
-              onclick={() => setLocked(false)}
+              onclick={() => setLockedLatLng(false)}
               radius={5}
             />
           ) : (
             <CircleMarker
-              center={latlng}
+              center={mouseLatLng}
               color='#3182ce'
               onclick={lockMarker}
               radius={5}

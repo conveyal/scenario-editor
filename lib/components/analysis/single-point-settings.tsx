@@ -30,11 +30,14 @@ import {memo, useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
+import {getForProject as loadModifications} from 'lib/actions/modifications'
+import {loadProject} from 'lib/actions/project'
 import {
   setCopyRequestSettings,
   setRequestsSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
+import {LS_MOM} from 'lib/constants'
 import useOnMount from 'lib/hooks/use-on-mount'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
@@ -46,6 +49,7 @@ import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-ch
 import selectRegionBounds from 'lib/selectors/region-bounds'
 import {fromLatLngBounds} from 'lib/utils/bounds'
 import cleanProjectScenarioName from 'lib/utils/clean-project-scenario-name'
+import {getParsedItem} from 'lib/utils/local-storage'
 import {secondsToHhMmString} from 'lib/utils/time'
 
 import ControlledSelect from '../controlled-select'
@@ -59,6 +63,7 @@ import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
 import ModeSelector from './mode-selector'
 import CreateRegional from './create-regional'
+import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 
 const SPACING_XS = 2
 const SPACING = 5
@@ -67,13 +72,36 @@ const SPACING_LG = 8
 const getName = fpGet('name')
 const getId = fpGet('_id')
 
+async function loadAllProjectData(
+  dispatch: (v: unknown) => Promise<any>,
+  projectId: string
+) {
+  const results = await Promise.all([
+    dispatch(loadProject(projectId)),
+    dispatch(loadModifications(projectId))
+  ])
+  const [project, modifications] = results
+  const _idsOnMap: string[] = get(
+    getParsedItem(LS_MOM),
+    projectId,
+    []
+  ) as string[]
+  await dispatch(
+    getFeedsRoutesAndStops({
+      bundleId: project.bundleId,
+      forceCompleteUpdate: true,
+      modifications: modifications.filter((m) => _idsOnMap.includes(m._id))
+    })
+  )
+}
+
 export default function Settings({
   bundles,
   projects,
   region,
   regionalAnalyses
 }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const opportunityDataset = useSelector(activeOpportunityDataset)
   const profileRequest = useSelector(selectProfileRequest)
   const currentBundle = useSelector(selectCurrentBundle)
@@ -153,10 +181,13 @@ export default function Settings({
 
   // On initial load, the query string may be out of sync with the requestsSettings.projectId
   useOnMount(() => {
-    const projectId = get(currentProject, '_id')
+    const projectId = currentProject?._id
     if (projectId != null && projectId !== 'undefined') {
       dispatch(setSearchParameter({projectId}))
       updatePrimaryPR({projectId})
+
+      // Load project data for display
+      loadAllProjectData(dispatch, projectId)
     }
   })
 
@@ -173,6 +204,9 @@ export default function Settings({
       const projectId = get(option, '_id')
       dispatch(setSearchParameter({projectId}))
       updatePrimaryPR({projectId, variantIndex: -1})
+
+      // Load project data for display
+      loadAllProjectData(dispatch, projectId)
     },
     [dispatch, updatePrimaryPR]
   )

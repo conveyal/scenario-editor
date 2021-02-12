@@ -42,7 +42,7 @@ const ModificationsPage: any = withInitialFetch(
         dispatch(loadProject(projectId)),
         dispatch(loadModifications(projectId))
       ])
-      const project = results[1]
+      const project = results[0]
       const bundle = await dispatch(loadBundle(project.bundleId))
       return {
         bundle,

@@ -1,6 +1,6 @@
 name: 'Install, lint, unit test, build, run Cypress tests'
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   install:

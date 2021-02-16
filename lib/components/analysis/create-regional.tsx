@@ -36,6 +36,7 @@ import {routeTo} from 'lib/router'
 import selectCurrentRegionId from 'lib/selectors/current-region-id'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
+import {safeFetch} from 'lib/utils/safe-fetch'
 import {getUser} from 'lib/user'
 
 import Select from '../select'
@@ -68,7 +69,7 @@ const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
 const disabledLabel = 'Fetch results with the current settings to enable button'
 
 function createRegionalAnalysis(options: Record<string, unknown>) {
-  return fetch(API.Regional, {
+  return safeFetch(API.Regional, {
     method: 'POST',
     mode: 'cors',
     body: JSON.stringify(options),
@@ -166,43 +167,36 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
   async function create() {
     setIsCreating(true)
-    try {
-      let response
-      if (workerVersionHandlesMultipleDimensions) {
-        response = await createRegionalAnalysis({
-          ...profileRequest,
-          cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
-          destinationPointSetIds: destinationPointSets,
-          name: nameInput.value,
-          percentiles: parseStringAsIntArray(percentilesInput.value),
-          projectId,
-          variantIndex
-        })
-      } else {
-        response = await createRegionalAnalysis({
-          ...profileRequest,
-          cutoffsMinutes: [parseInt(cutoffInput.value)],
-          destinationPointSetIds: destinationPointSets,
-          name: nameInput.value,
-          percentiles: [parseInt(percentileInput.value)],
-          projectId,
-          variantIndex
-        })
-      }
+    let response
+    if (workerVersionHandlesMultipleDimensions) {
+      response = await createRegionalAnalysis({
+        ...profileRequest,
+        cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
+        destinationPointSetIds: destinationPointSets,
+        name: nameInput.value,
+        percentiles: parseStringAsIntArray(percentilesInput.value),
+        projectId,
+        variantIndex
+      })
+    } else {
+      response = await createRegionalAnalysis({
+        ...profileRequest,
+        cutoffsMinutes: [parseInt(cutoffInput.value)],
+        destinationPointSetIds: destinationPointSets,
+        name: nameInput.value,
+        percentiles: [parseInt(percentileInput.value)],
+        projectId,
+        variantIndex
+      })
+    }
 
-      if (!response.ok) {
-        const json = await response.json()
-        throw new Error(json.message)
-      } else {
-        const {as, href} = routeTo('regionalAnalyses', {regionId})
-        router.push(href, as)
-      }
-    } catch (e) {
-      console.error(e)
+    if (!response.ok) {
+      console.error(response)
       setIsCreating(false)
-      if (e instanceof Error) {
-        setError(e.message)
-      }
+      setError(response.data.message)
+    } else {
+      const {as, href} = routeTo('regionalAnalyses', {regionId})
+      router.push(href, as)
     }
   }
 

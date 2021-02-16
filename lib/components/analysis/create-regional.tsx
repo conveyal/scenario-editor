@@ -36,8 +36,7 @@ import {routeTo} from 'lib/router'
 import selectCurrentRegionId from 'lib/selectors/current-region-id'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
-import {safeFetch} from 'lib/utils/safe-fetch'
-import {getUser} from 'lib/user'
+import authenticatedFetch from 'lib/utils/auth-fetch'
 
 import Select from '../select'
 
@@ -69,16 +68,9 @@ const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
 const disabledLabel = 'Fetch results with the current settings to enable button'
 
 function createRegionalAnalysis(options: Record<string, unknown>) {
-  return safeFetch(API.Regional, {
+  return authenticatedFetch(API.Regional, {
     method: 'POST',
-    mode: 'cors',
-    body: JSON.stringify(options),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json;charset=UTF-8',
-      Authorization: `bearer ${getUser().idToken}`,
-      'X-Conveyal-Access-Group': getUser().adminTempAccessGroup
-    }
+    body: JSON.stringify(options)
   })
 }
 

@@ -22,9 +22,9 @@ import get from 'lodash/get'
 import sort from 'lodash/sortBy'
 import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 
-import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
+import {API} from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import {
@@ -36,6 +36,7 @@ import {routeTo} from 'lib/router'
 import selectCurrentRegionId from 'lib/selectors/current-region-id'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
+import {getUser} from 'lib/user'
 
 import Select from '../select'
 
@@ -65,6 +66,20 @@ const testCutoff = (c, o) => onlyDigits(o) && c >= 5 && c <= 120
 const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
 
 const disabledLabel = 'Fetch results with the current settings to enable button'
+
+function createRegionalAnalysis(options: Record<string, unknown>) {
+  return fetch(API.Regional, {
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify(options),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json;charset=UTF-8',
+      Authorization: `bearer ${getUser().idToken}`,
+      'X-Conveyal-Access-Group': getUser().adminTempAccessGroup
+    }
+  })
+}
 
 export default function CreateRegional({
   isDisabled,
@@ -97,7 +112,6 @@ export default function CreateRegional({
 }
 
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
-  const dispatch = useDispatch()
   const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
@@ -153,33 +167,36 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   async function create() {
     setIsCreating(true)
     try {
+      let response
       if (workerVersionHandlesMultipleDimensions) {
-        await dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
-            destinationPointSetIds: destinationPointSets,
-            name: nameInput.value,
-            percentiles: parseStringAsIntArray(percentilesInput.value),
-            projectId,
-            variantIndex
-          })
-        )
+        response = await createRegionalAnalysis({
+          ...profileRequest,
+          cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
+          destinationPointSetIds: destinationPointSets,
+          name: nameInput.value,
+          percentiles: parseStringAsIntArray(percentilesInput.value),
+          projectId,
+          variantIndex
+        })
       } else {
-        await dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            cutoffsMinutes: [parseInt(cutoffInput.value)],
-            destinationPointSetIds: destinationPointSets,
-            name: nameInput.value,
-            percentiles: [parseInt(percentileInput.value)],
-            projectId,
-            variantIndex
-          })
-        )
+        response = await createRegionalAnalysis({
+          ...profileRequest,
+          cutoffsMinutes: [parseInt(cutoffInput.value)],
+          destinationPointSetIds: destinationPointSets,
+          name: nameInput.value,
+          percentiles: [parseInt(percentileInput.value)],
+          projectId,
+          variantIndex
+        })
       }
-      const {as, href} = routeTo('regionalAnalyses', {regionId})
-      router.push(href, as)
+
+      if (!response.ok) {
+        const json = await response.json()
+        throw new Error(json.message)
+      } else {
+        const {as, href} = routeTo('regionalAnalyses', {regionId})
+        router.push(href, as)
+      }
     } catch (e) {
       console.error(e)
       setIsCreating(false)

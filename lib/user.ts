@@ -35,7 +35,7 @@ export const UserContext = createContext(null)
 
 // Helper functions to hide storage details
 // Store on `window` so that each new tab/window needs to check the session
-export function getUser(serverSideUser?: IUser): IUser | void {
+export function getUser(serverSideUser?: IUser): undefined | IUser {
   if (isDisabled) return localUser
   if (isServer) return serverSideUser
   return window.__user || serverSideUser

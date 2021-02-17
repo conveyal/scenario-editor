@@ -101,12 +101,12 @@ describe('Regions', () => {
     // Test geocoder search
     const testLocations = [
       {
-        searchTerm: 'cincinnati ohio',
+        searchTerm: 'cincinnati ohio usa',
         findText: /^Cincinnati, Ohio/,
         coord: [39.1, -84.5]
       },
       {
-        searchTerm: 'tulsa oklahoma',
+        searchTerm: 'tulsa oklahoma usa',
         findText: /^Tulsa, Oklahoma/,
         coord: [36.1, -95.9]
       }

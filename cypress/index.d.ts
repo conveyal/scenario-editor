@@ -27,7 +27,7 @@ declare namespace Cypress {
     | 'analyze'
     | 'edit modifications'
     | 'network bundles'
-    | 'opportunity datasets'
+    | 'spatial datasets'
     | 'projects'
     | 'regions'
     | 'regional analyses'

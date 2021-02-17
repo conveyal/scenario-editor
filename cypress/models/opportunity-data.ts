@@ -15,7 +15,7 @@ export default class OpportunityData extends Model {
 
   findOrCreate() {
     // Check for the existing ods
-    cy.navTo('opportunity datasets')
+    cy.navTo('spatial datasets')
     cy.findByText(/Select\.\.\./)
       .click()
       .type(`${this.name} {enter}`)

@@ -9,11 +9,11 @@ Cypress.Commands.add(
     cy.findButton(/Upload a new dataset/i).click()
     cy.navComplete()
     cy.findByLabelText(/Spatial dataset name/i).type(name)
-    cy.findByLabelText(/Select opportunity dataset/).attachFile({
+    cy.findByLabelText(/Select spatial dataset/).attachFile({
       filePath,
       encoding: 'base64'
     })
-    cy.findButton(/Upload a new opportunity dataset/).click()
+    cy.findButton(/Upload a new spatial dataset/).click()
     cy.navComplete()
     // find the message showing this upload is complete
     cy.contains(new RegExp(name + ' \\(DONE\\)'), {timeout: 5000})

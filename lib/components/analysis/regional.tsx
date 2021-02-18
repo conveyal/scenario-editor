@@ -243,7 +243,12 @@ export default function Regional(p) {
               &nbsp;&nbsp;Export data
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={_downloadProjectGIS}>GeoTIFF</MenuItem>
+              <MenuItem
+                isDisabled={analysis.request.originPointSetKey != null}
+                onClick={_downloadProjectGIS}
+              >
+                GeoTIFF
+              </MenuItem>
               <MenuItem onClick={_downloadRequestJSON}>
                 Scenario and modification JSON
               </MenuItem>
@@ -266,7 +271,7 @@ export default function Regional(p) {
         projectId={analysis.projectId}
       />
 
-      {isComplete && (
+      {isComplete && analysis?.request?.originPointSetKey == null && (
         <RegionalResults
           analysis={analysis}
           analysisId={analysis._id}

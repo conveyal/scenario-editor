@@ -8,7 +8,7 @@ Cypress.Commands.add(
 
     cy.findButton(/Upload a new dataset/i).click()
     cy.navComplete()
-    cy.findByLabelText(/Opportunity dataset name/i).type(name)
+    cy.findByLabelText(/Spatial dataset name/i).type(name)
     cy.findByLabelText(/Select opportunity dataset/).attachFile({
       filePath,
       encoding: 'base64'

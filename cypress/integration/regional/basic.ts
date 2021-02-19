@@ -4,24 +4,15 @@ describe('Regional', () => {
   const region = getDefaultRegion()
 
   describe('Create Modal', () => {
-    before(() => {
+    it('should show total origins', () => {
       region.initializeAnalysisDefaults()
       region.fetchAccessibilityComparison(region.center)
       cy.getPrimaryAnalysisSettings().within(() => {
         cy.findButton(/Regional analysis/).click()
       })
-    })
-
-    it('should show total origins', () => {
       cy.findByText(/Analysis will run for 11,644 origin points/)
+      cy.findButton(/Cancel/).click()
     })
-
-    it(
-      'should show error if opportunity datasets selected are not the same size'
-    )
-    it(
-      'should show error if a freeform pointset and other opportunity datasets are selected'
-    )
   })
 
   describe('Results', () => {

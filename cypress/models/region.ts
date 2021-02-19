@@ -7,7 +7,6 @@ import Model from './model'
 import SpatialDataset from './spatial-data'
 import Project from './project'
 import RegionalAnalysis, {RegionalAnalysisOptions} from './regional-analysis'
-import {findDOMNode} from 'react-dom'
 
 type ProjectAnalysisSettings = {
   project?: Project

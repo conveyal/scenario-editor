@@ -1,6 +1,11 @@
 Cypress.Commands.add(
   'createOpportunityDataset',
-  function (name: string, filePath: string): Cypress.Chainable<string> {
+  function (
+    name: string,
+    filePath: string,
+    isFreeform = false,
+    idField = 'id'
+  ): Cypress.Chainable<string> {
     Cypress.log({
       displayName: 'creating',
       message: 'opportunities'
@@ -15,8 +20,17 @@ Cypress.Commands.add(
     })
 
     if (filePath.endsWith('csv')) {
-      cy.findByLabelText(/Latitude/).type('lat')
-      cy.findByLabelText(/Longitude/).type('lon')
+      cy.findByLabelText(/Latitude/)
+        .clear()
+        .type('lat')
+      cy.findByLabelText(/Longitude/)
+        .clear()
+        .type('lon')
+    }
+
+    if (isFreeform) {
+      cy.findByLabelText(/Enable free form/).click({force: true})
+      cy.findByLabelText(/ID field/).type(idField)
     }
 
     cy.findButton(/Upload a new spatial dataset/).click()

@@ -1,11 +1,15 @@
 import Model from './model'
 
-export default class OpportunityData extends Model {
+export default class SpatialDataset extends Model {
   filePath: string
 
   constructor(parentName: string, name: string, filePath: string) {
-    super(parentName, name, 'opportunityDataset')
+    super(parentName, name, 'spatialDataset')
     this.filePath = filePath
+  }
+
+  _create() {
+    cy.createOpportunityDataset(this.name, this.filePath)
   }
 
   _delete() {
@@ -22,7 +26,7 @@ export default class OpportunityData extends Model {
     cy.navComplete()
     cy.location('href').then((href) => {
       if (!href.match(/.*DatasetId=\w{24}$/)) {
-        cy.createOpportunityDataset(this.name, this.filePath)
+        this._create()
       }
     })
     cy.location('href')

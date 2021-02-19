@@ -19,7 +19,7 @@ describe('Example Modification Test', () => {
   )
 
   // Create a new opportunity dataset
-  const opportunityData = newRegion.getOpportunityDataset(
+  const opportunityData = newRegion.getSpatialDataset(
     'Example OD',
     'regions/nky/people.grid'
   )

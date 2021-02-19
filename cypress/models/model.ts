@@ -1,7 +1,7 @@
 type ModelType =
   | 'bundle'
   | 'modification'
-  | 'opportunityDataset'
+  | 'spatialDataset'
   | 'project'
   | 'region'
   | 'regionalAnalysis'

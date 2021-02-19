@@ -134,6 +134,7 @@ Cypress.Commands.add(
     opportunityDatasets: string[],
     options?: {
       cutoffs?: number[]
+      originPointSet?: string
       percentiles?: number[]
       timeout?: number
     }
@@ -143,6 +144,12 @@ Cypress.Commands.add(
       .click()
 
     cy.findByLabelText(/Regional analysis name/).type(name, {delay: 0})
+
+    if (options?.originPointSet) {
+      cy.findByLabelText(/Origin points/)
+        .click({force: true})
+        .type(`${options.originPointSet}{enter}`)
+    }
 
     opportunityDatasets.forEach((od) => {
       cy.findByLabelText(/Opportunity dataset\(s\)/)

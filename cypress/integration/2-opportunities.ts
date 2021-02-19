@@ -17,7 +17,7 @@ describe('Opportunity Datasets', function () {
 
   beforeEach(() => region.navTo('spatial datasets'))
 
-  const importedWithGrid = region.getOpportunityDataset(
+  const importedWithGrid = region.getSpatialDataset(
     'Grid Import',
     scratchRegion.opportunities.grid.file
   )

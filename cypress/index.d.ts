@@ -82,7 +82,12 @@ declare namespace Cypress {
      * @param name
      * @param filePath
      */
-    createOpportunityDataset(name: string, filePath: string): Chainable<string>
+    createOpportunityDataset(
+      name: string,
+      filePath: string,
+      isFreeform?: boolean,
+      idField?: string
+    ): Chainable<string>
 
     /**
      * Create a new regional analysis.

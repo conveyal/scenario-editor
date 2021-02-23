@@ -667,7 +667,7 @@ exports[`upload should render without errors 1`] = `
                       className="css-e07mjy"
                       htmlFor="freeform"
                     >
-                      Enable freeform
+                      Enable freeform (non-grid) points
                        
                       <DocsLink
                         pl={1}

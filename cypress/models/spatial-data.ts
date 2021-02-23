@@ -48,10 +48,10 @@ export default class SpatialDataset extends Model {
   }
 
   select() {
-    cy.findByLabelText(/^Spatial Dataset$/) // eslint-disable-line cypress/no-unnecessary-waiting
+    cy.findByLabelText(/^Destination opportunity layer$/) // eslint-disable-line cypress/no-unnecessary-waiting
       .click({force: true})
       .type(`${this.name}{enter}`, {delay: 0})
       .wait(100)
-    cy.findByLabelText(/^Spatial Dataset$/).should('be.enabled')
+    cy.findByLabelText(/^Destination opportunity layer$/).should('be.enabled')
   }
 }

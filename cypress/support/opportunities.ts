@@ -29,7 +29,7 @@ Cypress.Commands.add(
     }
 
     if (isFreeform) {
-      cy.findByLabelText(/Enable free form/).click({force: true})
+      cy.findByLabelText(/Enable freeform/).click({force: true})
       cy.findByLabelText(/ID field/).type(idField)
     }
 

@@ -152,7 +152,7 @@ Cypress.Commands.add(
     }
 
     opportunityDatasets.forEach((od) => {
-      cy.findByLabelText(/Opportunity dataset\(s\)/)
+      cy.findByLabelText(/Destination opportunity layer\(s\)/)
         .click({force: true})
         .type(`${od}{enter}`)
     })

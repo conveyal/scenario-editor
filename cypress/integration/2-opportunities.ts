@@ -141,7 +141,9 @@ describe('Opportunity Datasets', function () {
       .clear()
       .type(opportunity.longitudeField)
 
-    cy.findByLabelText(/Enable freeform \(non-grid\) points/).check({force: true})
+    cy.findByLabelText(/Enable freeform \(non-grid\) points/).check({
+      force: true
+    })
     cy.findByLabelText(/ID field/).type('sport')
     cy.findByLabelText(/Opportunity count field/).type('count')
 

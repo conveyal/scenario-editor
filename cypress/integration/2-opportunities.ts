@@ -108,7 +108,7 @@ describe('Opportunity Datasets', function () {
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
-      cy.findByLabelText(/or select an existing one/).type(
+      cy.findByLabelText(/or select an existing layer/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
         {
           force: true

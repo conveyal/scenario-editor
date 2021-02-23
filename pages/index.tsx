@@ -14,9 +14,9 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import withAuth from 'lib/with-auth'
 import {IUser} from 'lib/user'
 
-const alertDate = 'December, 2020'
-const alertStatus = 'warning'
-const alertText = 'Minor changes and a few bug fixes related to modifications.'
+const alertDate = 'February, 2021'
+const alertStatus = 'info'
+const alertText = 'New options for spatial datasets'
 
 type SelectRegionPageProps = {
   regions: CL.Region[]

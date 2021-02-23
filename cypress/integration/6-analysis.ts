@@ -216,7 +216,7 @@ describe('Analysis', () => {
       .should('be.disabled')
 
     cy.fetchResults()
-    cy.findByText(/Select an opportunity dataset to see accessibility/)
+    cy.findByText(/Select a destination layer to see accessibility/)
 
     // Should be enabled for >= v6
     cy.getPrimaryAnalysisSettings()
@@ -230,7 +230,7 @@ describe('Analysis', () => {
       .select('logistic')
 
     cy.fetchResults()
-    cy.findByText(/Select an opportunity dataset to see accessibility/)
+    cy.findByText(/Select a destination layer to see accessibility/)
     region.defaultSpatialDataset.select()
 
     // Logistic function should cause "out of sync" after dataset selected

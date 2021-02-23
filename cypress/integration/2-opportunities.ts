@@ -31,11 +31,11 @@ describe('Opportunity Datasets', function () {
     cy.focused().type(newName).blur()
     cy.navTo('projects')
     cy.navTo('spatial datasets')
-    cy.findByLabelText(/or select an existing one/)
+    cy.findByLabelText(/or select an existing layer/)
       .click({force: true})
       .type(`${newName}{enter}`)
-    cy.findButton(/Delete this dataset/).click()
-    cy.findButton(/Confirm: Delete this dataset/).click()
+    cy.findButton(/Delete this layer/).click()
+    cy.findButton(/Confirm: Delete this layer/).click()
   })
 
   describe('can be imported', () => {

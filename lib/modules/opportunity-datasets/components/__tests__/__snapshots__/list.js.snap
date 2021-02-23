@@ -258,7 +258,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
             <div
               className="css-0"
             >
-              <OpportunityDatasetSelector>
+              <Memo(OpportunityDatasetSelector)>
                 <ForwardRef
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
@@ -314,7 +314,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                     />
                   </ReactSelect>
                 </ForwardRef>
-              </OpportunityDatasetSelector>
+              </Memo(OpportunityDatasetSelector)>
             </div>
           </Box>
         </div>

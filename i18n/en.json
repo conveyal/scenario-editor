@@ -294,11 +294,11 @@
     "adjust-speed": "Adjust speed",
     "remove-stops": "Remove stops"
   },
-  "opportunityDatasets": {
+  "spatialDatasets": {
     "upload": "Upload a new dataset",
-    "select": "or select an existing one",
-    "delete": "Delete this dataset",
-    "deleteSource": "Delete entire dataset source",
+    "select": "or select an existing layer",
+    "delete": "Delete this layer",
+    "deleteSource": "Delete all layers from dataset",
     "downloadLODES": "Fetch LODES (2015)",
     "confirmLODES": "LEHD LODES data are only available for the United States.  Are you sure you want to fetch these data?",
     "downloadTiff": "Download as .tiff",
@@ -307,11 +307,12 @@
     "reloadPage": "Reload page to see results.",
     "uploadProgress": "Started %(createdAt) ago and completed %(completed) / %(total) features.",
     "enterName": "Please enter a new name.",
-    "confirmDelete": "Are you sure you would like to delete this dataset?",
-    "confirmDeleteSource": "Are you sure you would like to delete all spatial datasets from this source?",
-    "editName": "Edit Dataset Name",
-    "freeform": "Process as discrete (non-grid) points (beta)",
-    "paired": "Paired origin/destination file (beta)"
+    "name": "layer name",
+    "confirmDelete": "Are you sure you would like to delete this layer?",
+    "confirmDeleteSource": "Are you sure you would like to delete all layers from this dataset?",
+    "sourceName": "dataset name",
+    "freeform": "Process as freeform (non-grid) points (experimental)",
+    "paired": "Paired origin/destination file (experimental)"
   },
   "analysis": {
     "mode": "Mode of travel",
@@ -326,10 +327,8 @@
     "selectPercentileOfAccessibility": "Percentile of accessibility",
     "percentileOfAccessibility": "%(percentage)% of %(weightByName) can access at least %(accessibility) %(accessToName)",
     "createGrid": "Upload a new spatial dataset",
-    "grid": "Opportunity Dataset",
+    "grid": "Destination opportunity layer",
     "createGridTooltip": "Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).",
-    "opportunityDataset": "Opportunity dataset",
-    "selectOpportunityDataset": "select opportunity dataset",
     "cutoff": "Travel time cutoff (minutes)",
     "addGrid": "Add opportunity dataset",
     "uploading": "uploading…",

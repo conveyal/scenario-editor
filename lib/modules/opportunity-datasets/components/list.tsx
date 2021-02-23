@@ -43,7 +43,7 @@ export default function ListOpportunityDatasets({regionId}) {
   }, UPLOAD_STATUS_CHECK_INTERVAL)
 
   function _downloadLODES() {
-    if (window.confirm(message('opportunityDatasets.confirmLODES'))) {
+    if (window.confirm(message('spatialDatasets.confirmLODES'))) {
       dispatch(downloadLODES(regionId))
     }
   }
@@ -70,15 +70,15 @@ export default function ListOpportunityDatasets({regionId}) {
           query={{regionId}}
           variantColor='green'
         >
-          {message('opportunityDatasets.upload')}
+          {message('spatialDatasets.upload')}
         </ButtonLink>
         <Button onClick={_downloadLODES} variantColor='blue'>
-          {message('opportunityDatasets.downloadLODES')}
+          {message('spatialDatasets.downloadLODES')}
         </Button>
       </Stack>
       <Box textAlign='center'>
         <label htmlFor='select-opportunity-dataset'>
-          {message('opportunityDatasets.select')}
+          {message('spatialDatasets.select')}
         </label>
       </Box>
       <Box>

@@ -69,7 +69,7 @@ export default function EditOpportunityDatatset(p) {
   return (
     <Stack spacing={5}>
       <Stack spacing={0}>
-        <LabelHeading>name</LabelHeading>
+        <LabelHeading>{message('spatialDatasets.name')}</LabelHeading>
         <Heading size='md'>
           <Editable
             onChange={_editName}
@@ -102,7 +102,7 @@ export default function EditOpportunityDatatset(p) {
           <Button
             leftIcon='download'
             onClick={_downloadTiff}
-            title={message('opportunityDatasets.downloadTiff')}
+            title={message('spatialDatasets.downloadTiff')}
             variantColor='green'
             variant='outline'
           >
@@ -111,7 +111,7 @@ export default function EditOpportunityDatatset(p) {
           <Button
             leftIcon='download'
             onClick={_downloadGrid}
-            title={message('opportunityDatasets.downloadGrid')}
+            title={message('spatialDatasets.downloadGrid')}
             variantColor='green'
             variant='outline'
           >
@@ -131,30 +131,30 @@ export default function EditOpportunityDatatset(p) {
       </Stack>
 
       <ConfirmButton
-        description={message('opportunityDatasets.confirmDelete')}
+        description={message('spatialDatasets.confirmDelete')}
         leftIcon='delete'
         onConfirm={_deleteDataset}
         variantColor='red'
         variant='outline'
       >
-        {message('opportunityDatasets.delete')}
+        {message('spatialDatasets.delete')}
       </ConfirmButton>
 
       <Divider />
 
       <Stack spacing={2}>
-        <LabelHeading>dataset source name</LabelHeading>
+        <LabelHeading>{message('spatialDatasets.sourceName')}</LabelHeading>
         <Heading size='md'>{p.opportunityDataset.sourceName}</Heading>
       </Stack>
 
       <ConfirmButton
-        description={message('opportunityDatasets.confirmDeleteSource')}
+        description={message('spatialDatasets.confirmDeleteSource')}
         leftIcon='delete'
         onConfirm={_deleteSourceSet}
         variantColor='red'
         variant='outline'
       >
-        {message('opportunityDatasets.deleteSource')}
+        {message('spatialDatasets.deleteSource')}
       </ConfirmButton>
     </Stack>
   )

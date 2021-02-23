@@ -316,7 +316,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               }
             >
               <FormLabel htmlFor='destinationPointSets'>
-                Opportunity dataset
+                Destination opportunity layer
                 {workerVersionHandlesMultipleDimensions ? '(s)' : ''}
               </FormLabel>
               <div>
@@ -337,7 +337,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 />
               </div>
               {workerVersionHandlesMultipleDimensions && (
-                <FormHelperText>Select up to 6 datasets.</FormHelperText>
+                <FormHelperText>Select up to 6 layers.</FormHelperText>
               )}
             </FormControl>
 

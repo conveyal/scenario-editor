@@ -5,8 +5,8 @@ function generateName(type, name) {
 }
 
 function deleteEntireDataset() {
-  cy.findButton(/Delete entire dataset source/i).click()
-  cy.findButton(/Confirm: Delete entire dataset source/i).click()
+  cy.findButton(/Delete all layers from dataset/i).click()
+  cy.findButton(/Confirm: Delete all layers from dataset/i).click()
 }
 
 // How long should it take to create an OD

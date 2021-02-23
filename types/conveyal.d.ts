@@ -137,6 +137,16 @@ declare namespace CL {
   }
 
   /**
+   * Spatial Datasets
+   */
+  export interface SpatialDataset extends IModel {
+    bucketName: string
+    format: string
+    sourceId: string
+    sourceName: string
+  }
+
+  /**
    * Access Grids
    */
 

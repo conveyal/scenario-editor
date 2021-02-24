@@ -16,7 +16,7 @@ describe('Regional > Custom Origins', () => {
 
   it('should run a regional analysis with custom origins', () => {
     customOriginAnalysis.navTo()
-    cy.findButton(/Export data/).click()
+    cy.findButton(/Download results/).click()
     cy.findByText(/GeoTIFF/).should('be.disabled')
     cy.findByText(/Access CSV/).should('be.enabled')
     // .click() Disabled. Will crash Cypress for now.

@@ -16,8 +16,12 @@ import ModeSummary from './mode-summary'
 const selectProjects = fpGet('project.projects')
 const selectBundles = fpGet('region.bundles')
 
-const stringifyIfObject = (o) =>
-  typeof o === 'object' ? JSON.stringify(o, null, ' ') : o
+const stringifyIfObject = (o: any) =>
+  typeof o === 'object'
+    ? JSON.stringify(o, null, ' ')
+    : o.toString
+    ? o.toString()
+    : o
 
 const TDTitle = ({children}) => (
   <Box

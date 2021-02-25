@@ -1,5 +1,7 @@
 # Summary
+
 This Conveyal release:
+
 - Adds new options for spatial datasets, such as calculating travel-time matrices for uploaded origin-destination pairs (see below)
 - Allows using different destination layers in the same regional accessibility analysis
 - Supports higher cutoffs with linear, exponential, and logistic decay functions
@@ -7,6 +9,7 @@ This Conveyal release:
 - Corrects a bug that affected adjust-speed modifications with specific segments selected
 
 ## Spatial datasets
+
 - Opportunity datasets are now managed through the spatial dataset panel. When uploading a CSV file of points, you can [process it as a freeform pointset](https://docs.conveyal.com/prepare-inputs/upload-spatial-data#freeform-non-grid-points) to keep exact coordinates (in addition to rasterizing to a grid).
 - These freeform (non-grid) pointsets can be used as origins and destinations in regional travel time and accessibility calculations. Travel time matrices and other related features require the latest routing engine (v6.2).
 - This release improves how polygons with low opportunity densities are disaggregated into raster grids, but polygons with very low densities are still subject to some statistical noise.

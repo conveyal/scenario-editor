@@ -101,7 +101,7 @@ export default function ProfileRequestDisplay({
                 <Tip label={PROJECT_CHANGE_NOTE}>
                   <div>
                     <ALink
-                      to='project'
+                      to='modifications'
                       projectId={project._id}
                       regionId={project.regionId}
                     >

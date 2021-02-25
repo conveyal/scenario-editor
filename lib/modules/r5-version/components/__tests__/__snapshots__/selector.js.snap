@@ -60,10 +60,6 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
                   "label": "v6.2 (recommended)",
                   "value": "v6.2",
                 },
-                Object {
-                  "label": undefined,
-                  "value": undefined,
-                },
               ]
             }
             styles={
@@ -75,8 +71,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             }
             value={
               Object {
-                "label": undefined,
-                "value": undefined,
+                "label": "v6.2 (recommended)",
+                "value": "v6.2",
               }
             }
           >

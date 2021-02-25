@@ -34,15 +34,24 @@ const lineThrough = (text) => (
   <span style={{textDecoration: 'line-through'}}>{text}</span>
 )
 
+type Option = {
+  label: string | JSX.Element
+  value: string
+}
+
 /**
  * Select an R5 version, based on what is available in S3
  */
-export default function SelectR5Version({onChange, value, ...p}) {
+export default function SelectR5Version({
+  onChange,
+  value = RECOMMENDED_R5_VERSION,
+  ...p
+}) {
   const usedVersions = useSelector(select.usedVersions)
 
   const currentVersionNumber = versionToNumber(value)
   const lastUsedVersion = get(usedVersions, '[0].version')
-  const options = [
+  const options: Option[] = [
     {
       value: RECOMMENDED_R5_VERSION,
       label: `${RECOMMENDED_R5_VERSION} (recommended)`

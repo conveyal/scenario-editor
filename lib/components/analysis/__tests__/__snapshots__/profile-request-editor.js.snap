@@ -214,7 +214,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
     </Select>
   </FormControl>
   <DecayFunction
-    isDisabled={true}
+    isDisabled={false}
     update={[Function]}
     value={
       Object {

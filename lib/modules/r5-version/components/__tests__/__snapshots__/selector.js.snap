@@ -57,17 +57,11 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             options={
               Array [
                 Object {
-                  "label": "v6.0.1 (recommended)",
-                  "value": "v6.0.1",
+                  "label": "v6.2 (recommended)",
+                  "value": "v6.2",
                 },
                 Object {
-                  "label": <span
-                    style={
-                      Object {
-                        "textDecoration": "line-through",
-                      }
-                    }
-                  />,
+                  "label": undefined,
                   "value": undefined,
                 },
               ]
@@ -81,13 +75,7 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             }
             value={
               Object {
-                "label": <span
-                  style={
-                    Object {
-                      "textDecoration": "line-through",
-                    }
-                  }
-                />,
+                "label": undefined,
                 "value": undefined,
               }
             }
@@ -97,29 +85,6 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             />
           </Creatable>
         </div>
-        <Alert
-          status="warning"
-        >
-          <Box
-            alignItems="center"
-            bg="orange.100"
-            display="flex"
-            overflow="hidden"
-            pb={3}
-            pl={4}
-            position="relative"
-            pr={4}
-            pt={3}
-            role="alert"
-          >
-            <div
-              className="css-elg79j"
-              role="alert"
-            >
-              An updated version of the routing engine is available. Changing versions should improve performance but may change analysis results.
-            </div>
-          </Box>
-        </Alert>
       </div>
     </Box>
   </FormControl>

@@ -1,19 +1,26 @@
-import {MINIMUM_R5_VERSION, VERSION_PARSE_REGEX} from './constants'
+import {
+  MINIMUM_R5_VERSION,
+  VERSION_PARSE_REGEX,
+  OLD_VERSION_PARSE_REGEX
+} from './constants'
 
 /**
  * Convert an r5 version to a number for comparing
  */
-export function versionToNumber(version: string): number {
-  const versionMatch = (version || '').match(VERSION_PARSE_REGEX)
+export function versionToNumber(version = ''): number {
+  const versionMatch =
+    version.match(/\./g).length == 1
+      ? version.match(VERSION_PARSE_REGEX)
+      : version.match(OLD_VERSION_PARSE_REGEX)
   if (versionMatch) {
-    const [, major, minor, patch, commit] = versionMatch
+    const [, major = '0', minor = '0', patch = '0', commit = '0'] = versionMatch
 
     // NB Assumes no major, minor, patch, or commit version exceeds 100
     return (
       parseInt(major) * 10000 +
       parseInt(minor) * 100 +
       parseInt(patch) +
-      parseInt(commit || '0') / 100
+      parseInt(commit) / 100
     )
   }
 

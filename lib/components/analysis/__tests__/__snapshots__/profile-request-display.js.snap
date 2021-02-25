@@ -282,18 +282,18 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                               <ALink
                                 projectId="1"
                                 regionId="1"
-                                to="project"
+                                to="modifications"
                               >
                                 <InternalLink
                                   projectId="1"
                                   regionId="1"
-                                  to="project"
+                                  to="modifications"
                                 >
                                   <Link
-                                    as="/regions/1/projects/1"
+                                    as="/regions/1/projects/1/modifications"
                                     href={
                                       Object {
-                                        "pathname": "/regions/[regionId]/projects/[projectId]",
+                                        "pathname": "/regions/[regionId]/projects/[projectId]/modifications",
                                         "query": Object {},
                                       }
                                     }
@@ -307,7 +307,7 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                                       }
                                       className=""
                                       color="blue.500"
-                                      href="/regions/1/projects/1"
+                                      href="/regions/1/projects/1/modifications"
                                       onClick={[Function]}
                                       onMouseEnter={[Function]}
                                     >
@@ -333,7 +333,7 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                                         className=""
                                         color="blue.500"
                                         cursor="pointer"
-                                        href="/regions/1/projects/1"
+                                        href="/regions/1/projects/1/modifications"
                                         onClick={[Function]}
                                         onMouseEnter={[Function]}
                                         outline="none"
@@ -342,7 +342,7 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                                       >
                                         <a
                                           className=" css-17d37xz"
-                                          href="/regions/1/projects/1"
+                                          href="/regions/1/projects/1/modifications"
                                           onClick={[Function]}
                                           onMouseEnter={[Function]}
                                         >
@@ -359,7 +359,7 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                                 <div>
                                   <a
                                     class=" css-17d37xz"
-                                    href="/regions/1/projects/1"
+                                    href="/regions/1/projects/1/modifications"
                                   >
                                     Mock Project
                                   </a>

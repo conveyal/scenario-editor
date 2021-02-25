@@ -78,6 +78,12 @@ describe('Regional', () => {
       //cy.findByLabelText(/Aggregate results to/i)
       //  .type(this.region.aggregationAreas.sampleName+'{enter}')
     })
+
+    it('links to projects correctly', () => {
+      regionalAnalysis.navTo()
+      cy.findByText(region.defaultProject.name).click()
+      cy.findButton(/Create a modification/)
+    })
   })
 
   it('test starting and deleting a running analysis')

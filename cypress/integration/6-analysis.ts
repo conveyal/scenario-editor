@@ -240,7 +240,7 @@ describe('Analysis', () => {
   })
 
   describe('presets', () => {
-    it.only('CRUD a preset', function () {
+    it('CRUD a preset', function () {
       region.setupAnalysis()
 
       const name = Cypress.env('dataPrefix') + 'preset'

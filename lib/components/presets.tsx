@@ -40,19 +40,24 @@ const getId = fpGet('_id')
 const getOptionLabel = fpGet('name')
 
 // For input validation
-const hasName = (n) => n && n.length > 0
+const hasName = (n?: string) => n?.length > 0
 
 /**
  * Presets contain many more parameters than we use in the UI. Only check the ones from there.
  */
-function findPreset(settings, presets = []) {
+function findPreset(
+  settings: Record<string, unknown>,
+  presets: CL.Preset[] = []
+) {
   return presets.find(
     ({profileRequest}) =>
       Object.keys(profileRequest).find((k) => {
-        if (typeof profileRequest[k] === 'number') {
-          return !isWithinTolerance(profileRequest[k], settings[k])
+        const v = profileRequest[k]
+        const s = settings[k]
+        if (typeof v === 'number' && typeof s === 'number') {
+          return !isWithinTolerance(v, s)
         }
-        return !isEqual(profileRequest[k], settings[k])
+        return !isEqual(v, s)
       }) == null
   )
 }
@@ -62,7 +67,7 @@ type Props = {
   currentSettings: Record<string, unknown>
   isDisabled: boolean
   isComparison?: boolean
-  onChange: (any) => void
+  onChange: (preset: Record<string, unknown>) => void
   regionId: string
 }
 
@@ -85,7 +90,7 @@ export default memo<Props>(function PresetChooser({
   const createPresetAction = useDisclosure()
   const editPresetAction = useDisclosure()
   const removeAction = useDisclosure()
-  const [selectedPreset, setSelectedPreset] = useState()
+  const [selectedPreset, setSelectedPreset] = useState<CL.Preset>()
 
   // ID to differentiate between primary and comparison
   const id = 'select-preset-' + isComparison
@@ -193,13 +198,13 @@ export default memo<Props>(function PresetChooser({
             options={presets as any}
             onChange={_selectPreset}
             placeholder='Select a preset'
-            value={selectedPreset}
+            value={selectedPreset as any}
           />
         ) : (
           <Alert status='info'>Save presets to be used later.</Alert>
         )}
       </div>
-      {presetsCollection.response.error && (
+      {presetsCollection.error && (
         <FormErrorMessage>Error loading presets.</FormErrorMessage>
       )}
 

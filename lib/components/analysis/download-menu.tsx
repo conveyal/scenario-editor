@@ -50,9 +50,9 @@ export default function DownloadMenu({
 
   function downloadOpportunitiesCSV() {
     const header =
-      Array(120)
+      Array(121)
         .fill(0)
-        .map((_, i) => i + 1)
+        .map((_, i) => i)
         .join(',') + '\n'
     const csvContent = getPercentileCurves(store.getState(), isComparison)
       .map((row) => row.join(','))

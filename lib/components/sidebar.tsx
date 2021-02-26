@@ -16,6 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
+import omit from 'lodash/omit'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {memo, useCallback, useContext, useEffect, useState} from 'react'
@@ -172,7 +173,7 @@ export default function Sidebar() {
               icon={faChartArea}
               label={message('nav.analyze')}
               to='analysis'
-              params={queryParams}
+              params={omit(queryParams, 'modificationId')}
             />
             <ItemLink
               icon={faServer}

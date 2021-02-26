@@ -5,6 +5,7 @@ import {
   AlertTitle,
   Button,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -19,12 +20,12 @@ import {
 } from '@chakra-ui/core'
 import {faDatabase} from '@fortawesome/free-solid-svg-icons'
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+import {ChangeEvent, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {addBundle} from 'lib/actions'
 import fetch from 'lib/actions/fetch'
-import {API} from 'lib/constants'
+import {API, SERVER_MAX_FILE_SIZE_BYTES} from 'lib/constants'
 import message from 'lib/message'
 import {routeTo} from 'lib/router'
 import selectBundles from 'lib/selectors/bundles'
@@ -40,6 +41,16 @@ const POLL_TIMEOUT_MS = 10000
 const STATUS_DONE = 'DONE'
 const STATUS_ERROR = 'ERROR'
 
+const fileTooLarge = (file?: File): boolean =>
+  file?.size >= SERVER_MAX_FILE_SIZE_BYTES
+const filesTooLarge = (fileList?: FileList): boolean =>
+  Array.from(fileList || []).findIndex(fileTooLarge) > -1
+const FileSizeError = (p) => (
+  <FormErrorMessage {...p}>
+    File exceeds maximum limit of {SERVER_MAX_FILE_SIZE_BYTES / 1024 / 1024}MB.
+  </FormErrorMessage>
+)
+
 /**
  * Create bundle form.
  */
@@ -51,6 +62,8 @@ export default function CreateBundle() {
 
   const hasExistingBundles = bundles.length > 0
   const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
+  const [osm, setOsm] = useState<FileList | null>(null)
+  const [feedGroup, setFeedGroup] = useState<FileList | null>(null)
   const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | void>()
@@ -66,8 +79,10 @@ export default function CreateBundle() {
 
   const isValid = () =>
     formData.name &&
-    ((reuseOsm && formData.osmId) || (!reuseOsm && formData.osm)) &&
-    ((reuseGtfs && formData.feedGroupId) || (!reuseGtfs && formData.feedGroup))
+    ((reuseOsm && formData.osmId) ||
+      (!reuseOsm && osm && !filesTooLarge(osm))) &&
+    ((reuseGtfs && formData.feedGroupId) ||
+      (!reuseGtfs && feedGroup && !filesTooLarge(feedGroup)))
 
   const regionId = region._id
   const bounds = region.bounds
@@ -248,7 +263,7 @@ export default function CreateBundle() {
                     })}
                   </Code>
 
-                  <FormControl isRequired>
+                  <FormControl isInvalid={filesTooLarge(osm)} isRequired>
                     <FormLabel htmlFor='osm'>
                       {message('bundle.osm.uploadNewLabel')}
                     </FormLabel>
@@ -257,8 +272,11 @@ export default function CreateBundle() {
                       id='osm'
                       name='osm'
                       type='file'
-                      onChange={onChange('osm')}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setOsm(e.currentTarget.files)
+                      }
                     />
+                    {filesTooLarge(osm) && <FileSizeError />}
                   </FormControl>
                 </Stack>
               )}
@@ -300,7 +318,7 @@ export default function CreateBundle() {
             </TabPanel>
             <TabPanel pt={4}>
               {!reuseGtfs && (
-                <FormControl isRequired>
+                <FormControl isInvalid={filesTooLarge(feedGroup)} isRequired>
                   <FormLabel htmlFor='feedGroup'>
                     {message('bundle.gtfs.uploadNewLabel')}
                   </FormLabel>
@@ -309,9 +327,12 @@ export default function CreateBundle() {
                     id='feedGroup'
                     multiple
                     name='feedGroup'
-                    onChange={onChange('feedGroup')}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setFeedGroup(e.currentTarget.files)
+                    }
                     type='file'
                   />
+                  {filesTooLarge(feedGroup) && <FileSizeError />}
                 </FormControl>
               )}
             </TabPanel>

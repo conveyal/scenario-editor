@@ -57,6 +57,18 @@ export function CutoffSlider({isDisabled, ...p}) {
         </Slider>
         <FormLabel pb={0}>minute(s)</FormLabel>
       </Stack>
+      <input
+        id='cypress-time-cutoff-slider'
+        onChange={(e) => {
+          const v = parseInt(e.currentTarget.value)
+          if (!isNaN(v)) cutoffSlider.onChange(parseInt(e.currentTarget.value))
+        }}
+        style={{
+          display: 'block',
+          height: 0
+        }}
+        value={cutoffSlider.value}
+      />
     </FormControl>
   )
 }

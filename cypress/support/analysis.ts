@@ -99,11 +99,11 @@ Cypress.Commands.add('fetchResults', () => {
   )
 })
 
-Cypress.Commands.add('setTimeCutoff', (minutes) => {
-  // TODO this does not work yet
-  cy.findByRole('slider', {name: 'Time cutoff'})
-    .invoke('val', minutes)
-    .trigger('input', {force: true})
+Cypress.Commands.add('setTimeCutoff', (minutes: number) => {
+  // TODO this is hacky.
+  cy.get('#cypress-time-cutoff-slider').type(`{selectall}${minutes}`, {
+    force: true
+  })
 })
 
 Cypress.Commands.add('selectDefaultOpportunityDataset', () => {

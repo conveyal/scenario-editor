@@ -33,7 +33,8 @@ export default function LoadRegion() {
   const router = useRouter()
   const regionId = router.query.regionId as string
   const {data: region, response, update, remove} = useRegion(regionId)
-  if (response.error) return <p>{response.error.problem}</p>
+  if (response.error && response.error.ok === false)
+    return <p>{response.error.error.message}</p>
   if (!region) return <FullSpinner />
   return <EditRegion region={region} remove={remove} update={update} />
 }

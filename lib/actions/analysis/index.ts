@@ -244,6 +244,10 @@ export const handleSurface = (error, responses) => {
   const comparisonSurface =
     responses.length > 1 ? responseToSurface(responses[1].value) : undefined
 
+  // Log parsed responses for debugging
+  console.log('Surface', surface)
+  if (comparisonSurface) console.log('Comparison surface', comparisonSurface)
+
   return [
     setScenarioApplicationErrors(null),
     setScenarioApplicationWarnings([

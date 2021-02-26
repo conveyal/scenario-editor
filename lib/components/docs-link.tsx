@@ -1,5 +1,5 @@
 import {Link} from '@chakra-ui/core'
-import {faQuestionCircle} from '@fortawesome/free-solid-svg-icons'
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
 
 import Icon from './icon'
 import Tip from './tip'
@@ -17,7 +17,7 @@ export default function DocsLink({to, ...p}) {
         _hover={_hover}
         {...p}
       >
-        <Icon icon={faQuestionCircle} />
+        <Icon icon={faInfoCircle} />
       </Link>
     </Tip>
   )

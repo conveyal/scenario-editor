@@ -73,7 +73,7 @@ describe('Analysis', () => {
 
   // tests basic single point analysis at specified locations
   it('runs, giving reasonable results', function () {
-    region.defaultOpportunityDataset.select()
+    region.defaultSpatialDataset.select()
     // move marker and align map for snapshot
     for (const key in scratchRegion.locations) {
       const location: L.LatLngTuple = scratchRegion.locations[key]
@@ -97,7 +97,7 @@ describe('Analysis', () => {
       cy.findByLabelText(/Max LTS/).select('4')
     })
 
-    region.defaultOpportunityDataset.select()
+    region.defaultSpatialDataset.select()
     cy.fetchResults()
 
     getOpportunityCount().isWithin(results.bikeOnly)
@@ -134,7 +134,7 @@ describe('Analysis', () => {
     cy.setOrigin(location)
     cy.fetchResults()
 
-    region.defaultOpportunityDataset.select()
+    region.defaultSpatialDataset.select()
     getOpportunityCount().isWithin(results.customBounds)
   })
 
@@ -149,7 +149,7 @@ describe('Analysis', () => {
     })
 
     cy.setOrigin(location)
-    region.defaultOpportunityDataset.select()
+    region.defaultSpatialDataset.select()
     cy.fetchResults()
 
     getOpportunityCount().isWithin(results['6:00-8:00'], 10)
@@ -178,7 +178,7 @@ describe('Analysis', () => {
     const location = scratchRegion.locations.center as L.LatLngTuple
     cy.setOrigin(location)
 
-    region.defaultOpportunityDataset.select()
+    region.defaultSpatialDataset.select()
     cy.fetchResults()
 
     cy.get('svg#results-chart')
@@ -216,7 +216,7 @@ describe('Analysis', () => {
       .should('be.disabled')
 
     cy.fetchResults()
-    cy.findByText(/Select an opportunity dataset to see accessibility/)
+    cy.findByText(/Select a destination layer to see accessibility/)
 
     // Should be enabled for >= v6
     cy.getPrimaryAnalysisSettings()
@@ -230,8 +230,8 @@ describe('Analysis', () => {
       .select('logistic')
 
     cy.fetchResults()
-    cy.findByText(/Select an opportunity dataset to see accessibility/)
-    region.defaultOpportunityDataset.select()
+    cy.findByText(/Select a destination layer to see accessibility/)
+    region.defaultSpatialDataset.select()
 
     // Logistic function should cause "out of sync" after dataset selected
     cy.findByText(/Results are out of sync with settings/)

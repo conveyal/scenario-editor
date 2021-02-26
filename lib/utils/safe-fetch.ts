@@ -1,5 +1,19 @@
 import LogRocket from 'lib/logrocket'
 
+export type ResponseError = {
+  ok: false
+  data?: unknown
+  error: Error
+  problem: string
+}
+
+export type ResponseOk = Response & {
+  ok: true
+  data: unknown
+}
+
+export type SafeResponse = ResponseError | ResponseOk
+
 export const FETCH_ERROR = 'FETCH_ERROR'
 export const NONE = 'NONE'
 export const CLIENT_ERROR = 'CLIENT_ERROR'
@@ -17,59 +31,52 @@ const defaultHeaders = {
   'Content-Type': 'application/json;charset=UTF-8'
 }
 
-function getProblemFromResponse(res: Response) {
-  if (res.ok) {
-    return {
-      ok: true,
-      problem: NONE
-    }
-  }
-  if (res.status >= 500) {
-    return {
-      ok: false,
-      problem: SERVER_ERROR
-    }
-  }
-  if (res.status >= 400 && res.status <= 499) {
-    return {
-      ok: false,
-      problem: CLIENT_ERROR
-    }
-  }
+function getProblemFromResponse(res: Response): string {
+  if (res.status >= 500) return SERVER_ERROR
+  if (res.status >= 400 && res.status <= 499) return CLIENT_ERROR
+  return UNKNOWN_ERROR
 }
 
-function getProblemFromError(e: Error): string {
-  console.error(e)
+function getProblemFromError(_: Error): string {
   return FETCH_ERROR
 }
 
 async function getData(res: Response) {
   const type = res.headers.get('Content-Type') || ''
   if (type.indexOf('json') > -1) return res.json()
-  if (type.indexOf('text') > -1) return {description: await res.text()}
+  if (type.indexOf('text') > -1) return {message: await res.text()}
   if (type.indexOf('octet-stream') > -1) return res.arrayBuffer()
-  return {description: 'no content'}
+  return {message: 'no content'}
 }
 
-async function safeParseResponse(res: Response) {
+function parseErrorMessageFromData(data: any): string {
+  return data == null
+    ? 'Error while fetching data.'
+    : typeof data === 'string'
+    ? data
+    : typeof data === 'object' &&
+      Object.prototype.hasOwnProperty.call(data, 'message')
+    ? data.message
+    : JSON.stringify(data)
+}
+
+async function safeParseResponse(res: Response): Promise<SafeResponse> {
   const data = await getData(res)
-  const problem = getProblemFromResponse(res)
-  return {...res, ...problem, data}
+  if (res.ok) {
+    return {
+      ...res,
+      ok: true,
+      data
+    }
+  }
+  return {
+    ...res,
+    ok: false,
+    data,
+    error: new Error(parseErrorMessageFromData(data)),
+    problem: getProblemFromResponse(res)
+  }
 }
-
-export type ResponseError = {
-  ok: false
-  data: Error
-  problem: string
-}
-
-export type SafeResponse =
-  | ResponseError
-  | (Response & {
-      ok: boolean
-      data: unknown
-      problem: string
-    })
 
 /**
  * Never throw errors. Always return a response.
@@ -86,13 +93,13 @@ export async function safeFetch(
       LogRocket.captureException(e)
       // TODO parse error see: https://github.com/infinitered/apisauce/blob/master/lib/apisauce.ts
       return {
-        data: e,
+        error: e,
         ok: false,
         problem: getProblemFromError(e)
       }
     } else {
       return {
-        data: new Error(JSON.stringify(e)),
+        error: new Error(JSON.stringify(e)),
         ok: false,
         problem: UNKNOWN_ERROR
       }

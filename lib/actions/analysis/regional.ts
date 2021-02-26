@@ -119,12 +119,6 @@ export const loadRegionalAnalysisGrid = (
   }
 }
 
-export const createRegionalAnalysis = (settings) =>
-  fetch({
-    options: {method: 'POST', body: settings},
-    url: REGIONAL_URL
-  })
-
 const deleteRegionalAnalysisLocally = createAction('delete regional analysis')
 export const deleteRegionalAnalysis = (analysisId) => (dispatch) => {
   // Run local delete first so it seems snappier. The worst that will happen is

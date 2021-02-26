@@ -107,11 +107,11 @@ Cypress.Commands.add('setTimeCutoff', (minutes) => {
 })
 
 Cypress.Commands.add('selectDefaultOpportunityDataset', () => {
-  cy.findByLabelText(/^Opportunity Dataset$/) // eslint-disable-line cypress/no-unnecessary-waiting
+  cy.findByLabelText(/^Destination opportunity layer$/) // eslint-disable-line cypress/no-unnecessary-waiting
     .click({force: true})
     .type(`default{enter}`, {delay: 0})
     .wait(100)
-  cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+  cy.findByLabelText(/^Destination opportunity layer$/).should('be.enabled')
 })
 
 Cypress.Commands.add(
@@ -134,6 +134,7 @@ Cypress.Commands.add(
     opportunityDatasets: string[],
     options?: {
       cutoffs?: number[]
+      originPointSet?: string
       percentiles?: number[]
       timeout?: number
     }
@@ -144,8 +145,14 @@ Cypress.Commands.add(
 
     cy.findByLabelText(/Regional analysis name/).type(name, {delay: 0})
 
+    if (options?.originPointSet) {
+      cy.findByLabelText(/Origin points/)
+        .click({force: true})
+        .type(`${options.originPointSet}{enter}`)
+    }
+
     opportunityDatasets.forEach((od) => {
-      cy.findByLabelText(/Opportunity dataset\(s\)/)
+      cy.findByLabelText(/Destination opportunity layer\(s\)/)
         .click({force: true})
         .type(`${od}{enter}`)
     })
@@ -163,6 +170,9 @@ Cypress.Commands.add(
     }
 
     cy.findByRole('button', {name: /Create/}).click()
+
+    // Ensure the success toast is shown, and click on it
+    cy.get('#react-toast').findByRole('alert').click({force: true})
 
     // Navigates to regional analysis page
     cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})

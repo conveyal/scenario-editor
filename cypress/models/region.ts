@@ -2,8 +2,9 @@ import {latLngBounds} from 'leaflet'
 import {defaultAnalysisSettings, scratchRegion} from '../integration/utils'
 
 import Bundle from './bundle'
+import FreeformDataset from './freeform-dataset'
 import Model from './model'
-import OpportunityData from './opportunity-data'
+import SpatialDataset from './spatial-data'
 import Project from './project'
 import RegionalAnalysis, {RegionalAnalysisOptions} from './regional-analysis'
 
@@ -17,7 +18,7 @@ export default class Region extends Model {
   bounds: CL.Bounds
   center: L.LatLngTuple
   defaultBundle: Bundle
-  defaultOpportunityDataset: OpportunityData
+  defaultSpatialDataset: SpatialDataset
   defaultProject: Project
 
   constructor(name: string, bounds: CL.Bounds) {
@@ -44,10 +45,10 @@ export default class Region extends Model {
    */
   fetchAccessibilityComparison(
     coords: L.LatLngTuple,
-    opportunityDataset?: OpportunityData
+    spatialDataset?: SpatialDataset
   ): Cypress.Chainable<[number, number]> {
     cy.setOrigin(coords)
-    ;(opportunityDataset ?? this.defaultOpportunityDataset).select()
+    ;(spatialDataset ?? this.defaultSpatialDataset).select()
     cy.fetchResults()
 
     return cy
@@ -136,12 +137,23 @@ export default class Region extends Model {
     return project
   }
 
-  getOpportunityDataset(name: string, filePath: string): OpportunityData {
-    const od = new OpportunityData(this.key, name, filePath)
+  getFreeformDataset(name: string, filePath: string, idField?: string) {
+    const fd = new FreeformDataset(this.key, name, filePath, idField)
 
-    if (!this.defaultOpportunityDataset) this.defaultOpportunityDataset = od
+    before(`getFreeformDataset(${fd.name})`, () => {
+      this.navTo()
+      fd.initialize()
+    })
 
-    before(`getOpportunityDataset(${od.name})`, () => {
+    return fd
+  }
+
+  getSpatialDataset(name: string, filePath: string): SpatialDataset {
+    const od = new SpatialDataset(this.key, name, filePath)
+
+    if (!this.defaultSpatialDataset) this.defaultSpatialDataset = od
+
+    before(`getSpatialDataset(${od.name})`, () => {
       this.navTo()
       od.initialize()
     })
@@ -153,7 +165,7 @@ export default class Region extends Model {
     const ra = new RegionalAnalysis(
       this.key,
       name,
-      options?.opportunityDatasets || [this.defaultOpportunityDataset.name],
+      options?.opportunityDatasets || [this.defaultSpatialDataset.name],
       options,
       this
     )

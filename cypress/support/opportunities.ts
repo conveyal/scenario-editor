@@ -1,6 +1,11 @@
 Cypress.Commands.add(
   'createOpportunityDataset',
-  function (name: string, filePath: string): Cypress.Chainable<string> {
+  function (
+    name: string,
+    filePath: string,
+    isFreeform = false,
+    idField = 'id'
+  ): Cypress.Chainable<string> {
     Cypress.log({
       displayName: 'creating',
       message: 'opportunities'
@@ -8,12 +13,29 @@ Cypress.Commands.add(
 
     cy.findButton(/Upload a new dataset/i).click()
     cy.navComplete()
-    cy.findByLabelText(/Opportunity dataset name/i).type(name)
-    cy.findByLabelText(/Select opportunity dataset/).attachFile({
+    cy.findByLabelText(/Spatial dataset name/i).type(name)
+    cy.findByLabelText(/Select spatial dataset/).attachFile({
       filePath,
       encoding: 'base64'
     })
-    cy.findButton(/Upload a new opportunity dataset/).click()
+
+    if (filePath.endsWith('csv')) {
+      cy.findByLabelText(/Latitude/)
+        .clear()
+        .type('lat')
+      cy.findByLabelText(/Longitude/)
+        .clear()
+        .type('lon')
+    }
+
+    if (isFreeform) {
+      cy.findByLabelText(/Enable freeform \(non-grid\) points/).click({
+        force: true
+      })
+      cy.findByLabelText(/ID field/).type(idField)
+    }
+
+    cy.findButton(/Upload a new spatial dataset/).click()
     cy.navComplete()
     // find the message showing this upload is complete
     cy.contains(new RegExp(name + ' \\(DONE\\)'), {timeout: 5000})
@@ -21,7 +43,7 @@ Cypress.Commands.add(
       .parent()
       .as('notice')
     // check number of fields uploaded
-    cy.get('@notice').contains(/Finished uploading 1 feature/i)
+    cy.get('@notice').contains(/Finished uploading \d layer/i)
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // now grab the ID

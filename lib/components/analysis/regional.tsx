@@ -8,7 +8,10 @@ import {
   MenuButton,
   Button,
   MenuList,
-  MenuItem
+  MenuItem,
+  Alert,
+  AlertIcon,
+  AlertDescription
 } from '@chakra-ui/core'
 import {
   faChevronLeft,
@@ -204,46 +207,62 @@ export default function Regional(p) {
       {p.job && <RunningAnalysis job={p.job} />}
 
       <Stack spacing={4} px={4} py={4}>
-        {Array.isArray(analysis.destinationPointSetIds) && (
-          <Select {...destinationPointSetInput}>
-            {analysis.destinationPointSetIds.map((id) => (
-              <option key={id} value={id}>
-                {getFullODName(find(p.opportunityDatasets, ['_id', id]))}
-              </option>
-            ))}
-          </Select>
+        {analysis?.request?.originPointSetKey != null ? (
+          <Alert status='info'>
+            <AlertIcon />
+            <AlertDescription>
+              Results for this analysis cannot be displayed on this map.
+            </AlertDescription>
+          </Alert>
+        ) : (
+          <Stack spacing={4}>
+            {Array.isArray(analysis.destinationPointSetIds) && (
+              <Select {...destinationPointSetInput}>
+                {analysis.destinationPointSetIds.map((id) => (
+                  <option key={id} value={id}>
+                    {getFullODName(find(p.opportunityDatasets, ['_id', id]))}
+                  </option>
+                ))}
+              </Select>
+            )}
+
+            <Stack isInline>
+              {Array.isArray(cutoffsMinutes) && (
+                <Select {...cutoffInput}>
+                  {cutoffsMinutes.map((m) => (
+                    <option key={m} value={m}>
+                      {m} minutes
+                    </option>
+                  ))}
+                </Select>
+              )}
+
+              {Array.isArray(percentiles) && (
+                <Select {...percentileInput}>
+                  {percentiles.map((p) => (
+                    <option key={p} value={p}>
+                      {p}th percentile
+                    </option>
+                  ))}
+                </Select>
+              )}
+            </Stack>
+          </Stack>
         )}
-
-        <Stack isInline>
-          {Array.isArray(cutoffsMinutes) && (
-            <Select {...cutoffInput}>
-              {cutoffsMinutes.map((m) => (
-                <option key={m} value={m}>
-                  {m} minutes
-                </option>
-              ))}
-            </Select>
-          )}
-
-          {Array.isArray(percentiles) && (
-            <Select {...percentileInput}>
-              {percentiles.map((p) => (
-                <option key={p} value={p}>
-                  {p}th percentile
-                </option>
-              ))}
-            </Select>
-          )}
-        </Stack>
 
         {isComplete && (
           <Menu>
-            <MenuButton as={Button} {...{variant: 'outline'}}>
+            <MenuButton as={Button} {...{variantColor: 'blue'}}>
               <Icon icon={faDownload} />
-              &nbsp;&nbsp;Export data
+              &nbsp;&nbsp;Download results
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={_downloadProjectGIS}>GeoTIFF</MenuItem>
+              <MenuItem
+                isDisabled={analysis.request.originPointSetKey != null}
+                onClick={_downloadProjectGIS}
+              >
+                GeoTIFF
+              </MenuItem>
               <MenuItem onClick={_downloadRequestJSON}>
                 Scenario and modification JSON
               </MenuItem>
@@ -266,7 +285,7 @@ export default function Regional(p) {
         projectId={analysis.projectId}
       />
 
-      {isComplete && (
+      {isComplete && analysis?.request?.originPointSetKey == null && (
         <RegionalResults
           analysis={analysis}
           analysisId={analysis._id}

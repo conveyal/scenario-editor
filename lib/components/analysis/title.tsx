@@ -29,7 +29,7 @@ function TitleMessage({fetchStatus, project}) {
   else if (profileRequestHasChanged)
     title = 'Results are out of sync with settings'
   else if (!opportunityDataset)
-    title = 'Select an opportunity dataset to see accessibility'
+    title = 'Select a destination layer to see accessibility'
   return <Text> {title}</Text>
 }
 

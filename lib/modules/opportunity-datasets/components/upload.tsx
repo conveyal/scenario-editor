@@ -102,7 +102,7 @@ export default function UploadOpportunityDataset({regionId}) {
         isDisabled={!isCSV}
       >
         <FormLabel htmlFor='freeform'>
-          Enable free form{' '}
+          Enable freeform (non-grid) points{' '}
           <DocsLink pl={1} to='/prepare-inputs/upload-opportunity-data#csv' />
         </FormLabel>
 

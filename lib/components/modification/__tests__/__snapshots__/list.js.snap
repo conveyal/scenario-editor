@@ -556,7 +556,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                       </button>
                                       <div
                                         aria-hidden="false"
-                                        class="rah-static rah-static--height-auto css-vppuuz"
+                                        class="rah-static rah-static--height-auto css-1asjk0u-Collapse"
                                         style="height: auto; overflow: visible;"
                                       >
                                         <div
@@ -1821,6 +1821,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                       role="region"
                                                     >
                                                       <EmotionCssPropInternal
+                                                        __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Collapse"
                                                         __EMOTION_TYPE_PLEASE_DO_NOT_USE__={[Function]}
                                                         animateOpacity={true}
                                                         applyInlineTransitions={false}
@@ -1853,7 +1854,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                             }
                                                           }
                                                           applyInlineTransitions={false}
-                                                          className="css-vppuuz"
+                                                          className="css-1asjk0u-Collapse"
                                                           delay={0}
                                                           duration={250}
                                                           easing="ease"
@@ -1862,7 +1863,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                         >
                                                           <div
                                                             aria-hidden={false}
-                                                            className="rah-static rah-static--height-auto css-vppuuz"
+                                                            className="rah-static rah-static--height-auto css-1asjk0u-Collapse"
                                                             style={
                                                               Object {
                                                                 "height": "auto",
@@ -2628,7 +2629,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                       </button>
                                       <div
                                         aria-hidden="false"
-                                        class="rah-static rah-static--height-auto css-vppuuz"
+                                        class="rah-static rah-static--height-auto css-1asjk0u-Collapse"
                                         style="height: auto; overflow: visible;"
                                       >
                                         <div

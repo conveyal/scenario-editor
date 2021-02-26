@@ -5,8 +5,8 @@ function generateName(type, name) {
 }
 
 function deleteEntireDataset() {
-  cy.findButton(/Delete entire dataset source/i).click()
-  cy.findButton(/Confirm: Delete entire dataset source/i).click()
+  cy.findButton(/Delete all layers from dataset/i).click()
+  cy.findButton(/Confirm: Delete all layers from dataset/i).click()
 }
 
 // How long should it take to create an OD
@@ -15,9 +15,9 @@ const timeout = 240000
 describe('Opportunity Datasets', function () {
   const region = getDefaultRegion()
 
-  beforeEach(() => region.navTo('opportunity datasets'))
+  beforeEach(() => region.navTo('spatial datasets'))
 
-  const importedWithGrid = region.getOpportunityDataset(
+  const importedWithGrid = region.getSpatialDataset(
     'Grid Import',
     scratchRegion.opportunities.grid.file
   )
@@ -27,15 +27,15 @@ describe('Opportunity Datasets', function () {
     const newName = generateName('OD', 'newName')
     cy.createOpportunityDataset(name, scratchRegion.opportunities.grid.file)
     cy.get('#totalOpportunities').itsNumericText().should('eq', 227903)
-    cy.findByRole('group', {name: /Opportunity dataset name/}).click()
+    cy.findByRole('group', {name: /Spatial dataset name/}).click()
     cy.focused().type(newName).blur()
     cy.navTo('projects')
-    cy.navTo('opportunity datasets')
-    cy.findByLabelText(/or select an existing one/)
+    cy.navTo('spatial datasets')
+    cy.findByLabelText(/or select an existing layer/)
       .click({force: true})
       .type(`${newName}{enter}`)
-    cy.findButton(/Delete this dataset/).click()
-    cy.findButton(/Confirm: Delete this dataset/).click()
+    cy.findButton(/Delete this layer/).click()
+    cy.findButton(/Confirm: Delete this layer/).click()
   })
 
   describe('can be imported', () => {
@@ -46,8 +46,8 @@ describe('Opportunity Datasets', function () {
       cy.findByText(/Upload a new dataset/i).click()
       cy.navComplete()
 
-      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-      cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
+      cy.findByLabelText(/Spatial dataset name/i).type(oppName)
+      cy.findByLabelText(/^Select spatial dataset/i).attachFile(
         opportunity.file
       )
       cy.findByLabelText(/^Latitude/)
@@ -66,12 +66,12 @@ describe('Opportunity Datasets', function () {
         .as('notice')
       // check number of fields uploaded
       cy.get('@notice').contains(
-        `Finished uploading ${expectedFieldCount} features`
+        `Finished uploading ${expectedFieldCount} layers`
       )
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
-      cy.findByLabelText(/or select an existing one/).type(
+      cy.findByLabelText(/or select an existing layer/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
         {
           force: true
@@ -87,8 +87,8 @@ describe('Opportunity Datasets', function () {
       cy.findButton(/Upload a new dataset/i).click()
       cy.navComplete()
 
-      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-      cy.findByLabelText(/Select opportunity dataset/)
+      cy.findByLabelText(/Spatial dataset name/i).type(oppName)
+      cy.findByLabelText(/Select spatial dataset/)
         .attachFile({filePath: opportunity.files[0], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[2], encoding: 'base64'})
@@ -103,12 +103,12 @@ describe('Opportunity Datasets', function () {
         .as('notice')
       // check number of fields uploaded
       cy.get('@notice').contains(
-        `Finished uploading ${expectedFieldCount} features`
+        `Finished uploading ${expectedFieldCount} layers`
       )
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
-      cy.findByLabelText(/or select an existing one/).type(
+      cy.findByLabelText(/or select an existing layer/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
         {
           force: true
@@ -132,10 +132,8 @@ describe('Opportunity Datasets', function () {
     cy.findByText(/Upload a new dataset/i).click()
     cy.navComplete()
 
-    cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-    cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
-      opportunity.file
-    )
+    cy.findByLabelText(/Spatial dataset name/i).type(oppName)
+    cy.findByLabelText(/^Select spatial dataset/i).attachFile(opportunity.file)
     cy.findByLabelText(/^Latitude/)
       .clear()
       .type(opportunity.latitudeField)
@@ -143,7 +141,9 @@ describe('Opportunity Datasets', function () {
       .clear()
       .type(opportunity.longitudeField)
 
-    cy.findByLabelText(/Enable free form/).check({force: true})
+    cy.findByLabelText(/Enable freeform \(non-grid\) points/).check({
+      force: true
+    })
     cy.findByLabelText(/ID field/).type('sport')
     cy.findByLabelText(/Opportunity count field/).type('count')
 
@@ -157,12 +157,12 @@ describe('Opportunity Datasets', function () {
       .as('notice')
     // check number of fields uploaded
     cy.get('@notice').contains(
-      `Finished uploading ${expectedFieldCount} features`
+      `Finished uploading ${expectedFieldCount} layers`
     )
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // select in the dropdown
-    cy.findByLabelText(/or select an existing one/).type(
+    cy.findByLabelText(/or select an existing layer/).type(
       `${oppName}: ${opportunity.numericFields[0]} (freeform) {enter}`,
       {
         force: true

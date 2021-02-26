@@ -1,11 +1,15 @@
 import Model from './model'
 
-export default class OpportunityData extends Model {
+export default class SpatialDataset extends Model {
   filePath: string
 
   constructor(parentName: string, name: string, filePath: string) {
-    super(parentName, name, 'opportunityDataset')
+    super(parentName, name, 'spatialDataset')
     this.filePath = filePath
+  }
+
+  _create() {
+    cy.createOpportunityDataset(this.name, this.filePath)
   }
 
   _delete() {
@@ -15,14 +19,14 @@ export default class OpportunityData extends Model {
 
   findOrCreate() {
     // Check for the existing ods
-    cy.navTo('opportunity datasets')
+    cy.navTo('spatial datasets')
     cy.findByText(/Select\.\.\./)
       .click()
       .type(`${this.name} {enter}`)
     cy.navComplete()
     cy.location('href').then((href) => {
       if (!href.match(/.*DatasetId=\w{24}$/)) {
-        cy.createOpportunityDataset(this.name, this.filePath)
+        this._create()
       }
     })
     cy.location('href')
@@ -44,10 +48,10 @@ export default class OpportunityData extends Model {
   }
 
   select() {
-    cy.findByLabelText(/^Opportunity Dataset$/) // eslint-disable-line cypress/no-unnecessary-waiting
+    cy.findByLabelText(/^Destination opportunity layer$/) // eslint-disable-line cypress/no-unnecessary-waiting
       .click({force: true})
       .type(`${this.name}{enter}`, {delay: 0})
       .wait(100)
-    cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+    cy.findByLabelText(/^Destination opportunity layer$/).should('be.enabled')
   }
 }

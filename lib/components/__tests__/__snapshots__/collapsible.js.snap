@@ -114,6 +114,7 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
         pt={4}
       >
         <EmotionCssPropInternal
+          __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Collapse"
           __EMOTION_TYPE_PLEASE_DO_NOT_USE__={[Function]}
           animateOpacity={true}
           applyInlineTransitions={false}
@@ -146,7 +147,7 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
               }
             }
             applyInlineTransitions={false}
-            className="css-vppuuz"
+            className="css-1asjk0u-Collapse"
             delay={0}
             duration={250}
             easing="ease"
@@ -155,7 +156,7 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
           >
             <div
               aria-hidden={true}
-              className="rah-static rah-static--height-zero css-vppuuz"
+              className="rah-static rah-static--height-zero css-1asjk0u-Collapse"
               style={
                 Object {
                   "height": 0,

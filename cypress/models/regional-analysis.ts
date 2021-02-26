@@ -7,6 +7,7 @@ export type RegionalAnalysisOptions = {
   scenario?: string
   settings?: Record<string, unknown>
   opportunityDatasets?: string[]
+  originPointSet?: string
   cutoffs?: number[]
   percentiles?: number[]
 }

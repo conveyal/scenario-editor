@@ -81,7 +81,7 @@ const navToPages = {
     lookFor: /Create a new network bundle/i,
     path: /\/regions\/[a-z0-9]+\/bundles/
   },
-  'opportunity datasets': {
+  'spatial datasets': {
     lookFor: /Upload a new dataset/i,
     path: /\/regions\/[a-z0-9]+\/opportunities*/
   },

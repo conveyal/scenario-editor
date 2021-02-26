@@ -254,7 +254,7 @@ export default function ProfileRequestEditor({
         <FormLabel htmlFor={maxTransfersInput.id}>
           {message('analysis.transfers')}
         </FormLabel>
-        <Input {...maxTransfersInput} type='number' maxLength={1} />
+        <Input {...maxTransfersInput} maxLength={1} />
       </FormControl>
 
       {hasTransit && toTime >= TenPM && (

@@ -47,8 +47,9 @@ export function CutoffSlider({isDisabled, ...p}) {
           onChange={cutoffSlider.onChange}
           value={cutoffSlider.value}
         >
-          <SliderTrack />
-          <SliderFilledTrack />
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
           <SliderThumb aria-label='Time cutoff' ref={cutoffSlider.ref} size='8'>
             <Box fontSize='sm' fontWeight='bold'>
               {cutoffSlider.value}
@@ -88,8 +89,9 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
           onChange={percentileSlider.onChange}
           value={percentileSlider.value}
         >
-          <SliderTrack />
-          <SliderFilledTrack />
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
           <SliderThumb
             aria-label='Travel time percentile'
             ref={percentileSlider.ref}

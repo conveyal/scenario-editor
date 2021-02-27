@@ -183,7 +183,7 @@ export default function ModificationsList({bundle, project}) {
         </TabList>
 
         <TabPanels>
-          <TabPanel pt={2}>
+          <TabPanel pt={2} px={0}>
             <Box px={2}>
               <CreateModification
                 feeds={bundle.feeds}
@@ -257,7 +257,7 @@ export default function ModificationsList({bundle, project}) {
             </InnerDock>
           </TabPanel>
 
-          <TabPanel>
+          <TabPanel px={0}>
             <VariantEditor showVariant={showVariant} variants={variants} />
           </TabPanel>
         </TabPanels>
@@ -267,7 +267,7 @@ export default function ModificationsList({bundle, project}) {
 }
 
 function ModificationType({children, modificationCount, type}) {
-  const {isOpen, onToggle} = useDisclosure({isOpen: true}) // defaultIsOpen does not currently work
+  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: true})
   return (
     <AccordionItem
       border='none'

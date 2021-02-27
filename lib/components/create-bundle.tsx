@@ -189,7 +189,7 @@ export default function CreateBundle() {
           </TabList>
 
           <TabPanels>
-            <TabPanel pt={4}>
+            <TabPanel pt={4} px={0}>
               {reuseOsm && (
                 <Select
                   id='osmId'
@@ -205,7 +205,7 @@ export default function CreateBundle() {
                 </Select>
               )}
             </TabPanel>
-            <TabPanel>
+            <TabPanel px={0}>
               {!reuseOsm && (
                 <Stack spacing={4} pt={4}>
                   <Heading size='sm'>
@@ -275,7 +275,7 @@ export default function CreateBundle() {
           </TabList>
 
           <TabPanels>
-            <TabPanel pt={4}>
+            <TabPanel pt={4} px={0}>
               {reuseGtfs && (
                 <Select
                   id='feedGroupId'
@@ -291,7 +291,7 @@ export default function CreateBundle() {
                 </Select>
               )}
             </TabPanel>
-            <TabPanel pt={4}>
+            <TabPanel pt={4} px={0}>
               {!reuseGtfs && (
                 <FormControl isRequired>
                   <FormLabel htmlFor='feedGroup'>

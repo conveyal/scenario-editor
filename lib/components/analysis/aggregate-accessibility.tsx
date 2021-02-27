@@ -115,8 +115,9 @@ export default function AggregateAccessibilityComponent({
           value={percentile}
           onChange={setPercentile}
         >
-          <SliderTrack />
-          <SliderFilledTrack />
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
           <SliderThumb />
         </Slider>
       </FormControl>

@@ -134,7 +134,7 @@ export default function CreateModification({
                 </Tab>
               </TabList>
               <TabPanels>
-                <TabPanel pt={3}>
+                <TabPanel pt={3} px={0}>
                   <FormControl>
                     <FormLabel htmlFor={transitTypeInput.id}>
                       Transit modification type
@@ -148,7 +148,7 @@ export default function CreateModification({
                     </Select>
                   </FormControl>
                 </TabPanel>
-                <TabPanel pt={3}>
+                <TabPanel pt={3} px={0}>
                   <FormControl>
                     <FormLabel htmlFor={streetTypeInput.id}>
                       Street modification type

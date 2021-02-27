@@ -11,7 +11,7 @@ export function Panel({children}) {
 }
 
 export function Collapsible({defaultExpanded = true, children, heading}) {
-  const {isOpen, onToggle} = useDisclosure({isOpen: defaultExpanded})
+  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: defaultExpanded})
 
   return (
     <Panel>

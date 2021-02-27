@@ -15,7 +15,7 @@ export default function Bundles({children, regionId}) {
         <Text>
           {message('bundle.explanation')} <DocsLink to='prepare-inputs' />
         </Text>
-        <Link to='bundleCreate' regionId={regionId}>
+        <Link to='bundleCreate' query={{regionId: regionId}}>
           <Button size='lg' colorScheme='green'>
             {message('bundle.create')}
           </Button>

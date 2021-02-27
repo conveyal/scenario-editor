@@ -181,7 +181,7 @@ export default function ModeSelector({
         </div>
       </FormControl>
       <FormControl>
-        <FormLabel pr={0} htmlFor='egressMode'>
+        <FormLabel pr={0} htmlFor='egressMode' textAlign='right'>
           Egress mode
         </FormLabel>
         <div>
@@ -238,7 +238,7 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
     }
     const label = hasTransit ? message('mode.access') : message('mode.direct')
     return (
-      <FormControl>
+      <FormControl width='unset'>
         <FormLabel htmlFor='accessMode'>{label}</FormLabel>
         <div>
           <ButtonGroup id='accessMode' spacing={0}>

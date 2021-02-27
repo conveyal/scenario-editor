@@ -1,12 +1,11 @@
-import {Box, Button, PseudoBox, Stack, useDisclosure} from '@chakra-ui/core'
-import {faChevronUp, faChevronDown} from '@fortawesome/free-solid-svg-icons'
+import {Box, Button, Stack, useDisclosure} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import {useSelector} from 'react-redux'
 
 import {secondsToHhMmString} from 'lib/utils/time'
 
-import Icon from '../icon'
+import {ChevronUp, ChevronDown} from '../icons'
 import {ALink} from '../link'
 import Tip from '../tip'
 
@@ -154,10 +153,10 @@ export default function ProfileRequestDisplay({
           size='sm'
           title={isOpen ? 'collapse' : 'expand'}
           variant='ghost'
-          variantColor={color}
+          colorScheme={color}
           width='100%'
         >
-          <Icon icon={isOpen ? faChevronUp : faChevronDown} />
+          {isOpen ? <ChevronUp /> : <ChevronDown />}
         </Button>
         {isOpen && <ObjectToTable color={color} object={profileRequest} />}
       </Box>
@@ -180,7 +179,7 @@ export function ObjectToTable({color = 'blue', object}) {
     >
       <tbody>
         {keys.map((k) => (
-          <PseudoBox
+          <Box
             as='tr'
             key={k}
             _odd={{
@@ -200,7 +199,7 @@ export function ObjectToTable({color = 'blue', object}) {
                 {stringifyIfObject(object[k])}
               </Box>
             </TDValue>
-          </PseudoBox>
+          </Box>
         ))}
       </tbody>
     </Box>

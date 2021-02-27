@@ -3,12 +3,10 @@ import {
   Button,
   Divider,
   Flex,
-  Icon,
   Stack,
   Text,
   useDisclosure
-} from '@chakra-ui/core'
-import {faCopy, faTrash, faEye} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import {memo} from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -23,6 +21,7 @@ import message from 'lib/message'
 import {ConfirmDialog} from './confirm-button'
 import Editable from './editable'
 import IconButton from './icon-button'
+import {CopyIcon, DeleteIcon, LockIcon, ShowIcon} from './icons'
 import InnerDock from './inner-dock'
 import Tip from './tip'
 
@@ -41,13 +40,12 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
       <Box p={2}>
         <Button
           isFullWidth
-          leftIcon='small-add'
           onClick={() =>
             dispatch(
               createVariant(`${message('variant.name')} ${variants.length + 1}`)
             )
           }
-          variantColor='green'
+          colorScheme='green'
         >
           {message('variant.createAction')}
         </Button>
@@ -66,7 +64,7 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
                 {message('variant.baseline')}
               </Text>
               <Tip label='Baseline (empty scenario) cannot be modified'>
-                <Icon name='lock' mr={1} />
+                <LockIcon />
               </Tip>
             </Flex>
             {variants.map((name, index) => (
@@ -118,18 +116,22 @@ function Variant({
       <Stack isInline spacing={0}>
         {index !== 0 && (
           <IconButton
-            icon={faTrash}
             label={message('variant.delete')}
             onClick={onOpen}
-            variantColor='red'
-          />
+            colorScheme='red'
+          >
+            <DeleteIcon />
+          </IconButton>
         )}
-        <IconButton icon={faCopy} label='Copy scenario' onClick={copyVariant} />
+        <IconButton label='Copy scenario' onClick={copyVariant}>
+          <CopyIcon />
+        </IconButton>
         <IconButton
-          icon={faEye}
           label={message('variant.showModifications')}
           onClick={showVariant}
-        />
+        >
+          <ShowIcon />
+        </IconButton>
       </Stack>
     </Flex>
   )

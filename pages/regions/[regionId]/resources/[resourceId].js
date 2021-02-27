@@ -15,7 +15,7 @@ import {
   StatHelpText,
   Tag,
   Text
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import format from 'date-fns/format'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
@@ -57,7 +57,7 @@ function ConfirmDelete(p) {
 
   return (
     <>
-      <Button variantColor='red' onClick={() => setIsOpen(true)}>
+      <Button colorScheme='red' onClick={() => setIsOpen(true)}>
         {msg('resources.deleteAction')}
       </Button>
 
@@ -76,7 +76,7 @@ function ConfirmDelete(p) {
             <Button ref={cancelRef} onClick={onClose}>
               {msg('common.cancel')}
             </Button>
-            <Button variantColor='red' onClick={onDelete} ml={3}>
+            <Button colorScheme='red' onClick={onDelete} ml={3}>
               {msg('common.delete')}
             </Button>
           </AlertDialogFooter>
@@ -134,7 +134,7 @@ const EditResourcePage = withInitialFetch(
           <Button
             isDisabled={!resourceData}
             onClick={_download}
-            variantColor='green'
+            colorScheme='green'
           >
             {msg('common.download')}
           </Button>

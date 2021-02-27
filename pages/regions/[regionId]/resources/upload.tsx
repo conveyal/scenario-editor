@@ -10,19 +10,18 @@ import {
   Input,
   Select,
   Stack
-} from '@chakra-ui/core'
-import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
+import Link from 'next/link'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {createResource} from 'lib/actions/resources'
 import A from 'lib/components/a'
-import Icon from 'lib/components/icon'
+import {ChevronLeft} from 'lib/components/icons'
 import InnerDock from 'lib/components/inner-dock'
-import Link from 'lib/components/link'
 import MapLayout from 'lib/layouts/map'
 import msg from 'lib/message'
-import {routeTo} from 'lib/router'
+import {toHref} from 'lib/router'
 
 const EXTS = ['.geojson', '.json'] // later: csv, pbf, zip
 const TYPES = ['Lines', 'Points', 'Polygons']
@@ -31,7 +30,7 @@ export default function UploadResource(p) {
   const dispatch = useDispatch<any>()
   const [status, setStatus] = useState<void | JSX.Element>()
   const [error, setError] = useState<void | string>()
-  const [file, setFile] = useState()
+  const [file, setFile] = useState<File>(null)
   const [name, setName] = useState('')
   const [uploading, setUploading] = useState(false)
   const [type, setType] = useState(TYPES[0])
@@ -50,13 +49,16 @@ export default function UploadResource(p) {
       )
       setError()
       setName('')
-      const {as} = routeTo('resourceEdit', {
+      const href = toHref('resourceEdit', {
         regionId: resource.regionId,
         resourceId: resource._id
       })
       setStatus(
         <span>
-          Finished uploading! <A href={as}>View resource.</A>
+          Finished uploading!{' '}
+          <Link href={href} passHref>
+            <A>View resource.</A>
+          </Link>
         </span>
       )
     } catch (e) {
@@ -71,9 +73,9 @@ export default function UploadResource(p) {
     <InnerDock>
       <Stack p={4} spacing={4}>
         <Heading size='md'>
-          <Link to='resources' {...p.query}>
+          <Link href={toHref('resources', p.query)} passHref>
             <A>
-              <Icon icon={faChevronLeft} />
+              <ChevronLeft />
             </A>
           </Link>
           <span>{msg('resources.uploadAction')}</span>
@@ -120,7 +122,7 @@ export default function UploadResource(p) {
           isDisabled={uploading || !file || !name}
           isLoading={uploading}
           onClick={upload}
-          variantColor='green'
+          colorScheme='green'
         >
           {msg('resources.uploadAction')}
         </Button>

@@ -16,8 +16,7 @@ import {
   TabPanel,
   TabPanels,
   Text
-} from '@chakra-ui/core'
-import {faDatabase} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -31,7 +30,6 @@ import selectBundles from 'lib/selectors/bundles'
 import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
-import Icon from './icon'
 import InnerDock from './inner-dock'
 import DocsLink from './docs-link'
 
@@ -131,9 +129,7 @@ export default function CreateBundle() {
   return (
     <InnerDock style={{width: '640px'}}>
       <Stack p={8} spacing={8}>
-        <Heading size='lg'>
-          <Icon icon={faDatabase} /> {message('bundle.create')}
-        </Heading>
+        <Heading size='lg'>{message('bundle.create')}</Heading>
 
         <Text>{message('bundle.createDescription')}</Text>
 
@@ -324,11 +320,10 @@ export default function CreateBundle() {
           <Button
             isDisabled={!isValid()}
             isLoading={uploading}
-            leftIcon='check'
             loadingText={message('common.processing')}
             size='lg'
             type='submit'
-            variantColor='green'
+            colorScheme='green'
           >
             {message('common.create')}
           </Button>

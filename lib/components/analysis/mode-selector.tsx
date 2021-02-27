@@ -4,7 +4,7 @@ import {
   Flex,
   FormControl,
   FormLabel
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import without from 'lodash/without'
 import {memo} from 'react'
 
@@ -101,7 +101,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(ALL)}
               title='All transit'
               variant={_hasAllTransit() ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               All
             </Button>
@@ -110,7 +110,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(BUS)}
               title={message('mode.bus')}
               variant={_hasTransit(BUS) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={BUS} />
             </Button>
@@ -119,7 +119,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(TRAM)}
               title={message('mode.tram')}
               variant={_hasTransit(TRAM) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={TRAM} />
             </Button>
@@ -128,7 +128,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(SUBWAY)}
               title={message('mode.subway')}
               variant={_hasTransit(SUBWAY) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={SUBWAY} />
             </Button>
@@ -137,7 +137,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(RAIL)}
               title={message('mode.rail')}
               variant={_hasTransit(RAIL) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={RAIL} />
             </Button>
@@ -146,7 +146,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(FERRY)}
               title={message('mode.ferry')}
               variant={_hasTransit(FERRY) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={FERRY} />
             </Button>
@@ -155,7 +155,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(CABLE_CAR)}
               title={message('mode.cableCar')}
               variant={_hasTransit(CABLE_CAR) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={CABLE_CAR} />
             </Button>
@@ -164,7 +164,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(GONDOLA)}
               title={message('mode.gondola')}
               variant={_hasTransit(GONDOLA) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={GONDOLA} />
             </Button>
@@ -173,7 +173,7 @@ export default function ModeSelector({
               onClick={_toggleTransitMode(FUNICULAR)}
               title={message('mode.funicular')}
               variant={_hasTransit(FUNICULAR) ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={FUNICULAR} />
             </Button>
@@ -191,7 +191,7 @@ export default function ModeSelector({
               onClick={() => selectEgressMode(WALK)}
               title={`${message('analysis.modes.walk')} egress`}
               variant={transit && egressModes === WALK ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={WALK} />
             </Button>
@@ -200,7 +200,7 @@ export default function ModeSelector({
               onClick={() => selectEgressMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} egress`}
               variant={transit && egressModes === BICYCLE ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={BICYCLE} />
             </Button>
@@ -247,7 +247,7 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
               onClick={_selectAccessMode(WALK)}
               title={`${message('analysis.modes.walk')} ${label}`}
               variant={selectedMode === WALK ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode='WALK' />
             </Button>
@@ -256,7 +256,7 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
               onClick={_selectAccessMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} ${label}`}
               variant={selectedMode === BICYCLE ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={BICYCLE} />
             </Button>
@@ -265,7 +265,7 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
               onClick={_selectAccessMode(CAR)}
               title={`${message('analysis.modes.car')} ${label}`}
               variant={selectedMode === CAR ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={CAR} />
             </Button>
@@ -274,7 +274,7 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
               onClick={_selectAccessMode(CAR_PARK)}
               title={`${message('analysis.modes.carPark')} ${label}`}
               variant={selectedMode === CAR_PARK ? 'solid' : 'ghost'}
-              variantColor={color}
+              colorScheme={color}
             >
               <ModeIcon mode={CAR_PARK} />
             </Button>

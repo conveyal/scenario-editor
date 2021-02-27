@@ -1,4 +1,4 @@
-import {Tooltip, TooltipProps} from '@chakra-ui/core'
+import {Tooltip, TooltipProps} from '@chakra-ui/react'
 
 const zIndex = 1500 // Chakra modals are set to 1400
 

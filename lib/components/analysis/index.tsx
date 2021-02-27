@@ -11,7 +11,7 @@ import {
   ListItem,
   Stack,
   Skeleton
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
 import {useCallback, useEffect} from 'react'

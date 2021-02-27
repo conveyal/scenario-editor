@@ -5,7 +5,7 @@ import {
   AlertTitle,
   CloseButton,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import distanceInWords from 'date-fns/formatDistanceToNow'
 
 import msg from 'lib/message'

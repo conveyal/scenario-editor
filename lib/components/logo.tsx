@@ -1,9 +1,7 @@
-import {Box, Heading, Stack} from '@chakra-ui/core'
+import {Box, Heading, Stack} from '@chakra-ui/react'
 import Image from 'next/image'
 
 import {LOGO_URL} from 'lib/constants'
-
-const fontFamily = `'Gill Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif`
 
 export default function Logo() {
   return (
@@ -18,7 +16,6 @@ export default function Logo() {
         />
       </Box>
       <Heading
-        fontFamily={fontFamily}
         fontSize='36px'
         fontWeight={100}
         letterSpacing={0}

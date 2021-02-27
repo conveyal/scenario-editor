@@ -1,7 +1,7 @@
-import {CSSReset, ThemeProvider, theme, ITheme} from '@chakra-ui/core'
+import {ChakraProvider, theme} from '@chakra-ui/react'
 import React from 'react'
 
-const ConveyalTheme: ITheme = {
+const ConveyalTheme: Partial<typeof theme> = {
   ...theme,
   fonts: {
     ...theme.fonts,
@@ -16,10 +16,5 @@ const ConveyalTheme: ITheme = {
 }
 
 export default function ChakraTheme({children}) {
-  return (
-    <ThemeProvider theme={ConveyalTheme}>
-      <CSSReset />
-      {children}
-    </ThemeProvider>
-  )
+  return <ChakraProvider theme={ConveyalTheme}>{children}</ChakraProvider>
 }

@@ -1,16 +1,13 @@
-import {PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
-import {forwardRef} from 'react'
+import {Box, BoxProps, forwardRef} from '@chakra-ui/react'
 
 import {CB_HEX, CB_DARK} from '../constants'
 
-type AProps = PseudoBoxProps & {
-  href?: string
-}
-
-export default forwardRef<typeof PseudoBox, AProps>(({children, ...p}, ref) => {
+const ALink = forwardRef<BoxProps, 'a'>(({children, ...p}, ref) => {
   return (
-    <PseudoBox as='a' color={CB_HEX} _hover={{color: CB_DARK}} ref={ref} {...p}>
+    <Box as='a' color={CB_HEX} _hover={{color: CB_DARK}} ref={ref} {...p}>
       {children}
-    </PseudoBox>
+    </Box>
   )
 })
+
+export default ALink

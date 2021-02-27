@@ -14,16 +14,8 @@ import {
   Text,
   useDisclosure,
   useToast,
-  AlertDescription,
-  PseudoBox
-} from '@chakra-ui/core'
-import {
-  faChevronLeft,
-  faCode,
-  faCopy,
-  faTrash,
-  faMousePointer
-} from '@fortawesome/free-solid-svg-icons'
+  AlertDescription
+} from '@chakra-ui/react'
 import debounce from 'lodash/debounce'
 import get from 'lodash/get'
 import {Component, useCallback, useState} from 'react'
@@ -43,8 +35,8 @@ import selectVariants from 'lib/selectors/variants'
 
 import {ConfirmDialog} from '../confirm-button'
 import Editable from '../editable'
-import Icon from '../icon'
 import IconButton from '../icon-button'
+import {ChevronLeft, CodeIcon, CopyIcon, DeleteIcon, MouseIcon} from '../icons'
 import InnerDock from '../inner-dock'
 import AllModificationsMapDisplay from '../modifications-map/display-all'
 
@@ -126,10 +118,10 @@ function CopiedModificationToast({modification, onClose, regionId}) {
     >
       <AlertIcon />
       <AlertDescription>
-        <PseudoBox _hover={{textDecoration: 'underline'}}>
+        <Box _hover={{textDecoration: 'underline'}}>
           Modification has been copied successfully. Click here to go to the new
           copy.
-        </PseudoBox>
+        </Box>
       </AlertDescription>
     </Alert>
   )
@@ -257,11 +249,9 @@ function ModificationEditor({
         p={2}
         width='320px'
       >
-        <IconButton
-          icon={faChevronLeft}
-          label='Modifications'
-          onClick={goToAllModifications}
-        />
+        <IconButton label='Modifications' onClick={goToAllModifications}>
+          <ChevronLeft />
+        </IconButton>
 
         <Box flex='1' fontSize='xl' fontWeight='bold' ml={2} overflow='hidden'>
           <Editable
@@ -277,15 +267,17 @@ function ModificationEditor({
           </div>
           <IconButton
             label={message('modification.copyModification')}
-            icon={faCopy}
             onClick={() => _copyModification()}
-          />
+          >
+            <CopyIcon />
+          </IconButton>
           <IconButton
             label={message('modification.deleteModification')}
-            icon={faTrash}
             onClick={deleteDisclosure.onOpen}
-            variantColor='red'
-          />
+            colorScheme='red'
+          >
+            <DeleteIcon />
+          </IconButton>
         </Flex>
       </Flex>
       <InnerDock className={saveInProgress ? 'disableAndDim' : ''}>
@@ -340,10 +332,10 @@ function ModificationEditor({
 
               <TabList>
                 <Tab aria-label='Edit value'>
-                  <Icon icon={faMousePointer} />
+                  <MouseIcon />
                 </Tab>
                 <Tab aria-label='Edit JSON'>
-                  <Icon icon={faCode} />
+                  <CodeIcon />
                 </Tab>
               </TabList>
             </Tabs>
@@ -358,7 +350,7 @@ function ModificationEditor({
               isFullWidth
               onClick={_removeFeed}
               className='DEV'
-              variantColor='yellow'
+              colorScheme='yellow'
             >
               {message('modification.clearBundleConfirm')}
             </Button>

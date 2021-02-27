@@ -9,7 +9,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import React, {useContext} from 'react'
 import useSWR from 'swr'
 

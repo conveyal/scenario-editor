@@ -1,19 +1,4 @@
-import {Box, Flex, PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
-import {
-  faChartArea,
-  faCompass,
-  faCubes,
-  faDatabase,
-  faGlobe,
-  faInfoCircle,
-  faLayerGroup,
-  faPencilAlt,
-  faServer,
-  faSignOutAlt,
-  faTh,
-  faWifi,
-  IconDefinition
-} from '@fortawesome/free-solid-svg-icons'
+import {Box, BoxProps, Flex} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import Image from 'next/image'
@@ -23,24 +8,38 @@ import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, LOGO_URL} from 'lib/constants'
 import useRouteChanging from 'lib/hooks/use-route-changing'
-import {routeTo} from 'lib/router'
+import {RouteKey, routeTo} from 'lib/router'
 
 import {CREATING_ID} from '../constants/region'
 import message from '../message'
 import selectOutstandingRequests from '../selectors/outstanding-requests'
 import {UserContext} from '../user'
 
-import Icon from './icon'
+import {
+  BundlesIcon,
+  EditIcon,
+  InfoIcon,
+  LoadingIcon,
+  ProjectsIcon,
+  RegionsIcon,
+  ResourcesIcon,
+  RegionalAnalysisIcon,
+  SinglePointAnalysisIcon,
+  SignOutIcon,
+  SpatialDatasetsIcon,
+  WifiIcon
+} from './icons'
 import Tip from './tip'
 
 const sidebarWidth = '40px'
 
-const NavItemContents = memo<PseudoBoxProps>(({children, ...p}) => {
+const NavItemContents = memo<BoxProps>(({children, ...p}) => {
   return (
-    <PseudoBox
+    <Box
       borderBottom='2px solid rgba(0, 0, 0, 0)'
       cursor='pointer'
       color={CB_HEX}
+      display='flex'
       fontSize='14px'
       lineHeight='20px'
       py={3}
@@ -54,12 +53,12 @@ const NavItemContents = memo<PseudoBoxProps>(({children, ...p}) => {
       }}
       {...p}
     >
-      {children}
-    </PseudoBox>
+      <Box mx='auto'>{children}</Box>
+    </Box>
   )
 })
 
-function useIsActive(to: string, params = {}) {
+function useIsActive(to: RouteKey, params = {}) {
   const [, pathname] = useRouteChanging()
   const route = routeTo(to, params)
   route.href = route.href.split('?')[0]
@@ -70,16 +69,16 @@ function useIsActive(to: string, params = {}) {
 }
 
 type ItemLinkProps = {
-  icon: IconDefinition
+  children: JSX.Element
   label: string
-  to: string
+  to: RouteKey
   params?: any
 }
 
 /**
  * Render an ItemLink.
  */
-const ItemLink = memo<ItemLinkProps>(({icon, label, to, params = {}}) => {
+const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
   const router = useRouter()
   const isActive = useIsActive(to, params)
 
@@ -91,17 +90,14 @@ const ItemLink = memo<ItemLinkProps>(({icon, label, to, params = {}}) => {
   const navItemProps = isActive
     ? {
         bg: '#fff',
-        borderBottom: `2px solid ${CB_HEX}`,
-        boxShadow: '0 6px 6px 0 rgba(51, 122, 183, 0.1'
+        borderBottom: `2px solid ${CB_HEX}`
       }
     : {onClick: goToLink}
 
   return (
-    <Tip isDisabled={isActive} label={label}>
+    <Tip isDisabled={isActive} label={label} placement='right'>
       <Box role='button' title={label}>
-        <NavItemContents {...navItemProps}>
-          <Icon icon={icon} title={label} />
-        </NavItemContents>
+        <NavItemContents {...navItemProps}>{children}</NavItemContents>
       </Box>
     </Tip>
   )
@@ -125,61 +121,70 @@ export default function Sidebar() {
       height='100vh'
       id='sidebar'
       justify='space-between'
-      width='40px'
+      width={sidebarWidth}
       zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
     >
       <div>
-        <Box fontSize='20px' py={10} textAlign='center' width='40px'>
+        <NavItemContents fontSize='22px' py={12}>
           <LogoSpinner />
-        </Box>
+        </NavItemContents>
 
-        <ItemLink icon={faGlobe} label={message('nav.regions')} to='regions' />
+        <ItemLink label={message('nav.regions')} to='regions'>
+          <RegionsIcon />
+        </ItemLink>
         {queryParams.regionId && queryParams.regionId !== CREATING_ID && (
           <>
             <ItemLink
-              icon={faCubes}
               label={message('nav.projects')}
               to='projects'
               params={regionOnly}
-            />
+            >
+              <ProjectsIcon />
+            </ItemLink>
             <ItemLink
-              icon={faDatabase}
               label={message('nav.networkBundles')}
               to='bundles'
               params={regionOnly}
-            />
+            >
+              <BundlesIcon />
+            </ItemLink>
             <ItemLink
-              icon={faTh}
               label={message('nav.opportunityDatasets')}
               to='opportunities'
               params={queryParams}
-            />
+            >
+              <SpatialDatasetsIcon />
+            </ItemLink>
             <Box className='DEV'>
               <ItemLink
-                icon={faLayerGroup}
                 label={message('nav.resources')}
                 to='resources'
                 params={queryParams}
-              />
+              >
+                <ResourcesIcon />
+              </ItemLink>
             </Box>
             <ItemLink
-              icon={faPencilAlt}
               label={message('nav.editModifications')}
               to={queryParams.projectId ? 'modifications' : 'projectSelect'}
               params={queryParams}
-            />
+            >
+              <EditIcon />
+            </ItemLink>
             <ItemLink
-              icon={faChartArea}
               label={message('nav.analyze')}
               to='analysis'
               params={queryParams}
-            />
+            >
+              <SinglePointAnalysisIcon />
+            </ItemLink>
             <ItemLink
-              icon={faServer}
               label='Regional Analyses'
               to='regionalAnalyses'
               params={queryParams}
-            />
+            >
+              <RegionalAnalysisIcon />
+            </ItemLink>
           </>
         )}
       </div>
@@ -187,20 +192,22 @@ export default function Sidebar() {
       <div>
         {email && (
           <ItemLink
-            icon={faSignOutAlt}
             label={
               message('authentication.logOut') +
               ' - ' +
               message('authentication.username', {username: email})
             }
             to='logout'
-          />
+          >
+            <SignOutIcon />
+          </ItemLink>
         )}
         <ExternalLink
-          icon={faInfoCircle}
           label={message('nav.help')}
           href='https://docs.conveyal.com'
-        />
+        >
+          <InfoIcon />
+        </ExternalLink>
         <OnlineIndicator />
       </div>
     </Flex>
@@ -232,7 +239,7 @@ const LogoSpinner = memo(() => {
   }, [outstandingRequests])
 
   if (outstandingRequests || routeChanging) {
-    return <Icon color={CB_HEX} icon={faCompass} spin id='sidebar-spinner' />
+    return <LoadingIcon className='fa-spin' />
   }
 
   return <Image priority height='20px' width='20px' src={LOGO_URL} />
@@ -260,7 +267,7 @@ const OnlineIndicator = memo(() => {
     <Tip label={message('nav.notConnectedToInternet')}>
       <Box>
         <NavItemContents color='red.500'>
-          <Icon icon={faWifi} />
+          <WifiIcon />
         </NavItemContents>
       </Box>
     </Tip>
@@ -268,19 +275,17 @@ const OnlineIndicator = memo(() => {
 })
 
 type ExternalLinkProps = {
+  children: JSX.Element
   href: string
   label: string
-  icon: IconDefinition
 }
 
-const ExternalLink = memo<ExternalLinkProps>(({href, label, icon}) => {
+const ExternalLink = memo<ExternalLinkProps>(({children, href, label}) => {
   return (
     <Tip label={label} placement='right'>
       <Box>
         <a target='_blank' href={href} rel='noopener noreferrer'>
-          <NavItemContents>
-            <Icon icon={icon} />
-          </NavItemContents>
+          <NavItemContents>{children}</NavItemContents>
         </a>
       </Box>
     </Tip>

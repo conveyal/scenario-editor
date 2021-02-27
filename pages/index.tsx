@@ -1,9 +1,8 @@
-import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/core'
-import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
 import {GetServerSideProps} from 'next'
 
 import {getUser} from 'lib/auth0'
-import Icon from 'lib/components/icon'
+import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
@@ -62,9 +61,9 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
         </Alert>
         <Button
           isFullWidth
-          leftIcon='small-add'
+          leftIcon={<AddIcon />}
           onClick={goToRegionCreate}
-          variantColor='green'
+          colorScheme='green'
         >
           Set up a new region
         </Button>
@@ -84,7 +83,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
         {process.env.NEXT_PUBLIC_AUTH_DISABLED !== 'true' && (
           <Box>
             <ALink to='logout'>
-              <Icon icon={faSignOutAlt} /> Log out
+              <SignOutIcon /> Log out
             </ALink>
           </Box>
         )}
@@ -100,15 +99,7 @@ interface RegionItemProps {
 function RegionItem({region, ...p}: RegionItemProps) {
   const goToRegion = useRouteTo('projects', {regionId: region._id})
   return (
-    <ListGroupItem
-      {...p}
-      leftIcon={() => (
-        <Box pr={3}>
-          <Icon icon={faMap} />
-        </Box>
-      )}
-      onClick={goToRegion}
-    >
+    <ListGroupItem {...p} leftIcon={<RegionIcon />} onClick={goToRegion}>
       {region.name}
     </ListGroupItem>
   )

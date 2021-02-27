@@ -1,12 +1,11 @@
-import {Link} from '@chakra-ui/core'
+import {Link} from '@chakra-ui/react'
 import NextLink from 'next/link'
 
-import {routeTo} from 'lib/router'
+import {toHref} from 'lib/router'
 
 export default function InternalLink({children, to, ...p}) {
-  const {as, href, query} = routeTo(to, p)
   return (
-    <NextLink as={as} href={{pathname: href, query}} passHref>
+    <NextLink href={toHref(to, p)} passHref>
       {children}
     </NextLink>
   )

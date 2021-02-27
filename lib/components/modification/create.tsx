@@ -18,7 +18,7 @@ import {
   Tab,
   TabPanel,
   TabPanels
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
 import {useRouter} from 'next/router'
@@ -26,6 +26,7 @@ import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {createModification} from 'lib/actions/modifications'
+import {AddIcon} from 'lib/components/icons'
 import {
   ADD_STREETS,
   ADD_TRIP_PATTERN,
@@ -101,8 +102,8 @@ export default function CreateModification({
       <Button
         isFullWidth
         onClick={onOpen}
-        leftIcon='small-add'
-        variantColor='green'
+        leftIcon={<AddIcon />}
+        colorScheme='green'
         {...p}
       >
         {message('modification.create')}
@@ -130,7 +131,7 @@ export default function CreateModification({
                 <Tab>Transit</Tab>
                 <Tab>
                   Street{' '}
-                  <Badge ml={3} variantColor='red'>
+                  <Badge ml={3} colorScheme='red'>
                     Experimental
                   </Badge>
                 </Tab>
@@ -169,12 +170,12 @@ export default function CreateModification({
           </ModalBody>
           <ModalFooter>
             <Button
-              leftIcon='small-add'
+              leftIcon={<AddIcon />}
               isLoading={isCreating}
               isDisabled={!get(nameInput, 'value.length')}
               mr={3}
               onClick={create}
-              variantColor='green'
+              colorScheme='green'
             >
               {message('common.create')}
             </Button>

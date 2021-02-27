@@ -6,7 +6,7 @@ import {
   Heading,
   Stack,
   Text
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import lonlat from '@conveyal/lonlat'
 import fpGet from 'lodash/fp/get'
 import {scaleLinear} from 'd3-scale'

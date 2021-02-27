@@ -6,7 +6,7 @@ import {
   Heading,
   Input,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -15,6 +15,7 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
 import ConfirmButton from './confirm-button'
+import {DeleteIcon, EditIcon} from './icons'
 import InnerDock from './inner-dock'
 import {ALink} from './link'
 
@@ -66,18 +67,18 @@ export default function EditProject({project, query}) {
           </Box>
         </Stack>
         <Button
-          leftIcon='edit'
+          leftIcon={<EditIcon />}
           isDisabled={!name || project.name === name}
           onClick={_save}
-          variantColor='green'
+          colorScheme='green'
         >
           {message('project.editAction')}
         </Button>
         <ConfirmButton
           description={message('project.deleteConfirmation')}
-          leftIcon='delete'
+          leftIcon={<DeleteIcon />}
           onConfirm={_deleteProject}
-          variantColor='red'
+          colorScheme='red'
         >
           {message('project.delete')}
         </ConfirmButton>

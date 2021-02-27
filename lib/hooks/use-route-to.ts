@@ -2,9 +2,9 @@ import isEqual from 'lodash/isEqual'
 import Router from 'next/router'
 import {useCallback, useEffect, useState} from 'react'
 
-import {routeTo} from '../router'
+import {RouteKey, routeTo} from '../router'
 
-export default function useRouteTo(to: string, props: any = {}) {
+export default function useRouteTo(to: RouteKey, props: any = {}) {
   const [result, setResult] = useState(() => routeTo(to, props))
 
   useEffect(() => {

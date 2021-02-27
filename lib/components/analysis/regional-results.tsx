@@ -8,8 +8,7 @@ import {
   Select as ChakraSelect,
   Stack,
   Text
-} from '@chakra-ui/core'
-import {faTh} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import find from 'lodash/find'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
@@ -40,7 +39,6 @@ import selectDisplayPercentile from 'lib/selectors/regional-display-percentile'
 import selectPointSet from 'lib/selectors/regional-display-destination-pointset'
 import selectDisplayScale from 'lib/selectors/regional-display-scale'
 
-import Icon from '../icon'
 import Select from '../select'
 
 import ProfileRequestDisplay from './profile-request-display'
@@ -181,7 +179,7 @@ export default function RegionalResults({analysis}) {
           width='296px'
         >
           <Heading pt={4} px={4} size='sm'>
-            <Icon icon={faTh} /> Access to
+            Access to
           </Heading>
 
           <Box px={4}>

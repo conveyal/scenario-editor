@@ -6,7 +6,7 @@ import {
   Input,
   Stack,
   useToast
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import {useState, useCallback} from 'react'
@@ -169,7 +169,7 @@ function EditRegion({region, remove, update}) {
           onClick={_save}
           loadingText={'Saving region'}
           size='lg'
-          variantColor='green'
+          colorScheme='green'
         >
           {message('region.editAction')}
         </Button>
@@ -177,10 +177,9 @@ function EditRegion({region, remove, update}) {
         <ConfirmButton
           description={message('region.deleteConfirmation')}
           isFullWidth
-          leftIcon='delete'
           onConfirm={_delete}
           size='lg'
-          variantColor='red'
+          colorScheme='red'
         >
           {message('region.deleteAction')}
         </ConfirmButton>

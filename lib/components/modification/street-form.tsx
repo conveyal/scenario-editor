@@ -10,7 +10,7 @@ import {
   Select,
   Stack,
   Switch
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {useCallback, useMemo} from 'react'
 
 import {BICYCLE, CAR, WALK} from 'lib/constants'

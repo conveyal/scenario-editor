@@ -1,13 +1,13 @@
 import {
   Accordion,
-  AccordionHeader,
+  AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
   Badge,
   Box,
+  Button,
   Flex,
-  Icon,
   Input,
   InputGroup,
   InputLeftElement,
@@ -17,11 +17,11 @@ import {
   TabPanel,
   TabPanels,
   useDisclosure
-} from '@chakra-ui/core'
-import {faEye, faEyeSlash, faUpload} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
+import Link from 'next/link'
 import {memo, useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -29,12 +29,13 @@ import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 import {LS_MOM} from 'lib/constants'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
+import {toHref} from 'lib/router'
 import selectFeedsById from 'lib/selectors/feeds-by-id'
 import selectVariants from 'lib/selectors/variants'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
-import ButtonLink from '../button-link'
 import IconButton from '../icon-button'
+import {HideIcon, SearchIcon, ShowIcon, UploadIcon} from '../icons'
 import InnerDock from '../inner-dock'
 import {DisplayAll as ModificationsMap} from '../modifications-map/display-all'
 import VariantEditor from '../variant-editor'
@@ -195,7 +196,7 @@ export default function ModificationsList({bundle, project}) {
             <Flex align='center' justify='space-between' p={2}>
               <InputGroup flex='1' pl={2}>
                 <InputLeftElement pl={4} pr={2}>
-                  <Icon name='search' />
+                  <SearchIcon />
                 </InputLeftElement>
                 <Input
                   placeholder={message('modification.filter')}
@@ -207,20 +208,17 @@ export default function ModificationsList({bundle, project}) {
               </InputGroup>
               <Flex ml={2}>
                 <IconButton
-                  icon={faUpload}
                   label={message('modification.importFromProject')}
                   onClick={goToModificationImport}
-                />
-                <IconButton
-                  icon={faEye}
-                  label='Show all modifications'
-                  onClick={showAll}
-                />
-                <IconButton
-                  icon={faEyeSlash}
-                  label='Hide all modifications'
-                  onClick={hideAll}
-                />
+                >
+                  <UploadIcon />
+                </IconButton>
+                <IconButton label='Show all modifications' onClick={showAll}>
+                  <ShowIcon />
+                </IconButton>
+                <IconButton label='Hide all modifications' onClick={hideAll}>
+                  <HideIcon />
+                </IconButton>
               </Flex>
             </Flex>
 
@@ -270,7 +268,7 @@ export default function ModificationsList({bundle, project}) {
 }
 
 function ModificationType({children, modificationCount, type}) {
-  const {isOpen, onToggle} = useDisclosure(true) // defaultIsOpen does not currently work
+  const {isOpen, onToggle} = useDisclosure({isOpen: true}) // defaultIsOpen does not currently work
   return (
     <AccordionItem
       border='none'
@@ -278,12 +276,14 @@ function ModificationType({children, modificationCount, type}) {
       isDisabled={modificationCount === 0}
       onChange={onToggle}
     >
-      <AccordionHeader _focus={{outline: 'none'}} py={2}>
-        <Box flex='1' fontWeight='bold' textAlign='left'>
-          {toStartCase(type)} <Badge>{modificationCount}</Badge>
-        </Box>
-        <AccordionIcon />
-      </AccordionHeader>
+      <h3>
+        <AccordionButton _focus={{outline: 'none'}} py={2}>
+          <Box flex='1' fontWeight='bold' textAlign='left'>
+            {toStartCase(type)} <Badge>{modificationCount}</Badge>
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+      </h3>
       <AccordionPanel py={0} px={1}>
         {isOpen && <Flex direction='column'>{children}</Flex>}
       </AccordionPanel>
@@ -301,33 +301,37 @@ type ModificationItemProps = {
 const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
     <Flex align='center' px={1}>
-      <ButtonLink
-        aria-label={`Edit modification ${modification.name}`}
-        flex='1'
-        justifyContent='start'
-        overflow='hidden'
-        px={4}
-        query={{
+      <Link
+        href={toHref('modificationEdit', {
           modificationId: modification._id,
           projectId: modification.projectId,
           regionId
-        }}
-        style={{textOverflow: 'ellipsis'}}
-        to='modificationEdit'
-        variant='ghost'
-        variantColor='blue'
-        whiteSpace='nowrap'
+        })}
+        passHref
       >
-        {modification.name}
-      </ButtonLink>
+        <Button
+          aria-label={`Edit modification ${modification.name}`}
+          flex='1'
+          justifyContent='start'
+          overflow='hidden'
+          px={4}
+          style={{textOverflow: 'ellipsis'}}
+          variant='ghost'
+          colorScheme='blue'
+          whiteSpace='nowrap'
+        >
+          {modification.name}
+        </Button>
+      </Link>
       <IconButton
-        icon={isDisplayed ? faEye : faEyeSlash}
         label={isDisplayed ? 'Hide from map' : 'Show on map'}
         onClick={(e) => {
           e.preventDefault()
           toggleMapDisplay(modification._id)
         }}
-      />
+      >
+        {isDisplayed ? <HideIcon /> : <ShowIcon />}
+      </IconButton>
     </Flex>
   )
 )

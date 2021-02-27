@@ -6,7 +6,7 @@ import {
   Heading,
   Input,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/fp/get'
 import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
@@ -18,6 +18,7 @@ import message from 'lib/message'
 import {routeTo} from 'lib/router'
 
 import ConfirmButton from './confirm-button'
+import {DeleteIcon} from './icons'
 import Select from './select'
 
 const getOptionLabel = (b) =>
@@ -149,7 +150,7 @@ export default function EditBundle(p) {
             onClick={_saveBundle}
             size='lg'
             title={message('bundle.save')}
-            variantColor='yellow'
+            colorScheme='yellow'
           >
             {message('bundle.save')}
           </Button>
@@ -163,10 +164,10 @@ export default function EditBundle(p) {
           ) : (
             <ConfirmButton
               description={message('bundle.deleteConfirmation')}
-              leftIcon='delete'
+              leftIcon={<DeleteIcon />}
               onConfirm={_deleteBundle}
               size='lg'
-              variantColor='red'
+              colorScheme='red'
             >
               {message('bundle.delete')}
             </ConfirmButton>

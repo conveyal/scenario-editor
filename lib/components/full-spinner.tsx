@@ -1,4 +1,4 @@
-import {Flex} from '@chakra-ui/core'
+import {Flex} from '@chakra-ui/react'
 
 import useWindowSize from 'lib/hooks/use-window-size'
 

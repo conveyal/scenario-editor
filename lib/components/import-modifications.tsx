@@ -1,15 +1,14 @@
-import {Box, Button, Heading, Stack} from '@chakra-ui/core'
-import {faUpload} from '@fortawesome/free-solid-svg-icons'
+import {Box, Button, Heading, Stack} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
+import Link from 'next/link'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {copyFromProject} from 'lib/actions/modifications'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
+import {toHref} from 'lib/router'
 
-import ButtonLink from './button-link'
-import Icon from './icon'
 import Select from './select'
 
 const getName = fpGet('name')
@@ -39,16 +38,9 @@ export default function ImportModifications({projects, projectId, regionId}) {
   return (
     <Stack p={4} spacing={4}>
       <Heading size='md'>{message('modification.importFromShapefile')}</Heading>
-      <ButtonLink
-        to='importShapefile'
-        query={{
-          projectId,
-          regionId
-        }}
-        variantColor='green'
-      >
-        <Icon icon={faUpload} /> Import from Shapefile
-      </ButtonLink>
+      <Link href={toHref('importShapefile', {projectId, regionId})} passHref>
+        <Button colorScheme='green'>Import from Shapefile</Button>
+      </Link>
       <Heading size='md'>{message('modification.importFromProject')}</Heading>
       <Box>{message('modification.importFromProjectInfo')}</Box>
       <Box>
@@ -63,9 +55,8 @@ export default function ImportModifications({projects, projectId, regionId}) {
       </Box>
       <Button
         isDisabled={!importProjectId}
-        leftIcon='copy'
         onClick={_copyFromProject}
-        variantColor='green'
+        colorScheme='green'
       >
         Import from existing project
       </Button>

@@ -8,12 +8,7 @@ import {
   ListItem,
   Stack,
   Heading
-} from '@chakra-ui/core'
-import {
-  faPlusSquare,
-  faMinusSquare,
-  faBan
-} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import {useState} from 'react'
 import {useSelector} from 'react-redux'
 
@@ -21,6 +16,7 @@ import message from 'lib/message'
 import selectSelectedStops from 'lib/selectors/selected-stops'
 
 import IconButton from '../icon-button'
+import {ClearIcon, EditIcon, MinusSquare, PlusSquare, XIcon} from '../icons'
 import StopSelectPolygon from '../modifications-map/stop-select-polygon'
 
 type Action = 'none' | 'new' | 'add' | 'remove'
@@ -50,10 +46,10 @@ export default function SelectStops({modification, update}) {
             }}
           />
           <Button
-            leftIcon='small-close'
+            leftIcon={<XIcon />}
             isFullWidth
             onClick={() => setAction('none')}
-            variantColor='yellow'
+            colorScheme='yellow'
           >
             Cancel
           </Button>
@@ -64,10 +60,10 @@ export default function SelectStops({modification, update}) {
             <AlertIcon /> {message('modification.selectStopInstructions')}
           </Alert>
           <Button
-            leftIcon='edit'
+            leftIcon={<EditIcon />}
             isFullWidth
             onClick={() => setAction('new')}
-            variantColor='blue'
+            colorScheme='blue'
           >
             New
           </Button>
@@ -76,25 +72,28 @@ export default function SelectStops({modification, update}) {
         <Stack spacing={4}>
           <Flex justify='space-between'>
             <IconButton
-              icon={faPlusSquare}
               label={message('common.addTo')}
               onClick={() => setAction('add')}
               size='lg'
-            />
+            >
+              <PlusSquare />
+            </IconButton>
             <IconButton
-              icon={faMinusSquare}
               label={message('common.removeFrom')}
               onClick={() => setAction('remove')}
               size='lg'
-              variantColor='yellow'
-            />
+              colorScheme='yellow'
+            >
+              <MinusSquare />
+            </IconButton>
             <IconButton
-              icon={faBan}
               label={message('common.clear')}
               onClick={onClear}
               size='lg'
-              variantColor='red'
-            />
+              colorScheme='red'
+            >
+              <ClearIcon />
+            </IconButton>
           </Flex>
           <Heading size='sm'>Selected stops</Heading>
           <SelectedStops selectedStops={selectedStops} />

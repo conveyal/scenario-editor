@@ -1,24 +1,22 @@
-import {Box, BoxProps, Button, ButtonProps} from '@chakra-ui/core'
-import {PopperProps} from '@chakra-ui/core/dist/Popper'
-import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
+import {Box, BoxProps, Button, ButtonProps} from '@chakra-ui/react'
+import {Placement} from '@popperjs/core'
 
-import Icon from './icon'
 import Tip from './tip'
 
 type IconButtonProps = {
-  icon: IconDefinition
+  children: JSX.Element
   isActive?: boolean
   isDisabled?: boolean
   label: string
-  onClick: (e: MouseEvent) => void
-  placement?: PopperProps['placement']
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  onClick: ButtonProps['onClick']
+  placement?: Placement
+  size?: ButtonProps['size']
   variant?: ButtonProps['variant']
-  variantColor?: ButtonProps['variantColor']
+  colorScheme?: ButtonProps['colorScheme']
 } & BoxProps
 
 export default function IconButton({
-  icon,
+  children,
   isActive = false,
   isDisabled = false,
   label,
@@ -26,7 +24,7 @@ export default function IconButton({
   placement,
   size = 'sm',
   variant = 'ghost',
-  variantColor = 'blue',
+  colorScheme = 'blue',
   ...p
 }: IconButtonProps) {
   return (
@@ -39,9 +37,9 @@ export default function IconButton({
           onClick={onClick}
           size={size}
           variant={variant}
-          variantColor={variantColor}
+          colorScheme={colorScheme}
         >
-          <Icon icon={icon} fixedWidth={false} />
+          {children}
         </Button>
       </Tip>
     </Box>

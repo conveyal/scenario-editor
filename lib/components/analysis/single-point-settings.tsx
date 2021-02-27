@@ -15,14 +15,7 @@ import {
   Tabs,
   Text,
   Textarea
-} from '@chakra-ui/core'
-import {
-  faChevronDown,
-  faChevronRight,
-  faChevronUp,
-  faCode,
-  faMousePointer
-} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import isEqual from 'lodash/isEqual'
@@ -49,7 +42,13 @@ import cleanProjectScenarioName from 'lib/utils/clean-project-scenario-name'
 import {secondsToHhMmString} from 'lib/utils/time'
 
 import ControlledSelect from '../controlled-select'
-import Icon from '../icon'
+import {
+  ChevronDown,
+  ChevronRight,
+  ChevronUp,
+  CodeIcon,
+  MouseIcon
+} from '../icons'
 import ModeIcon from '../mode-icon'
 import Presets from '../presets'
 import Tip from '../tip'
@@ -302,7 +301,7 @@ function RequestSummary({color, profileRequest, ...p}) {
           <Tip label={transitModes.join(', ')}>
             <Stack align='center' isInline spacing={0}>
               <Box color={`${color}.500`} fontSize='xs'>
-                <Icon icon={faChevronRight} />
+                <ChevronRight />
               </Box>
               {transitModes.slice(0, 3).map((m) => (
                 <ModeIcon mode={m} key={m} />
@@ -311,7 +310,7 @@ function RequestSummary({color, profileRequest, ...p}) {
               {profileRequest.egressModes !== 'WALK' && (
                 <Stack align='center' isInline spacing={1}>
                   <Box color={`${color}.500`} fontSize='xs'>
-                    <Icon icon={faChevronRight} />
+                    <ChevronRight />
                   </Box>
                   <ModeIcon mode={profileRequest.egressModes} />
                 </Stack>
@@ -506,7 +505,7 @@ function RequestSettings({
               index={tabIndex}
               onChange={setTabIndex}
               variant='soft-rounded'
-              variantColor={color}
+              colorScheme={color}
             >
               <TabPanels>
                 <TabPanel>
@@ -554,10 +553,10 @@ function RequestSettings({
 
               <TabList mt={4}>
                 <Tab title='Form editor'>
-                  <Icon icon={faMousePointer} />
+                  <MouseIcon />
                 </Tab>
                 <Tab title='Custom JSON editor'>
-                  <Icon icon={faCode} />
+                  <CodeIcon />
                 </Tab>
               </TabList>
             </Tabs>
@@ -573,10 +572,10 @@ function RequestSettings({
         size='sm'
         title={isOpen ? 'collapse' : 'expand'}
         variant='ghost'
-        variantColor={color}
+        colorScheme={color}
         width='100%'
       >
-        <Icon icon={isOpen ? faChevronUp : faChevronDown} />
+        {isOpen ? <ChevronUp /> : <ChevronDown />}
       </Button>
     </Stack>
   )

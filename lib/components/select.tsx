@@ -1,9 +1,9 @@
 import {memo, forwardRef} from 'react'
-import Select, {Props, Styles} from 'react-select'
+import Select, {Props} from 'react-select'
 
 import {CB_HEX, CB_RGB} from 'lib/constants'
 
-export const selectStyles: Partial<Styles> = {
+export const selectStyles = {
   menu: (styles, _) => ({
     ...styles,
     zIndex: 3

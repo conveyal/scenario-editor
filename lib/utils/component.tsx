@@ -1,4 +1,4 @@
-import {ThemeProvider} from '@chakra-ui/core'
+import {ChakraProvider} from '@chakra-ui/react'
 import {expect} from '@jest/globals'
 import enzyme from 'enzyme'
 import {Router} from 'next/router'
@@ -26,11 +26,11 @@ export function testComponent(
   const store = makeMockStore(initialData)
   const Wrapping = (props) => (
     <Provider store={store}>
-      <ThemeProvider>
+      <ChakraProvider>
         <RouterContext.Provider value={router}>
           {props.children}
         </RouterContext.Provider>
-      </ThemeProvider>
+      </ChakraProvider>
     </Provider>
   )
 

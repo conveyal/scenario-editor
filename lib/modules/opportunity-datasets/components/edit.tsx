@@ -1,8 +1,9 @@
-import {Button, ButtonGroup, Divider, Heading, Stack} from '@chakra-ui/core'
+import {Button, ButtonGroup, Divider, Heading, Stack} from '@chakra-ui/react'
 import {useDispatch} from 'react-redux'
 
 import ConfirmButton from 'lib/components/confirm-button'
 import Editable from 'lib/components/editable'
+import {DownloadIcon, DeleteIcon} from 'lib/components/icons'
 import message from 'lib/message'
 
 import {
@@ -100,19 +101,19 @@ export default function EditOpportunityDatatset(p) {
         <LabelHeading>download as</LabelHeading>
         <ButtonGroup>
           <Button
-            leftIcon='download'
+            leftIcon={<DownloadIcon />}
             onClick={_downloadTiff}
             title={message('spatialDatasets.downloadTiff')}
-            variantColor='green'
+            colorScheme='green'
             variant='outline'
           >
             .tiff
           </Button>
           <Button
-            leftIcon='download'
+            leftIcon={<DownloadIcon />}
             onClick={_downloadGrid}
             title={message('spatialDatasets.downloadGrid')}
-            variantColor='green'
+            colorScheme='green'
             variant='outline'
           >
             .grid
@@ -132,9 +133,9 @@ export default function EditOpportunityDatatset(p) {
 
       <ConfirmButton
         description={message('spatialDatasets.confirmDelete')}
-        leftIcon='delete'
+        leftIcon={<DeleteIcon />}
         onConfirm={_deleteDataset}
-        variantColor='red'
+        colorScheme='red'
         variant='outline'
       >
         {message('spatialDatasets.delete')}
@@ -149,9 +150,9 @@ export default function EditOpportunityDatatset(p) {
 
       <ConfirmButton
         description={message('spatialDatasets.confirmDeleteSource')}
-        leftIcon='delete'
+        leftIcon={<DeleteIcon />}
         onConfirm={_deleteSourceSet}
-        variantColor='red'
+        colorScheme='red'
         variant='outline'
       >
         {message('spatialDatasets.deleteSource')}

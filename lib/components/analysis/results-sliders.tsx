@@ -8,7 +8,7 @@ import {
   SliderTrack,
   Stack,
   FormControlProps
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {useCallback, memo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 

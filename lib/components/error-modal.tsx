@@ -2,8 +2,6 @@ import {
   Box,
   Button,
   Collapse,
-  Icon,
-  Link,
   List,
   ListItem,
   Modal,
@@ -15,17 +13,12 @@ import {
   ModalFooter,
   Stack,
   Text
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import {useState} from 'react'
 
+import A from 'lib/components/a'
 import message from 'lib/message'
-
-const ExternalLink = ({children, href}) => (
-  <Link isExternal color='blue.500' href={href}>
-    {children} <Icon name='external-link' mx='2px' />
-  </Link>
-)
 
 function StackTrace({stackTrace, ...p}) {
   // Hide the stack trace in production
@@ -34,20 +27,20 @@ function StackTrace({stackTrace, ...p}) {
 
   return (
     <Stack spacing={4} {...p}>
-      <Button onClick={handleToggle} variantColor='blue'>
+      <Button onClick={handleToggle} colorScheme='blue'>
         {show ? 'Hide' : 'Show'} stack trace
       </Button>
-      <Collapse
-        borderRadius='2px'
-        fontFamily='mono'
-        isOpen={show}
-        overflowX='scroll'
-        whiteSpace='pre'
-        padding={2}
-        backgroundColor='#333'
-        color='#fff'
-      >
-        {stackTrace}
+      <Collapse in={show}>
+        <Box
+          fontFamily='mono'
+          overflowX='scroll'
+          whiteSpace='pre'
+          padding={2}
+          backgroundColor='#333'
+          color='#fff'
+        >
+          {stackTrace}
+        </Box>
       </Collapse>
     </Stack>
   )
@@ -88,32 +81,31 @@ export default function ErrorModal({
             {stack && <StackTrace stackTrace={stack} />}
             <Box>
               {message('error.report') + ' '}
-              <ExternalLink href={createMailToFromError(error.url, stack)}>
+              <A href={createMailToFromError(error.url, stack)}>
                 {message('error.supportEmail')}.
-              </ExternalLink>
+              </A>
             </Box>
             <List styleType='disc'>
               <ListItem>
-                <ExternalLink href='https://support.apple.com/en-us/HT201361'>
+                <A href='https://support.apple.com/en-us/HT201361'>
                   How to take a screenshot on a Mac
-                </ExternalLink>
+                </A>
               </ListItem>
               <ListItem>
-                <ExternalLink href='https://www.howtogeek.com/226280/how-to-take-screenshots-in-windows-10/'>
+                <A href='https://www.howtogeek.com/226280/how-to-take-screenshots-in-windows-10/'>
                   How to take a screenshot on a PC
-                </ExternalLink>
+                </A>
               </ListItem>
             </List>
           </Stack>
         </ModalBody>
         <ModalFooter>
           <Button
-            leftIcon='arrow-back'
             onClick={() => {
               window.history.back()
               clear()
             }}
-            variantColor='yellow'
+            colorScheme='yellow'
           >
             {message('error.back')}
           </Button>

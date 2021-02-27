@@ -59,8 +59,10 @@ export default function EditProject({project, query}) {
             Bundle cannot be changed once a project is created.&nbsp;
             <ALink
               to='bundleEdit'
-              bundleId={project.bundleId}
-              regionId={project.regionId}
+              query={{
+                bundleId: project.bundleId,
+                regionId: project.regionId
+              }}
             >
               View bundle info here.
             </ALink>

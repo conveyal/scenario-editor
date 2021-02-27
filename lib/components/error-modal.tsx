@@ -17,7 +17,7 @@ import {
 import get from 'lodash/get'
 import {useState} from 'react'
 
-import A from 'lib/components/a'
+import {ExternalLink} from 'lib/components/link'
 import message from 'lib/message'
 
 function StackTrace({stackTrace, ...p}) {
@@ -81,20 +81,20 @@ export default function ErrorModal({
             {stack && <StackTrace stackTrace={stack} />}
             <Box>
               {message('error.report') + ' '}
-              <A href={createMailToFromError(error.url, stack)}>
+              <ExternalLink href={createMailToFromError(error.url, stack)}>
                 {message('error.supportEmail')}.
-              </A>
+              </ExternalLink>
             </Box>
             <List styleType='disc'>
               <ListItem>
-                <A href='https://support.apple.com/en-us/HT201361'>
+                <ExternalLink href='https://support.apple.com/en-us/HT201361'>
                   How to take a screenshot on a Mac
-                </A>
+                </ExternalLink>
               </ListItem>
               <ListItem>
-                <A href='https://www.howtogeek.com/226280/how-to-take-screenshots-in-windows-10/'>
+                <ExternalLink href='https://www.howtogeek.com/226280/how-to-take-screenshots-in-windows-10/'>
                   How to take a screenshot on a PC
-                </A>
+                </ExternalLink>
               </ListItem>
             </List>
           </Stack>

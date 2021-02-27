@@ -1,31 +1,39 @@
-import {Link} from '@chakra-ui/react'
 import NextLink from 'next/link'
 
-import {toHref} from 'lib/router'
+import {PageKey} from 'lib/constants'
+import useLink from 'lib/hooks/use-link'
 
-export default function InternalLink({children, to, ...p}) {
+type LinkProps = {
+  children: React.ReactNode
+  to: PageKey
+  query?: Record<string, string>
+}
+
+export default function InternalLink({children, to, query = {}}: LinkProps) {
   return (
-    <NextLink href={toHref(to, p)} passHref>
+    <NextLink href={useLink(to, query)} passHref>
       {children}
     </NextLink>
   )
 }
 
-const _hover = {color: 'blue.700'}
-export function ALink({children, className = '', to, ...p}) {
+export function ALink({
+  children,
+  className = '',
+  to,
+  query = {}
+}: LinkProps & {className?: string}) {
   return (
-    <InternalLink to={to} {...p}>
-      <Link className={className} color='blue.500' _hover={_hover}>
-        {children}
-      </Link>
+    <InternalLink to={to} query={query}>
+      <a className={className}>{children}</a>
     </InternalLink>
   )
 }
 
 export function ExternalLink({children, href}) {
   return (
-    <Link color='blue.500' _hover={_hover} href={href} isExternal>
+    <a href={href} rel='noopener noreferrer' target='_blank'>
       {children}
-    </Link>
+    </a>
   )
 }

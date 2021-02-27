@@ -1,12 +1,11 @@
 import {Box, Button, Heading, Stack} from '@chakra-ui/react'
 import differenceInHours from 'date-fns/differenceInHours'
-import Link from 'next/link'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {AddIcon} from 'lib/components/icons'
+import Link from 'lib/components/link'
 import useInterval from 'lib/hooks/use-interval'
 import message from 'lib/message'
-import {toHref} from 'lib/router'
 
 import {
   checkUploadStatus,
@@ -66,7 +65,7 @@ export default function ListOpportunityDatasets({regionId}) {
         />
       ))}
       <Stack spacing={2}>
-        <Link href={toHref('opportunitiesUpload', {regionId})} passHref>
+        <Link to='opportunitiesUpload' query={{regionId}}>
           <Button leftIcon={<AddIcon />} colorScheme='green'>
             {message('spatialDatasets.upload')}
           </Button>

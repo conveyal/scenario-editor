@@ -17,7 +17,6 @@ import {
   TabPanels,
   Text
 } from '@chakra-ui/react'
-import {useRouter} from 'next/router'
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -25,13 +24,13 @@ import {addBundle} from 'lib/actions'
 import fetch from 'lib/actions/fetch'
 import {API} from 'lib/constants'
 import message from 'lib/message'
-import {routeTo} from 'lib/router'
 import selectBundles from 'lib/selectors/bundles'
 import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
 import InnerDock from './inner-dock'
 import DocsLink from './docs-link'
+import useRouteTo from 'lib/hooks/use-route-to'
 
 // how often to poll when waiting for a bundle to be read on the server.
 const POLL_TIMEOUT_MS = 10000
@@ -43,9 +42,11 @@ const STATUS_ERROR = 'ERROR'
  */
 export default function CreateBundle() {
   const dispatch = useDispatch<any>()
-  const router = useRouter()
   const bundles = useSelector(selectBundles)
   const region = useSelector(selectCurrentRegion)
+  const regionId = region._id
+  const bounds = region.bounds
+  const goToBundleEdit = useRouteTo('bundleEdit', {regionId})
 
   const hasExistingBundles = bundles.length > 0
   const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
@@ -67,9 +68,6 @@ export default function CreateBundle() {
     ((reuseOsm && formData.osmId) || (!reuseOsm && formData.osm)) &&
     ((reuseGtfs && formData.feedGroupId) || (!reuseGtfs && formData.feedGroup))
 
-  const regionId = region._id
-  const bounds = region.bounds
-
   /**
    * Check if the upload has completed
    */
@@ -81,8 +79,7 @@ export default function CreateBundle() {
           dispatch(addBundle(bundle))
 
           // Go to bundle list
-          const {href, as} = routeTo('bundleEdit', {bundleId: _id, regionId})
-          router.push(href, as)
+          goToBundleEdit({bundleId: _id})
         } else if (bundle.status === STATUS_ERROR) {
           setUploading(false)
           setError(bundle.statusText)

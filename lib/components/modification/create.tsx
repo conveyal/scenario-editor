@@ -21,7 +21,6 @@ import {
 } from '@chakra-ui/react'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
-import {useRouter} from 'next/router'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -40,8 +39,8 @@ import {
   REROUTE
 } from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
+import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
-import {routeTo} from 'lib/router'
 
 const testContent = (s) => s && s.length > 0
 
@@ -69,13 +68,16 @@ export default function CreateModification({
   ...p
 }) {
   const dispatch = useDispatch<any>()
-  const router = useRouter()
   const [isCreating, setIsCreating] = useState(false)
   const {isOpen, onClose, onOpen} = useDisclosure()
   const [tabIndex, setTabIndex] = useState(0)
   const nameInput = useInput({test: testContent, value: ''})
   const transitTypeInput = useInput({value: transitModificationTypes[0]})
   const streetTypeInput = useInput({value: streetModificationTypes[0]})
+  const goToModificationEdit = useRouteTo('modificationEdit', {
+    regionId,
+    projectId
+  })
 
   async function create() {
     setIsCreating(true)
@@ -89,12 +91,7 @@ export default function CreateModification({
         variants: variants.map(() => true)
       })
     )
-    const {href, as} = routeTo('modificationEdit', {
-      regionId,
-      projectId,
-      modificationId: m?._id
-    })
-    router.push(href, as)
+    goToModificationEdit({modificationId: m?._id})
   }
 
   return (

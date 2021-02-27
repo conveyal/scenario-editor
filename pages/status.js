@@ -7,11 +7,10 @@ import {
   ListItem,
   Stack
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import React from 'react'
 import useSWR from 'swr'
 
-import A from 'lib/components/a'
+import {ALink, ExternalLink} from 'lib/components/link'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL + '/version'
 
@@ -32,9 +31,7 @@ export default function Status() {
           <Heading size='2xl'>Status</Heading>
           <Image display='inline-block' size='45px' src='/logo.svg' />
         </Flex>
-        <Link href='/' passHref>
-          <A>← Back to the application</A>
-        </Link>
+        <ALink to='regions'>← Back to the application</ALink>
         <Divider />
         <Flex justify='space-between'>
           <Heading size='xl'>Front-end</Heading>
@@ -50,9 +47,7 @@ export default function Status() {
               {text}
             </Heading>
           </Flex>
-          <Link href={API_URL} passHref>
-            <A>{API_URL}</A>
-          </Link>
+          <ExternalLink href={API_URL}>{API_URL}</ExternalLink>
           <List styleType='disc'>
             {Object.keys(data).map((k) => (
               <ListItem key={k}>

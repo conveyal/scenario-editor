@@ -85,8 +85,10 @@ export default function ProfileRequestDisplay({
               <TDValue>
                 <ALink
                   to='bundleEdit'
-                  bundleId={bundle._id}
-                  regionId={bundle.regionId}
+                  query={{
+                    bundleId: bundle._id,
+                    regionId: bundle.regionId
+                  }}
                 >
                   {bundle.name}
                 </ALink>
@@ -101,8 +103,10 @@ export default function ProfileRequestDisplay({
                   <div>
                     <ALink
                       to='modifications'
-                      projectId={project._id}
-                      regionId={project.regionId}
+                      query={{
+                        projectId: project._id,
+                        regionId: project.regionId
+                      }}
                     >
                       {project.name}
                     </ALink>

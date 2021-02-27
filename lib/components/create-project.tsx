@@ -10,7 +10,6 @@ import {
   Stack
 } from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
-import Link from 'next/link'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -19,10 +18,10 @@ import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
 import LogRocket from 'lib/logrocket'
 import message from 'lib/message'
-import {toHref} from 'lib/router'
 
 import ControlledSelect from './controlled-select'
 import InnerDock from './inner-dock'
+import Link from './link'
 
 const hasText = (s) => s && s.length > 0
 const getName = fpGet('name')
@@ -81,7 +80,7 @@ export function CreateProject({bundles, dispatch, query}) {
         ) : (
           <Stack spacing={4}>
             <Box>{message('project.noBundles')}</Box>
-            <Link href={toHref('bundleCreate', {...query})} passHref>
+            <Link to='bundleCreate' {...query}>
               <Button colorScheme='green'>{message('bundle.create')}</Button>
             </Link>
           </Stack>

@@ -11,17 +11,15 @@ import {
   Select,
   Stack
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {createResource} from 'lib/actions/resources'
-import A from 'lib/components/a'
+import {ALink} from 'lib/components/link'
 import {ChevronLeft} from 'lib/components/icons'
 import InnerDock from 'lib/components/inner-dock'
 import MapLayout from 'lib/layouts/map'
 import msg from 'lib/message'
-import {toHref} from 'lib/router'
 
 const EXTS = ['.geojson', '.json'] // later: csv, pbf, zip
 const TYPES = ['Lines', 'Points', 'Polygons']
@@ -49,16 +47,15 @@ export default function UploadResource(p) {
       )
       setError()
       setName('')
-      const href = toHref('resourceEdit', {
-        regionId: resource.regionId,
-        resourceId: resource._id
-      })
       setStatus(
         <span>
           Finished uploading!{' '}
-          <Link href={href} passHref>
-            <A>View resource.</A>
-          </Link>
+          <ALink
+            to='resourceEdit'
+            query={{regionId: resource.regionId, resourceId: resource._id}}
+          >
+            View resource.
+          </ALink>
         </span>
       )
     } catch (e) {
@@ -73,11 +70,9 @@ export default function UploadResource(p) {
     <InnerDock>
       <Stack p={4} spacing={4}>
         <Heading size='md'>
-          <Link href={toHref('resources', p.query)} passHref>
-            <A>
-              <ChevronLeft />
-            </A>
-          </Link>
+          <ALink to='resources' query={p.query}>
+            <ChevronLeft />
+          </ALink>
           <span>{msg('resources.uploadAction')}</span>
         </Heading>
         <Box>{msg('resources.allowedFileTypes')}</Box>

@@ -21,7 +21,6 @@ import {
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
-import Link from 'next/link'
 import {memo, useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -29,7 +28,6 @@ import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 import {LS_MOM} from 'lib/constants'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
-import {toHref} from 'lib/router'
 import selectFeedsById from 'lib/selectors/feeds-by-id'
 import selectVariants from 'lib/selectors/variants'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
@@ -37,6 +35,7 @@ import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 import IconButton from '../icon-button'
 import {HideIcon, SearchIcon, ShowIcon, UploadIcon} from '../icons'
 import InnerDock from '../inner-dock'
+import Link from '../link'
 import {DisplayAll as ModificationsMap} from '../modifications-map/display-all'
 import VariantEditor from '../variant-editor'
 
@@ -302,12 +301,12 @@ const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
     <Flex align='center' px={1}>
       <Link
-        href={toHref('modificationEdit', {
+        to='modificationEdit'
+        query={{
           modificationId: modification._id,
           projectId: modification.projectId,
           regionId
-        })}
-        passHref
+        }}
       >
         <Button
           aria-label={`Edit modification ${modification.name}`}

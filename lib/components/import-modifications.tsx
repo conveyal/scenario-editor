@@ -1,14 +1,13 @@
 import {Box, Button, Heading, Stack} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
-import Link from 'next/link'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {copyFromProject} from 'lib/actions/modifications'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
-import {toHref} from 'lib/router'
 
+import Link from './link'
 import Select from './select'
 
 const getName = fpGet('name')
@@ -38,7 +37,7 @@ export default function ImportModifications({projects, projectId, regionId}) {
   return (
     <Stack p={4} spacing={4}>
       <Heading size='md'>{message('modification.importFromShapefile')}</Heading>
-      <Link href={toHref('importShapefile', {projectId, regionId})} passHref>
+      <Link to='importShapefile' query={{projectId, regionId}}>
         <Button colorScheme='green'>Import from Shapefile</Button>
       </Link>
       <Heading size='md'>{message('modification.importFromProject')}</Heading>

@@ -2,14 +2,13 @@ import {Box, BoxProps, Flex} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
-import Image from 'next/image'
 import {useRouter} from 'next/router'
-import {memo, useCallback, useContext, useEffect, useState} from 'react'
+import {memo, useContext, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
-import {CB_DARK, CB_HEX, LOGO_URL} from 'lib/constants'
+import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
 import useRouteChanging from 'lib/hooks/use-route-changing'
-import {RouteKey, routeTo} from 'lib/router'
+import {routeTo} from 'lib/router'
 
 import {CREATING_ID} from '../constants/region'
 import message from '../message'
@@ -30,7 +29,9 @@ import {
   SpatialDatasetsIcon,
   WifiIcon
 } from './icons'
+import SVGLogo from './logo.svg'
 import Tip from './tip'
+import useRouteTo from 'lib/hooks/use-route-to'
 
 const sidebarWidth = '40px'
 
@@ -59,7 +60,7 @@ const NavItemContents = memo<BoxProps>(({children, ...p}) => {
   )
 })
 
-function useIsActive(to: RouteKey, params = {}) {
+function useIsActive(to: PageKey, params = {}) {
   const [, pathname] = useRouteChanging()
   const route = routeTo(to, params)
   route.href = route.href.split('?')[0]
@@ -70,9 +71,9 @@ function useIsActive(to: RouteKey, params = {}) {
 }
 
 type ItemLinkProps = {
-  children: JSX.Element
+  children: React.ReactNode
   label: string
-  to: RouteKey
+  to: PageKey
   params?: any
 }
 
@@ -80,20 +81,15 @@ type ItemLinkProps = {
  * Render an ItemLink.
  */
 const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
-  const router = useRouter()
   const isActive = useIsActive(to, params)
-
-  const goToLink = useCallback(() => {
-    const {href, as, query} = routeTo(to, params)
-    router.push({pathname: href, query}, as)
-  }, [params, router, to])
+  const goToLink = useRouteTo(to, params)
 
   const navItemProps = isActive
     ? {
         bg: '#fff',
         borderBottom: `2px solid ${CB_HEX}`
       }
-    : {onClick: goToLink}
+    : {onClick: () => goToLink()}
 
   return (
     <Tip isDisabled={isActive} label={label} placement='right'>
@@ -243,7 +239,11 @@ const LogoSpinner = memo(() => {
     return <LoadingIcon className='fa-spin' />
   }
 
-  return <Image priority height='20px' width='20px' src={LOGO_URL} />
+  return (
+    <Box boxSize='21px'>
+      <SVGLogo />
+    </Box>
+  )
 })
 
 const isOnline = () => (isServer ? true : navigator.onLine)
@@ -276,7 +276,7 @@ const OnlineIndicator = memo(() => {
 })
 
 type ExternalLinkProps = {
-  children: JSX.Element
+  children: React.ReactNode
   href: string
   label: string
 }

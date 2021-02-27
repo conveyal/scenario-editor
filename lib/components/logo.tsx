@@ -1,29 +1,23 @@
-import {Box, Heading, Stack} from '@chakra-ui/react'
-import Image from 'next/image'
+import {Box, HStack} from '@chakra-ui/react'
 
-import {LOGO_URL} from 'lib/constants'
+import SVGLogo from './logo.svg'
 
 export default function Logo() {
   return (
-    <Stack alignItems='center' isInline spacing={5}>
-      <Box>
-        <Image
-          alt='Conveyal Logo'
-          src={LOGO_URL}
-          height={48}
-          priority
-          width={48}
-        />
+    <HStack alignContent='center' spacing={4}>
+      <Box boxSize='60px'>
+        <SVGLogo />
       </Box>
-      <Heading
-        fontSize='36px'
-        fontWeight={100}
-        letterSpacing={0}
-        mt='-8px'
-        whiteSpace='nowrap'
-      >
-        conveyal analysis
-      </Heading>
-    </Stack>
+      <Box>
+        <Box
+          fontSize='3rem'
+          fontWeight='300'
+          letterSpacing='-0.05rem'
+          mt='-0.25rem'
+        >
+          conveyal
+        </Box>
+      </Box>
+    </HStack>
   )
 }

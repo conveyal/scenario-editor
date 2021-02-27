@@ -1,6 +1,7 @@
 import {Box, BoxProps, Flex} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
+import omit from 'lodash/omit'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {memo, useCallback, useContext, useEffect, useState} from 'react'
@@ -174,7 +175,7 @@ export default function Sidebar() {
             <ItemLink
               label={message('nav.analyze')}
               to='analysis'
-              params={queryParams}
+              params={omit(queryParams, 'modificationId')}
             >
               <SinglePointAnalysisIcon />
             </ItemLink>

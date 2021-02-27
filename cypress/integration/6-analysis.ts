@@ -241,7 +241,10 @@ describe('Analysis', () => {
 
   describe('presets', () => {
     it('CRUD a preset', function () {
+      region.setupAnalysis()
+
       const name = Cypress.env('dataPrefix') + 'preset'
+      const editedName = Cypress.env('dataPrefix') + 'edited preset name'
       // Preset select does not exist without first creating a preset
       cy.getPrimaryAnalysisSettings()
         .findByRole('button', {name: /Save/})
@@ -266,6 +269,10 @@ describe('Analysis', () => {
       cy.findByRole('button', {name: /Save/}).click()
       cy.findByRole('dialog').should('not.exist')
       cy.findByText(/Saved changes to preset/)
+      cy.getPrimaryAnalysisSettings()
+        .findAllByLabelText(/Active preset/)
+        .click({force: true})
+        .type(`${editedName}{enter}`)
 
       // Delete the preset
       cy.getPrimaryAnalysisSettings()

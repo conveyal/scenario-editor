@@ -131,6 +131,9 @@ export default class AuthenticatedCollection {
           nonce: new ObjectID().toString(),
           updatedBy: this.user.email
         }
+      },
+      {
+        returnOriginal: false // return the updated document
       }
     )
   }

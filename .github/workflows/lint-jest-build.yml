@@ -13,6 +13,9 @@ jobs:
 
       # Install and cache the build
       - uses: bahmutov/npm-install@v1
+        env:
+          # Setting to 0 skips installing the binary
+          CYPRESS_INSTALL_BINARY: 0
 
       # Cache the entire working directory for subsequent steps
       - uses: actions/cache@v2
@@ -136,6 +139,15 @@ jobs:
       - name: Download Analysis Backend
         if: steps.jar-cache.outputs.cache-hit != 'true'
         run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ github.workspace }}/${{ matrix.backend }}.jar
+
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+      # Install Cypress binary
+      - run: npx cypress install
 
       - uses: cypress-io/github-action@v2
         # env:

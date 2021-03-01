@@ -83,18 +83,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             options={
               Array [
                 Object {
-                  "label": "v6.0.1 (recommended)",
-                  "value": "v6.0.1",
-                },
-                Object {
-                  "label": <span
-                    style={
-                      Object {
-                        "textDecoration": "line-through",
-                      }
-                    }
-                  />,
-                  "value": undefined,
+                  "label": "v6.2 (recommended)",
+                  "value": "v6.2",
                 },
               ]
             }
@@ -107,14 +97,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             }
             value={
               Object {
-                "label": <span
-                  style={
-                    Object {
-                      "textDecoration": "line-through",
-                    }
-                  }
-                />,
-                "value": undefined,
+                "label": "v6.2 (recommended)",
+                "value": "v6.2",
               }
             }
           >
@@ -123,33 +107,6 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             />
           </Creatable>
         </div>
-        <ForwardRef
-          status="warning"
-        >
-          <Styled(div)
-            __css={
-              Object {
-                "alignItems": "center",
-                "bg": "#FEEBC8",
-                "display": "flex",
-                "overflow": "hidden",
-                "position": "relative",
-                "px": 4,
-                "py": 3,
-                "width": "100%",
-              }
-            }
-            className="chakra-alert"
-            role="alert"
-          >
-            <div
-              className="chakra-alert css-1mbyx3y"
-              role="alert"
-            >
-              An updated version of the routing engine is available. Changing versions should improve performance but may change analysis results.
-            </div>
-          </Styled(div)>
-        </ForwardRef>
       </div>
     </Styled(div)>
   </FormControl>

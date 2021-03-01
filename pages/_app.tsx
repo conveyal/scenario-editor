@@ -7,16 +7,15 @@ import React, {ComponentType, ErrorInfo} from 'react'
 import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
-import ErrorBar from 'lib/components/error-bar'
+import APIStatusBar from 'lib/components/api-status-bar'
 import ErrorModal from 'lib/components/error-modal'
-import useApiVersion from 'lib/hooks/use-api-version'
+
 import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
 import LogRocket from 'lib/logrocket'
 import {swrFetcher} from 'lib/utils/safe-fetch'
 
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
-import useIsOnline from 'lib/hooks/use-is-online'
 
 // Re-use for Component's without a Layout
 const EmptyLayout = ({children}) => <>{children}</>
@@ -53,23 +52,6 @@ function SWRWrapper({children}) {
       {children}
     </SWRConfig>
   )
-}
-
-const unusableMessage =
-  'Application will be unusable until connection can be restablished.'
-function APIStatusBar() {
-  const isOnline = useIsOnline()
-  const {error} = useApiVersion()
-  if (error) {
-    if (!isOnline)
-      return (
-        <ErrorBar>
-          You are not connected to the internet. {unusableMessage}
-        </ErrorBar>
-      )
-    return <ErrorBar>API server cannot be reached. {unusableMessage}</ErrorBar>
-  }
-  return null
 }
 
 function ErrorHandler({children}) {

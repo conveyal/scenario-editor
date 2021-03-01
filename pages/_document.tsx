@@ -15,17 +15,12 @@ const Stylesheets = () => (
 )
 
 const Analytics = () => (
-  <>
-    {process.browser && (
-      // Render only in browser to prevent double tracking: https://github.com/vercel/next.js/issues/9070
-      <script
-        async
-        defer
-        data-domain='analysis.conveyal.com'
-        src='https://plausible.conveyal.com/js/index.js'
-      />
-    )}
-  </>
+  <script
+    async
+    defer
+    data-domain='analysis.conveyal.com'
+    src='https://plausible.conveyal.com/js/index.js'
+  />
 )
 
 const ZenDeskWidget = () =>

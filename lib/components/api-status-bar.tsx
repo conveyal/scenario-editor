@@ -21,8 +21,9 @@ export default function APIStatusBar() {
   const isOnline = useIsOnline()
   const response = useApiVersion()
 
-  if (response.error) {
-    if (!isOnline)
+  if (!isOnline) {
+    // API server may be reached while offline but in development mode.
+    if (response.error || response.isValidating) {
       return (
         <BannerAlert status='error' variant='solid'>
           <AlertTitle>
@@ -30,6 +31,8 @@ export default function APIStatusBar() {
           </AlertTitle>
         </BannerAlert>
       )
+    }
+  } else if (response.error) {
     return (
       <BannerAlert status='error' variant='solid'>
         <AlertTitle>API server cannot be reached. {unusableMessage}</AlertTitle>

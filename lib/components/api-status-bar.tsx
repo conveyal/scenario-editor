@@ -37,7 +37,7 @@ export default function APIStatusBar() {
     )
   } else if (response.isValidating && showIsValidating) {
     return (
-      <BannerAlert status='info'>
+      <BannerAlert status='warning'>
         <AlertTitle>Establishing connection...</AlertTitle>
       </BannerAlert>
     )

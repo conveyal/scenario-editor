@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Modification > Variants 1`] = `
-<ForwardRef
+<Stack
   spacing={4}
 >
   <Heading
@@ -9,7 +9,7 @@ exports[`Components > Modification > Variants 1`] = `
   >
     Active in scenarios
   </Heading>
-  <ForwardRef
+  <Stack
     spacing={2}
   >
     <Checkbox
@@ -38,6 +38,6 @@ exports[`Components > Modification > Variants 1`] = `
       . 
       b
     </Checkbox>
-  </ForwardRef>
-</ForwardRef>
+  </Stack>
+</Stack>
 `;

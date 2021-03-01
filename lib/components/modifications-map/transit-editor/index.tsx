@@ -207,7 +207,9 @@ export default function TransitEditor({
 
   useEffect(() => {
     leaflet.map.on('click', handleMapClick)
-    return () => leaflet.map.off('click', handleMapClick)
+    return () => {
+      leaflet.map.off('click', handleMapClick)
+    }
   }, [handleMapClick, leaflet])
 
   const insertStopAtIndex = useCallback(

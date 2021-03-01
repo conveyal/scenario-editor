@@ -116,7 +116,7 @@ exports[`Component EditAlignment snapshot(mount) 1`] = `
   }
   update={[MockFunction]}
 >
-  <ForwardRef
+  <Stack
     allStops={Array []}
     disabled={false}
     extendFromEnd={false}
@@ -133,11 +133,21 @@ exports[`Component EditAlignment snapshot(mount) 1`] = `
     }
     spacing={4}
   >
-    <Flex
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 4,
+          },
+        }
+      }
       allStops={Array []}
-      direction="column"
+      className="chakra-stack"
       disabled={false}
+      display="flex"
       extendFromEnd={false}
+      flexDirection="column"
       mapState={
         Object {
           "modificationId": "1234",
@@ -150,12 +160,11 @@ exports[`Component EditAlignment snapshot(mount) 1`] = `
         ]
       }
     >
-      <Box
+      <div
         allStops={Array []}
+        className="chakra-stack css-4daikc"
         disabled={false}
-        display="flex"
         extendFromEnd={false}
-        flexDirection="column"
         mapState={
           Object {
             "modificationId": "1234",
@@ -168,647 +177,1719 @@ exports[`Component EditAlignment snapshot(mount) 1`] = `
           ]
         }
       >
-        <div
-          className="css-j7qwjs"
-          disabled={false}
+        <Heading
+          key=".1"
+          size="sm"
         >
-          <Heading
-            key=".1"
-            mb={4}
-            size="sm"
-          >
-            <Box
-              as="h2"
-              fontFamily="heading"
-              fontSize="md"
-              fontWeight="bold"
-              lineHeight="shorter"
-              mb={4}
-            >
-              <h2
-                className="css-35hltn"
-              >
-                Route Geometry
-              </h2>
-            </Box>
-          </Heading>
-          <Text
-            key=".3"
-            mb={4}
-          >
-            <Box
-              as="p"
-              fontFamily="body"
-              mb={4}
-            >
-              <p
-                className="css-zwncle"
-              >
-                16 stops over 45.21 km
-              </p>
-            </Box>
-          </Text>
-          <Button
-            isFullWidth={true}
-            key=".4"
-            leftIcon="edit"
-            mb={4}
-            onClick={[Function]}
-            variantColor="yellow"
-          >
-            <PseudoBox
-              _active={
-                Object {
-                  "bg": "yellow.700",
-                }
+          <Styled(h2)
+            __css={
+              Object {
+                "fontFamily": "heading",
+                "fontSize": "md",
+                "fontWeight": "bold",
+                "lineHeight": 1.2,
               }
-              _disabled={
-                Object {
+            }
+            className="chakra-heading"
+          >
+            <h2
+              className="chakra-heading css-14g9y4z"
+            >
+              Route Geometry
+            </h2>
+          </Styled(h2)>
+        </Heading>
+        <Text
+          key=".3"
+        >
+          <Styled(p)
+            __css={Object {}}
+            className="chakra-text"
+          >
+            <p
+              className="chakra-text css-0"
+            >
+              16 stops over 45.21 km
+            </p>
+          </Styled(p)>
+        </Text>
+        <Button
+          colorScheme="yellow"
+          isFullWidth={true}
+          key=".4"
+          leftIcon={<FaPencilAlt />}
+          onClick={[Function]}
+        >
+          <Styled(button)
+            __css={
+              Object {
+                "_active": Object {
+                  "bg": "yellow.600",
+                },
+                "_disabled": Object {
                   "boxShadow": "none",
                   "cursor": "not-allowed",
-                  "opacity": "40%",
-                }
-              }
-              _focus={
-                Object {
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
                   "boxShadow": "outline",
-                }
+                },
+                "_hover": Object {
+                  "_disabled": Object {
+                    "bg": "yellow.400",
+                  },
+                  "bg": "yellow.500",
+                },
+                "alignItems": "center",
+                "appearance": "none",
+                "bg": "yellow.400",
+                "borderRadius": "md",
+                "color": "black",
+                "display": "inline-flex",
+                "fontSize": "md",
+                "fontWeight": "semibold",
+                "h": 10,
+                "justifyContent": "center",
+                "lineHeight": "1.2",
+                "minW": 10,
+                "outline": "none",
+                "position": "relative",
+                "px": 4,
+                "transition": "all 250ms",
+                "userSelect": "none",
+                "verticalAlign": "middle",
+                "whiteSpace": "nowrap",
+                "width": "100%",
               }
-              _hover={
-                Object {
-                  "bg": "yellow.600",
-                }
-              }
-              alignItems="center"
-              appearance="none"
-              as="button"
-              bg="yellow.500"
-              borderRadius="md"
-              color="white"
-              display="inline-flex"
-              fontSize="md"
-              fontWeight="semibold"
-              height={10}
-              justifyContent="center"
-              lineHeight="1.2"
-              mb={4}
-              minWidth={10}
-              onClick={[Function]}
-              outline="none"
-              position="relative"
-              px={4}
-              transition="all 250ms"
-              type="button"
-              userSelect="none"
-              verticalAlign="middle"
-              whiteSpace="nowrap"
-              width="full"
-            >
-              <button
-                className="css-emnr3w"
-                onClick={[Function]}
-                type="button"
-              >
-                <ButtonIcon
-                  icon="edit"
-                  ml={-1}
-                  mr={2}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    color="currentColor"
-                    focusable="false"
-                    ml={-1}
-                    mr={2}
-                    name="edit"
-                  >
-                    <Styled(div)
-                      aria-hidden="true"
-                      as="svg"
-                      color="currentColor"
-                      display="inline-block"
-                      focusable="false"
-                      ml={-1}
-                      mr={2}
-                      role="presentation"
-                      size="1em"
-                      verticalAlign="middle"
-                      viewBox="0 0 24 24"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="css-yxiis9"
-                        focusable="false"
-                        role="presentation"
-                        viewBox="0 0 24 24"
-                      >
-                        <g
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="full"
-                          strokeWidth="2"
-                        >
-                          <path
-                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                          />
-                          <path
-                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                          />
-                        </g>
-                      </svg>
-                    </Styled(div)>
-                  </Icon>
-                </ButtonIcon>
-                Edit route geometry
-              </button>
-            </PseudoBox>
-          </Button>
-          <Checkbox
-            fontWeight="normal"
-            isChecked={true}
-            key=".6"
-            mb={4}
-            onChange={[Function]}
+            }
+            className="chakra-button"
+            onClick={[Function]}
+            type="button"
           >
-            <Box
-              alignItems="center"
-              as="label"
-              cursor="pointer"
-              display="inline-flex"
-              fontWeight="normal"
-              mb={4}
-              verticalAlign="top"
+            <button
+              className="chakra-button css-x5p3va"
+              onClick={[Function]}
+              type="button"
             >
-              <label
-                className="css-got82x"
+              <ButtonIcon
+                marginEnd="0.5rem"
               >
-                <VisuallyHidden
-                  aria-checked={true}
-                  as="input"
-                  checked={true}
-                  onChange={[Function]}
-                  type="checkbox"
+                <Styled(span)
+                  className="chakra-button__icon"
+                  marginEnd="0.5rem"
                 >
-                  <input
-                    aria-checked={true}
-                    checked={true}
-                    className="css-1gy22ay"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                </VisuallyHidden>
-                <ControlBox
-                  _checked={
-                    Object {
-                      "bg": "blue.500",
-                      "borderColor": "blue.500",
-                      "color": undefined,
-                    }
-                  }
-                  _checkedAndDisabled={
-                    Object {
-                      "bg": "gray.200",
-                      "borderColor": "gray.200",
-                      "color": "gray.500",
-                    }
-                  }
-                  _disabled={
-                    Object {
-                      "bg": "gray.100",
-                      "borderColor": "gray.100",
-                    }
-                  }
-                  _focus={
-                    Object {
-                      "boxShadow": "outline",
-                    }
-                  }
-                  _invalid={
-                    Object {
-                      "borderColor": "red.500",
-                    }
-                  }
-                  alignItems="center"
-                  aria-hidden="true"
-                  border="2px"
-                  borderColor="inherit"
-                  color="white"
-                  display="inline-flex"
-                  flexShrink="0"
-                  justifyContent="center"
-                  opacity={1}
-                  rounded="sm"
-                  size={4}
-                  transition="background-color 120ms, box-shadow 250ms"
-                  userSelect="none"
-                >
-                  <div
-                    aria-hidden="true"
-                    className="css-nlndso"
+                  <span
+                    className="chakra-button__icon css-ktvjz1"
                   >
-                    <Icon
-                      name="check"
-                      size="10px"
-                      transition="transform 240ms, opacity 240ms"
+                    <FaPencilAlt
+                      aria-hidden={true}
+                      focusable={false}
                     >
-                      <Styled(div)
-                        as="svg"
-                        color="currentColor"
-                        display="inline-block"
+                      <IconBase
+                        aria-hidden={true}
+                        attr={
+                          Object {
+                            "viewBox": "0 0 512 512",
+                          }
+                        }
                         focusable={false}
-                        role="presentation"
-                        size="10px"
-                        transition="transform 240ms, opacity 240ms"
-                        verticalAlign="middle"
-                        viewBox="0 0 14 14"
                       >
                         <svg
-                          className="css-1vhqk79"
+                          aria-hidden={true}
+                          fill="currentColor"
                           focusable={false}
-                          role="presentation"
-                          viewBox="0 0 14 14"
+                          height="1em"
+                          stroke="currentColor"
+                          strokeWidth="0"
+                          style={
+                            Object {
+                              "color": undefined,
+                            }
+                          }
+                          viewBox="0 0 512 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <g
-                            fill="currentColor"
-                          >
-                            <polygon
-                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
-                            />
-                          </g>
+                          <path
+                            d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"
+                            key="0"
+                          />
                         </svg>
-                      </Styled(div)>
-                    </Icon>
-                  </div>
-                </ControlBox>
-                <Box
-                  fontSize="md"
-                  ml={2}
-                  opacity={1}
-                  userSelect="none"
-                >
-                  <div
-                    className="css-6qsuox"
-                  >
-                    Auto-create stops at set spacing
-                  </div>
-                </Box>
-              </label>
-            </Box>
-          </Checkbox>
-          <NumberInput
-            key=".7"
-            label="Stop spacing"
-            mb={4}
-            onChange={[Function]}
-            test={[Function]}
-            units="meters"
-            value={3000}
+                      </IconBase>
+                    </FaPencilAlt>
+                  </span>
+                </Styled(span)>
+              </ButtonIcon>
+              Edit route geometry
+            </button>
+          </Styled(button)>
+        </Button>
+        <Checkbox
+          fontWeight="normal"
+          isChecked={true}
+          key=".6"
+          onChange={[Function]}
+        >
+          <Styled(label)
+            __css={Object {}}
+            className="chakra-checkbox"
+            fontWeight="normal"
           >
-            <FormControl
-              isInvalid={false}
-              mb={4}
+            <label
+              className="chakra-checkbox css-wun7cp"
             >
-              <Box
-                mb={4}
-                role="group"
+              <input
+                checked={true}
+                className="chakra-checkbox__input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                style={
+                  Object {
+                    "border": "0px",
+                    "clip": "rect(0px, 0px, 0px, 0px)",
+                    "height": "1px",
+                    "margin": "-1px",
+                    "overflow": "hidden",
+                    "padding": "0px",
+                    "position": "absolute",
+                    "whiteSpace": "nowrap",
+                    "width": "1px",
+                  }
+                }
+                type="checkbox"
+              />
+              <Styled(span)
+                __css={
+                  Object {
+                    "_checked": Object {
+                      "_disabled": Object {
+                        "bg": "gray.200",
+                        "borderColor": "gray.200",
+                        "color": "gray.500",
+                      },
+                      "_hover": Object {
+                        "bg": "blue.600",
+                        "borderColor": "blue.600",
+                      },
+                      "bg": "blue.500",
+                      "borderColor": "blue.500",
+                      "color": "white",
+                    },
+                    "_disabled": Object {
+                      "bg": "gray.100",
+                      "borderColor": "gray.100",
+                    },
+                    "_focus": Object {
+                      "boxShadow": "outline",
+                    },
+                    "_indeterminate": Object {
+                      "bg": "blue.500",
+                      "borderColor": "blue.500",
+                      "color": "white",
+                    },
+                    "_invalid": Object {
+                      "borderColor": "red.500",
+                    },
+                    "border": "2px solid",
+                    "borderColor": "inherit",
+                    "borderRadius": "sm",
+                    "color": "white",
+                    "h": 4,
+                    "transition": "box-shadow 250ms",
+                    "w": 4,
+                  }
+                }
+                aria-hidden={true}
+                className="chakra-checkbox__control"
+                data-checked=""
+                onMouseDown={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
               >
-                <div
-                  className="css-acwcvw"
-                  role="group"
+                <span
+                  aria-hidden={true}
+                  className="chakra-checkbox__control css-co2d90"
+                  data-checked=""
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
                 >
-                  <FormLabel
-                    htmlFor="00000000-0000-0000-0000-000000000000"
+                  <CheckboxIcon
+                    __css={
+                      Object {
+                        "color": undefined,
+                        "fontSize": "0.625rem",
+                        "opacity": 1,
+                        "transform": "scale(1)",
+                        "transition": "transform 200ms",
+                      }
+                    }
+                    isChecked={true}
                   >
-                    <Box
-                      as="label"
-                      display="inline-block"
-                      fontSize="md"
-                      fontWeight="medium"
-                      htmlFor="00000000-0000-0000-0000-000000000000"
-                      opacity="1"
-                      pb="4px"
-                      pr="12px"
-                      textAlign="left"
-                      verticalAlign="middle"
+                    <CheckboxTransition
+                      open={true}
                     >
-                      <label
-                        className="css-176s5fq"
-                        htmlFor="00000000-0000-0000-0000-000000000000"
+                      <AnimatePresence
+                        initial={false}
                       >
-                        Stop spacing
-                      </label>
-                    </Box>
-                  </FormLabel>
-                  <InputGroup>
-                    <Box
-                      display="flex"
-                      position="relative"
-                    >
-                      <div
-                        className="css-kjafn5"
-                      >
-                        <Input
-                          as="input"
-                          errorBorderColor="red.500"
-                          focusBorderColor="blue.500"
-                          id="00000000-0000-0000-0000-000000000000"
-                          isFullWidth={true}
-                          isInvalid={false}
-                          isValid={true}
-                          key=".0"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          pl={null}
-                          placeholder=""
-                          pr={null}
-                          size="md"
-                          type="text"
-                          value={3000}
-                          variant="outline"
+                        <PresenceChild
+                          initial={false}
+                          isPresent={true}
+                          key=""
+                          presenceAffectsLayout={true}
                         >
-                          <PseudoBox
-                            _disabled={
+                          <ForwardRef(MotionComponent)
+                            animate="checked"
+                            exit="unchecked"
+                            initial="unchecked"
+                            style={
                               Object {
-                                "cursor": "not-allowed",
-                                "opacity": "0.4",
+                                "alignItems": "center",
+                                "display": "flex",
+                                "height": "100%",
+                                "justifyContent": "center",
                               }
                             }
-                            _focus={
+                            variants={
                               Object {
+                                "checked": Object {
+                                  "scale": 1,
+                                },
+                                "unchecked": Object {
+                                  "scale": 0.5,
+                                },
+                              }
+                            }
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "alignItems": "center",
+                                  "display": "flex",
+                                  "height": "100%",
+                                  "justifyContent": "center",
+                                  "transform": "none",
+                                }
+                              }
+                            >
+                              <CheckIcon
+                                __css={
+                                  Object {
+                                    "color": undefined,
+                                    "fontSize": "0.625rem",
+                                    "opacity": 1,
+                                    "transform": "scale(1)",
+                                    "transition": "transform 200ms",
+                                  }
+                                }
+                              >
+                                <ForwardRef(MotionComponent)
+                                  __css={
+                                    Object {
+                                      "color": undefined,
+                                      "fontSize": "0.625rem",
+                                      "opacity": 1,
+                                      "transform": "scale(1)",
+                                      "transition": "transform 200ms",
+                                    }
+                                  }
+                                  style={
+                                    Object {
+                                      "fill": "none",
+                                      "stroke": "currentColor",
+                                      "strokeDasharray": 16,
+                                      "strokeWidth": 2,
+                                    }
+                                  }
+                                  variants={
+                                    Object {
+                                      "checked": Object {
+                                        "opacity": 1,
+                                        "strokeDashoffset": 0,
+                                        "transition": Object {
+                                          "duration": 0.2,
+                                        },
+                                      },
+                                      "unchecked": Object {
+                                        "opacity": 0,
+                                        "strokeDashoffset": 16,
+                                      },
+                                    }
+                                  }
+                                  viewBox="0 0 12 10"
+                                  width="1.2em"
+                                >
+                                  <Styled(svg)
+                                    __css={
+                                      Object {
+                                        "color": undefined,
+                                        "fontSize": "0.625rem",
+                                        "opacity": 1,
+                                        "transform": "scale(1)",
+                                        "transition": "transform 200ms",
+                                      }
+                                    }
+                                    style={
+                                      Object {
+                                        "fill": "none",
+                                        "opacity": 1,
+                                        "stroke": "currentColor",
+                                        "strokeDasharray": 16,
+                                        "strokeDashoffset": 0,
+                                        "strokeWidth": 2,
+                                      }
+                                    }
+                                    variants={
+                                      Object {
+                                        "checked": Object {
+                                          "opacity": 1,
+                                          "strokeDashoffset": 0,
+                                          "transition": Object {
+                                            "duration": 0.2,
+                                          },
+                                        },
+                                        "unchecked": Object {
+                                          "opacity": 0,
+                                          "strokeDashoffset": 16,
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 12 10"
+                                    width="1.2em"
+                                  >
+                                    <svg
+                                      className="css-da6t8b"
+                                      style={
+                                        Object {
+                                          "fill": "none",
+                                          "opacity": 1,
+                                          "stroke": "currentColor",
+                                          "strokeDasharray": 16,
+                                          "strokeDashoffset": 0,
+                                          "strokeWidth": 2,
+                                        }
+                                      }
+                                      variants={
+                                        Object {
+                                          "checked": Object {
+                                            "opacity": 1,
+                                            "strokeDashoffset": 0,
+                                            "transition": Object {
+                                              "duration": 0.2,
+                                            },
+                                          },
+                                          "unchecked": Object {
+                                            "opacity": 0,
+                                            "strokeDashoffset": 16,
+                                          },
+                                        }
+                                      }
+                                      viewBox="0 0 12 10"
+                                    >
+                                      <polyline
+                                        points="1.5 6 4.5 9 10.5 1"
+                                      />
+                                    </svg>
+                                  </Styled(svg)>
+                                  <Component
+                                    __css={
+                                      Object {
+                                        "color": undefined,
+                                        "fontSize": "0.625rem",
+                                        "opacity": 1,
+                                        "transform": "scale(1)",
+                                        "transition": "transform 200ms",
+                                      }
+                                    }
+                                    key="animation"
+                                    style={
+                                      Object {
+                                        "fill": "none",
+                                        "stroke": "currentColor",
+                                        "strokeDasharray": 16,
+                                        "strokeWidth": 2,
+                                      }
+                                    }
+                                    variants={
+                                      Object {
+                                        "checked": Object {
+                                          "opacity": 1,
+                                          "strokeDashoffset": 0,
+                                          "transition": Object {
+                                            "duration": 0.2,
+                                          },
+                                        },
+                                        "unchecked": Object {
+                                          "opacity": 0,
+                                          "strokeDashoffset": 16,
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 12 10"
+                                    visualElement={
+                                      Object {
+                                        "addChild": [Function],
+                                        "addValue": [Function],
+                                        "addVariantChild": [Function],
+                                        "animationState": Object {
+                                          "animateChanges": [Function],
+                                          "getState": [Function],
+                                          "isAnimated": [Function],
+                                          "setActive": [Function],
+                                          "setAnimateFunction": [Function],
+                                        },
+                                        "blockInitialAnimation": true,
+                                        "build": [Function],
+                                        "clearAllListeners": [Function],
+                                        "clearState": [Function],
+                                        "current": <svg
+                                          class="css-da6t8b"
+                                          style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16; opacity: 1; stroke-dashoffset: 0;"
+                                          variants="[object Object]"
+                                          viewBox="0 0 12 10"
+                                        >
+                                          <polyline
+                                            points="1.5 6 4.5 9 10.5 1"
+                                          />
+                                        </svg>,
+                                        "depth": 1,
+                                        "enableLayoutProjection": [Function],
+                                        "forEachValue": [Function],
+                                        "getBaseTarget": [Function],
+                                        "getClosestVariantNode": [Function],
+                                        "getDefaultTransition": [Function],
+                                        "getInstance": [Function],
+                                        "getLatestValues": [Function],
+                                        "getLayoutId": [Function],
+                                        "getLayoutState": [Function],
+                                        "getProjectionAnimationProgress": [Function],
+                                        "getProps": [Function],
+                                        "getStaticValue": [Function],
+                                        "getValue": [Function],
+                                        "getVariant": [Function],
+                                        "getVariantContext": [Function],
+                                        "hasValue": [Function],
+                                        "isHoverEventsEnabled": true,
+                                        "isMounted": [Function],
+                                        "isPresenceRoot": false,
+                                        "isPresent": true,
+                                        "isStatic": false,
+                                        "isVisible": undefined,
+                                        "lockProjectionTarget": [Function],
+                                        "makeTargetAnimatable": [Function],
+                                        "manuallyAnimateOnMount": false,
+                                        "measureViewportBox": [Function],
+                                        "notifyAnimationComplete": [Function],
+                                        "notifyAnimationStart": [Function],
+                                        "notifyBeforeLayoutMeasure": [Function],
+                                        "notifyLayoutAnimationComplete": [Function],
+                                        "notifyLayoutMeasure": [Function],
+                                        "notifyLayoutReady": [Function],
+                                        "notifyLayoutUpdate": [Function],
+                                        "notifyRender": [Function],
+                                        "notifySetAxisTarget": [Function],
+                                        "notifyUpdate": [Function],
+                                        "notifyViewportBoxUpdate": [Function],
+                                        "onAnimationComplete": [Function],
+                                        "onAnimationStart": [Function],
+                                        "onBeforeLayoutMeasure": [Function],
+                                        "onLayoutAnimationComplete": [Function],
+                                        "onLayoutMeasure": [Function],
+                                        "onLayoutUpdate": [Function],
+                                        "onRender": [Function],
+                                        "onSetAxisTarget": [Function],
+                                        "onUpdate": [Function],
+                                        "onViewportBoxUpdate": [Function],
+                                        "path": Array [
+                                          Object {
+                                            "addChild": [Function],
+                                            "addValue": [Function],
+                                            "addVariantChild": [Function],
+                                            "animationState": Object {
+                                              "animateChanges": [Function],
+                                              "getState": [Function],
+                                              "isAnimated": [Function],
+                                              "setActive": [Function],
+                                              "setAnimateFunction": [Function],
+                                            },
+                                            "blockInitialAnimation": true,
+                                            "build": [Function],
+                                            "clearAllListeners": [Function],
+                                            "clearState": [Function],
+                                            "current": <div
+                                              style="display: flex; align-items: center; justify-content: center; height: 100%; transform: none;"
+                                            >
+                                              <svg
+                                                class="css-da6t8b"
+                                                style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16; opacity: 1; stroke-dashoffset: 0;"
+                                                variants="[object Object]"
+                                                viewBox="0 0 12 10"
+                                              >
+                                                <polyline
+                                                  points="1.5 6 4.5 9 10.5 1"
+                                                />
+                                              </svg>
+                                            </div>,
+                                            "depth": 0,
+                                            "enableLayoutProjection": [Function],
+                                            "forEachValue": [Function],
+                                            "getBaseTarget": [Function],
+                                            "getClosestVariantNode": [Function],
+                                            "getDefaultTransition": [Function],
+                                            "getInstance": [Function],
+                                            "getLatestValues": [Function],
+                                            "getLayoutId": [Function],
+                                            "getLayoutState": [Function],
+                                            "getProjectionAnimationProgress": [Function],
+                                            "getProps": [Function],
+                                            "getStaticValue": [Function],
+                                            "getValue": [Function],
+                                            "getVariant": [Function],
+                                            "getVariantContext": [Function],
+                                            "hasValue": [Function],
+                                            "isHoverEventsEnabled": true,
+                                            "isMounted": [Function],
+                                            "isPresenceRoot": true,
+                                            "isPresent": true,
+                                            "isStatic": false,
+                                            "isVisible": undefined,
+                                            "lockProjectionTarget": [Function],
+                                            "makeTargetAnimatable": [Function],
+                                            "manuallyAnimateOnMount": false,
+                                            "measureViewportBox": [Function],
+                                            "notifyAnimationComplete": [Function],
+                                            "notifyAnimationStart": [Function],
+                                            "notifyBeforeLayoutMeasure": [Function],
+                                            "notifyLayoutAnimationComplete": [Function],
+                                            "notifyLayoutMeasure": [Function],
+                                            "notifyLayoutReady": [Function],
+                                            "notifyLayoutUpdate": [Function],
+                                            "notifyRender": [Function],
+                                            "notifySetAxisTarget": [Function],
+                                            "notifyUpdate": [Function],
+                                            "notifyViewportBoxUpdate": [Function],
+                                            "onAnimationComplete": [Function],
+                                            "onAnimationStart": [Function],
+                                            "onBeforeLayoutMeasure": [Function],
+                                            "onLayoutAnimationComplete": [Function],
+                                            "onLayoutMeasure": [Function],
+                                            "onLayoutUpdate": [Function],
+                                            "onRender": [Function],
+                                            "onSetAxisTarget": [Function],
+                                            "onUpdate": [Function],
+                                            "onViewportBoxUpdate": [Function],
+                                            "path": Array [],
+                                            "pointTo": [Function],
+                                            "presence": 0,
+                                            "presenceId": 0,
+                                            "projection": Object {
+                                              "isEnabled": false,
+                                              "isTargetLocked": false,
+                                              "target": Object {
+                                                "x": Object {
+                                                  "max": 1,
+                                                  "min": 0,
+                                                },
+                                                "y": Object {
+                                                  "max": 1,
+                                                  "min": 0,
+                                                },
+                                              },
+                                              "targetFinal": Object {
+                                                "x": Object {
+                                                  "max": 1,
+                                                  "min": 0,
+                                                },
+                                                "y": Object {
+                                                  "max": 1,
+                                                  "min": 0,
+                                                },
+                                              },
+                                            },
+                                            "readValue": [Function],
+                                            "rebaseProjectionTarget": [Function],
+                                            "ref": [Function],
+                                            "removeValue": [Function],
+                                            "resetTransform": [Function],
+                                            "scheduleRender": [Function],
+                                            "scheduleUpdateLayoutProjection": [Function],
+                                            "setBaseTarget": [Function],
+                                            "setCrossfader": [Function],
+                                            "setProjectionTargetAxis": [Function],
+                                            "setProps": [Function],
+                                            "setStaticValue": [Function],
+                                            "setVisibility": [Function],
+                                            "snapshotViewportBox": [Function],
+                                            "sortNodePosition": [Function],
+                                            "startLayoutAnimation": [Function],
+                                            "stopLayoutAnimation": [Function],
+                                            "suspendHoverEvents": [Function],
+                                            "syncRender": [Function],
+                                            "treeType": "dom",
+                                            "unlockProjectionTarget": [Function],
+                                            "updateLayoutMeasurement": [Function],
+                                            "updateLayoutProjection": [Function],
+                                            "updatePropListeners": [Function],
+                                            "variantChildren": Set {
+                                              [Circular],
+                                            },
+                                            "withoutTransform": [Function],
+                                          },
+                                        ],
+                                        "pointTo": [Function],
+                                        "presence": 0,
+                                        "presenceId": 0,
+                                        "projection": Object {
+                                          "isEnabled": false,
+                                          "isTargetLocked": false,
+                                          "target": Object {
+                                            "x": Object {
+                                              "max": 1,
+                                              "min": 0,
+                                            },
+                                            "y": Object {
+                                              "max": 1,
+                                              "min": 0,
+                                            },
+                                          },
+                                          "targetFinal": Object {
+                                            "x": Object {
+                                              "max": 1,
+                                              "min": 0,
+                                            },
+                                            "y": Object {
+                                              "max": 1,
+                                              "min": 0,
+                                            },
+                                          },
+                                        },
+                                        "readValue": [Function],
+                                        "rebaseProjectionTarget": [Function],
+                                        "ref": [Function],
+                                        "removeValue": [Function],
+                                        "resetTransform": [Function],
+                                        "scheduleRender": [Function],
+                                        "scheduleUpdateLayoutProjection": [Function],
+                                        "setBaseTarget": [Function],
+                                        "setCrossfader": [Function],
+                                        "setProjectionTargetAxis": [Function],
+                                        "setProps": [Function],
+                                        "setStaticValue": [Function],
+                                        "setVisibility": [Function],
+                                        "snapshotViewportBox": [Function],
+                                        "sortNodePosition": [Function],
+                                        "startLayoutAnimation": [Function],
+                                        "stopLayoutAnimation": [Function],
+                                        "suspendHoverEvents": [Function],
+                                        "syncRender": [Function],
+                                        "treeType": "dom",
+                                        "unlockProjectionTarget": [Function],
+                                        "updateLayoutMeasurement": [Function],
+                                        "updateLayoutProjection": [Function],
+                                        "updatePropListeners": [Function],
+                                        "variantChildren": Set {},
+                                        "withoutTransform": [Function],
+                                      }
+                                    }
+                                    width="1.2em"
+                                  />
+                                </ForwardRef(MotionComponent)>
+                              </CheckIcon>
+                            </div>
+                            <Component
+                              animate="checked"
+                              exit="unchecked"
+                              initial="unchecked"
+                              key="animation"
+                              style={
+                                Object {
+                                  "alignItems": "center",
+                                  "display": "flex",
+                                  "height": "100%",
+                                  "justifyContent": "center",
+                                }
+                              }
+                              variants={
+                                Object {
+                                  "checked": Object {
+                                    "scale": 1,
+                                  },
+                                  "unchecked": Object {
+                                    "scale": 0.5,
+                                  },
+                                }
+                              }
+                              visualElement={
+                                Object {
+                                  "addChild": [Function],
+                                  "addValue": [Function],
+                                  "addVariantChild": [Function],
+                                  "animationState": Object {
+                                    "animateChanges": [Function],
+                                    "getState": [Function],
+                                    "isAnimated": [Function],
+                                    "setActive": [Function],
+                                    "setAnimateFunction": [Function],
+                                  },
+                                  "blockInitialAnimation": true,
+                                  "build": [Function],
+                                  "clearAllListeners": [Function],
+                                  "clearState": [Function],
+                                  "current": <div
+                                    style="display: flex; align-items: center; justify-content: center; height: 100%; transform: none;"
+                                  >
+                                    <svg
+                                      class="css-da6t8b"
+                                      style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16; opacity: 1; stroke-dashoffset: 0;"
+                                      variants="[object Object]"
+                                      viewBox="0 0 12 10"
+                                    >
+                                      <polyline
+                                        points="1.5 6 4.5 9 10.5 1"
+                                      />
+                                    </svg>
+                                  </div>,
+                                  "depth": 0,
+                                  "enableLayoutProjection": [Function],
+                                  "forEachValue": [Function],
+                                  "getBaseTarget": [Function],
+                                  "getClosestVariantNode": [Function],
+                                  "getDefaultTransition": [Function],
+                                  "getInstance": [Function],
+                                  "getLatestValues": [Function],
+                                  "getLayoutId": [Function],
+                                  "getLayoutState": [Function],
+                                  "getProjectionAnimationProgress": [Function],
+                                  "getProps": [Function],
+                                  "getStaticValue": [Function],
+                                  "getValue": [Function],
+                                  "getVariant": [Function],
+                                  "getVariantContext": [Function],
+                                  "hasValue": [Function],
+                                  "isHoverEventsEnabled": true,
+                                  "isMounted": [Function],
+                                  "isPresenceRoot": true,
+                                  "isPresent": true,
+                                  "isStatic": false,
+                                  "isVisible": undefined,
+                                  "lockProjectionTarget": [Function],
+                                  "makeTargetAnimatable": [Function],
+                                  "manuallyAnimateOnMount": false,
+                                  "measureViewportBox": [Function],
+                                  "notifyAnimationComplete": [Function],
+                                  "notifyAnimationStart": [Function],
+                                  "notifyBeforeLayoutMeasure": [Function],
+                                  "notifyLayoutAnimationComplete": [Function],
+                                  "notifyLayoutMeasure": [Function],
+                                  "notifyLayoutReady": [Function],
+                                  "notifyLayoutUpdate": [Function],
+                                  "notifyRender": [Function],
+                                  "notifySetAxisTarget": [Function],
+                                  "notifyUpdate": [Function],
+                                  "notifyViewportBoxUpdate": [Function],
+                                  "onAnimationComplete": [Function],
+                                  "onAnimationStart": [Function],
+                                  "onBeforeLayoutMeasure": [Function],
+                                  "onLayoutAnimationComplete": [Function],
+                                  "onLayoutMeasure": [Function],
+                                  "onLayoutUpdate": [Function],
+                                  "onRender": [Function],
+                                  "onSetAxisTarget": [Function],
+                                  "onUpdate": [Function],
+                                  "onViewportBoxUpdate": [Function],
+                                  "path": Array [],
+                                  "pointTo": [Function],
+                                  "presence": 0,
+                                  "presenceId": 0,
+                                  "projection": Object {
+                                    "isEnabled": false,
+                                    "isTargetLocked": false,
+                                    "target": Object {
+                                      "x": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                      "y": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                    },
+                                    "targetFinal": Object {
+                                      "x": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                      "y": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                    },
+                                  },
+                                  "readValue": [Function],
+                                  "rebaseProjectionTarget": [Function],
+                                  "ref": [Function],
+                                  "removeValue": [Function],
+                                  "resetTransform": [Function],
+                                  "scheduleRender": [Function],
+                                  "scheduleUpdateLayoutProjection": [Function],
+                                  "setBaseTarget": [Function],
+                                  "setCrossfader": [Function],
+                                  "setProjectionTargetAxis": [Function],
+                                  "setProps": [Function],
+                                  "setStaticValue": [Function],
+                                  "setVisibility": [Function],
+                                  "snapshotViewportBox": [Function],
+                                  "sortNodePosition": [Function],
+                                  "startLayoutAnimation": [Function],
+                                  "stopLayoutAnimation": [Function],
+                                  "suspendHoverEvents": [Function],
+                                  "syncRender": [Function],
+                                  "treeType": "dom",
+                                  "unlockProjectionTarget": [Function],
+                                  "updateLayoutMeasurement": [Function],
+                                  "updateLayoutProjection": [Function],
+                                  "updatePropListeners": [Function],
+                                  "variantChildren": Set {
+                                    Object {
+                                      "addChild": [Function],
+                                      "addValue": [Function],
+                                      "addVariantChild": [Function],
+                                      "animationState": Object {
+                                        "animateChanges": [Function],
+                                        "getState": [Function],
+                                        "isAnimated": [Function],
+                                        "setActive": [Function],
+                                        "setAnimateFunction": [Function],
+                                      },
+                                      "blockInitialAnimation": true,
+                                      "build": [Function],
+                                      "clearAllListeners": [Function],
+                                      "clearState": [Function],
+                                      "current": <svg
+                                        class="css-da6t8b"
+                                        style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16; opacity: 1; stroke-dashoffset: 0;"
+                                        variants="[object Object]"
+                                        viewBox="0 0 12 10"
+                                      >
+                                        <polyline
+                                          points="1.5 6 4.5 9 10.5 1"
+                                        />
+                                      </svg>,
+                                      "depth": 1,
+                                      "enableLayoutProjection": [Function],
+                                      "forEachValue": [Function],
+                                      "getBaseTarget": [Function],
+                                      "getClosestVariantNode": [Function],
+                                      "getDefaultTransition": [Function],
+                                      "getInstance": [Function],
+                                      "getLatestValues": [Function],
+                                      "getLayoutId": [Function],
+                                      "getLayoutState": [Function],
+                                      "getProjectionAnimationProgress": [Function],
+                                      "getProps": [Function],
+                                      "getStaticValue": [Function],
+                                      "getValue": [Function],
+                                      "getVariant": [Function],
+                                      "getVariantContext": [Function],
+                                      "hasValue": [Function],
+                                      "isHoverEventsEnabled": true,
+                                      "isMounted": [Function],
+                                      "isPresenceRoot": false,
+                                      "isPresent": true,
+                                      "isStatic": false,
+                                      "isVisible": undefined,
+                                      "lockProjectionTarget": [Function],
+                                      "makeTargetAnimatable": [Function],
+                                      "manuallyAnimateOnMount": false,
+                                      "measureViewportBox": [Function],
+                                      "notifyAnimationComplete": [Function],
+                                      "notifyAnimationStart": [Function],
+                                      "notifyBeforeLayoutMeasure": [Function],
+                                      "notifyLayoutAnimationComplete": [Function],
+                                      "notifyLayoutMeasure": [Function],
+                                      "notifyLayoutReady": [Function],
+                                      "notifyLayoutUpdate": [Function],
+                                      "notifyRender": [Function],
+                                      "notifySetAxisTarget": [Function],
+                                      "notifyUpdate": [Function],
+                                      "notifyViewportBoxUpdate": [Function],
+                                      "onAnimationComplete": [Function],
+                                      "onAnimationStart": [Function],
+                                      "onBeforeLayoutMeasure": [Function],
+                                      "onLayoutAnimationComplete": [Function],
+                                      "onLayoutMeasure": [Function],
+                                      "onLayoutUpdate": [Function],
+                                      "onRender": [Function],
+                                      "onSetAxisTarget": [Function],
+                                      "onUpdate": [Function],
+                                      "onViewportBoxUpdate": [Function],
+                                      "path": Array [
+                                        [Circular],
+                                      ],
+                                      "pointTo": [Function],
+                                      "presence": 0,
+                                      "presenceId": 0,
+                                      "projection": Object {
+                                        "isEnabled": false,
+                                        "isTargetLocked": false,
+                                        "target": Object {
+                                          "x": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                          "y": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                        },
+                                        "targetFinal": Object {
+                                          "x": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                          "y": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                        },
+                                      },
+                                      "readValue": [Function],
+                                      "rebaseProjectionTarget": [Function],
+                                      "ref": [Function],
+                                      "removeValue": [Function],
+                                      "resetTransform": [Function],
+                                      "scheduleRender": [Function],
+                                      "scheduleUpdateLayoutProjection": [Function],
+                                      "setBaseTarget": [Function],
+                                      "setCrossfader": [Function],
+                                      "setProjectionTargetAxis": [Function],
+                                      "setProps": [Function],
+                                      "setStaticValue": [Function],
+                                      "setVisibility": [Function],
+                                      "snapshotViewportBox": [Function],
+                                      "sortNodePosition": [Function],
+                                      "startLayoutAnimation": [Function],
+                                      "stopLayoutAnimation": [Function],
+                                      "suspendHoverEvents": [Function],
+                                      "syncRender": [Function],
+                                      "treeType": "dom",
+                                      "unlockProjectionTarget": [Function],
+                                      "updateLayoutMeasurement": [Function],
+                                      "updateLayoutProjection": [Function],
+                                      "updatePropListeners": [Function],
+                                      "variantChildren": Set {},
+                                      "withoutTransform": [Function],
+                                    },
+                                  },
+                                  "withoutTransform": [Function],
+                                }
+                              }
+                            />
+                            <Component
+                              animate="checked"
+                              exit="unchecked"
+                              initial="unchecked"
+                              key="exit"
+                              style={
+                                Object {
+                                  "alignItems": "center",
+                                  "display": "flex",
+                                  "height": "100%",
+                                  "justifyContent": "center",
+                                }
+                              }
+                              variants={
+                                Object {
+                                  "checked": Object {
+                                    "scale": 1,
+                                  },
+                                  "unchecked": Object {
+                                    "scale": 0.5,
+                                  },
+                                }
+                              }
+                              visualElement={
+                                Object {
+                                  "addChild": [Function],
+                                  "addValue": [Function],
+                                  "addVariantChild": [Function],
+                                  "animationState": Object {
+                                    "animateChanges": [Function],
+                                    "getState": [Function],
+                                    "isAnimated": [Function],
+                                    "setActive": [Function],
+                                    "setAnimateFunction": [Function],
+                                  },
+                                  "blockInitialAnimation": true,
+                                  "build": [Function],
+                                  "clearAllListeners": [Function],
+                                  "clearState": [Function],
+                                  "current": <div
+                                    style="display: flex; align-items: center; justify-content: center; height: 100%; transform: none;"
+                                  >
+                                    <svg
+                                      class="css-da6t8b"
+                                      style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16; opacity: 1; stroke-dashoffset: 0;"
+                                      variants="[object Object]"
+                                      viewBox="0 0 12 10"
+                                    >
+                                      <polyline
+                                        points="1.5 6 4.5 9 10.5 1"
+                                      />
+                                    </svg>
+                                  </div>,
+                                  "depth": 0,
+                                  "enableLayoutProjection": [Function],
+                                  "forEachValue": [Function],
+                                  "getBaseTarget": [Function],
+                                  "getClosestVariantNode": [Function],
+                                  "getDefaultTransition": [Function],
+                                  "getInstance": [Function],
+                                  "getLatestValues": [Function],
+                                  "getLayoutId": [Function],
+                                  "getLayoutState": [Function],
+                                  "getProjectionAnimationProgress": [Function],
+                                  "getProps": [Function],
+                                  "getStaticValue": [Function],
+                                  "getValue": [Function],
+                                  "getVariant": [Function],
+                                  "getVariantContext": [Function],
+                                  "hasValue": [Function],
+                                  "isHoverEventsEnabled": true,
+                                  "isMounted": [Function],
+                                  "isPresenceRoot": true,
+                                  "isPresent": true,
+                                  "isStatic": false,
+                                  "isVisible": undefined,
+                                  "lockProjectionTarget": [Function],
+                                  "makeTargetAnimatable": [Function],
+                                  "manuallyAnimateOnMount": false,
+                                  "measureViewportBox": [Function],
+                                  "notifyAnimationComplete": [Function],
+                                  "notifyAnimationStart": [Function],
+                                  "notifyBeforeLayoutMeasure": [Function],
+                                  "notifyLayoutAnimationComplete": [Function],
+                                  "notifyLayoutMeasure": [Function],
+                                  "notifyLayoutReady": [Function],
+                                  "notifyLayoutUpdate": [Function],
+                                  "notifyRender": [Function],
+                                  "notifySetAxisTarget": [Function],
+                                  "notifyUpdate": [Function],
+                                  "notifyViewportBoxUpdate": [Function],
+                                  "onAnimationComplete": [Function],
+                                  "onAnimationStart": [Function],
+                                  "onBeforeLayoutMeasure": [Function],
+                                  "onLayoutAnimationComplete": [Function],
+                                  "onLayoutMeasure": [Function],
+                                  "onLayoutUpdate": [Function],
+                                  "onRender": [Function],
+                                  "onSetAxisTarget": [Function],
+                                  "onUpdate": [Function],
+                                  "onViewportBoxUpdate": [Function],
+                                  "path": Array [],
+                                  "pointTo": [Function],
+                                  "presence": 0,
+                                  "presenceId": 0,
+                                  "projection": Object {
+                                    "isEnabled": false,
+                                    "isTargetLocked": false,
+                                    "target": Object {
+                                      "x": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                      "y": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                    },
+                                    "targetFinal": Object {
+                                      "x": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                      "y": Object {
+                                        "max": 1,
+                                        "min": 0,
+                                      },
+                                    },
+                                  },
+                                  "readValue": [Function],
+                                  "rebaseProjectionTarget": [Function],
+                                  "ref": [Function],
+                                  "removeValue": [Function],
+                                  "resetTransform": [Function],
+                                  "scheduleRender": [Function],
+                                  "scheduleUpdateLayoutProjection": [Function],
+                                  "setBaseTarget": [Function],
+                                  "setCrossfader": [Function],
+                                  "setProjectionTargetAxis": [Function],
+                                  "setProps": [Function],
+                                  "setStaticValue": [Function],
+                                  "setVisibility": [Function],
+                                  "snapshotViewportBox": [Function],
+                                  "sortNodePosition": [Function],
+                                  "startLayoutAnimation": [Function],
+                                  "stopLayoutAnimation": [Function],
+                                  "suspendHoverEvents": [Function],
+                                  "syncRender": [Function],
+                                  "treeType": "dom",
+                                  "unlockProjectionTarget": [Function],
+                                  "updateLayoutMeasurement": [Function],
+                                  "updateLayoutProjection": [Function],
+                                  "updatePropListeners": [Function],
+                                  "variantChildren": Set {
+                                    Object {
+                                      "addChild": [Function],
+                                      "addValue": [Function],
+                                      "addVariantChild": [Function],
+                                      "animationState": Object {
+                                        "animateChanges": [Function],
+                                        "getState": [Function],
+                                        "isAnimated": [Function],
+                                        "setActive": [Function],
+                                        "setAnimateFunction": [Function],
+                                      },
+                                      "blockInitialAnimation": true,
+                                      "build": [Function],
+                                      "clearAllListeners": [Function],
+                                      "clearState": [Function],
+                                      "current": <svg
+                                        class="css-da6t8b"
+                                        style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16; opacity: 1; stroke-dashoffset: 0;"
+                                        variants="[object Object]"
+                                        viewBox="0 0 12 10"
+                                      >
+                                        <polyline
+                                          points="1.5 6 4.5 9 10.5 1"
+                                        />
+                                      </svg>,
+                                      "depth": 1,
+                                      "enableLayoutProjection": [Function],
+                                      "forEachValue": [Function],
+                                      "getBaseTarget": [Function],
+                                      "getClosestVariantNode": [Function],
+                                      "getDefaultTransition": [Function],
+                                      "getInstance": [Function],
+                                      "getLatestValues": [Function],
+                                      "getLayoutId": [Function],
+                                      "getLayoutState": [Function],
+                                      "getProjectionAnimationProgress": [Function],
+                                      "getProps": [Function],
+                                      "getStaticValue": [Function],
+                                      "getValue": [Function],
+                                      "getVariant": [Function],
+                                      "getVariantContext": [Function],
+                                      "hasValue": [Function],
+                                      "isHoverEventsEnabled": true,
+                                      "isMounted": [Function],
+                                      "isPresenceRoot": false,
+                                      "isPresent": true,
+                                      "isStatic": false,
+                                      "isVisible": undefined,
+                                      "lockProjectionTarget": [Function],
+                                      "makeTargetAnimatable": [Function],
+                                      "manuallyAnimateOnMount": false,
+                                      "measureViewportBox": [Function],
+                                      "notifyAnimationComplete": [Function],
+                                      "notifyAnimationStart": [Function],
+                                      "notifyBeforeLayoutMeasure": [Function],
+                                      "notifyLayoutAnimationComplete": [Function],
+                                      "notifyLayoutMeasure": [Function],
+                                      "notifyLayoutReady": [Function],
+                                      "notifyLayoutUpdate": [Function],
+                                      "notifyRender": [Function],
+                                      "notifySetAxisTarget": [Function],
+                                      "notifyUpdate": [Function],
+                                      "notifyViewportBoxUpdate": [Function],
+                                      "onAnimationComplete": [Function],
+                                      "onAnimationStart": [Function],
+                                      "onBeforeLayoutMeasure": [Function],
+                                      "onLayoutAnimationComplete": [Function],
+                                      "onLayoutMeasure": [Function],
+                                      "onLayoutUpdate": [Function],
+                                      "onRender": [Function],
+                                      "onSetAxisTarget": [Function],
+                                      "onUpdate": [Function],
+                                      "onViewportBoxUpdate": [Function],
+                                      "path": Array [
+                                        [Circular],
+                                      ],
+                                      "pointTo": [Function],
+                                      "presence": 0,
+                                      "presenceId": 0,
+                                      "projection": Object {
+                                        "isEnabled": false,
+                                        "isTargetLocked": false,
+                                        "target": Object {
+                                          "x": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                          "y": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                        },
+                                        "targetFinal": Object {
+                                          "x": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                          "y": Object {
+                                            "max": 1,
+                                            "min": 0,
+                                          },
+                                        },
+                                      },
+                                      "readValue": [Function],
+                                      "rebaseProjectionTarget": [Function],
+                                      "ref": [Function],
+                                      "removeValue": [Function],
+                                      "resetTransform": [Function],
+                                      "scheduleRender": [Function],
+                                      "scheduleUpdateLayoutProjection": [Function],
+                                      "setBaseTarget": [Function],
+                                      "setCrossfader": [Function],
+                                      "setProjectionTargetAxis": [Function],
+                                      "setProps": [Function],
+                                      "setStaticValue": [Function],
+                                      "setVisibility": [Function],
+                                      "snapshotViewportBox": [Function],
+                                      "sortNodePosition": [Function],
+                                      "startLayoutAnimation": [Function],
+                                      "stopLayoutAnimation": [Function],
+                                      "suspendHoverEvents": [Function],
+                                      "syncRender": [Function],
+                                      "treeType": "dom",
+                                      "unlockProjectionTarget": [Function],
+                                      "updateLayoutMeasurement": [Function],
+                                      "updateLayoutProjection": [Function],
+                                      "updatePropListeners": [Function],
+                                      "variantChildren": Set {},
+                                      "withoutTransform": [Function],
+                                    },
+                                  },
+                                  "withoutTransform": [Function],
+                                }
+                              }
+                            />
+                          </ForwardRef(MotionComponent)>
+                        </PresenceChild>
+                      </AnimatePresence>
+                    </CheckboxTransition>
+                  </CheckboxIcon>
+                </span>
+              </Styled(span)>
+              <Styled(span)
+                __css={
+                  Object {
+                    "_disabled": Object {
+                      "opacity": 0.4,
+                    },
+                    "fontSize": "md",
+                    "marginStart": "0.5rem",
+                    "userSelect": "none",
+                  }
+                }
+                className="chakra-checkbox__label"
+                data-checked=""
+                onMouseDown={[Function]}
+                onTouchStart={[Function]}
+              >
+                <span
+                  className="chakra-checkbox__label css-sklcna"
+                  data-checked=""
+                  onMouseDown={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  Auto-create stops at set spacing
+                </span>
+              </Styled(span)>
+            </label>
+          </Styled(label)>
+        </Checkbox>
+        <NumberInput
+          key=".7"
+          label="Stop spacing"
+          onChange={[Function]}
+          test={[Function]}
+          units="meters"
+          value={3000}
+        >
+          <FormControl
+            isInvalid={false}
+          >
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              className="chakra-form-control"
+              role="group"
+            >
+              <div
+                className="chakra-form-control css-1kxonj9"
+                role="group"
+              >
+                <FormLabel
+                  htmlFor="00000000-0000-0000-0000-000000000000"
+                >
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
+                    htmlFor="00000000-0000-0000-0000-000000000000"
+                    id="field-1-label"
+                  >
+                    <label
+                      className="chakra-form__label css-1qqx8g3"
+                      htmlFor="00000000-0000-0000-0000-000000000000"
+                      id="field-1-label"
+                    >
+                      Stop spacing
+                    </label>
+                  </Styled(label)>
+                </FormLabel>
+                <InputGroup>
+                  <Styled(div)
+                    __css={
+                      Object {
+                        "display": "flex",
+                        "position": "relative",
+                        "width": "100%",
+                      }
+                    }
+                    className="chakra-input__group"
+                  >
+                    <div
+                      className="chakra-input__group css-4302v8"
+                    >
+                      <Input
+                        id="00000000-0000-0000-0000-000000000000"
+                        isInvalid={false}
+                        isValid={true}
+                        key=".0"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        paddingRight={10}
+                        placeholder=""
+                        type="text"
+                        value={3000}
+                      >
+                        <Styled(input)
+                          __css={
+                            Object {
+                              "_disabled": Object {
+                                "cursor": "not-allowed",
+                                "opacity": 0.4,
+                              },
+                              "_focus": Object {
                                 "borderColor": "#3182ce",
                                 "boxShadow": "0 0 0 1px #3182ce",
                                 "zIndex": 1,
-                              }
-                            }
-                            _hover={
-                              Object {
+                              },
+                              "_hover": Object {
                                 "borderColor": "gray.300",
-                              }
-                            }
-                            _invalid={
-                              Object {
-                                "borderColor": "#e53e3e",
-                                "boxShadow": "0 0 0 1px #e53e3e",
-                              }
-                            }
-                            _readOnly={
-                              Object {
-                                "bg": "transparent",
+                              },
+                              "_invalid": Object {
+                                "borderColor": "#E53E3E",
+                                "boxShadow": "0 0 0 1px #E53E3E",
+                              },
+                              "_readOnly": Object {
                                 "boxShadow": "none !important",
                                 "userSelect": "all",
-                              }
+                              },
+                              "appearance": "none",
+                              "bg": "inherit",
+                              "border": "1px solid",
+                              "borderColor": "inherit",
+                              "borderRadius": "md",
+                              "fontSize": "md",
+                              "h": 10,
+                              "minWidth": 0,
+                              "outline": 0,
+                              "position": "relative",
+                              "px": 4,
+                              "transition": "all 0.2s",
+                              "width": "100%",
                             }
-                            alignItems="center"
-                            appearance="none"
-                            aria-invalid={false}
-                            as="input"
-                            bg="white"
-                            border="1px"
-                            borderColor="inherit"
-                            display="flex"
-                            fontSize="md"
-                            height={10}
+                          }
+                          className="chakra-input"
+                          disabled={false}
+                          id="00000000-0000-0000-0000-000000000000"
+                          isValid={true}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          paddingRight={10}
+                          placeholder=""
+                          readOnly={false}
+                          required={false}
+                          type="text"
+                          value={3000}
+                        >
+                          <input
+                            className="chakra-input css-1hmrg96"
+                            disabled={false}
                             id="00000000-0000-0000-0000-000000000000"
                             isValid={true}
                             onBlur={[Function]}
                             onChange={[Function]}
                             onFocus={[Function]}
-                            outline="none"
-                            pl={null}
                             placeholder=""
-                            position="relative"
-                            pr={null}
-                            px={4}
-                            rounded="md"
-                            transition="all 0.2s"
+                            readOnly={false}
+                            required={false}
                             type="text"
                             value={3000}
-                            width="100%"
-                          >
-                            <input
-                              aria-invalid={false}
-                              className="css-1ga4kqw"
-                              id="00000000-0000-0000-0000-000000000000"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              placeholder=""
-                              type="text"
-                              value={3000}
-                            />
-                          </PseudoBox>
-                        </Input>
-                        <InputRightElement
+                          />
+                        </Styled(input)>
+                      </Input>
+                      <InputRightElement
+                        color="gray.400"
+                        key=".1"
+                        mr={4}
+                        userSelect="none"
+                        width="unset"
+                      >
+                        <InputElement
+                          className="chakra-input__right-element"
                           color="gray.400"
-                          key=".1"
                           mr={4}
-                          size="md"
+                          placement="right"
                           userSelect="none"
                           width="unset"
                         >
-                          <InputElement
+                          <Styled(div)
+                            __css={
+                              Object {
+                                "fontSize": "md",
+                                "height": 10,
+                                "paddingX": undefined,
+                                "right": "0",
+                                "width": 10,
+                              }
+                            }
+                            className="chakra-input__right-element"
                             color="gray.400"
                             mr={4}
-                            placement="right"
-                            size="md"
                             userSelect="none"
                             width="unset"
                           >
-                            <Box
-                              alignItems="center"
-                              color="gray.400"
-                              display="flex"
-                              fontSize="md"
-                              height={10}
-                              justifyContent="center"
-                              mr={4}
-                              position="absolute"
-                              right="0"
-                              top="0"
-                              userSelect="none"
-                              width="unset"
-                              zIndex={2}
+                            <div
+                              className="chakra-input__right-element css-6xo9tb"
                             >
-                              <div
-                                className="css-1he2y93"
-                              >
-                                meters
-                              </div>
-                            </Box>
-                          </InputElement>
-                        </InputRightElement>
-                      </div>
-                    </Box>
-                  </InputGroup>
-                </div>
-              </Box>
-            </FormControl>
-          </NumberInput>
-          <Checkbox
+                              meters
+                            </div>
+                          </Styled(div)>
+                        </InputElement>
+                      </InputRightElement>
+                    </div>
+                  </Styled(div)>
+                </InputGroup>
+              </div>
+            </Styled(div)>
+          </FormControl>
+        </NumberInput>
+        <Checkbox
+          fontWeight="normal"
+          isChecked={false}
+          isDisabled={true}
+          key=".8"
+          onChange={[Function]}
+        >
+          <Styled(label)
+            __css={Object {}}
+            className="chakra-checkbox"
+            data-disabled=""
             fontWeight="normal"
-            isChecked={false}
-            isDisabled={true}
-            key=".8"
-            mb={4}
-            onChange={[Function]}
           >
-            <Box
-              alignItems="center"
-              as="label"
-              cursor="not-allowed"
-              display="inline-flex"
-              fontWeight="normal"
-              mb={4}
-              verticalAlign="top"
+            <label
+              className="chakra-checkbox css-wun7cp"
+              data-disabled=""
             >
-              <label
-                className="css-8syznr"
-              >
-                <VisuallyHidden
-                  aria-checked={false}
-                  as="input"
-                  checked={false}
-                  disabled={true}
-                  onChange={[Function]}
-                  type="checkbox"
-                >
-                  <input
-                    aria-checked={false}
-                    checked={false}
-                    className="css-1gy22ay"
-                    disabled={true}
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                </VisuallyHidden>
-                <ControlBox
-                  _checked={
-                    Object {
+              <input
+                aria-disabled={true}
+                checked={false}
+                className="chakra-checkbox__input"
+                disabled={true}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                style={
+                  Object {
+                    "border": "0px",
+                    "clip": "rect(0px, 0px, 0px, 0px)",
+                    "height": "1px",
+                    "margin": "-1px",
+                    "overflow": "hidden",
+                    "padding": "0px",
+                    "position": "absolute",
+                    "whiteSpace": "nowrap",
+                    "width": "1px",
+                  }
+                }
+                type="checkbox"
+              />
+              <Styled(span)
+                __css={
+                  Object {
+                    "_checked": Object {
+                      "_disabled": Object {
+                        "bg": "gray.200",
+                        "borderColor": "gray.200",
+                        "color": "gray.500",
+                      },
+                      "_hover": Object {
+                        "bg": "blue.600",
+                        "borderColor": "blue.600",
+                      },
                       "bg": "blue.500",
                       "borderColor": "blue.500",
-                      "color": undefined,
-                    }
-                  }
-                  _checkedAndDisabled={
-                    Object {
-                      "bg": "gray.200",
-                      "borderColor": "gray.200",
-                      "color": "gray.500",
-                    }
-                  }
-                  _disabled={
-                    Object {
+                      "color": "white",
+                    },
+                    "_disabled": Object {
                       "bg": "gray.100",
                       "borderColor": "gray.100",
-                    }
-                  }
-                  _focus={
-                    Object {
+                    },
+                    "_focus": Object {
                       "boxShadow": "outline",
-                    }
-                  }
-                  _invalid={
-                    Object {
+                    },
+                    "_indeterminate": Object {
+                      "bg": "blue.500",
+                      "borderColor": "blue.500",
+                      "color": "white",
+                    },
+                    "_invalid": Object {
                       "borderColor": "red.500",
-                    }
+                    },
+                    "border": "2px solid",
+                    "borderColor": "inherit",
+                    "borderRadius": "sm",
+                    "color": "white",
+                    "h": 4,
+                    "transition": "box-shadow 250ms",
+                    "w": 4,
                   }
-                  alignItems="center"
-                  aria-hidden="true"
-                  border="2px"
-                  borderColor="inherit"
-                  color="white"
-                  display="inline-flex"
-                  flexShrink="0"
-                  justifyContent="center"
-                  opacity={1}
-                  rounded="sm"
-                  size={4}
-                  transition="background-color 120ms, box-shadow 250ms"
-                  userSelect="none"
+                }
+                aria-hidden={true}
+                className="chakra-checkbox__control"
+                data-disabled=""
+                onMouseDown={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+              >
+                <span
+                  aria-hidden={true}
+                  className="chakra-checkbox__control css-co2d90"
+                  data-disabled=""
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
                 >
-                  <div
-                    aria-hidden="true"
-                    className="css-nlndso"
+                  <CheckboxIcon
+                    __css={
+                      Object {
+                        "color": undefined,
+                        "fontSize": "0.625rem",
+                        "opacity": 0,
+                        "transform": "scale(0.95)",
+                        "transition": "transform 200ms",
+                      }
+                    }
+                    isChecked={false}
                   >
-                    <Icon
-                      name="check"
-                      size="10px"
-                      transition="transform 240ms, opacity 240ms"
-                    >
-                      <Styled(div)
-                        as="svg"
-                        color="currentColor"
-                        display="inline-block"
-                        focusable={false}
-                        role="presentation"
-                        size="10px"
-                        transition="transform 240ms, opacity 240ms"
-                        verticalAlign="middle"
-                        viewBox="0 0 14 14"
-                      >
-                        <svg
-                          className="css-1vhqk79"
-                          focusable={false}
-                          role="presentation"
-                          viewBox="0 0 14 14"
-                        >
-                          <g
-                            fill="currentColor"
-                          >
-                            <polygon
-                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
-                            />
-                          </g>
-                        </svg>
-                      </Styled(div)>
-                    </Icon>
-                  </div>
-                </ControlBox>
-                <Box
-                  fontSize="md"
-                  ml={2}
-                  opacity={0.4}
-                  userSelect="none"
+                    <CheckboxTransition>
+                      <AnimatePresence
+                        initial={false}
+                      />
+                    </CheckboxTransition>
+                  </CheckboxIcon>
+                </span>
+              </Styled(span)>
+              <Styled(span)
+                __css={
+                  Object {
+                    "_disabled": Object {
+                      "opacity": 0.4,
+                    },
+                    "fontSize": "md",
+                    "marginStart": "0.5rem",
+                    "userSelect": "none",
+                  }
+                }
+                className="chakra-checkbox__label"
+                data-disabled=""
+                onMouseDown={[Function]}
+                onTouchStart={[Function]}
+              >
+                <span
+                  className="chakra-checkbox__label css-sklcna"
+                  data-disabled=""
+                  onMouseDown={[Function]}
+                  onTouchStart={[Function]}
                 >
-                  <div
-                    className="css-wfglws"
-                  >
-                    Bidirectional
-                  </div>
-                </Box>
-              </label>
-            </Box>
-          </Checkbox>
-          <Alert
-            key=".9"
-            mb={null}
-            status="info"
+                  Bidirectional
+                </span>
+              </Styled(span)>
+            </label>
+          </Styled(label)>
+        </Checkbox>
+        <ForwardRef
+          key=".9"
+          status="info"
+        >
+          <Styled(div)
+            __css={
+              Object {
+                "alignItems": "center",
+                "bg": "#bee3f8",
+                "display": "flex",
+                "overflow": "hidden",
+                "position": "relative",
+                "px": 4,
+                "py": 3,
+                "width": "100%",
+              }
+            }
+            className="chakra-alert"
+            role="alert"
           >
-            <Box
-              alignItems="center"
-              bg="blue.100"
-              display="flex"
-              mb={null}
-              overflow="hidden"
-              pb={3}
-              pl={4}
-              position="relative"
-              pr={4}
-              pt={3}
+            <div
+              className="chakra-alert css-1m76rph"
               role="alert"
             >
-              <div
-                className="css-127nqbe"
-                role="alert"
-              >
-                Modification cannot be bidirectional because timetables in this modification have phasing information.
-              </div>
-            </Box>
-          </Alert>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+              Modification cannot be bidirectional because timetables in this modification have phasing information.
+            </div>
+          </Styled(div)>
+        </ForwardRef>
+      </div>
+    </Styled(div)>
+  </Stack>
 </EditAlignment>
 `;

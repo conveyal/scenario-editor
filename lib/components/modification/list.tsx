@@ -15,8 +15,7 @@ import {
   Tabs,
   TabList,
   TabPanel,
-  TabPanels,
-  useDisclosure
+  TabPanels
 } from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
@@ -223,7 +222,12 @@ export default function ModificationsList({bundle, project}) {
 
             <InnerDock>
               {modifications.length > 0 ? (
-                <Accordion allowMultiple>
+                <Accordion
+                  allowMultiple
+                  defaultIndex={Object.keys(filteredModificationsByType).map(
+                    (_, i) => i
+                  )}
+                >
                   {Object.keys(filteredModificationsByType).map((type) => {
                     const ms = filteredModificationsByType[type]
                     return (
@@ -267,25 +271,23 @@ export default function ModificationsList({bundle, project}) {
 }
 
 function ModificationType({children, modificationCount, type}) {
-  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: true})
   return (
-    <AccordionItem
-      border='none'
-      isOpen={isOpen}
-      isDisabled={modificationCount === 0}
-      onChange={onToggle}
-    >
-      <h3>
-        <AccordionButton _focus={{outline: 'none'}} py={2}>
-          <Box flex='1' fontWeight='bold' textAlign='left'>
-            {toStartCase(type)} <Badge>{modificationCount}</Badge>
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-      </h3>
-      <AccordionPanel py={0} px={1}>
-        {isOpen && <Flex direction='column'>{children}</Flex>}
-      </AccordionPanel>
+    <AccordionItem border='none' isDisabled={modificationCount === 0}>
+      {({isExpanded}) => (
+        <>
+          <h3>
+            <AccordionButton _focus={{outline: 'none'}} py={2}>
+              <Box flex='1' fontWeight='bold' textAlign='left'>
+                {toStartCase(type)} <Badge>{modificationCount}</Badge>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h3>
+          <AccordionPanel py={0} px={1}>
+            {isExpanded && <Flex direction='column'>{children}</Flex>}
+          </AccordionPanel>
+        </>
+      )}
     </AccordionItem>
   )
 }

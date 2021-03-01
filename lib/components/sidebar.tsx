@@ -1,4 +1,4 @@
-import {Box, BoxProps, Flex} from '@chakra-ui/react'
+import {Box, BoxProps, Center, Flex} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
@@ -37,15 +37,12 @@ const sidebarWidth = '40px'
 
 const NavItemContents = memo<BoxProps>(({children, ...p}) => {
   return (
-    <Box
+    <Center
       borderBottom='2px solid rgba(0, 0, 0, 0)'
+      boxSize={sidebarWidth}
       cursor='pointer'
       color={CB_HEX}
-      display='flex'
       fontSize='14px'
-      lineHeight='20px'
-      py={3}
-      textAlign='center'
       width={sidebarWidth}
       _focus={{
         outline: 'none'
@@ -55,8 +52,8 @@ const NavItemContents = memo<BoxProps>(({children, ...p}) => {
       }}
       {...p}
     >
-      <Box mx='auto'>{children}</Box>
-    </Box>
+      {children}
+    </Center>
   )
 })
 
@@ -93,9 +90,11 @@ const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
 
   return (
     <Tip isDisabled={isActive} label={label} placement='right'>
-      <Box role='button' title={label}>
-        <NavItemContents {...navItemProps}>{children}</NavItemContents>
-      </Box>
+      <div>
+        <NavItemContents {...navItemProps} role='button' title={label}>
+          {children}
+        </NavItemContents>
+      </div>
     </Tip>
   )
 })
@@ -122,7 +121,7 @@ export default function Sidebar() {
       zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
     >
       <div>
-        <NavItemContents fontSize='22px' py={12}>
+        <NavItemContents fontSize='22px' my={12}>
           <LogoSpinner />
         </NavItemContents>
 
@@ -266,11 +265,11 @@ const OnlineIndicator = memo(() => {
   if (online) return null
   return (
     <Tip label={message('nav.notConnectedToInternet')}>
-      <Box>
+      <div>
         <NavItemContents color='red.500'>
           <WifiIcon />
         </NavItemContents>
-      </Box>
+      </div>
     </Tip>
   )
 })
@@ -284,11 +283,11 @@ type ExternalLinkProps = {
 const ExternalLink = memo<ExternalLinkProps>(({children, href, label}) => {
   return (
     <Tip label={label} placement='right'>
-      <Box>
+      <div>
         <a target='_blank' href={href} rel='noopener noreferrer'>
           <NavItemContents>{children}</NavItemContents>
         </a>
-      </Box>
+      </div>
     </Tip>
   )
 })

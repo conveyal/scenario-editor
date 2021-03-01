@@ -1,4 +1,5 @@
-import {Box, Flex, useDisclosure} from '@chakra-ui/react'
+import {Box, Flex} from '@chakra-ui/react'
+import {useState} from 'react'
 
 import {CaretDown, CaretRight} from 'lib/components/icons'
 
@@ -11,11 +12,14 @@ export function Panel({children}) {
 }
 
 export function Collapsible({defaultExpanded = true, children, heading}) {
-  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: defaultExpanded})
+  const [isOpen, setIsOpen] = useState(defaultExpanded)
 
   return (
     <Panel>
-      <Heading onClick={onToggle} style={{cursor: 'pointer'}}>
+      <Heading
+        onClick={() => setIsOpen((isOpen) => !isOpen)}
+        style={{cursor: 'pointer'}}
+      >
         <Box>{heading}</Box>
         <Box>{isOpen ? <CaretDown /> : <CaretRight />}</Box>
       </Heading>

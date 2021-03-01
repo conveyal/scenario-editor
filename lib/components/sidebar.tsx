@@ -11,7 +11,6 @@ import {
   faServer,
   faSignOutAlt,
   faTh,
-  faWifi,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
@@ -19,7 +18,7 @@ import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
-import {memo, useCallback, useContext, useEffect, useState} from 'react'
+import {memo, useCallback, useContext, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, LOGO_URL} from 'lib/constants'
@@ -202,7 +201,6 @@ export default function Sidebar() {
           label={message('nav.help')}
           href='https://docs.conveyal.com'
         />
-        <OnlineIndicator />
       </div>
     </Flex>
   )
@@ -237,35 +235,6 @@ const LogoSpinner = memo(() => {
   }
 
   return <Image priority height='20px' width='20px' src={LOGO_URL} />
-})
-
-const isOnline = () => (isServer ? true : navigator.onLine)
-const OnlineIndicator = memo(() => {
-  const [online, setOnline] = useState(() => isOnline())
-
-  useEffect(() => {
-    const onOnline = () => setOnline(true)
-    const onOffline = () => setOnline(false)
-    // TODO: Check to see if it can communicate with the backend, not just the
-    // internet (for local development)
-    addListener('online', onOnline)
-    addListener('offline', onOffline)
-    return () => {
-      removeListener('online', onOnline)
-      removeListener('offline', onOffline)
-    }
-  }, [setOnline])
-
-  if (online) return null
-  return (
-    <Tip label={message('nav.notConnectedToInternet')}>
-      <Box>
-        <NavItemContents color='red.500'>
-          <Icon icon={faWifi} />
-        </NavItemContents>
-      </Box>
-    </Tip>
-  )
 })
 
 type ExternalLinkProps = {

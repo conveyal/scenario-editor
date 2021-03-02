@@ -1,5 +1,5 @@
 import {AlertTitle} from '@chakra-ui/core'
-import useApiVersion from 'lib/hooks/use-api-version'
+import useStatus from 'lib/hooks/use-status'
 import useIsOnline from 'lib/hooks/use-is-online'
 import {useEffect, useState} from 'react'
 
@@ -19,7 +19,7 @@ const unusableMessage =
 export default function APIStatusBar() {
   const showIsValidating = useTimeout()
   const isOnline = useIsOnline()
-  const response = useApiVersion()
+  const response = useStatus()
 
   if (!isOnline) {
     // API server may be reached while offline but in development mode.

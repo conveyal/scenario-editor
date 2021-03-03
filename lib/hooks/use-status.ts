@@ -11,7 +11,7 @@ const FAST_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 10
 const ACTIVITY_URL = API_URL + '/activity'
 
 /**
- * SWR expects errors to throw. 
+ * SWR expects errors to throw.
  */
 async function swrFetcher(url: string) {
   const response = await authFetch<CL.Status>(url)
@@ -24,8 +24,13 @@ async function swrFetcher(url: string) {
  * the data returned from the server has changed. If the data does not change, increase the interval
  * on each fetch until it returns to the default again.
  */
-export default function useStatus(): responseInterface<CL.Status, ResponseError> {
-  const [refreshInterval, setRefreshInterval] = useState(MAX_REFRESH_INTERVAL_MS)
+export default function useStatus(): responseInterface<
+  CL.Status,
+  ResponseError
+> {
+  const [refreshInterval, setRefreshInterval] = useState(
+    MAX_REFRESH_INTERVAL_MS
+  )
   const [prevData, setPrevData] = useState<CL.Status | void>()
   const response = useSWR<CL.Status, ResponseError>(ACTIVITY_URL, swrFetcher, {
     refreshInterval,
@@ -38,7 +43,10 @@ export default function useStatus(): responseInterface<CL.Status, ResponseError>
       setPrevData(response.data)
       setRefreshInterval(FAST_REFRESH_INTERVAL_MS)
     } else {
-      setRefreshInterval(ri => ri + (ri < MAX_REFRESH_INTERVAL_MS ? FAST_REFRESH_INTERVAL_MS : 0))
+      setRefreshInterval(
+        (ri) =>
+          ri + (ri < MAX_REFRESH_INTERVAL_MS ? FAST_REFRESH_INTERVAL_MS : 0)
+      )
     }
   }, [prevData, response.data])
 

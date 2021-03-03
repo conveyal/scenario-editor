@@ -820,7 +820,7 @@ exports[`Component AddTripPattern snapshot(mount) 1`] = `
                   </Styled(p)>
                 </Text>
                 <Button
-                  colorScheme="orange"
+                  colorScheme="yellow"
                   isFullWidth={true}
                   key=".4"
                   leftIcon={<FaPencilAlt />}
@@ -830,7 +830,7 @@ exports[`Component AddTripPattern snapshot(mount) 1`] = `
                     __css={
                       Object {
                         "_active": Object {
-                          "bg": "orange.700",
+                          "bg": "yellow.600",
                         },
                         "_disabled": Object {
                           "boxShadow": "none",
@@ -842,15 +842,15 @@ exports[`Component AddTripPattern snapshot(mount) 1`] = `
                         },
                         "_hover": Object {
                           "_disabled": Object {
-                            "bg": "orange.500",
+                            "bg": "yellow.400",
                           },
-                          "bg": "orange.600",
+                          "bg": "yellow.500",
                         },
                         "alignItems": "center",
                         "appearance": "none",
-                        "bg": "orange.500",
+                        "bg": "yellow.400",
                         "borderRadius": "md",
-                        "color": "white",
+                        "color": "black",
                         "display": "inline-flex",
                         "fontSize": "md",
                         "fontWeight": "semibold",
@@ -873,7 +873,7 @@ exports[`Component AddTripPattern snapshot(mount) 1`] = `
                     type="button"
                   >
                     <button
-                      className="chakra-button css-n6svgj"
+                      className="chakra-button css-x5p3va"
                       onClick={[Function]}
                       type="button"
                     >

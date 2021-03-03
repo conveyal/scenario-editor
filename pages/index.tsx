@@ -45,8 +45,8 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
       <Box mt={8} mb={6}>
         <Logo />
       </Box>
-      <Stack spacing={4} textAlign='center' width='320px'>
-        <Box>
+      <Stack spacing={4} width='320px'>
+        <Box textAlign='center'>
           <span>signed in as </span>
           <strong>
             {email} ({accessGroup})
@@ -57,7 +57,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
             <Box>
               <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
             </Box>
-            <Box>
+            <Box textAlign='center'>
               <ALink to='changelog'>Click here to learn more.</ALink>
             </Box>
           </Stack>
@@ -74,7 +74,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
           <Skeleton id='LoadingSkeleton' height='30px' />
         )}
         {regions && regions.length > 0 && (
-          <Box>or go to an existing region</Box>
+          <Box textAlign='center'>or go to an existing region</Box>
         )}
         {regions && regions.length > 0 && (
           <Stack spacing={0}>

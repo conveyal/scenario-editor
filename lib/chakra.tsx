@@ -1,7 +1,5 @@
 import {ChakraProvider, extendTheme} from '@chakra-ui/react'
 
-import {chakraColors} from './constants/colors'
-
 const defaultFontFamily = `'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`
 
 // Lighten font weight
@@ -12,9 +10,6 @@ const Button = {
 }
 
 const ConveyalTheme = extendTheme({
-  colors: {
-    blue: chakraColors
-  },
   components: {
     Button
   },
@@ -44,6 +39,9 @@ const ConveyalTheme = extendTheme({
           color: 'blue.700',
           outline: 'none'
         }
+      },
+      '*': {
+        textAlign: 'left'
       }
     }
   }

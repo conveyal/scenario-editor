@@ -32,16 +32,22 @@ export default function useStatus(): responseInterface<
     MAX_REFRESH_INTERVAL_MS
   )
   const [prevData, setPrevData] = useState<CL.Status | void>()
-  const onSuccess = useCallback((data) => {
-    if (prevData == null) {
-      setPrevData(data)
-    } else if (!dequal(prevData, data)) {
-      setPrevData(data)
-      setRefreshInterval(FAST_REFRESH_INTERVAL_MS)
-    } else {
-      setRefreshInterval(ri => ri + (ri < MAX_REFRESH_INTERVAL_MS ? FAST_REFRESH_INTERVAL_MS : 0))
-    }
-  }, [prevData])
+  const onSuccess = useCallback(
+    (data) => {
+      if (prevData == null) {
+        setPrevData(data)
+      } else if (!dequal(prevData, data)) {
+        setPrevData(data)
+        setRefreshInterval(FAST_REFRESH_INTERVAL_MS)
+      } else {
+        setRefreshInterval(
+          (ri) =>
+            ri + (ri < MAX_REFRESH_INTERVAL_MS ? FAST_REFRESH_INTERVAL_MS : 0)
+        )
+      }
+    },
+    [prevData]
+  )
   return useSWR<CL.Status, ResponseError>(ACTIVITY_URL, swrFetcher, {
     onSuccess,
     refreshInterval,

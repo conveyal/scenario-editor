@@ -9,6 +9,26 @@ const isValidatingTimeout = 10_000
 const unusableMessage =
   'Application will be unusable until connection can be restablished.'
 
+const IsValidating = () => (
+  <BannerAlert status='warning'>
+    <AlertTitle>Establishing connection...</AlertTitle>
+  </BannerAlert>
+)
+
+const NoAPI = () => (
+  <BannerAlert status='error' variant='solid'>
+    <AlertTitle>API server cannot be reached. {unusableMessage}</AlertTitle>
+  </BannerAlert>
+)
+
+const NotOnline = () => (
+  <BannerAlert status='error' variant='solid'>
+    <AlertTitle>
+      You are not connected to the internet. {unusableMessage}
+    </AlertTitle>
+  </BannerAlert>
+)
+
 export default function APIStatusBar() {
   const [showIsValidating, setShowIsValidating] = useState(false)
   const isOnline = useIsOnline()
@@ -23,29 +43,9 @@ export default function APIStatusBar() {
     }
   }, [isValidating])
 
-  if (!isOnline) {
-    // API server may be reached while offline but in development mode.
-    if (error || isValidating) {
-      return (
-        <BannerAlert status='error' variant='solid'>
-          <AlertTitle>
-            You are not connected to the internet. {unusableMessage}
-          </AlertTitle>
-        </BannerAlert>
-      )
-    }
-  } else if (error) {
-    return (
-      <BannerAlert status='error' variant='solid'>
-        <AlertTitle>API server cannot be reached. {unusableMessage}</AlertTitle>
-      </BannerAlert>
-    )
-  } else if (isValidating && showIsValidating) {
-    return (
-      <BannerAlert status='warning'>
-        <AlertTitle>Establishing connection...</AlertTitle>
-      </BannerAlert>
-    )
-  }
+  if (isOnline) {
+    if (error) return <NoAPI />
+    if (isValidating && showIsValidating) return <IsValidating />
+  } else if (error || isValidating) return <NotOnline />
   return null
 }

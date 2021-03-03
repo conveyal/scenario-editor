@@ -19,9 +19,9 @@ import {
   ModalFooter
 } from '@chakra-ui/core'
 import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons'
+import {dequal} from 'dequal/lite'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
-import isEqual from 'lodash/isEqual'
 import {memo, useCallback, useEffect, useState} from 'react'
 
 import {usePresets} from 'lib/hooks/use-collection'
@@ -57,7 +57,7 @@ function findPreset(
         if (typeof v === 'number' && typeof s === 'number') {
           return !isWithinTolerance(v, s)
         }
-        return !isEqual(v, s)
+        return !dequal(v, s)
       }) == null
   )
 }

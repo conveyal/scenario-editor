@@ -1,4 +1,4 @@
-import isEqual from 'lodash/isEqual'
+import {dequal} from 'dequal/lite'
 import Router from 'next/router'
 import {useCallback, useEffect, useState} from 'react'
 
@@ -9,7 +9,7 @@ export default function useRouteTo(to: string, props: any = {}) {
 
   useEffect(() => {
     const newRouteTo = routeTo(to, props)
-    if (!isEqual(newRouteTo, result)) {
+    if (!dequal(newRouteTo, result)) {
       setResult(newRouteTo)
 
       // Prefetch in production

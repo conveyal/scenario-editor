@@ -69,6 +69,7 @@
     "d3-scale-chromatic": "^2.0.0",
     "d3-shape": "^2.0.0",
     "date-fns": "^2.16.1",
+    "dequal": "^2.0.2",
     "emotion-theming": "^10.0.27",
     "http-proxy": "^1.18.1",
     "js-cookie": "^2.2.1",

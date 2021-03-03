@@ -1,6 +1,6 @@
-import isEqual from 'lodash/isEqual'
+import {dequal} from 'dequal/lite'
 import useSWR, {responseInterface} from 'swr'
-import {useEffect, useState} from 'react'
+import {useCallback, useState} from 'react'
 
 import {API_URL} from 'lib/constants'
 import authFetch from 'lib/utils/auth-fetch'
@@ -32,23 +32,20 @@ export default function useStatus(): responseInterface<
     MAX_REFRESH_INTERVAL_MS
   )
   const [prevData, setPrevData] = useState<CL.Status | void>()
-  const response = useSWR<CL.Status, ResponseError>(ACTIVITY_URL, swrFetcher, {
+  const onSuccess = useCallback((data) => {
+    if (prevData == null) {
+      setPrevData(data)
+    } else if (!dequal(prevData, data)) {
+      setPrevData(data)
+      setRefreshInterval(FAST_REFRESH_INTERVAL_MS)
+    } else {
+      setRefreshInterval(ri => ri + (ri < MAX_REFRESH_INTERVAL_MS ? FAST_REFRESH_INTERVAL_MS : 0))
+    }
+  }, [prevData])
+  return useSWR<CL.Status, ResponseError>(ACTIVITY_URL, swrFetcher, {
+    onSuccess,
     refreshInterval,
     refreshWhenOffline: true,
     revalidateOnFocus: true
   })
-
-  useEffect(() => {
-    if (response.data != null && !isEqual(prevData, response.data)) {
-      setPrevData(response.data)
-      setRefreshInterval(FAST_REFRESH_INTERVAL_MS)
-    } else {
-      setRefreshInterval(
-        (ri) =>
-          ri + (ri < MAX_REFRESH_INTERVAL_MS ? FAST_REFRESH_INTERVAL_MS : 0)
-      )
-    }
-  }, [prevData, response.data])
-
-  return response
 }

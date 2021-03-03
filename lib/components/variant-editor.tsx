@@ -64,7 +64,9 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
                 {message('variant.baseline')}
               </Text>
               <Tip label='Baseline (empty scenario) cannot be modified'>
-                <LockIcon />
+                <span>
+                  <LockIcon />
+                </span>
               </Tip>
             </Flex>
             {variants.map((name, index) => (

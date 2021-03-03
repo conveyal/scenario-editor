@@ -7,13 +7,13 @@ import {memo, useContext, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
+import {CREATING_ID} from 'lib/constants/region'
 import useRouteChanging from 'lib/hooks/use-route-changing'
+import useRouteTo from 'lib/hooks/use-route-to'
+import message from 'lib/message'
 import {routeTo} from 'lib/router'
-
-import {CREATING_ID} from '../constants/region'
-import message from '../message'
-import selectOutstandingRequests from '../selectors/outstanding-requests'
-import {UserContext} from '../user'
+import selectOutstandingRequests from 'lib/selectors/outstanding-requests'
+import {UserContext} from 'lib/user'
 
 import {
   BundlesIcon,
@@ -31,7 +31,6 @@ import {
 } from './icons'
 import SVGLogo from './logo.svg'
 import Tip from './tip'
-import useRouteTo from 'lib/hooks/use-route-to'
 
 const sidebarWidth = '40px'
 
@@ -235,7 +234,7 @@ const LogoSpinner = memo(() => {
   }, [outstandingRequests])
 
   if (outstandingRequests || routeChanging) {
-    return <LoadingIcon className='fa-spin' />
+    return <LoadingIcon className='fa-spin' id='sidebar-spinner' />
   }
 
   return (

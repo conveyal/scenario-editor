@@ -53,7 +53,7 @@ describe('Add Trip Pattern', () => {
       // Copy the current modification and navigate to it by clicking the toast
       cy.findByRole('button', {name: /Copy modification/i}).click()
       cy.loadingComplete()
-      cy.get('#react-toast').findByRole('alert').click({force: true})
+      cy.findToast().click({force: true})
       cy.navComplete()
 
       cy.findByText(/Copy existing timetable/).click()
@@ -116,7 +116,7 @@ describe('Add Trip Pattern', () => {
       cy.clickMapAtCoord([39.08, -84.49])
       cy.findByLabelText(/^Extend$/).uncheck({force: true})
       cy.clickMapAtCoord([39.08, -84.5])
-      cy.get('#react-toast').findByRole('alert')
+      cy.findToast()
       cy.findByLabelText(/^Extend$/).check({force: true})
     })
 

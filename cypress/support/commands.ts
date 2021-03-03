@@ -3,6 +3,11 @@ const unlog = {log: false}
 // Shortened helper for `findByRole('button', {name: /Name/})
 Cypress.Commands.add('findButton', (name) => cy.findByRole('button', {name}))
 
+// Get a toast
+Cypress.Commands.add('findToast', () =>
+  cy.get('#chakra-toast-portal').findByRole('alert')
+)
+
 // Load the home page. Wait for the "Skeleton" to disappear
 Cypress.Commands.add('visitHome', () => {
   cy.log('visitHome')

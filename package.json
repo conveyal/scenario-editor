@@ -106,6 +106,7 @@
     "simplebar": "^5.3.0",
     "simplebar-react": "^2.3.0",
     "swr": "^0.4.2",
+    "typescript": "^4.2.2",
     "uuid": "^8.3.2",
     "whatwg-fetch": "^3.6.2",
     "xorshift": "^1.1.1"
@@ -160,8 +161,7 @@
     "react-test-renderer": "^17.0.1",
     "redux-mock-store": "^1.5.4",
     "regenerator-runtime": "^0.13.7",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.2.2"
+    "rimraf": "^3.0.2"
   },
   "engines": {
     "node": "12.x"

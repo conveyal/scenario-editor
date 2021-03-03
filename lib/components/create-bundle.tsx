@@ -205,7 +205,7 @@ export default function CreateBundle() {
                 </Select>
               )}
             </TabPanel>
-            <TabPanel px={0}>
+            <TabPanel p={0}>
               {!reuseOsm && (
                 <Stack spacing={4} pt={4}>
                   <Heading size='sm'>

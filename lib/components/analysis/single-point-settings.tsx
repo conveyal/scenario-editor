@@ -520,7 +520,7 @@ function RequestSettings({
               colorScheme={colorScheme}
             >
               <TabPanels>
-                <TabPanel px={0}>
+                <TabPanel p={0}>
                   {tabIndex === 0 && (
                     <Stack spacing={SPACING}>
                       <ModeSelector
@@ -551,7 +551,7 @@ function RequestSettings({
                     </Stack>
                   )}
                 </TabPanel>
-                <TabPanel px={0}>
+                <TabPanel p={0}>
                   {tabIndex === 1 && (
                     <JSONEditor
                       isDisabled={isDisabled}

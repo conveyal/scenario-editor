@@ -285,7 +285,7 @@ function ModificationEditor({
           modification ? (
             <Tabs align='end' p={4} variant='soft-rounded'>
               <TabPanels>
-                <TabPanel px={0}>
+                <TabPanel p={0}>
                   <Stack spacing={4}>
                     <Box>
                       <Editable
@@ -320,7 +320,7 @@ function ModificationEditor({
                     </Box>
                   </Stack>
                 </TabPanel>
-                <TabPanel px={0}>
+                <TabPanel p={0}>
                   <JSONEditor
                     modification={modification}
                     save={updateLocally}

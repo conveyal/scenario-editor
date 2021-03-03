@@ -261,7 +261,7 @@ export default function ModificationsList({bundle, project}) {
             </InnerDock>
           </TabPanel>
 
-          <TabPanel px={0}>
+          <TabPanel p={0}>
             <VariantEditor showVariant={showVariant} variants={variants} />
           </TabPanel>
         </TabPanels>

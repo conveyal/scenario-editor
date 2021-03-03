@@ -65,10 +65,10 @@ export default withAuth(function AdminDashboard() {
             </Tab>
           </TabList>
           <TabPanels>
-            <TabPanel px={0}>
+            <TabPanel p={0}>
               <JobDashboard jobs={jobs} workers={workers} />
             </TabPanel>
-            <TabPanel px={0}>
+            <TabPanel p={0}>
               <WorkerList workers={workers} />
             </TabPanel>
           </TabPanels>

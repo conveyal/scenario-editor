@@ -2048,7 +2048,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                 id="tabs-20--tabpanel-1"
                 isSelected={false}
                 key=".1"
-                px={0}
+                p={0}
               >
                 <Styled(div)
                   __css={
@@ -2061,13 +2061,13 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                   hidden={true}
                   id="tabs-20--tabpanel-1"
                   outline="0"
-                  px={0}
+                  p={0}
                   role="tabpanel"
                   tabIndex={0}
                 >
                   <div
                     aria-labelledby="tabs-20--tab-1"
-                    className="chakra-tabs__tab-panel css-4a2mqa"
+                    className="chakra-tabs__tab-panel css-tiy5mv"
                     hidden={true}
                     id="tabs-20--tabpanel-1"
                     role="tabpanel"
@@ -2333,51 +2333,43 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                             label="Baseline (empty scenario) cannot be modified"
                                                             zIndex={1500}
                                                           >
-                                                            <FaLock
+                                                            <span
                                                               onBlur={[Function]}
                                                               onClick={[Function]}
                                                               onFocus={[Function]}
                                                               onMouseDown={[Function]}
                                                               onMouseEnter={[Function]}
                                                             >
-                                                              <IconBase
-                                                                attr={
-                                                                  Object {
-                                                                    "viewBox": "0 0 448 512",
-                                                                  }
-                                                                }
-                                                                onBlur={[Function]}
-                                                                onClick={[Function]}
-                                                                onFocus={[Function]}
-                                                                onMouseDown={[Function]}
-                                                                onMouseEnter={[Function]}
-                                                              >
-                                                                <svg
-                                                                  fill="currentColor"
-                                                                  height="1em"
-                                                                  onBlur={[Function]}
-                                                                  onClick={[Function]}
-                                                                  onFocus={[Function]}
-                                                                  onMouseDown={[Function]}
-                                                                  onMouseEnter={[Function]}
-                                                                  stroke="currentColor"
-                                                                  strokeWidth="0"
-                                                                  style={
+                                                              <FaLock>
+                                                                <IconBase
+                                                                  attr={
                                                                     Object {
-                                                                      "color": undefined,
+                                                                      "viewBox": "0 0 448 512",
                                                                     }
                                                                   }
-                                                                  viewBox="0 0 448 512"
-                                                                  width="1em"
-                                                                  xmlns="http://www.w3.org/2000/svg"
                                                                 >
-                                                                  <path
-                                                                    d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"
-                                                                    key="0"
-                                                                  />
-                                                                </svg>
-                                                              </IconBase>
-                                                            </FaLock>
+                                                                  <svg
+                                                                    fill="currentColor"
+                                                                    height="1em"
+                                                                    stroke="currentColor"
+                                                                    strokeWidth="0"
+                                                                    style={
+                                                                      Object {
+                                                                        "color": undefined,
+                                                                      }
+                                                                    }
+                                                                    viewBox="0 0 448 512"
+                                                                    width="1em"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                  >
+                                                                    <path
+                                                                      d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"
+                                                                      key="0"
+                                                                    />
+                                                                  </svg>
+                                                                </IconBase>
+                                                              </FaLock>
+                                                            </span>
                                                             <AnimatePresence />
                                                           </Tooltip>
                                                         </ForwardRef>

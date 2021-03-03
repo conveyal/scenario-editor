@@ -11,6 +11,7 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
       <Button
         isFullWidth={true}
         leftIcon={<FaChevronRight />}
+        mb={0}
         onClick={[Function]}
       >
         <Styled(button)
@@ -55,11 +56,12 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
             }
           }
           className="chakra-button"
+          mb={0}
           onClick={[Function]}
           type="button"
         >
           <button
-            className="chakra-button css-qdlqvw"
+            className="chakra-button css-naq3gw"
             onClick={[Function]}
             type="button"
           >
@@ -117,8 +119,7 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
         </Styled(button)>
       </Button>
       <Collapse
-        isOpen={false}
-        pt={4}
+        in={false}
       >
         <ForwardRef(MotionComponent)
           animate="exit"
@@ -131,9 +132,7 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
             }
           }
           initial={false}
-          isOpen={false}
           onAnimationComplete={[Function]}
-          pt={4}
           style={
             Object {
               "display": "none",
@@ -171,10 +170,8 @@ exports[`Component Collapsible snapshot(mount) 1`] = `
               }
             }
             initial={false}
-            isOpen={false}
             key="animation"
             onAnimationComplete={[Function]}
-            pt={4}
             style={
               Object {
                 "display": "none",

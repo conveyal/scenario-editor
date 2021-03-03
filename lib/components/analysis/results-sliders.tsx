@@ -37,10 +37,11 @@ export function CutoffSlider({isDisabled, ...p}) {
   return (
     <FormControl isDisabled={isDisabled} {...p}>
       <Stack align='center' isInline spacing={5}>
-        <FormLabel whiteSpace='nowrap' pb={0}>
+        <FormLabel whiteSpace='nowrap' pb={0} id={cutoffSlider.id}>
           Time cutoff
         </FormLabel>
         <Slider
+          aria-labelledby={cutoffSlider.id}
           isDisabled={isDisabled}
           min={1}
           max={120}
@@ -50,11 +51,7 @@ export function CutoffSlider({isDisabled, ...p}) {
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
-          <SliderThumb
-            aria-label='Time cutoff'
-            ref={cutoffSlider.ref}
-            boxSize='8'
-          >
+          <SliderThumb ref={cutoffSlider.ref} boxSize='8'>
             <Box fontSize='sm' fontWeight='bold'>
               {cutoffSlider.value}
             </Box>
@@ -85,8 +82,9 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
 
     return (
       <FormControl isDisabled={isDisabled} {...p}>
-        <FormLabel>Travel time percentile</FormLabel>
+        <FormLabel id={percentileSlider.id}>Travel time percentile</FormLabel>
         <Slider
+          aria-labelledby={percentileSlider.id}
           isDisabled={isDisabled}
           min={0}
           max={4}
@@ -96,11 +94,7 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
-          <SliderThumb
-            aria-label='Travel time percentile'
-            ref={percentileSlider.ref}
-            boxSize='8'
-          >
+          <SliderThumb ref={percentileSlider.ref} boxSize='8'>
             <Box fontSize='sm' fontWeight='bold'>
               {TRAVEL_TIME_PERCENTILES[percentileSlider.value]}
             </Box>

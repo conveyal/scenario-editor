@@ -6,24 +6,26 @@ import {useEffect, useState} from 'react'
 import BannerAlert from './banner-alert'
 
 const isValidatingTimeout = 10_000
-function useTimeout(timeout = isValidatingTimeout) {
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    setTimeout(() => setReady(true), timeout)
-  }, [timeout])
-  return ready
-}
-
 const unusableMessage =
   'Application will be unusable until connection can be restablished.'
+
 export default function APIStatusBar() {
-  const showIsValidating = useTimeout()
+  const [showIsValidating, setShowIsValidating] = useState(false)
   const isOnline = useIsOnline()
-  const response = useStatus()
+  const {error, isValidating} = useStatus()
+
+  useEffect(() => {
+    if (!isValidating) return
+    const id = setTimeout(() => setShowIsValidating(true), isValidatingTimeout)
+    return () => {
+      clearTimeout(id)
+      setShowIsValidating(false)
+    }
+  }, [isValidating])
 
   if (!isOnline) {
     // API server may be reached while offline but in development mode.
-    if (response.error || response.isValidating) {
+    if (error || isValidating) {
       return (
         <BannerAlert status='error' variant='solid'>
           <AlertTitle>
@@ -32,13 +34,13 @@ export default function APIStatusBar() {
         </BannerAlert>
       )
     }
-  } else if (response.error) {
+  } else if (error) {
     return (
       <BannerAlert status='error' variant='solid'>
         <AlertTitle>API server cannot be reached. {unusableMessage}</AlertTitle>
       </BannerAlert>
     )
-  } else if (response.isValidating && showIsValidating) {
+  } else if (isValidating && showIsValidating) {
     return (
       <BannerAlert status='warning'>
         <AlertTitle>Establishing connection...</AlertTitle>

@@ -1,5 +1,4 @@
-import {Box, Button, Collapse} from '@chakra-ui/react'
-import {useState} from 'react'
+import {Box, Button, Collapse, useDisclosure} from '@chakra-ui/react'
 
 import {ChevronDown, ChevronRight} from 'lib/components/icons'
 
@@ -12,19 +11,19 @@ export default function Collapsible({
   title,
   ...p
 }) {
-  const [expanded, setExpanded] = useState(defaultExpanded)
-  const icon = expanded ? <ChevronDown /> : <ChevronRight />
+  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: defaultExpanded})
+  const icon = isOpen ? <ChevronDown /> : <ChevronRight />
   return (
     <Box {...p}>
       <Button
-        pb={expanded ? 4 : 0}
+        mb={isOpen ? 4 : 0}
         isFullWidth
         leftIcon={icon}
-        onClick={() => setExpanded((e) => !e)}
+        onClick={onToggle}
       >
         {title}
       </Button>
-      <Collapse in={expanded}>{children}</Collapse>
+      <Collapse in={isOpen}>{children}</Collapse>
     </Box>
   )
 }

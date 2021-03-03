@@ -12,7 +12,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "prebuild": "yarn",
     "build": "next build",
     "check-format": "prettier --list-different .",
     "predev": "yarn",

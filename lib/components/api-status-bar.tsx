@@ -1,4 +1,4 @@
-import {AlertTitle} from '@chakra-ui/core'
+import {AlertTitle} from '@chakra-ui/react'
 import useStatus from 'lib/hooks/use-status'
 import useIsOnline from 'lib/hooks/use-is-online'
 import {useEffect, useState} from 'react'

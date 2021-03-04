@@ -1,4 +1,4 @@
-import {Alert, AlertIcon, AlertProps} from '@chakra-ui/core'
+import {Alert, AlertIcon, AlertProps} from '@chakra-ui/react'
 
 export default function BannerAlert({children, ...p}: AlertProps) {
   return (

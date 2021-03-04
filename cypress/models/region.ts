@@ -51,6 +51,10 @@ export default class Region extends Model {
     ;(spatialDataset ?? this.defaultSpatialDataset).select()
     cy.fetchResults()
 
+    return this.opportunitiesComparison()
+  }
+
+  opportunitiesComparison() {
     return cy
       .findByLabelText('Opportunities within isochrone')
       .itsNumericText()

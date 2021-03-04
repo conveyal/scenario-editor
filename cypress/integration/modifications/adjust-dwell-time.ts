@@ -3,7 +3,7 @@ import {LatLngTuple} from 'leaflet'
 import {getDefaultRegion, scratchRegion} from '../utils'
 
 const intersection: LatLngTuple = [39.004, -84.621]
-const northEastCorner: LatLngTuple = [39.1, -84.509]
+const northEastCorner: LatLngTuple = [39.112, -84.471]
 
 // Region bounds
 const {bounds} = scratchRegion
@@ -95,9 +95,10 @@ describe('Adjust Dwell Time', () => {
 
   it('should not effect the accessibility when far from the stop', () => {
     region.setupAnalysis({project, scenario: scenarios[1]})
+    region.fetchAccessibilityComparison(northEastCorner)
     cy.setTimeCutoff(30)
     region
-      .fetchAccessibilityComparison(northEastCorner)
+      .opportunitiesComparison()
       .should(([a, c]) => expect(a).to.be.equal(c))
   })
 

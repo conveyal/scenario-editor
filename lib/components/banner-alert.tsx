@@ -1,4 +1,4 @@
-import {Alert, AlertIcon, AlertProps} from '@chakra-ui/react'
+import {Alert, AlertProps} from '@chakra-ui/react'
 
 export default function BannerAlert({children, ...p}: AlertProps) {
   return (
@@ -9,7 +9,6 @@ export default function BannerAlert({children, ...p}: AlertProps) {
       zIndex={10_000}
       {...p}
     >
-      <AlertIcon />
       {children}
     </Alert>
   )

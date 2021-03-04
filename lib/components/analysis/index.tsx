@@ -25,6 +25,7 @@ import message from 'lib/message'
 
 import selectAnalysisBounds from 'lib/selectors/analysis-bounds'
 import selectCurrentProject from 'lib/selectors/current-project'
+import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
 
@@ -216,6 +217,7 @@ function Results({
     get(s, 'analysis.resultsSettings', [])
   )
   const opportunityDataset = useSelector(activeOpportunityDataset)
+  const defaultCutoff = useSelector(selectMaxTripDurationMinutes)
   return (
     <Stack spacing={P.md} p={P.md}>
       <Skeleton
@@ -227,6 +229,7 @@ function Results({
       </Skeleton>
 
       <ResultsSliders
+        defaultCutoff={defaultCutoff}
         isDisabled={isDisabled}
         isStale={isStale}
         regionId={region._id}

@@ -4,8 +4,6 @@ import {
   AlertIcon,
   AlertTitle,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   List,
   ListItem,

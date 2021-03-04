@@ -26,6 +26,8 @@ const Analytics = () => (
 const ZenDeskWidget = () =>
   process.env.ZENDESK_KEY != null && (
     <script
+      async
+      defer
       id='ze-snippet'
       src={`https://static.zdassets.com/ekr/snippet.js?key=${process.env.ZENDESK_KEY}`}
     />

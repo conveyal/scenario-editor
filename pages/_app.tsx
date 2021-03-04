@@ -1,3 +1,4 @@
+import {UserProvider} from '@auth0/nextjs-auth0'
 import {useToast} from '@chakra-ui/react'
 import fpHas from 'lodash/fp/has'
 import {NextComponentType} from 'next'
@@ -8,9 +9,11 @@ import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
 import ErrorModal from 'lib/components/error-modal'
+import {AUTH_DISABLED} from 'lib/constants'
 import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
 import LogRocket from 'lib/logrocket'
 import {swrFetcher} from 'lib/utils/safe-fetch'
+import {localUser} from 'lib/user'
 
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
@@ -78,22 +81,24 @@ export default class ConveyalAnalysis extends App {
     return (
       <ChakraTheme>
         <ErrorHandler>
-          <SWRWrapper>
-            <Head>
-              <title key='title'>Conveyal Analysis</title>
-            </Head>
-            {this.state.error ? (
-              <ErrorModal
-                error={this.state.error}
-                clear={() => this.setState({error: null})}
-                title='Application error'
-              />
-            ) : (
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            )}
-          </SWRWrapper>
+          <UserProvider user={AUTH_DISABLED ? localUser : pageProps.user}>
+            <SWRWrapper>
+              <Head>
+                <title key='title'>Conveyal Analysis</title>
+              </Head>
+              {this.state.error ? (
+                <ErrorModal
+                  error={this.state.error}
+                  clear={() => this.setState({error: null})}
+                  title='Application error'
+                />
+              ) : (
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              )}
+            </SWRWrapper>
+          </UserProvider>
         </ErrorHandler>
       </ChakraTheme>
     )

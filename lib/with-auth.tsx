@@ -1,8 +1,4 @@
-import {
-  getSession,
-  UserProvider,
-  withPageAuthRequired
-} from '@auth0/nextjs-auth0'
+import {getSession, withPageAuthRequired} from '@auth0/nextjs-auth0'
 import {Box} from '@chakra-ui/react'
 import {
   GetServerSideProps,
@@ -74,7 +70,7 @@ export default function withAuth(PageComponent) {
 
     if (!user) return <LoadingScreen />
     return (
-      <UserProvider user={user}>
+      <>
         {isAdmin(user) && (
           <>
             <DevBar />
@@ -84,19 +80,19 @@ export default function withAuth(PageComponent) {
           </>
         )}
         <PageComponent user={user} {...p} />
-      </UserProvider>
+      </>
     )
   }
 
   function UnauthenticatedComponent(p) {
     return (
-      <UserProvider user={localUser}>
+      <>
         <DevBar />
         <Head>
           <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
         </Head>
         <PageComponent user={localUser} {...p} />
-      </UserProvider>
+      </>
     )
   }
 

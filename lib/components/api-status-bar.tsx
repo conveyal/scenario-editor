@@ -6,8 +6,7 @@ import {useEffect, useState} from 'react'
 import BannerAlert from './banner-alert'
 
 const isValidatingTimeout = 10_000
-const unusableMessage =
-  'Lost connection to Conveyal servers.'
+const unusableMessage = 'Lost connection to Conveyal servers.'
 
 const IsValidating = () => (
   <BannerAlert status='warning'>
@@ -17,15 +16,15 @@ const IsValidating = () => (
 
 const NoAPI = () => (
   <BannerAlert status='error' variant='solid'>
-    <AlertTitle>{unusableMessage} Contact your support team if this message persists.</AlertTitle>
+    <AlertTitle>
+      {unusableMessage} Contact your support team if this message persists.
+    </AlertTitle>
   </BannerAlert>
 )
 
 const NotOnline = () => (
   <BannerAlert status='error' variant='solid'>
-    <AlertTitle>
-      {unusableMessage} Check your internet connection.
-    </AlertTitle>
+    <AlertTitle>{unusableMessage} Check your internet connection.</AlertTitle>
   </BannerAlert>
 )
 

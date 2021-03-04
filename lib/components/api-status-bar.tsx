@@ -24,7 +24,7 @@ const NoAPI = () => (
 const NotOnline = () => (
   <BannerAlert status='error' variant='solid'>
     <AlertTitle>
-      You are not connected to the internet. {unusableMessage}
+      {unusableMessage} Check your internet connection.
     </AlertTitle>
   </BannerAlert>
 )

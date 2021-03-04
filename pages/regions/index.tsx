@@ -1,9 +1,8 @@
 // This page mimics the home page but without Server Side Rendering
-import useUser from 'lib/hooks/use-user'
+import withAuth from 'lib/with-auth'
 
 import IndexPage from '../'
 
-export default function SelectRegion() {
-  const user = useUser()
+export default withAuth(function SelectRegion({user}) {
   return <IndexPage user={user} />
-}
+})

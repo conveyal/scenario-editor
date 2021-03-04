@@ -18,8 +18,8 @@ const isAdmin = (user) =>
 // DEV Bar Style
 const DevBar = () => (
   <Box
-    className='DEV'
-    mt='-4px'
+    bg='red.500'
+    height='1px'
     position='absolute'
     width='100vw'
     zIndex={10000}
@@ -30,24 +30,26 @@ const DevBar = () => (
  * Ensure that a Page component is authenticated before rendering.
  */
 const withAuth = (PageComponent) =>
-  withPageAuthRequired(function AuthenticatedComponent(
-    p: IWithAuthProps
-  ): JSX.Element {
+  withPageAuthRequired(function AuthenticatedComponent({
+    user,
+    ...p
+  }: IWithAuthProps): JSX.Element {
     useEffect(() => {
-      if (p.user) storeUser(p.user)
-    }, [p.user])
+      if (user) storeUser(user)
+    }, [user])
 
-    if (!p.user) return <LoadingScreen />
+    if (!user) return <LoadingScreen />
     return (
-      <UserProvider user={p.user}>
-        {isAdmin(p.user) ? (
-          <DevBar />
-        ) : (
-          <Head>
-            <style id='DEVSTYLE'>{`.DEV{display: none;}`}</style>
-          </Head>
+      <UserProvider user={user}>
+        {isAdmin(user) && (
+          <>
+            <DevBar />
+            <Head>
+              <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
+            </Head>
+          </>
         )}
-        <PageComponent {...p} />
+        <PageComponent user={user} {...p} />
       </UserProvider>
     )
   })

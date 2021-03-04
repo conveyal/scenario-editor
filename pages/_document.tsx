@@ -36,6 +36,7 @@ export default class extends Document {
     return (
       <Html lang='en'>
         <Head>
+          <title key='title'>Conveyal Analysis</title>
           <link
             rel='preconnect'
             href='https://fonts.gstatic.com'

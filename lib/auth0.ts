@@ -1,13 +1,13 @@
-import {initAuth0} from '@auth0/nextjs-auth0'
-import {ISignInWithAuth0} from '@auth0/nextjs-auth0/dist/instance'
-import {ISession} from '@auth0/nextjs-auth0/dist/session/session'
+import {GetAccessTokenResult, initAuth0} from '@auth0/nextjs-auth0'
+import {SignInWithAuth0} from '@auth0/nextjs-auth0/dist/instance'
+import {fromJson as sessionFromJSON} from '@auth0/nextjs-auth0/dist/session/session'
 import {parse} from 'cookie'
-import {IncomingMessage} from 'http'
+import {IncomingMessage, ServerResponse} from 'http'
 import ms from 'ms'
 
 import {IUser} from './user'
 
-const cookieLifetime = ms('30 days') / 1000
+const rollingDuration = ms('30 days') / 1000
 const httpTimeout = ms('10s')
 const scope = 'openid profile id_token'
 
@@ -21,41 +21,46 @@ const auth0s = {
   // [origin]: ISignInWithAuth0
 }
 
-function createAuth0(origin: string): ISignInWithAuth0 {
+function createAuth0(baseURL: string): SignInWithAuth0 {
   if (process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true') {
     return {
+      handleAuth: () => () => {},
       handleCallback: async () => {},
       handleLogin: async () => {},
       handleLogout: async () => {},
       handleProfile: async () => {},
-      getSession: async (): Promise<ISession> => ({
-        createdAt: Date.now(),
-        user: {
-          name: 'local',
-          'http://conveyal/accessGroup': 'local'
-        },
-        idToken: 'fake'
+      getAccessToken: async (): Promise<GetAccessTokenResult> => ({
+        accessToken: 'access-token'
       }),
-      requireAuthentication: (fn) => fn,
-      tokenCache: () => ({
-        getAccessToken: async () => ({})
-      })
+      getSession: () =>
+        sessionFromJSON({
+          createdAt: Date.now(),
+          user: {
+            name: 'local',
+            'http://conveyal/accessGroup': 'local'
+          },
+          idToken: 'fake'
+        }),
+      withApiAuthRequired: (fn) => fn,
+      withPageAuthRequired: (fn) => fn
     }
   } else {
     return initAuth0({
-      clientId: process.env.AUTH0_CLIENT_ID,
-      clientSecret: process.env.AUTH0_CLIENT_SECRET,
-      scope,
-      domain: process.env.AUTH0_DOMAIN,
-      redirectUri: `${origin}/api/callback`,
-      postLogoutRedirectUri: origin,
-      session: {
-        cookieSecret: process.env.SESSION_COOKIE_SECRET,
-        cookieLifetime,
-        storeIdToken: true
+      authorizationParams: {
+        scope
       },
-      oidcClient: {
-        httpTimeout
+      baseURL,
+      clientID: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      httpTimeout,
+      issuerBaseURL: process.env.AUTH0_DOMAIN,
+      routes: {
+        callback: '/api/callback',
+        postLogoutRedirect: '/'
+      },
+      secret: process.env.SESSION_COOKIE_SECRET,
+      session: {
+        rollingDuration
       }
     })
   }
@@ -64,7 +69,7 @@ function createAuth0(origin: string): ISignInWithAuth0 {
 // Dyanmically create the Auth0 instance based upon a request
 export default function initAuth0WithReq(
   req: IncomingMessage
-): ISignInWithAuth0 {
+): SignInWithAuth0 {
   const host = req.headers.host
   const protocol = /^localhost(:\d+)?$/.test(host) ? 'http:' : 'https:'
   const origin = `${protocol}//${host}`
@@ -76,9 +81,9 @@ export default function initAuth0WithReq(
 /**
  * Flatten the session object and assign the accessGroup without the http portion.
  */
-export async function getUser(req: IncomingMessage): Promise<IUser> {
+export function getUser(req: IncomingMessage, res: ServerResponse): IUser {
   const auth0 = initAuth0WithReq(req)
-  const session = await auth0.getSession(req)
+  const session = auth0.getSession(req, res)
   if (!session) {
     throw new Error('User session does not exist. User must be logged in.')
   }
@@ -103,8 +108,11 @@ export async function getUser(req: IncomingMessage): Promise<IUser> {
 /**
  * Helper function for retrieving the access group.
  */
-export async function getAccessGroup(req: IncomingMessage): Promise<string> {
-  const user = await getUser(req)
+export async function getAccessGroup(
+  req: IncomingMessage,
+  res: ServerResponse
+): Promise<string> {
+  const user = await getUser(req, res)
   if (user.adminTempAccessGroup && user.adminTempAccessGroup.length > 0) {
     return user.adminTempAccessGroup
   }

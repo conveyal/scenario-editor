@@ -7,7 +7,7 @@ import BannerAlert from './banner-alert'
 
 const isValidatingTimeout = 10_000
 const unusableMessage =
-  'Application will be unusable until connection can be restablished.'
+  'Lost connection to Conveyal servers.'
 
 const IsValidating = () => (
   <BannerAlert status='warning'>

@@ -17,8 +17,7 @@ import {
   ModalHeader,
   Stack,
   ModalFooter
-} from '@chakra-ui/core'
-import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import {dequal} from 'dequal/lite'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
@@ -31,6 +30,7 @@ import {ObjectToTable} from './analysis/profile-request-display'
 import {ConfirmDialog} from './confirm-button'
 import Select from './select'
 import IconButton from './icon-button'
+import {AddIcon, DeleteIcon, EditIcon} from './icons'
 
 // Number precision
 const isWithinTolerance = (n1: number, n2: number) => Math.abs(n1 - n2) < 1e-6
@@ -158,31 +158,33 @@ export default memo<Props>(function PresetChooser({
             <Button
               isDisabled={isDisabled}
               onClick={createPresetAction.onOpen}
-              rightIcon='small-add'
+              rightIcon={<AddIcon />}
               size='xs'
-              variantColor='green'
+              colorScheme='green'
             >
               Save
             </Button>
           )}
           {selectedPreset && (
             <IconButton
-              icon={faEdit}
               isDisabled={isDisabled}
               label='Edit preset name'
               onClick={editPresetAction.onOpen}
               size='xs'
-              variantColor='yellow'
-            />
+              colorScheme='yellow'
+            >
+              <EditIcon />
+            </IconButton>
           )}
           {selectedPreset && (
             <IconButton
-              icon={faTrash}
               label='Delete selected preset'
               onClick={removeAction.onOpen}
               size='xs'
-              variantColor='red'
-            />
+              colorScheme='red'
+            >
+              <DeleteIcon />
+            </IconButton>
           )}
         </Stack>
       </Flex>
@@ -297,11 +299,10 @@ function CreatePreset({create, currentSettings, onClose, regionId}) {
         </ModalBody>
         <ModalFooter>
           <Button
-            leftIcon='small-add'
             isDisabled={nameInput.isInvalid}
             isLoading={isCreating}
             onClick={_create}
-            variantColor='green'
+            colorScheme='green'
           >
             Create preset
           </Button>
@@ -367,7 +368,7 @@ function EditPreset({preset, onClose, update}) {
             isDisabled={nameInput.isInvalid}
             isLoading={isSaving}
             onClick={_update}
-            variantColor='green'
+            colorScheme='green'
           >
             Save
           </Button>

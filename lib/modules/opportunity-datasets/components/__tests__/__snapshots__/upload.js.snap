@@ -2,52 +2,55 @@
 
 exports[`upload should render without errors 1`] = `
 <UploadOpportunityDataset>
-  <ForwardRef
-    as="form"
+  <form
     onSubmit={[Function]}
-    spacing={4}
   >
-    <Flex
-      as="form"
-      direction="column"
-      onSubmit={[Function]}
+    <Stack
+      spacing={4}
     >
-      <Box
-        as="form"
+      <Styled(div)
+        __css={
+          Object {
+            "& > *:not(style) ~ *:not(style)": Object {
+              "marginStart": 0,
+              "marginTop": 4,
+            },
+          }
+        }
+        className="chakra-stack"
         display="flex"
         flexDirection="column"
-        onSubmit={[Function]}
       >
-        <form
-          className="css-j7qwjs"
-          onSubmit={[Function]}
+        <div
+          className="chakra-stack css-4daikc"
         >
           <Heading
             key=".0"
-            mb={4}
             size="md"
           >
-            <Box
-              as="h2"
-              fontFamily="heading"
-              fontSize="xl"
-              fontWeight="bold"
-              lineHeight="shorter"
-              mb={4}
+            <Styled(h2)
+              __css={
+                Object {
+                  "fontFamily": "heading",
+                  "fontSize": "xl",
+                  "fontWeight": "bold",
+                  "lineHeight": 1.2,
+                }
+              }
+              className="chakra-heading"
             >
               <h2
-                className="css-k9oqgk"
+                className="chakra-heading css-1hm1kf2"
               >
                 Upload a new spatial dataset
               </h2>
-            </Box>
+            </Styled(h2)>
           </Heading>
           <Box
             key=".1"
-            mb={4}
           >
             <div
-              className="css-acwcvw"
+              className="css-0"
             >
               Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
             </div>
@@ -55,617 +58,689 @@ exports[`upload should render without errors 1`] = `
           <FormControl
             isRequired={true}
             key=".2"
-            mb={4}
           >
-            <Box
-              mb={4}
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              className="chakra-form-control"
               role="group"
             >
               <div
-                className="css-acwcvw"
+                className="chakra-form-control css-1kxonj9"
                 role="group"
               >
                 <FormLabel
                   htmlFor="Name"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
                     htmlFor="Name"
-                    opacity="1"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-1-label"
                   >
                     <label
-                      className="css-176s5fq"
+                      className="chakra-form__label css-1qqx8g3"
                       htmlFor="Name"
+                      id="field-1-label"
                     >
                       Spatial dataset
                        name
                       <RequiredIndicator>
-                        <Box
-                          aria-hidden="true"
-                          as="span"
-                          color="red.500"
-                          ml={1}
+                        <Styled(span)
+                          __css={
+                            Object {
+                              "color": "red.500",
+                              "ml": 1,
+                            }
+                          }
+                          aria-hidden={true}
+                          className="chakra-form__required-indicator"
+                          role="presentation"
                         >
                           <span
-                            aria-hidden="true"
-                            className="css-i02c70"
+                            aria-hidden={true}
+                            className="chakra-form__required-indicator css-nnjw4v"
+                            role="presentation"
                           >
                             *
                           </span>
-                        </Box>
+                        </Styled(span)>
                       </RequiredIndicator>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
                   id="Name"
-                  isFullWidth={true}
                   name="Name"
-                  size="md"
-                  variant="outline"
                 >
-                  <PseudoBox
-                    _disabled={
+                  <Styled(input)
+                    __css={
                       Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
+                        "_disabled": Object {
+                          "cursor": "not-allowed",
+                          "opacity": 0.4,
+                        },
+                        "_focus": Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                          "zIndex": 1,
+                        },
+                        "_hover": Object {
+                          "borderColor": "gray.300",
+                        },
+                        "_invalid": Object {
+                          "borderColor": "#E53E3E",
+                          "boxShadow": "0 0 0 1px #E53E3E",
+                        },
+                        "_readOnly": Object {
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        },
+                        "appearance": "none",
+                        "bg": "inherit",
+                        "border": "1px solid",
+                        "borderColor": "inherit",
+                        "borderRadius": "md",
+                        "fontSize": "md",
+                        "h": 10,
+                        "minWidth": 0,
+                        "outline": 0,
+                        "position": "relative",
+                        "px": 4,
+                        "transition": "all 0.2s",
+                        "width": "100%",
                       }
                     }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
                     aria-required={true}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
-                    display="flex"
-                    fontSize="md"
-                    height={10}
+                    className="chakra-input"
+                    disabled={false}
                     id="Name"
                     name="Name"
-                    outline="none"
-                    position="relative"
-                    px={4}
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    readOnly={false}
                     required={true}
-                    rounded="md"
-                    transition="all 0.2s"
-                    width="100%"
                   >
                     <input
                       aria-required={true}
-                      className="css-1ga4kqw"
+                      className="chakra-input css-18q2db8"
+                      disabled={false}
                       id="Name"
                       name="Name"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      readOnly={false}
                       required={true}
                     />
-                  </PseudoBox>
+                  </Styled(input)>
                 </Input>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <FormControl
             isRequired={true}
             key=".3"
-            mb={4}
           >
-            <Box
-              mb={4}
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              className="chakra-form-control"
               role="group"
             >
               <div
-                className="css-acwcvw"
+                className="chakra-form-control css-1kxonj9"
                 role="group"
               >
                 <FormLabel
                   htmlFor="files"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
                     htmlFor="files"
-                    opacity="1"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-2-label"
                   >
                     <label
-                      className="css-176s5fq"
+                      className="chakra-form__label css-1qqx8g3"
                       htmlFor="files"
+                      id="field-2-label"
                     >
                       Select spatial dataset
                       <RequiredIndicator>
-                        <Box
-                          aria-hidden="true"
-                          as="span"
-                          color="red.500"
-                          ml={1}
+                        <Styled(span)
+                          __css={
+                            Object {
+                              "color": "red.500",
+                              "ml": 1,
+                            }
+                          }
+                          aria-hidden={true}
+                          className="chakra-form__required-indicator"
+                          role="presentation"
                         >
                           <span
-                            aria-hidden="true"
-                            className="css-i02c70"
+                            aria-hidden={true}
+                            className="chakra-form__required-indicator css-nnjw4v"
+                            role="presentation"
                           >
                             *
                           </span>
-                        </Box>
+                        </Styled(span)>
                       </RequiredIndicator>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
                   id="files"
-                  isFullWidth={true}
                   multiple={true}
                   name="files"
                   onChange={[Function]}
-                  size="md"
                   type="file"
-                  variant="outline"
                 >
-                  <PseudoBox
-                    _disabled={
+                  <Styled(input)
+                    __css={
                       Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
+                        "_disabled": Object {
+                          "cursor": "not-allowed",
+                          "opacity": 0.4,
+                        },
+                        "_focus": Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                          "zIndex": 1,
+                        },
+                        "_hover": Object {
+                          "borderColor": "gray.300",
+                        },
+                        "_invalid": Object {
+                          "borderColor": "#E53E3E",
+                          "boxShadow": "0 0 0 1px #E53E3E",
+                        },
+                        "_readOnly": Object {
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        },
+                        "appearance": "none",
+                        "bg": "inherit",
+                        "border": "1px solid",
+                        "borderColor": "inherit",
+                        "borderRadius": "md",
+                        "fontSize": "md",
+                        "h": 10,
+                        "minWidth": 0,
+                        "outline": 0,
+                        "position": "relative",
+                        "px": 4,
+                        "transition": "all 0.2s",
+                        "width": "100%",
                       }
                     }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
                     aria-required={true}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
-                    display="flex"
-                    fontSize="md"
-                    height={10}
+                    className="chakra-input"
+                    disabled={false}
                     id="files"
                     multiple={true}
                     name="files"
+                    onBlur={[Function]}
                     onChange={[Function]}
-                    outline="none"
-                    position="relative"
-                    px={4}
+                    onFocus={[Function]}
+                    readOnly={false}
                     required={true}
-                    rounded="md"
-                    transition="all 0.2s"
                     type="file"
-                    width="100%"
                   >
                     <input
                       aria-required={true}
-                      className="css-1ga4kqw"
+                      className="chakra-input css-18q2db8"
+                      disabled={false}
                       id="files"
                       multiple={true}
                       name="files"
+                      onBlur={[Function]}
                       onChange={[Function]}
+                      onFocus={[Function]}
+                      readOnly={false}
                       required={true}
                       type="file"
                     />
-                  </PseudoBox>
+                  </Styled(input)>
                 </Input>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <Heading
             key=".4"
-            mb={4}
             size="sm"
           >
-            <Box
-              as="h2"
-              fontFamily="heading"
-              fontSize="md"
-              fontWeight="bold"
-              lineHeight="shorter"
-              mb={4}
+            <Styled(h2)
+              __css={
+                Object {
+                  "fontFamily": "heading",
+                  "fontSize": "md",
+                  "fontWeight": "bold",
+                  "lineHeight": 1.2,
+                }
+              }
+              className="chakra-heading"
             >
               <h2
-                className="css-35hltn"
+                className="chakra-heading css-14g9y4z"
               >
                 CSV Options
               </h2>
-            </Box>
+            </Styled(h2)>
           </Heading>
-          <ForwardRef
+          <Stack
             isInline={true}
             key=".5"
-            mb={4}
           >
-            <Flex
-              direction="row"
-              mb={4}
+            <Styled(div)
+              __css={
+                Object {
+                  "& > *:not(style) ~ *:not(style)": Object {
+                    "marginStart": "0.5rem",
+                    "marginTop": 0,
+                  },
+                }
+              }
+              className="chakra-stack"
+              display="flex"
+              flexDirection="row"
             >
-              <Box
-                display="flex"
-                flexDirection="row"
-                mb={4}
+              <div
+                className="chakra-stack css-loe1j3"
               >
-                <div
-                  className="css-qml3vj"
+                <FormControl
+                  flex="1"
+                  isDisabled={true}
+                  isRequired={true}
+                  key=".0"
                 >
-                  <FormControl
+                  <Styled(div)
+                    __css={
+                      Object {
+                        "position": "relative",
+                        "width": "100%",
+                      }
+                    }
+                    className="chakra-form-control"
                     flex="1"
-                    isDisabled={true}
-                    isRequired={true}
-                    key=".0"
-                    mr={2}
+                    role="group"
                   >
-                    <Box
-                      flex="1"
-                      mr={2}
+                    <div
+                      className="chakra-form-control css-ev6f8j"
                       role="group"
                     >
-                      <div
-                        className="css-1ne8nzs"
-                        role="group"
+                      <FormLabel
+                        htmlFor="latField"
                       >
-                        <FormLabel
-                          htmlFor="latField"
-                        >
-                          <Box
-                            as="label"
-                            display="inline-block"
-                            fontSize="md"
-                            fontWeight="medium"
-                            htmlFor="latField"
-                            opacity="0.4"
-                            pb="4px"
-                            pr="12px"
-                            textAlign="left"
-                            verticalAlign="middle"
-                          >
-                            <label
-                              className="css-e07mjy"
-                              htmlFor="latField"
-                            >
-                              Latitude field
-                              <RequiredIndicator>
-                                <Box
-                                  aria-hidden="true"
-                                  as="span"
-                                  color="red.500"
-                                  ml={1}
-                                >
-                                  <span
-                                    aria-hidden="true"
-                                    className="css-i02c70"
-                                  >
-                                    *
-                                  </span>
-                                </Box>
-                              </RequiredIndicator>
-                            </label>
-                          </Box>
-                        </FormLabel>
-                        <Input
-                          as="input"
-                          defaultValue="lat"
-                          errorBorderColor="red.500"
-                          focusBorderColor="blue.500"
-                          id="latField"
-                          isFullWidth={true}
-                          name="latField"
-                          placeholder="lat"
-                          size="md"
-                          variant="outline"
-                        >
-                          <PseudoBox
-                            _disabled={
-                              Object {
-                                "cursor": "not-allowed",
-                                "opacity": "0.4",
-                              }
+                        <Styled(label)
+                          __css={
+                            Object {
+                              "_disabled": Object {
+                                "opacity": 0.4,
+                              },
+                              "display": "block",
+                              "fontSize": "md",
+                              "fontWeight": "medium",
+                              "marginEnd": 3,
+                              "mb": 2,
+                              "opacity": 1,
+                              "textAlign": "start",
+                              "transition": "all 0.2s",
                             }
-                            _focus={
-                              Object {
+                          }
+                          className="chakra-form__label"
+                          data-disabled=""
+                          htmlFor="latField"
+                          id="field-3-label"
+                        >
+                          <label
+                            className="chakra-form__label css-1qqx8g3"
+                            data-disabled=""
+                            htmlFor="latField"
+                            id="field-3-label"
+                          >
+                            Latitude field
+                            <RequiredIndicator>
+                              <Styled(span)
+                                __css={
+                                  Object {
+                                    "color": "red.500",
+                                    "ml": 1,
+                                  }
+                                }
+                                aria-hidden={true}
+                                className="chakra-form__required-indicator"
+                                role="presentation"
+                              >
+                                <span
+                                  aria-hidden={true}
+                                  className="chakra-form__required-indicator css-nnjw4v"
+                                  role="presentation"
+                                >
+                                  *
+                                </span>
+                              </Styled(span)>
+                            </RequiredIndicator>
+                          </label>
+                        </Styled(label)>
+                      </FormLabel>
+                      <Input
+                        defaultValue="lat"
+                        id="latField"
+                        name="latField"
+                        placeholder="lat"
+                      >
+                        <Styled(input)
+                          __css={
+                            Object {
+                              "_disabled": Object {
+                                "cursor": "not-allowed",
+                                "opacity": 0.4,
+                              },
+                              "_focus": Object {
                                 "borderColor": "#3182ce",
                                 "boxShadow": "0 0 0 1px #3182ce",
                                 "zIndex": 1,
-                              }
-                            }
-                            _hover={
-                              Object {
+                              },
+                              "_hover": Object {
                                 "borderColor": "gray.300",
-                              }
-                            }
-                            _invalid={
-                              Object {
-                                "borderColor": "#e53e3e",
-                                "boxShadow": "0 0 0 1px #e53e3e",
-                              }
-                            }
-                            _readOnly={
-                              Object {
-                                "bg": "transparent",
+                              },
+                              "_invalid": Object {
+                                "borderColor": "#E53E3E",
+                                "boxShadow": "0 0 0 1px #E53E3E",
+                              },
+                              "_readOnly": Object {
                                 "boxShadow": "none !important",
                                 "userSelect": "all",
-                              }
+                              },
+                              "appearance": "none",
+                              "bg": "inherit",
+                              "border": "1px solid",
+                              "borderColor": "inherit",
+                              "borderRadius": "md",
+                              "fontSize": "md",
+                              "h": 10,
+                              "minWidth": 0,
+                              "outline": 0,
+                              "position": "relative",
+                              "px": 4,
+                              "transition": "all 0.2s",
+                              "width": "100%",
                             }
-                            alignItems="center"
-                            appearance="none"
-                            aria-disabled={true}
+                          }
+                          aria-required={true}
+                          className="chakra-input"
+                          defaultValue="lat"
+                          disabled={true}
+                          id="latField"
+                          name="latField"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          placeholder="lat"
+                          readOnly={false}
+                          required={true}
+                        >
+                          <input
                             aria-required={true}
-                            as="input"
-                            bg="white"
-                            border="1px"
-                            borderColor="inherit"
+                            className="chakra-input css-18q2db8"
                             defaultValue="lat"
                             disabled={true}
-                            display="flex"
-                            fontSize="md"
-                            height={10}
                             id="latField"
                             name="latField"
-                            outline="none"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
                             placeholder="lat"
-                            position="relative"
-                            px={4}
+                            readOnly={false}
                             required={true}
-                            rounded="md"
-                            transition="all 0.2s"
-                            width="100%"
-                          >
-                            <input
-                              aria-disabled={true}
-                              aria-required={true}
-                              className="css-1ga4kqw"
-                              defaultValue="lat"
-                              disabled={true}
-                              id="latField"
-                              name="latField"
-                              placeholder="lat"
-                              required={true}
-                            />
-                          </PseudoBox>
-                        </Input>
-                      </div>
-                    </Box>
-                  </FormControl>
-                  <FormControl
+                          />
+                        </Styled(input)>
+                      </Input>
+                    </div>
+                  </Styled(div)>
+                </FormControl>
+                <FormControl
+                  flex="1"
+                  isDisabled={true}
+                  isRequired={true}
+                  key=".1"
+                >
+                  <Styled(div)
+                    __css={
+                      Object {
+                        "position": "relative",
+                        "width": "100%",
+                      }
+                    }
+                    className="chakra-form-control"
                     flex="1"
-                    isDisabled={true}
-                    isRequired={true}
-                    key=".1"
-                    mr={null}
+                    role="group"
                   >
-                    <Box
-                      flex="1"
-                      mr={null}
+                    <div
+                      className="chakra-form-control css-ev6f8j"
                       role="group"
                     >
-                      <div
-                        className="css-1rr4qq7"
-                        role="group"
+                      <FormLabel
+                        htmlFor="lonField"
                       >
-                        <FormLabel
-                          htmlFor="lonField"
-                        >
-                          <Box
-                            as="label"
-                            display="inline-block"
-                            fontSize="md"
-                            fontWeight="medium"
-                            htmlFor="lonField"
-                            opacity="0.4"
-                            pb="4px"
-                            pr="12px"
-                            textAlign="left"
-                            verticalAlign="middle"
-                          >
-                            <label
-                              className="css-e07mjy"
-                              htmlFor="lonField"
-                            >
-                              Longitude field
-                              <RequiredIndicator>
-                                <Box
-                                  aria-hidden="true"
-                                  as="span"
-                                  color="red.500"
-                                  ml={1}
-                                >
-                                  <span
-                                    aria-hidden="true"
-                                    className="css-i02c70"
-                                  >
-                                    *
-                                  </span>
-                                </Box>
-                              </RequiredIndicator>
-                            </label>
-                          </Box>
-                        </FormLabel>
-                        <Input
-                          as="input"
-                          defaultValue="lon"
-                          errorBorderColor="red.500"
-                          focusBorderColor="blue.500"
-                          id="lonField"
-                          isFullWidth={true}
-                          name="lonField"
-                          placeholder="lon"
-                          size="md"
-                          variant="outline"
-                        >
-                          <PseudoBox
-                            _disabled={
-                              Object {
-                                "cursor": "not-allowed",
-                                "opacity": "0.4",
-                              }
+                        <Styled(label)
+                          __css={
+                            Object {
+                              "_disabled": Object {
+                                "opacity": 0.4,
+                              },
+                              "display": "block",
+                              "fontSize": "md",
+                              "fontWeight": "medium",
+                              "marginEnd": 3,
+                              "mb": 2,
+                              "opacity": 1,
+                              "textAlign": "start",
+                              "transition": "all 0.2s",
                             }
-                            _focus={
-                              Object {
+                          }
+                          className="chakra-form__label"
+                          data-disabled=""
+                          htmlFor="lonField"
+                          id="field-4-label"
+                        >
+                          <label
+                            className="chakra-form__label css-1qqx8g3"
+                            data-disabled=""
+                            htmlFor="lonField"
+                            id="field-4-label"
+                          >
+                            Longitude field
+                            <RequiredIndicator>
+                              <Styled(span)
+                                __css={
+                                  Object {
+                                    "color": "red.500",
+                                    "ml": 1,
+                                  }
+                                }
+                                aria-hidden={true}
+                                className="chakra-form__required-indicator"
+                                role="presentation"
+                              >
+                                <span
+                                  aria-hidden={true}
+                                  className="chakra-form__required-indicator css-nnjw4v"
+                                  role="presentation"
+                                >
+                                  *
+                                </span>
+                              </Styled(span)>
+                            </RequiredIndicator>
+                          </label>
+                        </Styled(label)>
+                      </FormLabel>
+                      <Input
+                        defaultValue="lon"
+                        id="lonField"
+                        name="lonField"
+                        placeholder="lon"
+                      >
+                        <Styled(input)
+                          __css={
+                            Object {
+                              "_disabled": Object {
+                                "cursor": "not-allowed",
+                                "opacity": 0.4,
+                              },
+                              "_focus": Object {
                                 "borderColor": "#3182ce",
                                 "boxShadow": "0 0 0 1px #3182ce",
                                 "zIndex": 1,
-                              }
-                            }
-                            _hover={
-                              Object {
+                              },
+                              "_hover": Object {
                                 "borderColor": "gray.300",
-                              }
-                            }
-                            _invalid={
-                              Object {
-                                "borderColor": "#e53e3e",
-                                "boxShadow": "0 0 0 1px #e53e3e",
-                              }
-                            }
-                            _readOnly={
-                              Object {
-                                "bg": "transparent",
+                              },
+                              "_invalid": Object {
+                                "borderColor": "#E53E3E",
+                                "boxShadow": "0 0 0 1px #E53E3E",
+                              },
+                              "_readOnly": Object {
                                 "boxShadow": "none !important",
                                 "userSelect": "all",
-                              }
+                              },
+                              "appearance": "none",
+                              "bg": "inherit",
+                              "border": "1px solid",
+                              "borderColor": "inherit",
+                              "borderRadius": "md",
+                              "fontSize": "md",
+                              "h": 10,
+                              "minWidth": 0,
+                              "outline": 0,
+                              "position": "relative",
+                              "px": 4,
+                              "transition": "all 0.2s",
+                              "width": "100%",
                             }
-                            alignItems="center"
-                            appearance="none"
-                            aria-disabled={true}
+                          }
+                          aria-required={true}
+                          className="chakra-input"
+                          defaultValue="lon"
+                          disabled={true}
+                          id="lonField"
+                          name="lonField"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          placeholder="lon"
+                          readOnly={false}
+                          required={true}
+                        >
+                          <input
                             aria-required={true}
-                            as="input"
-                            bg="white"
-                            border="1px"
-                            borderColor="inherit"
+                            className="chakra-input css-18q2db8"
                             defaultValue="lon"
                             disabled={true}
-                            display="flex"
-                            fontSize="md"
-                            height={10}
                             id="lonField"
                             name="lonField"
-                            outline="none"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
                             placeholder="lon"
-                            position="relative"
-                            px={4}
+                            readOnly={false}
                             required={true}
-                            rounded="md"
-                            transition="all 0.2s"
-                            width="100%"
-                          >
-                            <input
-                              aria-disabled={true}
-                              aria-required={true}
-                              className="css-1ga4kqw"
-                              defaultValue="lon"
-                              disabled={true}
-                              id="lonField"
-                              name="lonField"
-                              placeholder="lon"
-                              required={true}
-                            />
-                          </PseudoBox>
-                        </Input>
-                      </div>
-                    </Box>
-                  </FormControl>
-                </div>
-              </Box>
-            </Flex>
-          </ForwardRef>
+                          />
+                        </Styled(input)>
+                      </Input>
+                    </div>
+                  </Styled(div)>
+                </FormControl>
+              </div>
+            </Styled(div)>
+          </Stack>
           <FormControl
             alignItems="center"
             display="flex"
             isDisabled={true}
             justifyContent="space-between"
             key=".6"
-            mb={4}
           >
-            <Box
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
               alignItems="center"
+              className="chakra-form-control"
               display="flex"
               justifyContent="space-between"
-              mb={4}
               role="group"
             >
               <div
-                className="css-kh0pwy"
+                className="chakra-form-control css-d5kajs"
                 role="group"
               >
                 <FormLabel
                   htmlFor="freeform"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
+                    data-disabled=""
                     htmlFor="freeform"
-                    opacity="0.4"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-7-label"
                   >
                     <label
-                      className="css-e07mjy"
+                      className="chakra-form__label css-1qqx8g3"
+                      data-disabled=""
                       htmlFor="freeform"
+                      id="field-7-label"
                     >
                       Enable freeform (non-grid) points
                        
@@ -673,7 +748,7 @@ exports[`upload should render without errors 1`] = `
                         pl={1}
                         to="/prepare-inputs/upload-opportunity-data#csv"
                       >
-                        <Tip
+                        <ForwardRef
                           label="View docs to learn more"
                         >
                           <Tooltip
@@ -690,26 +765,30 @@ exports[`upload should render without errors 1`] = `
                                 }
                               }
                               color="blue.500"
+                              display="inline-block"
                               href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
                               isExternal={true}
                               onBlur={[Function]}
                               onClick={[Function]}
                               onFocus={[Function]}
+                              onMouseDown={[Function]}
                               onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
                               pl={1}
                             >
-                              <PseudoBox
-                                _disabled={
+                              <Styled(a)
+                                __css={
                                   Object {
-                                    "cursor": "not-allowed",
-                                    "opacity": "0.4",
+                                    "_focus": Object {
+                                      "boxShadow": "outline",
+                                    },
+                                    "_hover": Object {
+                                      "textDecoration": "underline",
+                                    },
+                                    "color": "inherit",
+                                    "cursor": "pointer",
+                                    "outline": "none",
                                     "textDecoration": "none",
-                                  }
-                                }
-                                _focus={
-                                  Object {
-                                    "boxShadow": "outline",
+                                    "transition": "all 0.15s ease-out",
                                   }
                                 }
                                 _hover={
@@ -717,494 +796,450 @@ exports[`upload should render without errors 1`] = `
                                     "color": "blue.700",
                                   }
                                 }
-                                as="a"
+                                className="chakra-link"
                                 color="blue.500"
-                                cursor="pointer"
+                                display="inline-block"
                                 href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
                                 onBlur={[Function]}
                                 onClick={[Function]}
                                 onFocus={[Function]}
+                                onMouseDown={[Function]}
                                 onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                outline="none"
                                 pl={1}
                                 rel="noopener noreferrer"
                                 target="_blank"
-                                textDecoration="none"
-                                transition="all 0.15s ease-out"
                               >
                                 <a
-                                  className="css-7mcnif"
+                                  className="chakra-link css-1n35k0b"
                                   href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
                                   onBlur={[Function]}
                                   onClick={[Function]}
                                   onFocus={[Function]}
+                                  onMouseDown={[Function]}
                                   onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
-                                  <Icon
-                                    icon={
-                                      Object {
-                                        "icon": Array [],
-                                        "iconName": "info-circle",
-                                        "prefix": "fas",
-                                      }
-                                    }
-                                  >
-                                    <FontAwesomeIcon
-                                      border={false}
-                                      className=""
-                                      fixedWidth={true}
-                                      flip={null}
-                                      icon={
+                                  <FaInfoCircle>
+                                    <IconBase
+                                      attr={
                                         Object {
-                                          "icon": Array [],
-                                          "iconName": "info-circle",
-                                          "prefix": "fas",
+                                          "viewBox": "0 0 512 512",
                                         }
                                       }
-                                      inverse={false}
-                                      listItem={false}
-                                      mask={null}
-                                      pull={null}
-                                      pulse={false}
-                                      rotation={null}
-                                      size={null}
-                                      spin={false}
-                                      swapOpacity={false}
-                                      symbol={false}
-                                      title=""
-                                      transform={null}
                                     >
                                       <svg
-                                        aria-hidden="true"
-                                        className="svg-inline--fa fa-info-circle fa-w-NaN fa-fw "
-                                        data-icon="info-circle"
-                                        data-prefix="fas"
-                                        focusable="false"
-                                        role="img"
-                                        style={Object {}}
-                                        viewBox="0 0 undefined undefined"
+                                        fill="currentColor"
+                                        height="1em"
+                                        stroke="currentColor"
+                                        strokeWidth="0"
+                                        style={
+                                          Object {
+                                            "color": undefined,
+                                          }
+                                        }
+                                        viewBox="0 0 512 512"
+                                        width="1em"
                                         xmlns="http://www.w3.org/2000/svg"
                                       >
                                         <path
-                                          fill="currentColor"
-                                          style={Object {}}
+                                          d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
+                                          key="0"
                                         />
                                       </svg>
-                                    </FontAwesomeIcon>
-                                  </Icon>
+                                    </IconBase>
+                                  </FaInfoCircle>
                                 </a>
-                              </PseudoBox>
+                              </Styled(a)>
                             </Link>
-                            <ForwardRef
-                              anchorEl={
-                                <a
-                                  class="css-7mcnif"
-                                  href="https://docs.conveyal.com//prepare-inputs/upload-opportunity-data#csv"
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    class="svg-inline--fa fa-info-circle fa-w-NaN fa-fw "
-                                    data-icon="info-circle"
-                                    data-prefix="fas"
-                                    focusable="false"
-                                    role="img"
-                                    viewBox="0 0 undefined undefined"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                    />
-                                  </svg>
-                                </a>
-                              }
-                              arrowSize="10px"
-                              bg="gray.700"
-                              borderRadius="sm"
-                              color="whiteAlpha.900"
-                              fontSize="md"
-                              fontWeight="medium"
-                              hasArrow={true}
-                              isOpen={false}
-                              maxW="320px"
-                              modifiers={
-                                Object {
-                                  "offset": Object {
-                                    "enabled": true,
-                                    "offset": "0, 8",
-                                  },
-                                }
-                              }
-                              placement="auto"
-                              pointerEvents="none"
-                              px="8px"
-                              py="2px"
-                              shadow="md"
-                              timeout={200}
-                              usePortal={true}
-                              zIndex={1500}
-                            />
+                            <AnimatePresence />
                           </Tooltip>
-                        </Tip>
+                        </ForwardRef>
                       </DocsLink>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Switch
-                  color="blue"
                   id="freeform"
                   isChecked={false}
                   isDisabled={true}
                   onChange={[Function]}
-                  size="md"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    verticalAlign="middle"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "display": "inline-block",
+                        "lineHeight": "normal",
+                        "verticalAlign": "middle",
+                      }
+                    }
+                    className="chakra-switch"
                   >
                     <label
-                      className="css-v7ibj3"
+                      className="chakra-switch css-r74jfy"
                     >
-                      <VisuallyHidden
-                        as="input"
+                      <input
+                        aria-disabled={true}
                         checked={false}
+                        className="chakra-switch__input"
                         disabled={true}
                         id="freeform"
+                        onBlur={[Function]}
                         onChange={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        style={
+                          Object {
+                            "border": "0px",
+                            "clip": "rect(0px, 0px, 0px, 0px)",
+                            "height": "1px",
+                            "margin": "-1px",
+                            "overflow": "hidden",
+                            "padding": "0px",
+                            "position": "absolute",
+                            "whiteSpace": "nowrap",
+                            "width": "1px",
+                          }
+                        }
                         type="checkbox"
-                      >
-                        <input
-                          checked={false}
-                          className="css-1gy22ay"
-                          disabled={true}
-                          id="freeform"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
-                      </VisuallyHidden>
-                      <ControlBox
-                        _checked={
+                      />
+                      <Styled(span)
+                        __css={
                           Object {
-                            "bg": "blue.500",
-                          }
-                        }
-                        _checkedAndChild={
-                          Object {
-                            "transform": "translateX(calc(1.875rem - 1rem))",
-                          }
-                        }
-                        _checkedAndHover={
-                          Object {
+                            "_checked": Object {
+                              "bg": "blue.500",
+                            },
+                            "_disabled": Object {
+                              "cursor": "not-allowed",
+                              "opacity": 0.4,
+                            },
+                            "_focus": Object {
+                              "boxShadow": "outline",
+                            },
+                            "bg": "gray.300",
+                            "borderRadius": "full",
+                            "boxSizing": "content-box",
                             "cursor": "pointer",
+                            "display": "inline-flex",
+                            "flexShrink": 0,
+                            "h": "1rem",
+                            "justifyContent": "flex-start",
+                            "p": "2px",
+                            "transition": "all 120ms",
+                            "w": "1.875rem",
                           }
                         }
-                        _child={
-                          Object {
-                            "transform": "translateX(0)",
-                          }
-                        }
-                        _disabled={
-                          Object {
-                            "cursor": "not-allowed",
-                            "opacity": 0.4,
-                          }
-                        }
-                        _focus={
-                          Object {
-                            "boxShadow": "outline",
-                          }
-                        }
-                        _hover={
-                          Object {
-                            "cursor": "pointer",
-                          }
-                        }
-                        alignItems="center"
-                        aria-hidden="true"
-                        bg="gray.300"
-                        boxSizing="content-box"
-                        display="inline-flex"
-                        flexShrink="0"
-                        height="1rem"
-                        justifyContent="flex-start"
-                        p="2px"
-                        rounded="full"
-                        transition="all 120ms"
-                        width="1.875rem"
+                        aria-hidden={true}
+                        className="chakra-switch__track"
+                        data-disabled=""
+                        onMouseDown={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
                       >
-                        <div
-                          aria-hidden="true"
-                          className="css-9yrka1"
+                        <span
+                          aria-hidden={true}
+                          className="chakra-switch__track css-5femyx"
+                          data-disabled=""
+                          onMouseDown={[Function]}
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                          onMouseUp={[Function]}
                         >
-                          <Box
-                            bg="white"
-                            rounded="full"
-                            size="1rem"
-                            transition="transform 250ms"
+                          <Styled(span)
+                            __css={
+                              Object {
+                                "_checked": Object {
+                                  "transform": "translateX(0.875rem)",
+                                },
+                                "bg": "white",
+                                "borderRadius": "full",
+                                "h": "1rem",
+                                "transform": "translateX(0)",
+                                "transition": "transform 250ms",
+                                "w": "1rem",
+                              }
+                            }
+                            className="chakra-switch__thumb"
                           >
-                            <div
-                              className="css-1fh8wk"
+                            <span
+                              className="chakra-switch__thumb css-uh46nq"
                             />
-                          </Box>
-                        </div>
-                      </ControlBox>
+                          </Styled(span)>
+                        </span>
+                      </Styled(span)>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </Switch>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <FormControl
             isDisabled={true}
             isRequired={true}
             key=".7"
-            mb={4}
           >
-            <Box
-              mb={4}
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              className="chakra-form-control"
               role="group"
             >
               <div
-                className="css-acwcvw"
+                className="chakra-form-control css-1kxonj9"
                 role="group"
               >
                 <FormLabel
                   htmlFor="idField"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
+                    data-disabled=""
                     htmlFor="idField"
-                    opacity="0.4"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-8-label"
                   >
                     <label
-                      className="css-e07mjy"
+                      className="chakra-form__label css-1qqx8g3"
+                      data-disabled=""
                       htmlFor="idField"
+                      id="field-8-label"
                     >
                       ID field
                       <RequiredIndicator>
-                        <Box
-                          aria-hidden="true"
-                          as="span"
-                          color="red.500"
-                          ml={1}
+                        <Styled(span)
+                          __css={
+                            Object {
+                              "color": "red.500",
+                              "ml": 1,
+                            }
+                          }
+                          aria-hidden={true}
+                          className="chakra-form__required-indicator"
+                          role="presentation"
                         >
                           <span
-                            aria-hidden="true"
-                            className="css-i02c70"
+                            aria-hidden={true}
+                            className="chakra-form__required-indicator css-nnjw4v"
+                            role="presentation"
                           >
                             *
                           </span>
-                        </Box>
+                        </Styled(span)>
                       </RequiredIndicator>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
                   id="idField"
-                  isFullWidth={true}
                   name="idField"
                   placeholder="id"
-                  size="md"
-                  variant="outline"
                 >
-                  <PseudoBox
-                    _disabled={
+                  <Styled(input)
+                    __css={
                       Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
+                        "_disabled": Object {
+                          "cursor": "not-allowed",
+                          "opacity": 0.4,
+                        },
+                        "_focus": Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                          "zIndex": 1,
+                        },
+                        "_hover": Object {
+                          "borderColor": "gray.300",
+                        },
+                        "_invalid": Object {
+                          "borderColor": "#E53E3E",
+                          "boxShadow": "0 0 0 1px #E53E3E",
+                        },
+                        "_readOnly": Object {
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        },
+                        "appearance": "none",
+                        "bg": "inherit",
+                        "border": "1px solid",
+                        "borderColor": "inherit",
+                        "borderRadius": "md",
+                        "fontSize": "md",
+                        "h": 10,
+                        "minWidth": 0,
+                        "outline": 0,
+                        "position": "relative",
+                        "px": 4,
+                        "transition": "all 0.2s",
+                        "width": "100%",
                       }
                     }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    aria-disabled={true}
                     aria-required={true}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
+                    className="chakra-input"
                     disabled={true}
-                    display="flex"
-                    fontSize="md"
-                    height={10}
                     id="idField"
                     name="idField"
-                    outline="none"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
                     placeholder="id"
-                    position="relative"
-                    px={4}
+                    readOnly={false}
                     required={true}
-                    rounded="md"
-                    transition="all 0.2s"
-                    width="100%"
                   >
                     <input
-                      aria-disabled={true}
                       aria-required={true}
-                      className="css-1ga4kqw"
+                      className="chakra-input css-18q2db8"
                       disabled={true}
                       id="idField"
                       name="idField"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
                       placeholder="id"
+                      readOnly={false}
                       required={true}
                     />
-                  </PseudoBox>
+                  </Styled(input)>
                 </Input>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <FormControl
             isDisabled={true}
             key=".8"
-            mb={4}
           >
-            <Box
-              mb={4}
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              className="chakra-form-control"
               role="group"
             >
               <div
-                className="css-acwcvw"
+                className="chakra-form-control css-1kxonj9"
                 role="group"
               >
                 <FormLabel
                   htmlFor="countField"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
+                    data-disabled=""
                     htmlFor="countField"
-                    opacity="0.4"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-9-label"
                   >
                     <label
-                      className="css-e07mjy"
+                      className="chakra-form__label css-1qqx8g3"
+                      data-disabled=""
                       htmlFor="countField"
+                      id="field-9-label"
                     >
                       Opportunity count field
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
                   id="countField"
-                  isFullWidth={true}
                   name="countField"
                   placeholder="count"
-                  size="md"
-                  variant="outline"
                 >
-                  <PseudoBox
-                    _disabled={
+                  <Styled(input)
+                    __css={
                       Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
+                        "_disabled": Object {
+                          "cursor": "not-allowed",
+                          "opacity": 0.4,
+                        },
+                        "_focus": Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                          "zIndex": 1,
+                        },
+                        "_hover": Object {
+                          "borderColor": "gray.300",
+                        },
+                        "_invalid": Object {
+                          "borderColor": "#E53E3E",
+                          "boxShadow": "0 0 0 1px #E53E3E",
+                        },
+                        "_readOnly": Object {
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        },
+                        "appearance": "none",
+                        "bg": "inherit",
+                        "border": "1px solid",
+                        "borderColor": "inherit",
+                        "borderRadius": "md",
+                        "fontSize": "md",
+                        "h": 10,
+                        "minWidth": 0,
+                        "outline": 0,
+                        "position": "relative",
+                        "px": 4,
+                        "transition": "all 0.2s",
+                        "width": "100%",
                       }
                     }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    aria-disabled={true}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
+                    className="chakra-input"
                     disabled={true}
-                    display="flex"
-                    fontSize="md"
-                    height={10}
                     id="countField"
                     name="countField"
-                    outline="none"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
                     placeholder="count"
-                    position="relative"
-                    px={4}
-                    rounded="md"
-                    transition="all 0.2s"
-                    width="100%"
+                    readOnly={false}
+                    required={false}
                   >
                     <input
-                      aria-disabled={true}
-                      className="css-1ga4kqw"
+                      className="chakra-input css-18q2db8"
                       disabled={true}
                       id="countField"
                       name="countField"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
                       placeholder="count"
+                      readOnly={false}
+                      required={false}
                     />
-                  </PseudoBox>
+                  </Styled(input)>
                 </Input>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <FormControl
             alignItems="center"
@@ -1212,521 +1247,575 @@ exports[`upload should render without errors 1`] = `
             isDisabled={true}
             justifyContent="space-between"
             key=".9"
-            mb={4}
           >
-            <Box
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
               alignItems="center"
+              className="chakra-form-control"
               display="flex"
               justifyContent="space-between"
-              mb={4}
               role="group"
             >
               <div
-                className="css-kh0pwy"
+                className="chakra-form-control css-d5kajs"
                 role="group"
               >
                 <FormLabel
                   htmlFor="paired"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
+                    data-disabled=""
                     htmlFor="paired"
-                    opacity="0.4"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-10-label"
                   >
                     <label
-                      className="css-e07mjy"
+                      className="chakra-form__label css-1qqx8g3"
+                      data-disabled=""
                       htmlFor="paired"
+                      id="field-10-label"
                     >
                       Paired origin/destination file
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Switch
-                  color="blue"
                   id="paired"
                   isChecked={false}
                   isDisabled={true}
                   onChange={[Function]}
-                  size="md"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    verticalAlign="middle"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "display": "inline-block",
+                        "lineHeight": "normal",
+                        "verticalAlign": "middle",
+                      }
+                    }
+                    className="chakra-switch"
                   >
                     <label
-                      className="css-v7ibj3"
+                      className="chakra-switch css-r74jfy"
                     >
-                      <VisuallyHidden
-                        as="input"
+                      <input
+                        aria-disabled={true}
                         checked={false}
+                        className="chakra-switch__input"
                         disabled={true}
                         id="paired"
+                        onBlur={[Function]}
                         onChange={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        style={
+                          Object {
+                            "border": "0px",
+                            "clip": "rect(0px, 0px, 0px, 0px)",
+                            "height": "1px",
+                            "margin": "-1px",
+                            "overflow": "hidden",
+                            "padding": "0px",
+                            "position": "absolute",
+                            "whiteSpace": "nowrap",
+                            "width": "1px",
+                          }
+                        }
                         type="checkbox"
-                      >
-                        <input
-                          checked={false}
-                          className="css-1gy22ay"
-                          disabled={true}
-                          id="paired"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
-                      </VisuallyHidden>
-                      <ControlBox
-                        _checked={
+                      />
+                      <Styled(span)
+                        __css={
                           Object {
-                            "bg": "blue.500",
-                          }
-                        }
-                        _checkedAndChild={
-                          Object {
-                            "transform": "translateX(calc(1.875rem - 1rem))",
-                          }
-                        }
-                        _checkedAndHover={
-                          Object {
+                            "_checked": Object {
+                              "bg": "blue.500",
+                            },
+                            "_disabled": Object {
+                              "cursor": "not-allowed",
+                              "opacity": 0.4,
+                            },
+                            "_focus": Object {
+                              "boxShadow": "outline",
+                            },
+                            "bg": "gray.300",
+                            "borderRadius": "full",
+                            "boxSizing": "content-box",
                             "cursor": "pointer",
+                            "display": "inline-flex",
+                            "flexShrink": 0,
+                            "h": "1rem",
+                            "justifyContent": "flex-start",
+                            "p": "2px",
+                            "transition": "all 120ms",
+                            "w": "1.875rem",
                           }
                         }
-                        _child={
-                          Object {
-                            "transform": "translateX(0)",
-                          }
-                        }
-                        _disabled={
-                          Object {
-                            "cursor": "not-allowed",
-                            "opacity": 0.4,
-                          }
-                        }
-                        _focus={
-                          Object {
-                            "boxShadow": "outline",
-                          }
-                        }
-                        _hover={
-                          Object {
-                            "cursor": "pointer",
-                          }
-                        }
-                        alignItems="center"
-                        aria-hidden="true"
-                        bg="gray.300"
-                        boxSizing="content-box"
-                        display="inline-flex"
-                        flexShrink="0"
-                        height="1rem"
-                        justifyContent="flex-start"
-                        p="2px"
-                        rounded="full"
-                        transition="all 120ms"
-                        width="1.875rem"
+                        aria-hidden={true}
+                        className="chakra-switch__track"
+                        data-disabled=""
+                        onMouseDown={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
                       >
-                        <div
-                          aria-hidden="true"
-                          className="css-9yrka1"
+                        <span
+                          aria-hidden={true}
+                          className="chakra-switch__track css-5femyx"
+                          data-disabled=""
+                          onMouseDown={[Function]}
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                          onMouseUp={[Function]}
                         >
-                          <Box
-                            bg="white"
-                            rounded="full"
-                            size="1rem"
-                            transition="transform 250ms"
+                          <Styled(span)
+                            __css={
+                              Object {
+                                "_checked": Object {
+                                  "transform": "translateX(0.875rem)",
+                                },
+                                "bg": "white",
+                                "borderRadius": "full",
+                                "h": "1rem",
+                                "transform": "translateX(0)",
+                                "transition": "transform 250ms",
+                                "w": "1rem",
+                              }
+                            }
+                            className="chakra-switch__thumb"
                           >
-                            <div
-                              className="css-1fh8wk"
+                            <span
+                              className="chakra-switch__thumb css-uh46nq"
                             />
-                          </Box>
-                        </div>
-                      </ControlBox>
+                          </Styled(span)>
+                        </span>
+                      </Styled(span)>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </Switch>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <FormControl
             isDisabled={true}
             isRequired={true}
             key=".a"
-            mb={4}
           >
-            <Box
-              mb={4}
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              className="chakra-form-control"
               role="group"
             >
               <div
-                className="css-acwcvw"
+                className="chakra-form-control css-1kxonj9"
                 role="group"
               >
                 <FormLabel
                   htmlFor="latField2"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
+                    data-disabled=""
                     htmlFor="latField2"
-                    opacity="0.4"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-11-label"
                   >
                     <label
-                      className="css-e07mjy"
+                      className="chakra-form__label css-1qqx8g3"
+                      data-disabled=""
                       htmlFor="latField2"
+                      id="field-11-label"
                     >
                       Destination 
                       latitude field
                       <RequiredIndicator>
-                        <Box
-                          aria-hidden="true"
-                          as="span"
-                          color="red.500"
-                          ml={1}
+                        <Styled(span)
+                          __css={
+                            Object {
+                              "color": "red.500",
+                              "ml": 1,
+                            }
+                          }
+                          aria-hidden={true}
+                          className="chakra-form__required-indicator"
+                          role="presentation"
                         >
                           <span
-                            aria-hidden="true"
-                            className="css-i02c70"
+                            aria-hidden={true}
+                            className="chakra-form__required-indicator css-nnjw4v"
+                            role="presentation"
                           >
                             *
                           </span>
-                        </Box>
+                        </Styled(span)>
                       </RequiredIndicator>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
                   id="latField2"
-                  isFullWidth={true}
                   name="latField2"
-                  size="md"
-                  variant="outline"
                 >
-                  <PseudoBox
-                    _disabled={
+                  <Styled(input)
+                    __css={
                       Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
+                        "_disabled": Object {
+                          "cursor": "not-allowed",
+                          "opacity": 0.4,
+                        },
+                        "_focus": Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                          "zIndex": 1,
+                        },
+                        "_hover": Object {
+                          "borderColor": "gray.300",
+                        },
+                        "_invalid": Object {
+                          "borderColor": "#E53E3E",
+                          "boxShadow": "0 0 0 1px #E53E3E",
+                        },
+                        "_readOnly": Object {
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        },
+                        "appearance": "none",
+                        "bg": "inherit",
+                        "border": "1px solid",
+                        "borderColor": "inherit",
+                        "borderRadius": "md",
+                        "fontSize": "md",
+                        "h": 10,
+                        "minWidth": 0,
+                        "outline": 0,
+                        "position": "relative",
+                        "px": 4,
+                        "transition": "all 0.2s",
+                        "width": "100%",
                       }
                     }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    aria-disabled={true}
                     aria-required={true}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
+                    className="chakra-input"
                     disabled={true}
-                    display="flex"
-                    fontSize="md"
-                    height={10}
                     id="latField2"
                     name="latField2"
-                    outline="none"
-                    position="relative"
-                    px={4}
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    readOnly={false}
                     required={true}
-                    rounded="md"
-                    transition="all 0.2s"
-                    width="100%"
                   >
                     <input
-                      aria-disabled={true}
                       aria-required={true}
-                      className="css-1ga4kqw"
+                      className="chakra-input css-18q2db8"
                       disabled={true}
                       id="latField2"
                       name="latField2"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      readOnly={false}
                       required={true}
                     />
-                  </PseudoBox>
+                  </Styled(input)>
                 </Input>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <FormControl
             isDisabled={true}
             isRequired={true}
             key=".b"
-            mb={4}
           >
-            <Box
-              mb={4}
+            <Styled(div)
+              __css={
+                Object {
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              className="chakra-form-control"
               role="group"
             >
               <div
-                className="css-acwcvw"
+                className="chakra-form-control css-1kxonj9"
                 role="group"
               >
                 <FormLabel
                   htmlFor="lonField2"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <Styled(label)
+                    __css={
+                      Object {
+                        "_disabled": Object {
+                          "opacity": 0.4,
+                        },
+                        "display": "block",
+                        "fontSize": "md",
+                        "fontWeight": "medium",
+                        "marginEnd": 3,
+                        "mb": 2,
+                        "opacity": 1,
+                        "textAlign": "start",
+                        "transition": "all 0.2s",
+                      }
+                    }
+                    className="chakra-form__label"
+                    data-disabled=""
                     htmlFor="lonField2"
-                    opacity="0.4"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-12-label"
                   >
                     <label
-                      className="css-e07mjy"
+                      className="chakra-form__label css-1qqx8g3"
+                      data-disabled=""
                       htmlFor="lonField2"
+                      id="field-12-label"
                     >
                       Destination 
                       longitude field
                       <RequiredIndicator>
-                        <Box
-                          aria-hidden="true"
-                          as="span"
-                          color="red.500"
-                          ml={1}
+                        <Styled(span)
+                          __css={
+                            Object {
+                              "color": "red.500",
+                              "ml": 1,
+                            }
+                          }
+                          aria-hidden={true}
+                          className="chakra-form__required-indicator"
+                          role="presentation"
                         >
                           <span
-                            aria-hidden="true"
-                            className="css-i02c70"
+                            aria-hidden={true}
+                            className="chakra-form__required-indicator css-nnjw4v"
+                            role="presentation"
                           >
                             *
                           </span>
-                        </Box>
+                        </Styled(span)>
                       </RequiredIndicator>
                     </label>
-                  </Box>
+                  </Styled(label)>
                 </FormLabel>
                 <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
                   id="lonField2"
-                  isFullWidth={true}
                   name="lonField2"
-                  size="md"
-                  variant="outline"
                 >
-                  <PseudoBox
-                    _disabled={
+                  <Styled(input)
+                    __css={
                       Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
+                        "_disabled": Object {
+                          "cursor": "not-allowed",
+                          "opacity": 0.4,
+                        },
+                        "_focus": Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                          "zIndex": 1,
+                        },
+                        "_hover": Object {
+                          "borderColor": "gray.300",
+                        },
+                        "_invalid": Object {
+                          "borderColor": "#E53E3E",
+                          "boxShadow": "0 0 0 1px #E53E3E",
+                        },
+                        "_readOnly": Object {
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        },
+                        "appearance": "none",
+                        "bg": "inherit",
+                        "border": "1px solid",
+                        "borderColor": "inherit",
+                        "borderRadius": "md",
+                        "fontSize": "md",
+                        "h": 10,
+                        "minWidth": 0,
+                        "outline": 0,
+                        "position": "relative",
+                        "px": 4,
+                        "transition": "all 0.2s",
+                        "width": "100%",
                       }
                     }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    aria-disabled={true}
                     aria-required={true}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
+                    className="chakra-input"
                     disabled={true}
-                    display="flex"
-                    fontSize="md"
-                    height={10}
                     id="lonField2"
                     name="lonField2"
-                    outline="none"
-                    position="relative"
-                    px={4}
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    readOnly={false}
                     required={true}
-                    rounded="md"
-                    transition="all 0.2s"
-                    width="100%"
                   >
                     <input
-                      aria-disabled={true}
                       aria-required={true}
-                      className="css-1ga4kqw"
+                      className="chakra-input css-18q2db8"
                       disabled={true}
                       id="lonField2"
                       name="lonField2"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      readOnly={false}
                       required={true}
                     />
-                  </PseudoBox>
+                  </Styled(input)>
                 </Input>
               </div>
-            </Box>
+            </Styled(div)>
           </FormControl>
           <Button
+            colorScheme="green"
             isLoading={false}
             key=".c"
-            leftIcon="small-add"
+            leftIcon={<FaPlus />}
             loadingText="uploading…"
-            mb={null}
             type="submit"
-            variantColor="green"
           >
-            <PseudoBox
-              _active={
+            <Styled(button)
+              __css={
                 Object {
-                  "bg": "green.700",
+                  "_active": Object {
+                    "bg": "green.700",
+                  },
+                  "_disabled": Object {
+                    "boxShadow": "none",
+                    "cursor": "not-allowed",
+                    "opacity": 0.4,
+                  },
+                  "_focus": Object {
+                    "boxShadow": "outline",
+                  },
+                  "_hover": Object {
+                    "_disabled": Object {
+                      "bg": "green.500",
+                    },
+                    "bg": "green.600",
+                  },
+                  "alignItems": "center",
+                  "appearance": "none",
+                  "bg": "green.500",
+                  "borderRadius": "md",
+                  "color": "white",
+                  "display": "inline-flex",
+                  "fontSize": "md",
+                  "fontWeight": "semibold",
+                  "h": 10,
+                  "justifyContent": "center",
+                  "lineHeight": "1.2",
+                  "minW": 10,
+                  "outline": "none",
+                  "position": "relative",
+                  "px": 4,
+                  "transition": "all 250ms",
+                  "userSelect": "none",
+                  "verticalAlign": "middle",
+                  "whiteSpace": "nowrap",
+                  "width": "auto",
                 }
               }
-              _disabled={
-                Object {
-                  "boxShadow": "none",
-                  "cursor": "not-allowed",
-                  "opacity": "40%",
-                }
-              }
-              _focus={
-                Object {
-                  "boxShadow": "outline",
-                }
-              }
-              _hover={
-                Object {
-                  "bg": "green.600",
-                }
-              }
-              alignItems="center"
-              appearance="none"
-              aria-disabled={false}
-              as="button"
-              bg="green.500"
-              borderRadius="md"
-              color="white"
+              className="chakra-button"
               disabled={false}
-              display="inline-flex"
-              fontSize="md"
-              fontWeight="semibold"
-              height={10}
-              justifyContent="center"
-              lineHeight="1.2"
-              mb={null}
-              minWidth={10}
-              outline="none"
-              position="relative"
-              px={4}
-              transition="all 250ms"
               type="submit"
-              userSelect="none"
-              verticalAlign="middle"
-              whiteSpace="nowrap"
             >
               <button
-                aria-disabled={false}
-                className="css-6cthfa"
+                className="chakra-button css-ywjnlx"
                 disabled={false}
                 type="submit"
               >
                 <ButtonIcon
-                  icon="small-add"
-                  ml={-1}
-                  mr={2}
+                  marginEnd="0.5rem"
                 >
-                  <Icon
-                    aria-hidden="true"
-                    color="currentColor"
-                    focusable="false"
-                    ml={-1}
-                    mr={2}
-                    name="small-add"
+                  <Styled(span)
+                    className="chakra-button__icon"
+                    marginEnd="0.5rem"
                   >
-                    <Styled(div)
-                      aria-hidden="true"
-                      as="svg"
-                      color="currentColor"
-                      display="inline-block"
-                      focusable="false"
-                      ml={-1}
-                      mr={2}
-                      role="presentation"
-                      size="1em"
-                      verticalAlign="middle"
-                      viewBox="0 0 20 20"
+                    <span
+                      className="chakra-button__icon css-ktvjz1"
                     >
-                      <svg
-                        aria-hidden="true"
-                        className="css-yxiis9"
-                        focusable="false"
-                        role="presentation"
-                        viewBox="0 0 20 20"
+                      <FaPlus
+                        aria-hidden={true}
+                        focusable={false}
                       >
-                        <path
-                          d="M14 9h-3V6c0-.55-.45-1-1-1s-1 .45-1 1v3H6c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1z"
-                          fill="currentColor"
-                          fillRule="evenodd"
-                        />
-                      </svg>
-                    </Styled(div)>
-                  </Icon>
+                        <IconBase
+                          aria-hidden={true}
+                          attr={
+                            Object {
+                              "viewBox": "0 0 448 512",
+                            }
+                          }
+                          focusable={false}
+                        >
+                          <svg
+                            aria-hidden={true}
+                            fill="currentColor"
+                            focusable={false}
+                            height="1em"
+                            stroke="currentColor"
+                            strokeWidth="0"
+                            style={
+                              Object {
+                                "color": undefined,
+                              }
+                            }
+                            viewBox="0 0 448 512"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                              key="0"
+                            />
+                          </svg>
+                        </IconBase>
+                      </FaPlus>
+                    </span>
+                  </Styled(span)>
                 </ButtonIcon>
                 Upload a new spatial dataset
               </button>
-            </PseudoBox>
+            </Styled(button)>
           </Button>
-        </form>
-      </Box>
-    </Flex>
-  </ForwardRef>
+        </div>
+      </Styled(div)>
+    </Stack>
+  </form>
 </UploadOpportunityDataset>
 `;

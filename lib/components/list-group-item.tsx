@@ -1,4 +1,4 @@
-import {Button} from '@chakra-ui/core'
+import {Button} from '@chakra-ui/react'
 
 export default function ListGroupItem({children, ...p}) {
   return (
@@ -12,7 +12,7 @@ export default function ListGroupItem({children, ...p}) {
       textAlign='left'
       whiteSpace='break-spaces'
       variant='outline'
-      variantColor='blue'
+      colorScheme='blue'
       _notLast={{
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,

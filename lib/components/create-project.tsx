@@ -8,7 +8,7 @@ import {
   Heading,
   Input,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
@@ -19,9 +19,9 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import LogRocket from 'lib/logrocket'
 import message from 'lib/message'
 
-import ButtonLink from './button-link'
 import ControlledSelect from './controlled-select'
 import InnerDock from './inner-dock'
+import Link from './link'
 
 const hasText = (s) => s && s.length > 0
 const getName = fpGet('name')
@@ -80,14 +80,9 @@ export function CreateProject({bundles, dispatch, query}) {
         ) : (
           <Stack spacing={4}>
             <Box>{message('project.noBundles')}</Box>
-            <ButtonLink
-              leftIcon='small-add'
-              to='bundleCreate'
-              query={{...query}}
-              variantColor='green'
-            >
-              {message('bundle.create')}
-            </ButtonLink>
+            <Link to='bundleCreate' {...query}>
+              <Button colorScheme='green'>{message('bundle.create')}</Button>
+            </Link>
           </Stack>
         )}
         {!readyToCreate && (
@@ -96,11 +91,10 @@ export function CreateProject({bundles, dispatch, query}) {
           </Alert>
         )}
         <Button
-          leftIcon='small-add'
           isLoading={creating}
           isDisabled={!readyToCreate || creating}
           onClick={_create}
-          variantColor='green'
+          colorScheme='green'
         >
           {message('common.create')}
         </Button>

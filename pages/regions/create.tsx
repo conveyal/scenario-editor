@@ -7,13 +7,11 @@ import {
   Input,
   Stack,
   useToast
-} from '@chakra-ui/core'
-import {faMap} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import {useState} from 'react'
 
 import EditBoundsForm from 'lib/components/edit-bounds-form'
-import Icon from 'lib/components/icon'
 import InnerDock from 'lib/components/inner-dock'
 import {SPACING_FORM} from 'lib/constants/chakra'
 import {DEFAULT_BOUNDS} from 'lib/constants/region'
@@ -84,9 +82,7 @@ export default function CreateRegionPage() {
       <EditBounds bounds={bounds} save={setBounds} />
 
       <Stack as='form' p={SPACING_FORM} spacing={SPACING_FORM}>
-        <Heading size='md'>
-          <Icon icon={faMap} /> <span> {message('region.createAction')}</span>
-        </Heading>
+        <Heading size='md'>{message('region.createAction')}</Heading>
 
         {error && <Alert status='error'>{error}</Alert>}
 
@@ -119,11 +115,10 @@ export default function CreateRegionPage() {
           isFullWidth
           isDisabled={nameInput.isInvalid}
           isLoading={uploading}
-          leftIcon='check'
           loadingText='Creating region...'
           onClick={_create}
           size='lg'
-          variantColor='green'
+          colorScheme='green'
         >
           {message('region.createAction')}
         </Button>

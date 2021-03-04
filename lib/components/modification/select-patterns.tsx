@@ -1,4 +1,4 @@
-import {FormControl, FormLabel} from '@chakra-ui/core'
+import {FormControl, FormLabel} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import flatMap from 'lodash/flatMap'
 import {useCallback} from 'react'

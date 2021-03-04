@@ -15,14 +15,7 @@ import {
   Tabs,
   Text,
   Textarea
-} from '@chakra-ui/core'
-import {
-  faChevronDown,
-  faChevronRight,
-  faChevronUp,
-  faCode,
-  faMousePointer
-} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import {dequal} from 'dequal/lite'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
@@ -53,10 +46,8 @@ import {getParsedItem} from 'lib/utils/local-storage'
 import {secondsToHhMmString} from 'lib/utils/time'
 
 import ControlledSelect from '../controlled-select'
-import Icon from '../icon'
-import ModeIcon from '../mode-icon'
+import {ChevronDown, ChevronUp, CodeIcon, MouseIcon} from '../icons'
 import Presets from '../presets'
-import Tip from '../tip'
 
 import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
@@ -64,6 +55,7 @@ import AdvancedSettings from './advanced-settings'
 import ModeSelector from './mode-selector'
 import CreateRegional from './create-regional'
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
+import ModeSummary from './mode-summary'
 
 const SPACING_XS = 2
 const SPACING = 5
@@ -249,11 +241,12 @@ export default function Settings({
     <>
       <Box
         borderBottom='1px solid'
-        borderBottomColor='blue.100'
+        borderBottomColor='blue.50'
         borderTop='1px solid #E2E8F0'
         id='PrimaryAnalysisSettings'
       >
         <RequestHeading
+          colorScheme='blue'
           hasResults={resultsSettings.length > 0}
           opportunityDataset={opportunityDataset}
           profileRequest={requestsSettings[0]}
@@ -262,6 +255,7 @@ export default function Settings({
           scenario={variantIndex}
         />
         <RequestSettings
+          colorScheme='blue'
           bundle={currentBundle}
           isDisabled={disableInputs}
           isFetchingIsochrone={isFetchingIsochrone}
@@ -287,7 +281,7 @@ export default function Settings({
         id='ComparisonAnalysisSettings'
       >
         <RequestHeading
-          color='red'
+          colorScheme='red'
           isComparison
           hasResults={resultsSettings.length > 1}
           opportunityDataset={opportunityDataset}
@@ -298,7 +292,7 @@ export default function Settings({
         />
         <RequestSettings
           bundle={comparisonBundle}
-          color='red'
+          colorScheme='red'
           copyRequestSettings={copyRequestSettings}
           isComparison
           isDisabled={disableInputs}
@@ -324,36 +318,14 @@ export default function Settings({
 }
 
 function RequestSummary({color, profileRequest, ...p}) {
-  // Transit modes is stored as a string
-  const transitModesStr = get(profileRequest, 'transitModes', '')
-  const transitModes = transitModesStr.split(',')
-
   return (
     <Flex flex='2' justify='space-evenly' {...p}>
-      <Stack align='center' isInline mr={2} spacing={1}>
-        <ModeIcon mode={profileRequest.accessModes} />
-        {transitModesStr.length > 0 && (
-          <Tip label={transitModes.join(', ')}>
-            <Stack align='center' isInline spacing={0}>
-              <Box color={`${color}.500`} fontSize='xs'>
-                <Icon icon={faChevronRight} />
-              </Box>
-              {transitModes.slice(0, 3).map((m) => (
-                <ModeIcon mode={m} key={m} />
-              ))}
-              {transitModes.length > 3 && <Box>...</Box>}
-              {profileRequest.egressModes !== 'WALK' && (
-                <Stack align='center' isInline spacing={1}>
-                  <Box color={`${color}.500`} fontSize='xs'>
-                    <Icon icon={faChevronRight} />
-                  </Box>
-                  <ModeIcon mode={profileRequest.egressModes} />
-                </Stack>
-              )}
-            </Stack>
-          </Tip>
-        )}
-      </Stack>
+      <ModeSummary
+        accessModes={profileRequest.accessModes}
+        color={color}
+        egressModes={profileRequest.egressModes}
+        transitModes={profileRequest.transitModes}
+      />
 
       <Stack fontWeight='500' isInline spacing={SPACING_XS}>
         <Text>{profileRequest.date}</Text>
@@ -367,7 +339,7 @@ function RequestSummary({color, profileRequest, ...p}) {
 }
 
 function RequestHeading({
-  color = 'blue',
+  colorScheme,
   hasResults,
   isComparison = false,
   opportunityDataset,
@@ -395,7 +367,7 @@ function RequestHeading({
       {project ? (
         <>
           <Stack flex='1' overflow='hidden'>
-            <Heading size='md' color={`${color}.500`} overflow='hidden'>
+            <Heading size='md' color={`${colorScheme}.500`} overflow='hidden'>
               {project.name}
             </Heading>
             <Heading size='sm' color='gray.500' overflow='hidden'>
@@ -406,21 +378,21 @@ function RequestHeading({
           {isComparison ? (
             profileRequest && (
               <RequestSummary
-                color={color}
+                color={colorScheme}
                 profileRequest={profileRequest}
                 flex='2'
               />
             )
           ) : (
             <RequestSummary
-              color={color}
+              color={colorScheme}
               profileRequest={profileRequest}
               flex='2'
             />
           )}
         </>
       ) : (
-        <Heading size='md' color={`${color}.500`}>
+        <Heading size='md' color={`${colorScheme}.500`}>
           Select a {isComparison ? 'comparison ' : ''}project
         </Heading>
       )}
@@ -429,7 +401,7 @@ function RequestHeading({
         <DownloadMenu
           isComparison={isComparison}
           isDisabled={!hasResults || settingsHaveChanged}
-          key={color}
+          key={colorScheme}
           opportunityDataset={opportunityDataset}
           projectId={get(project, '_id')}
           projectName={projectDownloadName}
@@ -451,7 +423,7 @@ function RequestHeading({
 
 function RequestSettings({
   bundle,
-  color = 'blue',
+  colorScheme,
   copyRequestSettings = false,
   isComparison = false,
   isDisabled,
@@ -519,8 +491,13 @@ function RequestSettings({
           </Stack>
 
           {isComparison && (
-            <FormControl isDisabled={!project} textAlign='center' width='100%'>
-              <FormLabel htmlFor='copySettings'>
+            <FormControl
+              display='flex'
+              alignContent='center'
+              justifyContent='center'
+              isDisabled={!project}
+            >
+              <FormLabel htmlFor='copySettings' mb={0}>
                 Identical request settings
               </FormLabel>
               <Switch
@@ -540,15 +517,15 @@ function RequestSettings({
               index={tabIndex}
               onChange={setTabIndex}
               variant='soft-rounded'
-              variantColor={color}
+              colorScheme={colorScheme}
             >
               <TabPanels>
-                <TabPanel>
+                <TabPanel p={0}>
                   {tabIndex === 0 && (
                     <Stack spacing={SPACING}>
                       <ModeSelector
                         accessModes={profileRequest.accessModes}
-                        color={color}
+                        color={colorScheme}
                         directModes={profileRequest.directModes}
                         disabled={isDisabled}
                         egressModes={profileRequest.egressModes}
@@ -558,7 +535,6 @@ function RequestSettings({
 
                       <ProfileRequestEditor
                         bundle={bundle}
-                        color={color}
                         disabled={isDisabled}
                         profileRequest={profileRequest}
                         project={project}
@@ -575,7 +551,7 @@ function RequestSettings({
                     </Stack>
                   )}
                 </TabPanel>
-                <TabPanel>
+                <TabPanel p={0}>
                   {tabIndex === 1 && (
                     <JSONEditor
                       isDisabled={isDisabled}
@@ -588,10 +564,10 @@ function RequestSettings({
 
               <TabList mt={4}>
                 <Tab title='Form editor'>
-                  <Icon icon={faMousePointer} />
+                  <MouseIcon />
                 </Tab>
                 <Tab title='Custom JSON editor'>
-                  <Icon icon={faCode} />
+                  <CodeIcon />
                 </Tab>
               </TabList>
             </Tabs>
@@ -607,10 +583,10 @@ function RequestSettings({
         size='sm'
         title={isOpen ? 'collapse' : 'expand'}
         variant='ghost'
-        variantColor={color}
+        colorScheme={colorScheme}
         width='100%'
       >
-        <Icon icon={isOpen ? faChevronUp : faChevronDown} />
+        {isOpen ? <ChevronUp /> : <ChevronDown />}
       </Button>
     </Stack>
   )

@@ -1,5 +1,4 @@
-import {Box, Button, Flex, Heading, Text} from '@chakra-ui/core'
-import {faChartArea} from '@fortawesome/free-solid-svg-icons'
+import {Button, Flex, Heading, Text} from '@chakra-ui/react'
 import get from 'lodash/get'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -8,14 +7,13 @@ import {
   setIsochroneFetchStatus
 } from 'lib/actions/analysis'
 import {abortFetch} from 'lib/actions/fetch'
+import {SyncIcon, XIcon} from 'lib/components/icons'
 import {FETCH_TRAVEL_TIME_SURFACE} from 'lib/constants'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectIsochrone from 'lib/selectors/isochrone'
-
-import Icon from '../icon'
 
 function TitleMessage({fetchStatus, project}) {
   const opportunityDataset = useSelector(activeOpportunityDataset)
@@ -56,24 +54,21 @@ export default function AnalysisTitle() {
       width='640px'
     >
       <Heading alignItems='center' display='flex' size='md'>
-        <Box mr={2}>
-          <Icon icon={faChartArea} />
-        </Box>
         <TitleMessage
           fetchStatus={isochroneFetchStatus}
           project={currentProject}
         />
       </Heading>
       {isFetchingIsochrone ? (
-        <Button rightIcon='small-close' onClick={abort} variantColor='red'>
+        <Button rightIcon={<XIcon />} onClick={abort} colorScheme='red'>
           Abort
         </Button>
       ) : (
         <Button
           isDisabled={!currentProject}
-          rightIcon='repeat'
+          rightIcon={<SyncIcon />}
           onClick={() => dispatch(fetchTravelTimeSurface())}
-          variantColor='blue'
+          colorScheme='blue'
           title={
             !currentProject
               ? message('analysis.disableFetch')

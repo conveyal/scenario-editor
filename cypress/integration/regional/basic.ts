@@ -51,23 +51,24 @@ describe('Regional', () => {
         .as('upload')
         .should('be.disabled')
       cy.findByLabelText(/Aggregation area name/i).type('cities')
-      cy.findByLabelText(/Select aggregation area files/i)
-        .attachFile({
+      cy.findByLabelText(/Select aggregation area files/i).attachFile([
+        {
           filePath: scratchRegion.aggregationAreas.files[0],
           encoding: 'base64'
-        })
-        .attachFile({
+        },
+        {
           filePath: scratchRegion.aggregationAreas.files[1],
           encoding: 'base64'
-        })
-        .attachFile({
+        },
+        {
           filePath: scratchRegion.aggregationAreas.files[2],
           encoding: 'base64'
-        })
-        .attachFile({
+        },
+        {
           filePath: scratchRegion.aggregationAreas.files[3],
           encoding: 'base64'
-        })
+        }
+      ])
       cy.findByLabelText(/Union/).uncheck({force: true})
       cy.findByLabelText(/Shapefile attribute to use as aggregation area name/i)
         .clear()

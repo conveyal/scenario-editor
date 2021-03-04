@@ -246,39 +246,42 @@ describe('Analysis', () => {
       const name = Cypress.env('dataPrefix') + 'preset'
       const editedName = Cypress.env('dataPrefix') + 'edited preset name'
       // Preset select does not exist without first creating a preset
-      cy.getPrimaryAnalysisSettings()
-        .findByRole('button', {name: /Save/})
-        .click()
+      cy.getPrimaryAnalysisSettings().within(() => {
+        cy.findButton(/Save/).click()
+      })
       cy.findByLabelText(/Name/).type(name)
-      cy.findByRole('button', {name: /Create preset/}).click()
+      cy.findButton(/Create preset/).click()
       cy.findByRole('dialog').should('not.exist')
       cy.findByText(/Created new preset/)
 
       // Preset selector should now exist
-      cy.getPrimaryAnalysisSettings()
-        .findByLabelText(/Active preset/)
-        .click({force: true})
-        .type(`${name}{enter}`)
+      cy.getPrimaryAnalysisSettings().within(() => {
+        cy.findByLabelText(/Active preset/)
+          .click({force: true})
+          .type(`${name}{enter}`)
+      })
 
       // Edit the preset name
-      cy.getPrimaryAnalysisSettings()
-        .findByRole('button', {name: /Edit preset name/})
-        .click()
-      cy.findByRole('dialog').should('exist')
-      cy.findByLabelText(/Name/).dblclick().type('edited name')
-      cy.findByRole('button', {name: /Save/}).click()
+      cy.getPrimaryAnalysisSettings().within(() => {
+        cy.findButton(/Edit preset name/).click()
+      })
+      cy.findByRole('dialog').within(() => {
+        cy.findByLabelText(/Name/).dblclick().type('edited name')
+        cy.findButton(/Save/).click()
+      })
       cy.findByRole('dialog').should('not.exist')
       cy.findByText(/Saved changes to preset/)
-      cy.getPrimaryAnalysisSettings()
-        .findAllByLabelText(/Active preset/)
-        .click({force: true})
-        .type(`${editedName}{enter}`)
+      cy.getPrimaryAnalysisSettings().within(() => {
+        cy.findAllByLabelText(/Active preset/)
+          .click({force: true})
+          .type(`${editedName}{enter}`)
+      })
 
       // Delete the preset
-      cy.getPrimaryAnalysisSettings()
-        .findByRole('button', {name: /Delete selected preset/})
-        .click()
-      cy.findByRole('button', {name: /Confirm: Delete preset/}).click()
+      cy.getPrimaryAnalysisSettings().within(() => {
+        cy.findButton(/Delete selected preset/).click()
+      })
+      cy.findButton(/Confirm: Delete preset/).click()
       cy.findByRole('dialog').should('not.exist')
       cy.findByText(/Deleted selected preset/)
     })

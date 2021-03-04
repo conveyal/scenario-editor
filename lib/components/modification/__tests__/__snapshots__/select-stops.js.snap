@@ -100,217 +100,250 @@ exports[`Component SelectStops snapshot(mount) 1`] = `
     }
   }
 >
-  <ForwardRef
+  <Stack
     spacing={4}
   >
-    <Flex
-      direction="column"
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 4,
+          },
+        }
+      }
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
     >
-      <Box
-        display="flex"
-        flexDirection="column"
+      <div
+        className="chakra-stack css-4daikc"
       >
-        <div
-          className="css-j7qwjs"
+        <Stack
+          key=".0"
+          spacing={4}
         >
-          <ForwardRef
-            key=".0"
-            mb={null}
-            spacing={4}
+          <Styled(div)
+            __css={
+              Object {
+                "& > *:not(style) ~ *:not(style)": Object {
+                  "marginStart": 0,
+                  "marginTop": 4,
+                },
+              }
+            }
+            className="chakra-stack"
+            display="flex"
+            flexDirection="column"
           >
-            <Flex
-              direction="column"
-              mb={null}
+            <div
+              className="chakra-stack css-4daikc"
             >
-              <Box
-                display="flex"
-                flexDirection="column"
-                mb={null}
+              <ForwardRef
+                key=".0"
+                status="info"
               >
-                <div
-                  className="css-j7qwjs"
+                <Styled(div)
+                  __css={
+                    Object {
+                      "alignItems": "center",
+                      "bg": "#bee3f8",
+                      "display": "flex",
+                      "overflow": "hidden",
+                      "position": "relative",
+                      "px": 4,
+                      "py": 3,
+                      "width": "100%",
+                    }
+                  }
+                  className="chakra-alert"
+                  role="alert"
                 >
-                  <Alert
-                    key=".0"
-                    mb={4}
-                    status="info"
+                  <div
+                    className="chakra-alert css-1m76rph"
+                    role="alert"
                   >
-                    <Box
-                      alignItems="center"
-                      bg="blue.100"
-                      display="flex"
-                      mb={4}
-                      overflow="hidden"
-                      pb={3}
-                      pl={4}
-                      position="relative"
-                      pr={4}
-                      pt={3}
-                      role="alert"
-                    >
-                      <div
-                        className="css-pjk3qj"
-                        role="alert"
+                    <AlertIcon>
+                      <Styled(span)
+                        __css={
+                          Object {
+                            "color": "blue.500",
+                            "flexShrink": 0,
+                            "h": 6,
+                            "mr": 3,
+                            "w": 5,
+                          }
+                        }
+                        className="chakra-alert__icon"
+                        display="inherit"
                       >
-                        <AlertIcon>
-                          <Icon
-                            color="blue.500"
-                            mr={3}
-                            name="info"
-                            size={5}
-                          >
-                            <Styled(div)
-                              as="svg"
-                              color="blue.500"
-                              display="inline-block"
-                              focusable={false}
-                              mr={3}
-                              role="presentation"
-                              size={5}
-                              verticalAlign="middle"
-                              viewBox="0 0 24 24"
-                            >
-                              <svg
-                                className="css-186zpkg"
-                                focusable={false}
-                                role="presentation"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm.25,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,12.25,5ZM14.5,18.5h-4a1,1,0,0,1,0-2h.75a.25.25,0,0,0,.25-.25v-4.5a.25.25,0,0,0-.25-.25H10.5a1,1,0,0,1,0-2h1a2,2,0,0,1,2,2v4.75a.25.25,0,0,0,.25.25h.75a1,1,0,1,1,0,2Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </Styled(div)>
-                          </Icon>
-                        </AlertIcon>
-                         
-                        Click 'New', then draw a polygon around the stops you wish to select.
-                      </div>
-                    </Box>
-                  </Alert>
-                  <Button
-                    isFullWidth={true}
-                    key=".1"
-                    leftIcon="edit"
-                    mb={null}
-                    onClick={[Function]}
-                    variantColor="blue"
-                  >
-                    <PseudoBox
-                      _active={
-                        Object {
-                          "bg": "blue.700",
-                        }
-                      }
-                      _disabled={
-                        Object {
-                          "boxShadow": "none",
-                          "cursor": "not-allowed",
-                          "opacity": "40%",
-                        }
-                      }
-                      _focus={
-                        Object {
-                          "boxShadow": "outline",
-                        }
-                      }
-                      _hover={
-                        Object {
-                          "bg": "blue.600",
-                        }
-                      }
-                      alignItems="center"
-                      appearance="none"
-                      as="button"
-                      bg="blue.500"
-                      borderRadius="md"
-                      color="white"
-                      display="inline-flex"
-                      fontSize="md"
-                      fontWeight="semibold"
-                      height={10}
-                      justifyContent="center"
-                      lineHeight="1.2"
-                      mb={null}
-                      minWidth={10}
-                      onClick={[Function]}
-                      outline="none"
-                      position="relative"
-                      px={4}
-                      transition="all 250ms"
-                      type="button"
-                      userSelect="none"
-                      verticalAlign="middle"
-                      whiteSpace="nowrap"
-                      width="full"
-                    >
-                      <button
-                        className="css-c8cukl"
-                        onClick={[Function]}
-                        type="button"
-                      >
-                        <ButtonIcon
-                          icon="edit"
-                          ml={-1}
-                          mr={2}
+                        <span
+                          className="chakra-alert__icon css-8flyh"
                         >
-                          <Icon
-                            aria-hidden="true"
-                            color="currentColor"
-                            focusable="false"
-                            ml={-1}
-                            mr={2}
-                            name="edit"
+                          <InfoIcon
+                            h="100%"
+                            w="100%"
                           >
-                            <Styled(div)
-                              aria-hidden="true"
-                              as="svg"
-                              color="currentColor"
-                              display="inline-block"
-                              focusable="false"
-                              ml={-1}
-                              mr={2}
-                              role="presentation"
-                              size="1em"
-                              verticalAlign="middle"
+                            <Icon
+                              h="100%"
                               viewBox="0 0 24 24"
+                              w="100%"
                             >
-                              <svg
-                                aria-hidden="true"
-                                className="css-yxiis9"
-                                focusable="false"
-                                role="presentation"
+                              <Styled(svg)
+                                __css={
+                                  Object {
+                                    "color": "currentColor",
+                                    "display": "inline-block",
+                                    "flexShrink": 0,
+                                    "h": "1em",
+                                    "lineHeight": "1em",
+                                    "w": "1em",
+                                  }
+                                }
+                                className="chakra-icon"
+                                focusable={false}
+                                h="100%"
+                                verticalAlign="middle"
                                 viewBox="0 0 24 24"
+                                w="100%"
                               >
-                                <g
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeLinecap="full"
-                                  strokeWidth="2"
+                                <svg
+                                  className="chakra-icon css-fi0ww0"
+                                  focusable={false}
+                                  viewBox="0 0 24 24"
                                 >
                                   <path
-                                    d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                    d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm.25,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,12.25,5ZM14.5,18.5h-4a1,1,0,0,1,0-2h.75a.25.25,0,0,0,.25-.25v-4.5a.25.25,0,0,0-.25-.25H10.5a1,1,0,0,1,0-2h1a2,2,0,0,1,2,2v4.75a.25.25,0,0,0,.25.25h.75a1,1,0,1,1,0,2Z"
+                                    fill="currentColor"
                                   />
-                                  <path
-                                    d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                  />
-                                </g>
+                                </svg>
+                              </Styled(svg)>
+                            </Icon>
+                          </InfoIcon>
+                        </span>
+                      </Styled(span)>
+                    </AlertIcon>
+                     
+                    Click 'New', then draw a polygon around the stops you wish to select.
+                  </div>
+                </Styled(div)>
+              </ForwardRef>
+              <Button
+                colorScheme="blue"
+                isFullWidth={true}
+                key=".1"
+                leftIcon={<FaPencilAlt />}
+                onClick={[Function]}
+              >
+                <Styled(button)
+                  __css={
+                    Object {
+                      "_active": Object {
+                        "bg": "blue.700",
+                      },
+                      "_disabled": Object {
+                        "boxShadow": "none",
+                        "cursor": "not-allowed",
+                        "opacity": 0.4,
+                      },
+                      "_focus": Object {
+                        "boxShadow": "outline",
+                      },
+                      "_hover": Object {
+                        "_disabled": Object {
+                          "bg": "blue.500",
+                        },
+                        "bg": "blue.600",
+                      },
+                      "alignItems": "center",
+                      "appearance": "none",
+                      "bg": "blue.500",
+                      "borderRadius": "md",
+                      "color": "white",
+                      "display": "inline-flex",
+                      "fontSize": "md",
+                      "fontWeight": "semibold",
+                      "h": 10,
+                      "justifyContent": "center",
+                      "lineHeight": "1.2",
+                      "minW": 10,
+                      "outline": "none",
+                      "position": "relative",
+                      "px": 4,
+                      "transition": "all 250ms",
+                      "userSelect": "none",
+                      "verticalAlign": "middle",
+                      "whiteSpace": "nowrap",
+                      "width": "100%",
+                    }
+                  }
+                  className="chakra-button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <button
+                    className="chakra-button css-1cu1u8l"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <ButtonIcon
+                      marginEnd="0.5rem"
+                    >
+                      <Styled(span)
+                        className="chakra-button__icon"
+                        marginEnd="0.5rem"
+                      >
+                        <span
+                          className="chakra-button__icon css-ktvjz1"
+                        >
+                          <FaPencilAlt
+                            aria-hidden={true}
+                            focusable={false}
+                          >
+                            <IconBase
+                              aria-hidden={true}
+                              attr={
+                                Object {
+                                  "viewBox": "0 0 512 512",
+                                }
+                              }
+                              focusable={false}
+                            >
+                              <svg
+                                aria-hidden={true}
+                                fill="currentColor"
+                                focusable={false}
+                                height="1em"
+                                stroke="currentColor"
+                                strokeWidth="0"
+                                style={
+                                  Object {
+                                    "color": undefined,
+                                  }
+                                }
+                                viewBox="0 0 512 512"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"
+                                  key="0"
+                                />
                               </svg>
-                            </Styled(div)>
-                          </Icon>
-                        </ButtonIcon>
-                        New
-                      </button>
-                    </PseudoBox>
-                  </Button>
-                </div>
-              </Box>
-            </Flex>
-          </ForwardRef>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+                            </IconBase>
+                          </FaPencilAlt>
+                        </span>
+                      </Styled(span)>
+                    </ButtonIcon>
+                    New
+                  </button>
+                </Styled(button)>
+              </Button>
+            </div>
+          </Styled(div)>
+        </Stack>
+      </div>
+    </Styled(div)>
+  </Stack>
 </SelectStops>
 `;

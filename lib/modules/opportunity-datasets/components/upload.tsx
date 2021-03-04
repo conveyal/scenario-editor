@@ -7,13 +7,15 @@ import {
   Input,
   Stack,
   Switch
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {ChangeEvent, FormEvent, useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import message from 'lib/message'
 
 import DocsLink from 'lib/components/docs-link'
+import {AddIcon} from 'lib/components/icons'
+
 import {uploadOpportunityDataset} from '../actions'
 
 /** Create an opportunity dataset by uploading files */
@@ -45,126 +47,128 @@ export default function UploadOpportunityDataset({regionId}) {
     files && files.length === 1 && files[0].name.toLowerCase().endsWith('.csv')
 
   return (
-    <Stack as='form' spacing={4} onSubmit={submit}>
-      <Heading size='md'>{message('analysis.createGrid')}</Heading>
-      <Box>{message('analysis.createGridTooltip')}</Box>
-      <FormControl isRequired>
-        <FormLabel htmlFor='Name'>
-          {message('analysis.gridName')} name
-        </FormLabel>
-        <Input name='Name' id='Name' />
-      </FormControl>
-
-      <FormControl isRequired>
-        <FormLabel htmlFor='files'>{message('analysis.gridFiles')}</FormLabel>
-        <Input
-          id='files'
-          name='files'
-          multiple
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setFiles(e.target.files)
-          }
-          type='file'
-        />
-      </FormControl>
-
-      <Heading size='sm'>CSV Options</Heading>
-      <Stack isInline>
-        <FormControl flex='1' isRequired isDisabled={!isCSV}>
-          <FormLabel htmlFor='latField'>
-            {message('analysis.latField')}
+    <form onSubmit={submit}>
+      <Stack spacing={4}>
+        <Heading size='md'>{message('analysis.createGrid')}</Heading>
+        <Box>{message('analysis.createGridTooltip')}</Box>
+        <FormControl isRequired>
+          <FormLabel htmlFor='Name'>
+            {message('analysis.gridName')} name
           </FormLabel>
+          <Input name='Name' id='Name' />
+        </FormControl>
+
+        <FormControl isRequired>
+          <FormLabel htmlFor='files'>{message('analysis.gridFiles')}</FormLabel>
           <Input
-            defaultValue='lat'
-            placeholder='lat'
-            id='latField'
-            name='latField'
+            id='files'
+            name='files'
+            multiple
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFiles(e.target.files)
+            }
+            type='file'
           />
         </FormControl>
 
-        <FormControl flex='1' isRequired isDisabled={!isCSV}>
-          <FormLabel htmlFor='lonField'>
-            {message('analysis.lonField')}
-          </FormLabel>
-          <Input
-            defaultValue='lon'
-            placeholder='lon'
-            id='lonField'
-            name='lonField'
-          />
-        </FormControl>
-      </Stack>
+        <Heading size='sm'>CSV Options</Heading>
+        <Stack isInline>
+          <FormControl flex='1' isRequired isDisabled={!isCSV}>
+            <FormLabel htmlFor='latField'>
+              {message('analysis.latField')}
+            </FormLabel>
+            <Input
+              defaultValue='lat'
+              placeholder='lat'
+              id='latField'
+              name='latField'
+            />
+          </FormControl>
 
-      <FormControl
-        display='flex'
-        justifyContent='space-between'
-        alignItems='center'
-        isDisabled={!isCSV}
-      >
-        <FormLabel htmlFor='freeform'>
-          Enable freeform (non-grid) points{' '}
-          <DocsLink pl={1} to='/prepare-inputs/upload-opportunity-data#csv' />
-        </FormLabel>
+          <FormControl flex='1' isRequired isDisabled={!isCSV}>
+            <FormLabel htmlFor='lonField'>
+              {message('analysis.lonField')}
+            </FormLabel>
+            <Input
+              defaultValue='lon'
+              placeholder='lon'
+              id='lonField'
+              name='lonField'
+            />
+          </FormControl>
+        </Stack>
 
-        <Switch
-          id='freeform'
-          isChecked={freeform}
+        <FormControl
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           isDisabled={!isCSV}
-          onChange={() => setFreeForm((ff) => !ff)}
-        />
-      </FormControl>
+        >
+          <FormLabel htmlFor='freeform'>
+            Enable freeform (non-grid) points{' '}
+            <DocsLink pl={1} to='/prepare-inputs/upload-opportunity-data#csv' />
+          </FormLabel>
 
-      <FormControl isRequired isDisabled={!isCSV || !freeform}>
-        <FormLabel htmlFor='idField'>{message('analysis.idField')}</FormLabel>
-        <Input id='idField' name='idField' placeholder='id' />
-      </FormControl>
+          <Switch
+            id='freeform'
+            isChecked={freeform}
+            isDisabled={!isCSV}
+            onChange={() => setFreeForm((ff) => !ff)}
+          />
+        </FormControl>
 
-      <FormControl isDisabled={!isCSV || !freeform}>
-        <FormLabel htmlFor='countField'>
-          {message('analysis.countField')}
-        </FormLabel>
-        <Input id='countField' name='countField' placeholder='count' />
-      </FormControl>
+        <FormControl isRequired isDisabled={!isCSV || !freeform}>
+          <FormLabel htmlFor='idField'>{message('analysis.idField')}</FormLabel>
+          <Input id='idField' name='idField' placeholder='id' />
+        </FormControl>
 
-      <FormControl
-        display='flex'
-        justifyContent='space-between'
-        alignItems='center'
-        isDisabled={!isCSV || !freeform}
-      >
-        <FormLabel htmlFor='paired'>Paired origin/destination file</FormLabel>
+        <FormControl isDisabled={!isCSV || !freeform}>
+          <FormLabel htmlFor='countField'>
+            {message('analysis.countField')}
+          </FormLabel>
+          <Input id='countField' name='countField' placeholder='count' />
+        </FormControl>
 
-        <Switch
-          id='paired'
-          isChecked={paired}
+        <FormControl
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           isDisabled={!isCSV || !freeform}
-          onChange={() => setPaired((p) => !p)}
-        />
-      </FormControl>
+        >
+          <FormLabel htmlFor='paired'>Paired origin/destination file</FormLabel>
 
-      <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
-        <FormLabel htmlFor='latField2'>
-          Destination {message('analysis.latField').toLowerCase()}
-        </FormLabel>
-        <Input id='latField2' name='latField2' />
-      </FormControl>
+          <Switch
+            id='paired'
+            isChecked={paired}
+            isDisabled={!isCSV || !freeform}
+            onChange={() => setPaired((p) => !p)}
+          />
+        </FormControl>
 
-      <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
-        <FormLabel htmlFor='lonField2'>
-          Destination {message('analysis.lonField').toLowerCase()}
-        </FormLabel>
-        <Input id='lonField2' name='lonField2' />
-      </FormControl>
+        <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
+          <FormLabel htmlFor='latField2'>
+            Destination {message('analysis.latField').toLowerCase()}
+          </FormLabel>
+          <Input id='latField2' name='latField2' />
+        </FormControl>
 
-      <Button
-        type='submit'
-        leftIcon='small-add'
-        isLoading={uploading}
-        loadingText={message('analysis.uploading')}
-        variantColor='green'
-      >
-        {message('analysis.createGrid')}
-      </Button>
-    </Stack>
+        <FormControl isRequired isDisabled={!isCSV || !freeform || !paired}>
+          <FormLabel htmlFor='lonField2'>
+            Destination {message('analysis.lonField').toLowerCase()}
+          </FormLabel>
+          <Input id='lonField2' name='lonField2' />
+        </FormControl>
+
+        <Button
+          type='submit'
+          leftIcon={<AddIcon />}
+          isLoading={uploading}
+          loadingText={message('analysis.uploading')}
+          colorScheme='green'
+        >
+          {message('analysis.createGrid')}
+        </Button>
+      </Stack>
+    </form>
   )
 }

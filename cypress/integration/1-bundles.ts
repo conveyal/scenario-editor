@@ -120,17 +120,18 @@ describe('Network bundles', () => {
         .parent()
         .select(singleFeedBundle.name)
       cy.findByText(/Upload new GTFS/i).click()
-      cy.findByLabelText(/Select .*GTFS/i)
-        .attachFile({
+      cy.findByLabelText(/Select .*GTFS/i).attachFile([
+        {
           filePath: scratchRegion.GTFSfile,
           encoding: 'base64',
           mimeType: 'application/octet-stream'
-        })
-        .attachFile({
+        },
+        {
           filePath: scratchRegion.GTFSfile,
           encoding: 'base64',
           mimeType: 'application/octet-stream'
-        })
+        }
+      ])
     })
 
     cy.findByLabelText(/Feed #1/)

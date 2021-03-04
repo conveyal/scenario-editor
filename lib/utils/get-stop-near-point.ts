@@ -19,16 +19,18 @@ export default function getStopNearPoint(
   let closestStopDistance = Infinity
   let closestStop: null | GTFS.Stop = null
   for (const stop of allStops) {
-    const stopDistance = turfDistance(
-      clickPoint,
-      turfPoint([stop.stop_lon, stop.stop_lat])
-    )
-    if (
-      stopDistance < maxDistanceKilometers &&
-      stopDistance < closestStopDistance
-    ) {
-      closestStopDistance = stopDistance
-      closestStop = stop
+    if (stop.stop_lat && stop.stop_lon) {
+      const stopDistance = turfDistance(
+        clickPoint,
+        turfPoint([stop.stop_lon, stop.stop_lat])
+      )
+      if (
+        stopDistance < maxDistanceKilometers &&
+        stopDistance < closestStopDistance
+      ) {
+        closestStopDistance = stopDistance
+        closestStop = stop
+      }
     }
   }
 

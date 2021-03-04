@@ -1,35 +1,30 @@
-import {dequal} from 'dequal/lite'
 import Router from 'next/router'
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback} from 'react'
 
-import {routeTo} from '../router'
+import {PageKey} from 'lib/constants'
 
-export default function useRouteTo(to: string, props: any = {}) {
-  const [result, setResult] = useState(() => routeTo(to, props))
+import useLink from './use-link'
 
-  useEffect(() => {
-    const newRouteTo = routeTo(to, props)
-    if (!dequal(newRouteTo, result)) {
-      setResult(newRouteTo)
+import {pageToHref} from '../router'
 
-      // Prefetch in production
-      Router.prefetch(newRouteTo.href, newRouteTo.as)
-    }
-  }, [props, result, setResult, to])
+/**
+ * Create an `onClick` function for navigation.
+ */
+export default function useRouteTo(
+  key: PageKey,
+  props: Record<string, string> = {}
+) {
+  const link = useLink(key, props)
 
   const onClick = useCallback(
     (newProps?: any) => {
       if (newProps && !newProps.nativeEvent) {
-        const newRoute = routeTo(to, newProps)
-        Router.push(
-          {pathname: newRoute.href, query: newRoute.query},
-          newRoute.as
-        )
+        Router.push(pageToHref(key, {...props, ...newProps}))
       } else {
-        Router.push({pathname: result.href, query: result.query}, result.as)
+        Router.push(link)
       }
     },
-    [result, to]
+    [link, props, key]
   )
 
   return onClick

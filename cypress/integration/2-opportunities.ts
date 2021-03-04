@@ -88,11 +88,12 @@ describe('Opportunity Datasets', function () {
       cy.navComplete()
 
       cy.findByLabelText(/Spatial dataset name/i).type(oppName)
-      cy.findByLabelText(/Select spatial dataset/)
-        .attachFile({filePath: opportunity.files[0], encoding: 'base64'})
-        .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
-        .attachFile({filePath: opportunity.files[2], encoding: 'base64'})
-        .attachFile({filePath: opportunity.files[3], encoding: 'base64'})
+      cy.findByLabelText(/Select spatial dataset/).attachFile([
+        {filePath: opportunity.files[0], encoding: 'base64'},
+        {filePath: opportunity.files[1], encoding: 'base64'},
+        {filePath: opportunity.files[2], encoding: 'base64'},
+        {filePath: opportunity.files[3], encoding: 'base64'}
+      ])
       cy.findButton(/Upload/).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)

@@ -34,9 +34,9 @@ export const API = {
 export const ANALYSIS_URL = `${API_URL}/analysis`
 
 /**
- * Routes
+ * Pages
  */
-export const RouteTo = {
+export const Pages = {
   changelog: '/changelog',
   regions: '/',
   regionCreate: '/regions/create',
@@ -68,6 +68,7 @@ export const RouteTo = {
   resourceUpload: '/regions/[regionId]/resources/upload',
   resourceEdit: '/regions/[regionId]/resources/[resourceId]'
 }
+export type PageKey = keyof typeof Pages
 
 /**
  * Local Storage Keys

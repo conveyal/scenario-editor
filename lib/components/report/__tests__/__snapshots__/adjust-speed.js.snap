@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Report > AdjustSpeed renders correctly 1`] = `
-<ForwardRef>
+<Stack>
   <Heading
     size="sm"
   >
@@ -234,5 +234,5 @@ exports[`Report > AdjustSpeed renders correctly 1`] = `
       All patterns are affected.
     </i>
   </Box>
-</ForwardRef>
+</Stack>
 `;

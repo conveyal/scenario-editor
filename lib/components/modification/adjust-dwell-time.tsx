@@ -1,4 +1,4 @@
-import {Box, Radio, RadioGroup, Stack} from '@chakra-ui/core'
+import {Box, Radio, RadioGroup, Stack} from '@chakra-ui/react'
 
 import colors from 'lib/constants/colors'
 
@@ -53,9 +53,9 @@ export default function AdjustDwellTimeComponent(p) {
       )}
 
       <RadioGroup
-        onChange={(e) => {
+        onChange={(newValue) => {
           p.update({
-            scale: e.target.value === 'scale'
+            scale: newValue === 'scale'
           })
         }}
         value={p.modification.scale === true ? 'scale' : 'speed'}

@@ -1,5 +1,4 @@
-import {Alert, FormControl, FormLabel, Heading, Stack} from '@chakra-ui/core'
-import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import {Alert, FormControl, FormLabel, Heading, Stack} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import React from 'react'
@@ -10,9 +9,9 @@ import selectPhaseFromTimetableStops from 'lib/selectors/all-phase-from-timetabl
 import selectProjectTimetables from 'lib/selectors/project-timetables'
 import {toString as timetableToString} from 'lib/utils/timetable'
 
-import Icon from '../icon'
 import Select from '../select'
 import MinutesSeconds from '../minutes-seconds'
+import DocsLink from '../docs-link'
 
 const getStopName = fpGet('stop_name')
 const getStopId = fpGet('stop_id')
@@ -46,14 +45,7 @@ export default function Phase({
     <Stack spacing={4} mb={4}>
       <Heading size='sm'>
         <span>Phasing </span>
-        <a
-          href='http://docs.conveyal.com/edit-scenario/phasing'
-          rel='noopener noreferrer'
-          target='_blank'
-          title='Learn more about phasing'
-        >
-          <Icon icon={faInfoCircle} />
-        </a>
+        <DocsLink to='edit-scenario/phasing' />
       </Heading>
       <FormControl isDisabled={disabled}>
         <FormLabel htmlFor='phaseAtStop'>{message('phasing.atStop')}</FormLabel>

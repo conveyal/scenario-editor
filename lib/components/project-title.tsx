@@ -1,15 +1,11 @@
-import {Flex, Heading, useDisclosure} from '@chakra-ui/core'
-import {
-  faChevronLeft,
-  faCog,
-  faExternalLinkAlt
-} from '@fortawesome/free-solid-svg-icons'
+import {Flex, Heading, useDisclosure} from '@chakra-ui/react'
 
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
 import ExportProject from './export-project'
 import IconButton from './icon-button'
+import {ChevronLeft, ExternalLinkIcon, SettingsIcon} from './icons'
 
 export default function ProjectTitle({project}) {
   const exportSelect = useDisclosure()
@@ -24,11 +20,9 @@ export default function ProjectTitle({project}) {
   const name = project ? project.name : 'Loading...'
   return (
     <Flex align='center' borderBottom='1px solid #E2E8F0' p={2} width='320px'>
-      <IconButton
-        icon={faChevronLeft}
-        label='All projects'
-        onClick={goToAllProjects}
-      />
+      <IconButton label='All projects' onClick={goToAllProjects}>
+        <ChevronLeft />
+      </IconButton>
       <Heading
         ml={2}
         flex='1'
@@ -42,15 +36,17 @@ export default function ProjectTitle({project}) {
       {project && (
         <Flex>
           <IconButton
-            icon={faExternalLinkAlt}
             label={message('project.export')}
             onClick={exportSelect.onOpen}
-          />
+          >
+            <ExternalLinkIcon />
+          </IconButton>
           <IconButton
-            icon={faCog}
             label={message('project.editSettings')}
             onClick={goToProjectSettings}
-          />
+          >
+            <SettingsIcon />
+          </IconButton>
 
           {exportSelect.isOpen && (
             <ExportProject onHide={exportSelect.onClose} project={project} />

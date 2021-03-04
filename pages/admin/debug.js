@@ -1,4 +1,4 @@
-import {Button, Stack, Text} from '@chakra-ui/core'
+import {Button, Stack, Text} from '@chakra-ui/react'
 import React from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -36,7 +36,7 @@ export default withRedux(function Debug() {
 
   return (
     <Stack align='center' spacing={4} mt={10} justify='center'>
-      <Button onClick={() => setShow((s) => !s)} variantColor='red'>
+      <Button onClick={() => setShow((s) => !s)} colorScheme='red'>
         Cause a React rendering error
       </Button>
       <Button
@@ -44,7 +44,7 @@ export default withRedux(function Debug() {
           console.log(this.does.not.exist)
           throw new Error('This is the error name. Can it be understood?')
         }}
-        variantColor='red'
+        colorScheme='red'
       >
         Throw an error (usually displayed in the sidebar)
       </Button>
@@ -60,7 +60,7 @@ export default withRedux(function Debug() {
             reject('This is the reason why this was rejected.')
           )
         }}
-        variantColor='red'
+        colorScheme='red'
       >
         Cause an unhandled rejection (usually displayed in sidebar)
       </Button>
@@ -71,11 +71,11 @@ export default withRedux(function Debug() {
       )}
       <Button
         onClick={() => dispatch(fetch({url: '/does/not/exits'}))}
-        variantColor='red'
+        colorScheme='red'
       >
         Fetch a url that does not exist
       </Button>
-      <Button onClick={() => dispatch(fetch({}))} variantColor='red'>
+      <Button onClick={() => dispatch(fetch({}))} colorScheme='red'>
         Fetch with invalid parameters
       </Button>
     </Stack>

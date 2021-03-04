@@ -4,12 +4,10 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
 <Collapsible
   heading={
     <React.Fragment>
-      <Icon
-        icon={
+      <FaCalendar
+        style={
           Object {
-            "icon": Array [],
-            "iconName": "calendar",
-            "prefix": "fas",
+            "display": "inline-block",
           }
         }
       />
@@ -21,7 +19,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
   }
 >
   <Body>
-    <ForwardRef
+    <Stack
       spacing={4}
     >
       <FormControl
@@ -33,17 +31,11 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
           Name
         </FormLabel>
         <Input
-          as="input"
-          errorBorderColor="red.500"
-          focusBorderColor="blue.500"
           id="00000000-0000-0000-0000-000000000000"
-          isFullWidth={true}
           isInvalid={false}
           isValid={true}
           onChange={[Function]}
-          size="md"
           value="Test timetable"
-          variant="outline"
         />
       </FormControl>
       <SelectPatterns
@@ -267,15 +259,15 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
         />
       </Box>
       <ConfirmButton
+        colorScheme="red"
         description="Are you sure you would like to remove this frequency entry?"
         isFullWidth={true}
-        leftIcon="delete"
+        leftIcon={<FaTrash />}
         onConfirm={[MockFunction]}
-        variantColor="red"
       >
         Delete frequency entry
       </ConfirmButton>
-    </ForwardRef>
+    </Stack>
   </Body>
 </Collapsible>
 `;

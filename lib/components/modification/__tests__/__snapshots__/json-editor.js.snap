@@ -9,197 +9,174 @@ exports[`Components > Modification > JSON Editor should render 1`] = `
   }
   save={[MockFunction]}
 >
-  <ForwardRef
+  <Stack
     spacing={4}
   >
-    <Flex
-      direction="column"
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 4,
+          },
+        }
+      }
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
     >
-      <Box
-        display="flex"
-        flexDirection="column"
+      <div
+        className="chakra-stack css-4daikc"
       >
-        <div
-          className="css-j7qwjs"
+        <Text
+          key=".0"
         >
-          <Text
-            key=".0"
-            mb={4}
+          <Styled(p)
+            __css={Object {}}
+            className="chakra-text"
           >
-            <Box
-              as="p"
-              fontFamily="body"
-              mb={4}
+            <p
+              className="chakra-text css-0"
             >
-              <p
-                className="css-zwncle"
-              >
-                For advanced users only
-              </p>
-            </Box>
-          </Text>
-          <Textarea
+              For advanced users only
+            </p>
+          </Styled(p)>
+        </Text>
+        <Textarea
+          defaultValue="{
+  \\"name\\": \\"hello\\"
+}"
+          fontFamily="mono"
+          fontSize="sm"
+          height="40em"
+          key=".\${
+  \\"name\\"=2 \\"hello\\"
+}"
+        >
+          <Styled(textarea)
+            __css={
+              Object {
+                "_disabled": Object {
+                  "cursor": "not-allowed",
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
+                  "borderColor": "#3182ce",
+                  "boxShadow": "0 0 0 1px #3182ce",
+                  "zIndex": 1,
+                },
+                "_hover": Object {
+                  "borderColor": "gray.300",
+                },
+                "_invalid": Object {
+                  "borderColor": "#E53E3E",
+                  "boxShadow": "0 0 0 1px #E53E3E",
+                },
+                "_readOnly": Object {
+                  "boxShadow": "none !important",
+                  "userSelect": "all",
+                },
+                "appearance": "none",
+                "bg": "inherit",
+                "border": "1px solid",
+                "borderColor": "inherit",
+                "borderRadius": "md",
+                "fontSize": "md",
+                "h": 10,
+                "lineHeight": "short",
+                "minHeight": "80px",
+                "minWidth": 0,
+                "outline": 0,
+                "paddingY": "8px",
+                "position": "relative",
+                "px": 4,
+                "transition": "all 0.2s",
+                "width": "100%",
+              }
+            }
+            className="chakra-textarea"
             defaultValue="{
   \\"name\\": \\"hello\\"
 }"
             fontFamily="mono"
             fontSize="sm"
             height="40em"
-            key=".\${
-  \\"name\\"=2 \\"hello\\"
-}"
-            mb={4}
+            onBlur={[Function]}
+            onFocus={[Function]}
           >
-            <Input
-              as="textarea"
+            <textarea
+              className="chakra-textarea css-d8oix8"
               defaultValue="{
   \\"name\\": \\"hello\\"
 }"
-              errorBorderColor="red.500"
-              focusBorderColor="blue.500"
-              fontFamily="mono"
-              fontSize="sm"
-              height="40em"
-              isFullWidth={true}
-              lineHeight="short"
-              mb={4}
-              minHeight="80px"
-              py="8px"
-              size="md"
-              variant="outline"
-            >
-              <PseudoBox
-                _disabled={
-                  Object {
-                    "cursor": "not-allowed",
-                    "opacity": "0.4",
-                  }
-                }
-                _focus={
-                  Object {
-                    "borderColor": "#3182ce",
-                    "boxShadow": "0 0 0 1px #3182ce",
-                    "zIndex": 1,
-                  }
-                }
-                _hover={
-                  Object {
-                    "borderColor": "gray.300",
-                  }
-                }
-                _invalid={
-                  Object {
-                    "borderColor": "#e53e3e",
-                    "boxShadow": "0 0 0 1px #e53e3e",
-                  }
-                }
-                _readOnly={
-                  Object {
-                    "bg": "transparent",
-                    "boxShadow": "none !important",
-                    "userSelect": "all",
-                  }
-                }
-                alignItems="center"
-                appearance="none"
-                as="textarea"
-                bg="white"
-                border="1px"
-                borderColor="inherit"
-                defaultValue="{
-  \\"name\\": \\"hello\\"
-}"
-                display="flex"
-                fontFamily="mono"
-                fontSize="sm"
-                height="40em"
-                lineHeight="short"
-                mb={4}
-                minHeight="80px"
-                outline="none"
-                position="relative"
-                px={4}
-                py="8px"
-                rounded="md"
-                transition="all 0.2s"
-                width="100%"
-              >
-                <textarea
-                  className="css-1tail54"
-                  defaultValue="{
-  \\"name\\": \\"hello\\"
-}"
-                />
-              </PseudoBox>
-            </Input>
-          </Textarea>
-          <Button
-            isFullWidth={true}
-            key=".2"
-            mb={null}
-            onClick={[Function]}
-            variantColor="green"
-          >
-            <PseudoBox
-              _active={
-                Object {
+              onBlur={[Function]}
+              onFocus={[Function]}
+            />
+          </Styled(textarea)>
+        </Textarea>
+        <Button
+          colorScheme="green"
+          isFullWidth={true}
+          key=".2"
+          onClick={[Function]}
+        >
+          <Styled(button)
+            __css={
+              Object {
+                "_active": Object {
                   "bg": "green.700",
-                }
-              }
-              _disabled={
-                Object {
+                },
+                "_disabled": Object {
                   "boxShadow": "none",
                   "cursor": "not-allowed",
-                  "opacity": "40%",
-                }
-              }
-              _focus={
-                Object {
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
                   "boxShadow": "outline",
-                }
-              }
-              _hover={
-                Object {
+                },
+                "_hover": Object {
+                  "_disabled": Object {
+                    "bg": "green.500",
+                  },
                   "bg": "green.600",
-                }
+                },
+                "alignItems": "center",
+                "appearance": "none",
+                "bg": "green.500",
+                "borderRadius": "md",
+                "color": "white",
+                "display": "inline-flex",
+                "fontSize": "md",
+                "fontWeight": "semibold",
+                "h": 10,
+                "justifyContent": "center",
+                "lineHeight": "1.2",
+                "minW": 10,
+                "outline": "none",
+                "position": "relative",
+                "px": 4,
+                "transition": "all 250ms",
+                "userSelect": "none",
+                "verticalAlign": "middle",
+                "whiteSpace": "nowrap",
+                "width": "100%",
               }
-              alignItems="center"
-              appearance="none"
-              as="button"
-              bg="green.500"
-              borderRadius="md"
-              color="white"
-              display="inline-flex"
-              fontSize="md"
-              fontWeight="semibold"
-              height={10}
-              justifyContent="center"
-              lineHeight="1.2"
-              mb={null}
-              minWidth={10}
+            }
+            className="chakra-button"
+            onClick={[Function]}
+            type="button"
+          >
+            <button
+              className="chakra-button css-1uiu0j2"
               onClick={[Function]}
-              outline="none"
-              position="relative"
-              px={4}
-              transition="all 250ms"
               type="button"
-              userSelect="none"
-              verticalAlign="middle"
-              whiteSpace="nowrap"
-              width="full"
             >
-              <button
-                className="css-sci538"
-                onClick={[Function]}
-                type="button"
-              >
-                Save custom changes
-              </button>
-            </PseudoBox>
-          </Button>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+              Save custom changes
+            </button>
+          </Styled(button)>
+        </Button>
+      </div>
+    </Styled(div)>
+  </Stack>
 </JSONEditor>
 `;

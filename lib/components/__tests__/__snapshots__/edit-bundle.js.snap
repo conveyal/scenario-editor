@@ -4,58 +4,108 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
 <EditBundle
   bundleProjects={Array []}
 >
-  <ForwardRef
+  <Stack
     spacing={8}
   >
-    <Flex
-      direction="column"
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 8,
+          },
+        }
+      }
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
     >
-      <Box
-        display="flex"
-        flexDirection="column"
+      <div
+        className="chakra-stack css-15hkdey"
       >
-        <div
-          className="css-j7qwjs"
+        <FormControl
+          key=".0"
         >
-          <FormControl
-            key=".0"
-            mb={null}
+          <Styled(div)
+            __css={
+              Object {
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+            className="chakra-form-control"
+            role="group"
           >
-            <Box
-              mb={null}
+            <div
+              className="chakra-form-control css-1kxonj9"
               role="group"
             >
-              <div
-                className="css-0"
-                role="group"
+              <FormLabel
+                htmlFor="selectBundle"
               >
-                <FormLabel
+                <Styled(label)
+                  __css={
+                    Object {
+                      "_disabled": Object {
+                        "opacity": 0.4,
+                      },
+                      "display": "block",
+                      "fontSize": "md",
+                      "fontWeight": "medium",
+                      "marginEnd": 3,
+                      "mb": 2,
+                      "opacity": 1,
+                      "textAlign": "start",
+                      "transition": "all 0.2s",
+                    }
+                  }
+                  className="chakra-form__label"
                   htmlFor="selectBundle"
+                  id="field-1-label"
                 >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
+                  <label
+                    className="chakra-form__label css-1qqx8g3"
                     htmlFor="selectBundle"
-                    opacity="1"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
+                    id="field-1-label"
                   >
-                    <label
-                      className="css-176s5fq"
-                      htmlFor="selectBundle"
-                    >
-                      or select an existing one
-                    </label>
-                  </Box>
-                </FormLabel>
-                <div>
-                  <ForwardRef
+                    or select an existing one
+                  </label>
+                </Styled(label)>
+              </FormLabel>
+              <div>
+                <ForwardRef
+                  getOptionLabel={[Function]}
+                  getOptionValue={[Function]}
+                  inputId="selectBundle"
+                  onChange={[Function]}
+                  options={
+                    Array [
+                      Object {
+                        "_id": "1",
+                        "accessGroup": "accessGroupName",
+                        "centerLat": 38.90124,
+                        "centerLon": -77.015615,
+                        "createdAt": "2017-11-08T12:30:50.133Z",
+                        "createdBy": "person@gmail.com",
+                        "errorCode": "",
+                        "feeds": Array [],
+                        "name": "Mock Bundle",
+                        "nonce": "12345",
+                        "regionId": "1",
+                        "serviceEnd": "2018-09-28",
+                        "serviceStart": "2018-09-27",
+                        "status": "DONE",
+                        "totalFeeds": 0,
+                        "updatedAt": "2017-11-08T12:31:19.602Z",
+                        "updatedBy": "person@gmail.com",
+                      },
+                    ]
+                  }
+                >
+                  <ReactSelect
                     getOptionLabel={[Function]}
                     getOptionValue={[Function]}
+                    innerRef={null}
                     inputId="selectBundle"
                     onChange={[Function]}
                     options={
@@ -81,56 +131,25 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                         },
                       ]
                     }
+                    styles={
+                      Object {
+                        "control": [Function],
+                        "menu": [Function],
+                        "option": [Function],
+                      }
+                    }
                   >
-                    <ReactSelect
-                      getOptionLabel={[Function]}
-                      getOptionValue={[Function]}
-                      innerRef={null}
-                      inputId="selectBundle"
-                      onChange={[Function]}
-                      options={
-                        Array [
-                          Object {
-                            "_id": "1",
-                            "accessGroup": "accessGroupName",
-                            "centerLat": 38.90124,
-                            "centerLon": -77.015615,
-                            "createdAt": "2017-11-08T12:30:50.133Z",
-                            "createdBy": "person@gmail.com",
-                            "errorCode": "",
-                            "feeds": Array [],
-                            "name": "Mock Bundle",
-                            "nonce": "12345",
-                            "regionId": "1",
-                            "serviceEnd": "2018-09-28",
-                            "serviceStart": "2018-09-27",
-                            "status": "DONE",
-                            "totalFeeds": 0,
-                            "updatedAt": "2017-11-08T12:31:19.602Z",
-                            "updatedBy": "person@gmail.com",
-                          },
-                        ]
-                      }
-                      styles={
-                        Object {
-                          "control": [Function],
-                          "menu": [Function],
-                          "option": [Function],
-                        }
-                      }
-                    >
-                      <div
-                        className="ReactSelectMock"
-                      />
-                    </ReactSelect>
-                  </ForwardRef>
-                </div>
+                    <div
+                      className="ReactSelectMock"
+                    />
+                  </ReactSelect>
+                </ForwardRef>
               </div>
-            </Box>
-          </FormControl>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+            </div>
+          </Styled(div)>
+        </FormControl>
+      </div>
+    </Styled(div)>
+  </Stack>
 </EditBundle>
 `;

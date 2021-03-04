@@ -4,7 +4,7 @@ import {
   FormLabel,
   Input,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import {useState} from 'react'
 import {useSelector} from 'react-redux'

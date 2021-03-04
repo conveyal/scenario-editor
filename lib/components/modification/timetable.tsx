@@ -1,11 +1,10 @@
-import {Divider, FormControl, FormLabel, Input, Stack} from '@chakra-ui/core'
-import {faCalendar} from '@fortawesome/free-solid-svg-icons'
+import {Divider, FormControl, FormLabel, Input, Stack} from '@chakra-ui/react'
 import {useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 
 import ConfirmButton from '../confirm-button'
-import Icon from '../icon'
+import {CalendarIcon, DeleteIcon} from '../icons'
 import * as Panel from '../panel'
 
 import SegmentSpeeds from './segment-speeds'
@@ -31,7 +30,7 @@ export default function TimetableComponent({
       defaultExpanded={false}
       heading={
         <>
-          <Icon icon={faCalendar} />
+          <CalendarIcon style={{display: 'inline-block'}} />
           <strong> {nameInput.value}</strong>
         </>
       }
@@ -64,9 +63,9 @@ export default function TimetableComponent({
           <ConfirmButton
             description='Are you sure you would like to remove this timetable?'
             isFullWidth
-            leftIcon='delete'
+            leftIcon={<DeleteIcon />}
             onConfirm={remove}
-            variantColor='red'
+            colorScheme='red'
           >
             Delete Timetable
           </ConfirmButton>

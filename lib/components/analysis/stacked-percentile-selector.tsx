@@ -1,4 +1,11 @@
-import {Box, Stack, Progress, StackProps} from '@chakra-ui/react'
+import {
+  Box,
+  Stack,
+  Progress,
+  StackProps,
+  HStack,
+  VStack
+} from '@chakra-ui/react'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
 import get from 'lodash/get'
@@ -73,9 +80,9 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
 
   return (
     <Stack {...p}>
-      <Stack spacing={0}>
+      <VStack pl='35px' spacing={0}>
         {typeof accessibility === 'number' && (
-          <Stack isInline spacing={5} alignItems='center'>
+          <HStack spacing={5} width='100%'>
             <Progress
               flex='10'
               color={disabledOrStale ? 'gray' : 'blue'}
@@ -90,11 +97,11 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             >
               {commaFormat(accessibility)}
             </Box>
-          </Stack>
+          </HStack>
         )}
 
         {comparisonProjectName && typeof comparisonAccessibility === 'number' && (
-          <Stack isInline spacing={5} alignItems='center'>
+          <HStack spacing={5} width='100%'>
             <Progress
               flex='10'
               color={disabledOrStale ? 'gray' : 'red'}
@@ -109,9 +116,9 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             >
               {commaFormat(comparisonAccessibility)}
             </Box>
-          </Stack>
+          </HStack>
         )}
-      </Stack>
+      </VStack>
 
       {get(percentileCurves, 'length') > 0 &&
         (comparisonPercentileCurves == null ? (

@@ -1,8 +1,10 @@
+import {UserProvider, withPageAuthRequired} from '@auth0/nextjs-auth0'
 import {Box} from '@chakra-ui/react'
 import Head from 'next/head'
+import {useEffect} from 'react'
 
 import LoadingScreen from './components/loading-screen'
-import {useFetchUser, UserContext, IUser} from './user'
+import {IUser, storeUser} from './user'
 
 export interface IWithAuthProps {
   user?: IUser
@@ -27,13 +29,18 @@ const DevBar = () => (
 /**
  * Ensure that a Page component is authenticated before rendering.
  */
-export default function withAuth(PageComponent) {
-  return function AuthenticatedComponent(p: IWithAuthProps): JSX.Element {
-    const {user} = useFetchUser(p.user)
-    if (!user) return <LoadingScreen />
+const withAuth = (PageComponent) =>
+  withPageAuthRequired(function AuthenticatedComponent(
+    p: IWithAuthProps
+  ): JSX.Element {
+    useEffect(() => {
+      if (p.user) storeUser(p.user)
+    }, [p.user])
+
+    if (!p.user) return <LoadingScreen />
     return (
-      <UserContext.Provider value={user}>
-        {isAdmin(user) ? (
+      <UserProvider user={p.user}>
+        {isAdmin(p.user) ? (
           <DevBar />
         ) : (
           <Head>
@@ -41,7 +48,8 @@ export default function withAuth(PageComponent) {
           </Head>
         )}
         <PageComponent {...p} />
-      </UserContext.Provider>
+      </UserProvider>
     )
-  }
-}
+  })
+
+export default withAuth

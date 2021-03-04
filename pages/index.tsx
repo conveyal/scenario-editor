@@ -1,3 +1,4 @@
+import {withPageAuthRequired} from '@auth0/nextjs-auth0'
 import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
 import {GetServerSideProps} from 'next'
 import Link from 'next/link'
@@ -117,26 +118,19 @@ function RegionItem({region, ...p}: RegionItemProps) {
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
  */
-export const getServerSideProps: GetServerSideProps = async ({req}) => {
-  let user: IUser = null
-  try {
-    user = await getUser(req)
-  } catch (e) {
+export const getServerSideProps: GetServerSideProps = withPageAuthRequired({
+  getServerSideProps: async (ctx) => {
+    const user = getUser(ctx.req, ctx.res)
+    const collection = await AuthenticatedCollection.initFromUser(
+      'regions',
+      user
+    )
+    const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
+
     return {
-      redirect: {
-        permanent: false,
-        destination: '/api/login'
+      props: {
+        regions: serializeCollection(regions)
       }
     }
   }
-
-  const collection = await AuthenticatedCollection.initFromUser('regions', user)
-  const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
-
-  return {
-    props: {
-      regions: serializeCollection(regions),
-      user
-    }
-  }
-}
+})

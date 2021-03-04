@@ -1,12 +1,54 @@
+import {
+  handleAuth,
+  handleCallback,
+  handleLogin,
+  Session
+} from '@auth0/nextjs-auth0'
 import {NextApiRequest, NextApiResponse} from 'next'
 
-import initAuth0 from 'lib/auth0'
+import {userFromSession} from 'lib/user'
+import {errorToPOJO} from 'lib/utils/api'
 
-export default async function auth(
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> {
-  const auth0 = initAuth0(req)
-  const handler = auth0.handleAuth()
-  await handler(req, res)
+const scope = 'openid email profile id_token'
+
+function getBaseURL(req: NextApiRequest): string {
+  const host = req.headers.host
+  const protocol = /^localhost(:\d+)?$/.test(host) ? 'http:' : 'https:'
+  return `${protocol}//${host}`
 }
+
+function afterCallback(
+  req: NextApiRequest,
+  _: NextApiResponse,
+  session: Session
+) {
+  return {
+    ...session,
+    user: userFromSession(req, session)
+  }
+}
+
+export default handleAuth({
+  async callback(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      await handleCallback(req, res, {
+        afterCallback,
+        redirectUri: `${getBaseURL(req)}/api/auth/callback`
+      })
+    } catch (e) {
+      res.status(400).json(errorToPOJO(e))
+    }
+  },
+  async login(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      await handleLogin(req, res, {
+        authorizationParams: {
+          redirect_uri: `${getBaseURL(req)}/api/auth/callback`,
+          scope
+        }
+      })
+    } catch (e) {
+      res.status(400).json(errorToPOJO(e))
+    }
+  }
+})

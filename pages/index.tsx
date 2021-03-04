@@ -1,9 +1,6 @@
-import {withPageAuthRequired} from '@auth0/nextjs-auth0'
 import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
-import {GetServerSideProps} from 'next'
 import Link from 'next/link'
 
-import {getUser} from 'lib/auth0'
 import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
@@ -13,7 +10,7 @@ import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
 import useLink from 'lib/hooks/use-link'
 import useRouteTo from 'lib/hooks/use-route-to'
-import withAuth from 'lib/with-auth'
+import withAuth, {getServerSidePropsWithAuth} from 'lib/with-auth'
 import {IUser} from 'lib/user'
 
 const alertDate = 'February, 2021'
@@ -118,9 +115,8 @@ function RegionItem({region, ...p}: RegionItemProps) {
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
  */
-export const getServerSideProps: GetServerSideProps = withPageAuthRequired({
-  getServerSideProps: async (ctx) => {
-    const user = getUser(ctx.req, ctx.res)
+export const getServerSideProps = getServerSidePropsWithAuth(
+  async (_, user) => {
     const collection = await AuthenticatedCollection.initFromUser(
       'regions',
       user
@@ -133,4 +129,4 @@ export const getServerSideProps: GetServerSideProps = withPageAuthRequired({
       }
     }
   }
-})
+)

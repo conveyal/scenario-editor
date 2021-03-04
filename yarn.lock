@@ -2436,6 +2436,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/cookie@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.4.0.tgz#14f854c0f93d326e39da6e3b6f34f7d37513d108"
+  integrity sha512-y7mImlc/rNkvCRmg8gC3/lj87S7pTUIJ6QGjwHR9WQJcFs+ZMTOaoPrkdFA/YdbuqVEmEbb5RdhVxMkAcgOnpg==
+
 "@types/cypress-image-snapshot@^3.1.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@types/cypress-image-snapshot/-/cypress-image-snapshot-3.1.5.tgz#03d5b8e089e96a493da31bdb9aef16f34c0000c1"

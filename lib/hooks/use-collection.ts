@@ -1,8 +1,7 @@
 import useSWR, {ConfigInterface, responseInterface} from 'swr'
-import {useCallback, useContext} from 'react'
+import {useCallback} from 'react'
 
 import LogRocket from 'lib/logrocket'
-import {UserContext} from 'lib/user'
 import {
   postJSON,
   putJSON,
@@ -10,6 +9,8 @@ import {
   safeDelete,
   SafeResponse
 } from 'lib/utils/safe-fetch'
+
+import useUser from './use-user'
 
 interface UseCollection extends ConfigInterface {
   query?: Record<string, unknown>
@@ -52,7 +53,7 @@ export function createUseCollection<T extends CL.IModel>(
   return function useCollection(
     config?: UseCollection
   ): UseCollectionResponse<T> {
-    const user = useContext(UserContext)
+    const user = useUser()
     const url = [`/api/db/${collectionName}`]
     const queryParams = configToQueryParams(config)
     if (queryParams) url.push(queryParams)

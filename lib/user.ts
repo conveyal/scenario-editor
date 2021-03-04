@@ -1,10 +1,10 @@
-import {UserProfile} from '@auth0/nextjs-auth0'
-import get from 'lodash/get'
+import {Session, UserProfile} from '@auth0/nextjs-auth0'
+import {parse} from 'cookie'
+import {IncomingMessage} from 'http'
+
+import {AUTH_DISABLED} from 'lib/constants'
 
 import LogRocket from './logrocket'
-
-const isServer = typeof window === 'undefined'
-const isDisabled = process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true'
 
 export interface IUser extends UserProfile {
   accessGroup: string
@@ -21,22 +21,46 @@ declare global {
 }
 
 // When auth is disabled, use a local user
-const localUser: IUser = {
+export const localUser: IUser = {
   accessGroup: 'local',
   adminTempAccessGroup: null,
-  email: 'local'
+  email: 'local',
+  idToken: 'idToken'
+}
+
+// Get an IUser from a Session
+export function userFromSession(req: IncomingMessage, session: Session): IUser {
+  const user: IUser = {
+    ...session.user,
+    // This is a namespace for a custom claim. Not a URL: https://auth0.com/docs/tokens/guides/create-namespaced-custom-claims
+    accessGroup: session.user['http://conveyal/accessGroup'],
+    adminTempAccessGroup: null,
+    email: session.user.name,
+    idToken: session.idToken
+  }
+
+  if (user.accessGroup === process.env.NEXT_PUBLIC_ADMIN_ACCESS_GROUP) {
+    const adminTempAccessGroup = parse(req.headers.cookie || '')
+      .adminTempAccessGroup
+    if (adminTempAccessGroup) user.adminTempAccessGroup = adminTempAccessGroup
+  }
+
+  return user
 }
 
 // Helper functions to hide storage details
 // Store on `window` so that each new tab/window needs to check the session
 export function getUser(serverSideUser?: IUser): undefined | IUser {
-  if (isDisabled) return localUser
-  if (isServer) return serverSideUser
+  if (AUTH_DISABLED) return localUser
+  if (!process.browser) return serverSideUser
   return window.__user || serverSideUser
 }
 
 export function storeUser(user: IUser): void {
-  if (isServer) return
+  if (!process.browser || AUTH_DISABLED) return
+
+  // Store the user on window, requiring a new session on each tab/page
+  window.__user = user
 
   // Identify the user for LogRocket
   LogRocket.identify(user.email, {
@@ -54,11 +78,8 @@ export function storeUser(user: IUser): void {
       })
     })
   }
-
-  // Store the user on window, requiring a new session on each tab/page
-  window.__user = user
 }
 
 export function getIdToken(): string | void {
-  return get(getUser(), 'idToken')
+  return getUser()?.idToken
 }

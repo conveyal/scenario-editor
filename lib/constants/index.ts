@@ -3,6 +3,7 @@ import {RECOMMENDED_R5_VERSION} from 'lib/modules/r5-version/constants'
 export const ENV = process.env.NODE_ENV
 export const MB_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 export const isServer = typeof window === 'undefined'
+export const AUTH_DISABLED = process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true'
 
 /**
  * Logo

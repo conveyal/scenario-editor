@@ -17,7 +17,7 @@ const IsValidating = () => (
 
 const NoAPI = () => (
   <BannerAlert status='error' variant='solid'>
-    <AlertTitle>API server cannot be reached. {unusableMessage}</AlertTitle>
+    <AlertTitle>{unusableMessage} Contact your support team if this message persists.</AlertTitle>
   </BannerAlert>
 )
 

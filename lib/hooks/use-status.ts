@@ -2,13 +2,12 @@ import {dequal} from 'dequal/lite'
 import useSWR, {responseInterface} from 'swr'
 import {useCallback, useState} from 'react'
 
-import {API_URL} from 'lib/constants'
 import authFetch from 'lib/utils/auth-fetch'
 import {ResponseError} from 'lib/utils/safe-fetch'
 
 const MAX_REFRESH_INTERVAL_MS = 30_000
 const FAST_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 10
-const ACTIVITY_URL = API_URL + '/activity'
+const ACTIVITY_URL = `${process.env.NEXT_PUBLIC_API_URL}/version`
 
 /**
  * SWR expects errors to throw.

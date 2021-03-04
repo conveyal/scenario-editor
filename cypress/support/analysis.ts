@@ -100,10 +100,7 @@ Cypress.Commands.add('fetchResults', () => {
 })
 
 Cypress.Commands.add('setTimeCutoff', (minutes: number) => {
-  // TODO this is hacky.
-  cy.get('#cypress-time-cutoff-slider').type(`{selectall}${minutes}`, {
-    force: true
-  })
+  cy.findByLabelText(/Time cutoff/).type(`{selectall}${minutes}`)
 })
 
 Cypress.Commands.add('selectDefaultOpportunityDataset', () => {

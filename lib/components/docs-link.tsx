@@ -1,7 +1,6 @@
-import {Link} from '@chakra-ui/core'
-import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import {Link} from '@chakra-ui/react'
 
-import Icon from './icon'
+import {InfoIcon} from './icons'
 import Tip from './tip'
 
 const docsBaseURL = 'https://docs.conveyal.com'
@@ -12,12 +11,13 @@ export default function DocsLink({to, ...p}) {
     <Tip label='View docs to learn more'>
       <Link
         color='blue.500'
+        display='inline-block'
         href={`${docsBaseURL}/${to}`}
         isExternal
         _hover={_hover}
         {...p}
       >
-        <Icon icon={faInfoCircle} />
+        <InfoIcon />
       </Link>
     </Tip>
   )

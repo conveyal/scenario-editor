@@ -3,19 +3,36 @@
 exports[`Component SelectR5Version snapshot(mount) 1`] = `
 <SelectR5Version>
   <FormControl>
-    <Box
+    <Styled(div)
+      __css={
+        Object {
+          "position": "relative",
+          "width": "100%",
+        }
+      }
+      className="chakra-form-control"
       role="group"
     >
       <div
-        className="css-0"
+        className="chakra-form-control css-1kxonj9"
         role="group"
       >
         <Flex
           justify="space-between"
         >
-          <Box
-            display="flex"
-            justifyContent="space-between"
+          <Styled(div)
+            __css={
+              Object {
+                "alignItems": undefined,
+                "display": "flex",
+                "flexBasis": undefined,
+                "flexDirection": undefined,
+                "flexGrow": undefined,
+                "flexShrink": undefined,
+                "flexWrap": undefined,
+                "justifyContent": "space-between",
+              }
+            }
           >
             <div
               className="css-gg4vpm"
@@ -23,29 +40,38 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
               <FormLabel
                 htmlFor="select-r5-version"
               >
-                <Box
-                  as="label"
-                  display="inline-block"
-                  fontSize="md"
-                  fontWeight="medium"
+                <Styled(label)
+                  __css={
+                    Object {
+                      "_disabled": Object {
+                        "opacity": 0.4,
+                      },
+                      "display": "block",
+                      "fontSize": "md",
+                      "fontWeight": "medium",
+                      "marginEnd": 3,
+                      "mb": 2,
+                      "opacity": 1,
+                      "textAlign": "start",
+                      "transition": "all 0.2s",
+                    }
+                  }
+                  className="chakra-form__label"
                   htmlFor="select-r5-version"
-                  opacity="1"
-                  pb="4px"
-                  pr="12px"
-                  textAlign="left"
-                  verticalAlign="middle"
+                  id="field-1-label"
                 >
                   <label
-                    className="css-176s5fq"
+                    className="chakra-form__label css-1qqx8g3"
                     htmlFor="select-r5-version"
+                    id="field-1-label"
                   >
                     Routing engine
                   </label>
-                </Box>
+                </Styled(label)>
               </FormLabel>
               <div />
             </div>
-          </Box>
+          </Styled(div)>
         </Flex>
         <div>
           <Creatable
@@ -57,18 +83,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             options={
               Array [
                 Object {
-                  "label": "v6.0.1 (recommended)",
-                  "value": "v6.0.1",
-                },
-                Object {
-                  "label": <span
-                    style={
-                      Object {
-                        "textDecoration": "line-through",
-                      }
-                    }
-                  />,
-                  "value": undefined,
+                  "label": "v6.2 (recommended)",
+                  "value": "v6.2",
                 },
               ]
             }
@@ -81,14 +97,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             }
             value={
               Object {
-                "label": <span
-                  style={
-                    Object {
-                      "textDecoration": "line-through",
-                    }
-                  }
-                />,
-                "value": undefined,
+                "label": "v6.2 (recommended)",
+                "value": "v6.2",
               }
             }
           >
@@ -97,31 +107,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             />
           </Creatable>
         </div>
-        <Alert
-          status="warning"
-        >
-          <Box
-            alignItems="center"
-            bg="orange.100"
-            display="flex"
-            overflow="hidden"
-            pb={3}
-            pl={4}
-            position="relative"
-            pr={4}
-            pt={3}
-            role="alert"
-          >
-            <div
-              className="css-elg79j"
-              role="alert"
-            >
-              An updated version of the routing engine is available. Changing versions should improve performance but may change analysis results.
-            </div>
-          </Box>
-        </Alert>
       </div>
-    </Box>
+    </Styled(div)>
   </FormControl>
 </SelectR5Version>
 `;

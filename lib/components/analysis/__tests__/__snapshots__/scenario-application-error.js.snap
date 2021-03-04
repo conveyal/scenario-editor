@@ -21,191 +21,324 @@ exports[`Component ScenarioApplicationError snapshot(mount) 1`] = `
       >
         <Button
           isFullWidth={true}
-          leftIcon="chevron-right"
+          leftIcon={<FaChevronRight />}
+          mb={0}
           onClick={[Function]}
         >
-          <PseudoBox
-            _active={
+          <Styled(button)
+            __css={
               Object {
-                "bg": "gray.300",
+                "_active": Object {
+                  "bg": "gray.300",
+                },
+                "_disabled": Object {
+                  "boxShadow": "none",
+                  "cursor": "not-allowed",
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
+                  "boxShadow": "outline",
+                },
+                "_hover": Object {
+                  "_disabled": Object {
+                    "bg": "gray.100",
+                  },
+                  "bg": "gray.200",
+                },
+                "alignItems": "center",
+                "appearance": "none",
+                "bg": "gray.100",
+                "borderRadius": "md",
+                "display": "inline-flex",
+                "fontSize": "md",
+                "fontWeight": "semibold",
+                "h": 10,
+                "justifyContent": "center",
+                "lineHeight": "1.2",
+                "minW": 10,
+                "outline": "none",
+                "position": "relative",
+                "px": 4,
+                "transition": "all 250ms",
+                "userSelect": "none",
+                "verticalAlign": "middle",
+                "whiteSpace": "nowrap",
+                "width": "100%",
               }
             }
-            _disabled={
-              Object {
-                "boxShadow": "none",
-                "cursor": "not-allowed",
-                "opacity": "40%",
-              }
-            }
-            _focus={
-              Object {
-                "boxShadow": "outline",
-              }
-            }
-            _hover={
-              Object {
-                "bg": "gray.200",
-              }
-            }
-            alignItems="center"
-            appearance="none"
-            as="button"
-            bg="gray.100"
-            borderRadius="md"
-            display="inline-flex"
-            fontSize="md"
-            fontWeight="semibold"
-            height={10}
-            justifyContent="center"
-            lineHeight="1.2"
-            minWidth={10}
+            className="chakra-button"
+            mb={0}
             onClick={[Function]}
-            outline="none"
-            position="relative"
-            px={4}
-            transition="all 250ms"
             type="button"
-            userSelect="none"
-            verticalAlign="middle"
-            whiteSpace="nowrap"
-            width="full"
           >
             <button
-              className="css-z70eed"
+              className="chakra-button css-naq3gw"
               onClick={[Function]}
               type="button"
             >
               <ButtonIcon
-                icon="chevron-right"
-                ml={-1}
-                mr={2}
+                marginEnd="0.5rem"
               >
-                <Icon
-                  aria-hidden="true"
-                  color="currentColor"
-                  focusable="false"
-                  ml={-1}
-                  mr={2}
-                  name="chevron-right"
+                <Styled(span)
+                  className="chakra-button__icon"
+                  marginEnd="0.5rem"
                 >
-                  <Styled(div)
-                    aria-hidden="true"
-                    as="svg"
-                    color="currentColor"
-                    display="inline-block"
-                    focusable="false"
-                    ml={-1}
-                    mr={2}
-                    role="presentation"
-                    size="1em"
-                    verticalAlign="middle"
-                    viewBox="0 0 24 24"
+                  <span
+                    className="chakra-button__icon css-ktvjz1"
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="css-yxiis9"
-                      focusable="false"
-                      role="presentation"
-                      viewBox="0 0 24 24"
+                    <FaChevronRight
+                      aria-hidden={true}
+                      focusable={false}
                     >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </Styled(div)>
-                </Icon>
+                      <IconBase
+                        aria-hidden={true}
+                        attr={
+                          Object {
+                            "viewBox": "0 0 320 512",
+                          }
+                        }
+                        focusable={false}
+                      >
+                        <svg
+                          aria-hidden={true}
+                          fill="currentColor"
+                          focusable={false}
+                          height="1em"
+                          stroke="currentColor"
+                          strokeWidth="0"
+                          style={
+                            Object {
+                              "color": undefined,
+                            }
+                          }
+                          viewBox="0 0 320 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                            key="0"
+                          />
+                        </svg>
+                      </IconBase>
+                    </FaChevronRight>
+                  </span>
+                </Styled(span)>
               </ButtonIcon>
               Error while applying the modification entitled 'Add Trip Pattern'.
             </button>
-          </PseudoBox>
+          </Styled(button)>
         </Button>
         <Collapse
-          isOpen={false}
-          pt={4}
+          in={false}
         >
-          <EmotionCssPropInternal
-            __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Collapse"
-            __EMOTION_TYPE_PLEASE_DO_NOT_USE__={[Function]}
-            animateOpacity={true}
-            applyInlineTransitions={false}
-            css={
+          <ForwardRef(MotionComponent)
+            animate="exit"
+            className="chakra-collapse"
+            custom={
               Object {
-                "&.rah-animating--to-height-zero": Object {
-                  "opacity": 0,
-                  "transform": "translateY(-0.625rem)",
-                },
-                "transition": "height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out",
+                "animateOpacity": true,
+                "endingHeight": "auto",
+                "startingHeight": 0,
               }
             }
-            easing="ease"
-            height={0}
+            initial={false}
+            onAnimationComplete={[Function]}
+            style={
+              Object {
+                "display": "none",
+                "overflow": "hidden",
+              }
+            }
+            variants={
+              Object {
+                "enter": [Function],
+                "exit": [Function],
+              }
+            }
           >
-            <AnimateHeight
-              animateOpacity={true}
-              animationStateClasses={
+            <div
+              className="chakra-collapse"
+              style={
                 Object {
-                  "animating": "rah-animating",
-                  "animatingDown": "rah-animating--down",
-                  "animatingToHeightAuto": "rah-animating--to-height-auto",
-                  "animatingToHeightSpecific": "rah-animating--to-height-specific",
-                  "animatingToHeightZero": "rah-animating--to-height-zero",
-                  "animatingUp": "rah-animating--up",
-                  "static": "rah-static",
-                  "staticHeightAuto": "rah-static--height-auto",
-                  "staticHeightSpecific": "rah-static--height-specific",
-                  "staticHeightZero": "rah-static--height-zero",
+                  "display": "none",
+                  "height": "0px",
+                  "opacity": 0,
+                  "overflow": "hidden",
                 }
               }
-              applyInlineTransitions={false}
-              className="css-1asjk0u-Collapse"
-              delay={0}
-              duration={250}
-              easing="ease"
-              height={0}
-              style={Object {}}
             >
-              <div
-                aria-hidden={true}
-                className="rah-static rah-static--height-zero css-1asjk0u-Collapse"
-                style={
-                  Object {
-                    "height": 0,
-                    "overflow": "hidden",
-                  }
-                }
-              >
-                <div
-                  style={
-                    Object {
-                      "WebkitTransition": "opacity 250ms ease 0ms",
-                      "opacity": 0,
-                      "transition": "opacity 250ms ease 0ms",
-                    }
-                  }
+              <i>
+                In modification Add Trip Pattern
+              </i>
+              <ul>
+                <li
+                  key="message-0"
                 >
-                  <Box
-                    pt={4}
+                  Headway is not greater than zero.
+                </li>
+              </ul>
+            </div>
+            <Component
+              animate="exit"
+              className="chakra-collapse"
+              custom={
+                Object {
+                  "animateOpacity": true,
+                  "endingHeight": "auto",
+                  "startingHeight": 0,
+                }
+              }
+              initial={false}
+              key="animation"
+              onAnimationComplete={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                  "overflow": "hidden",
+                }
+              }
+              variants={
+                Object {
+                  "enter": [Function],
+                  "exit": [Function],
+                }
+              }
+              visualElement={
+                Object {
+                  "addChild": [Function],
+                  "addValue": [Function],
+                  "addVariantChild": [Function],
+                  "animationState": Object {
+                    "animateChanges": [Function],
+                    "getState": [Function],
+                    "isAnimated": [Function],
+                    "setActive": [Function],
+                    "setAnimateFunction": [Function],
+                  },
+                  "blockInitialAnimation": false,
+                  "build": [Function],
+                  "clearAllListeners": [Function],
+                  "clearState": [Function],
+                  "current": <div
+                    class="chakra-collapse"
+                    style="overflow: hidden; display: none; opacity: 0; height: 0px;"
                   >
-                    <div
-                      className="css-17bmav7"
-                    >
-                      <i>
-                        In modification Add Trip Pattern
-                      </i>
-                      <ul>
-                        <li
-                          key="message-0"
-                        >
-                          Headway is not greater than zero.
-                        </li>
-                      </ul>
-                    </div>
-                  </Box>
-                </div>
-              </div>
-            </AnimateHeight>
-          </EmotionCssPropInternal>
+                    <i>
+                      In modification Add Trip Pattern
+                    </i>
+                    <ul>
+                      <li>
+                        Headway is not greater than zero.
+                      </li>
+                    </ul>
+                  </div>,
+                  "depth": 0,
+                  "enableLayoutProjection": [Function],
+                  "forEachValue": [Function],
+                  "getBaseTarget": [Function],
+                  "getClosestVariantNode": [Function],
+                  "getDefaultTransition": [Function],
+                  "getInstance": [Function],
+                  "getLatestValues": [Function],
+                  "getLayoutId": [Function],
+                  "getLayoutState": [Function],
+                  "getProjectionAnimationProgress": [Function],
+                  "getProps": [Function],
+                  "getStaticValue": [Function],
+                  "getValue": [Function],
+                  "getVariant": [Function],
+                  "getVariantContext": [Function],
+                  "hasValue": [Function],
+                  "isHoverEventsEnabled": true,
+                  "isMounted": [Function],
+                  "isPresenceRoot": true,
+                  "isPresent": true,
+                  "isStatic": false,
+                  "isVisible": undefined,
+                  "lockProjectionTarget": [Function],
+                  "makeTargetAnimatable": [Function],
+                  "manuallyAnimateOnMount": false,
+                  "measureViewportBox": [Function],
+                  "notifyAnimationComplete": [Function],
+                  "notifyAnimationStart": [Function],
+                  "notifyBeforeLayoutMeasure": [Function],
+                  "notifyLayoutAnimationComplete": [Function],
+                  "notifyLayoutMeasure": [Function],
+                  "notifyLayoutReady": [Function],
+                  "notifyLayoutUpdate": [Function],
+                  "notifyRender": [Function],
+                  "notifySetAxisTarget": [Function],
+                  "notifyUpdate": [Function],
+                  "notifyViewportBoxUpdate": [Function],
+                  "onAnimationComplete": [Function],
+                  "onAnimationStart": [Function],
+                  "onBeforeLayoutMeasure": [Function],
+                  "onLayoutAnimationComplete": [Function],
+                  "onLayoutMeasure": [Function],
+                  "onLayoutUpdate": [Function],
+                  "onRender": [Function],
+                  "onSetAxisTarget": [Function],
+                  "onUpdate": [Function],
+                  "onViewportBoxUpdate": [Function],
+                  "path": Array [],
+                  "pointTo": [Function],
+                  "presence": 0,
+                  "presenceId": undefined,
+                  "projection": Object {
+                    "isEnabled": false,
+                    "isTargetLocked": false,
+                    "target": Object {
+                      "x": Object {
+                        "max": 1,
+                        "min": 0,
+                      },
+                      "y": Object {
+                        "max": 1,
+                        "min": 0,
+                      },
+                    },
+                    "targetFinal": Object {
+                      "x": Object {
+                        "max": 1,
+                        "min": 0,
+                      },
+                      "y": Object {
+                        "max": 1,
+                        "min": 0,
+                      },
+                    },
+                  },
+                  "readValue": [Function],
+                  "rebaseProjectionTarget": [Function],
+                  "ref": [Function],
+                  "removeValue": [Function],
+                  "resetTransform": [Function],
+                  "scheduleRender": [Function],
+                  "scheduleUpdateLayoutProjection": [Function],
+                  "setBaseTarget": [Function],
+                  "setCrossfader": [Function],
+                  "setProjectionTargetAxis": [Function],
+                  "setProps": [Function],
+                  "setStaticValue": [Function],
+                  "setVisibility": [Function],
+                  "snapshotViewportBox": [Function],
+                  "sortNodePosition": [Function],
+                  "startLayoutAnimation": [Function],
+                  "stopLayoutAnimation": [Function],
+                  "suspendHoverEvents": [Function],
+                  "syncRender": [Function],
+                  "treeType": "dom",
+                  "unlockProjectionTarget": [Function],
+                  "updateLayoutMeasurement": [Function],
+                  "updateLayoutProjection": [Function],
+                  "updatePropListeners": [Function],
+                  "variantChildren": Set {},
+                  "withoutTransform": [Function],
+                }
+              }
+            />
+          </ForwardRef(MotionComponent)>
         </Collapse>
       </div>
     </Box>

@@ -1,14 +1,15 @@
-import {Alert, AlertIcon, Stack, Flex, Button} from '@chakra-ui/core'
-import {
-  faPlusSquare,
-  faMinusSquare,
-  faBan
-} from '@fortawesome/free-solid-svg-icons'
+import {Alert, AlertIcon, Stack, Flex, Button} from '@chakra-ui/react'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
 import {useCallback, useState} from 'react'
 import {useSelector} from 'react-redux'
 
+import {
+  ClearIcon,
+  EditIcon,
+  MinusSquare,
+  PlusSquare
+} from 'lib/components/icons'
 import colors from 'lib/constants/colors'
 import message from 'lib/message'
 import selectHopStops from 'lib/selectors/hop-stops'
@@ -128,38 +129,41 @@ export default function AdjustSpeedComponent({
 
           {modification.hops == null ? (
             <Button
-              leftIcon='edit'
+              leftIcon={<EditIcon />}
               isFullWidth
               onClick={() => setAction('new')}
-              variantColor='blue'
+              colorScheme='blue'
             >
               {message('common.select')} segments
             </Button>
           ) : (
             <Flex justify='space-between'>
               <IconButton
-                icon={faPlusSquare}
                 label={message('common.addTo')}
                 onClick={() => setAction('add')}
                 size='lg'
-              />
+              >
+                <PlusSquare />
+              </IconButton>
               <IconButton
-                icon={faMinusSquare}
                 label={message('common.removeFrom')}
                 onClick={() => setAction('remove')}
                 size='lg'
-                variantColor='yellow'
-              />
+                colorScheme='yellow'
+              >
+                <MinusSquare />
+              </IconButton>
               <IconButton
-                icon={faBan}
                 label={message('common.clear')}
                 onClick={() => {
                   setAction('none')
                   update({hops: null})
                 }}
                 size='lg'
-                variantColor='red'
-              />
+                colorScheme='red'
+              >
+                <ClearIcon />
+              </IconButton>
             </Flex>
           )}
         </Stack>

@@ -6,9 +6,8 @@ import {
   Heading,
   Stack,
   Text
-} from '@chakra-ui/core'
-import {faCircle, faStopCircle} from '@fortawesome/free-solid-svg-icons'
-import {faCircle as faCircleO} from '@fortawesome/free-regular-svg-icons'
+} from '@chakra-ui/react'
+import {FaCircle, FaRegCircle, FaStopCircle} from 'react-icons/fa'
 import get from 'lodash/get'
 import {useState} from 'react'
 import {useSelector} from 'react-redux'
@@ -25,9 +24,9 @@ import selectSegmentDistances from 'lib/selectors/segment-distances'
 import selectAllStops from 'lib/selectors/stops-from-all-feeds'
 import getExistingStopsAlongPattern from 'lib/utils/get-existing-stops-along-pattern'
 
+import {EditIcon} from '../icons'
 import GTFSStopGridLayer from '../modifications-map/gtfs-stop-gridlayer'
 import TransitEditor from '../modifications-map/transit-editor'
-import Icon from '../icon'
 import NumberInput from '../number-input'
 import * as Panel from '../panel'
 
@@ -152,25 +151,31 @@ export default function EditAlignment({
       {!isEditing ? (
         <Button
           isFullWidth
-          leftIcon='edit'
+          leftIcon={<EditIcon />}
           onClick={() => setIsEditing(true)}
-          variantColor='yellow'
+          colorScheme='yellow'
         >
           {message('transitEditor.startEdit')}
         </Button>
       ) : (
         <Button
           isFullWidth
+          leftIcon={<FaStopCircle />}
           onClick={() => setIsEditing(false)}
-          variantColor='yellow'
+          colorScheme='yellow'
         >
-          <Icon icon={faStopCircle} /> {message('transitEditor.stopEdit')}
+          {message('transitEditor.stopEdit')}
         </Button>
       )}
 
       {isEditing && distance > 0 && (
-        <Button isFullWidth onClick={autoGen} variantColor='yellow'>
-          <Icon icon={faCircle} /> {message('transitEditor.snap')}
+        <Button
+          leftIcon={<FaCircle />}
+          isFullWidth
+          onClick={autoGen}
+          colorScheme='yellow'
+        >
+          {message('transitEditor.snap')}
         </Button>
       )}
 
@@ -258,29 +263,39 @@ export default function EditAlignment({
                 <strong>Symbology</strong>
               </Text>
               <Text>
-                <Icon
-                  icon={faCircleO}
-                  style={{color: colors.NEUTRAL, opacity: 0.5}}
+                <FaRegCircle
+                  style={{
+                    color: colors.NEUTRAL,
+                    display: 'inline',
+                    opacity: 0.5
+                  }}
                 />{' '}
                 {message('transitEditor.existingStops')}
               </Text>
               <Text>
-                <Icon icon={faCircleO} style={{color: colors.ADDED}} />{' '}
+                <FaRegCircle
+                  style={{color: colors.ADDED, display: 'inline-block'}}
+                />{' '}
                 {message('transitEditor.newStopDescription')}
               </Text>
               <Text>
-                <Icon
-                  icon={faCircleO}
-                  style={{color: colors.ADDED, opacity: 0.5}}
+                <FaRegCircle
+                  style={{
+                    color: colors.ADDED,
+                    display: 'inline-block',
+                    opacity: 0.5
+                  }}
                 />{' '}
                 {message('transitEditor.autocreatedStopDescription')}
               </Text>
               <Text>
-                <Icon icon={faCircleO} />{' '}
+                <FaRegCircle style={{display: 'inline-block'}} />{' '}
                 {message('transitEditor.snappedStopDescription')}
               </Text>
               <Text>
-                <Icon icon={faCircle} style={{color: colors.ADDED}} />{' '}
+                <FaCircle
+                  style={{color: colors.ADDED, display: 'inline-block'}}
+                />{' '}
                 {message('transitEditor.controlPointDescription')}
               </Text>
             </Stack>

@@ -1,4 +1,4 @@
-import {Box} from '@chakra-ui/core'
+import {Box} from '@chakra-ui/react'
 import Head from 'next/head'
 
 import LoadingScreen from './components/loading-screen'

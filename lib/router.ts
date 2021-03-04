@@ -1,16 +1,29 @@
-import {RouteTo} from 'lib/constants'
+import {Pages, PageKey} from 'lib/constants'
 
-export function routeTo(to: string, props: any) {
-  const href = RouteTo[to]
-  if (!href) {
-    console.error(`${to} is not a valid RouteTo route!`)
-    return {}
-  }
-  const {query, as} = hrefToAs(href, props)
-  return {as, href, query}
+/**
+ * Replace query params with the props given. Attach extra params to the end.
+ * Ex:
+ * toHref('analysis', {regionId: 123, projectId: 456}) // => /regions/123/analysis?projectId=456
+ */
+export function pageToHref(
+  key: PageKey,
+  props: Record<string, string>
+): string {
+  const result = routeTo(key, props)
+  return result.as
 }
 
-export function hrefToAs(str: string, obj: any) {
+export function routeTo(key: PageKey, props: Record<string, string>) {
+  const page = Pages[key]
+  if (!page) {
+    console.error(`${key} is not a valid page!`)
+    return {}
+  }
+  const {query, as} = replaceProps(page, props)
+  return {as, href: page, query}
+}
+
+function replaceProps(str: string, obj: Record<string, string>) {
   if (!obj) return {as: str}
   const query = {}
   Object.keys(obj).forEach((k) => {

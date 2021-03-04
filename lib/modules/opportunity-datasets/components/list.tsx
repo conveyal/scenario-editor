@@ -1,8 +1,9 @@
-import {Box, Button, Heading, Stack} from '@chakra-ui/core'
+import {Box, Button, Heading, Stack} from '@chakra-ui/react'
 import differenceInHours from 'date-fns/differenceInHours'
 import {useDispatch, useSelector} from 'react-redux'
 
-import ButtonLink from 'lib/components/button-link'
+import {AddIcon} from 'lib/components/icons'
+import Link from 'lib/components/link'
 import useInterval from 'lib/hooks/use-interval'
 import message from 'lib/message'
 
@@ -64,15 +65,12 @@ export default function ListOpportunityDatasets({regionId}) {
         />
       ))}
       <Stack spacing={2}>
-        <ButtonLink
-          leftIcon='small-add'
-          to='opportunitiesUpload'
-          query={{regionId}}
-          variantColor='green'
-        >
-          {message('spatialDatasets.upload')}
-        </ButtonLink>
-        <Button onClick={_downloadLODES} variantColor='blue'>
+        <Link to='opportunitiesUpload' query={{regionId}}>
+          <Button leftIcon={<AddIcon />} colorScheme='green'>
+            {message('spatialDatasets.upload')}
+          </Button>
+        </Link>
+        <Button onClick={_downloadLODES} colorScheme='blue'>
           {message('spatialDatasets.downloadLODES')}
         </Button>
       </Stack>

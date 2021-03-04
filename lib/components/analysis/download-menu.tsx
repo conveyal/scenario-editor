@@ -1,10 +1,10 @@
-import {Button, Menu, MenuButton, MenuList, MenuItem} from '@chakra-ui/core'
-import {faDownload} from '@fortawesome/free-solid-svg-icons'
+import {Button, Menu, MenuButton, MenuList, MenuItem} from '@chakra-ui/react'
 import get from 'lodash/get'
 import snakeCase from 'lodash/snakeCase'
 import {useDispatch, useSelector, useStore} from 'react-redux'
 
 import {fetchGeoTIFF} from 'lib/actions/analysis'
+import {DownloadIcon} from 'lib/components/icons'
 import selectComparisonIsochrone from 'lib/selectors/comparison-isochrone'
 import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
 import selectIsochrone from 'lib/selectors/isochrone'
@@ -12,8 +12,6 @@ import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import downloadCSV from 'lib/utils/download-csv'
 import downloadJson from 'lib/utils/download-json'
-
-import Icon from '../icon'
 
 const getIsochrone = (state, isComparison: boolean) =>
   isComparison ? selectComparisonIsochrone(state) : selectIsochrone(state)
@@ -50,9 +48,9 @@ export default function DownloadMenu({
 
   function downloadOpportunitiesCSV() {
     const header =
-      Array(120)
+      Array(121)
         .fill(0)
-        .map((_, i) => i + 1)
+        .map((_, i) => i)
         .join(',') + '\n'
     const csvContent = getPercentileCurves(store.getState(), isComparison)
       .map((row) => row.join(','))
@@ -80,7 +78,7 @@ export default function DownloadMenu({
   return (
     <Menu>
       <MenuButton as={Button} {...p}>
-        <Icon icon={faDownload} />
+        <DownloadIcon />
       </MenuButton>
       <MenuList>
         <MenuItem onClick={downloadIsochrone}>Isochrone as GeoJSON</MenuItem>

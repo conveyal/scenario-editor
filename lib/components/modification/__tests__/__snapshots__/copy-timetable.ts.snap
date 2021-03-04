@@ -3,10 +3,10 @@
 exports[`Component > Modification > CopyTimetable renders correctly 1`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>
@@ -16,17 +16,25 @@ exports[`Component > Modification > CopyTimetable renders correctly 1`] = `
 exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>
   <Modal
+    allowPinchZoom={false}
+    autoFocus={true}
+    blockScrollOnMount={true}
     closeOnOverlayClick={false}
     isOpen={true}
+    lockFocusAcrossFrames={true}
+    motionPreset="scale"
     onClose={[Function]}
+    returnFocusOnClose={true}
+    scrollBehavior="outside"
+    trapFocus={true}
   >
     <ModalOverlay />
     <ModalContent>
@@ -143,10 +151,10 @@ exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
 exports[`Component > Modification > CopyTimetable renders when no timetables exist in database 1`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>
@@ -156,10 +164,10 @@ exports[`Component > Modification > CopyTimetable renders when no timetables exi
 exports[`Component > Modification > CopyTimetable renders with a region without timetables 1`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>
@@ -169,10 +177,10 @@ exports[`Component > Modification > CopyTimetable renders with a region without 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when current modification has no segments 1`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>
@@ -182,10 +190,10 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has less segments 1`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>
@@ -195,10 +203,10 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has more segments 1`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>
@@ -208,10 +216,10 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has no segments 1`] = `
 <Fragment>
   <Button
+    colorScheme="green"
     isFullWidth={true}
-    leftIcon="copy"
+    leftIcon={<FaCopy />}
     onClick={[Function]}
-    variantColor="green"
   >
     Copy existing timetable
   </Button>

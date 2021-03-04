@@ -5,7 +5,7 @@ import {
   FormControl,
   FormLabel,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import {useEffect, useState} from 'react'
@@ -17,6 +17,7 @@ import selectModificationBounds from 'lib/selectors/modification-bounds'
 import selectRoutePatterns from 'lib/selectors/route-patterns'
 import selectModificationFeed from 'lib/selectors/modification-feed'
 
+import {AddIcon, MinusIcon} from '../icons'
 import Select from '../select'
 
 const getFeedLabel = fpGet('name')
@@ -134,9 +135,9 @@ export default function SelectFeedAndRoutes({
           </Alert>
           <Button
             isFullWidth
-            leftIcon='minus'
+            leftIcon={<MinusIcon />}
             onClick={_deselectAllRoutes}
-            variantColor='yellow'
+            colorScheme='yellow'
           >
             Deselect all routes
           </Button>
@@ -146,9 +147,9 @@ export default function SelectFeedAndRoutes({
       {showSelectAllRoutes && (
         <Button
           isFullWidth
-          leftIcon='small-add'
+          leftIcon={<AddIcon />}
           onClick={_selectAllRoutes}
-          variantColor='blue'
+          colorScheme='blue'
         >
           Select all routes
         </Button>

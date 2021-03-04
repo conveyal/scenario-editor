@@ -1,4 +1,4 @@
-import {Button, Heading, Stack, useDisclosure, useToast} from '@chakra-ui/core'
+import {Button, Heading, Stack, useDisclosure, useToast} from '@chakra-ui/react'
 import {DomEvent, LatLng, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
 import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
@@ -207,7 +207,9 @@ export default function TransitEditor({
 
   useEffect(() => {
     leaflet.map.on('click', handleMapClick)
-    return () => leaflet.map.off('click', handleMapClick)
+    return () => {
+      leaflet.map.off('click', handleMapClick)
+    }
   }, [handleMapClick, leaflet])
 
   const insertStopAtIndex = useCallback(
@@ -498,13 +500,13 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
                 <Heading size='sm'>{stopKey(index)}</Heading>
                 <Button
                   onClick={() => toggleStop(stop.index)}
-                  variantColor='blue'
+                  colorScheme='blue'
                 >
                   {message('transitEditor.makeControlPoint')}
                 </Button>
                 <Button
                   onClick={() => deleteStop(stop.index)}
-                  variantColor='red'
+                  colorScheme='red'
                 >
                   {message('transitEditor.deletePoint')}
                 </Button>
@@ -593,10 +595,10 @@ function ControlPoints({
           <Popup>
             <Stack>
               <Heading size='sm'>{controlPointKey(index)}</Heading>
-              <Button onClick={() => togglePoint(cp.index)} variantColor='blue'>
+              <Button onClick={() => togglePoint(cp.index)} colorScheme='blue'>
                 {message('transitEditor.makeStop')}
               </Button>
-              <Button onClick={() => deletePoint(cp.index)} variantColor='red'>
+              <Button onClick={() => deletePoint(cp.index)} colorScheme='red'>
                 {message('transitEditor.deletePoint')}
               </Button>
             </Stack>

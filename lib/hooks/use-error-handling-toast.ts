@@ -1,4 +1,4 @@
-import {IToast, useToast} from '@chakra-ui/core'
+import {IToast, useToast} from '@chakra-ui/react'
 import {useEffect} from 'react'
 
 import LogRocket from 'lib/logrocket'
@@ -30,7 +30,7 @@ export default function useErrorHandlingToast() {
           description,
           title,
           // Remove toast type from tracker
-          onClose: () => toastTracker.delete(slug)
+          onCloseComplete: () => toastTracker.delete(slug)
         })
       }
     }

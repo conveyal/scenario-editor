@@ -12,12 +12,7 @@ import {
   Alert,
   AlertIcon,
   AlertDescription
-} from '@chakra-ui/core'
-import {
-  faChevronLeft,
-  faDownload,
-  faTrash
-} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import find from 'lodash/find'
 import get from 'lodash/get'
 import omit from 'lodash/omit'
@@ -31,6 +26,7 @@ import {
   updateRegionalAnalysis
 } from 'lib/actions/analysis/regional'
 import fetchAction from 'lib/actions/fetch'
+import {ChevronLeft, DeleteIcon, DownloadIcon} from 'lib/components/icons'
 import {API} from 'lib/constants'
 import useControlledInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
@@ -46,7 +42,6 @@ import IconButton from '../icon-button'
 import RunningAnalysis from '../running-analysis'
 
 import ProfileRequestDisplay from './profile-request-display'
-import Icon from '../icon'
 
 const AggregationArea = dynamic(() => import('../map/aggregation-area'), {
   ssr: false
@@ -179,10 +174,11 @@ export default function Regional(p) {
         width='320px'
       >
         <IconButton
-          icon={faChevronLeft}
           label='All regional analyses'
           onClick={() => dispatch(setSearchParameter('analysisId'))}
-        />
+        >
+          <ChevronLeft />
+        </IconButton>
 
         <Box flex='1' fontSize='xl' fontWeight='bold' ml={2} overflow='hidden'>
           <Editable
@@ -196,11 +192,12 @@ export default function Regional(p) {
 
         <Flex>
           <IconButton
-            icon={faTrash}
             label={message('analysis.deleteRegionalAnalysis')}
             onClick={deleteDisclosure.onOpen}
-            variantColor='red'
-          />
+            colorScheme='red'
+          >
+            <DeleteIcon />
+          </IconButton>
         </Flex>
       </Flex>
 
@@ -252,9 +249,12 @@ export default function Regional(p) {
 
         {isComplete && (
           <Menu>
-            <MenuButton as={Button} {...{variantColor: 'blue'}}>
-              <Icon icon={faDownload} />
-              &nbsp;&nbsp;Download results
+            <MenuButton
+              as={Button}
+              colorScheme='blue'
+              leftIco={<DownloadIcon />}
+            >
+              Download results
             </MenuButton>
             <MenuList>
               <MenuItem

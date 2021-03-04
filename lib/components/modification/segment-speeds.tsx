@@ -1,4 +1,4 @@
-import {Stack, Text, Heading} from '@chakra-ui/core'
+import {Stack, Text, Heading} from '@chakra-ui/react'
 import get from 'lodash/get'
 import sum from 'lodash/sum'
 import {useState, useEffect} from 'react'

@@ -6,222 +6,234 @@ exports[`Component > ImportShapefile 1`] = `
   regionId="1"
   variants={Array []}
 >
-  <ForwardRef
+  <Stack
     p={4}
     spacing={4}
   >
-    <Flex
-      direction="column"
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 4,
+          },
+        }
+      }
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
       p={4}
     >
-      <Box
-        display="flex"
-        flexDirection="column"
-        p={4}
+      <div
+        className="chakra-stack css-zcuazw"
       >
-        <div
-          className="css-1n0jko5"
+        <Heading
+          key=".0"
+          size="md"
         >
-          <Heading
-            key=".0"
-            mb={4}
-            size="md"
+          <Styled(h2)
+            __css={
+              Object {
+                "fontFamily": "heading",
+                "fontSize": "xl",
+                "fontWeight": "bold",
+                "lineHeight": 1.2,
+              }
+            }
+            className="chakra-heading"
           >
-            <Box
-              as="h2"
-              fontFamily="heading"
-              fontSize="xl"
-              fontWeight="bold"
-              lineHeight="shorter"
-              mb={4}
+            <h2
+              className="chakra-heading css-1hm1kf2"
             >
-              <h2
-                className="css-k9oqgk"
-              >
-                Route alignments from shapefile
-              </h2>
-            </Box>
-          </Heading>
-          <FormControl
-            key=".1"
-            mb={4}
+              Route alignments from shapefile
+            </h2>
+          </Styled(h2)>
+        </Heading>
+        <FormControl
+          key=".1"
+        >
+          <Styled(div)
+            __css={
+              Object {
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+            className="chakra-form-control"
+            role="group"
           >
-            <Box
-              mb={4}
+            <div
+              className="chakra-form-control css-1kxonj9"
               role="group"
             >
-              <div
-                className="css-acwcvw"
-                role="group"
+              <FormLabel
+                htmlFor="fileInput"
               >
-                <FormLabel
-                  htmlFor="fileInput"
-                >
-                  <Box
-                    as="label"
-                    display="inline-block"
-                    fontSize="md"
-                    fontWeight="medium"
-                    htmlFor="fileInput"
-                    opacity="1"
-                    pb="4px"
-                    pr="12px"
-                    textAlign="left"
-                    verticalAlign="middle"
-                  >
-                    <label
-                      className="css-176s5fq"
-                      htmlFor="fileInput"
-                    >
-                      Select Shapefile (zipped):
-                    </label>
-                  </Box>
-                </FormLabel>
-                <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
-                  id="fileInput"
-                  isFullWidth={true}
-                  onChange={[Function]}
-                  size="md"
-                  type="file"
-                  variant="outline"
-                >
-                  <PseudoBox
-                    _disabled={
-                      Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
-                      }
+                <Styled(label)
+                  __css={
+                    Object {
+                      "_disabled": Object {
+                        "opacity": 0.4,
+                      },
+                      "display": "block",
+                      "fontSize": "md",
+                      "fontWeight": "medium",
+                      "marginEnd": 3,
+                      "mb": 2,
+                      "opacity": 1,
+                      "textAlign": "start",
+                      "transition": "all 0.2s",
                     }
-                    _focus={
-                      Object {
+                  }
+                  className="chakra-form__label"
+                  htmlFor="fileInput"
+                  id="field-1-label"
+                >
+                  <label
+                    className="chakra-form__label css-1qqx8g3"
+                    htmlFor="fileInput"
+                    id="field-1-label"
+                  >
+                    Select Shapefile (zipped):
+                  </label>
+                </Styled(label)>
+              </FormLabel>
+              <Input
+                id="fileInput"
+                onChange={[Function]}
+                type="file"
+              >
+                <Styled(input)
+                  __css={
+                    Object {
+                      "_disabled": Object {
+                        "cursor": "not-allowed",
+                        "opacity": 0.4,
+                      },
+                      "_focus": Object {
                         "borderColor": "#3182ce",
                         "boxShadow": "0 0 0 1px #3182ce",
                         "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
+                      },
+                      "_hover": Object {
                         "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
+                      },
+                      "_invalid": Object {
+                        "borderColor": "#E53E3E",
+                        "boxShadow": "0 0 0 1px #E53E3E",
+                      },
+                      "_readOnly": Object {
                         "boxShadow": "none !important",
                         "userSelect": "all",
-                      }
+                      },
+                      "appearance": "none",
+                      "bg": "inherit",
+                      "border": "1px solid",
+                      "borderColor": "inherit",
+                      "borderRadius": "md",
+                      "fontSize": "md",
+                      "h": 10,
+                      "minWidth": 0,
+                      "outline": 0,
+                      "position": "relative",
+                      "px": 4,
+                      "transition": "all 0.2s",
+                      "width": "100%",
                     }
-                    alignItems="center"
-                    appearance="none"
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
-                    display="flex"
-                    fontSize="md"
-                    height={10}
+                  }
+                  className="chakra-input"
+                  disabled={false}
+                  id="fileInput"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  readOnly={false}
+                  required={false}
+                  type="file"
+                >
+                  <input
+                    className="chakra-input css-18q2db8"
+                    disabled={false}
                     id="fileInput"
+                    onBlur={[Function]}
                     onChange={[Function]}
-                    outline="none"
-                    position="relative"
-                    px={4}
-                    rounded="md"
-                    transition="all 0.2s"
+                    onFocus={[Function]}
+                    readOnly={false}
+                    required={false}
                     type="file"
-                    width="100%"
-                  >
-                    <input
-                      className="css-1ga4kqw"
-                      id="fileInput"
-                      onChange={[Function]}
-                      type="file"
-                    />
-                  </PseudoBox>
-                </Input>
-              </div>
-            </Box>
-          </FormControl>
-          <Button
-            isDisabled={true}
-            isLoading={false}
-            key=".4"
-            loadingText="Creating modifications..."
-            mb={null}
-            onClick={[Function]}
-            variantColor="green"
-          >
-            <PseudoBox
-              _active={
-                Object {
+                  />
+                </Styled(input)>
+              </Input>
+            </div>
+          </Styled(div)>
+        </FormControl>
+        <Button
+          colorScheme="green"
+          isDisabled={true}
+          isLoading={false}
+          key=".4"
+          loadingText="Creating modifications..."
+          onClick={[Function]}
+        >
+          <Styled(button)
+            __css={
+              Object {
+                "_active": Object {
                   "bg": "green.700",
-                }
-              }
-              _disabled={
-                Object {
+                },
+                "_disabled": Object {
                   "boxShadow": "none",
                   "cursor": "not-allowed",
-                  "opacity": "40%",
-                }
-              }
-              _focus={
-                Object {
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
                   "boxShadow": "outline",
-                }
-              }
-              _hover={
-                Object {
+                },
+                "_hover": Object {
+                  "_disabled": Object {
+                    "bg": "green.500",
+                  },
                   "bg": "green.600",
-                }
+                },
+                "alignItems": "center",
+                "appearance": "none",
+                "bg": "green.500",
+                "borderRadius": "md",
+                "color": "white",
+                "display": "inline-flex",
+                "fontSize": "md",
+                "fontWeight": "semibold",
+                "h": 10,
+                "justifyContent": "center",
+                "lineHeight": "1.2",
+                "minW": 10,
+                "outline": "none",
+                "position": "relative",
+                "px": 4,
+                "transition": "all 250ms",
+                "userSelect": "none",
+                "verticalAlign": "middle",
+                "whiteSpace": "nowrap",
+                "width": "auto",
               }
-              alignItems="center"
-              appearance="none"
-              aria-disabled={true}
-              as="button"
-              bg="green.500"
-              borderRadius="md"
-              color="white"
+            }
+            className="chakra-button"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          >
+            <button
+              className="chakra-button css-ywjnlx"
               disabled={true}
-              display="inline-flex"
-              fontSize="md"
-              fontWeight="semibold"
-              height={10}
-              justifyContent="center"
-              lineHeight="1.2"
-              mb={null}
-              minWidth={10}
               onClick={[Function]}
-              outline="none"
-              position="relative"
-              px={4}
-              transition="all 250ms"
               type="button"
-              userSelect="none"
-              verticalAlign="middle"
-              whiteSpace="nowrap"
             >
-              <button
-                aria-disabled={true}
-                className="css-6cthfa"
-                disabled={true}
-                onClick={[Function]}
-                type="button"
-              >
-                Import
-              </button>
-            </PseudoBox>
-          </Button>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+              Import
+            </button>
+          </Styled(button)>
+        </Button>
+      </div>
+    </Styled(div)>
+  </Stack>
 </ImportShapefile>
 `;

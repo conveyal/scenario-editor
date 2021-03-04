@@ -6,7 +6,7 @@ import {
   Heading,
   Input,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/fp/get'
 import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
@@ -14,10 +14,11 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import {deleteBundle, saveBundle} from 'lib/actions'
 import useInput from 'lib/hooks/use-controlled-input'
+import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
-import {routeTo} from 'lib/router'
 
 import ConfirmButton from './confirm-button'
+import {DeleteIcon} from './icons'
 import Select from './select'
 
 const getOptionLabel = (b) =>
@@ -56,7 +57,9 @@ export default function EditBundle(p) {
   const router = useRouter()
   const bundles = useSelector(get('region.bundles'))
 
-  const {regionId} = router.query
+  const regionId = router.query.regionId as string
+  const goToBundles = useRouteTo('bundles', {regionId})
+  const goToBundleEdit = useRouteTo('bundleEdit', {regionId})
   const [bundleId, setBundleId] = useState(router.query.bundleId)
   const originalBundle = bundles.find((b) => b._id === bundleId)
   const [bundle, setBundle] = useState(originalBundle)
@@ -70,8 +73,7 @@ export default function EditBundle(p) {
   const disableDelete = p.bundleProjects.length > 0
 
   async function _deleteBundle() {
-    const {as, href} = routeTo('bundles', {regionId})
-    router.push(href, as)
+    goToBundles()
     dispatch(deleteBundle(bundleId))
   }
 
@@ -82,8 +84,7 @@ export default function EditBundle(p) {
 
   function selectBundle(result) {
     setBundleId(result._id)
-    const {as, href} = routeTo('bundleEdit', {regionId, bundleId: result._id})
-    router.push(href, as)
+    goToBundleEdit({bundleId: result._id})
   }
 
   function setFeedName(feedId, name) {
@@ -149,7 +150,7 @@ export default function EditBundle(p) {
             onClick={_saveBundle}
             size='lg'
             title={message('bundle.save')}
-            variantColor='yellow'
+            colorScheme='yellow'
           >
             {message('bundle.save')}
           </Button>
@@ -163,10 +164,10 @@ export default function EditBundle(p) {
           ) : (
             <ConfirmButton
               description={message('bundle.deleteConfirmation')}
-              leftIcon='delete'
+              leftIcon={<DeleteIcon />}
               onConfirm={_deleteBundle}
               size='lg'
-              variantColor='red'
+              colorScheme='red'
             >
               {message('bundle.delete')}
             </ConfirmButton>

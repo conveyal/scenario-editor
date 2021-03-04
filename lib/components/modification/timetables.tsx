@@ -1,6 +1,7 @@
-import {Alert, AlertIcon, Box, Button, Heading, Stack} from '@chakra-ui/core'
+import {Alert, AlertIcon, Box, Button, Heading, Stack} from '@chakra-ui/react'
 import {useSelector} from 'react-redux'
 
+import {AddIcon} from 'lib/components/icons'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
 import selectSegmentDistances from 'lib/selectors/segment-distances'
 import {create as createTimetable} from 'lib/utils/timetable'
@@ -61,9 +62,9 @@ export default function Timetables({
       )}
       <Button
         isFullWidth
-        leftIcon='small-add'
+        leftIcon={<AddIcon />}
         onClick={_create}
-        variantColor='green'
+        colorScheme='green'
       >
         Add new timetable
       </Button>

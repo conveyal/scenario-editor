@@ -1,5 +1,4 @@
-import {Flex, Heading, Stack, Divider} from '@chakra-ui/core'
-import {faCrosshairs, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {Flex, Heading, Stack, Divider} from '@chakra-ui/react'
 import get from 'lodash/get'
 import {useState} from 'react'
 import {useSelector} from 'react-redux'
@@ -11,6 +10,7 @@ import * as reroute from 'lib/utils/update-add-stops-terminus'
 import selectStopsFromModification from 'lib/selectors/stops-from-modification'
 
 import IconButton from '../icon-button'
+import {CrosshairsIcon, XIcon} from '../icons'
 import RerouteLayer from '../modifications-map/reroute-layer'
 import StopLayer from '../modifications-map/stop-layer'
 
@@ -144,22 +144,24 @@ export default function Reroute({
               <Heading size='sm'>{fromStopValue}</Heading>
               <Flex>
                 <IconButton
-                  icon={faCrosshairs}
                   isDisabled={isEditing}
                   label='Select from stop'
                   onClick={() => setSelectStop('fromStop')}
                   size='md'
-                  variantColor='blue'
-                />
+                  colorScheme='blue'
+                >
+                  <CrosshairsIcon />
+                </IconButton>
                 {modification.fromStop != null && (
                   <IconButton
-                    icon={faTimes}
                     isDisabled={isEditing}
                     label='Clear from stop'
                     onClick={_clearFromStop}
                     size='md'
-                    variantColor='red'
-                  />
+                    colorScheme='red'
+                  >
+                    <XIcon />
+                  </IconButton>
                 )}
               </Flex>
             </Flex>
@@ -171,22 +173,24 @@ export default function Reroute({
               <Heading size='sm'>{toStopValue}</Heading>
               <Flex>
                 <IconButton
-                  icon={faCrosshairs}
                   isDisabled={isEditing}
                   label='Select to stop'
                   onClick={() => setSelectStop('toStop')}
                   size='md'
-                  variantColor='blue'
-                />
+                  colorScheme='blue'
+                >
+                  <CrosshairsIcon />
+                </IconButton>
                 {modification.toStop != null && (
                   <IconButton
-                    icon={faTimes}
                     isDisabled={isEditing}
                     label='Clear to stop'
                     onClick={_clearToStop}
                     size='md'
-                    variantColor='red'
-                  />
+                    colorScheme='red'
+                  >
+                    <XIcon />
+                  </IconButton>
                 )}
               </Flex>
             </Flex>

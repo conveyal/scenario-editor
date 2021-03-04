@@ -1,18 +1,16 @@
-import {faArrowLeft, faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons'
 import {
   Divider,
   Flex,
   Heading,
   Image,
-  Link,
   List,
   ListItem,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import React from 'react'
 import useSWR from 'swr'
 
-import Icon from 'lib/components/icon'
+import {ALink, ExternalLink} from 'lib/components/link'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL + '/version'
 
@@ -33,14 +31,7 @@ export default function Status() {
           <Heading size='2xl'>Status</Heading>
           <Image display='inline-block' size='45px' src='/logo.svg' />
         </Flex>
-        <Link
-          color='blue.500'
-          fontSize='14px'
-          textDecoration='underline'
-          href='/'
-        >
-          <Icon icon={faArrowLeft} /> Back to the application
-        </Link>
+        <ALink to='regions'>← Back to the application</ALink>
         <Divider />
         <Flex justify='space-between'>
           <Heading size='xl'>Front-end</Heading>
@@ -56,14 +47,7 @@ export default function Status() {
               {text}
             </Heading>
           </Flex>
-          <Link
-            color='blue.500'
-            fontSize='14px'
-            textDecoration='underline'
-            href={API_URL}
-          >
-            {API_URL} <Icon icon={faExternalLinkAlt} />
-          </Link>
+          <ExternalLink href={API_URL}>{API_URL}</ExternalLink>
           <List styleType='disc'>
             {Object.keys(data).map((k) => (
               <ListItem key={k}>

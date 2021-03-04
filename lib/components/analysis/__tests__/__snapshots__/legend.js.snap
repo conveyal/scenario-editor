@@ -40,101 +40,101 @@ exports[`Components > Analysis > Regional > Legend should display 1`] = `
   }
   min={0}
 >
-  <ForwardRef
+  <Stack
     borderTop="1px solid #E2E8F0"
     spacing={0}
   >
-    <Flex
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 0,
+          },
+        }
+      }
       borderTop="1px solid #E2E8F0"
-      direction="column"
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
     >
-      <Box
-        borderTop="1px solid #E2E8F0"
-        display="flex"
-        flexDirection="column"
+      <div
+        className="chakra-stack css-zl0oze"
       >
-        <div
-          className="css-1qzxoio"
+        <Box
+          _last={
+            Object {
+              "roundedBottom": "md",
+            }
+          }
+          backgroundColor="rgba(0, 0, 0, 1)"
+          color="#fff"
+          key=".$break-0"
+          px={4}
+          py={1}
         >
-          <PseudoBox
-            _last={
-              Object {
-                "roundedBottom": "md",
-              }
-            }
-            backgroundColor="rgba(0, 0, 0, 1)"
-            color="#fff"
-            key=".$break-0"
-            mb={0}
-            px={4}
-            py={1}
+          <div
+            className="css-1ggmuzb"
           >
-            <div
-              className="css-q4j0tr"
-            >
-              4,000 to 3,000
-            </div>
-          </PseudoBox>
-          <PseudoBox
-            _last={
-              Object {
-                "roundedBottom": "md",
-              }
+            4,000 to 3,000
+          </div>
+        </Box>
+        <Box
+          _last={
+            Object {
+              "roundedBottom": "md",
             }
-            backgroundColor="rgba(0, 0, 0, 1)"
-            color="#fff"
-            key=".$break-1"
-            mb={0}
-            px={4}
-            py={1}
+          }
+          backgroundColor="rgba(0, 0, 0, 1)"
+          color="#fff"
+          key=".$break-1"
+          px={4}
+          py={1}
+        >
+          <div
+            className="css-1ggmuzb"
           >
-            <div
-              className="css-q4j0tr"
-            >
-              3,000 to 2,000
-            </div>
-          </PseudoBox>
-          <PseudoBox
-            _last={
-              Object {
-                "roundedBottom": "md",
-              }
+            3,000 to 2,000
+          </div>
+        </Box>
+        <Box
+          _last={
+            Object {
+              "roundedBottom": "md",
             }
-            backgroundColor="rgba(0, 0, 0, 1)"
-            color="#fff"
-            key=".$break-2"
-            mb={0}
-            px={4}
-            py={1}
+          }
+          backgroundColor="rgba(0, 0, 0, 1)"
+          color="#fff"
+          key=".$break-2"
+          px={4}
+          py={1}
+        >
+          <div
+            className="css-1ggmuzb"
           >
-            <div
-              className="css-q4j0tr"
-            >
-              2,000 to 1,000
-            </div>
-          </PseudoBox>
-          <PseudoBox
-            _last={
-              Object {
-                "roundedBottom": "md",
-              }
+            2,000 to 1,000
+          </div>
+        </Box>
+        <Box
+          _last={
+            Object {
+              "roundedBottom": "md",
             }
-            backgroundColor="rgba(0, 0, 0, 1)"
-            color="#fff"
-            key=".$break-3"
-            mb={null}
-            px={4}
-            py={1}
+          }
+          backgroundColor="rgba(0, 0, 0, 1)"
+          color="#fff"
+          key=".$break-3"
+          px={4}
+          py={1}
+        >
+          <div
+            className="css-1ggmuzb"
           >
-            <div
-              className="css-1ib9w0t"
-            >
-              1,000 to 0 (transparent)
-            </div>
-          </PseudoBox>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+            1,000 to 0 (transparent)
+          </div>
+        </Box>
+      </div>
+    </Styled(div)>
+  </Stack>
 </Legend>
 `;

@@ -6,7 +6,7 @@ exports[`Component > Panel Body renders correctly 1`] = `
     p={4}
   >
     <div
-      className="css-1wcaknn"
+      className="css-2rlxtj"
     >
       Body text
     </div>
@@ -22,20 +22,30 @@ exports[`Component > Panel Heading renders correctly 1`] = `
     p={4}
     role="button"
   >
-    <Box
+    <Styled(div)
+      __css={
+        Object {
+          "alignItems": undefined,
+          "display": "flex",
+          "flexBasis": undefined,
+          "flexDirection": undefined,
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "flexWrap": undefined,
+          "justifyContent": "space-between",
+        }
+      }
       bg="gray.50"
-      display="flex"
-      justifyContent="space-between"
       p={4}
       role="button"
     >
       <div
-        className="css-14uk9yj"
+        className="css-m8bvz0"
         role="button"
       >
         Heading text
       </div>
-    </Box>
+    </Styled(div)>
   </Flex>
 </Heading>
 `;

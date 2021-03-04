@@ -10,7 +10,7 @@ import {
   Input,
   Select,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import distance from '@turf/distance'
 import get from 'lodash/get'
 import {useState} from 'react'
@@ -255,7 +255,7 @@ export default function ImportShapefile({projectId, regionId, variants}) {
         isLoading={uploading}
         loadingText='Creating modifications...'
         onClick={create}
-        variantColor='green'
+        colorScheme='green'
       >
         {message('project.importAction')}
       </Button>

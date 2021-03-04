@@ -15,10 +15,9 @@ import {
   StatHelpText,
   Tag,
   Text
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import format from 'date-fns/format'
 import dynamic from 'next/dynamic'
-import {useRouter} from 'next/router'
 import React from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -31,9 +30,9 @@ import {
 import SelectResource from 'lib/components/select-resource'
 import msg from 'lib/message'
 import downloadData from 'lib/utils/download-data'
-import {routeTo} from 'lib/router'
 import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
+import useRouteTo from 'lib/hooks/use-route-to'
 
 const GeoJSON = dynamic(() => import('lib/components/map/geojson'), {
   ssr: false
@@ -57,7 +56,7 @@ function ConfirmDelete(p) {
 
   return (
     <>
-      <Button variantColor='red' onClick={() => setIsOpen(true)}>
+      <Button colorScheme='red' onClick={() => setIsOpen(true)}>
         {msg('resources.deleteAction')}
       </Button>
 
@@ -76,7 +75,7 @@ function ConfirmDelete(p) {
             <Button ref={cancelRef} onClick={onClose}>
               {msg('common.cancel')}
             </Button>
-            <Button variantColor='red' onClick={onDelete} ml={3}>
+            <Button colorScheme='red' onClick={onDelete} ml={3}>
               {msg('common.delete')}
             </Button>
           </AlertDialogFooter>
@@ -89,9 +88,11 @@ function ConfirmDelete(p) {
 const EditResourcePage = withInitialFetch(
   function EditResource(p) {
     const dispatch = useDispatch()
-    const router = useRouter()
     const [resourceData, setResourceData] = React.useState()
     const {resource} = p
+    const routeToResources = useRouteTo('resources', {
+      regionId: resource.regionId
+    })
 
     // Load the resource data on client side mount
     React.useEffect(() => {
@@ -103,10 +104,7 @@ const EditResourcePage = withInitialFetch(
     }
 
     function _delete() {
-      dispatch(deleteResource(resource)).then(() => {
-        const {as, href} = routeTo('resources', {regionId: resource.regionId})
-        router.push(href, as)
-      })
+      dispatch(deleteResource(resource)).then(() => routeToResources())
     }
 
     return (
@@ -134,7 +132,7 @@ const EditResourcePage = withInitialFetch(
           <Button
             isDisabled={!resourceData}
             onClick={_download}
-            variantColor='green'
+            colorScheme='green'
           >
             {msg('common.download')}
           </Button>

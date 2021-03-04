@@ -1,4 +1,4 @@
-import {Box, Stack, Progress, StackProps} from '@chakra-ui/core'
+import {Box, Stack, Progress, StackProps} from '@chakra-ui/react'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
 import get from 'lodash/get'

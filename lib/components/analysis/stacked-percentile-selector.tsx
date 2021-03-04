@@ -85,7 +85,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
           <HStack spacing={5} width='100%'>
             <Progress
               flex='10'
-              color={disabledOrStale ? 'gray' : 'blue'}
+              colorScheme={disabledOrStale ? 'gray' : 'blue'}
               size='md'
               value={((accessibility || 1) / maxAccessibility) * 100}
             />
@@ -104,7 +104,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
           <HStack spacing={5} width='100%'>
             <Progress
               flex='10'
-              color={disabledOrStale ? 'gray' : 'red'}
+              colorScheme={disabledOrStale ? 'gray' : 'red'}
               size='md'
               value={((comparisonAccessibility || 1) / maxAccessibility) * 100}
             />

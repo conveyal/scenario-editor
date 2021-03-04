@@ -39,8 +39,10 @@ export default function ResultSliders({isDisabled, isStale, regionId, ...p}) {
   )
   const onChangeCutoff = useCallback(
     (cutoff: number) => {
-      dispatch(setMaxTripDurationMinutes(cutoff))
-      setCutoff(cutoff)
+      if (cutoff >= 1 && cutoff <= 120) {
+        dispatch(setMaxTripDurationMinutes(cutoff))
+        setCutoff(cutoff)
+      }
     },
     [dispatch]
   )
@@ -132,7 +134,7 @@ const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
     })
 
     return (
-      <FormControl isDisabled={isDisabled} pr='10px' {...p}>
+      <FormControl isDisabled={isDisabled} {...p}>
         <FormLabel id={percentileSlider.id}>Travel time percentile</FormLabel>
         <Slider
           aria-labelledby={percentileSlider.id}

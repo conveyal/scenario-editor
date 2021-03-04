@@ -83,7 +83,7 @@ describe('Adjust Dwell Time', () => {
       .should(([a, c]) => expect(a).to.be.lessThan(c))
   })
 
-  it('should have lower accessibility full route increase', () => {
+  it('should have lower accessibility with full route increase than a single stop increase', () => {
     region.setupAnalysis(
       {project, scenario: scenarios[0]},
       {project, scenario: scenarios[1]}
@@ -91,11 +91,10 @@ describe('Adjust Dwell Time', () => {
     region
       .fetchAccessibilityComparison(intersection)
       .should(([a, c]) => expect(a).to.be.lessThan(c))
+  })
 
-    region.setupAnalysis(
-      {project, scenario: scenarios[0]},
-      {project, scenario: scenarios[1]}
-    )
+  it('should not effect the accessibility when far from the stop', () => {
+    region.setupAnalysis({project, scenario: scenarios[1]})
     cy.setTimeCutoff(30)
     region
       .fetchAccessibilityComparison(northEastCorner)
@@ -133,7 +132,7 @@ describe('Adjust Dwell Time', () => {
      * })
      */
 
-    it('should have no differnce far away from the decrease', () => {
+    it('should have no difference far away from the decrease', () => {
       region.setupAnalysis(
         {project, scenario: 'Default'},
         {project, scenario: 'Increase'}

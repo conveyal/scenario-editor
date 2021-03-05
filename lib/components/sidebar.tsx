@@ -1,4 +1,4 @@
-import {Box, BoxProps, Center, Flex} from '@chakra-ui/react'
+import {Box, BoxProps, Center, Flex, useColorModeValue} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
@@ -79,10 +79,11 @@ type ItemLinkProps = {
 const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
   const isActive = useIsActive(to, params)
   const goToLink = useRouteTo(to, params)
+  const bg = useColorModeValue('white', 'gray.800')
 
   const navItemProps = isActive
     ? {
-        bg: '#fff',
+        bg,
         borderBottom: `2px solid ${CB_HEX}`
       }
     : {onClick: () => goToLink()}
@@ -108,10 +109,11 @@ export default function Sidebar() {
   const storeParams = useSelector(selectQueryString)
   const queryParams = {...router.query, ...storeParams}
   const regionOnly = {regionId: queryParams.regionId}
+  const bg = useColorModeValue('gray.50', 'gray.900')
 
   return (
     <Flex
-      bg='#ddd'
+      bg={bg}
       direction='column'
       height='100vh'
       id='sidebar'

@@ -244,7 +244,7 @@ function ModificationEditor({
 
       <Flex
         align='center'
-        borderBottom='1px solid #E2E8F0'
+        borderBottomWidth='1px'
         className={saveInProgress ? 'disableAndDim' : ''}
         p={2}
         width='320px'

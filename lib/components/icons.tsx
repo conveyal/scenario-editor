@@ -54,6 +54,5 @@ export {
   FaTrain as TrainIcon,
   FaUpload as UploadIcon,
   FaWalking as WalkerIcon,
-  FaWifi as WifiIcon,
   FaTimes as XIcon
 } from 'react-icons/fa'

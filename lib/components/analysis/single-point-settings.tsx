@@ -16,9 +16,9 @@ import {
   Text,
   Textarea
 } from '@chakra-ui/react'
+import {dequal} from 'dequal/lite'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
-import isEqual from 'lodash/isEqual'
 import {memo, useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -634,7 +634,7 @@ const JSONEditor = memo<{
   // Show a green border when there are unsaved changes
   const focusBorderColor =
     isJSONValid(currentValue) &&
-    isEqual(JSON.parse(currentValue), profileRequest)
+    dequal(JSON.parse(currentValue), profileRequest)
       ? 'blue.500'
       : 'green.500'
 

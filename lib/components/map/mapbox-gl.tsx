@@ -1,13 +1,19 @@
-import L from 'leaflet'
-import {GridLayer, withLeaflet} from 'react-leaflet'
+import L, {MapboxGL} from 'leaflet'
+import {MapLayer, MapLayerProps, withLeaflet} from 'react-leaflet'
 
 import 'mapbox-gl-leaflet'
 
 import {MB_TOKEN} from 'lib/constants'
 
-const attribution = `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>`
+interface MapboxGLLayerProps extends MapLayerProps {
+  style: string
+}
 
-class MapBoxGLLayer extends GridLayer {
+interface MapboxGLEl extends MapboxGL {
+  _glMap: any
+}
+
+class MapBoxGLLayer extends MapLayer<MapboxGLLayerProps, MapboxGLEl> {
   shouldComponentUpdate(nextProps) {
     if (nextProps.style !== this.props.style) return true
     return false
@@ -22,14 +28,10 @@ class MapBoxGLLayer extends GridLayer {
 
   createLeafletElement(props) {
     if (L.mapboxGL == null) return null
-    const glLayer = (window.MapboxGLLayer = L.mapboxGL({
+    return L.mapboxGL({
       accessToken: MB_TOKEN,
-      attribution,
-      interactive: false,
-      pane: props.leaflet.map._panes?.tilePane,
       style: props.style
-    }))
-    return glLayer
+    }) as MapboxGLEl
   }
 }
 

@@ -14,7 +14,7 @@ export default class SpatialDataset extends Model {
 
   _delete() {
     cy.findButton(/Delete entire dataset/i).click()
-    cy.findButton(/Confirm: Delete entire dataset/i).click()
+    cy.findButton(/Confirm/i).click()
   }
 
   findOrCreate() {

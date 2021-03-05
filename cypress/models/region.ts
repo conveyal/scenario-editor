@@ -36,7 +36,7 @@ export default class Region extends Model {
     cy.findButton(/Edit region settings/).click()
     // Delete region
     cy.findByText(/Delete this region/).click()
-    cy.findByText(/Confirm: Delete this region/).click()
+    cy.findButton(/Confirm/).click()
     cy.findByRole('dialog').should('not.exist')
   }
 

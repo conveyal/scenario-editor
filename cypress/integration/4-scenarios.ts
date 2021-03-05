@@ -22,9 +22,7 @@ describe('Scenarios', function () {
             .parent()
             .findByRole('button', {name: 'Delete this scenario'})
             .click()
-          cy.findByRole('button', {
-            name: 'Confirm: Delete this scenario'
-          }).click()
+          cy.findButton(/Confirm/).click()
           cy.findByRole('alertdialog').should('not.exist')
         } else {
           // Ensure the remaining scenario is named Default
@@ -85,12 +83,12 @@ describe('Scenarios', function () {
     findScenarioByName(scenarioName + ' (copy)')
       .findByRole('button', {name: 'Delete this scenario'})
       .click()
-    cy.findByRole('button', {name: 'Confirm: Delete this scenario'}).click()
+    cy.findButton(/Confirm/).click()
 
     // delete first scenario
     findScenarioByName(scenarioName)
       .findByRole('button', {name: 'Delete this scenario'})
       .click()
-    cy.findByRole('button', {name: 'Confirm: Delete this scenario'}).click()
+    cy.findButton(/Confirm/).click()
   })
 })

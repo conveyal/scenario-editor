@@ -6,7 +6,7 @@ function generateName(type, name) {
 
 function deleteEntireDataset() {
   cy.findButton(/Delete all layers from dataset/i).click()
-  cy.findButton(/Confirm: Delete all layers from dataset/i).click()
+  cy.findButton(/Confirm/i).click()
 }
 
 // How long should it take to create an OD
@@ -35,7 +35,7 @@ describe('Opportunity Datasets', function () {
       .click({force: true})
       .type(`${newName}{enter}`)
     cy.findButton(/Delete this layer/).click()
-    cy.findButton(/Confirm: Delete this layer/).click()
+    cy.findButton(/Confirm/).click()
   })
 
   describe('can be imported', () => {

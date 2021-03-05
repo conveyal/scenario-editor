@@ -281,7 +281,7 @@ describe('Analysis', () => {
       cy.getPrimaryAnalysisSettings().within(() => {
         cy.findButton(/Delete selected preset/).click()
       })
-      cy.findButton(/Confirm: Delete preset/).click()
+      cy.findButton(/Confirm/).click()
       cy.findByRole('dialog').should('not.exist')
       cy.findByText(/Deleted selected preset/)
     })

@@ -36,8 +36,8 @@ function StackTrace({stackTrace, ...p}) {
           overflowX='scroll'
           whiteSpace='pre'
           padding={2}
-          backgroundColor='#333'
-          color='#fff'
+          bg='gray.800'
+          color='white'
         >
           {stackTrace}
         </Box>

@@ -7,6 +7,8 @@ import thunkMiddleware from 'redux-thunk'
 import {TextEncoder} from 'util'
 import {constructor as XorShift} from 'xorshift'
 
+import {MINIMUM_R5_VERSION} from 'lib/modules/r5-version/constants'
+
 import {responseToSurface} from '../actions/analysis'
 import {ADD_TRIP_PATTERN, TRAVEL_TIME_PERCENTILES} from '../constants'
 
@@ -247,7 +249,7 @@ export const mockProfileRequest = {
   travelTimePercentile: 50,
   variantIndex: 0,
   walkSpeed: 1.3888888888888888,
-  workerVersion: 'v4.0.0'
+  workerVersion: MINIMUM_R5_VERSION
 }
 
 export const mockRegionalAnalyses = [

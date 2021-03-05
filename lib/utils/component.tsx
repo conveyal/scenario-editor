@@ -1,4 +1,4 @@
-import {ThemeProvider} from '@chakra-ui/core'
+import {ThemeProvider, extendTheme} from '@chakra-ui/react'
 import {expect} from '@jest/globals'
 import enzyme from 'enzyme'
 import {Router} from 'next/router'
@@ -18,6 +18,8 @@ const router = new Router('page', {}, 'as-path', {} as any)
 
 const getName = (c) => c.displayName || c.name
 
+const theme = extendTheme({})
+
 export function testComponent(
   TestComponent,
   props = {},
@@ -26,7 +28,7 @@ export function testComponent(
   const store = makeMockStore(initialData)
   const Wrapping = (props) => (
     <Provider store={store}>
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <RouterContext.Provider value={router}>
           {props.children}
         </RouterContext.Provider>
@@ -39,7 +41,6 @@ export function testComponent(
       wrappingComponent: Wrapping
     })
 
-  // TODO: Dive down through the `TestComponent` automatically
   const shallow = () =>
     enzyme.shallow(<TestComponent {...props} />, {
       wrappingComponent: Wrapping

@@ -9,7 +9,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {Fragment, useState, useEffect} from 'react'
 import {scaleLinear} from 'd3-scale'
 import {format as d3Format} from 'd3-format'
@@ -115,8 +115,9 @@ export default function AggregateAccessibilityComponent({
           value={percentile}
           onChange={setPercentile}
         >
-          <SliderTrack />
-          <SliderFilledTrack />
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
           <SliderThumb />
         </Slider>
       </FormControl>

@@ -4,7 +4,7 @@ import {
   AlertTitle,
   AlertDescription,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
 import {FunctionComponent, useCallback} from 'react'
 import {useDispatch} from 'react-redux'

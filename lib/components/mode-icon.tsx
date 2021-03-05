@@ -1,17 +1,16 @@
-import {Box, BoxProps, Text} from '@chakra-ui/core'
-import {
-  faBicycle,
-  faBus,
-  faCar,
-  faWalking,
-  faShip,
-  faSubway,
-  faTrain,
-  faParking
-} from '@fortawesome/free-solid-svg-icons'
+import {Box, BoxProps, Text} from '@chakra-ui/react'
 import toStartCase from 'lodash/startCase'
 
-import Icon from './icon'
+import {
+  BikeIcon,
+  BusIcon,
+  CarIcon,
+  ParkingIcon,
+  ShipIcon,
+  SubwayIcon,
+  TrainIcon,
+  WalkerIcon
+} from 'lib/components/icons'
 
 type Mode =
   | 'BICYCLE'
@@ -46,29 +45,29 @@ export function ModeIcon({mode}: {mode: Mode}) {
   switch (mode) {
     case 'BICYCLE':
     case 'BICYCLE_RENT':
-      return <Icon icon={faBicycle} />
+      return <BikeIcon />
     case 'BUS':
-      return <Icon icon={faBus} />
+      return <BusIcon />
     case 'CABLE_CAR':
       return <Letter>C</Letter>
     case 'CAR':
-      return <Icon icon={faCar} />
+      return <CarIcon />
     case 'CAR_PARK':
-      return <Icon icon={faParking}>P</Icon>
+      return <ParkingIcon />
     case 'FERRY':
-      return <Icon icon={faShip} />
+      return <ShipIcon />
     case 'FUNICULAR':
       return <Letter>F</Letter>
     case 'GONDOLA':
       return <Letter>G</Letter>
     case 'RAIL':
-      return <Icon icon={faTrain} />
+      return <TrainIcon />
     case 'SUBWAY':
-      return <Icon icon={faSubway} />
+      return <SubwayIcon />
     case 'TRAM':
       return <Letter>T</Letter>
     case 'WALK':
-      return <Icon icon={faWalking} />
+      return <WalkerIcon />
     default:
       console.error(`${mode} does not exist`)
       return null

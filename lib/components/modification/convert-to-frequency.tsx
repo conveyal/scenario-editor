@@ -1,8 +1,9 @@
-import {Button, Checkbox, Stack} from '@chakra-ui/core'
+import {Button, Checkbox, Stack} from '@chakra-ui/react'
 import {color as parseColor} from 'd3-color'
 import get from 'lodash/get'
 import {useSelector} from 'react-redux'
 
+import {AddIcon} from 'lib/components/icons'
 import colors from 'lib/constants/colors'
 import selectFeedsWithBundleNames from 'lib/selectors/feeds-with-bundle-names'
 import selectFeedScopedModificationStops from 'lib/selectors/feed-scoped-modification-stops'
@@ -101,9 +102,9 @@ export default function ConvertToFrequency({
       {modification.routes && modification.routes.length > 0 && (
         <Button
           isFullWidth
-          leftIcon='small-add'
+          leftIcon={<AddIcon />}
           onClick={_newEntry}
-          variantColor='green'
+          colorScheme='green'
         >
           Add frequency entry
         </Button>

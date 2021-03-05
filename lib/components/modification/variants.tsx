@@ -1,4 +1,4 @@
-import {Checkbox, Heading, Stack} from '@chakra-ui/core'
+import {Checkbox, Heading, Stack} from '@chakra-ui/react'
 
 import message from 'lib/message'
 

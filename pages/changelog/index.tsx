@@ -1,9 +1,7 @@
-import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
-import {Box, Divider, Flex, Heading, Image, Stack} from '@chakra-ui/core'
-import React from 'react'
+import {Box, Divider, Flex, Heading, Stack} from '@chakra-ui/react'
 
-import Icon from 'lib/components/icon'
 import {ALink} from 'lib/components/link'
+import SVGLogo from 'lib/components/logo.svg'
 
 import C202102 from './202102.mdx'
 import C202012 from './202012.mdx'
@@ -36,12 +34,12 @@ export default function Changelog() {
     <Stack spacing={spacing} maxWidth='100ch' mx='auto' my={40}>
       <Flex justify='space-between'>
         <Heading size='2xl'>What&lsquo;s new</Heading>
-        <Image display='inline-block' size='45px' src='/logo.svg' />
+        <Box boxSize='45px'>
+          <SVGLogo />
+        </Box>
       </Flex>
       <Box fontSize='14px'>
-        <ALink to='regions'>
-          <Icon icon={faArrowLeft} /> Back to the application
-        </ALink>
+        <ALink to='regions'>← Back to the application</ALink>
       </Box>
       {changes.map(([title, C], i) => (
         <Stack spacing={spacing} key={i}>
@@ -52,7 +50,7 @@ export default function Changelog() {
             </Heading>
             <Heading
               color='gray.700'
-              size='sm'
+              size='md'
               style={{fontVariantCaps: 'small-caps'}}
               textAlign='center'
             >

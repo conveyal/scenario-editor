@@ -2,11 +2,6 @@
   --sidebar-width: 40px;
   --dock-width: 320px;
   --wide-dock-width: 640px;
-
-  --cb: #2389c9;
-  --cb-light: #97cced; /** increased (HS)L by 30% */
-  --cb-dark1: #185c86; /** decreased (HS)L by 15% */
-  --cb-dark2: #0c2f45; /** decreased (HS)L by 30% */
 }
 
 /** Font reset for specific things */
@@ -31,26 +26,6 @@ body,
 .disableAndDim {
   opacity: 0.4;
   pointer-events: none;
-}
-
-a,
-.link {
-  cursor: pointer;
-  color: var(--cb);
-  text-decoration: none;
-}
-
-a:hover,
-a:focus,
-.link:hover,
-.link:focus {
-  color: var(--cb-dark1);
-  outline: none !important;
-}
-
-ul,
-ol {
-  padding-left: 20px;
 }
 
 input[type='number']::-webkit-outer-spin-button,

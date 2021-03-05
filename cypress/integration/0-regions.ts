@@ -186,7 +186,7 @@ describe('Regions', () => {
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
-    cy.get('#react-toast').findByRole('alert').should('not.exist')
+    cy.findToast().should('not.exist')
     cy.findButton(newName).should('not.exist')
   })
 })

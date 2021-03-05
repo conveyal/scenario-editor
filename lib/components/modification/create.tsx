@@ -18,14 +18,14 @@ import {
   Tab,
   TabPanel,
   TabPanels
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
-import {useRouter} from 'next/router'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {createModification} from 'lib/actions/modifications'
+import {AddIcon} from 'lib/components/icons'
 import {
   ADD_STREETS,
   ADD_TRIP_PATTERN,
@@ -39,8 +39,8 @@ import {
   REROUTE
 } from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
+import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
-import {routeTo} from 'lib/router'
 
 const testContent = (s) => s && s.length > 0
 
@@ -68,13 +68,16 @@ export default function CreateModification({
   ...p
 }) {
   const dispatch = useDispatch<any>()
-  const router = useRouter()
   const [isCreating, setIsCreating] = useState(false)
   const {isOpen, onClose, onOpen} = useDisclosure()
   const [tabIndex, setTabIndex] = useState(0)
   const nameInput = useInput({test: testContent, value: ''})
   const transitTypeInput = useInput({value: transitModificationTypes[0]})
   const streetTypeInput = useInput({value: streetModificationTypes[0]})
+  const goToModificationEdit = useRouteTo('modificationEdit', {
+    regionId,
+    projectId
+  })
 
   async function create() {
     setIsCreating(true)
@@ -88,12 +91,7 @@ export default function CreateModification({
         variants: variants.map(() => true)
       })
     )
-    const {href, as} = routeTo('modificationEdit', {
-      regionId,
-      projectId,
-      modificationId: m?._id
-    })
-    router.push(href, as)
+    goToModificationEdit({modificationId: m?._id})
   }
 
   return (
@@ -101,8 +99,8 @@ export default function CreateModification({
       <Button
         isFullWidth
         onClick={onOpen}
-        leftIcon='small-add'
-        variantColor='green'
+        leftIcon={<AddIcon />}
+        colorScheme='green'
         {...p}
       >
         {message('modification.create')}
@@ -130,13 +128,13 @@ export default function CreateModification({
                 <Tab>Transit</Tab>
                 <Tab>
                   Street{' '}
-                  <Badge ml={3} variantColor='red'>
+                  <Badge ml={3} colorScheme='red'>
                     Experimental
                   </Badge>
                 </Tab>
               </TabList>
               <TabPanels>
-                <TabPanel pt={3}>
+                <TabPanel pt={3} px={0}>
                   <FormControl>
                     <FormLabel htmlFor={transitTypeInput.id}>
                       Transit modification type
@@ -150,7 +148,7 @@ export default function CreateModification({
                     </Select>
                   </FormControl>
                 </TabPanel>
-                <TabPanel pt={3}>
+                <TabPanel pt={3} px={0}>
                   <FormControl>
                     <FormLabel htmlFor={streetTypeInput.id}>
                       Street modification type
@@ -169,12 +167,12 @@ export default function CreateModification({
           </ModalBody>
           <ModalFooter>
             <Button
-              leftIcon='small-add'
+              leftIcon={<AddIcon />}
               isLoading={isCreating}
               isDisabled={!get(nameInput, 'value.length')}
               mr={3}
               onClick={create}
-              variantColor='green'
+              colorScheme='green'
             >
               {message('common.create')}
             </Button>

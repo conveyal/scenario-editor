@@ -1,17 +1,16 @@
-import {Alert, Box, Flex, FormControl, FormLabel} from '@chakra-ui/core'
+import {Alert, Box, Flex, FormControl, FormLabel} from '@chakra-ui/react'
 import get from 'lodash/get'
 import {useSelector} from 'react-redux'
 import Creatable from 'react-select/creatable'
-import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons'
 
+import {ErrorIcon} from 'lib/components/icons'
 import {selectStyles} from 'lib/components/select'
+import Tip from 'lib/components/tip'
 import message from 'lib/message'
 
 import {MINIMUM_R5_VERSION, RECOMMENDED_R5_VERSION} from '../constants'
 import * as select from '../selectors'
 import {versionToNumber} from '../utils'
-import Tip from 'lib/components/tip'
-import Icon from 'lib/components/icon'
 
 // Minimum version number
 const MIN_VERSION = versionToNumber(MINIMUM_R5_VERSION)
@@ -34,15 +33,24 @@ const lineThrough = (text) => (
   <span style={{textDecoration: 'line-through'}}>{text}</span>
 )
 
+type Option = {
+  label: string | JSX.Element
+  value: string
+}
+
 /**
  * Select an R5 version, based on what is available in S3
  */
-export default function SelectR5Version({onChange, value, ...p}) {
+export default function SelectR5Version({
+  onChange,
+  value = RECOMMENDED_R5_VERSION,
+  ...p
+}) {
   const usedVersions = useSelector(select.usedVersions)
 
   const currentVersionNumber = versionToNumber(value)
   const lastUsedVersion = get(usedVersions, '[0].version')
-  const options = [
+  const options: Option[] = [
     {
       value: RECOMMENDED_R5_VERSION,
       label: `${RECOMMENDED_R5_VERSION} (recommended)`
@@ -91,7 +99,7 @@ export default function SelectR5Version({onChange, value, ...p}) {
           {lastUsedVersion && lastUsedVersion !== value && (
             <Tip label={message('r5Version.analysisVersionDifferent')}>
               <Box color='yellow.500'>
-                <Icon icon={faExclamationCircle} />
+                <ErrorIcon />
               </Box>
             </Tip>
           )}

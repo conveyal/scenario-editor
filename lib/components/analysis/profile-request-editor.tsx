@@ -9,11 +9,12 @@ import {
   Select,
   SimpleGrid,
   Flex,
-  InputProps
-} from '@chakra-ui/core'
+  InputProps,
+  forwardRef
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
-import {forwardRef, useCallback} from 'react'
+import {useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
@@ -45,24 +46,24 @@ function bundleIsOutOfDate(bundle, dateString, project) {
   }
 }
 
-const InputWithUnits: React.ComponentType<
-  {units: string} & InputProps
-> = forwardRef((props, ref) => {
-  const {units, ...p} = props
-  return (
-    <InputGroup>
-      <Input {...p} ref={ref} />
-      <InputRightElement
-        color='gray.400'
-        userSelect='none'
-        width='unset'
-        mr={4}
-      >
-        {units}
-      </InputRightElement>
-    </InputGroup>
-  )
-})
+const InputWithUnits = forwardRef<InputProps & {units: string}, typeof Input>(
+  (props, ref) => {
+    const {units, ...p} = props
+    return (
+      <InputGroup>
+        <Input {...p} ref={ref} />
+        <InputRightElement
+          color='gray.400'
+          userSelect='none'
+          width='unset'
+          mr={4}
+        >
+          {units}
+        </InputRightElement>
+      </InputGroup>
+    )
+  }
+)
 
 // Helper function for testing inputs
 const valueWithin = (min: number, max: number) => (v) => {
@@ -254,7 +255,7 @@ export default function ProfileRequestEditor({
         <FormLabel htmlFor={maxTransfersInput.id}>
           {message('analysis.transfers')}
         </FormLabel>
-        <Input {...maxTransfersInput} type='number' />
+        <Input {...maxTransfersInput} maxLength={1} />
       </FormControl>
 
       {hasTransit && toTime >= TenPM && (

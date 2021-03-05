@@ -42,7 +42,7 @@ export const deleteProject = (projectId) =>
     next: () => deleteLocally(projectId)
   })
 
-export const loadProject = (_id) =>
+export const loadProject = (_id: string) =>
   fetch({
     url: `${PROJECT_URL}/${_id}`,
     next: (r) => set(r.value)

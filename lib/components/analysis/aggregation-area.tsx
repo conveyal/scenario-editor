@@ -9,7 +9,7 @@ import {
   Stack,
   useDisclosure,
   useToast
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import {useState} from 'react'
@@ -20,6 +20,7 @@ import {
   setAggregationArea,
   uploadAggregationArea
 } from 'lib/actions/aggregation-areas'
+import {ChevronDown, ChevronUp} from 'lib/components/icons'
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import OpportunityDatasets from 'lib/modules/opportunity-datasets'
@@ -68,7 +69,7 @@ export default function AggregationArea({regionId}) {
 
       <Button
         isFullWidth
-        leftIcon={showUpload.isOpen ? 'chevron-up' : 'chevron-down'}
+        leftIcon={showUpload.isOpen ? <ChevronUp /> : <ChevronDown />}
         onClick={showUpload.onToggle}
       >
         {showUpload.isOpen ? 'Hide' : message('analysis.newAggregationArea')}
@@ -177,7 +178,7 @@ function UploadNewAggregationArea({onClose, regionId}) {
         isLoading={uploading}
         loadingText='Creating aggregation area'
         onClick={upload}
-        variantColor='green'
+        colorScheme='green'
       >
         {message('common.upload')}
       </Button>

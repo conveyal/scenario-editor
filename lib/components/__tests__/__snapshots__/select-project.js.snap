@@ -112,708 +112,512 @@ exports[`Component > SelectProject 1`] = `
                 <div
                   className="simplebar-content"
                 >
-                  <ForwardRef
+                  <Stack
                     px={2}
                     py={4}
                     spacing={4}
                   >
-                    <Flex
-                      direction="column"
+                    <Styled(div)
+                      __css={
+                        Object {
+                          "& > *:not(style) ~ *:not(style)": Object {
+                            "marginStart": 0,
+                            "marginTop": 4,
+                          },
+                        }
+                      }
+                      className="chakra-stack"
+                      display="flex"
+                      flexDirection="column"
                       px={2}
                       py={4}
                     >
-                      <Box
-                        display="flex"
-                        flexDirection="column"
-                        px={2}
-                        py={4}
+                      <div
+                        className="chakra-stack css-ct7syb"
                       >
-                        <div
-                          className="css-j8adxe"
+                        <Flex
+                          align="center"
+                          key=".0"
+                          pl={2}
                         >
-                          <Flex
-                            align="center"
-                            key=".0"
-                            mb={4}
+                          <Styled(div)
+                            __css={
+                              Object {
+                                "alignItems": "center",
+                                "display": "flex",
+                                "flexBasis": undefined,
+                                "flexDirection": undefined,
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "flexWrap": undefined,
+                                "justifyContent": undefined,
+                              }
+                            }
                             pl={2}
                           >
-                            <Box
-                              alignItems="center"
-                              display="flex"
-                              mb={4}
-                              pl={2}
+                            <div
+                              className="css-1ruoioj"
                             >
-                              <div
-                                className="css-15klljc"
+                              <Heading
+                                flex="1"
+                                size="md"
                               >
-                                <Heading
-                                  flex="1"
-                                  size="md"
-                                >
-                                  <Box
-                                    as="h2"
-                                    flex="1"
-                                    fontFamily="heading"
-                                    fontSize="xl"
-                                    fontWeight="bold"
-                                    lineHeight="shorter"
-                                  >
-                                    <h2
-                                      className="css-17ihatl"
-                                    >
-                                      <Icon
-                                        icon={
-                                          Object {
-                                            "icon": Array [],
-                                            "iconName": "map",
-                                            "prefix": "fas",
-                                          }
-                                        }
-                                      >
-                                        <FontAwesomeIcon
-                                          border={false}
-                                          className=""
-                                          fixedWidth={true}
-                                          flip={null}
-                                          icon={
-                                            Object {
-                                              "icon": Array [],
-                                              "iconName": "map",
-                                              "prefix": "fas",
-                                            }
-                                          }
-                                          inverse={false}
-                                          listItem={false}
-                                          mask={null}
-                                          pull={null}
-                                          pulse={false}
-                                          rotation={null}
-                                          size={null}
-                                          spin={false}
-                                          swapOpacity={false}
-                                          symbol={false}
-                                          title=""
-                                          transform={null}
-                                        >
-                                          <svg
-                                            aria-hidden="true"
-                                            className="svg-inline--fa fa-map fa-w-NaN fa-fw "
-                                            data-icon="map"
-                                            data-prefix="fas"
-                                            focusable="false"
-                                            role="img"
-                                            style={Object {}}
-                                            viewBox="0 0 undefined undefined"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              fill="currentColor"
-                                              style={Object {}}
-                                            />
-                                          </svg>
-                                        </FontAwesomeIcon>
-                                      </Icon>
-                                       
-                                      Mock Region
-                                    </h2>
-                                  </Box>
-                                </Heading>
-                                <IconButton
-                                  icon={
+                                <Styled(h2)
+                                  __css={
                                     Object {
-                                      "icon": Array [],
-                                      "iconName": "cog",
-                                      "prefix": "fas",
+                                      "fontFamily": "heading",
+                                      "fontSize": "xl",
+                                      "fontWeight": "bold",
+                                      "lineHeight": 1.2,
                                     }
                                   }
-                                  label="Edit region settings"
-                                  onClick={[Function]}
+                                  className="chakra-heading"
+                                  flex="1"
                                 >
-                                  <Box>
-                                    <div
-                                      className="css-0"
+                                  <h2
+                                    className="chakra-heading css-o8drfs"
+                                  >
+                                    Mock Region
+                                  </h2>
+                                </Styled(h2)>
+                              </Heading>
+                              <IconButton
+                                label="Edit region settings"
+                                onClick={[Function]}
+                              >
+                                <Box>
+                                  <div
+                                    className="css-0"
+                                  >
+                                    <ForwardRef
+                                      label="Edit region settings"
+                                      placement="auto"
                                     >
-                                      <Tip
+                                      <Tooltip
+                                        aria-label="Tooltip: Edit region settings"
+                                        fontSize="md"
+                                        hasArrow={true}
                                         label="Edit region settings"
                                         placement="auto"
+                                        zIndex={1500}
                                       >
-                                        <Tooltip
-                                          aria-label="Tooltip: Edit region settings"
-                                          fontSize="md"
-                                          hasArrow={true}
-                                          label="Edit region settings"
-                                          placement="auto"
-                                          zIndex={1500}
+                                        <Button
+                                          aria-label="Edit region settings"
+                                          colorScheme="blue"
+                                          isActive={false}
+                                          isDisabled={false}
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onFocus={[Function]}
+                                          onMouseDown={[Function]}
+                                          onMouseEnter={[Function]}
+                                          size="sm"
+                                          variant="ghost"
                                         >
-                                          <Button
+                                          <Styled(button)
+                                            __css={
+                                              Object {
+                                                "_active": Object {
+                                                  "bg": "blue.100",
+                                                },
+                                                "_disabled": Object {
+                                                  "boxShadow": "none",
+                                                  "cursor": "not-allowed",
+                                                  "opacity": 0.4,
+                                                },
+                                                "_focus": Object {
+                                                  "boxShadow": "outline",
+                                                },
+                                                "_hover": Object {
+                                                  "_disabled": Object {
+                                                    "bg": "initial",
+                                                  },
+                                                  "bg": "blue.50",
+                                                },
+                                                "alignItems": "center",
+                                                "appearance": "none",
+                                                "bg": "transparent",
+                                                "borderRadius": "md",
+                                                "color": "blue.600",
+                                                "display": "inline-flex",
+                                                "fontSize": "sm",
+                                                "fontWeight": "semibold",
+                                                "h": 8,
+                                                "justifyContent": "center",
+                                                "lineHeight": "1.2",
+                                                "minW": 8,
+                                                "outline": "none",
+                                                "position": "relative",
+                                                "px": 3,
+                                                "transition": "all 250ms",
+                                                "userSelect": "none",
+                                                "verticalAlign": "middle",
+                                                "whiteSpace": "nowrap",
+                                                "width": "auto",
+                                              }
+                                            }
                                             aria-label="Edit region settings"
-                                            isActive={false}
-                                            isDisabled={false}
+                                            className="chakra-button"
                                             onBlur={[Function]}
                                             onClick={[Function]}
                                             onFocus={[Function]}
+                                            onMouseDown={[Function]}
                                             onMouseEnter={[Function]}
-                                            onMouseLeave={[Function]}
-                                            size="sm"
-                                            variant="ghost"
-                                            variantColor="blue"
+                                            type="button"
                                           >
-                                            <PseudoBox
-                                              _active={
-                                                Object {
-                                                  "bg": "blue.100",
-                                                }
-                                              }
-                                              _disabled={
-                                                Object {
-                                                  "boxShadow": "none",
-                                                  "cursor": "not-allowed",
-                                                  "opacity": "40%",
-                                                }
-                                              }
-                                              _focus={
-                                                Object {
-                                                  "boxShadow": "outline",
-                                                }
-                                              }
-                                              _hover={
-                                                Object {
-                                                  "bg": "blue.50",
-                                                }
-                                              }
-                                              alignItems="center"
-                                              appearance="none"
+                                            <button
                                               aria-label="Edit region settings"
-                                              as="button"
-                                              bg="transparent"
-                                              borderRadius="md"
-                                              color="blue.500"
-                                              display="inline-flex"
-                                              fontSize="sm"
-                                              fontWeight="semibold"
-                                              height={8}
-                                              justifyContent="center"
-                                              lineHeight="1.2"
-                                              minWidth={8}
+                                              className="chakra-button css-1o9h2ju"
                                               onBlur={[Function]}
                                               onClick={[Function]}
                                               onFocus={[Function]}
+                                              onMouseDown={[Function]}
                                               onMouseEnter={[Function]}
-                                              onMouseLeave={[Function]}
-                                              outline="none"
-                                              position="relative"
-                                              px={3}
-                                              transition="all 250ms"
                                               type="button"
-                                              userSelect="none"
-                                              verticalAlign="middle"
-                                              whiteSpace="nowrap"
                                             >
-                                              <button
-                                                aria-label="Edit region settings"
-                                                className="css-ig2uvu"
-                                                onBlur={[Function]}
-                                                onClick={[Function]}
-                                                onFocus={[Function]}
-                                                onMouseEnter={[Function]}
-                                                onMouseLeave={[Function]}
-                                                type="button"
-                                              >
-                                                <Icon
-                                                  fixedWidth={false}
-                                                  icon={
+                                              <FaCog>
+                                                <IconBase
+                                                  attr={
                                                     Object {
-                                                      "icon": Array [],
-                                                      "iconName": "cog",
-                                                      "prefix": "fas",
+                                                      "viewBox": "0 0 512 512",
                                                     }
                                                   }
                                                 >
-                                                  <FontAwesomeIcon
-                                                    border={false}
-                                                    className=""
-                                                    fixedWidth={false}
-                                                    flip={null}
-                                                    icon={
+                                                  <svg
+                                                    fill="currentColor"
+                                                    height="1em"
+                                                    stroke="currentColor"
+                                                    strokeWidth="0"
+                                                    style={
                                                       Object {
-                                                        "icon": Array [],
-                                                        "iconName": "cog",
-                                                        "prefix": "fas",
+                                                        "color": undefined,
                                                       }
                                                     }
-                                                    inverse={false}
-                                                    listItem={false}
-                                                    mask={null}
-                                                    pull={null}
-                                                    pulse={false}
-                                                    rotation={null}
-                                                    size={null}
-                                                    spin={false}
-                                                    swapOpacity={false}
-                                                    symbol={false}
-                                                    title=""
-                                                    transform={null}
+                                                    viewBox="0 0 512 512"
+                                                    width="1em"
+                                                    xmlns="http://www.w3.org/2000/svg"
                                                   >
-                                                    <svg
-                                                      aria-hidden="true"
-                                                      className="svg-inline--fa fa-cog fa-w-NaN "
-                                                      data-icon="cog"
-                                                      data-prefix="fas"
-                                                      focusable="false"
-                                                      role="img"
-                                                      style={Object {}}
-                                                      viewBox="0 0 undefined undefined"
-                                                      xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                      <path
-                                                        fill="currentColor"
-                                                        style={Object {}}
-                                                      />
-                                                    </svg>
-                                                  </FontAwesomeIcon>
-                                                </Icon>
-                                              </button>
-                                            </PseudoBox>
-                                          </Button>
-                                          <ForwardRef
-                                            anchorEl={
-                                              <button
-                                                aria-label="Edit region settings"
-                                                class="css-ig2uvu"
-                                                type="button"
-                                              >
-                                                <svg
-                                                  aria-hidden="true"
-                                                  class="svg-inline--fa fa-cog fa-w-NaN "
-                                                  data-icon="cog"
-                                                  data-prefix="fas"
-                                                  focusable="false"
-                                                  role="img"
-                                                  viewBox="0 0 undefined undefined"
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                  <path
-                                                    fill="currentColor"
-                                                  />
-                                                </svg>
-                                              </button>
-                                            }
-                                            arrowSize="10px"
-                                            bg="gray.700"
-                                            borderRadius="sm"
-                                            color="whiteAlpha.900"
-                                            fontSize="md"
-                                            fontWeight="medium"
-                                            hasArrow={true}
-                                            isOpen={false}
-                                            maxW="320px"
-                                            modifiers={
-                                              Object {
-                                                "offset": Object {
-                                                  "enabled": true,
-                                                  "offset": "0, 8",
-                                                },
-                                              }
-                                            }
-                                            placement="auto"
-                                            pointerEvents="none"
-                                            px="8px"
-                                            py="2px"
-                                            shadow="md"
-                                            timeout={200}
-                                            usePortal={true}
-                                            zIndex={1500}
-                                          />
-                                        </Tooltip>
-                                      </Tip>
-                                    </div>
-                                  </Box>
-                                </IconButton>
-                              </div>
-                            </Box>
-                          </Flex>
-                          <ForwardRef
-                            key=".1"
-                            mb={4}
+                                                    <path
+                                                      d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"
+                                                      key="0"
+                                                    />
+                                                  </svg>
+                                                </IconBase>
+                                              </FaCog>
+                                            </button>
+                                          </Styled(button)>
+                                        </Button>
+                                        <AnimatePresence />
+                                      </Tooltip>
+                                    </ForwardRef>
+                                  </div>
+                                </Box>
+                              </IconButton>
+                            </div>
+                          </Styled(div)>
+                        </Flex>
+                        <Stack
+                          key=".1"
+                          px={2}
+                        >
+                          <Styled(div)
+                            __css={
+                              Object {
+                                "& > *:not(style) ~ *:not(style)": Object {
+                                  "marginStart": 0,
+                                  "marginTop": "0.5rem",
+                                },
+                              }
+                            }
+                            className="chakra-stack"
+                            display="flex"
+                            flexDirection="column"
                             px={2}
                           >
-                            <Flex
-                              direction="column"
-                              mb={4}
-                              px={2}
+                            <div
+                              className="chakra-stack css-i652e9"
                             >
-                              <Box
-                                display="flex"
-                                flexDirection="column"
-                                mb={4}
-                                px={2}
+                              <Button
+                                colorScheme="green"
+                                isFullWidth={true}
+                                key=".0"
+                                onClick={[Function]}
                               >
-                                <div
-                                  className="css-11r2vwa"
+                                <Styled(button)
+                                  __css={
+                                    Object {
+                                      "_active": Object {
+                                        "bg": "green.700",
+                                      },
+                                      "_disabled": Object {
+                                        "boxShadow": "none",
+                                        "cursor": "not-allowed",
+                                        "opacity": 0.4,
+                                      },
+                                      "_focus": Object {
+                                        "boxShadow": "outline",
+                                      },
+                                      "_hover": Object {
+                                        "_disabled": Object {
+                                          "bg": "green.500",
+                                        },
+                                        "bg": "green.600",
+                                      },
+                                      "alignItems": "center",
+                                      "appearance": "none",
+                                      "bg": "green.500",
+                                      "borderRadius": "md",
+                                      "color": "white",
+                                      "display": "inline-flex",
+                                      "fontSize": "md",
+                                      "fontWeight": "semibold",
+                                      "h": 10,
+                                      "justifyContent": "center",
+                                      "lineHeight": "1.2",
+                                      "minW": 10,
+                                      "outline": "none",
+                                      "position": "relative",
+                                      "px": 4,
+                                      "transition": "all 250ms",
+                                      "userSelect": "none",
+                                      "verticalAlign": "middle",
+                                      "whiteSpace": "nowrap",
+                                      "width": "100%",
+                                    }
+                                  }
+                                  className="chakra-button"
+                                  onClick={[Function]}
+                                  type="button"
+                                >
+                                  <button
+                                    className="chakra-button css-1uiu0j2"
+                                    onClick={[Function]}
+                                    type="button"
+                                  >
+                                    Create new Project
+                                  </button>
+                                </Styled(button)>
+                              </Button>
+                            </div>
+                          </Styled(div)>
+                        </Stack>
+                        <Box
+                          key=".2"
+                          textAlign="center"
+                        >
+                          <div
+                            className="css-xi606m"
+                          >
+                            or go to an existing project
+                          </div>
+                        </Box>
+                        <Stack
+                          key=".3"
+                          px={2}
+                          spacing={0}
+                        >
+                          <Styled(div)
+                            __css={
+                              Object {
+                                "& > *:not(style) ~ *:not(style)": Object {
+                                  "marginStart": 0,
+                                  "marginTop": 0,
+                                },
+                              }
+                            }
+                            className="chakra-stack"
+                            display="flex"
+                            flexDirection="column"
+                            px={2}
+                          >
+                            <div
+                              className="chakra-stack css-obiul0"
+                            >
+                              <Project
+                                key=".$1"
+                                project={
+                                  Object {
+                                    "_id": "1",
+                                    "accessGroup": "accessGroupName",
+                                    "bundleId": "1",
+                                    "createdAt": "2017-11-08T12:30:50.133Z",
+                                    "createdBy": "person@gmail.com",
+                                    "name": "Mock Project",
+                                    "nonce": "12345",
+                                    "regionId": "1",
+                                    "updatedAt": "2017-11-08T12:31:19.602Z",
+                                    "updatedBy": "person@gmail.com",
+                                    "variants": Array [
+                                      "Default",
+                                    ],
+                                  }
+                                }
+                              >
+                                <ListGroupItem
+                                  leftIcon={<FaCube />}
+                                  onClick={[Function]}
                                 >
                                   <Button
+                                    _notFirst={
+                                      Object {
+                                        "borderTopLeftRadius": 0,
+                                        "borderTopRightRadius": 0,
+                                      }
+                                    }
+                                    _notLast={
+                                      Object {
+                                        "borderBottom": 0,
+                                        "borderBottomLeftRadius": 0,
+                                        "borderBottomRightRadius": 0,
+                                      }
+                                    }
+                                    borderColor="#E2E8F0"
+                                    borderRadius="4px"
+                                    colorScheme="blue"
+                                    height="unset"
                                     isFullWidth={true}
-                                    key=".0"
-                                    leftIcon="small-add"
-                                    mb={null}
+                                    justifyContent="left"
+                                    leftIcon={<FaCube />}
                                     onClick={[Function]}
-                                    variantColor="green"
+                                    py={4}
+                                    textAlign="left"
+                                    variant="outline"
+                                    whiteSpace="break-spaces"
                                   >
-                                    <PseudoBox
-                                      _active={
+                                    <Styled(button)
+                                      __css={
                                         Object {
-                                          "bg": "green.700",
+                                          "_active": Object {
+                                            "bg": "blue.100",
+                                          },
+                                          "_disabled": Object {
+                                            "boxShadow": "none",
+                                            "cursor": "not-allowed",
+                                            "opacity": 0.4,
+                                          },
+                                          "_focus": Object {
+                                            "boxShadow": "outline",
+                                          },
+                                          "_hover": Object {
+                                            "_disabled": Object {
+                                              "bg": "initial",
+                                            },
+                                            "bg": "blue.50",
+                                          },
+                                          "alignItems": "center",
+                                          "appearance": "none",
+                                          "bg": "transparent",
+                                          "border": "1px solid",
+                                          "borderColor": "currentColor",
+                                          "borderRadius": "md",
+                                          "color": "blue.600",
+                                          "display": "inline-flex",
+                                          "fontSize": "md",
+                                          "fontWeight": "semibold",
+                                          "h": 10,
+                                          "justifyContent": "center",
+                                          "lineHeight": "1.2",
+                                          "minW": 10,
+                                          "outline": "none",
+                                          "position": "relative",
+                                          "px": 4,
+                                          "transition": "all 250ms",
+                                          "userSelect": "none",
+                                          "verticalAlign": "middle",
+                                          "whiteSpace": "nowrap",
+                                          "width": "100%",
                                         }
                                       }
-                                      _disabled={
+                                      _notFirst={
                                         Object {
-                                          "boxShadow": "none",
-                                          "cursor": "not-allowed",
-                                          "opacity": "40%",
+                                          "borderTopLeftRadius": 0,
+                                          "borderTopRightRadius": 0,
                                         }
                                       }
-                                      _focus={
+                                      _notLast={
                                         Object {
-                                          "boxShadow": "outline",
+                                          "borderBottom": 0,
+                                          "borderBottomLeftRadius": 0,
+                                          "borderBottomRightRadius": 0,
                                         }
                                       }
-                                      _hover={
-                                        Object {
-                                          "bg": "green.600",
-                                        }
-                                      }
-                                      alignItems="center"
-                                      appearance="none"
-                                      as="button"
-                                      bg="green.500"
-                                      borderRadius="md"
-                                      color="white"
-                                      display="inline-flex"
-                                      fontSize="md"
-                                      fontWeight="semibold"
-                                      height={10}
-                                      justifyContent="center"
-                                      lineHeight="1.2"
-                                      mb={null}
-                                      minWidth={10}
+                                      borderColor="#E2E8F0"
+                                      borderRadius="4px"
+                                      className="chakra-button"
+                                      height="unset"
+                                      justifyContent="left"
                                       onClick={[Function]}
-                                      outline="none"
-                                      position="relative"
-                                      px={4}
-                                      transition="all 250ms"
+                                      py={4}
+                                      textAlign="left"
                                       type="button"
-                                      userSelect="none"
-                                      verticalAlign="middle"
-                                      whiteSpace="nowrap"
-                                      width="full"
+                                      whiteSpace="break-spaces"
                                     >
                                       <button
-                                        className="css-sci538"
+                                        className="chakra-button css-3aw1nz"
                                         onClick={[Function]}
                                         type="button"
                                       >
                                         <ButtonIcon
-                                          icon="small-add"
-                                          ml={-1}
-                                          mr={2}
+                                          marginEnd="0.5rem"
                                         >
-                                          <Icon
-                                            aria-hidden="true"
-                                            color="currentColor"
-                                            focusable="false"
-                                            ml={-1}
-                                            mr={2}
-                                            name="small-add"
+                                          <Styled(span)
+                                            className="chakra-button__icon"
+                                            marginEnd="0.5rem"
                                           >
-                                            <Styled(div)
-                                              aria-hidden="true"
-                                              as="svg"
-                                              color="currentColor"
-                                              display="inline-block"
-                                              focusable="false"
-                                              ml={-1}
-                                              mr={2}
-                                              role="presentation"
-                                              size="1em"
-                                              verticalAlign="middle"
-                                              viewBox="0 0 20 20"
+                                            <span
+                                              className="chakra-button__icon css-ktvjz1"
                                             >
-                                              <svg
-                                                aria-hidden="true"
-                                                className="css-yxiis9"
-                                                focusable="false"
-                                                role="presentation"
-                                                viewBox="0 0 20 20"
+                                              <FaCube
+                                                aria-hidden={true}
+                                                focusable={false}
                                               >
-                                                <path
-                                                  d="M14 9h-3V6c0-.55-.45-1-1-1s-1 .45-1 1v3H6c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1z"
-                                                  fill="currentColor"
-                                                  fillRule="evenodd"
-                                                />
-                                              </svg>
-                                            </Styled(div)>
-                                          </Icon>
-                                        </ButtonIcon>
-                                        Create new Project
-                                      </button>
-                                    </PseudoBox>
-                                  </Button>
-                                </div>
-                              </Box>
-                            </Flex>
-                          </ForwardRef>
-                          <Box
-                            key=".2"
-                            mb={4}
-                            textAlign="center"
-                          >
-                            <div
-                              className="css-wnycxj"
-                            >
-                              or go to an existing project
-                            </div>
-                          </Box>
-                          <ForwardRef
-                            key=".3"
-                            mb={null}
-                            px={2}
-                            spacing={0}
-                          >
-                            <Flex
-                              direction="column"
-                              mb={null}
-                              px={2}
-                            >
-                              <Box
-                                display="flex"
-                                flexDirection="column"
-                                mb={null}
-                                px={2}
-                              >
-                                <div
-                                  className="css-1z04f82"
-                                >
-                                  <Project
-                                    key=".$1"
-                                    mb={null}
-                                    project={
-                                      Object {
-                                        "_id": "1",
-                                        "accessGroup": "accessGroupName",
-                                        "bundleId": "1",
-                                        "createdAt": "2017-11-08T12:30:50.133Z",
-                                        "createdBy": "person@gmail.com",
-                                        "name": "Mock Project",
-                                        "nonce": "12345",
-                                        "regionId": "1",
-                                        "updatedAt": "2017-11-08T12:31:19.602Z",
-                                        "updatedBy": "person@gmail.com",
-                                        "variants": Array [
-                                          "Default",
-                                        ],
-                                      }
-                                    }
-                                  >
-                                    <ListGroupItem
-                                      leftIcon={[Function]}
-                                      mb={null}
-                                      onClick={[Function]}
-                                    >
-                                      <Button
-                                        _notFirst={
-                                          Object {
-                                            "borderTopLeftRadius": 0,
-                                            "borderTopRightRadius": 0,
-                                          }
-                                        }
-                                        _notLast={
-                                          Object {
-                                            "borderBottom": 0,
-                                            "borderBottomLeftRadius": 0,
-                                            "borderBottomRightRadius": 0,
-                                          }
-                                        }
-                                        borderColor="#E2E8F0"
-                                        borderRadius="4px"
-                                        height="unset"
-                                        isFullWidth={true}
-                                        justifyContent="left"
-                                        leftIcon={[Function]}
-                                        mb={null}
-                                        onClick={[Function]}
-                                        py={4}
-                                        textAlign="left"
-                                        variant="outline"
-                                        variantColor="blue"
-                                        whiteSpace="break-spaces"
-                                      >
-                                        <PseudoBox
-                                          _active={
-                                            Object {
-                                              "bg": "blue.100",
-                                            }
-                                          }
-                                          _disabled={
-                                            Object {
-                                              "boxShadow": "none",
-                                              "cursor": "not-allowed",
-                                              "opacity": "40%",
-                                            }
-                                          }
-                                          _focus={
-                                            Object {
-                                              "boxShadow": "outline",
-                                            }
-                                          }
-                                          _hover={
-                                            Object {
-                                              "bg": "blue.50",
-                                            }
-                                          }
-                                          _notFirst={
-                                            Object {
-                                              "borderTopLeftRadius": 0,
-                                              "borderTopRightRadius": 0,
-                                            }
-                                          }
-                                          _notLast={
-                                            Object {
-                                              "borderBottom": 0,
-                                              "borderBottomLeftRadius": 0,
-                                              "borderBottomRightRadius": 0,
-                                            }
-                                          }
-                                          alignItems="center"
-                                          appearance="none"
-                                          as="button"
-                                          bg="transparent"
-                                          border="1px"
-                                          borderColor="#E2E8F0"
-                                          borderRadius="4px"
-                                          color="blue.500"
-                                          display="inline-flex"
-                                          fontSize="md"
-                                          fontWeight="semibold"
-                                          height="unset"
-                                          justifyContent="left"
-                                          lineHeight="1.2"
-                                          mb={null}
-                                          minWidth={10}
-                                          onClick={[Function]}
-                                          outline="none"
-                                          position="relative"
-                                          px={4}
-                                          py={4}
-                                          textAlign="left"
-                                          transition="all 250ms"
-                                          type="button"
-                                          userSelect="none"
-                                          verticalAlign="middle"
-                                          whiteSpace="break-spaces"
-                                          width="full"
-                                        >
-                                          <button
-                                            className="css-gl3dww"
-                                            onClick={[Function]}
-                                            type="button"
-                                          >
-                                            <ButtonIcon
-                                              icon={[Function]}
-                                              ml={-1}
-                                              mr={2}
-                                            >
-                                              <Box
-                                                aria-hidden="true"
-                                                as={[Function]}
-                                                color="currentColor"
-                                                data-custom-icon={true}
-                                                focusable="false"
-                                                ml={-1}
-                                                mr={2}
-                                              >
-                                                <leftIcon
-                                                  aria-hidden="true"
-                                                  className="css-1pmpdjw"
-                                                  data-custom-icon={true}
-                                                  focusable="false"
+                                                <IconBase
+                                                  aria-hidden={true}
+                                                  attr={
+                                                    Object {
+                                                      "viewBox": "0 0 512 512",
+                                                    }
+                                                  }
+                                                  focusable={false}
                                                 >
-                                                  <Box
-                                                    pr={3}
+                                                  <svg
+                                                    aria-hidden={true}
+                                                    fill="currentColor"
+                                                    focusable={false}
+                                                    height="1em"
+                                                    stroke="currentColor"
+                                                    strokeWidth="0"
+                                                    style={
+                                                      Object {
+                                                        "color": undefined,
+                                                      }
+                                                    }
+                                                    viewBox="0 0 512 512"
+                                                    width="1em"
+                                                    xmlns="http://www.w3.org/2000/svg"
                                                   >
-                                                    <div
-                                                      className="css-qewurc"
-                                                    >
-                                                      <Icon
-                                                        icon={
-                                                          Object {
-                                                            "icon": Array [],
-                                                            "iconName": "cube",
-                                                            "prefix": "fas",
-                                                          }
-                                                        }
-                                                      >
-                                                        <FontAwesomeIcon
-                                                          border={false}
-                                                          className=""
-                                                          fixedWidth={true}
-                                                          flip={null}
-                                                          icon={
-                                                            Object {
-                                                              "icon": Array [],
-                                                              "iconName": "cube",
-                                                              "prefix": "fas",
-                                                            }
-                                                          }
-                                                          inverse={false}
-                                                          listItem={false}
-                                                          mask={null}
-                                                          pull={null}
-                                                          pulse={false}
-                                                          rotation={null}
-                                                          size={null}
-                                                          spin={false}
-                                                          swapOpacity={false}
-                                                          symbol={false}
-                                                          title=""
-                                                          transform={null}
-                                                        >
-                                                          <svg
-                                                            aria-hidden="true"
-                                                            className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
-                                                            data-icon="cube"
-                                                            data-prefix="fas"
-                                                            focusable="false"
-                                                            role="img"
-                                                            style={Object {}}
-                                                            viewBox="0 0 undefined undefined"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                          >
-                                                            <path
-                                                              fill="currentColor"
-                                                              style={Object {}}
-                                                            />
-                                                          </svg>
-                                                        </FontAwesomeIcon>
-                                                      </Icon>
-                                                    </div>
-                                                  </Box>
-                                                </leftIcon>
-                                              </Box>
-                                            </ButtonIcon>
-                                            Mock Project
-                                          </button>
-                                        </PseudoBox>
-                                      </Button>
-                                    </ListGroupItem>
-                                  </Project>
-                                </div>
-                              </Box>
-                            </Flex>
-                          </ForwardRef>
-                        </div>
-                      </Box>
-                    </Flex>
-                  </ForwardRef>
+                                                    <path
+                                                      d="M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v225.1c0 18.2 10.3 34.8 26.5 42.9l208 104c13.5 6.8 29.4 6.8 42.9 0l208-104c16.3-8.1 26.5-24.8 26.5-42.9V129.3c0-20-12.4-37.9-31.1-44.9l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v1.1l-192 78-192-78v-1.1l192-72zm32 356V275.5l160-65v133.9l-160 80z"
+                                                      key="0"
+                                                    />
+                                                  </svg>
+                                                </IconBase>
+                                              </FaCube>
+                                            </span>
+                                          </Styled(span)>
+                                        </ButtonIcon>
+                                        Mock Project
+                                      </button>
+                                    </Styled(button)>
+                                  </Button>
+                                </ListGroupItem>
+                              </Project>
+                            </div>
+                          </Styled(div)>
+                        </Stack>
+                      </div>
+                    </Styled(div)>
+                  </Stack>
                 </div>
               </div>
             </div>

@@ -17,8 +17,7 @@ import {
   ModalHeader,
   Stack,
   ModalFooter
-} from '@chakra-ui/core'
-import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import isEqual from 'lodash/isEqual'
@@ -31,6 +30,7 @@ import {ObjectToTable} from './analysis/profile-request-display'
 import {ConfirmDialog} from './confirm-button'
 import Select from './select'
 import IconButton from './icon-button'
+import {AddIcon, DeleteIcon, EditIcon} from './icons'
 
 // Number precision
 const isWithinTolerance = (n1: number, n2: number) => Math.abs(n1 - n2) < 1e-6
@@ -40,19 +40,24 @@ const getId = fpGet('_id')
 const getOptionLabel = fpGet('name')
 
 // For input validation
-const hasName = (n) => n && n.length > 0
+const hasName = (n?: string) => n?.length > 0
 
 /**
  * Presets contain many more parameters than we use in the UI. Only check the ones from there.
  */
-function findPreset(settings, presets = []) {
+function findPreset(
+  settings: Record<string, unknown>,
+  presets: CL.Preset[] = []
+) {
   return presets.find(
     ({profileRequest}) =>
       Object.keys(profileRequest).find((k) => {
-        if (typeof profileRequest[k] === 'number') {
-          return !isWithinTolerance(profileRequest[k], settings[k])
+        const v = profileRequest[k]
+        const s = settings[k]
+        if (typeof v === 'number' && typeof s === 'number') {
+          return !isWithinTolerance(v, s)
         }
-        return !isEqual(profileRequest[k], settings[k])
+        return !isEqual(v, s)
       }) == null
   )
 }
@@ -62,7 +67,7 @@ type Props = {
   currentSettings: Record<string, unknown>
   isDisabled: boolean
   isComparison?: boolean
-  onChange: (any) => void
+  onChange: (preset: Record<string, unknown>) => void
   regionId: string
 }
 
@@ -85,7 +90,7 @@ export default memo<Props>(function PresetChooser({
   const createPresetAction = useDisclosure()
   const editPresetAction = useDisclosure()
   const removeAction = useDisclosure()
-  const [selectedPreset, setSelectedPreset] = useState()
+  const [selectedPreset, setSelectedPreset] = useState<CL.Preset>()
 
   // ID to differentiate between primary and comparison
   const id = 'select-preset-' + isComparison
@@ -153,31 +158,33 @@ export default memo<Props>(function PresetChooser({
             <Button
               isDisabled={isDisabled}
               onClick={createPresetAction.onOpen}
-              rightIcon='small-add'
+              rightIcon={<AddIcon />}
               size='xs'
-              variantColor='green'
+              colorScheme='green'
             >
               Save
             </Button>
           )}
           {selectedPreset && (
             <IconButton
-              icon={faEdit}
               isDisabled={isDisabled}
               label='Edit preset name'
               onClick={editPresetAction.onOpen}
               size='xs'
-              variantColor='yellow'
-            />
+              colorScheme='yellow'
+            >
+              <EditIcon />
+            </IconButton>
           )}
           {selectedPreset && (
             <IconButton
-              icon={faTrash}
               label='Delete selected preset'
               onClick={removeAction.onOpen}
               size='xs'
-              variantColor='red'
-            />
+              colorScheme='red'
+            >
+              <DeleteIcon />
+            </IconButton>
           )}
         </Stack>
       </Flex>
@@ -193,13 +200,13 @@ export default memo<Props>(function PresetChooser({
             options={presets as any}
             onChange={_selectPreset}
             placeholder='Select a preset'
-            value={selectedPreset}
+            value={selectedPreset as any}
           />
         ) : (
           <Alert status='info'>Save presets to be used later.</Alert>
         )}
       </div>
-      {presetsCollection.response.error && (
+      {presetsCollection.error && (
         <FormErrorMessage>Error loading presets.</FormErrorMessage>
       )}
 
@@ -292,11 +299,10 @@ function CreatePreset({create, currentSettings, onClose, regionId}) {
         </ModalBody>
         <ModalFooter>
           <Button
-            leftIcon='small-add'
             isDisabled={nameInput.isInvalid}
             isLoading={isCreating}
             onClick={_create}
-            variantColor='green'
+            colorScheme='green'
           >
             Create preset
           </Button>
@@ -362,7 +368,7 @@ function EditPreset({preset, onClose, update}) {
             isDisabled={nameInput.isInvalid}
             isLoading={isSaving}
             onClick={_update}
-            variantColor='green'
+            colorScheme='green'
           >
             Save
           </Button>

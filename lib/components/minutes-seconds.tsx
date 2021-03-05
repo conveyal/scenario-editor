@@ -5,7 +5,7 @@ import {
   InputGroup,
   InputRightElement,
   FormControlProps
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {memo} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'

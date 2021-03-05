@@ -1,4 +1,4 @@
-import {Button, Flex, Input, Stack, Text} from '@chakra-ui/core'
+import {Button, Flex, Input, Stack, Text} from '@chakra-ui/react'
 import Cookie from 'js-cookie'
 import React from 'react'
 

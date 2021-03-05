@@ -62,518 +62,490 @@ exports[`Component > EditProject 1`] = `
                 <div
                   className="simplebar-content"
                 >
-                  <ForwardRef
+                  <Stack
                     p={4}
                     spacing={4}
                   >
-                    <Flex
-                      direction="column"
+                    <Styled(div)
+                      __css={
+                        Object {
+                          "& > *:not(style) ~ *:not(style)": Object {
+                            "marginStart": 0,
+                            "marginTop": 4,
+                          },
+                        }
+                      }
+                      className="chakra-stack"
+                      display="flex"
+                      flexDirection="column"
                       p={4}
                     >
-                      <Box
-                        display="flex"
-                        flexDirection="column"
-                        p={4}
+                      <div
+                        className="chakra-stack css-zcuazw"
                       >
-                        <div
-                          className="css-1n0jko5"
+                        <Heading
+                          key=".0"
+                          mb={4}
+                          size="md"
                         >
-                          <Heading
-                            key=".0"
+                          <Styled(h2)
+                            __css={
+                              Object {
+                                "fontFamily": "heading",
+                                "fontSize": "xl",
+                                "fontWeight": "bold",
+                                "lineHeight": 1.2,
+                              }
+                            }
+                            className="chakra-heading"
                             mb={4}
-                            size="md"
                           >
-                            <Box
-                              as="h2"
-                              fontFamily="heading"
-                              fontSize="xl"
-                              fontWeight="bold"
-                              lineHeight="shorter"
-                              mb={4}
+                            <h2
+                              className="chakra-heading css-hqxi0q"
                             >
-                              <h2
-                                className="css-k9oqgk"
-                              >
-                                Edit project settings
-                              </h2>
-                            </Box>
-                          </Heading>
-                          <FormControl
-                            isInvalid={false}
-                            key=".1"
-                            mb={4}
+                              Edit project settings
+                            </h2>
+                          </Styled(h2)>
+                        </Heading>
+                        <FormControl
+                          isInvalid={false}
+                          key=".1"
+                        >
+                          <Styled(div)
+                            __css={
+                              Object {
+                                "position": "relative",
+                                "width": "100%",
+                              }
+                            }
+                            className="chakra-form-control"
+                            role="group"
                           >
-                            <Box
-                              mb={4}
+                            <div
+                              className="chakra-form-control css-1kxonj9"
                               role="group"
                             >
-                              <div
-                                className="css-acwcvw"
-                                role="group"
+                              <FormLabel
+                                htmlFor="projectName"
                               >
-                                <FormLabel
-                                  htmlFor="projectName"
-                                >
-                                  <Box
-                                    as="label"
-                                    display="inline-block"
-                                    fontSize="md"
-                                    fontWeight="medium"
-                                    htmlFor="projectName"
-                                    opacity="1"
-                                    pb="4px"
-                                    pr="12px"
-                                    textAlign="left"
-                                    verticalAlign="middle"
-                                  >
-                                    <label
-                                      className="css-176s5fq"
-                                      htmlFor="projectName"
-                                    >
-                                      Project name
-                                    </label>
-                                  </Box>
-                                </FormLabel>
-                                <Input
-                                  as="input"
-                                  errorBorderColor="red.500"
-                                  focusBorderColor="blue.500"
-                                  id="projectName"
-                                  isFullWidth={true}
-                                  onChange={[Function]}
-                                  size="md"
-                                  value="Mock Project"
-                                  variant="outline"
-                                >
-                                  <PseudoBox
-                                    _disabled={
-                                      Object {
-                                        "cursor": "not-allowed",
-                                        "opacity": "0.4",
-                                      }
+                                <Styled(label)
+                                  __css={
+                                    Object {
+                                      "_disabled": Object {
+                                        "opacity": 0.4,
+                                      },
+                                      "display": "block",
+                                      "fontSize": "md",
+                                      "fontWeight": "medium",
+                                      "marginEnd": 3,
+                                      "mb": 2,
+                                      "opacity": 1,
+                                      "textAlign": "start",
+                                      "transition": "all 0.2s",
                                     }
-                                    _focus={
-                                      Object {
+                                  }
+                                  className="chakra-form__label"
+                                  htmlFor="projectName"
+                                  id="field-1-label"
+                                >
+                                  <label
+                                    className="chakra-form__label css-1qqx8g3"
+                                    htmlFor="projectName"
+                                    id="field-1-label"
+                                  >
+                                    Project name
+                                  </label>
+                                </Styled(label)>
+                              </FormLabel>
+                              <Input
+                                id="projectName"
+                                onChange={[Function]}
+                                value="Mock Project"
+                              >
+                                <Styled(input)
+                                  __css={
+                                    Object {
+                                      "_disabled": Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": 0.4,
+                                      },
+                                      "_focus": Object {
                                         "borderColor": "#3182ce",
                                         "boxShadow": "0 0 0 1px #3182ce",
                                         "zIndex": 1,
-                                      }
-                                    }
-                                    _hover={
-                                      Object {
+                                      },
+                                      "_hover": Object {
                                         "borderColor": "gray.300",
-                                      }
-                                    }
-                                    _invalid={
-                                      Object {
-                                        "borderColor": "#e53e3e",
-                                        "boxShadow": "0 0 0 1px #e53e3e",
-                                      }
-                                    }
-                                    _readOnly={
-                                      Object {
-                                        "bg": "transparent",
+                                      },
+                                      "_invalid": Object {
+                                        "borderColor": "#E53E3E",
+                                        "boxShadow": "0 0 0 1px #E53E3E",
+                                      },
+                                      "_readOnly": Object {
                                         "boxShadow": "none !important",
                                         "userSelect": "all",
-                                      }
+                                      },
+                                      "appearance": "none",
+                                      "bg": "inherit",
+                                      "border": "1px solid",
+                                      "borderColor": "inherit",
+                                      "borderRadius": "md",
+                                      "fontSize": "md",
+                                      "h": 10,
+                                      "minWidth": 0,
+                                      "outline": 0,
+                                      "position": "relative",
+                                      "px": 4,
+                                      "transition": "all 0.2s",
+                                      "width": "100%",
                                     }
-                                    alignItems="center"
-                                    appearance="none"
-                                    aria-invalid={false}
-                                    as="input"
-                                    bg="white"
-                                    border="1px"
-                                    borderColor="inherit"
-                                    display="flex"
-                                    fontSize="md"
-                                    height={10}
+                                  }
+                                  className="chakra-input"
+                                  disabled={false}
+                                  id="projectName"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  readOnly={false}
+                                  required={false}
+                                  value="Mock Project"
+                                >
+                                  <input
+                                    className="chakra-input css-18q2db8"
+                                    disabled={false}
                                     id="projectName"
+                                    onBlur={[Function]}
                                     onChange={[Function]}
-                                    outline="none"
-                                    position="relative"
-                                    px={4}
-                                    rounded="md"
-                                    transition="all 0.2s"
+                                    onFocus={[Function]}
+                                    readOnly={false}
+                                    required={false}
                                     value="Mock Project"
-                                    width="100%"
-                                  >
-                                    <input
-                                      aria-invalid={false}
-                                      className="css-1ga4kqw"
-                                      id="projectName"
-                                      onChange={[Function]}
-                                      value="Mock Project"
-                                    />
-                                  </PseudoBox>
-                                </Input>
-                              </div>
-                            </Box>
-                          </FormControl>
-                          <ForwardRef
-                            key=".2"
-                            mb={4}
-                            spacing={2}
+                                  />
+                                </Styled(input)>
+                              </Input>
+                            </div>
+                          </Styled(div)>
+                        </FormControl>
+                        <Stack
+                          key=".2"
+                          spacing={2}
+                        >
+                          <Styled(div)
+                            __css={
+                              Object {
+                                "& > *:not(style) ~ *:not(style)": Object {
+                                  "marginStart": 0,
+                                  "marginTop": 2,
+                                },
+                              }
+                            }
+                            className="chakra-stack"
+                            display="flex"
+                            flexDirection="column"
                           >
-                            <Flex
-                              direction="column"
-                              mb={4}
+                            <div
+                              className="chakra-stack css-1pifhv5"
                             >
+                              <Heading
+                                key=".0"
+                                size="sm"
+                              >
+                                <Styled(h2)
+                                  __css={
+                                    Object {
+                                      "fontFamily": "heading",
+                                      "fontSize": "md",
+                                      "fontWeight": "bold",
+                                      "lineHeight": 1.2,
+                                    }
+                                  }
+                                  className="chakra-heading"
+                                >
+                                  <h2
+                                    className="chakra-heading css-14g9y4z"
+                                  >
+                                    Bundle
+                                  </h2>
+                                </Styled(h2)>
+                              </Heading>
                               <Box
-                                display="flex"
-                                flexDirection="column"
-                                mb={4}
+                                key=".1"
                               >
                                 <div
-                                  className="css-opcg3f"
+                                  className="css-0"
                                 >
-                                  <Heading
-                                    key=".0"
-                                    mb={2}
-                                    size="sm"
+                                  Bundle cannot be changed once a project is created. 
+                                  <ALink
+                                    query={
+                                      Object {
+                                        "bundleId": "1",
+                                        "regionId": "1",
+                                      }
+                                    }
+                                    to="bundleEdit"
                                   >
-                                    <Box
-                                      as="h2"
-                                      fontFamily="heading"
-                                      fontSize="md"
-                                      fontWeight="bold"
-                                      lineHeight="shorter"
-                                      mb={2}
+                                    <InternalLink
+                                      query={
+                                        Object {
+                                          "bundleId": "1",
+                                          "regionId": "1",
+                                        }
+                                      }
+                                      to="bundleEdit"
                                     >
-                                      <h2
-                                        className="css-zngbqj"
+                                      <Link
+                                        href="/regions/1/bundles/1"
+                                        passHref={true}
                                       >
-                                        Bundle
-                                      </h2>
-                                    </Box>
-                                  </Heading>
-                                  <Box
-                                    key=".1"
-                                    mb={null}
-                                  >
-                                    <div
-                                      className="css-0"
-                                    >
-                                      Bundle cannot be changed once a project is created. 
-                                      <ALink
-                                        bundleId="1"
-                                        regionId="1"
-                                        to="bundleEdit"
-                                      >
-                                        <InternalLink
-                                          bundleId="1"
-                                          regionId="1"
-                                          to="bundleEdit"
+                                        <a
+                                          className=""
+                                          href="/regions/1/bundles/1"
+                                          onClick={[Function]}
+                                          onMouseEnter={[Function]}
                                         >
-                                          <Link
-                                            as="/regions/1/bundles/1"
-                                            href={
-                                              Object {
-                                                "pathname": "/regions/[regionId]/bundles/[bundleId]",
-                                                "query": Object {},
-                                              }
-                                            }
-                                            passHref={true}
-                                          >
-                                            <Link
-                                              _hover={
-                                                Object {
-                                                  "color": "blue.700",
-                                                }
-                                              }
-                                              className=""
-                                              color="blue.500"
-                                              href="/regions/1/bundles/1"
-                                              onClick={[Function]}
-                                              onMouseEnter={[Function]}
-                                            >
-                                              <PseudoBox
-                                                _disabled={
-                                                  Object {
-                                                    "cursor": "not-allowed",
-                                                    "opacity": "0.4",
-                                                    "textDecoration": "none",
-                                                  }
-                                                }
-                                                _focus={
-                                                  Object {
-                                                    "boxShadow": "outline",
-                                                  }
-                                                }
-                                                _hover={
-                                                  Object {
-                                                    "color": "blue.700",
-                                                  }
-                                                }
-                                                as="a"
-                                                className=""
-                                                color="blue.500"
-                                                cursor="pointer"
-                                                href="/regions/1/bundles/1"
-                                                onClick={[Function]}
-                                                onMouseEnter={[Function]}
-                                                outline="none"
-                                                textDecoration="none"
-                                                transition="all 0.15s ease-out"
-                                              >
-                                                <a
-                                                  className=" css-17d37xz"
-                                                  href="/regions/1/bundles/1"
-                                                  onClick={[Function]}
-                                                  onMouseEnter={[Function]}
-                                                >
-                                                  View bundle info here.
-                                                </a>
-                                              </PseudoBox>
-                                            </Link>
-                                          </Link>
-                                        </InternalLink>
-                                      </ALink>
-                                    </div>
-                                  </Box>
+                                          View bundle info here.
+                                        </a>
+                                      </Link>
+                                    </InternalLink>
+                                  </ALink>
                                 </div>
                               </Box>
-                            </Flex>
-                          </ForwardRef>
-                          <Button
-                            isDisabled={true}
-                            key=".3"
-                            leftIcon="edit"
-                            mb={4}
-                            onClick={[Function]}
-                            variantColor="green"
-                          >
-                            <PseudoBox
-                              _active={
-                                Object {
+                            </div>
+                          </Styled(div)>
+                        </Stack>
+                        <Button
+                          colorScheme="green"
+                          isDisabled={true}
+                          key=".3"
+                          leftIcon={<FaPencilAlt />}
+                          onClick={[Function]}
+                        >
+                          <Styled(button)
+                            __css={
+                              Object {
+                                "_active": Object {
                                   "bg": "green.700",
-                                }
-                              }
-                              _disabled={
-                                Object {
+                                },
+                                "_disabled": Object {
                                   "boxShadow": "none",
                                   "cursor": "not-allowed",
-                                  "opacity": "40%",
-                                }
-                              }
-                              _focus={
-                                Object {
+                                  "opacity": 0.4,
+                                },
+                                "_focus": Object {
                                   "boxShadow": "outline",
-                                }
-                              }
-                              _hover={
-                                Object {
+                                },
+                                "_hover": Object {
+                                  "_disabled": Object {
+                                    "bg": "green.500",
+                                  },
                                   "bg": "green.600",
+                                },
+                                "alignItems": "center",
+                                "appearance": "none",
+                                "bg": "green.500",
+                                "borderRadius": "md",
+                                "color": "white",
+                                "display": "inline-flex",
+                                "fontSize": "md",
+                                "fontWeight": "semibold",
+                                "h": 10,
+                                "justifyContent": "center",
+                                "lineHeight": "1.2",
+                                "minW": 10,
+                                "outline": "none",
+                                "position": "relative",
+                                "px": 4,
+                                "transition": "all 250ms",
+                                "userSelect": "none",
+                                "verticalAlign": "middle",
+                                "whiteSpace": "nowrap",
+                                "width": "auto",
+                              }
+                            }
+                            className="chakra-button"
+                            disabled={true}
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            <button
+                              className="chakra-button css-ywjnlx"
+                              disabled={true}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <ButtonIcon
+                                marginEnd="0.5rem"
+                              >
+                                <Styled(span)
+                                  className="chakra-button__icon"
+                                  marginEnd="0.5rem"
+                                >
+                                  <span
+                                    className="chakra-button__icon css-ktvjz1"
+                                  >
+                                    <FaPencilAlt
+                                      aria-hidden={true}
+                                      focusable={false}
+                                    >
+                                      <IconBase
+                                        aria-hidden={true}
+                                        attr={
+                                          Object {
+                                            "viewBox": "0 0 512 512",
+                                          }
+                                        }
+                                        focusable={false}
+                                      >
+                                        <svg
+                                          aria-hidden={true}
+                                          fill="currentColor"
+                                          focusable={false}
+                                          height="1em"
+                                          stroke="currentColor"
+                                          strokeWidth="0"
+                                          style={
+                                            Object {
+                                              "color": undefined,
+                                            }
+                                          }
+                                          viewBox="0 0 512 512"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"
+                                            key="0"
+                                          />
+                                        </svg>
+                                      </IconBase>
+                                    </FaPencilAlt>
+                                  </span>
+                                </Styled(span)>
+                              </ButtonIcon>
+                              Save project
+                            </button>
+                          </Styled(button)>
+                        </Button>
+                        <ConfirmButton
+                          colorScheme="red"
+                          description="Are you sure you would like to delete this project?"
+                          key=".4"
+                          leftIcon={<FaTrash />}
+                          onConfirm={[Function]}
+                        >
+                          <Button
+                            colorScheme="red"
+                            leftIcon={<FaTrash />}
+                            onClick={[Function]}
+                          >
+                            <Styled(button)
+                              __css={
+                                Object {
+                                  "_active": Object {
+                                    "bg": "red.700",
+                                  },
+                                  "_disabled": Object {
+                                    "boxShadow": "none",
+                                    "cursor": "not-allowed",
+                                    "opacity": 0.4,
+                                  },
+                                  "_focus": Object {
+                                    "boxShadow": "outline",
+                                  },
+                                  "_hover": Object {
+                                    "_disabled": Object {
+                                      "bg": "red.500",
+                                    },
+                                    "bg": "red.600",
+                                  },
+                                  "alignItems": "center",
+                                  "appearance": "none",
+                                  "bg": "red.500",
+                                  "borderRadius": "md",
+                                  "color": "white",
+                                  "display": "inline-flex",
+                                  "fontSize": "md",
+                                  "fontWeight": "semibold",
+                                  "h": 10,
+                                  "justifyContent": "center",
+                                  "lineHeight": "1.2",
+                                  "minW": 10,
+                                  "outline": "none",
+                                  "position": "relative",
+                                  "px": 4,
+                                  "transition": "all 250ms",
+                                  "userSelect": "none",
+                                  "verticalAlign": "middle",
+                                  "whiteSpace": "nowrap",
+                                  "width": "auto",
                                 }
                               }
-                              alignItems="center"
-                              appearance="none"
-                              aria-disabled={true}
-                              as="button"
-                              bg="green.500"
-                              borderRadius="md"
-                              color="white"
-                              disabled={true}
-                              display="inline-flex"
-                              fontSize="md"
-                              fontWeight="semibold"
-                              height={10}
-                              justifyContent="center"
-                              lineHeight="1.2"
-                              mb={4}
-                              minWidth={10}
+                              className="chakra-button"
                               onClick={[Function]}
-                              outline="none"
-                              position="relative"
-                              px={4}
-                              transition="all 250ms"
                               type="button"
-                              userSelect="none"
-                              verticalAlign="middle"
-                              whiteSpace="nowrap"
                             >
                               <button
-                                aria-disabled={true}
-                                className="css-1egop4s"
-                                disabled={true}
+                                className="chakra-button css-mdlog5"
                                 onClick={[Function]}
                                 type="button"
                               >
                                 <ButtonIcon
-                                  icon="edit"
-                                  ml={-1}
-                                  mr={2}
+                                  marginEnd="0.5rem"
                                 >
-                                  <Icon
-                                    aria-hidden="true"
-                                    color="currentColor"
-                                    focusable="false"
-                                    ml={-1}
-                                    mr={2}
-                                    name="edit"
+                                  <Styled(span)
+                                    className="chakra-button__icon"
+                                    marginEnd="0.5rem"
                                   >
-                                    <Styled(div)
-                                      aria-hidden="true"
-                                      as="svg"
-                                      color="currentColor"
-                                      display="inline-block"
-                                      focusable="false"
-                                      ml={-1}
-                                      mr={2}
-                                      role="presentation"
-                                      size="1em"
-                                      verticalAlign="middle"
-                                      viewBox="0 0 24 24"
+                                    <span
+                                      className="chakra-button__icon css-ktvjz1"
                                     >
-                                      <svg
-                                        aria-hidden="true"
-                                        className="css-yxiis9"
-                                        focusable="false"
-                                        role="presentation"
-                                        viewBox="0 0 24 24"
+                                      <FaTrash
+                                        aria-hidden={true}
+                                        focusable={false}
                                       >
-                                        <g
-                                          fill="none"
-                                          stroke="currentColor"
-                                          strokeLinecap="full"
-                                          strokeWidth="2"
+                                        <IconBase
+                                          aria-hidden={true}
+                                          attr={
+                                            Object {
+                                              "viewBox": "0 0 448 512",
+                                            }
+                                          }
+                                          focusable={false}
                                         >
-                                          <path
-                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                          />
-                                          <path
-                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                          />
-                                        </g>
-                                      </svg>
-                                    </Styled(div)>
-                                  </Icon>
-                                </ButtonIcon>
-                                Save project
-                              </button>
-                            </PseudoBox>
-                          </Button>
-                          <ConfirmButton
-                            description="Are you sure you would like to delete this project?"
-                            key=".4"
-                            leftIcon="delete"
-                            mb={null}
-                            onConfirm={[Function]}
-                            variantColor="red"
-                          >
-                            <Button
-                              leftIcon="delete"
-                              mb={null}
-                              onClick={[Function]}
-                              variantColor="red"
-                            >
-                              <PseudoBox
-                                _active={
-                                  Object {
-                                    "bg": "red.700",
-                                  }
-                                }
-                                _disabled={
-                                  Object {
-                                    "boxShadow": "none",
-                                    "cursor": "not-allowed",
-                                    "opacity": "40%",
-                                  }
-                                }
-                                _focus={
-                                  Object {
-                                    "boxShadow": "outline",
-                                  }
-                                }
-                                _hover={
-                                  Object {
-                                    "bg": "red.600",
-                                  }
-                                }
-                                alignItems="center"
-                                appearance="none"
-                                as="button"
-                                bg="red.500"
-                                borderRadius="md"
-                                color="white"
-                                display="inline-flex"
-                                fontSize="md"
-                                fontWeight="semibold"
-                                height={10}
-                                justifyContent="center"
-                                lineHeight="1.2"
-                                mb={null}
-                                minWidth={10}
-                                onClick={[Function]}
-                                outline="none"
-                                position="relative"
-                                px={4}
-                                transition="all 250ms"
-                                type="button"
-                                userSelect="none"
-                                verticalAlign="middle"
-                                whiteSpace="nowrap"
-                              >
-                                <button
-                                  className="css-thv05u"
-                                  onClick={[Function]}
-                                  type="button"
-                                >
-                                  <ButtonIcon
-                                    icon="delete"
-                                    ml={-1}
-                                    mr={2}
-                                  >
-                                    <Icon
-                                      aria-hidden="true"
-                                      color="currentColor"
-                                      focusable="false"
-                                      ml={-1}
-                                      mr={2}
-                                      name="delete"
-                                    >
-                                      <Styled(div)
-                                        aria-hidden="true"
-                                        as="svg"
-                                        color="currentColor"
-                                        display="inline-block"
-                                        focusable="false"
-                                        ml={-1}
-                                        mr={2}
-                                        role="presentation"
-                                        size="1em"
-                                        verticalAlign="middle"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <svg
-                                          aria-hidden="true"
-                                          className="css-yxiis9"
-                                          focusable="false"
-                                          role="presentation"
-                                          viewBox="0 0 24 24"
-                                        >
-                                          <g
+                                          <svg
+                                            aria-hidden={true}
                                             fill="currentColor"
+                                            focusable={false}
+                                            height="1em"
+                                            stroke="currentColor"
+                                            strokeWidth="0"
+                                            style={
+                                              Object {
+                                                "color": undefined,
+                                              }
+                                            }
+                                            viewBox="0 0 448 512"
+                                            width="1em"
+                                            xmlns="http://www.w3.org/2000/svg"
                                           >
                                             <path
-                                              d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
+                                              d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                                              key="0"
                                             />
-                                            <path
-                                              d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
-                                            />
-                                          </g>
-                                        </svg>
-                                      </Styled(div)>
-                                    </Icon>
-                                  </ButtonIcon>
-                                  Delete project
-                                </button>
-                              </PseudoBox>
-                            </Button>
-                          </ConfirmButton>
-                        </div>
-                      </Box>
-                    </Flex>
-                  </ForwardRef>
+                                          </svg>
+                                        </IconBase>
+                                      </FaTrash>
+                                    </span>
+                                  </Styled(span)>
+                                </ButtonIcon>
+                                Delete project
+                              </button>
+                            </Styled(button)>
+                          </Button>
+                        </ConfirmButton>
+                      </div>
+                    </Styled(div)>
+                  </Stack>
                 </div>
               </div>
             </div>

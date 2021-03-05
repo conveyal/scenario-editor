@@ -156,6 +156,11 @@ declare namespace Cypress {
     findStop(name: string | RegExp): Chainable<Stop>
 
     /**
+     * Get a Toast.
+     */
+    findToast(): Chainable<JQuery<HTMLElement>>
+
+    /**
      * Get the LeafletMap.
      * @example cy.getLeafletMap().then(map => {...})
      */

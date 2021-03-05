@@ -14,13 +14,14 @@ import {
   Stack,
   ModalHeader,
   useDisclosure
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {v4 as uuidv4} from 'uuid'
 
 import fetchAction from 'lib/actions/fetch'
+import {AddIcon, CopyIcon, XIcon} from 'lib/components/icons'
 import {API} from 'lib/constants'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
 import useInput from 'lib/hooks/use-controlled-input'
@@ -41,7 +42,12 @@ export default function CopyTimetableButton({create, intoModification}) {
 
   return (
     <>
-      <Button isFullWidth leftIcon='copy' onClick={onOpen} variantColor='green'>
+      <Button
+        isFullWidth
+        leftIcon={<CopyIcon />}
+        onClick={onOpen}
+        colorScheme='green'
+      >
         Copy existing timetable
       </Button>
 
@@ -192,14 +198,14 @@ function CopyTimetableContent({create, intoModification, onClose}) {
         </Stack>
       </ModalBody>
       <ModalFooter>
-        <Button leftIcon='small-close' mr={2} onClick={onClose}>
+        <Button leftIcon={<XIcon />} mr={2} onClick={onClose}>
           Cancel
         </Button>
         <Button
           isDisabled={!timetable}
-          leftIcon='small-add'
+          leftIcon={<AddIcon />}
           onClick={_onConfirmTimetable}
-          variantColor='green'
+          colorScheme='green'
         >
           Copy into new timetable
         </Button>

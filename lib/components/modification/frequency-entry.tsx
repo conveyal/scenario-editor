@@ -1,12 +1,11 @@
-import {Box, FormControl, FormLabel, Input, Stack} from '@chakra-ui/core'
-import {faCalendar} from '@fortawesome/free-solid-svg-icons'
+import {Box, FormControl, FormLabel, Input, Stack} from '@chakra-ui/react'
 import get from 'lodash/get'
 import {useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 
 import ConfirmButton from '../confirm-button'
-import Icon from '../icon'
+import {CalendarIcon, DeleteIcon} from '../icons'
 import * as Panel from '../panel'
 
 import TimetableEntry from './timetable-entry'
@@ -55,7 +54,7 @@ export default function FrequencyEntry({
     <Panel.Collapsible
       heading={
         <>
-          <Icon icon={faCalendar} />
+          <CalendarIcon style={{display: 'inline-block'}} />
           <strong> {entry.name}</strong>
         </>
       }
@@ -96,9 +95,9 @@ export default function FrequencyEntry({
           <ConfirmButton
             description='Are you sure you would like to remove this frequency entry?'
             isFullWidth
-            leftIcon='delete'
+            leftIcon={<DeleteIcon />}
             onConfirm={remove}
-            variantColor='red'
+            colorScheme='red'
           >
             Delete frequency entry
           </ConfirmButton>

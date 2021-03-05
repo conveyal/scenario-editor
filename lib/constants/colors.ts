@@ -68,3 +68,17 @@ export default {
     'rgba(4, 90, 142, 0.42)'
   ]
 }
+
+// Generated from https://smart-swatch.netlify.app/#2389c9 (Hue Up)
+export const chakraColors = {
+  50: '#def0ff',
+  100: '#b8d7f9',
+  200: '#8ec1ee',
+  300: '#65ace6',
+  400: '#3c9add',
+  500: '#2389c9', // manually replaced with this value
+  600: '#155f99',
+  700: '#093d6f',
+  800: '#001f45',
+  900: '#00091d'
+}

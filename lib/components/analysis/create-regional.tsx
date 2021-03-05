@@ -18,14 +18,15 @@ import {
   AlertDescription,
   Divider,
   useToast,
-  PseudoBox
-} from '@chakra-ui/core'
+  Box
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
 import {useCallback, useState} from 'react'
 import {useSelector} from 'react-redux'
 
+import {AddIcon} from 'lib/components/icons'
 import {API} from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
@@ -83,9 +84,9 @@ export default function CreateRegional({
       <Button
         isDisabled={isDisabled}
         onClick={onOpen}
-        rightIcon='small-add'
+        rightIcon={<AddIcon />}
         title={isDisabled ? disabledLabel : 'Regional analysis'}
-        variantColor='green'
+        colorScheme='green'
       >
         Regional analysis
       </Button>
@@ -119,10 +120,10 @@ function CreatedRegionalToast({onClose, regionId}) {
     >
       <AlertIcon />
       <AlertDescription>
-        <PseudoBox _hover={{textDecoration: 'underline'}}>
+        <Box _hover={{textDecoration: 'underline'}}>
           Regional analysis has been created successfully. Click here to view
           progress.
-        </PseudoBox>
+        </Box>
       </AlertDescription>
     </Alert>
   )
@@ -416,13 +417,13 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         </ModalBody>
         <ModalFooter>
           <Button
-            leftIcon='small-add'
+            leftIcon={<AddIcon />}
             loadingText='Creating'
             isLoading={isCreating}
             isDisabled={createDisabled}
             mr={3}
             onClick={create}
-            variantColor='green'
+            colorScheme='green'
           >
             {message('common.create')}
           </Button>

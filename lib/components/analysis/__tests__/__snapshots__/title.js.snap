@@ -10,11 +10,20 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
     py={4}
     width="640px"
   >
-    <Box
-      alignItems="center"
+    <Styled(div)
+      __css={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexBasis": undefined,
+          "flexDirection": undefined,
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "flexWrap": undefined,
+          "justifyContent": "space-between",
+        }
+      }
       borderBottom="1px solid #E2E8F0"
-      display="flex"
-      justifyContent="space-between"
       px={5}
       py={4}
       width="640px"
@@ -27,78 +36,22 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
           display="flex"
           size="md"
         >
-          <Box
+          <Styled(h2)
+            __css={
+              Object {
+                "fontFamily": "heading",
+                "fontSize": "xl",
+                "fontWeight": "bold",
+                "lineHeight": 1.2,
+              }
+            }
             alignItems="center"
-            as="h2"
+            className="chakra-heading"
             display="flex"
-            fontFamily="heading"
-            fontSize="xl"
-            fontWeight="bold"
-            lineHeight="shorter"
           >
             <h2
-              className="css-1gvdz3v"
+              className="chakra-heading css-114dsy5"
             >
-              <Box
-                mr={2}
-              >
-                <div
-                  className="css-9u48bm"
-                >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "chart-area",
-                        "prefix": "fas",
-                      }
-                    }
-                  >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "chart-area",
-                          "prefix": "fas",
-                        }
-                      }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      swapOpacity={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-chart-area fa-w-NaN fa-fw "
-                        data-icon="chart-area"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                </div>
-              </Box>
               <TitleMessage
                 fetchStatus={false}
                 project={
@@ -120,135 +73,137 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
                 }
               >
                 <Text>
-                  <Box
-                    as="p"
-                    fontFamily="body"
+                  <Styled(p)
+                    __css={Object {}}
+                    className="chakra-text"
                   >
                     <p
-                      className="css-fzcsno"
+                      className="chakra-text css-0"
                     >
                        
                       Compute travel time
                     </p>
-                  </Box>
+                  </Styled(p)>
                 </Text>
               </TitleMessage>
             </h2>
-          </Box>
+          </Styled(h2)>
         </Heading>
         <Button
+          colorScheme="blue"
           isDisabled={false}
           onClick={[Function]}
-          rightIcon="repeat"
+          rightIcon={<FaSyncAlt />}
           title="Fetch results"
-          variantColor="blue"
         >
-          <PseudoBox
-            _active={
+          <Styled(button)
+            __css={
               Object {
-                "bg": "blue.700",
+                "_active": Object {
+                  "bg": "blue.700",
+                },
+                "_disabled": Object {
+                  "boxShadow": "none",
+                  "cursor": "not-allowed",
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
+                  "boxShadow": "outline",
+                },
+                "_hover": Object {
+                  "_disabled": Object {
+                    "bg": "blue.500",
+                  },
+                  "bg": "blue.600",
+                },
+                "alignItems": "center",
+                "appearance": "none",
+                "bg": "blue.500",
+                "borderRadius": "md",
+                "color": "white",
+                "display": "inline-flex",
+                "fontSize": "md",
+                "fontWeight": "semibold",
+                "h": 10,
+                "justifyContent": "center",
+                "lineHeight": "1.2",
+                "minW": 10,
+                "outline": "none",
+                "position": "relative",
+                "px": 4,
+                "transition": "all 250ms",
+                "userSelect": "none",
+                "verticalAlign": "middle",
+                "whiteSpace": "nowrap",
+                "width": "auto",
               }
             }
-            _disabled={
-              Object {
-                "boxShadow": "none",
-                "cursor": "not-allowed",
-                "opacity": "40%",
-              }
-            }
-            _focus={
-              Object {
-                "boxShadow": "outline",
-              }
-            }
-            _hover={
-              Object {
-                "bg": "blue.600",
-              }
-            }
-            alignItems="center"
-            appearance="none"
-            as="button"
-            bg="blue.500"
-            borderRadius="md"
-            color="white"
-            display="inline-flex"
-            fontSize="md"
-            fontWeight="semibold"
-            height={10}
-            justifyContent="center"
-            lineHeight="1.2"
-            minWidth={10}
+            className="chakra-button"
             onClick={[Function]}
-            outline="none"
-            position="relative"
-            px={4}
             title="Fetch results"
-            transition="all 250ms"
             type="button"
-            userSelect="none"
-            verticalAlign="middle"
-            whiteSpace="nowrap"
           >
             <button
-              className="css-1or62k6"
+              className="chakra-button css-huwc4k"
               onClick={[Function]}
               title="Fetch results"
               type="button"
             >
               Fetch results
               <ButtonIcon
-                icon="repeat"
-                ml={2}
-                mr={-1}
+                marginStart="0.5rem"
               >
-                <Icon
-                  aria-hidden="true"
-                  color="currentColor"
-                  focusable="false"
-                  ml={2}
-                  mr={-1}
-                  name="repeat"
+                <Styled(span)
+                  className="chakra-button__icon"
+                  marginStart="0.5rem"
                 >
-                  <Styled(div)
-                    aria-hidden="true"
-                    as="svg"
-                    color="currentColor"
-                    display="inline-block"
-                    focusable="false"
-                    ml={2}
-                    mr={-1}
-                    role="presentation"
-                    size="1em"
-                    verticalAlign="middle"
-                    viewBox="0 0 24 24"
+                  <span
+                    className="chakra-button__icon css-1oeb2oe"
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="css-yyruks"
-                      focusable="false"
-                      role="presentation"
-                      viewBox="0 0 24 24"
+                    <FaSyncAlt
+                      aria-hidden={true}
+                      focusable={false}
                     >
-                      <g
-                        fill="currentColor"
+                      <IconBase
+                        aria-hidden={true}
+                        attr={
+                          Object {
+                            "viewBox": "0 0 512 512",
+                          }
+                        }
+                        focusable={false}
                       >
-                        <path
-                          d="M10.319,4.936a7.239,7.239,0,0,1,7.1,2.252,1.25,1.25,0,1,0,1.872-1.657A9.737,9.737,0,0,0,9.743,2.5,10.269,10.269,0,0,0,2.378,9.61a.249.249,0,0,1-.271.178l-1.033-.13A.491.491,0,0,0,.6,9.877a.5.5,0,0,0-.019.526l2.476,4.342a.5.5,0,0,0,.373.248.43.43,0,0,0,.062,0,.5.5,0,0,0,.359-.152l3.477-3.593a.5.5,0,0,0-.3-.844L5.15,10.172a.25.25,0,0,1-.2-.333A7.7,7.7,0,0,1,10.319,4.936Z"
-                        />
-                        <path
-                          d="M23.406,14.1a.5.5,0,0,0,.015-.526l-2.5-4.329A.5.5,0,0,0,20.546,9a.489.489,0,0,0-.421.151l-3.456,3.614a.5.5,0,0,0,.3.842l1.848.221a.249.249,0,0,1,.183.117.253.253,0,0,1,.023.216,7.688,7.688,0,0,1-5.369,4.9,7.243,7.243,0,0,1-7.1-2.253,1.25,1.25,0,1,0-1.872,1.656,9.74,9.74,0,0,0,9.549,3.03,10.261,10.261,0,0,0,7.369-7.12.251.251,0,0,1,.27-.179l1.058.127a.422.422,0,0,0,.06,0A.5.5,0,0,0,23.406,14.1Z"
-                        />
-                      </g>
-                    </svg>
-                  </Styled(div)>
-                </Icon>
+                        <svg
+                          aria-hidden={true}
+                          fill="currentColor"
+                          focusable={false}
+                          height="1em"
+                          stroke="currentColor"
+                          strokeWidth="0"
+                          style={
+                            Object {
+                              "color": undefined,
+                            }
+                          }
+                          viewBox="0 0 512 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
+                            key="0"
+                          />
+                        </svg>
+                      </IconBase>
+                    </FaSyncAlt>
+                  </span>
+                </Styled(span)>
               </ButtonIcon>
             </button>
-          </PseudoBox>
+          </Styled(button)>
         </Button>
       </div>
-    </Box>
+    </Styled(div)>
   </Flex>
 </AnalysisTitle>
 `;

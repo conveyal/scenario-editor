@@ -2864,7 +2864,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Notice: project may have changed since the analysis was run."
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Notice: project may have changed since the analysis was run."
                                           zIndex={1500}
                                         >
@@ -3167,7 +3166,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                 <Tooltip
                                                   aria-label="Tooltip: BUS, TRAM, RAIL, SUBWAY"
                                                   fontSize="md"
-                                                  hasArrow={true}
                                                   label="BUS, TRAM, RAIL, SUBWAY"
                                                   zIndex={1500}
                                                 >

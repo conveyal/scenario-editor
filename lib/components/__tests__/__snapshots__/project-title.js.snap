@@ -46,7 +46,7 @@ exports[`Component > ProjectTitle 1`] = `
       <div
         className="css-hyly4r"
       >
-        <IconButton
+        <ForwardRef
           label="All projects"
           onClick={[Function]}
         >
@@ -61,7 +61,6 @@ exports[`Component > ProjectTitle 1`] = `
                 <Tooltip
                   aria-label="Tooltip: All projects"
                   fontSize="md"
-                  hasArrow={true}
                   label="All projects"
                   placement="auto"
                   zIndex={1500}
@@ -177,7 +176,7 @@ exports[`Component > ProjectTitle 1`] = `
               </ForwardRef>
             </div>
           </Box>
-        </IconButton>
+        </ForwardRef>
         <Heading
           flex="1"
           ml={2}
@@ -240,7 +239,7 @@ exports[`Component > ProjectTitle 1`] = `
             <div
               className="css-k008qs"
             >
-              <IconButton
+              <ForwardRef
                 label="Download or share this project"
                 onClick={[Function]}
               >
@@ -255,7 +254,6 @@ exports[`Component > ProjectTitle 1`] = `
                       <Tooltip
                         aria-label="Tooltip: Download or share this project"
                         fontSize="md"
-                        hasArrow={true}
                         label="Download or share this project"
                         placement="auto"
                         zIndex={1500}
@@ -371,8 +369,8 @@ exports[`Component > ProjectTitle 1`] = `
                     </ForwardRef>
                   </div>
                 </Box>
-              </IconButton>
-              <IconButton
+              </ForwardRef>
+              <ForwardRef
                 label="Edit project settings"
                 onClick={[Function]}
               >
@@ -387,7 +385,6 @@ exports[`Component > ProjectTitle 1`] = `
                       <Tooltip
                         aria-label="Tooltip: Edit project settings"
                         fontSize="md"
-                        hasArrow={true}
                         label="Edit project settings"
                         placement="auto"
                         zIndex={1500}
@@ -503,7 +500,7 @@ exports[`Component > ProjectTitle 1`] = `
                     </ForwardRef>
                   </div>
                 </Box>
-              </IconButton>
+              </ForwardRef>
             </div>
           </Styled(div)>
         </Flex>

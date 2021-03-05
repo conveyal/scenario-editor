@@ -181,7 +181,7 @@ exports[`Component > SelectProject 1`] = `
                                   </h2>
                                 </Styled(h2)>
                               </Heading>
-                              <IconButton
+                              <ForwardRef
                                 label="Edit region settings"
                                 onClick={[Function]}
                               >
@@ -196,7 +196,6 @@ exports[`Component > SelectProject 1`] = `
                                       <Tooltip
                                         aria-label="Tooltip: Edit region settings"
                                         fontSize="md"
-                                        hasArrow={true}
                                         label="Edit region settings"
                                         placement="auto"
                                         zIndex={1500}
@@ -312,7 +311,7 @@ exports[`Component > SelectProject 1`] = `
                                     </ForwardRef>
                                   </div>
                                 </Box>
-                              </IconButton>
+                              </ForwardRef>
                             </div>
                           </Styled(div)>
                         </Flex>

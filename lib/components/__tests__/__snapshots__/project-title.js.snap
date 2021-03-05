@@ -22,7 +22,7 @@ exports[`Component > ProjectTitle 1`] = `
 >
   <Flex
     align="center"
-    borderBottom="1px solid #E2E8F0"
+    borderBottomWidth="1px"
     p={2}
     width="320px"
   >
@@ -39,12 +39,12 @@ exports[`Component > ProjectTitle 1`] = `
           "justifyContent": undefined,
         }
       }
-      borderBottom="1px solid #E2E8F0"
+      borderBottomWidth="1px"
       p={2}
       width="320px"
     >
       <div
-        className="css-hyly4r"
+        className="css-74jyoa"
       >
         <IconButton
           label="All projects"

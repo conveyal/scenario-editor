@@ -78,7 +78,7 @@ export default class ConveyalAnalysis extends App {
       ? (Component as ComponentWithLayout).Layout
       : EmptyLayout
     return (
-      <ChakraTheme>
+      <ChakraTheme cookies={pageProps.cookies}>
         <ErrorHandler>
           <SWRWrapper>
             <Head>

@@ -135,6 +135,7 @@ export const getServerSideProps: GetServerSideProps = async ({req}) => {
 
   return {
     props: {
+      cookies: req.headers.cookie ?? '',
       regions: serializeCollection(regions),
       user
     }

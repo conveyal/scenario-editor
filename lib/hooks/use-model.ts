@@ -7,9 +7,9 @@ import useUser from './use-user'
 
 type UseModelResponse<T> = {
   data: T
-  remove: () => Promise<SafeResponse>
-  response: responseInterface<T, SafeResponse>
-  update: (newProperties: Partial<T>) => Promise<SafeResponse>
+  remove: () => Promise<SafeResponse<T>>
+  response: responseInterface<T, SafeResponse<T>>
+  update: (newProperties: Partial<T>) => Promise<SafeResponse<T>>
 }
 
 export function createUseModel<T extends CL.IModel>(collectionName: string) {
@@ -25,7 +25,7 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
   ): UseModelResponse<T> {
     const user = useUser()
     const url = `/api/db/${collectionName}/${_id}`
-    const response = useSWR<T, SafeResponse>([url, user], {
+    const response = useSWR<T, SafeResponse<T>>([url, user], {
       ...SWRConfigDefaults,
       ...config
     })

@@ -2,7 +2,7 @@ import {Box, BoxProps, Center, Flex} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
 import {useRouter} from 'next/router'
-import {memo, useEffect, useState} from 'react'
+import {memo, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
@@ -25,8 +25,7 @@ import {
   RegionalAnalysisIcon,
   SinglePointAnalysisIcon,
   SignOutIcon,
-  SpatialDatasetsIcon,
-  WifiIcon
+  SpatialDatasetsIcon
 } from './icons'
 import SVGLogo from './logo.svg'
 import Tip from './tip'
@@ -202,7 +201,6 @@ export default function Sidebar() {
         >
           <InfoIcon />
         </ExternalLink>
-        <OnlineIndicator />
       </div>
     </Flex>
   )
@@ -240,35 +238,6 @@ const LogoSpinner = memo(() => {
     <Box boxSize='21px'>
       <SVGLogo />
     </Box>
-  )
-})
-
-const isOnline = () => (isServer ? true : navigator.onLine)
-const OnlineIndicator = memo(() => {
-  const [online, setOnline] = useState(() => isOnline())
-
-  useEffect(() => {
-    const onOnline = () => setOnline(true)
-    const onOffline = () => setOnline(false)
-    // TODO: Check to see if it can communicate with the backend, not just the
-    // internet (for local development)
-    addListener('online', onOnline)
-    addListener('offline', onOffline)
-    return () => {
-      removeListener('online', onOnline)
-      removeListener('offline', onOffline)
-    }
-  }, [setOnline])
-
-  if (online) return null
-  return (
-    <Tip label={message('nav.notConnectedToInternet')}>
-      <div>
-        <NavItemContents color='red.500'>
-          <WifiIcon />
-        </NavItemContents>
-      </div>
-    </Tip>
   )
 })
 

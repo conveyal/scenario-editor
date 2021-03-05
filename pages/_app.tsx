@@ -8,6 +8,7 @@ import React, {ComponentType, ErrorInfo} from 'react'
 import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
+import APIStatusBar from 'lib/components/api-status-bar'
 import ErrorModal from 'lib/components/error-modal'
 import {AUTH_DISABLED} from 'lib/constants'
 import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
@@ -86,6 +87,7 @@ export default class ConveyalAnalysis extends App {
               <Head>
                 <title key='title'>Conveyal Analysis</title>
               </Head>
+              <APIStatusBar />
               {this.state.error ? (
                 <ErrorModal
                   error={this.state.error}

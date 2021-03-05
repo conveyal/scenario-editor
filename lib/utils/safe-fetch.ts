@@ -7,12 +7,12 @@ export type ResponseError = {
   problem: string
 }
 
-export type ResponseOk = Response & {
+export type ResponseOk<T> = Response & {
   ok: true
-  data: unknown
+  data: T
 }
 
-export type SafeResponse = ResponseError | ResponseOk
+export type SafeResponse<T> = ResponseError | ResponseOk<T>
 
 export const FETCH_ERROR = 'FETCH_ERROR'
 export const NONE = 'NONE'
@@ -49,45 +49,66 @@ async function getData(res: Response) {
   return {message: 'no content'}
 }
 
-function parseErrorMessageFromData(data: any): string {
-  return data == null
-    ? 'Error while fetching data.'
-    : typeof data === 'string'
-    ? data
-    : typeof data === 'object' &&
-      Object.prototype.hasOwnProperty.call(data, 'message')
-    ? data.message
-    : JSON.stringify(data)
+const defaultErrorMessage = 'Error while fetching data.'
+async function parseErrorMessageFromResponse(
+  response: Response
+): Promise<string> {
+  try {
+    const data = await getData(response)
+    return data == null
+      ? 'Error while fetching data.'
+      : typeof data === 'string'
+      ? data
+      : typeof data === 'object' &&
+        Object.prototype.hasOwnProperty.call(data, 'message')
+      ? data.message
+      : JSON.stringify(data)
+  } catch (e) {
+    return defaultErrorMessage
+  }
 }
 
-async function safeParseResponse(res: Response): Promise<SafeResponse> {
-  const data = await getData(res)
-  if (res.ok) {
-    return {
-      ...res,
-      ok: true,
-      data
+const toArrayBuffer = (res: Response) => res.arrayBuffer()
+const toText = (res: Response) => res.text()
+const toJSON = (res: Response) => res.json()
+
+export const fetchArrayBuffer = (url: string) =>
+  safeFetch<ArrayBuffer>(url, toArrayBuffer)
+export const fetchText = (url: string) => safeFetch<string>(url, toText)
+export function fetchData<T>(url: string, options?: RequestInit) {
+  return safeFetch<T>(url, toJSON, {
+    ...options,
+    headers: {
+      ...defaultHeaders,
+      ...options?.headers
     }
-  }
-  return {
-    ...res,
-    ok: false,
-    data,
-    error: new Error(parseErrorMessageFromData(data)),
-    problem: getProblemFromResponse(res)
-  }
+  })
 }
 
 /**
  * Never throw errors. Always return a response.
  */
-export async function safeFetch(
+export async function safeFetch<T>(
   url: string,
+  parseData: (response: Response) => Promise<T>,
   options?: RequestInit
-): Promise<SafeResponse> {
+): Promise<SafeResponse<T>> {
   try {
     const res = await fetch(url, options)
-    return await safeParseResponse(res)
+    if (res.ok) {
+      return {
+        ...res,
+        data: await parseData(res),
+        ok: true
+      }
+    } else {
+      return {
+        ...res,
+        error: new Error(await parseErrorMessageFromResponse(res)),
+        ok: false,
+        problem: getProblemFromResponse(res)
+      }
+    }
   } catch (e: unknown) {
     if (e instanceof Error) {
       LogRocket.captureException(e)
@@ -111,7 +132,7 @@ export async function safeFetch(
  * Throw the response when using SWR.
  */
 export const swrFetcher = (url: string) =>
-  safeFetch(url).then((res) => {
+  fetchData(url).then((res) => {
     if (res.ok) return res.data
     else throw res
   })
@@ -120,7 +141,7 @@ export const swrFetcher = (url: string) =>
  * Safe DELETE
  */
 export function safeDelete(url: string) {
-  return safeFetch(url, {
+  return safeFetch(url, toJSON, {
     method: 'DELETE'
   })
 }
@@ -129,14 +150,14 @@ export function safeDelete(url: string) {
  * Simple GET
  */
 export function getJSON(url: string) {
-  return safeFetch(url, {headers: defaultHeaders})
+  return safeFetch(url, toJSON, {headers: defaultHeaders})
 }
 
 /**
  * Simple POST
  */
 export function postJSON(url: string, json: unknown) {
-  return safeFetch(url, {
+  return safeFetch(url, toJSON, {
     body: JSON.stringify(json),
     headers: defaultHeaders,
     method: 'POST'
@@ -147,7 +168,7 @@ export function postJSON(url: string, json: unknown) {
  * Simple PUT
  */
 export function putJSON(url: string, json: unknown) {
-  return safeFetch(url, {
+  return safeFetch(url, toJSON, {
     body: JSON.stringify(json),
     headers: defaultHeaders,
     method: 'PUT'

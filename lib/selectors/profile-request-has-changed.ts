@@ -1,5 +1,5 @@
+import {dequal} from 'dequal/lite'
 import get from 'lodash/get'
-import isEqual from 'lodash/isEqual'
 import omit from 'lodash/omit'
 import {createSelector} from 'reselect'
 
@@ -12,7 +12,7 @@ const omitKeys = [
   'opportunityDatasetId',
   'travelTimePercentile'
 ]
-const hasChanged = (a, b) => !isEqual(omit(a, omitKeys), omit(b, omitKeys))
+const hasChanged = (a, b) => !dequal(omit(a, omitKeys), omit(b, omitKeys))
 
 const accessibilityOutOfSync = (results, currentId) =>
   results &&

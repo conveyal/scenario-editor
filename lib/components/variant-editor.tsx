@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Stack,
-  Text,
-  useDisclosure
-} from '@chakra-ui/react'
+import {Box, Button, Divider, Flex, Stack, Text} from '@chakra-ui/react'
 import {memo} from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -98,32 +90,22 @@ function Variant({
   onChangeName,
   showVariant
 }) {
-  const {isOpen, onOpen, onClose} = useDisclosure()
-
   return (
     <Flex align='center'>
-      {isOpen && (
-        <ConfirmDialog
-          action={message('variant.delete')}
-          description={message('variant.deleteConfirmation')}
-          onClose={onClose}
-          onConfirm={deleteVariant}
-        />
-      )}
-
       <Text mr={2}>{index + 1}.</Text>
       <Box flex='1' fontWeight='bold'>
         <Editable isValid={isValidName} onChange={onChangeName} value={name} />
       </Box>
       <Stack isInline spacing={0}>
         {index !== 0 && (
-          <IconButton
-            label={message('variant.delete')}
-            onClick={onOpen}
-            colorScheme='red'
+          <ConfirmDialog
+            description={message('variant.deleteConfirmation')}
+            onConfirm={deleteVariant}
           >
-            <DeleteIcon />
-          </IconButton>
+            <IconButton label={message('variant.delete')} colorScheme='red'>
+              <DeleteIcon />
+            </IconButton>
+          </ConfirmDialog>
         )}
         <IconButton label='Copy scenario' onClick={copyVariant}>
           <CopyIcon />

@@ -47,7 +47,7 @@ export default function AnalysisTitle() {
   return (
     <Flex
       align='center'
-      borderBottom='1px solid #E2E8F0'
+      borderBottomWidth='1px'
       justify='space-between'
       px={5}
       py={4}

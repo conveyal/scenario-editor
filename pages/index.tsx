@@ -1,10 +1,10 @@
-import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/core'
-import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
 import {GetServerSideProps} from 'next'
+import Link from 'next/link'
 
 import {getUser} from 'lib/auth0'
 import DevBox from 'lib/components/dev'
-import Icon from 'lib/components/icon'
+import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
@@ -12,13 +12,14 @@ import AuthenticatedCollection from 'lib/db/authenticated-collection'
 import {serializeCollection} from 'lib/db/utils'
 import Durations from 'lib/durations'
 import {useRegions} from 'lib/hooks/use-collection'
+import useLink from 'lib/hooks/use-link'
 import useRouteTo from 'lib/hooks/use-route-to'
 import withAuth from 'lib/with-auth'
 import {IUser} from 'lib/user'
 
-const alertDate = 'December, 2020'
-const alertStatus = 'warning'
-const alertText = 'Minor changes and a few bug fixes related to modifications.'
+const alertDate = 'February, 2021'
+const alertStatus = 'info'
+const alertText = 'New options for spatial datasets'
 
 type SelectRegionPageProps = {
   durations: Record<string, number>
@@ -35,6 +36,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
   })
   const {accessGroup, email} = p.user
   const goToRegionCreate = useRouteTo('regionCreate')
+  const logoutLink = useLink('logout')
 
   return (
     <Flex
@@ -47,8 +49,8 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
       <Box mt={8} mb={6}>
         <Logo />
       </Box>
-      <Stack spacing={4} textAlign='center' width='320px'>
-        <Box>
+      <Stack spacing={4} width='320px'>
+        <Box textAlign='center'>
           <span>signed in as </span>
           <strong>
             {email} ({accessGroup})
@@ -59,16 +61,16 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
             <Box>
               <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
             </Box>
-            <Box>
+            <Box textAlign='center'>
               <ALink to='changelog'>Click here to learn more.</ALink>
             </Box>
           </Stack>
         </Alert>
         <Button
           isFullWidth
-          leftIcon='small-add'
+          leftIcon={<AddIcon />}
           onClick={goToRegionCreate}
-          variantColor='green'
+          colorScheme='green'
         >
           Set up a new region
         </Button>
@@ -76,7 +78,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
           <Skeleton id='LoadingSkeleton' height='30px' />
         )}
         {regions && regions.length > 0 && (
-          <Box>or go to an existing region</Box>
+          <Box textAlign='center'>or go to an existing region</Box>
         )}
         {regions && regions.length > 0 && (
           <Stack spacing={0}>
@@ -86,11 +88,16 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
           </Stack>
         )}
         {process.env.NEXT_PUBLIC_AUTH_DISABLED !== 'true' && (
-          <Box>
-            <ALink to='logout'>
-              <Icon icon={faSignOutAlt} /> Log out
-            </ALink>
-          </Box>
+          <Link href={logoutLink} passHref>
+            <Button
+              as='a'
+              colorScheme='blue'
+              leftIcon={<SignOutIcon />}
+              variant='link'
+            >
+              Log out
+            </Button>
+          </Link>
         )}
       </Stack>
     </Flex>
@@ -104,15 +111,7 @@ interface RegionItemProps {
 function RegionItem({region, ...p}: RegionItemProps) {
   const goToRegion = useRouteTo('projects', {regionId: region._id})
   return (
-    <ListGroupItem
-      {...p}
-      leftIcon={() => (
-        <Box pr={3}>
-          <Icon icon={faMap} />
-        </Box>
-      )}
-      onClick={goToRegion}
-    >
+    <ListGroupItem {...p} leftIcon={<RegionIcon />} onClick={goToRegion}>
       {region.name}
     </ListGroupItem>
   )

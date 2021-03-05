@@ -1,13 +1,13 @@
 import {
   Accordion,
-  AccordionHeader,
+  AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
   Badge,
   Box,
+  Button,
   Flex,
-  Icon,
   Input,
   InputGroup,
   InputLeftElement,
@@ -15,10 +15,8 @@ import {
   Tabs,
   TabList,
   TabPanel,
-  TabPanels,
-  useDisclosure
-} from '@chakra-ui/core'
-import {faEye, faEyeSlash, faUpload} from '@fortawesome/free-solid-svg-icons'
+  TabPanels
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
@@ -33,9 +31,10 @@ import selectFeedsById from 'lib/selectors/feeds-by-id'
 import selectVariants from 'lib/selectors/variants'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
-import ButtonLink from '../button-link'
 import IconButton from '../icon-button'
+import {HideIcon, SearchIcon, ShowIcon, UploadIcon} from '../icons'
 import InnerDock from '../inner-dock'
+import Link from '../link'
 import {DisplayAll as ModificationsMap} from '../modifications-map/display-all'
 import VariantEditor from '../variant-editor'
 
@@ -183,7 +182,7 @@ export default function ModificationsList({bundle, project}) {
         </TabList>
 
         <TabPanels>
-          <TabPanel pt={2}>
+          <TabPanel pt={2} px={0}>
             <Box px={2}>
               <CreateModification
                 feeds={bundle.feeds}
@@ -195,7 +194,7 @@ export default function ModificationsList({bundle, project}) {
             <Flex align='center' justify='space-between' p={2}>
               <InputGroup flex='1' pl={2}>
                 <InputLeftElement pl={4} pr={2}>
-                  <Icon name='search' />
+                  <SearchIcon />
                 </InputLeftElement>
                 <Input
                   placeholder={message('modification.filter')}
@@ -207,26 +206,28 @@ export default function ModificationsList({bundle, project}) {
               </InputGroup>
               <Flex ml={2}>
                 <IconButton
-                  icon={faUpload}
                   label={message('modification.importFromProject')}
                   onClick={goToModificationImport}
-                />
-                <IconButton
-                  icon={faEye}
-                  label='Show all modifications'
-                  onClick={showAll}
-                />
-                <IconButton
-                  icon={faEyeSlash}
-                  label='Hide all modifications'
-                  onClick={hideAll}
-                />
+                >
+                  <UploadIcon />
+                </IconButton>
+                <IconButton label='Show all modifications' onClick={showAll}>
+                  <ShowIcon />
+                </IconButton>
+                <IconButton label='Hide all modifications' onClick={hideAll}>
+                  <HideIcon />
+                </IconButton>
               </Flex>
             </Flex>
 
             <InnerDock>
               {modifications.length > 0 ? (
-                <Accordion allowMultiple>
+                <Accordion
+                  allowMultiple
+                  defaultIndex={Object.keys(filteredModificationsByType).map(
+                    (_, i) => i
+                  )}
+                >
                   {Object.keys(filteredModificationsByType).map((type) => {
                     const ms = filteredModificationsByType[type]
                     return (
@@ -260,7 +261,7 @@ export default function ModificationsList({bundle, project}) {
             </InnerDock>
           </TabPanel>
 
-          <TabPanel>
+          <TabPanel p={0}>
             <VariantEditor showVariant={showVariant} variants={variants} />
           </TabPanel>
         </TabPanels>
@@ -270,23 +271,23 @@ export default function ModificationsList({bundle, project}) {
 }
 
 function ModificationType({children, modificationCount, type}) {
-  const {isOpen, onToggle} = useDisclosure(true) // defaultIsOpen does not currently work
   return (
-    <AccordionItem
-      border='none'
-      isOpen={isOpen}
-      isDisabled={modificationCount === 0}
-      onChange={onToggle}
-    >
-      <AccordionHeader _focus={{outline: 'none'}} py={2}>
-        <Box flex='1' fontWeight='bold' textAlign='left'>
-          {toStartCase(type)} <Badge>{modificationCount}</Badge>
-        </Box>
-        <AccordionIcon />
-      </AccordionHeader>
-      <AccordionPanel py={0} px={1}>
-        {isOpen && <Flex direction='column'>{children}</Flex>}
-      </AccordionPanel>
+    <AccordionItem border='none' isDisabled={modificationCount === 0}>
+      {({isExpanded}) => (
+        <>
+          <h3>
+            <AccordionButton _focus={{outline: 'none'}} py={2}>
+              <Box flex='1' fontWeight='bold' textAlign='left'>
+                {toStartCase(type)} <Badge>{modificationCount}</Badge>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h3>
+          <AccordionPanel py={0} px={1}>
+            {isExpanded && <Flex direction='column'>{children}</Flex>}
+          </AccordionPanel>
+        </>
+      )}
     </AccordionItem>
   )
 }
@@ -301,33 +302,37 @@ type ModificationItemProps = {
 const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
     <Flex align='center' px={1}>
-      <ButtonLink
-        aria-label={`Edit modification ${modification.name}`}
-        flex='1'
-        justifyContent='start'
-        overflow='hidden'
-        px={4}
+      <Link
+        to='modificationEdit'
         query={{
           modificationId: modification._id,
           projectId: modification.projectId,
           regionId
         }}
-        style={{textOverflow: 'ellipsis'}}
-        to='modificationEdit'
-        variant='ghost'
-        variantColor='blue'
-        whiteSpace='nowrap'
       >
-        {modification.name}
-      </ButtonLink>
+        <Button
+          aria-label={`Edit modification ${modification.name}`}
+          flex='1'
+          justifyContent='start'
+          overflow='hidden'
+          px={4}
+          style={{textOverflow: 'ellipsis'}}
+          variant='ghost'
+          colorScheme='blue'
+          whiteSpace='nowrap'
+        >
+          {modification.name}
+        </Button>
+      </Link>
       <IconButton
-        icon={isDisplayed ? faEye : faEyeSlash}
         label={isDisplayed ? 'Hide from map' : 'Show on map'}
         onClick={(e) => {
           e.preventDefault()
           toggleMapDisplay(modification._id)
         }}
-      />
+      >
+        {isDisplayed ? <HideIcon /> : <ShowIcon />}
+      </IconButton>
     </Flex>
   )
 )

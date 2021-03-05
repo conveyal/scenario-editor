@@ -1,4 +1,4 @@
-import {Button, Heading, Stack, useDisclosure, useToast} from '@chakra-ui/core'
+import {Button, Heading, Stack, useDisclosure, useToast} from '@chakra-ui/react'
 import {DomEvent, LatLng, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
 import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
@@ -97,19 +97,14 @@ function useNewStopIcon() {
 }
 
 // Get the modification segments. Always return an array
+const EMPTY_SEGMENTS = []
 const getSegments = (m: Modification): CL.ModificationSegment[] => [
-  ...(m.segments || [])
+  ...(m.segments || EMPTY_SEGMENTS)
 ]
 
 // Hook for getting the segments
 function useSegments(modification: Modification) {
-  const [segments, setSegments] = useState<CL.ModificationSegment[]>(
-    modification.segments || []
-  )
-  useEffect(() => {
-    setSegments(modification.segments || [])
-  }, [modification.segments])
-  return segments
+  return modification.segments || EMPTY_SEGMENTS
 }
 
 /**
@@ -146,6 +141,9 @@ export default function TransitEditor({
     [toast]
   )
 
+  /**
+   * Handles creating a new array so each usage below does not have to.
+   */
   const updateSegments = useCallback(
     (newSegments: CL.ModificationSegment[]) => {
       updateModification({segments: [...newSegments]})
@@ -209,7 +207,9 @@ export default function TransitEditor({
 
   useEffect(() => {
     leaflet.map.on('click', handleMapClick)
-    return () => leaflet.map.off('click', handleMapClick)
+    return () => {
+      leaflet.map.off('click', handleMapClick)
+    }
   }, [handleMapClick, leaflet])
 
   const insertStopAtIndex = useCallback(
@@ -304,7 +304,7 @@ export default function TransitEditor({
   )
 }
 
-const getLineWeightForZoom = (z) => (z < 11 ? 1 : z - 9)
+const getLineWeightForZoom = (z: number) => (z < 11 ? 1 : z - 9)
 function useLineWeight() {
   const zoom = useZoom()
   const [lineWeight, setLineWeight] = useState(() => getLineWeightForZoom(zoom))
@@ -402,7 +402,9 @@ function useStops(segments: CL.ModificationSegment[]) {
   return stops
 }
 
-const autoCreatedStopKey = (s) => `Auto-created Stop ${s.index}`
+// Use array index here instead of overall index
+const autoCreatedStopKey = (index: number) => `Auto-created Stop ${index + 1}`
+
 function AutoCreatedStops({onDragEnd, segments}) {
   const newStopIcon = useNewStopIcon()
   const stops = useStops(segments)
@@ -411,12 +413,12 @@ function AutoCreatedStops({onDragEnd, segments}) {
     <Pane zIndex={zIndex.autoCreatedStops}>
       {stops
         .filter((s) => s.autoCreated)
-        .map((stop) => (
+        .map((stop, index) => (
           <Marker
             position={stop}
             draggable
             icon={newStopIcon}
-            key={autoCreatedStopKey(stop)}
+            key={autoCreatedStopKey(index)}
             onClick={(event: L.LeafletMouseEvent) => {
               logDomEvent('AutoCreatedStop.onClick', event)
               DomEvent.stop(event)
@@ -428,7 +430,7 @@ function AutoCreatedStops({onDragEnd, segments}) {
               onDragEnd(stop.index, (event.target as L.Marker).getLatLng())
             }}
             opacity={0.5}
-            title={autoCreatedStopKey(stop)}
+            title={autoCreatedStopKey(index)}
           />
         ))}
     </Pane>
@@ -448,64 +450,63 @@ function useNewSnappedStopIcon() {
   return newSnappedStopIcon
 }
 
-const stopKey = (stop) => `Stop ${stop.index}`
+// Array index is used here because it refers to the nth Stop instead of overall index
+const stopKey = (index: number) => `Stop ${index + 1}`
+
 function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
   const stops = useStops(segments)
   const newSnappedStopIcon = useNewSnappedStopIcon()
   const newStopIcon = useNewStopIcon()
   const zoom = useZoom()
 
-  const toggleStop = useCallback(
-    (stopIndex) => {
-      if (stopIndex < segments.length) {
-        segments[stopIndex] = {
-          ...segments[stopIndex],
-          stopAtStart: false,
-          fromStopId: null
-        }
+  function toggleStop(stopIndex: number) {
+    if (stopIndex < segments.length) {
+      segments[stopIndex] = {
+        ...segments[stopIndex],
+        stopAtStart: false,
+        fromStopId: null
       }
+    }
 
-      if (stopIndex > 0) {
-        segments[stopIndex - 1] = {
-          ...segments[stopIndex - 1],
-          stopAtEnd: false,
-          toStopId: null
-        }
+    if (stopIndex > 0) {
+      segments[stopIndex - 1] = {
+        ...segments[stopIndex - 1],
+        stopAtEnd: false,
+        toStopId: null
       }
-      updateSegments(segments)
-    },
-    [segments, updateSegments]
-  )
+    }
+    updateSegments(segments)
+  }
 
   return (
     <Pane zIndex={zIndex.stops}>
       {stops
         .filter((s) => !s.autoCreated)
-        .map((stop, stopIndex) => (
+        .map((stop, index) => (
           <Marker
             position={stop}
             icon={stop.stopId ? newSnappedStopIcon : newStopIcon}
             draggable
-            key={`${stopKey(stop)} ${zoom} ${stop.lng},${stop.lat}`}
-            title={stopKey(stop)}
+            key={`${stopKey(index)} ${zoom} ${stop.lng},${stop.lat}`}
+            title={stopKey(index)}
             ondragend={(event: L.DragEndEvent) => {
               logDomEvent('Stop.onDragEnd', event)
               DomEvent.stop(event)
-              onStopDragEnd(stopIndex, (event.target as L.Marker).getLatLng())
+              onStopDragEnd(stop.index, (event.target as L.Marker).getLatLng())
             }}
           >
             <Popup>
               <Stack>
-                <Heading size='sm'>{stopKey(stop)}</Heading>
+                <Heading size='sm'>{stopKey(index)}</Heading>
                 <Button
-                  onClick={() => toggleStop(stopIndex)}
-                  variantColor='blue'
+                  onClick={() => toggleStop(stop.index)}
+                  colorScheme='blue'
                 >
                   {message('transitEditor.makeControlPoint')}
                 </Button>
                 <Button
-                  onClick={() => deleteStop(stopIndex)}
-                  variantColor='red'
+                  onClick={() => deleteStop(stop.index)}
+                  colorScheme='red'
                 >
                   {message('transitEditor.deletePoint')}
                 </Button>
@@ -547,7 +548,7 @@ type ControlPointsProps = {
   updateSegments: (segments: CL.ModificationSegment[]) => void
 }
 
-const controlPointKey = (cp) => `Control Point ${cp.index}`
+const controlPointKey = (index: number) => `Control Point ${index + 1}`
 function ControlPoints({
   deletePoint,
   onDragEnd,
@@ -558,49 +559,46 @@ function ControlPoints({
   const controlPointIcon = useControlPointIcon()
   const zoom = useZoom()
 
-  const togglePoint = useCallback(
-    (pointIndex: number) => {
-      if (pointIndex < segments.length) {
-        segments[pointIndex] = {
-          ...segments[pointIndex],
-          stopAtStart: true
-        }
+  function togglePoint(pointIndex: number) {
+    if (pointIndex < segments.length) {
+      segments[pointIndex] = {
+        ...segments[pointIndex],
+        stopAtStart: true
       }
+    }
 
-      if (pointIndex > 0) {
-        segments[pointIndex - 1] = {
-          ...segments[pointIndex - 1],
-          stopAtEnd: true
-        }
+    if (pointIndex > 0) {
+      segments[pointIndex - 1] = {
+        ...segments[pointIndex - 1],
+        stopAtEnd: true
       }
+    }
 
-      updateSegments(segments)
-    },
-    [segments, updateSegments]
-  )
+    updateSegments(segments)
+  }
 
   return (
     <Pane zIndex={zIndex.controlPoints}>
-      {controlPoints.map((cp) => (
+      {controlPoints.map((cp, index) => (
         <Marker
           position={cp}
           draggable
           icon={controlPointIcon}
-          key={`${controlPointKey(cp)} ${zoom} ${cp.lng} ${cp.lat}`}
+          key={`${controlPointKey(index)} ${zoom} ${cp.lng} ${cp.lat}`}
           onDragend={(event: L.DragEndEvent) => {
             logDomEvent('ControlPoint.onDragend', event)
             DomEvent.stop(event)
             onDragEnd(cp.index, (event.target as L.Marker).getLatLng())
           }}
-          title={controlPointKey(cp)}
+          title={controlPointKey(index)}
         >
           <Popup>
             <Stack>
-              <Heading size='sm'>{controlPointKey(cp)}</Heading>
-              <Button onClick={() => togglePoint(cp.index)} variantColor='blue'>
+              <Heading size='sm'>{controlPointKey(index)}</Heading>
+              <Button onClick={() => togglePoint(cp.index)} colorScheme='blue'>
                 {message('transitEditor.makeStop')}
               </Button>
-              <Button onClick={() => deletePoint(cp.index)} variantColor='red'>
+              <Button onClick={() => deletePoint(cp.index)} colorScheme='red'>
                 {message('transitEditor.deletePoint')}
               </Button>
             </Stack>

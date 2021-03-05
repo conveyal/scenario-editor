@@ -2,7 +2,7 @@
  * Create a Grid from an ArrayBuffer retrieved from the server or S3. Binary
  * data that uses a common header format used across Conveyal libraries.
  */
-export default function create(data: ArrayBuffer) {
+export default function create(data: ArrayBuffer): CL.ParsedGrid {
   const array = new Int32Array(data, 4 * 5)
   const header = new Int32Array(data)
 

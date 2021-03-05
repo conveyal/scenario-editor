@@ -26,10 +26,20 @@ exports[`Component > ProjectTitle 1`] = `
     p={2}
     width="320px"
   >
-    <Box
-      alignItems="center"
+    <Styled(div)
+      __css={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexBasis": undefined,
+          "flexDirection": undefined,
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "flexWrap": undefined,
+          "justifyContent": undefined,
+        }
+      }
       borderBottom="1px solid #E2E8F0"
-      display="flex"
       p={2}
       width="320px"
     >
@@ -37,13 +47,6 @@ exports[`Component > ProjectTitle 1`] = `
         className="css-hyly4r"
       >
         <IconButton
-          icon={
-            Object {
-              "icon": Array [],
-              "iconName": "chevron-left",
-              "prefix": "fas",
-            }
-          }
           label="All projects"
           onClick={[Function]}
         >
@@ -51,7 +54,7 @@ exports[`Component > ProjectTitle 1`] = `
             <div
               className="css-0"
             >
-              <Tip
+              <ForwardRef
                 label="All projects"
                 placement="auto"
               >
@@ -65,185 +68,113 @@ exports[`Component > ProjectTitle 1`] = `
                 >
                   <Button
                     aria-label="All projects"
+                    colorScheme="blue"
                     isActive={false}
                     isDisabled={false}
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
+                    onMouseDown={[Function]}
                     onMouseEnter={[Function]}
-                    onMouseLeave={[Function]}
                     size="sm"
                     variant="ghost"
-                    variantColor="blue"
                   >
-                    <PseudoBox
-                      _active={
+                    <Styled(button)
+                      __css={
                         Object {
-                          "bg": "blue.100",
+                          "_active": Object {
+                            "bg": "blue.100",
+                          },
+                          "_disabled": Object {
+                            "boxShadow": "none",
+                            "cursor": "not-allowed",
+                            "opacity": 0.4,
+                          },
+                          "_focus": Object {
+                            "boxShadow": "outline",
+                          },
+                          "_hover": Object {
+                            "_disabled": Object {
+                              "bg": "initial",
+                            },
+                            "bg": "blue.50",
+                          },
+                          "alignItems": "center",
+                          "appearance": "none",
+                          "bg": "transparent",
+                          "borderRadius": "md",
+                          "color": "blue.600",
+                          "display": "inline-flex",
+                          "fontSize": "sm",
+                          "fontWeight": "semibold",
+                          "h": 8,
+                          "justifyContent": "center",
+                          "lineHeight": "1.2",
+                          "minW": 8,
+                          "outline": "none",
+                          "position": "relative",
+                          "px": 3,
+                          "transition": "all 250ms",
+                          "userSelect": "none",
+                          "verticalAlign": "middle",
+                          "whiteSpace": "nowrap",
+                          "width": "auto",
                         }
                       }
-                      _disabled={
-                        Object {
-                          "boxShadow": "none",
-                          "cursor": "not-allowed",
-                          "opacity": "40%",
-                        }
-                      }
-                      _focus={
-                        Object {
-                          "boxShadow": "outline",
-                        }
-                      }
-                      _hover={
-                        Object {
-                          "bg": "blue.50",
-                        }
-                      }
-                      alignItems="center"
-                      appearance="none"
                       aria-label="All projects"
-                      as="button"
-                      bg="transparent"
-                      borderRadius="md"
-                      color="blue.500"
-                      display="inline-flex"
-                      fontSize="sm"
-                      fontWeight="semibold"
-                      height={8}
-                      justifyContent="center"
-                      lineHeight="1.2"
-                      minWidth={8}
+                      className="chakra-button"
                       onBlur={[Function]}
                       onClick={[Function]}
                       onFocus={[Function]}
+                      onMouseDown={[Function]}
                       onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      outline="none"
-                      position="relative"
-                      px={3}
-                      transition="all 250ms"
                       type="button"
-                      userSelect="none"
-                      verticalAlign="middle"
-                      whiteSpace="nowrap"
                     >
                       <button
                         aria-label="All projects"
-                        className="css-ig2uvu"
+                        className="chakra-button css-1o9h2ju"
                         onBlur={[Function]}
                         onClick={[Function]}
                         onFocus={[Function]}
+                        onMouseDown={[Function]}
                         onMouseEnter={[Function]}
-                        onMouseLeave={[Function]}
                         type="button"
                       >
-                        <Icon
-                          fixedWidth={false}
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "chevron-left",
-                              "prefix": "fas",
-                            }
-                          }
-                        >
-                          <FontAwesomeIcon
-                            border={false}
-                            className=""
-                            fixedWidth={false}
-                            flip={null}
-                            icon={
+                        <FaChevronLeft>
+                          <IconBase
+                            attr={
                               Object {
-                                "icon": Array [],
-                                "iconName": "chevron-left",
-                                "prefix": "fas",
+                                "viewBox": "0 0 320 512",
                               }
                             }
-                            inverse={false}
-                            listItem={false}
-                            mask={null}
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            swapOpacity={false}
-                            symbol={false}
-                            title=""
-                            transform={null}
                           >
                             <svg
-                              aria-hidden="true"
-                              className="svg-inline--fa fa-chevron-left fa-w-NaN "
-                              data-icon="chevron-left"
-                              data-prefix="fas"
-                              focusable="false"
-                              role="img"
-                              style={Object {}}
-                              viewBox="0 0 undefined undefined"
+                              fill="currentColor"
+                              height="1em"
+                              stroke="currentColor"
+                              strokeWidth="0"
+                              style={
+                                Object {
+                                  "color": undefined,
+                                }
+                              }
+                              viewBox="0 0 320 512"
+                              width="1em"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                fill="currentColor"
-                                style={Object {}}
+                                d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                key="0"
                               />
                             </svg>
-                          </FontAwesomeIcon>
-                        </Icon>
+                          </IconBase>
+                        </FaChevronLeft>
                       </button>
-                    </PseudoBox>
+                    </Styled(button)>
                   </Button>
-                  <ForwardRef
-                    anchorEl={
-                      <button
-                        aria-label="All projects"
-                        class="css-ig2uvu"
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="svg-inline--fa fa-chevron-left fa-w-NaN "
-                          data-icon="chevron-left"
-                          data-prefix="fas"
-                          focusable="false"
-                          role="img"
-                          viewBox="0 0 undefined undefined"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill="currentColor"
-                          />
-                        </svg>
-                      </button>
-                    }
-                    arrowSize="10px"
-                    bg="gray.700"
-                    borderRadius="sm"
-                    color="whiteAlpha.900"
-                    fontSize="md"
-                    fontWeight="medium"
-                    hasArrow={true}
-                    isOpen={false}
-                    maxW="320px"
-                    modifiers={
-                      Object {
-                        "offset": Object {
-                          "enabled": true,
-                          "offset": "0, 8",
-                        },
-                      }
-                    }
-                    placement="auto"
-                    pointerEvents="none"
-                    px="8px"
-                    py="2px"
-                    shadow="md"
-                    timeout={200}
-                    usePortal={true}
-                    zIndex={1500}
-                  />
+                  <AnimatePresence />
                 </Tooltip>
-              </Tip>
+              </ForwardRef>
             </div>
           </Box>
         </IconButton>
@@ -259,13 +190,17 @@ exports[`Component > ProjectTitle 1`] = `
           }
           whiteSpace="nowrap"
         >
-          <Box
-            as="h2"
+          <Styled(h2)
+            __css={
+              Object {
+                "fontFamily": "heading",
+                "fontSize": "xl",
+                "fontWeight": "bold",
+                "lineHeight": 1.2,
+              }
+            }
+            className="chakra-heading"
             flex="1"
-            fontFamily="heading"
-            fontSize="xl"
-            fontWeight="bold"
-            lineHeight="shorter"
             ml={2}
             overflow="hidden"
             style={
@@ -276,7 +211,7 @@ exports[`Component > ProjectTitle 1`] = `
             whiteSpace="nowrap"
           >
             <h2
-              className="css-1ruodvp"
+              className="chakra-heading css-1dhojwb"
               style={
                 Object {
                   "textOverflow": "ellipsis",
@@ -285,23 +220,27 @@ exports[`Component > ProjectTitle 1`] = `
             >
               Mock Project
             </h2>
-          </Box>
+          </Styled(h2)>
         </Heading>
         <Flex>
-          <Box
-            display="flex"
+          <Styled(div)
+            __css={
+              Object {
+                "alignItems": undefined,
+                "display": "flex",
+                "flexBasis": undefined,
+                "flexDirection": undefined,
+                "flexGrow": undefined,
+                "flexShrink": undefined,
+                "flexWrap": undefined,
+                "justifyContent": undefined,
+              }
+            }
           >
             <div
               className="css-k008qs"
             >
               <IconButton
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "external-link-alt",
-                    "prefix": "fas",
-                  }
-                }
                 label="Download or share this project"
                 onClick={[Function]}
               >
@@ -309,7 +248,7 @@ exports[`Component > ProjectTitle 1`] = `
                   <div
                     className="css-0"
                   >
-                    <Tip
+                    <ForwardRef
                       label="Download or share this project"
                       placement="auto"
                     >
@@ -323,196 +262,117 @@ exports[`Component > ProjectTitle 1`] = `
                       >
                         <Button
                           aria-label="Download or share this project"
+                          colorScheme="blue"
                           isActive={false}
                           isDisabled={false}
                           onBlur={[Function]}
                           onClick={[Function]}
                           onFocus={[Function]}
+                          onMouseDown={[Function]}
                           onMouseEnter={[Function]}
-                          onMouseLeave={[Function]}
                           size="sm"
                           variant="ghost"
-                          variantColor="blue"
                         >
-                          <PseudoBox
-                            _active={
+                          <Styled(button)
+                            __css={
                               Object {
-                                "bg": "blue.100",
+                                "_active": Object {
+                                  "bg": "blue.100",
+                                },
+                                "_disabled": Object {
+                                  "boxShadow": "none",
+                                  "cursor": "not-allowed",
+                                  "opacity": 0.4,
+                                },
+                                "_focus": Object {
+                                  "boxShadow": "outline",
+                                },
+                                "_hover": Object {
+                                  "_disabled": Object {
+                                    "bg": "initial",
+                                  },
+                                  "bg": "blue.50",
+                                },
+                                "alignItems": "center",
+                                "appearance": "none",
+                                "bg": "transparent",
+                                "borderRadius": "md",
+                                "color": "blue.600",
+                                "display": "inline-flex",
+                                "fontSize": "sm",
+                                "fontWeight": "semibold",
+                                "h": 8,
+                                "justifyContent": "center",
+                                "lineHeight": "1.2",
+                                "minW": 8,
+                                "outline": "none",
+                                "position": "relative",
+                                "px": 3,
+                                "transition": "all 250ms",
+                                "userSelect": "none",
+                                "verticalAlign": "middle",
+                                "whiteSpace": "nowrap",
+                                "width": "auto",
                               }
                             }
-                            _disabled={
-                              Object {
-                                "boxShadow": "none",
-                                "cursor": "not-allowed",
-                                "opacity": "40%",
-                              }
-                            }
-                            _focus={
-                              Object {
-                                "boxShadow": "outline",
-                              }
-                            }
-                            _hover={
-                              Object {
-                                "bg": "blue.50",
-                              }
-                            }
-                            alignItems="center"
-                            appearance="none"
                             aria-label="Download or share this project"
-                            as="button"
-                            bg="transparent"
-                            borderRadius="md"
-                            color="blue.500"
-                            display="inline-flex"
-                            fontSize="sm"
-                            fontWeight="semibold"
-                            height={8}
-                            justifyContent="center"
-                            lineHeight="1.2"
-                            minWidth={8}
+                            className="chakra-button"
                             onBlur={[Function]}
                             onClick={[Function]}
                             onFocus={[Function]}
+                            onMouseDown={[Function]}
                             onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
-                            outline="none"
-                            position="relative"
-                            px={3}
-                            transition="all 250ms"
                             type="button"
-                            userSelect="none"
-                            verticalAlign="middle"
-                            whiteSpace="nowrap"
                           >
                             <button
                               aria-label="Download or share this project"
-                              className="css-ig2uvu"
+                              className="chakra-button css-1o9h2ju"
                               onBlur={[Function]}
                               onClick={[Function]}
                               onFocus={[Function]}
+                              onMouseDown={[Function]}
                               onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
                               type="button"
                             >
-                              <Icon
-                                fixedWidth={false}
-                                icon={
-                                  Object {
-                                    "icon": Array [],
-                                    "iconName": "external-link-alt",
-                                    "prefix": "fas",
-                                  }
-                                }
-                              >
-                                <FontAwesomeIcon
-                                  border={false}
-                                  className=""
-                                  fixedWidth={false}
-                                  flip={null}
-                                  icon={
+                              <FaExternalLinkAlt>
+                                <IconBase
+                                  attr={
                                     Object {
-                                      "icon": Array [],
-                                      "iconName": "external-link-alt",
-                                      "prefix": "fas",
+                                      "viewBox": "0 0 512 512",
                                     }
                                   }
-                                  inverse={false}
-                                  listItem={false}
-                                  mask={null}
-                                  pull={null}
-                                  pulse={false}
-                                  rotation={null}
-                                  size={null}
-                                  spin={false}
-                                  swapOpacity={false}
-                                  symbol={false}
-                                  title=""
-                                  transform={null}
                                 >
                                   <svg
-                                    aria-hidden="true"
-                                    className="svg-inline--fa fa-external-link-alt fa-w-NaN "
-                                    data-icon="external-link-alt"
-                                    data-prefix="fas"
-                                    focusable="false"
-                                    role="img"
-                                    style={Object {}}
-                                    viewBox="0 0 undefined undefined"
+                                    fill="currentColor"
+                                    height="1em"
+                                    stroke="currentColor"
+                                    strokeWidth="0"
+                                    style={
+                                      Object {
+                                        "color": undefined,
+                                      }
+                                    }
+                                    viewBox="0 0 512 512"
+                                    width="1em"
                                     xmlns="http://www.w3.org/2000/svg"
                                   >
                                     <path
-                                      fill="currentColor"
-                                      style={Object {}}
+                                      d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"
+                                      key="0"
                                     />
                                   </svg>
-                                </FontAwesomeIcon>
-                              </Icon>
+                                </IconBase>
+                              </FaExternalLinkAlt>
                             </button>
-                          </PseudoBox>
+                          </Styled(button)>
                         </Button>
-                        <ForwardRef
-                          anchorEl={
-                            <button
-                              aria-label="Download or share this project"
-                              class="css-ig2uvu"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="svg-inline--fa fa-external-link-alt fa-w-NaN "
-                                data-icon="external-link-alt"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                viewBox="0 0 undefined undefined"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </button>
-                          }
-                          arrowSize="10px"
-                          bg="gray.700"
-                          borderRadius="sm"
-                          color="whiteAlpha.900"
-                          fontSize="md"
-                          fontWeight="medium"
-                          hasArrow={true}
-                          isOpen={false}
-                          maxW="320px"
-                          modifiers={
-                            Object {
-                              "offset": Object {
-                                "enabled": true,
-                                "offset": "0, 8",
-                              },
-                            }
-                          }
-                          placement="auto"
-                          pointerEvents="none"
-                          px="8px"
-                          py="2px"
-                          shadow="md"
-                          timeout={200}
-                          usePortal={true}
-                          zIndex={1500}
-                        />
+                        <AnimatePresence />
                       </Tooltip>
-                    </Tip>
+                    </ForwardRef>
                   </div>
                 </Box>
               </IconButton>
               <IconButton
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "cog",
-                    "prefix": "fas",
-                  }
-                }
                 label="Edit project settings"
                 onClick={[Function]}
               >
@@ -520,7 +380,7 @@ exports[`Component > ProjectTitle 1`] = `
                   <div
                     className="css-0"
                   >
-                    <Tip
+                    <ForwardRef
                       label="Edit project settings"
                       placement="auto"
                     >
@@ -534,193 +394,121 @@ exports[`Component > ProjectTitle 1`] = `
                       >
                         <Button
                           aria-label="Edit project settings"
+                          colorScheme="blue"
                           isActive={false}
                           isDisabled={false}
                           onBlur={[Function]}
                           onClick={[Function]}
                           onFocus={[Function]}
+                          onMouseDown={[Function]}
                           onMouseEnter={[Function]}
-                          onMouseLeave={[Function]}
                           size="sm"
                           variant="ghost"
-                          variantColor="blue"
                         >
-                          <PseudoBox
-                            _active={
+                          <Styled(button)
+                            __css={
                               Object {
-                                "bg": "blue.100",
+                                "_active": Object {
+                                  "bg": "blue.100",
+                                },
+                                "_disabled": Object {
+                                  "boxShadow": "none",
+                                  "cursor": "not-allowed",
+                                  "opacity": 0.4,
+                                },
+                                "_focus": Object {
+                                  "boxShadow": "outline",
+                                },
+                                "_hover": Object {
+                                  "_disabled": Object {
+                                    "bg": "initial",
+                                  },
+                                  "bg": "blue.50",
+                                },
+                                "alignItems": "center",
+                                "appearance": "none",
+                                "bg": "transparent",
+                                "borderRadius": "md",
+                                "color": "blue.600",
+                                "display": "inline-flex",
+                                "fontSize": "sm",
+                                "fontWeight": "semibold",
+                                "h": 8,
+                                "justifyContent": "center",
+                                "lineHeight": "1.2",
+                                "minW": 8,
+                                "outline": "none",
+                                "position": "relative",
+                                "px": 3,
+                                "transition": "all 250ms",
+                                "userSelect": "none",
+                                "verticalAlign": "middle",
+                                "whiteSpace": "nowrap",
+                                "width": "auto",
                               }
                             }
-                            _disabled={
-                              Object {
-                                "boxShadow": "none",
-                                "cursor": "not-allowed",
-                                "opacity": "40%",
-                              }
-                            }
-                            _focus={
-                              Object {
-                                "boxShadow": "outline",
-                              }
-                            }
-                            _hover={
-                              Object {
-                                "bg": "blue.50",
-                              }
-                            }
-                            alignItems="center"
-                            appearance="none"
                             aria-label="Edit project settings"
-                            as="button"
-                            bg="transparent"
-                            borderRadius="md"
-                            color="blue.500"
-                            display="inline-flex"
-                            fontSize="sm"
-                            fontWeight="semibold"
-                            height={8}
-                            justifyContent="center"
-                            lineHeight="1.2"
-                            minWidth={8}
+                            className="chakra-button"
                             onBlur={[Function]}
                             onClick={[Function]}
                             onFocus={[Function]}
+                            onMouseDown={[Function]}
                             onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
-                            outline="none"
-                            position="relative"
-                            px={3}
-                            transition="all 250ms"
                             type="button"
-                            userSelect="none"
-                            verticalAlign="middle"
-                            whiteSpace="nowrap"
                           >
                             <button
                               aria-label="Edit project settings"
-                              className="css-ig2uvu"
+                              className="chakra-button css-1o9h2ju"
                               onBlur={[Function]}
                               onClick={[Function]}
                               onFocus={[Function]}
+                              onMouseDown={[Function]}
                               onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
                               type="button"
                             >
-                              <Icon
-                                fixedWidth={false}
-                                icon={
-                                  Object {
-                                    "icon": Array [],
-                                    "iconName": "cog",
-                                    "prefix": "fas",
-                                  }
-                                }
-                              >
-                                <FontAwesomeIcon
-                                  border={false}
-                                  className=""
-                                  fixedWidth={false}
-                                  flip={null}
-                                  icon={
+                              <FaCog>
+                                <IconBase
+                                  attr={
                                     Object {
-                                      "icon": Array [],
-                                      "iconName": "cog",
-                                      "prefix": "fas",
+                                      "viewBox": "0 0 512 512",
                                     }
                                   }
-                                  inverse={false}
-                                  listItem={false}
-                                  mask={null}
-                                  pull={null}
-                                  pulse={false}
-                                  rotation={null}
-                                  size={null}
-                                  spin={false}
-                                  swapOpacity={false}
-                                  symbol={false}
-                                  title=""
-                                  transform={null}
                                 >
                                   <svg
-                                    aria-hidden="true"
-                                    className="svg-inline--fa fa-cog fa-w-NaN "
-                                    data-icon="cog"
-                                    data-prefix="fas"
-                                    focusable="false"
-                                    role="img"
-                                    style={Object {}}
-                                    viewBox="0 0 undefined undefined"
+                                    fill="currentColor"
+                                    height="1em"
+                                    stroke="currentColor"
+                                    strokeWidth="0"
+                                    style={
+                                      Object {
+                                        "color": undefined,
+                                      }
+                                    }
+                                    viewBox="0 0 512 512"
+                                    width="1em"
                                     xmlns="http://www.w3.org/2000/svg"
                                   >
                                     <path
-                                      fill="currentColor"
-                                      style={Object {}}
+                                      d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"
+                                      key="0"
                                     />
                                   </svg>
-                                </FontAwesomeIcon>
-                              </Icon>
+                                </IconBase>
+                              </FaCog>
                             </button>
-                          </PseudoBox>
+                          </Styled(button)>
                         </Button>
-                        <ForwardRef
-                          anchorEl={
-                            <button
-                              aria-label="Edit project settings"
-                              class="css-ig2uvu"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="svg-inline--fa fa-cog fa-w-NaN "
-                                data-icon="cog"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                viewBox="0 0 undefined undefined"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </button>
-                          }
-                          arrowSize="10px"
-                          bg="gray.700"
-                          borderRadius="sm"
-                          color="whiteAlpha.900"
-                          fontSize="md"
-                          fontWeight="medium"
-                          hasArrow={true}
-                          isOpen={false}
-                          maxW="320px"
-                          modifiers={
-                            Object {
-                              "offset": Object {
-                                "enabled": true,
-                                "offset": "0, 8",
-                              },
-                            }
-                          }
-                          placement="auto"
-                          pointerEvents="none"
-                          px="8px"
-                          py="2px"
-                          shadow="md"
-                          timeout={200}
-                          usePortal={true}
-                          zIndex={1500}
-                        />
+                        <AnimatePresence />
                       </Tooltip>
-                    </Tip>
+                    </ForwardRef>
                   </div>
                 </Box>
               </IconButton>
             </div>
-          </Box>
+          </Styled(div)>
         </Flex>
       </div>
-    </Box>
+    </Styled(div)>
   </Flex>
 </ProjectTitle>
 `;

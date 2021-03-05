@@ -19,6 +19,7 @@ interface UseCollection extends ConfigInterface {
 type UseCollectionResponse<T> = {
   create: (properties: T) => Promise<SafeResponse>
   data: T[]
+  error?: Error
   remove: (_id: string) => Promise<SafeResponse>
   response: responseInterface<T[], ResponseError>
   update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse>
@@ -108,6 +109,7 @@ export function createUseCollection<T extends CL.IModel>(
     return {
       create,
       data: response.data,
+      error: response.error?.error,
       remove,
       response,
       update

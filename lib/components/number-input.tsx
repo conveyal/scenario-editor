@@ -4,7 +4,7 @@ import {
   Input,
   InputGroup,
   InputRightElement
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {FocusEvent} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'

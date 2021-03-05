@@ -1,3 +1,4 @@
+import {LatLngTuple} from 'leaflet'
 import {getDefaultRegion, scratchRegion} from '../utils'
 
 describe('Add Trip Pattern', () => {
@@ -52,7 +53,7 @@ describe('Add Trip Pattern', () => {
       // Copy the current modification and navigate to it by clicking the toast
       cy.findByRole('button', {name: /Copy modification/i}).click()
       cy.loadingComplete()
-      cy.get('#react-toast').findByRole('alert').click({force: true})
+      cy.findToast().click({force: true})
       cy.navComplete()
 
       cy.findByText(/Copy existing timetable/).click()
@@ -115,7 +116,7 @@ describe('Add Trip Pattern', () => {
       cy.clickMapAtCoord([39.08, -84.49])
       cy.findByLabelText(/^Extend$/).uncheck({force: true})
       cy.clickMapAtCoord([39.08, -84.5])
-      cy.get('#react-toast').findByRole('alert')
+      cy.findToast()
       cy.findByLabelText(/^Extend$/).check({force: true})
     })
 
@@ -129,13 +130,13 @@ describe('Add Trip Pattern', () => {
       const newCoord: L.LatLngTuple = [39.08, -84.5]
       const tempCoord: L.LatLngTuple = [39.09, -84.5]
 
-      cy.dragMarker('Stop 1', lastCoord, newCoord)
+      cy.dragMarker('Stop 2', lastCoord, newCoord)
       cy.findByText(/2 stops over 1.7/)
 
-      cy.dragMarker('Stop 1', newCoord, tempCoord)
+      cy.dragMarker('Stop 2', newCoord, tempCoord)
       cy.findByText(/2 stops over 2/)
 
-      cy.dragMarker('Stop 1', tempCoord, newCoord)
+      cy.dragMarker('Stop 2', tempCoord, newCoord)
       cy.findByText(/2 stops over 1.7/)
     })
 
@@ -158,7 +159,7 @@ describe('Add Trip Pattern', () => {
       const coord: L.LatLngTuple = [39.08, -84.49]
       const newCoord: L.LatLngTuple = [39.09, -84.49]
       cy.clickMapAtCoord(coord)
-      cy.dragMarker('Stop 1', coord, newCoord)
+      cy.dragMarker('Stop 2', coord, newCoord)
       cy.findByText(/3 stops over 2/)
     })
 
@@ -193,10 +194,93 @@ describe('Add Trip Pattern', () => {
         const even = i % 2 === 0
         const latInc = even ? step : 0
         const lonInc = even ? 0 : step
-        cy.dragMarker(`Stop ${i}`, [lat, lon], [lat + latInc, lon + lonInc])
+        cy.dragMarker(`Stop ${i + 1}`, [lat, lon], [lat + latInc, lon + lonInc])
         lat += step
         lon += step
       }
+    })
+  })
+
+  describe('Bugfixes', () => {
+    const mod = project.getModification({
+      name: 'ATP Bugfixes',
+      type: 'Add Trip Pattern',
+      data: {
+        segments: []
+      }
+    })
+
+    // Reset segments on each go
+    beforeEach(() => {
+      mod.navTo()
+      cy.editModificationJSON({
+        segments: []
+      })
+    })
+
+    /**
+     * Test proper control point placement and dragging when editing.
+     * ref https://github.com/conveyal/analysis-ui/issues/1432
+     *
+     * This issue was solved by correcting `stopIndex` to `stop.index` when passing it to the `onStopDragEnd` method in
+     * the Stops component of the TransitEditor.
+     *
+     * `stopIndex` referred to the index of the stop in the array of ONLY stops, while `stop.index` refers to the
+     * index in the array of stops, control points, and auto-created stops -- which is generated from the segments array.
+     */
+    it('can edit alignments downstream of control points', () => {
+      const lat = 39.08
+      const c1: LatLngTuple = [lat, -84.401]
+      const c2: LatLngTuple = [lat, -84.402]
+      const c3: LatLngTuple = [lat, -84.403]
+      const c4: LatLngTuple = [lat, -84.404]
+      const c5: LatLngTuple = [lat, -84.405]
+
+      // Example 1
+      cy.findButton(/Edit route geometry/).click()
+
+      cy.clickMapAtCoord(c1)
+      cy.clickMapAtCoord(c2)
+
+      // Make the second stop a control point
+      cy.clickMapAtCoord(c2)
+      cy.findButton(/make control point/i).click()
+
+      // Create a 2nd stop and drag it to the 4th location
+      cy.clickMapAtCoord(c3)
+      cy.dragMarker('Stop 2', c3, c4)
+
+      // 4th location should contain a stop, and therefore "make control point" button
+      cy.clickMapAtCoord(c4)
+      cy.findButton(/make control point/i)
+      cy.findByText(/2 stops over 0\.26 km/).should('exist')
+
+      // Reset
+      cy.findButton(/Stop editing/).click()
+      cy.editModificationJSON({
+        segments: []
+      })
+
+      // Example 2
+      cy.findButton(/Edit route geometry/).click()
+      cy.clickMapAtCoord(c1)
+      cy.clickMapAtCoord(c2)
+      cy.clickMapAtCoord(c3)
+
+      // Convert the 3rd and 2nd stops to control points
+      cy.clickMapAtCoord(c3)
+      cy.findButton(/make control point/i).click()
+      cy.clickMapAtCoord(c2)
+      cy.findButton(/make control point/i).click()
+
+      // Create a 2nd stop and move to 5th location
+      cy.clickMapAtCoord(c4)
+      cy.dragMarker('Stop 2', c4, c5)
+
+      // 5th location should contain a stop, and therefore "make control point" button
+      cy.clickMapAtCoord(c5)
+      cy.findButton(/make control point/i).click()
+      cy.findByText(/1 stop/)
     })
   })
 })

@@ -77,1477 +77,871 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
   walkSpeed={1.3888888888888888}
   workerVersion="v4.0.0"
 >
-  <ForwardRef>
-    <Flex
-      direction="column"
+  <Stack>
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": "0.5rem",
+          },
+        }
+      }
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
     >
-      <Box
-        display="flex"
-        flexDirection="column"
+      <div
+        className="chakra-stack css-1pifhv5"
       >
-        <div
-          className="css-j7qwjs"
+        <Box
+          as="table"
+          key=".0"
+          style={
+            Object {
+              "tableLayout": "fixed",
+            }
+          }
+          width="100%"
         >
-          <Box
-            as="table"
-            key=".0"
-            mb={2}
+          <table
+            className="css-8atqhb"
             style={
               Object {
                 "tableLayout": "fixed",
               }
             }
-            width="100%"
           >
-            <table
-              className="css-e7qgrl"
-              style={
-                Object {
-                  "tableLayout": "fixed",
-                }
-              }
-            >
-              <tbody>
-                <tr>
-                  <TDTitle>
-                    <Box
-                      as="td"
-                      fontWeight={600}
-                      overflow="hidden"
-                      px={4}
-                      py={2}
+            <tbody>
+              <tr>
+                <TDTitle>
+                  <Box
+                    as="td"
+                    fontWeight={600}
+                    overflow="hidden"
+                    px={4}
+                    py={2}
+                    style={
+                      Object {
+                        "textOverflow": "ellipsis",
+                      }
+                    }
+                    textAlign="right"
+                    title="Bundle"
+                    width="35%"
+                  >
+                    <td
+                      className="css-1lwb3yd"
                       style={
                         Object {
                           "textOverflow": "ellipsis",
                         }
                       }
-                      textAlign="right"
                       title="Bundle"
-                      width="35%"
                     >
-                      <td
-                        className="css-1lwb3yd"
-                        style={
+                      Bundle
+                    </td>
+                  </Box>
+                </TDTitle>
+                <TDValue>
+                  <Box
+                    as="td"
+                    width="65%"
+                  >
+                    <td
+                      className="css-ft9ciy"
+                    >
+                      <ALink
+                        query={
                           Object {
-                            "textOverflow": "ellipsis",
+                            "bundleId": "1",
+                            "regionId": "1",
                           }
                         }
-                        title="Bundle"
+                        to="bundleEdit"
                       >
-                        Bundle
-                      </td>
-                    </Box>
-                  </TDTitle>
-                  <TDValue>
-                    <Box
-                      as="td"
-                      width="65%"
-                    >
-                      <td
-                        className="css-ft9ciy"
-                      >
-                        <ALink
-                          bundleId="1"
-                          regionId="1"
+                        <InternalLink
+                          query={
+                            Object {
+                              "bundleId": "1",
+                              "regionId": "1",
+                            }
+                          }
                           to="bundleEdit"
                         >
-                          <InternalLink
-                            bundleId="1"
-                            regionId="1"
-                            to="bundleEdit"
+                          <Link
+                            href="/regions/1/bundles/1"
+                            passHref={true}
                           >
-                            <Link
-                              as="/regions/1/bundles/1"
-                              href={
+                            <a
+                              className=""
+                              href="/regions/1/bundles/1"
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                            >
+                              Mock Bundle
+                            </a>
+                          </Link>
+                        </InternalLink>
+                      </ALink>
+                    </td>
+                  </Box>
+                </TDValue>
+              </tr>
+              <tr>
+                <TDTitle>
+                  <Box
+                    as="td"
+                    fontWeight={600}
+                    overflow="hidden"
+                    px={4}
+                    py={2}
+                    style={
+                      Object {
+                        "textOverflow": "ellipsis",
+                      }
+                    }
+                    textAlign="right"
+                    title="Project"
+                    width="35%"
+                  >
+                    <td
+                      className="css-1lwb3yd"
+                      style={
+                        Object {
+                          "textOverflow": "ellipsis",
+                        }
+                      }
+                      title="Project"
+                    >
+                      Project
+                    </td>
+                  </Box>
+                </TDTitle>
+                <TDValue>
+                  <Box
+                    as="td"
+                    width="65%"
+                  >
+                    <td
+                      className="css-ft9ciy"
+                    >
+                      <ForwardRef
+                        label="Notice: project may have changed since the analysis was run."
+                      >
+                        <Tooltip
+                          aria-label="Tooltip: Notice: project may have changed since the analysis was run."
+                          fontSize="md"
+                          hasArrow={true}
+                          label="Notice: project may have changed since the analysis was run."
+                          zIndex={1500}
+                        >
+                          <div
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            onMouseEnter={[Function]}
+                          >
+                            <ALink
+                              query={
                                 Object {
-                                  "pathname": "/regions/[regionId]/bundles/[bundleId]",
-                                  "query": Object {},
+                                  "projectId": "1",
+                                  "regionId": "1",
                                 }
                               }
-                              passHref={true}
+                              to="modifications"
                             >
-                              <Link
-                                _hover={
+                              <InternalLink
+                                query={
                                   Object {
-                                    "color": "blue.700",
+                                    "projectId": "1",
+                                    "regionId": "1",
                                   }
                                 }
-                                className=""
-                                color="blue.500"
-                                href="/regions/1/bundles/1"
-                                onClick={[Function]}
-                                onMouseEnter={[Function]}
+                                to="modifications"
                               >
-                                <PseudoBox
-                                  _disabled={
-                                    Object {
-                                      "cursor": "not-allowed",
-                                      "opacity": "0.4",
-                                      "textDecoration": "none",
-                                    }
-                                  }
-                                  _focus={
-                                    Object {
-                                      "boxShadow": "outline",
-                                    }
-                                  }
-                                  _hover={
-                                    Object {
-                                      "color": "blue.700",
-                                    }
-                                  }
-                                  as="a"
-                                  className=""
-                                  color="blue.500"
-                                  cursor="pointer"
-                                  href="/regions/1/bundles/1"
-                                  onClick={[Function]}
-                                  onMouseEnter={[Function]}
-                                  outline="none"
-                                  textDecoration="none"
-                                  transition="all 0.15s ease-out"
+                                <Link
+                                  href="/regions/1/projects/1/modifications"
+                                  passHref={true}
                                 >
                                   <a
-                                    className=" css-17d37xz"
-                                    href="/regions/1/bundles/1"
+                                    className=""
+                                    href="/regions/1/projects/1/modifications"
                                     onClick={[Function]}
                                     onMouseEnter={[Function]}
                                   >
-                                    Mock Bundle
-                                  </a>
-                                </PseudoBox>
-                              </Link>
-                            </Link>
-                          </InternalLink>
-                        </ALink>
-                      </td>
-                    </Box>
-                  </TDValue>
-                </tr>
-                <tr>
-                  <TDTitle>
-                    <Box
-                      as="td"
-                      fontWeight={600}
-                      overflow="hidden"
-                      px={4}
-                      py={2}
-                      style={
-                        Object {
-                          "textOverflow": "ellipsis",
-                        }
-                      }
-                      textAlign="right"
-                      title="Project"
-                      width="35%"
-                    >
-                      <td
-                        className="css-1lwb3yd"
-                        style={
-                          Object {
-                            "textOverflow": "ellipsis",
-                          }
-                        }
-                        title="Project"
-                      >
-                        Project
-                      </td>
-                    </Box>
-                  </TDTitle>
-                  <TDValue>
-                    <Box
-                      as="td"
-                      width="65%"
-                    >
-                      <td
-                        className="css-ft9ciy"
-                      >
-                        <Tip
-                          label="Notice: project may have changed since the analysis was run."
-                        >
-                          <Tooltip
-                            aria-label="Tooltip: Notice: project may have changed since the analysis was run."
-                            fontSize="md"
-                            hasArrow={true}
-                            label="Notice: project may have changed since the analysis was run."
-                            zIndex={1500}
-                          >
-                            <div
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
-                            >
-                              <ALink
-                                projectId="1"
-                                regionId="1"
-                                to="project"
-                              >
-                                <InternalLink
-                                  projectId="1"
-                                  regionId="1"
-                                  to="project"
-                                >
-                                  <Link
-                                    as="/regions/1/projects/1"
-                                    href={
-                                      Object {
-                                        "pathname": "/regions/[regionId]/projects/[projectId]",
-                                        "query": Object {},
-                                      }
-                                    }
-                                    passHref={true}
-                                  >
-                                    <Link
-                                      _hover={
-                                        Object {
-                                          "color": "blue.700",
-                                        }
-                                      }
-                                      className=""
-                                      color="blue.500"
-                                      href="/regions/1/projects/1"
-                                      onClick={[Function]}
-                                      onMouseEnter={[Function]}
-                                    >
-                                      <PseudoBox
-                                        _disabled={
-                                          Object {
-                                            "cursor": "not-allowed",
-                                            "opacity": "0.4",
-                                            "textDecoration": "none",
-                                          }
-                                        }
-                                        _focus={
-                                          Object {
-                                            "boxShadow": "outline",
-                                          }
-                                        }
-                                        _hover={
-                                          Object {
-                                            "color": "blue.700",
-                                          }
-                                        }
-                                        as="a"
-                                        className=""
-                                        color="blue.500"
-                                        cursor="pointer"
-                                        href="/regions/1/projects/1"
-                                        onClick={[Function]}
-                                        onMouseEnter={[Function]}
-                                        outline="none"
-                                        textDecoration="none"
-                                        transition="all 0.15s ease-out"
-                                      >
-                                        <a
-                                          className=" css-17d37xz"
-                                          href="/regions/1/projects/1"
-                                          onClick={[Function]}
-                                          onMouseEnter={[Function]}
-                                        >
-                                          Mock Project
-                                        </a>
-                                      </PseudoBox>
-                                    </Link>
-                                  </Link>
-                                </InternalLink>
-                              </ALink>
-                            </div>
-                            <ForwardRef
-                              anchorEl={
-                                <div>
-                                  <a
-                                    class=" css-17d37xz"
-                                    href="/regions/1/projects/1"
-                                  >
                                     Mock Project
                                   </a>
-                                </div>
-                              }
-                              arrowSize="10px"
-                              bg="gray.700"
-                              borderRadius="sm"
-                              color="whiteAlpha.900"
-                              fontSize="md"
-                              fontWeight="medium"
-                              hasArrow={true}
-                              isOpen={false}
-                              maxW="320px"
-                              modifiers={
-                                Object {
-                                  "offset": Object {
-                                    "enabled": true,
-                                    "offset": "0, 8",
-                                  },
-                                }
-                              }
-                              placement="auto"
-                              pointerEvents="none"
-                              px="8px"
-                              py="2px"
-                              shadow="md"
-                              timeout={200}
-                              usePortal={true}
-                              zIndex={1500}
-                            />
-                          </Tooltip>
-                        </Tip>
-                      </td>
-                    </Box>
-                  </TDValue>
-                </tr>
-                <tr>
-                  <TDTitle>
-                    <Box
-                      as="td"
-                      fontWeight={600}
-                      overflow="hidden"
-                      px={4}
-                      py={2}
+                                </Link>
+                              </InternalLink>
+                            </ALink>
+                          </div>
+                          <AnimatePresence />
+                        </Tooltip>
+                      </ForwardRef>
+                    </td>
+                  </Box>
+                </TDValue>
+              </tr>
+              <tr>
+                <TDTitle>
+                  <Box
+                    as="td"
+                    fontWeight={600}
+                    overflow="hidden"
+                    px={4}
+                    py={2}
+                    style={
+                      Object {
+                        "textOverflow": "ellipsis",
+                      }
+                    }
+                    textAlign="right"
+                    title="Scenario"
+                    width="35%"
+                  >
+                    <td
+                      className="css-1lwb3yd"
                       style={
                         Object {
                           "textOverflow": "ellipsis",
                         }
                       }
-                      textAlign="right"
                       title="Scenario"
-                      width="35%"
                     >
-                      <td
-                        className="css-1lwb3yd"
-                        style={
-                          Object {
-                            "textOverflow": "ellipsis",
-                          }
+                      Scenario
+                    </td>
+                  </Box>
+                </TDTitle>
+                <TDValue>
+                  <Box
+                    as="td"
+                    width="65%"
+                  >
+                    <td
+                      className="css-ft9ciy"
+                    >
+                      Baseline
+                    </td>
+                  </Box>
+                </TDValue>
+              </tr>
+              <tr>
+                <TDTitle>
+                  <Box
+                    as="td"
+                    fontWeight={600}
+                    overflow="hidden"
+                    px={4}
+                    py={2}
+                    style={
+                      Object {
+                        "textOverflow": "ellipsis",
+                      }
+                    }
+                    textAlign="right"
+                    title="Service Date"
+                    width="35%"
+                  >
+                    <td
+                      className="css-1lwb3yd"
+                      style={
+                        Object {
+                          "textOverflow": "ellipsis",
                         }
-                        title="Scenario"
-                      >
-                        Scenario
-                      </td>
-                    </Box>
-                  </TDTitle>
-                  <TDValue>
-                    <Box
-                      as="td"
-                      width="65%"
+                      }
+                      title="Service Date"
                     >
-                      <td
-                        className="css-ft9ciy"
+                      Service Date
+                    </td>
+                  </Box>
+                </TDTitle>
+                <TDValue>
+                  <Box
+                    as="td"
+                    width="65%"
+                  >
+                    <td
+                      className="css-ft9ciy"
+                    >
+                      2016-01-16
+                    </td>
+                  </Box>
+                </TDValue>
+              </tr>
+              <tr>
+                <TDTitle>
+                  <Box
+                    as="td"
+                    fontWeight={600}
+                    overflow="hidden"
+                    px={4}
+                    py={2}
+                    style={
+                      Object {
+                        "textOverflow": "ellipsis",
+                      }
+                    }
+                    textAlign="right"
+                    title="Service Time"
+                    width="35%"
+                  >
+                    <td
+                      className="css-1lwb3yd"
+                      style={
+                        Object {
+                          "textOverflow": "ellipsis",
+                        }
+                      }
+                      title="Service Time"
+                    >
+                      Service Time
+                    </td>
+                  </Box>
+                </TDTitle>
+                <TDValue>
+                  <Box
+                    as="td"
+                    width="65%"
+                  >
+                    <td
+                      className="css-ft9ciy"
+                    >
+                      07:00
+                      -
+                      09:00
+                    </td>
+                  </Box>
+                </TDValue>
+              </tr>
+              <tr>
+                <TDTitle>
+                  <Box
+                    as="td"
+                    fontWeight={600}
+                    overflow="hidden"
+                    px={4}
+                    py={2}
+                    style={
+                      Object {
+                        "textOverflow": "ellipsis",
+                      }
+                    }
+                    textAlign="right"
+                    title="Modes"
+                    width="35%"
+                  >
+                    <td
+                      className="css-1lwb3yd"
+                      style={
+                        Object {
+                          "textOverflow": "ellipsis",
+                        }
+                      }
+                      title="Modes"
+                    >
+                      Modes
+                    </td>
+                  </Box>
+                </TDTitle>
+                <TDValue>
+                  <Box
+                    as="td"
+                    width="65%"
+                  >
+                    <td
+                      className="css-ft9ciy"
+                    >
+                      <ModeSummary
+                        accessModes="WALK"
+                        color="blue"
+                        egressModes="WALK"
+                        transitModes="BUS,TRAM,RAIL,SUBWAY"
                       >
-                        <Flex
+                        <Stack
                           align="center"
+                          isInline={true}
+                          spacing={1}
                         >
-                          <Box
+                          <Styled(div)
+                            __css={
+                              Object {
+                                "& > *:not(style) ~ *:not(style)": Object {
+                                  "marginStart": 1,
+                                  "marginTop": 0,
+                                },
+                              }
+                            }
                             alignItems="center"
+                            className="chakra-stack"
                             display="flex"
+                            flexDirection="row"
                           >
                             <div
-                              className="css-70qvj9"
+                              className="chakra-stack css-7dpwap"
                             >
-                              <Box
-                                pr={1}
+                              <ModeIconBox
+                                key=".0:$WALK"
+                                mode="WALK"
                               >
-                                <div
-                                  className="css-osq69c"
+                                <Box
+                                  title="WALK"
                                 >
-                                  Baseline
-                                </div>
-                              </Box>
-                              <IconButton
-                                icon={
-                                  Object {
-                                    "icon": Array [],
-                                    "iconName": "download",
-                                    "prefix": "fas",
-                                  }
-                                }
-                                label="Download scenario info and modifications used to create this analysis."
-                                onClick={[Function]}
-                              >
-                                <Box>
                                   <div
                                     className="css-0"
+                                    title="WALK"
                                   >
-                                    <Tip
-                                      label="Download scenario info and modifications used to create this analysis."
-                                      placement="auto"
+                                    <ModeIcon
+                                      mode="WALK"
                                     >
-                                      <Tooltip
-                                        aria-label="Tooltip: Download scenario info and modifications used to create this analysis."
-                                        fontSize="md"
-                                        hasArrow={true}
-                                        label="Download scenario info and modifications used to create this analysis."
-                                        placement="auto"
-                                        zIndex={1500}
-                                      >
-                                        <Button
-                                          aria-label="Download scenario info and modifications used to create this analysis."
-                                          isActive={false}
-                                          isDisabled={false}
-                                          onBlur={[Function]}
-                                          onClick={[Function]}
-                                          onFocus={[Function]}
-                                          onMouseEnter={[Function]}
-                                          onMouseLeave={[Function]}
-                                          size="sm"
-                                          variant="ghost"
-                                          variantColor="blue"
-                                        >
-                                          <PseudoBox
-                                            _active={
-                                              Object {
-                                                "bg": "blue.100",
-                                              }
-                                            }
-                                            _disabled={
-                                              Object {
-                                                "boxShadow": "none",
-                                                "cursor": "not-allowed",
-                                                "opacity": "40%",
-                                              }
-                                            }
-                                            _focus={
-                                              Object {
-                                                "boxShadow": "outline",
-                                              }
-                                            }
-                                            _hover={
-                                              Object {
-                                                "bg": "blue.50",
-                                              }
-                                            }
-                                            alignItems="center"
-                                            appearance="none"
-                                            aria-label="Download scenario info and modifications used to create this analysis."
-                                            as="button"
-                                            bg="transparent"
-                                            borderRadius="md"
-                                            color="blue.500"
-                                            display="inline-flex"
-                                            fontSize="sm"
-                                            fontWeight="semibold"
-                                            height={8}
-                                            justifyContent="center"
-                                            lineHeight="1.2"
-                                            minWidth={8}
-                                            onBlur={[Function]}
-                                            onClick={[Function]}
-                                            onFocus={[Function]}
-                                            onMouseEnter={[Function]}
-                                            onMouseLeave={[Function]}
-                                            outline="none"
-                                            position="relative"
-                                            px={3}
-                                            transition="all 250ms"
-                                            type="button"
-                                            userSelect="none"
-                                            verticalAlign="middle"
-                                            whiteSpace="nowrap"
-                                          >
-                                            <button
-                                              aria-label="Download scenario info and modifications used to create this analysis."
-                                              className="css-ig2uvu"
-                                              onBlur={[Function]}
-                                              onClick={[Function]}
-                                              onFocus={[Function]}
-                                              onMouseEnter={[Function]}
-                                              onMouseLeave={[Function]}
-                                              type="button"
-                                            >
-                                              <Icon
-                                                fixedWidth={false}
-                                                icon={
-                                                  Object {
-                                                    "icon": Array [],
-                                                    "iconName": "download",
-                                                    "prefix": "fas",
-                                                  }
-                                                }
-                                              >
-                                                <FontAwesomeIcon
-                                                  border={false}
-                                                  className=""
-                                                  fixedWidth={false}
-                                                  flip={null}
-                                                  icon={
-                                                    Object {
-                                                      "icon": Array [],
-                                                      "iconName": "download",
-                                                      "prefix": "fas",
-                                                    }
-                                                  }
-                                                  inverse={false}
-                                                  listItem={false}
-                                                  mask={null}
-                                                  pull={null}
-                                                  pulse={false}
-                                                  rotation={null}
-                                                  size={null}
-                                                  spin={false}
-                                                  swapOpacity={false}
-                                                  symbol={false}
-                                                  title=""
-                                                  transform={null}
-                                                >
-                                                  <svg
-                                                    aria-hidden="true"
-                                                    className="svg-inline--fa fa-download fa-w-NaN "
-                                                    data-icon="download"
-                                                    data-prefix="fas"
-                                                    focusable="false"
-                                                    role="img"
-                                                    style={Object {}}
-                                                    viewBox="0 0 undefined undefined"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                  >
-                                                    <path
-                                                      fill="currentColor"
-                                                      style={Object {}}
-                                                    />
-                                                  </svg>
-                                                </FontAwesomeIcon>
-                                              </Icon>
-                                            </button>
-                                          </PseudoBox>
-                                        </Button>
-                                        <ForwardRef
-                                          anchorEl={
-                                            <button
-                                              aria-label="Download scenario info and modifications used to create this analysis."
-                                              class="css-ig2uvu"
-                                              type="button"
-                                            >
-                                              <svg
-                                                aria-hidden="true"
-                                                class="svg-inline--fa fa-download fa-w-NaN "
-                                                data-icon="download"
-                                                data-prefix="fas"
-                                                focusable="false"
-                                                role="img"
-                                                viewBox="0 0 undefined undefined"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                              >
-                                                <path
-                                                  fill="currentColor"
-                                                />
-                                              </svg>
-                                            </button>
-                                          }
-                                          arrowSize="10px"
-                                          bg="gray.700"
-                                          borderRadius="sm"
-                                          color="whiteAlpha.900"
-                                          fontSize="md"
-                                          fontWeight="medium"
-                                          hasArrow={true}
-                                          isOpen={false}
-                                          maxW="320px"
-                                          modifiers={
+                                      <FaWalking>
+                                        <IconBase
+                                          attr={
                                             Object {
-                                              "offset": Object {
-                                                "enabled": true,
-                                                "offset": "0, 8",
-                                              },
+                                              "viewBox": "0 0 320 512",
                                             }
                                           }
-                                          placement="auto"
-                                          pointerEvents="none"
-                                          px="8px"
-                                          py="2px"
-                                          shadow="md"
-                                          timeout={200}
-                                          usePortal={true}
-                                          zIndex={1500}
-                                        />
-                                      </Tooltip>
-                                    </Tip>
+                                        >
+                                          <svg
+                                            fill="currentColor"
+                                            height="1em"
+                                            stroke="currentColor"
+                                            strokeWidth="0"
+                                            style={
+                                              Object {
+                                                "color": undefined,
+                                              }
+                                            }
+                                            viewBox="0 0 320 512"
+                                            width="1em"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M208 96c26.5 0 48-21.5 48-48S234.5 0 208 0s-48 21.5-48 48 21.5 48 48 48zm94.5 149.1l-23.3-11.8-9.7-29.4c-14.7-44.6-55.7-75.8-102.2-75.9-36-.1-55.9 10.1-93.3 25.2-21.6 8.7-39.3 25.2-49.7 46.2L17.6 213c-7.8 15.8-1.5 35 14.2 42.9 15.6 7.9 34.6 1.5 42.5-14.3L81 228c3.5-7 9.3-12.5 16.5-15.4l26.8-10.8-15.2 60.7c-5.2 20.8.4 42.9 14.9 58.8l59.9 65.4c7.2 7.9 12.3 17.4 14.9 27.7l18.3 73.3c4.3 17.1 21.7 27.6 38.8 23.3 17.1-4.3 27.6-21.7 23.3-38.8l-22.2-89c-2.6-10.3-7.7-19.9-14.9-27.7l-45.5-49.7 17.2-68.7 5.5 16.5c5.3 16.1 16.7 29.4 31.7 37l23.3 11.8c15.6 7.9 34.6 1.5 42.5-14.3 7.7-15.7 1.4-35.1-14.3-43zM73.6 385.8c-3.2 8.1-8 15.4-14.2 21.5l-50 50.1c-12.5 12.5-12.5 32.8 0 45.3s32.7 12.5 45.2 0l59.4-59.4c6.1-6.1 10.9-13.4 14.2-21.5l13.5-33.8c-55.3-60.3-38.7-41.8-47.4-53.7l-20.7 51.5z"
+                                              key="0"
+                                            />
+                                          </svg>
+                                        </IconBase>
+                                      </FaWalking>
+                                    </ModeIcon>
                                   </div>
                                 </Box>
-                              </IconButton>
-                            </div>
-                          </Box>
-                        </Flex>
-                      </td>
-                    </Box>
-                  </TDValue>
-                </tr>
-                <tr>
-                  <TDTitle>
-                    <Box
-                      as="td"
-                      fontWeight={600}
-                      overflow="hidden"
-                      px={4}
-                      py={2}
-                      style={
-                        Object {
-                          "textOverflow": "ellipsis",
-                        }
-                      }
-                      textAlign="right"
-                      title="Service Date"
-                      width="35%"
-                    >
-                      <td
-                        className="css-1lwb3yd"
-                        style={
-                          Object {
-                            "textOverflow": "ellipsis",
-                          }
-                        }
-                        title="Service Date"
-                      >
-                        Service Date
-                      </td>
-                    </Box>
-                  </TDTitle>
-                  <TDValue>
-                    <Box
-                      as="td"
-                      width="65%"
-                    >
-                      <td
-                        className="css-ft9ciy"
-                      >
-                        2016-01-16
-                      </td>
-                    </Box>
-                  </TDValue>
-                </tr>
-                <tr>
-                  <TDTitle>
-                    <Box
-                      as="td"
-                      fontWeight={600}
-                      overflow="hidden"
-                      px={4}
-                      py={2}
-                      style={
-                        Object {
-                          "textOverflow": "ellipsis",
-                        }
-                      }
-                      textAlign="right"
-                      title="Service Time"
-                      width="35%"
-                    >
-                      <td
-                        className="css-1lwb3yd"
-                        style={
-                          Object {
-                            "textOverflow": "ellipsis",
-                          }
-                        }
-                        title="Service Time"
-                      >
-                        Service Time
-                      </td>
-                    </Box>
-                  </TDTitle>
-                  <TDValue>
-                    <Box
-                      as="td"
-                      width="65%"
-                    >
-                      <td
-                        className="css-ft9ciy"
-                      >
-                        07:00
-                        -
-                        09:00
-                      </td>
-                    </Box>
-                  </TDValue>
-                </tr>
-                <tr>
-                  <TDTitle>
-                    <Box
-                      as="td"
-                      fontWeight={600}
-                      overflow="hidden"
-                      px={4}
-                      py={2}
-                      style={
-                        Object {
-                          "textOverflow": "ellipsis",
-                        }
-                      }
-                      textAlign="right"
-                      title="Modes"
-                      width="35%"
-                    >
-                      <td
-                        className="css-1lwb3yd"
-                        style={
-                          Object {
-                            "textOverflow": "ellipsis",
-                          }
-                        }
-                        title="Modes"
-                      >
-                        Modes
-                      </td>
-                    </Box>
-                  </TDTitle>
-                  <TDValue>
-                    <Box
-                      as="td"
-                      width="65%"
-                    >
-                      <td
-                        className="css-ft9ciy"
-                      >
-                        <ModeSummary
-                          accessModes="WALK"
-                          color="blue"
-                          egressModes="WALK"
-                          transitModes="BUS,TRAM,RAIL,SUBWAY"
-                        >
-                          <ForwardRef
-                            align="center"
-                            isInline={true}
-                            spacing={1}
-                          >
-                            <Flex
-                              align="center"
-                              direction="row"
-                            >
-                              <Box
-                                alignItems="center"
-                                display="flex"
-                                flexDirection="row"
+                              </ModeIconBox>
+                              <ForwardRef
+                                key=".1"
+                                label="BUS, TRAM, RAIL, SUBWAY"
                               >
-                                <div
-                                  className="css-u4p24i"
+                                <Tooltip
+                                  aria-label="Tooltip: BUS, TRAM, RAIL, SUBWAY"
+                                  fontSize="md"
+                                  hasArrow={true}
+                                  label="BUS, TRAM, RAIL, SUBWAY"
+                                  zIndex={1500}
                                 >
-                                  <ModeIconBox
-                                    key=".0:$WALK"
-                                    mode="WALK"
-                                    mr={1}
+                                  <Stack
+                                    align="center"
+                                    isInline={true}
+                                    onBlur={[Function]}
+                                    onClick={[Function]}
+                                    onFocus={[Function]}
+                                    onMouseDown={[Function]}
+                                    onMouseEnter={[Function]}
+                                    spacing={1}
                                   >
-                                    <Box
-                                      mr={1}
-                                      title="WALK"
+                                    <Styled(div)
+                                      __css={
+                                        Object {
+                                          "& > *:not(style) ~ *:not(style)": Object {
+                                            "marginStart": 1,
+                                            "marginTop": 0,
+                                          },
+                                        }
+                                      }
+                                      alignItems="center"
+                                      className="chakra-stack"
+                                      display="flex"
+                                      flexDirection="row"
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseDown={[Function]}
+                                      onMouseEnter={[Function]}
                                     >
                                       <div
-                                        className="css-1xe59u8"
-                                        title="WALK"
-                                      >
-                                        <ModeIcon
-                                          mode="WALK"
-                                        >
-                                          <Icon
-                                            icon={
-                                              Object {
-                                                "icon": Array [],
-                                                "iconName": "walking",
-                                                "prefix": "fas",
-                                              }
-                                            }
-                                          >
-                                            <FontAwesomeIcon
-                                              border={false}
-                                              className=""
-                                              fixedWidth={true}
-                                              flip={null}
-                                              icon={
-                                                Object {
-                                                  "icon": Array [],
-                                                  "iconName": "walking",
-                                                  "prefix": "fas",
-                                                }
-                                              }
-                                              inverse={false}
-                                              listItem={false}
-                                              mask={null}
-                                              pull={null}
-                                              pulse={false}
-                                              rotation={null}
-                                              size={null}
-                                              spin={false}
-                                              swapOpacity={false}
-                                              symbol={false}
-                                              title=""
-                                              transform={null}
-                                            >
-                                              <svg
-                                                aria-hidden="true"
-                                                className="svg-inline--fa fa-walking fa-w-NaN fa-fw "
-                                                data-icon="walking"
-                                                data-prefix="fas"
-                                                focusable="false"
-                                                role="img"
-                                                style={Object {}}
-                                                viewBox="0 0 undefined undefined"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                              >
-                                                <path
-                                                  fill="currentColor"
-                                                  style={Object {}}
-                                                />
-                                              </svg>
-                                            </FontAwesomeIcon>
-                                          </Icon>
-                                        </ModeIcon>
-                                      </div>
-                                    </Box>
-                                  </ModeIconBox>
-                                  <Tip
-                                    key=".1"
-                                    label="BUS, TRAM, RAIL, SUBWAY"
-                                    mr={null}
-                                  >
-                                    <Tooltip
-                                      aria-label="Tooltip: BUS, TRAM, RAIL, SUBWAY"
-                                      fontSize="md"
-                                      hasArrow={true}
-                                      label="BUS, TRAM, RAIL, SUBWAY"
-                                      mr={null}
-                                      zIndex={1500}
-                                    >
-                                      <ForwardRef
-                                        align="center"
-                                        isInline={true}
+                                        className="chakra-stack css-7dpwap"
                                         onBlur={[Function]}
                                         onClick={[Function]}
                                         onFocus={[Function]}
+                                        onMouseDown={[Function]}
                                         onMouseEnter={[Function]}
-                                        onMouseLeave={[Function]}
-                                        spacing={1}
                                       >
-                                        <Flex
-                                          align="center"
-                                          direction="row"
-                                          onBlur={[Function]}
-                                          onClick={[Function]}
-                                          onFocus={[Function]}
-                                          onMouseEnter={[Function]}
-                                          onMouseLeave={[Function]}
+                                        <Box
+                                          color="blue.500"
+                                          fontSize="xs"
+                                          key=".0"
+                                        >
+                                          <div
+                                            className="css-1fyu33e"
+                                          >
+                                            <FaChevronRight>
+                                              <IconBase
+                                                attr={
+                                                  Object {
+                                                    "viewBox": "0 0 320 512",
+                                                  }
+                                                }
+                                              >
+                                                <svg
+                                                  fill="currentColor"
+                                                  height="1em"
+                                                  stroke="currentColor"
+                                                  strokeWidth="0"
+                                                  style={
+                                                    Object {
+                                                      "color": undefined,
+                                                    }
+                                                  }
+                                                  viewBox="0 0 320 512"
+                                                  width="1em"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                  <path
+                                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                                    key="0"
+                                                  />
+                                                </svg>
+                                              </IconBase>
+                                            </FaChevronRight>
+                                          </div>
+                                        </Box>
+                                        <ModeIconBox
+                                          key=".1:$BUS"
+                                          mode="BUS"
                                         >
                                           <Box
-                                            alignItems="center"
-                                            display="flex"
-                                            flexDirection="row"
-                                            onBlur={[Function]}
-                                            onClick={[Function]}
-                                            onFocus={[Function]}
-                                            onMouseEnter={[Function]}
-                                            onMouseLeave={[Function]}
+                                            title="BUS"
                                           >
                                             <div
-                                              className="css-u4p24i"
-                                              onBlur={[Function]}
-                                              onClick={[Function]}
-                                              onFocus={[Function]}
-                                              onMouseEnter={[Function]}
-                                              onMouseLeave={[Function]}
+                                              className="css-0"
+                                              title="BUS"
                                             >
-                                              <Box
-                                                color="blue.500"
-                                                fontSize="xs"
-                                                key=".0"
-                                                mr={1}
+                                              <ModeIcon
+                                                mode="BUS"
                                               >
-                                                <div
-                                                  className="css-1cg4qip"
-                                                >
-                                                  <Icon
-                                                    icon={
+                                                <FaBus>
+                                                  <IconBase
+                                                    attr={
                                                       Object {
-                                                        "icon": Array [],
-                                                        "iconName": "chevron-right",
-                                                        "prefix": "fas",
+                                                        "viewBox": "0 0 512 512",
                                                       }
                                                     }
                                                   >
-                                                    <FontAwesomeIcon
-                                                      border={false}
-                                                      className=""
-                                                      fixedWidth={true}
-                                                      flip={null}
-                                                      icon={
+                                                    <svg
+                                                      fill="currentColor"
+                                                      height="1em"
+                                                      stroke="currentColor"
+                                                      strokeWidth="0"
+                                                      style={
                                                         Object {
-                                                          "icon": Array [],
-                                                          "iconName": "chevron-right",
-                                                          "prefix": "fas",
+                                                          "color": undefined,
                                                         }
                                                       }
-                                                      inverse={false}
-                                                      listItem={false}
-                                                      mask={null}
-                                                      pull={null}
-                                                      pulse={false}
-                                                      rotation={null}
-                                                      size={null}
-                                                      spin={false}
-                                                      swapOpacity={false}
-                                                      symbol={false}
-                                                      title=""
-                                                      transform={null}
+                                                      viewBox="0 0 512 512"
+                                                      width="1em"
+                                                      xmlns="http://www.w3.org/2000/svg"
                                                     >
-                                                      <svg
-                                                        aria-hidden="true"
-                                                        className="svg-inline--fa fa-chevron-right fa-w-NaN fa-fw "
-                                                        data-icon="chevron-right"
-                                                        data-prefix="fas"
-                                                        focusable="false"
-                                                        role="img"
-                                                        style={Object {}}
-                                                        viewBox="0 0 undefined undefined"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                      >
-                                                        <path
-                                                          fill="currentColor"
-                                                          style={Object {}}
-                                                        />
-                                                      </svg>
-                                                    </FontAwesomeIcon>
-                                                  </Icon>
-                                                </div>
-                                              </Box>
-                                              <ModeIconBox
-                                                key=".1:$BUS"
-                                                mode="BUS"
-                                                mr={1}
-                                              >
-                                                <Box
-                                                  mr={1}
-                                                  title="BUS"
-                                                >
-                                                  <div
-                                                    className="css-1xe59u8"
-                                                    title="BUS"
-                                                  >
-                                                    <ModeIcon
-                                                      mode="BUS"
-                                                    >
-                                                      <Icon
-                                                        icon={
-                                                          Object {
-                                                            "icon": Array [],
-                                                            "iconName": "bus",
-                                                            "prefix": "fas",
-                                                          }
-                                                        }
-                                                      >
-                                                        <FontAwesomeIcon
-                                                          border={false}
-                                                          className=""
-                                                          fixedWidth={true}
-                                                          flip={null}
-                                                          icon={
-                                                            Object {
-                                                              "icon": Array [],
-                                                              "iconName": "bus",
-                                                              "prefix": "fas",
-                                                            }
-                                                          }
-                                                          inverse={false}
-                                                          listItem={false}
-                                                          mask={null}
-                                                          pull={null}
-                                                          pulse={false}
-                                                          rotation={null}
-                                                          size={null}
-                                                          spin={false}
-                                                          swapOpacity={false}
-                                                          symbol={false}
-                                                          title=""
-                                                          transform={null}
-                                                        >
-                                                          <svg
-                                                            aria-hidden="true"
-                                                            className="svg-inline--fa fa-bus fa-w-NaN fa-fw "
-                                                            data-icon="bus"
-                                                            data-prefix="fas"
-                                                            focusable="false"
-                                                            role="img"
-                                                            style={Object {}}
-                                                            viewBox="0 0 undefined undefined"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                          >
-                                                            <path
-                                                              fill="currentColor"
-                                                              style={Object {}}
-                                                            />
-                                                          </svg>
-                                                        </FontAwesomeIcon>
-                                                      </Icon>
-                                                    </ModeIcon>
-                                                  </div>
-                                                </Box>
-                                              </ModeIconBox>
-                                              <ModeIconBox
-                                                key=".1:$TRAM"
-                                                mode="TRAM"
-                                                mr={1}
-                                              >
-                                                <Box
-                                                  mr={1}
-                                                  title="TRAM"
-                                                >
-                                                  <div
-                                                    className="css-1xe59u8"
-                                                    title="TRAM"
-                                                  >
-                                                    <ModeIcon
-                                                      mode="TRAM"
-                                                    >
-                                                      <Letter>
-                                                        <Text
-                                                          fontFamily="mono"
-                                                          fontSize="14px"
-                                                          fontWeight={600}
-                                                          height="17px"
-                                                          lineHeight="1.5rem"
-                                                          textAlign="center"
-                                                          width="15px"
-                                                        >
-                                                          <Box
-                                                            as="p"
-                                                            fontFamily="mono"
-                                                            fontSize="14px"
-                                                            fontWeight={600}
-                                                            height="17px"
-                                                            lineHeight="1.5rem"
-                                                            textAlign="center"
-                                                            width="15px"
-                                                          >
-                                                            <p
-                                                              className="css-1q2wprf"
-                                                            >
-                                                              T
-                                                            </p>
-                                                          </Box>
-                                                        </Text>
-                                                      </Letter>
-                                                    </ModeIcon>
-                                                  </div>
-                                                </Box>
-                                              </ModeIconBox>
-                                              <ModeIconBox
-                                                key=".1:$RAIL"
-                                                mode="RAIL"
-                                                mr={1}
-                                              >
-                                                <Box
-                                                  mr={1}
-                                                  title="RAIL"
-                                                >
-                                                  <div
-                                                    className="css-1xe59u8"
-                                                    title="RAIL"
-                                                  >
-                                                    <ModeIcon
-                                                      mode="RAIL"
-                                                    >
-                                                      <Icon
-                                                        icon={
-                                                          Object {
-                                                            "icon": Array [],
-                                                            "iconName": "train",
-                                                            "prefix": "fas",
-                                                          }
-                                                        }
-                                                      >
-                                                        <FontAwesomeIcon
-                                                          border={false}
-                                                          className=""
-                                                          fixedWidth={true}
-                                                          flip={null}
-                                                          icon={
-                                                            Object {
-                                                              "icon": Array [],
-                                                              "iconName": "train",
-                                                              "prefix": "fas",
-                                                            }
-                                                          }
-                                                          inverse={false}
-                                                          listItem={false}
-                                                          mask={null}
-                                                          pull={null}
-                                                          pulse={false}
-                                                          rotation={null}
-                                                          size={null}
-                                                          spin={false}
-                                                          swapOpacity={false}
-                                                          symbol={false}
-                                                          title=""
-                                                          transform={null}
-                                                        >
-                                                          <svg
-                                                            aria-hidden="true"
-                                                            className="svg-inline--fa fa-train fa-w-NaN fa-fw "
-                                                            data-icon="train"
-                                                            data-prefix="fas"
-                                                            focusable="false"
-                                                            role="img"
-                                                            style={Object {}}
-                                                            viewBox="0 0 undefined undefined"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                          >
-                                                            <path
-                                                              fill="currentColor"
-                                                              style={Object {}}
-                                                            />
-                                                          </svg>
-                                                        </FontAwesomeIcon>
-                                                      </Icon>
-                                                    </ModeIcon>
-                                                  </div>
-                                                </Box>
-                                              </ModeIconBox>
-                                              <ModeIconBox
-                                                key=".1:$SUBWAY"
-                                                mode="SUBWAY"
-                                                mr={null}
-                                              >
-                                                <Box
-                                                  mr={null}
-                                                  title="SUBWAY"
-                                                >
-                                                  <div
-                                                    className="css-0"
-                                                    title="SUBWAY"
-                                                  >
-                                                    <ModeIcon
-                                                      mode="SUBWAY"
-                                                    >
-                                                      <Icon
-                                                        icon={
-                                                          Object {
-                                                            "icon": Array [],
-                                                            "iconName": "subway",
-                                                            "prefix": "fas",
-                                                          }
-                                                        }
-                                                      >
-                                                        <FontAwesomeIcon
-                                                          border={false}
-                                                          className=""
-                                                          fixedWidth={true}
-                                                          flip={null}
-                                                          icon={
-                                                            Object {
-                                                              "icon": Array [],
-                                                              "iconName": "subway",
-                                                              "prefix": "fas",
-                                                            }
-                                                          }
-                                                          inverse={false}
-                                                          listItem={false}
-                                                          mask={null}
-                                                          pull={null}
-                                                          pulse={false}
-                                                          rotation={null}
-                                                          size={null}
-                                                          spin={false}
-                                                          swapOpacity={false}
-                                                          symbol={false}
-                                                          title=""
-                                                          transform={null}
-                                                        >
-                                                          <svg
-                                                            aria-hidden="true"
-                                                            className="svg-inline--fa fa-subway fa-w-NaN fa-fw "
-                                                            data-icon="subway"
-                                                            data-prefix="fas"
-                                                            focusable="false"
-                                                            role="img"
-                                                            style={Object {}}
-                                                            viewBox="0 0 undefined undefined"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                          >
-                                                            <path
-                                                              fill="currentColor"
-                                                              style={Object {}}
-                                                            />
-                                                          </svg>
-                                                        </FontAwesomeIcon>
-                                                      </Icon>
-                                                    </ModeIcon>
-                                                  </div>
-                                                </Box>
-                                              </ModeIconBox>
+                                                      <path
+                                                        d="M488 128h-8V80c0-44.8-99.2-80-224-80S32 35.2 32 80v48h-8c-13.25 0-24 10.74-24 24v80c0 13.25 10.75 24 24 24h8v160c0 17.67 14.33 32 32 32v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h192v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h6.4c16 0 25.6-12.8 25.6-25.6V256h8c13.25 0 24-10.75 24-24v-80c0-13.26-10.75-24-24-24zM112 400c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm16-112c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h256c17.67 0 32 14.33 32 32v128c0 17.67-14.33 32-32 32H128zm272 112c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z"
+                                                        key="0"
+                                                      />
+                                                    </svg>
+                                                  </IconBase>
+                                                </FaBus>
+                                              </ModeIcon>
                                             </div>
                                           </Box>
-                                        </Flex>
-                                      </ForwardRef>
-                                      <ForwardRef
-                                        anchorEl={
-                                          <div
-                                            class="css-u4p24i"
+                                        </ModeIconBox>
+                                        <ModeIconBox
+                                          key=".1:$TRAM"
+                                          mode="TRAM"
+                                        >
+                                          <Box
+                                            title="TRAM"
                                           >
                                             <div
-                                              class="css-1cg4qip"
-                                            >
-                                              <svg
-                                                aria-hidden="true"
-                                                class="svg-inline--fa fa-chevron-right fa-w-NaN fa-fw "
-                                                data-icon="chevron-right"
-                                                data-prefix="fas"
-                                                focusable="false"
-                                                role="img"
-                                                viewBox="0 0 undefined undefined"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                              >
-                                                <path
-                                                  fill="currentColor"
-                                                />
-                                              </svg>
-                                            </div>
-                                            <div
-                                              class="css-1xe59u8"
-                                              title="BUS"
-                                            >
-                                              <svg
-                                                aria-hidden="true"
-                                                class="svg-inline--fa fa-bus fa-w-NaN fa-fw "
-                                                data-icon="bus"
-                                                data-prefix="fas"
-                                                focusable="false"
-                                                role="img"
-                                                viewBox="0 0 undefined undefined"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                              >
-                                                <path
-                                                  fill="currentColor"
-                                                />
-                                              </svg>
-                                            </div>
-                                            <div
-                                              class="css-1xe59u8"
+                                              className="css-0"
                                               title="TRAM"
                                             >
-                                              <p
-                                                class="css-1q2wprf"
+                                              <ModeIcon
+                                                mode="TRAM"
                                               >
-                                                T
-                                              </p>
+                                                <Letter>
+                                                  <Text
+                                                    fontFamily="mono"
+                                                    fontSize="14px"
+                                                    fontWeight={600}
+                                                    height="17px"
+                                                    lineHeight="1.5rem"
+                                                    textAlign="center"
+                                                    width="15px"
+                                                  >
+                                                    <Styled(p)
+                                                      __css={Object {}}
+                                                      className="chakra-text"
+                                                      fontFamily="mono"
+                                                      fontSize="14px"
+                                                      fontWeight={600}
+                                                      height="17px"
+                                                      lineHeight="1.5rem"
+                                                      textAlign="center"
+                                                      width="15px"
+                                                    >
+                                                      <p
+                                                        className="chakra-text css-1q2wprf"
+                                                      >
+                                                        T
+                                                      </p>
+                                                    </Styled(p)>
+                                                  </Text>
+                                                </Letter>
+                                              </ModeIcon>
                                             </div>
+                                          </Box>
+                                        </ModeIconBox>
+                                        <ModeIconBox
+                                          key=".1:$RAIL"
+                                          mode="RAIL"
+                                        >
+                                          <Box
+                                            title="RAIL"
+                                          >
                                             <div
-                                              class="css-1xe59u8"
+                                              className="css-0"
                                               title="RAIL"
                                             >
-                                              <svg
-                                                aria-hidden="true"
-                                                class="svg-inline--fa fa-train fa-w-NaN fa-fw "
-                                                data-icon="train"
-                                                data-prefix="fas"
-                                                focusable="false"
-                                                role="img"
-                                                viewBox="0 0 undefined undefined"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                              <ModeIcon
+                                                mode="RAIL"
                                               >
-                                                <path
-                                                  fill="currentColor"
-                                                />
-                                              </svg>
+                                                <FaTrain>
+                                                  <IconBase
+                                                    attr={
+                                                      Object {
+                                                        "viewBox": "0 0 448 512",
+                                                      }
+                                                    }
+                                                  >
+                                                    <svg
+                                                      fill="currentColor"
+                                                      height="1em"
+                                                      stroke="currentColor"
+                                                      strokeWidth="0"
+                                                      style={
+                                                        Object {
+                                                          "color": undefined,
+                                                        }
+                                                      }
+                                                      viewBox="0 0 448 512"
+                                                      width="1em"
+                                                      xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                      <path
+                                                        d="M448 96v256c0 51.815-61.624 96-130.022 96l62.98 49.721C386.905 502.417 383.562 512 376 512H72c-7.578 0-10.892-9.594-4.957-14.279L130.022 448C61.82 448 0 403.954 0 352V96C0 42.981 64 0 128 0h192c65 0 128 42.981 128 96zm-48 136V120c0-13.255-10.745-24-24-24H72c-13.255 0-24 10.745-24 24v112c0 13.255 10.745 24 24 24h304c13.255 0 24-10.745 24-24zm-176 64c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56z"
+                                                        key="0"
+                                                      />
+                                                    </svg>
+                                                  </IconBase>
+                                                </FaTrain>
+                                              </ModeIcon>
                                             </div>
+                                          </Box>
+                                        </ModeIconBox>
+                                        <ModeIconBox
+                                          key=".1:$SUBWAY"
+                                          mode="SUBWAY"
+                                        >
+                                          <Box
+                                            title="SUBWAY"
+                                          >
                                             <div
-                                              class="css-0"
+                                              className="css-0"
                                               title="SUBWAY"
                                             >
-                                              <svg
-                                                aria-hidden="true"
-                                                class="svg-inline--fa fa-subway fa-w-NaN fa-fw "
-                                                data-icon="subway"
-                                                data-prefix="fas"
-                                                focusable="false"
-                                                role="img"
-                                                viewBox="0 0 undefined undefined"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                              <ModeIcon
+                                                mode="SUBWAY"
                                               >
-                                                <path
-                                                  fill="currentColor"
-                                                />
-                                              </svg>
+                                                <FaSubway>
+                                                  <IconBase
+                                                    attr={
+                                                      Object {
+                                                        "viewBox": "0 0 448 512",
+                                                      }
+                                                    }
+                                                  >
+                                                    <svg
+                                                      fill="currentColor"
+                                                      height="1em"
+                                                      stroke="currentColor"
+                                                      strokeWidth="0"
+                                                      style={
+                                                        Object {
+                                                          "color": undefined,
+                                                        }
+                                                      }
+                                                      viewBox="0 0 448 512"
+                                                      width="1em"
+                                                      xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                      <path
+                                                        d="M448 96v256c0 51.815-61.624 96-130.022 96l62.98 49.721C386.905 502.417 383.562 512 376 512H72c-7.578 0-10.892-9.594-4.957-14.279L130.022 448C61.82 448 0 403.954 0 352V96C0 42.981 64 0 128 0h192c65 0 128 42.981 128 96zM200 232V120c0-13.255-10.745-24-24-24H72c-13.255 0-24 10.745-24 24v112c0 13.255 10.745 24 24 24h104c13.255 0 24-10.745 24-24zm200 0V120c0-13.255-10.745-24-24-24H272c-13.255 0-24 10.745-24 24v112c0 13.255 10.745 24 24 24h104c13.255 0 24-10.745 24-24zm-48 56c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm-256 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"
+                                                        key="0"
+                                                      />
+                                                    </svg>
+                                                  </IconBase>
+                                                </FaSubway>
+                                              </ModeIcon>
                                             </div>
-                                          </div>
-                                        }
-                                        arrowSize="10px"
-                                        bg="gray.700"
-                                        borderRadius="sm"
-                                        color="whiteAlpha.900"
-                                        fontSize="md"
-                                        fontWeight="medium"
-                                        hasArrow={true}
-                                        isOpen={false}
-                                        maxW="320px"
-                                        modifiers={
-                                          Object {
-                                            "offset": Object {
-                                              "enabled": true,
-                                              "offset": "0, 8",
-                                            },
-                                          }
-                                        }
-                                        mr={null}
-                                        placement="auto"
-                                        pointerEvents="none"
-                                        px="8px"
-                                        py="2px"
-                                        shadow="md"
-                                        timeout={200}
-                                        usePortal={true}
-                                        zIndex={1500}
-                                      />
-                                    </Tooltip>
-                                  </Tip>
-                                </div>
-                              </Box>
-                            </Flex>
-                          </ForwardRef>
-                        </ModeSummary>
-                      </td>
-                    </Box>
-                  </TDValue>
-                </tr>
-                <tr>
-                  <td
-                    colSpan={2}
-                  />
-                </tr>
-              </tbody>
-            </table>
-          </Box>
-          <Box
-            borderBottom="1px solid #E2E8F0"
-            key=".1"
-            mb={null}
+                                          </Box>
+                                        </ModeIconBox>
+                                      </div>
+                                    </Styled(div)>
+                                  </Stack>
+                                  <AnimatePresence />
+                                </Tooltip>
+                              </ForwardRef>
+                            </div>
+                          </Styled(div)>
+                        </Stack>
+                      </ModeSummary>
+                    </td>
+                  </Box>
+                </TDValue>
+              </tr>
+              <tr>
+                <td
+                  colSpan={2}
+                />
+              </tr>
+            </tbody>
+          </table>
+        </Box>
+        <Box
+          borderBottom="1px solid #E2E8F0"
+          key=".1"
+        >
+          <div
+            className="css-p9uae9"
           >
-            <div
-              className="css-p9uae9"
+            <Button
+              _focus={
+                Object {
+                  "outline": "none",
+                }
+              }
+              borderRadius="0"
+              colorScheme="blue"
+              onClick={[Function]}
+              size="sm"
+              title="expand"
+              variant="ghost"
+              width="100%"
             >
-              <Button
+              <Styled(button)
+                __css={
+                  Object {
+                    "_active": Object {
+                      "bg": "blue.100",
+                    },
+                    "_disabled": Object {
+                      "boxShadow": "none",
+                      "cursor": "not-allowed",
+                      "opacity": 0.4,
+                    },
+                    "_focus": Object {
+                      "boxShadow": "outline",
+                    },
+                    "_hover": Object {
+                      "_disabled": Object {
+                        "bg": "initial",
+                      },
+                      "bg": "blue.50",
+                    },
+                    "alignItems": "center",
+                    "appearance": "none",
+                    "bg": "transparent",
+                    "borderRadius": "md",
+                    "color": "blue.600",
+                    "display": "inline-flex",
+                    "fontSize": "sm",
+                    "fontWeight": "semibold",
+                    "h": 8,
+                    "justifyContent": "center",
+                    "lineHeight": "1.2",
+                    "minW": 8,
+                    "outline": "none",
+                    "position": "relative",
+                    "px": 3,
+                    "transition": "all 250ms",
+                    "userSelect": "none",
+                    "verticalAlign": "middle",
+                    "whiteSpace": "nowrap",
+                    "width": "auto",
+                  }
+                }
                 _focus={
                   Object {
                     "outline": "none",
                   }
                 }
                 borderRadius="0"
+                className="chakra-button"
                 onClick={[Function]}
-                size="sm"
                 title="expand"
-                variant="ghost"
-                variantColor="blue"
+                type="button"
                 width="100%"
               >
-                <PseudoBox
-                  _active={
-                    Object {
-                      "bg": "blue.100",
-                    }
-                  }
-                  _disabled={
-                    Object {
-                      "boxShadow": "none",
-                      "cursor": "not-allowed",
-                      "opacity": "40%",
-                    }
-                  }
-                  _focus={
-                    Object {
-                      "outline": "none",
-                    }
-                  }
-                  _hover={
-                    Object {
-                      "bg": "blue.50",
-                    }
-                  }
-                  alignItems="center"
-                  appearance="none"
-                  as="button"
-                  bg="transparent"
-                  borderRadius="0"
-                  color="blue.500"
-                  display="inline-flex"
-                  fontSize="sm"
-                  fontWeight="semibold"
-                  height={8}
-                  justifyContent="center"
-                  lineHeight="1.2"
-                  minWidth={8}
+                <button
+                  className="chakra-button css-1mt2lcb"
                   onClick={[Function]}
-                  outline="none"
-                  position="relative"
-                  px={3}
                   title="expand"
-                  transition="all 250ms"
                   type="button"
-                  userSelect="none"
-                  verticalAlign="middle"
-                  whiteSpace="nowrap"
-                  width="100%"
                 >
-                  <button
-                    className="css-1v5ra87"
-                    onClick={[Function]}
-                    title="expand"
-                    type="button"
-                  >
-                    <Icon
-                      icon={
+                  <FaChevronDown>
+                    <IconBase
+                      attr={
                         Object {
-                          "icon": Array [],
-                          "iconName": "chevron-down",
-                          "prefix": "fas",
+                          "viewBox": "0 0 448 512",
                         }
                       }
                     >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={true}
-                        flip={null}
-                        icon={
+                      <svg
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        strokeWidth="0"
+                        style={
                           Object {
-                            "icon": Array [],
-                            "iconName": "chevron-down",
-                            "prefix": "fas",
+                            "color": undefined,
                           }
                         }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        swapOpacity={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
+                        viewBox="0 0 448 512"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <svg
-                          aria-hidden="true"
-                          className="svg-inline--fa fa-chevron-down fa-w-NaN fa-fw "
-                          data-icon="chevron-down"
-                          data-prefix="fas"
-                          focusable="false"
-                          role="img"
-                          style={Object {}}
-                          viewBox="0 0 undefined undefined"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill="currentColor"
-                            style={Object {}}
-                          />
-                        </svg>
-                      </FontAwesomeIcon>
-                    </Icon>
-                  </button>
-                </PseudoBox>
-              </Button>
-            </div>
-          </Box>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+                        <path
+                          d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+                          key="0"
+                        />
+                      </svg>
+                    </IconBase>
+                  </FaChevronDown>
+                </button>
+              </Styled(button)>
+            </Button>
+          </div>
+        </Box>
+      </div>
+    </Styled(div)>
+  </Stack>
 </ProfileRequestDisplay>
 `;

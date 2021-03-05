@@ -1,4 +1,4 @@
-import {PseudoBox, Stack} from '@chakra-ui/core'
+import {Box, Stack} from '@chakra-ui/react'
 import {format} from 'd3-format'
 import reverse from 'lodash/reverse'
 
@@ -25,7 +25,7 @@ export default function Legend({breaks, colors, min}) {
   return (
     <Stack borderTop='1px solid #E2E8F0' spacing={0}>
       {reverse(breakProps).map((props, i) => (
-        <PseudoBox
+        <Box
           _last={{
             roundedBottom: 'md'
           }}

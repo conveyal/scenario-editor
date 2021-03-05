@@ -12,16 +12,22 @@ import {
   ModalOverlay,
   useDisclosure,
   FormHelperText,
-  Stack
-} from '@chakra-ui/core'
+  Stack,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  Divider,
+  useToast,
+  Box
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
-import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 
-import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
+import {AddIcon} from 'lib/components/icons'
+import {API} from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import {
@@ -29,18 +35,21 @@ import {
   opportunityDatasets as selectOpportunityDatasets
 } from 'lib/modules/opportunity-datasets/selectors'
 import {versionToNumber} from 'lib/modules/r5-version/utils'
-import {routeTo} from 'lib/router'
 import selectCurrentRegionId from 'lib/selectors/current-region-id'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
+import authenticatedFetch from 'lib/utils/auth-fetch'
 
 import Select from '../select'
+import DocsLink from '../docs-link'
+import useRouteTo from 'lib/hooks/use-route-to'
+import calculateGridPoints from 'lib/utils/calculate-grid-points'
 
 // For react-select options
 const getId = fpGet('_id')
 
 // Combine the source name with the name
-const getFullODName = (od) => `${od.sourceName}: ${od.name}`
+const getFullODName = (od) => od.label || `${od.sourceName}: ${od.name}`
 
 const testContent = (s) => s && s.length > 0
 
@@ -75,9 +84,9 @@ export default function CreateRegional({
       <Button
         isDisabled={isDisabled}
         onClick={onOpen}
-        rightIcon='small-add'
+        rightIcon={<AddIcon />}
         title={isDisabled ? disabledLabel : 'Regional analysis'}
-        variantColor='green'
+        colorScheme='green'
       >
         Regional analysis
       </Button>
@@ -93,22 +102,63 @@ export default function CreateRegional({
   )
 }
 
+function CreatedRegionalToast({onClose, regionId}) {
+  const goToRegionalAnalyses = useRouteTo('regionalAnalyses', {
+    regionId
+  })
+
+  return (
+    <Alert
+      status='success'
+      variant='solid'
+      mt={2}
+      cursor='pointer'
+      onClick={() => {
+        goToRegionalAnalyses()
+        onClose()
+      }}
+    >
+      <AlertIcon />
+      <AlertDescription>
+        <Box _hover={{textDecoration: 'underline'}}>
+          Regional analysis has been created successfully. Click here to view
+          progress.
+        </Box>
+      </AlertDescription>
+    </Alert>
+  )
+}
+
+const defaultOriginPointSet = {
+  label: 'Rectangular Grid',
+  value: 'rectangular-grid'
+}
+
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
-  const dispatch = useDispatch()
+  const toast = useToast()
+  const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
   const selectedOpportunityDataset = useSelector(activeOpportunityDataset)
+  const [originPointSet, setOriginPointSet] = useState(defaultOriginPointSet)
   const [destinationPointSets, setDestinationPointSets] = useState(
     selectedOpportunityDataset ? [selectedOpportunityDataset._id] : []
   )
   const regionId = useSelector(selectCurrentRegionId)
-  const router = useRouter()
   const maxTripDurationMinutes = useSelector(selectMaxTripDurationMinutes)
   const travelTimePercentile = useSelector(selectTravelTimePercentile)
   const workerVersion = get(profileRequest, 'workerVersion', '')
   const workerVersionHandlesMultipleDimensions: any =
     versionToNumber(workerVersion) > 50900 ||
     (workerVersion.length == 7 && workerVersion.indexOf('.') == -1)
+  const freeformPointSets = opportunityDatasets.filter(
+    (od) => od.format === 'FREEFORM'
+  )
+
+  const totalOrigins: number =
+    originPointSet === defaultOriginPointSet
+      ? calculateGridPoints(profileRequest.bounds, profileRequest.zoom)
+      : get(originPointSet, 'totalPoints')
 
   const nameInput = useInput({test: testContent, value: ''})
 
@@ -148,36 +198,43 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
   async function create() {
     setIsCreating(true)
-    try {
-      if (workerVersionHandlesMultipleDimensions) {
-        await dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
-            destinationPointSetIds: destinationPointSets,
-            name: nameInput.value,
-            percentiles: parseStringAsIntArray(percentilesInput.value),
-            projectId,
-            variantIndex
-          })
+    const cutoffsMinutes = workerVersionHandlesMultipleDimensions
+      ? parseStringAsIntArray(cutoffsInput.value)
+      : [parseInt(cutoffInput.value)]
+    const percentiles = workerVersionHandlesMultipleDimensions
+      ? parseStringAsIntArray(percentilesInput.value)
+      : [parseInt(percentileInput.value)]
+
+    const options = {
+      ...profileRequest,
+      cutoffsMinutes,
+      destinationPointSetIds: destinationPointSets,
+      originPointSetId:
+        originPointSet.value !== 'grid' ? get(originPointSet, '_id') : null,
+      name: nameInput.value,
+      percentiles,
+      projectId,
+      variantIndex
+    }
+
+    const response = await authenticatedFetch(API.Regional, {
+      method: 'POST',
+      body: JSON.stringify(options)
+    })
+
+    if (response.ok === true) {
+      onClose() // Close modal before showing the toast
+
+      toast({
+        position: 'top',
+        render: ({onClose}) => (
+          <CreatedRegionalToast onClose={onClose} regionId={regionId} />
         )
-      } else {
-        await dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            cutoffsMinutes: [parseInt(cutoffInput.value)],
-            destinationPointSetIds: destinationPointSets,
-            name: nameInput.value,
-            percentiles: [parseInt(percentileInput.value)],
-            projectId,
-            variantIndex
-          })
-        )
-      }
-      const {as, href} = routeTo('regionalAnalyses', {regionId})
-      router.push(href, as)
-    } catch (e) {
+      })
+    } else {
+      console.error(response)
       setIsCreating(false)
+      setError(response.error.message)
     }
   }
 
@@ -195,13 +252,25 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       initialFocusRef={nameInput.ref}
       isOpen={true}
       onClose={onClose}
+      size='lg'
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Create new regional analysis</ModalHeader>
+        <ModalHeader>
+          Create new regional analysis{' '}
+          <DocsLink to='analysis/regional#starting-a-regional-analysis' />
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Stack mb={4} spacing={4}>
+            {error && (
+              <Alert status='error'>
+                <AlertIcon />
+                <AlertDescription>
+                  Error creating regional analysis. {error}
+                </AlertDescription>
+              </Alert>
+            )}
             <FormControl
               isDisabled={isCreating}
               mb={4}
@@ -214,6 +283,31 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               <Input {...nameInput} />
             </FormControl>
 
+            <FormControl isDisabled={isCreating} isRequired>
+              <FormLabel htmlFor='originPointSet'>Origin points</FormLabel>
+              <div>
+                <Select
+                  isDisabled={isCreating}
+                  getOptionLabel={getFullODName}
+                  getOptionValue={getId}
+                  inputId='originPointSet'
+                  onChange={setOriginPointSet}
+                  options={[defaultOriginPointSet, ...freeformPointSets]}
+                  value={originPointSet}
+                />
+              </div>
+            </FormControl>
+
+            <Alert status='info'>
+              <AlertIcon />
+              <AlertDescription>
+                Analysis will run for{' '}
+                {Math.round(totalOrigins).toLocaleString()} origin points
+              </AlertDescription>
+            </Alert>
+
+            <Divider />
+
             <FormControl
               isDisabled={isCreating}
               isRequired
@@ -223,7 +317,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               }
             >
               <FormLabel htmlFor='destinationPointSets'>
-                Opportunity dataset
+                Destination opportunity layer
                 {workerVersionHandlesMultipleDimensions ? '(s)' : ''}
               </FormLabel>
               <div>
@@ -244,80 +338,92 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 />
               </div>
               {workerVersionHandlesMultipleDimensions && (
-                <FormHelperText>Select up to 6 datasets.</FormHelperText>
+                <FormHelperText>Select up to 6 layers.</FormHelperText>
               )}
             </FormControl>
+
+            <Divider />
           </Stack>
 
           {workerVersionHandlesMultipleDimensions ? (
-            <Stack spacing={4}>
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={cutoffsInput.isInvalid}
-              >
-                <FormLabel htmlFor={cutoffsInput.id}>Cutoff minutes</FormLabel>
-                <Input
-                  {...cutoffsInput}
-                  value={
-                    Array.isArray(cutoffsInput.value)
-                      ? cutoffsInput.value.join(', ')
-                      : cutoffsInput.value
-                  }
-                />
-                <FormHelperText>From 5 to 120.</FormHelperText>
-              </FormControl>
-
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={percentilesInput.isInvalid}
-              >
-                <FormLabel htmlFor={percentilesInput.id}>Percentiles</FormLabel>
-                <Input
-                  {...percentilesInput}
-                  value={
-                    Array.isArray(percentilesInput.value)
-                      ? percentilesInput.value.join(', ')
-                      : percentilesInput.value
-                  }
-                />
-                <FormHelperText>From 1 to 99.</FormHelperText>
-              </FormControl>
+            <Stack isInline spacing={4}>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={cutoffsInput.isInvalid}
+                >
+                  <FormLabel htmlFor={cutoffsInput.id}>
+                    Cutoff minutes
+                  </FormLabel>
+                  <Input
+                    {...cutoffsInput}
+                    value={
+                      Array.isArray(cutoffsInput.value)
+                        ? cutoffsInput.value.join(', ')
+                        : cutoffsInput.value
+                    }
+                  />
+                  <FormHelperText>From 5 to 120.</FormHelperText>
+                </FormControl>
+              </Stack>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={percentilesInput.isInvalid}
+                >
+                  <FormLabel htmlFor={percentilesInput.id}>
+                    Percentiles
+                  </FormLabel>
+                  <Input
+                    {...percentilesInput}
+                    value={
+                      Array.isArray(percentilesInput.value)
+                        ? percentilesInput.value.join(', ')
+                        : percentilesInput.value
+                    }
+                  />
+                  <FormHelperText>From 1 to 99.</FormHelperText>
+                </FormControl>
+              </Stack>
             </Stack>
           ) : (
-            <Stack spacing={4}>
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={cutoffInput.isInvalid}
-              >
-                <FormLabel htmlFor={cutoffInput.id}>Cutoff minute</FormLabel>
-                <Input {...cutoffInput} />
-                <FormHelperText>From 5 to 120.</FormHelperText>
-              </FormControl>
-
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={percentileInput.isInvalid}
-              >
-                <FormLabel htmlFor={percentileInput.id}>Percentile</FormLabel>
-                <Input {...percentileInput} />
-                <FormHelperText>From 1 to 99.</FormHelperText>
-              </FormControl>
+            <Stack isInline spacing={4}>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={cutoffInput.isInvalid}
+                >
+                  <FormLabel htmlFor={cutoffInput.id}>Cutoff minute</FormLabel>
+                  <Input {...cutoffInput} />
+                  <FormHelperText>From 5 to 120.</FormHelperText>
+                </FormControl>
+              </Stack>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={percentileInput.isInvalid}
+                >
+                  <FormLabel htmlFor={percentileInput.id}>Percentile</FormLabel>
+                  <Input {...percentileInput} />
+                  <FormHelperText>From 1 to 99.</FormHelperText>
+                </FormControl>
+              </Stack>
             </Stack>
           )}
         </ModalBody>
         <ModalFooter>
           <Button
-            leftIcon='small-add'
+            leftIcon={<AddIcon />}
             loadingText='Creating'
             isLoading={isCreating}
             isDisabled={createDisabled}
             mr={3}
             onClick={create}
-            variantColor='green'
+            colorScheme='green'
           >
             {message('common.create')}
           </Button>

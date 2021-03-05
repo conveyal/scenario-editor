@@ -6,7 +6,7 @@ import {
   Input,
   Stack,
   useToast
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import {useState, useCallback} from 'react'
@@ -33,7 +33,8 @@ export default function LoadRegion() {
   const router = useRouter()
   const regionId = router.query.regionId as string
   const {data: region, response, update, remove} = useRegion(regionId)
-  if (response.error) return <p>{response.error.problem}</p>
+  if (response.error && response.error.ok === false)
+    return <p>{response.error.error.message}</p>
   if (!region) return <FullSpinner />
   return <EditRegion region={region} remove={remove} update={update} />
 }
@@ -168,7 +169,7 @@ function EditRegion({region, remove, update}) {
           onClick={_save}
           loadingText={'Saving region'}
           size='lg'
-          variantColor='green'
+          colorScheme='green'
         >
           {message('region.editAction')}
         </Button>
@@ -176,10 +177,9 @@ function EditRegion({region, remove, update}) {
         <ConfirmButton
           description={message('region.deleteConfirmation')}
           isFullWidth
-          leftIcon='delete'
           onConfirm={_delete}
           size='lg'
-          variantColor='red'
+          colorScheme='red'
         >
           {message('region.deleteAction')}
         </ConfirmButton>

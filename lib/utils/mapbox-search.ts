@@ -33,6 +33,8 @@ export default throttle(function mapboxSearch(
   const querystring = stringify({
     access_token: MB_TOKEN,
     autocomplete: false,
+    // All types except `country` and `poi`: https://docs.mapbox.com/api/search/geocoding/#data-types
+    types: 'region,district,locality,postcode,place,neighborhood,address',
     ...options
   })
 

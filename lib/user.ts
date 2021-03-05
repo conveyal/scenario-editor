@@ -19,6 +19,7 @@ export interface IUser {
 declare global {
   interface Window {
     __user?: IUser
+    zE: any
   }
 }
 
@@ -34,7 +35,7 @@ export const UserContext = createContext(null)
 
 // Helper functions to hide storage details
 // Store on `window` so that each new tab/window needs to check the session
-export function getUser(serverSideUser?: IUser): IUser | void {
+export function getUser(serverSideUser?: IUser): undefined | IUser {
   if (isDisabled) return localUser
   if (isServer) return serverSideUser
   return window.__user || serverSideUser
@@ -53,6 +54,17 @@ export function storeUser(user: IUser): void {
     accessGroup: user.accessGroup,
     email: user.email
   })
+
+  // Identify the user for ZenDesk
+  if (window.zE) {
+    window.zE(() => {
+      window.zE.identify({
+        name: user.email,
+        email: user.email,
+        organization: user.accessGroup
+      })
+    })
+  }
 
   // Store the user on window, requiring a new session on each tab/page
   window.__user = user

@@ -1,9 +1,18 @@
-import {Box, Select, Stack, Flex, useDisclosure} from '@chakra-ui/core'
 import {
-  faChevronLeft,
-  faDownload,
-  faTrash
-} from '@fortawesome/free-solid-svg-icons'
+  Box,
+  Select,
+  Stack,
+  Flex,
+  useDisclosure,
+  Menu,
+  MenuButton,
+  Button,
+  MenuList,
+  MenuItem,
+  Alert,
+  AlertIcon,
+  AlertDescription
+} from '@chakra-ui/react'
 import find from 'lodash/find'
 import get from 'lodash/get'
 import omit from 'lodash/omit'
@@ -17,6 +26,7 @@ import {
   updateRegionalAnalysis
 } from 'lib/actions/analysis/regional'
 import fetchAction from 'lib/actions/fetch'
+import {ChevronLeft, DeleteIcon, DownloadIcon} from 'lib/components/icons'
 import {API} from 'lib/constants'
 import useControlledInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
@@ -24,6 +34,7 @@ import selectActiveAnalysis from 'lib/selectors/active-regional-analysis'
 import selectCutoff from 'lib/selectors/regional-display-cutoff'
 import selectPercentile from 'lib/selectors/regional-display-percentile'
 import selectPointset from 'lib/selectors/regional-display-destination-pointset'
+import downloadObjectAsJson from 'lib/utils/download-json'
 
 import {ConfirmDialog} from '../confirm-button'
 import Editable from '../editable'
@@ -55,11 +66,18 @@ const nameIsValid = (s) => s && s.length > 0
 // Get full qualifier for opportunity datasets
 const getFullODName = (od) => `${od?.sourceName}: ${od?.name}`
 
+// Type to title
+const csvResultsTypeToTitle = {
+  ACCESS: 'Access CSV',
+  PATHS: 'Paths CSV',
+  TIMES: 'Times CSV'
+}
+
 export default function Regional(p) {
   const deleteDisclosure = useDisclosure()
   const isComplete = !p.job
   const analysis = useSelector(selectActiveAnalysis)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const cutoffsMinutes = analysis.cutoffsMinutes
   const percentiles = analysis.travelTimePercentiles
 
@@ -97,6 +115,20 @@ export default function Regional(p) {
   async function _remove() {
     await dispatch(deleteRegionalAnalysis(analysis._id))
     return dispatch(setSearchParameter('analysisId'))
+  }
+
+  async function _downloadCSVResults(type) {
+    const url = await dispatch(
+      fetchAction({url: `${API.Regional}/${analysis._id}/csv/${type}`})
+    )
+    window.open(url)
+  }
+
+  async function _downloadRequestJSON() {
+    const data = await dispatch(
+      fetchAction({url: `${API.Regional}/${analysis._id}`})
+    )
+    downloadObjectAsJson({data, filename: analysis.name + '.json'})
   }
 
   /**
@@ -142,10 +174,11 @@ export default function Regional(p) {
         width='320px'
       >
         <IconButton
-          icon={faChevronLeft}
           label='All regional analyses'
           onClick={() => dispatch(setSearchParameter('analysisId'))}
-        />
+        >
+          <ChevronLeft />
+        </IconButton>
 
         <Box flex='1' fontSize='xl' fontWeight='bold' ml={2} overflow='hidden'>
           <Editable
@@ -158,62 +191,89 @@ export default function Regional(p) {
         </Box>
 
         <Flex>
-          {isComplete && (
-            <IconButton
-              icon={faDownload}
-              label={
-                message('analysis.gisExport') +
-                ': ' +
-                message('analysis.downloadRegional', {
-                  name: analysis.name
-                })
-              }
-              onClick={_downloadProjectGIS}
-            />
-          )}
           <IconButton
-            icon={faTrash}
             label={message('analysis.deleteRegionalAnalysis')}
             onClick={deleteDisclosure.onOpen}
-            variantColor='red'
-          />
+            colorScheme='red'
+          >
+            <DeleteIcon />
+          </IconButton>
         </Flex>
       </Flex>
 
       {p.job && <RunningAnalysis job={p.job} />}
 
       <Stack spacing={4} px={4} py={4}>
-        {Array.isArray(analysis.destinationPointSetIds) && (
-          <Select {...destinationPointSetInput}>
-            {analysis.destinationPointSetIds.map((id) => (
-              <option key={id} value={id}>
-                {getFullODName(find(p.opportunityDatasets, ['_id', id]))}
-              </option>
-            ))}
-          </Select>
+        {analysis?.request?.originPointSetKey != null ? (
+          <Alert status='info'>
+            <AlertIcon />
+            <AlertDescription>
+              Results for this analysis cannot be displayed on this map.
+            </AlertDescription>
+          </Alert>
+        ) : (
+          <Stack spacing={4}>
+            {Array.isArray(analysis.destinationPointSetIds) && (
+              <Select {...destinationPointSetInput}>
+                {analysis.destinationPointSetIds.map((id) => (
+                  <option key={id} value={id}>
+                    {getFullODName(find(p.opportunityDatasets, ['_id', id]))}
+                  </option>
+                ))}
+              </Select>
+            )}
+
+            <Stack isInline>
+              {Array.isArray(cutoffsMinutes) && (
+                <Select {...cutoffInput}>
+                  {cutoffsMinutes.map((m) => (
+                    <option key={m} value={m}>
+                      {m} minutes
+                    </option>
+                  ))}
+                </Select>
+              )}
+
+              {Array.isArray(percentiles) && (
+                <Select {...percentileInput}>
+                  {percentiles.map((p) => (
+                    <option key={p} value={p}>
+                      {p}th percentile
+                    </option>
+                  ))}
+                </Select>
+              )}
+            </Stack>
+          </Stack>
         )}
 
-        <Stack isInline>
-          {Array.isArray(cutoffsMinutes) && (
-            <Select {...cutoffInput}>
-              {cutoffsMinutes.map((m) => (
-                <option key={m} value={m}>
-                  {m} minutes
-                </option>
+        {isComplete && (
+          <Menu>
+            <MenuButton
+              as={Button}
+              colorScheme='blue'
+              leftIco={<DownloadIcon />}
+            >
+              Download results
+            </MenuButton>
+            <MenuList>
+              <MenuItem
+                isDisabled={analysis.request.originPointSetKey != null}
+                onClick={_downloadProjectGIS}
+              >
+                GeoTIFF
+              </MenuItem>
+              <MenuItem onClick={_downloadRequestJSON}>
+                Scenario and modification JSON
+              </MenuItem>
+              {Object.keys(analysis.resultStorage || {}).map((type) => (
+                <MenuItem key={type} onClick={() => _downloadCSVResults(type)}>
+                  {csvResultsTypeToTitle[type]}
+                </MenuItem>
               ))}
-            </Select>
-          )}
-
-          {Array.isArray(percentiles) && (
-            <Select {...percentileInput}>
-              {percentiles.map((p) => (
-                <option key={p} value={p}>
-                  {p}th percentile
-                </option>
-              ))}
-            </Select>
-          )}
-        </Stack>
+            </MenuList>
+          </Menu>
+        )}
       </Stack>
 
       <ProfileRequestDisplay
@@ -225,7 +285,7 @@ export default function Regional(p) {
         projectId={analysis.projectId}
       />
 
-      {isComplete && (
+      {isComplete && analysis?.request?.originPointSetKey == null && (
         <RegionalResults
           analysis={analysis}
           analysisId={analysis._id}

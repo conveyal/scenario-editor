@@ -11,7 +11,7 @@ import {
   ListItem,
   Stack,
   Skeleton
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
 import {useCallback, useEffect} from 'react'
@@ -209,6 +209,9 @@ export default function SinglePointAnalysis({
   )
 }
 
+const filterFreeform = (dataset: CL.SpatialDataset) =>
+  dataset.format !== 'FREEFORM'
+
 function Results({
   isDisabled,
   isStale, // are the results out of sync with the form?
@@ -237,6 +240,7 @@ function Results({
             {message('analysis.grid')}
           </FormLabel>
           <OpportunityDatasetSelector
+            filter={filterFreeform}
             isDisabled={isDisabled}
             regionId={region._id}
           />

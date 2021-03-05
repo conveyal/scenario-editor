@@ -1,8 +1,9 @@
-import {Button, ButtonGroup, Divider, Heading, Stack} from '@chakra-ui/core'
+import {Button, ButtonGroup, Divider, Heading, Stack} from '@chakra-ui/react'
 import {useDispatch} from 'react-redux'
 
 import ConfirmButton from 'lib/components/confirm-button'
 import Editable from 'lib/components/editable'
+import {DownloadIcon, DeleteIcon} from 'lib/components/icons'
 import message from 'lib/message'
 
 import {
@@ -69,14 +70,21 @@ export default function EditOpportunityDatatset(p) {
   return (
     <Stack spacing={5}>
       <Stack spacing={0}>
-        <LabelHeading>name</LabelHeading>
+        <LabelHeading>{message('spatialDatasets.name')}</LabelHeading>
         <Heading size='md'>
           <Editable
             onChange={_editName}
             isValid={nameIsValid}
-            placeholder='Opportunity dataset name'
+            placeholder='Spatial dataset name'
             value={p.opportunityDataset.name}
           />
+        </Heading>
+      </Stack>
+
+      <Stack>
+        <LabelHeading>format</LabelHeading>
+        <Heading id='format' size='md'>
+          {p.opportunityDataset.format}
         </Heading>
       </Stack>
 
@@ -93,19 +101,19 @@ export default function EditOpportunityDatatset(p) {
         <LabelHeading>download as</LabelHeading>
         <ButtonGroup>
           <Button
-            leftIcon='download'
+            leftIcon={<DownloadIcon />}
             onClick={_downloadTiff}
-            title={message('opportunityDatasets.downloadTiff')}
-            variantColor='green'
+            title={message('spatialDatasets.downloadTiff')}
+            colorScheme='green'
             variant='outline'
           >
             .tiff
           </Button>
           <Button
-            leftIcon='download'
+            leftIcon={<DownloadIcon />}
             onClick={_downloadGrid}
-            title={message('opportunityDatasets.downloadGrid')}
-            variantColor='green'
+            title={message('spatialDatasets.downloadGrid')}
+            colorScheme='green'
             variant='outline'
           >
             .grid
@@ -124,30 +132,30 @@ export default function EditOpportunityDatatset(p) {
       </Stack>
 
       <ConfirmButton
-        description={message('opportunityDatasets.confirmDelete')}
-        leftIcon='delete'
+        description={message('spatialDatasets.confirmDelete')}
+        leftIcon={<DeleteIcon />}
         onConfirm={_deleteDataset}
-        variantColor='red'
+        colorScheme='red'
         variant='outline'
       >
-        {message('opportunityDatasets.delete')}
+        {message('spatialDatasets.delete')}
       </ConfirmButton>
 
       <Divider />
 
       <Stack spacing={2}>
-        <LabelHeading>dataset source name</LabelHeading>
+        <LabelHeading>{message('spatialDatasets.sourceName')}</LabelHeading>
         <Heading size='md'>{p.opportunityDataset.sourceName}</Heading>
       </Stack>
 
       <ConfirmButton
-        description={message('opportunityDatasets.confirmDeleteSource')}
-        leftIcon='delete'
+        description={message('spatialDatasets.confirmDeleteSource')}
+        leftIcon={<DeleteIcon />}
         onConfirm={_deleteSourceSet}
-        variantColor='red'
+        colorScheme='red'
         variant='outline'
       >
-        {message('opportunityDatasets.deleteSource')}
+        {message('spatialDatasets.deleteSource')}
       </ConfirmButton>
     </Stack>
   )

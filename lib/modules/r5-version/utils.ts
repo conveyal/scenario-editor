@@ -1,23 +1,47 @@
-import {MINIMUM_R5_VERSION, VERSION_PARSE_REGEX} from './constants'
+import {
+  MINIMUM_R5_VERSION,
+  VERSION_PARSE_REGEX,
+  OLD_VERSION_PARSE_REGEX
+} from './constants'
 
 /**
  * Convert an r5 version to a number for comparing
+ * NB Assumes no major, minor, patch, or commit version exceeds 100
  */
-export function versionToNumber(version: string): number {
-  const versionMatch = (version || '').match(VERSION_PARSE_REGEX)
-  if (versionMatch) {
-    const [, major, minor, patch, commit] = versionMatch
+export function versionToNumber(version?: string): number {
+  const versionString = version || ''
+  if (versionString.match(/\./g) && versionString.match(/\./g).length == 1) {
+    const versionMatch = versionString.match(VERSION_PARSE_REGEX)
+    if (versionMatch) {
+      const [, major = '0', minor = '0', commit = '0'] = versionMatch
 
-    // NB Assumes no major, minor, patch, or commit version exceeds 100
-    return (
-      parseInt(major) * 10000 +
-      parseInt(minor) * 100 +
-      parseInt(patch) +
-      parseInt(commit || '0') / 100
-    )
+      return (
+        parseInt(major) * 10000 + parseInt(minor) * 100 + parseInt(commit) / 100
+      )
+    }
+
+    return 0
+  } else {
+    const versionMatch = versionString.match(OLD_VERSION_PARSE_REGEX)
+    if (versionMatch) {
+      const [
+        ,
+        major = '0',
+        minor = '0',
+        patch = '0',
+        commit = '0'
+      ] = versionMatch
+
+      return (
+        parseInt(major) * 10000 +
+        parseInt(minor) * 100 +
+        parseInt(patch) +
+        parseInt(commit) / 100
+      )
+    }
+
+    return 0
   }
-
-  return 0
 }
 
 /**
@@ -43,6 +67,6 @@ export function workerVersionTestOrInRange(
   min: string,
   max?: string
 ): boolean {
-  const isTestVersion = versionToNumber(version) % 1 !== 0
+  const isTestVersion = (version || '').search(/-/g) !== -1
   return isTestVersion || workerVersionInRange(version, min, max)
 }

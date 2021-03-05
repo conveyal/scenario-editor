@@ -3,6 +3,11 @@ const unlog = {log: false}
 // Shortened helper for `findByRole('button', {name: /Name/})
 Cypress.Commands.add('findButton', (name) => cy.findByRole('button', {name}))
 
+// Get a toast
+Cypress.Commands.add('findToast', () =>
+  cy.get('#chakra-toast-portal').findByRole('alert')
+)
+
 // Load the home page. Wait for the "Skeleton" to disappear
 Cypress.Commands.add('visitHome', () => {
   cy.log('visitHome')
@@ -81,7 +86,7 @@ const navToPages = {
     lookFor: /Create a new network bundle/i,
     path: /\/regions\/[a-z0-9]+\/bundles/
   },
-  'opportunity datasets': {
+  'spatial datasets': {
     lookFor: /Upload a new dataset/i,
     path: /\/regions\/[a-z0-9]+\/opportunities*/
   },

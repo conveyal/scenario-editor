@@ -1,17 +1,10 @@
-import {
-  Box,
-  ButtonProps,
-  Flex,
-  Input,
-  PseudoBox,
-  useDisclosure
-} from '@chakra-ui/core'
-import {faCheck, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
+import {Box, ButtonProps, Flex, Input, useDisclosure} from '@chakra-ui/react'
 import {useEffect, useCallback, useState} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 
 import IconButton from './icon-button'
+import {EditIcon, CheckIcon} from './icons'
 
 const defaultEditLabel = 'Click to edit'
 
@@ -47,7 +40,7 @@ export default function Editable({
     )
   } else {
     return (
-      <PseudoBox
+      <Box
         aria-label={placeholder}
         alignItems='center'
         cursor='pointer'
@@ -64,15 +57,12 @@ export default function Editable({
             {placeholder}
           </Box>
         )}
-        <PseudoBox visibility='hidden' _groupHover={{visibility: 'unset'}}>
-          <IconButton
-            icon={faPencilAlt}
-            label={defaultEditLabel}
-            onClick={onOpen}
-            size={iconSize}
-          />
-        </PseudoBox>
-      </PseudoBox>
+        <Box visibility='hidden' _groupHover={{visibility: 'unset'}}>
+          <IconButton label={defaultEditLabel} onClick={onOpen} size={iconSize}>
+            <EditIcon />
+          </IconButton>
+        </Box>
+      </Box>
     )
   }
 }
@@ -133,12 +123,13 @@ function HiddenInput({
       />
       {input.isValid && (
         <IconButton
-          icon={faCheck}
           isDisabled={isSaving}
           label='Save'
           onClick={save}
           size={iconSize}
-        />
+        >
+          <CheckIcon />
+        </IconButton>
       )}
     </Flex>
   )

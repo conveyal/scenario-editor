@@ -1,4 +1,4 @@
-import {IToast, useToast} from '@chakra-ui/core'
+import {IToast, useToast} from '@chakra-ui/react'
 import {useEffect} from 'react'
 
 import LogRocket from 'lib/logrocket'
@@ -30,7 +30,7 @@ export default function useErrorHandlingToast() {
           description,
           title,
           // Remove toast type from tracker
-          onClose: () => toastTracker.delete(slug)
+          onCloseComplete: () => toastTracker.delete(slug)
         })
       }
     }
@@ -56,8 +56,14 @@ export default function useErrorHandlingToast() {
 
       if (e instanceof Response) {
         title = 'Error while communicating with server'
-        description =
-          typeof (e as any).value === 'string' ? (e as any).value : e.statusText
+        const value: unknown = (e as any).value
+        if (typeof value === 'object') {
+          description = value['message']
+        } else if (typeof value === 'string') {
+          description = value
+        } else {
+          description = e.statusText
+        }
       }
 
       showUniqueToast(title, description)

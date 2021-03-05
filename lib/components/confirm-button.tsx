@@ -8,7 +8,7 @@ import {
   Button,
   ButtonProps,
   useDisclosure
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {useRef, useState} from 'react'
 
 type ConfirmButtonProps = ButtonProps & {
@@ -81,7 +81,7 @@ export function ConfirmDialog({action, description, onClose, onConfirm}) {
             ml={3}
             onClick={doAction}
             size='lg'
-            variantColor='red'
+            colorScheme='red'
           >
             Confirm: {action}
           </Button>

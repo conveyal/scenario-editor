@@ -24,231 +24,196 @@ exports[`Component > ImportModifications renders correctly 1`] = `
   }
   regionId="1"
 >
-  <ForwardRef
+  <Stack
     p={4}
     spacing={4}
   >
-    <Flex
-      direction="column"
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 4,
+          },
+        }
+      }
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
       p={4}
     >
-      <Box
-        display="flex"
-        flexDirection="column"
-        p={4}
+      <div
+        className="chakra-stack css-zcuazw"
       >
-        <div
-          className="css-1n0jko5"
+        <Heading
+          key=".0"
+          size="md"
         >
-          <Heading
-            key=".0"
-            mb={4}
-            size="md"
-          >
-            <Box
-              as="h2"
-              fontFamily="heading"
-              fontSize="xl"
-              fontWeight="bold"
-              lineHeight="shorter"
-              mb={4}
-            >
-              <h2
-                className="css-k9oqgk"
-              >
-                Route alignments from shapefile
-              </h2>
-            </Box>
-          </Heading>
-          <ForwardRef
-            key=".1"
-            mb={4}
-            query={
+          <Styled(h2)
+            __css={
               Object {
-                "projectId": "1",
-                "regionId": "1",
+                "fontFamily": "heading",
+                "fontSize": "xl",
+                "fontWeight": "bold",
+                "lineHeight": 1.2,
               }
             }
-            to="importShapefile"
-            variantColor="green"
+            className="chakra-heading"
           >
-            <InternalLink
-              projectId="1"
-              regionId="1"
-              to="importShapefile"
+            <h2
+              className="chakra-heading css-1hm1kf2"
             >
-              <Link
-                as="/regions/1/projects/1/import-shapefile"
-                href={
+              Route alignments from shapefile
+            </h2>
+          </Styled(h2)>
+        </Heading>
+        <InternalLink
+          key=".1"
+          query={
+            Object {
+              "projectId": "1",
+              "regionId": "1",
+            }
+          }
+          to="importShapefile"
+        >
+          <Link
+            href="/regions/1/projects/1/import-shapefile"
+            passHref={true}
+          >
+            <Button
+              colorScheme="green"
+              href="/regions/1/projects/1/import-shapefile"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <Styled(button)
+                __css={
                   Object {
-                    "pathname": "/regions/[regionId]/projects/[projectId]/import-shapefile",
-                    "query": Object {},
+                    "_active": Object {
+                      "bg": "green.700",
+                    },
+                    "_disabled": Object {
+                      "boxShadow": "none",
+                      "cursor": "not-allowed",
+                      "opacity": 0.4,
+                    },
+                    "_focus": Object {
+                      "boxShadow": "outline",
+                    },
+                    "_hover": Object {
+                      "_disabled": Object {
+                        "bg": "green.500",
+                      },
+                      "bg": "green.600",
+                    },
+                    "alignItems": "center",
+                    "appearance": "none",
+                    "bg": "green.500",
+                    "borderRadius": "md",
+                    "color": "white",
+                    "display": "inline-flex",
+                    "fontSize": "md",
+                    "fontWeight": "semibold",
+                    "h": 10,
+                    "justifyContent": "center",
+                    "lineHeight": "1.2",
+                    "minW": 10,
+                    "outline": "none",
+                    "position": "relative",
+                    "px": 4,
+                    "transition": "all 250ms",
+                    "userSelect": "none",
+                    "verticalAlign": "middle",
+                    "whiteSpace": "nowrap",
+                    "width": "auto",
                   }
                 }
-                passHref={true}
+                className="chakra-button"
+                href="/regions/1/projects/1/import-shapefile"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                type="button"
               >
-                <Button
+                <button
+                  className="chakra-button css-ywjnlx"
                   href="/regions/1/projects/1/import-shapefile"
-                  mb={4}
                   onClick={[Function]}
                   onMouseEnter={[Function]}
-                  variantColor="green"
+                  type="button"
                 >
-                  <PseudoBox
-                    _active={
-                      Object {
-                        "bg": "green.700",
-                      }
-                    }
-                    _disabled={
-                      Object {
-                        "boxShadow": "none",
-                        "cursor": "not-allowed",
-                        "opacity": "40%",
-                      }
-                    }
-                    _focus={
-                      Object {
-                        "boxShadow": "outline",
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "bg": "green.600",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    as="button"
-                    bg="green.500"
-                    borderRadius="md"
-                    color="white"
-                    display="inline-flex"
-                    fontSize="md"
-                    fontWeight="semibold"
-                    height={10}
-                    href="/regions/1/projects/1/import-shapefile"
-                    justifyContent="center"
-                    lineHeight="1.2"
-                    mb={4}
-                    minWidth={10}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    outline="none"
-                    position="relative"
-                    px={4}
-                    transition="all 250ms"
-                    type="button"
-                    userSelect="none"
-                    verticalAlign="middle"
-                    whiteSpace="nowrap"
-                  >
-                    <button
-                      className="css-1egop4s"
-                      href="/regions/1/projects/1/import-shapefile"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      type="button"
-                    >
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "upload",
-                            "prefix": "fas",
-                          }
-                        }
-                      >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "upload",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          swapOpacity={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
-                            data-icon="upload"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       Import from Shapefile
-                    </button>
-                  </PseudoBox>
-                </Button>
-              </Link>
-            </InternalLink>
-          </ForwardRef>
-          <Heading
-            key=".2"
-            mb={4}
-            size="md"
+                  Import from Shapefile
+                </button>
+              </Styled(button)>
+            </Button>
+          </Link>
+        </InternalLink>
+        <Heading
+          key=".2"
+          size="md"
+        >
+          <Styled(h2)
+            __css={
+              Object {
+                "fontFamily": "heading",
+                "fontSize": "xl",
+                "fontWeight": "bold",
+                "lineHeight": 1.2,
+              }
+            }
+            className="chakra-heading"
           >
-            <Box
-              as="h2"
-              fontFamily="heading"
-              fontSize="xl"
-              fontWeight="bold"
-              lineHeight="shorter"
-              mb={4}
+            <h2
+              className="chakra-heading css-1hm1kf2"
             >
-              <h2
-                className="css-k9oqgk"
-              >
-                Import modifications from another project
-              </h2>
-            </Box>
-          </Heading>
-          <Box
-            key=".3"
-            mb={4}
+              Import modifications from another project
+            </h2>
+          </Styled(h2)>
+        </Heading>
+        <Box
+          key=".3"
+        >
+          <div
+            className="css-0"
           >
-            <div
-              className="css-acwcvw"
-            >
-              When importing from a project associated with a different bundle, only "Add Trips" modifications will be copied. If a modification uses an existing stop from the baseline GTFS, it will be replaced in the imported modification by a new stop at the same location.
-            </div>
-          </Box>
-          <Box
-            key=".4"
-            mb={4}
+            When importing from a project associated with a different bundle, only "Add Trips" modifications will be copied. If a modification uses an existing stop from the baseline GTFS, it will be replaced in the imported modification by a new stop at the same location.
+          </div>
+        </Box>
+        <Box
+          key=".4"
+        >
+          <div
+            className="css-0"
           >
-            <div
-              className="css-acwcvw"
+            <ForwardRef
+              getOptionLabel={[Function]}
+              getOptionValue={[Function]}
+              onChange={[Function]}
+              options={
+                Array [
+                  Object {
+                    "_id": "1",
+                    "accessGroup": "accessGroupName",
+                    "bundleId": "1",
+                    "createdAt": "2017-11-08T12:30:50.133Z",
+                    "createdBy": "person@gmail.com",
+                    "name": "Mock Project",
+                    "nonce": "12345",
+                    "regionId": "1",
+                    "updatedAt": "2017-11-08T12:31:19.602Z",
+                    "updatedBy": "person@gmail.com",
+                    "variants": Array [
+                      "Default",
+                    ],
+                  },
+                ]
+              }
+              placeholder="Select a project…"
             >
-              <ForwardRef
+              <ReactSelect
                 getOptionLabel={[Function]}
                 getOptionValue={[Function]}
+                innerRef={null}
                 onChange={[Function]}
                 options={
                   Array [
@@ -270,159 +235,86 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                   ]
                 }
                 placeholder="Select a project…"
-              >
-                <ReactSelect
-                  getOptionLabel={[Function]}
-                  getOptionValue={[Function]}
-                  innerRef={null}
-                  onChange={[Function]}
-                  options={
-                    Array [
-                      Object {
-                        "_id": "1",
-                        "accessGroup": "accessGroupName",
-                        "bundleId": "1",
-                        "createdAt": "2017-11-08T12:30:50.133Z",
-                        "createdBy": "person@gmail.com",
-                        "name": "Mock Project",
-                        "nonce": "12345",
-                        "regionId": "1",
-                        "updatedAt": "2017-11-08T12:31:19.602Z",
-                        "updatedBy": "person@gmail.com",
-                        "variants": Array [
-                          "Default",
-                        ],
-                      },
-                    ]
+                styles={
+                  Object {
+                    "control": [Function],
+                    "menu": [Function],
+                    "option": [Function],
                   }
-                  placeholder="Select a project…"
-                  styles={
-                    Object {
-                      "control": [Function],
-                      "menu": [Function],
-                      "option": [Function],
-                    }
-                  }
-                >
-                  <div
-                    className="ReactSelectMock"
-                  />
-                </ReactSelect>
-              </ForwardRef>
-            </div>
-          </Box>
-          <Button
-            isDisabled={true}
-            key=".5"
-            leftIcon="copy"
-            mb={null}
-            onClick={[Function]}
-            variantColor="green"
-          >
-            <PseudoBox
-              _active={
-                Object {
-                  "bg": "green.700",
                 }
-              }
-              _disabled={
-                Object {
+              >
+                <div
+                  className="ReactSelectMock"
+                />
+              </ReactSelect>
+            </ForwardRef>
+          </div>
+        </Box>
+        <Button
+          colorScheme="green"
+          isDisabled={true}
+          key=".5"
+          onClick={[Function]}
+        >
+          <Styled(button)
+            __css={
+              Object {
+                "_active": Object {
+                  "bg": "green.700",
+                },
+                "_disabled": Object {
                   "boxShadow": "none",
                   "cursor": "not-allowed",
-                  "opacity": "40%",
-                }
-              }
-              _focus={
-                Object {
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
                   "boxShadow": "outline",
-                }
-              }
-              _hover={
-                Object {
+                },
+                "_hover": Object {
+                  "_disabled": Object {
+                    "bg": "green.500",
+                  },
                   "bg": "green.600",
-                }
+                },
+                "alignItems": "center",
+                "appearance": "none",
+                "bg": "green.500",
+                "borderRadius": "md",
+                "color": "white",
+                "display": "inline-flex",
+                "fontSize": "md",
+                "fontWeight": "semibold",
+                "h": 10,
+                "justifyContent": "center",
+                "lineHeight": "1.2",
+                "minW": 10,
+                "outline": "none",
+                "position": "relative",
+                "px": 4,
+                "transition": "all 250ms",
+                "userSelect": "none",
+                "verticalAlign": "middle",
+                "whiteSpace": "nowrap",
+                "width": "auto",
               }
-              alignItems="center"
-              appearance="none"
-              aria-disabled={true}
-              as="button"
-              bg="green.500"
-              borderRadius="md"
-              color="white"
+            }
+            className="chakra-button"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          >
+            <button
+              className="chakra-button css-ywjnlx"
               disabled={true}
-              display="inline-flex"
-              fontSize="md"
-              fontWeight="semibold"
-              height={10}
-              justifyContent="center"
-              lineHeight="1.2"
-              mb={null}
-              minWidth={10}
               onClick={[Function]}
-              outline="none"
-              position="relative"
-              px={4}
-              transition="all 250ms"
               type="button"
-              userSelect="none"
-              verticalAlign="middle"
-              whiteSpace="nowrap"
             >
-              <button
-                aria-disabled={true}
-                className="css-6cthfa"
-                disabled={true}
-                onClick={[Function]}
-                type="button"
-              >
-                <ButtonIcon
-                  icon="copy"
-                  ml={-1}
-                  mr={2}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    color="currentColor"
-                    focusable="false"
-                    ml={-1}
-                    mr={2}
-                    name="copy"
-                  >
-                    <Styled(div)
-                      aria-hidden="true"
-                      as="svg"
-                      color="currentColor"
-                      display="inline-block"
-                      focusable="false"
-                      ml={-1}
-                      mr={2}
-                      role="presentation"
-                      size="1em"
-                      verticalAlign="middle"
-                      viewBox="0 0 24 24"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="css-yxiis9"
-                        focusable="false"
-                        role="presentation"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </Styled(div)>
-                  </Icon>
-                </ButtonIcon>
-                Import from existing project
-              </button>
-            </PseudoBox>
-          </Button>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+              Import from existing project
+            </button>
+          </Styled(button)>
+        </Button>
+      </div>
+    </Styled(div)>
+  </Stack>
 </ImportModifications>
 `;

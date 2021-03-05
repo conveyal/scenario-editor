@@ -39,6 +39,12 @@ export default function useControlledInput({
   parse = identityFn,
   test: checkValid = alwaysValid,
   value
+}: {
+  onChange?: (newValue: any) => void
+  id?: string
+  parse?: (inputValue: string) => any
+  test?: (currentValue: any, inputValue: string) => boolean
+  value: any
 }): ControlledInput {
   const [inputValue, setInputValue] = useState(value)
   const [isValid, setIsValid] = useState(() =>

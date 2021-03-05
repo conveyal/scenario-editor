@@ -1,50 +1,47 @@
-import {Box, Flex, PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
-import {
-  faChartArea,
-  faCompass,
-  faCubes,
-  faDatabase,
-  faGlobe,
-  faLayerGroup,
-  faPencilAlt,
-  faQuestionCircle,
-  faServer,
-  faSignOutAlt,
-  faTh,
-  faWifi,
-  IconDefinition
-} from '@fortawesome/free-solid-svg-icons'
+import {Box, BoxProps, Center, Flex} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
-import Image from 'next/image'
+import omit from 'lodash/omit'
 import {useRouter} from 'next/router'
-import {memo, useCallback, useContext, useEffect, useState} from 'react'
+import {memo, useContext, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
-import {CB_DARK, CB_HEX, LOGO_URL} from 'lib/constants'
+import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
+import {CREATING_ID} from 'lib/constants/region'
 import useRouteChanging from 'lib/hooks/use-route-changing'
+import useRouteTo from 'lib/hooks/use-route-to'
+import message from 'lib/message'
 import {routeTo} from 'lib/router'
+import selectOutstandingRequests from 'lib/selectors/outstanding-requests'
+import {UserContext} from 'lib/user'
 
-import {CREATING_ID} from '../constants/region'
-import message from '../message'
-import selectOutstandingRequests from '../selectors/outstanding-requests'
-import {UserContext} from '../user'
-
-import Icon from './icon'
+import {
+  BundlesIcon,
+  EditIcon,
+  InfoIcon,
+  LoadingIcon,
+  ProjectsIcon,
+  RegionsIcon,
+  ResourcesIcon,
+  RegionalAnalysisIcon,
+  SinglePointAnalysisIcon,
+  SignOutIcon,
+  SpatialDatasetsIcon,
+  WifiIcon
+} from './icons'
+import SVGLogo from './logo.svg'
 import Tip from './tip'
 
 const sidebarWidth = '40px'
 
-const NavItemContents = memo<PseudoBoxProps>(({children, ...p}) => {
+const NavItemContents = memo<BoxProps>(({children, ...p}) => {
   return (
-    <PseudoBox
+    <Center
       borderBottom='2px solid rgba(0, 0, 0, 0)'
+      boxSize={sidebarWidth}
       cursor='pointer'
       color={CB_HEX}
       fontSize='14px'
-      lineHeight='20px'
-      py={3}
-      textAlign='center'
       width={sidebarWidth}
       _focus={{
         outline: 'none'
@@ -55,11 +52,11 @@ const NavItemContents = memo<PseudoBoxProps>(({children, ...p}) => {
       {...p}
     >
       {children}
-    </PseudoBox>
+    </Center>
   )
 })
 
-function useIsActive(to: string, params = {}) {
+function useIsActive(to: PageKey, params = {}) {
   const [, pathname] = useRouteChanging()
   const route = routeTo(to, params)
   route.href = route.href.split('?')[0]
@@ -70,39 +67,33 @@ function useIsActive(to: string, params = {}) {
 }
 
 type ItemLinkProps = {
-  icon: IconDefinition
+  children: React.ReactNode
   label: string
-  to: string
+  to: PageKey
   params?: any
 }
 
 /**
  * Render an ItemLink.
  */
-const ItemLink = memo<ItemLinkProps>(({icon, label, to, params = {}}) => {
-  const router = useRouter()
+const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
   const isActive = useIsActive(to, params)
-
-  const goToLink = useCallback(() => {
-    const {href, as, query} = routeTo(to, params)
-    router.push({pathname: href, query}, as)
-  }, [params, router, to])
+  const goToLink = useRouteTo(to, params)
 
   const navItemProps = isActive
     ? {
         bg: '#fff',
-        borderBottom: `2px solid ${CB_HEX}`,
-        boxShadow: '0 6px 6px 0 rgba(51, 122, 183, 0.1'
+        borderBottom: `2px solid ${CB_HEX}`
       }
-    : {onClick: goToLink}
+    : {onClick: () => goToLink()}
 
   return (
-    <Tip isDisabled={isActive} label={label}>
-      <Box role='button' title={label}>
-        <NavItemContents {...navItemProps}>
-          <Icon icon={icon} title={label} />
+    <Tip isDisabled={isActive} label={label} placement='right'>
+      <div>
+        <NavItemContents {...navItemProps} role='button' title={label}>
+          {children}
         </NavItemContents>
-      </Box>
+      </div>
     </Tip>
   )
 })
@@ -125,61 +116,70 @@ export default function Sidebar() {
       height='100vh'
       id='sidebar'
       justify='space-between'
-      width='40px'
+      width={sidebarWidth}
       zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
     >
       <div>
-        <Box fontSize='20px' py={10} textAlign='center' width='40px'>
+        <NavItemContents fontSize='22px' my={12}>
           <LogoSpinner />
-        </Box>
+        </NavItemContents>
 
-        <ItemLink icon={faGlobe} label={message('nav.regions')} to='regions' />
+        <ItemLink label={message('nav.regions')} to='regions'>
+          <RegionsIcon />
+        </ItemLink>
         {queryParams.regionId && queryParams.regionId !== CREATING_ID && (
           <>
             <ItemLink
-              icon={faCubes}
               label={message('nav.projects')}
               to='projects'
               params={regionOnly}
-            />
+            >
+              <ProjectsIcon />
+            </ItemLink>
             <ItemLink
-              icon={faDatabase}
               label={message('nav.networkBundles')}
               to='bundles'
               params={regionOnly}
-            />
+            >
+              <BundlesIcon />
+            </ItemLink>
             <ItemLink
-              icon={faTh}
               label={message('nav.opportunityDatasets')}
               to='opportunities'
               params={queryParams}
-            />
+            >
+              <SpatialDatasetsIcon />
+            </ItemLink>
             <Box className='DEV'>
               <ItemLink
-                icon={faLayerGroup}
                 label={message('nav.resources')}
                 to='resources'
                 params={queryParams}
-              />
+              >
+                <ResourcesIcon />
+              </ItemLink>
             </Box>
             <ItemLink
-              icon={faPencilAlt}
               label={message('nav.editModifications')}
               to={queryParams.projectId ? 'modifications' : 'projectSelect'}
               params={queryParams}
-            />
+            >
+              <EditIcon />
+            </ItemLink>
             <ItemLink
-              icon={faChartArea}
               label={message('nav.analyze')}
               to='analysis'
-              params={queryParams}
-            />
+              params={omit(queryParams, 'modificationId')}
+            >
+              <SinglePointAnalysisIcon />
+            </ItemLink>
             <ItemLink
-              icon={faServer}
               label='Regional Analyses'
               to='regionalAnalyses'
               params={queryParams}
-            />
+            >
+              <RegionalAnalysisIcon />
+            </ItemLink>
           </>
         )}
       </div>
@@ -187,20 +187,22 @@ export default function Sidebar() {
       <div>
         {email && (
           <ItemLink
-            icon={faSignOutAlt}
             label={
               message('authentication.logOut') +
               ' - ' +
               message('authentication.username', {username: email})
             }
             to='logout'
-          />
+          >
+            <SignOutIcon />
+          </ItemLink>
         )}
         <ExternalLink
-          icon={faQuestionCircle}
           label={message('nav.help')}
-          href='http://docs.conveyal.com'
-        />
+          href='https://docs.conveyal.com'
+        >
+          <InfoIcon />
+        </ExternalLink>
         <OnlineIndicator />
       </div>
     </Flex>
@@ -232,10 +234,14 @@ const LogoSpinner = memo(() => {
   }, [outstandingRequests])
 
   if (outstandingRequests || routeChanging) {
-    return <Icon color={CB_HEX} icon={faCompass} spin id='sidebar-spinner' />
+    return <LoadingIcon className='fa-spin' id='sidebar-spinner' />
   }
 
-  return <Image priority height='20px' width='20px' src={LOGO_URL} />
+  return (
+    <Box boxSize='21px'>
+      <SVGLogo />
+    </Box>
+  )
 })
 
 const isOnline = () => (isServer ? true : navigator.onLine)
@@ -258,31 +264,29 @@ const OnlineIndicator = memo(() => {
   if (online) return null
   return (
     <Tip label={message('nav.notConnectedToInternet')}>
-      <Box>
+      <div>
         <NavItemContents color='red.500'>
-          <Icon icon={faWifi} />
+          <WifiIcon />
         </NavItemContents>
-      </Box>
+      </div>
     </Tip>
   )
 })
 
 type ExternalLinkProps = {
+  children: React.ReactNode
   href: string
   label: string
-  icon: IconDefinition
 }
 
-const ExternalLink = memo<ExternalLinkProps>(({href, label, icon}) => {
+const ExternalLink = memo<ExternalLinkProps>(({children, href, label}) => {
   return (
     <Tip label={label} placement='right'>
-      <Box>
+      <div>
         <a target='_blank' href={href} rel='noopener noreferrer'>
-          <NavItemContents>
-            <Icon icon={icon} />
-          </NavItemContents>
+          <NavItemContents>{children}</NavItemContents>
         </a>
-      </Box>
+      </div>
     </Tip>
   )
 })

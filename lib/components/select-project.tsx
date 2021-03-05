@@ -1,16 +1,10 @@
-import {Box, Button, Heading, Stack, Flex} from '@chakra-ui/core'
-import {
-  faCog,
-  faDatabase,
-  faCube,
-  faMap
-} from '@fortawesome/free-solid-svg-icons'
+import {Box, Button, Heading, Stack, Flex} from '@chakra-ui/react'
 
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
-import Icon from './icon'
 import IconButton from './icon-button'
+import {ProjectIcon, SettingsIcon} from './icons'
 import InnerDock from './inner-dock'
 import ListGroupItem from './list-group-item'
 
@@ -28,22 +22,22 @@ export default function SelectProject({bundles, projects, region}) {
       <Stack py={4} spacing={4} px={2}>
         <Flex align='center' pl={2}>
           <Heading flex='1' size='md'>
-            <Icon icon={faMap} /> {region.name}
+            {region.name}
           </Heading>
           <IconButton
             label='Edit region settings'
-            icon={faCog}
             onClick={routeToRegionSettings}
-          />
+          >
+            <SettingsIcon />
+          </IconButton>
         </Flex>
 
         <Stack px={2}>
           {bundles.length > 0 ? (
             <Button
               isFullWidth
-              leftIcon='small-add'
               onClick={routeToProjectCreate}
-              variantColor='green'
+              colorScheme='green'
             >
               {message('project.createAction')}
             </Button>
@@ -51,10 +45,9 @@ export default function SelectProject({bundles, projects, region}) {
             <Button
               isFullWidth
               onClick={routeToBundleCreate}
-              variantColor='green'
+              colorScheme='green'
             >
-              <Icon icon={faDatabase} />
-              &nbsp;&nbsp;{message('project.uploadBundle')}
+              {message('project.uploadBundle')}
             </Button>
           )}
         </Stack>
@@ -80,11 +73,7 @@ function Project({project, ...p}) {
   })
   return (
     <ListGroupItem
-      leftIcon={() => (
-        <Box pr={3}>
-          <Icon icon={faCube} />
-        </Box>
-      )}
+      leftIcon={<ProjectIcon />}
       onClick={goToModifications}
       {...p}
     >

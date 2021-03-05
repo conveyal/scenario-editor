@@ -8,8 +8,7 @@ import {
   Select as ChakraSelect,
   Stack,
   Text
-} from '@chakra-ui/core'
-import {faTh} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import find from 'lodash/find'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
@@ -40,7 +39,6 @@ import selectDisplayPercentile from 'lib/selectors/regional-display-percentile'
 import selectPointSet from 'lib/selectors/regional-display-destination-pointset'
 import selectDisplayScale from 'lib/selectors/regional-display-scale'
 
-import Icon from '../icon'
 import Select from '../select'
 
 import ProfileRequestDisplay from './profile-request-display'
@@ -181,7 +179,7 @@ export default function RegionalResults({analysis}) {
           width='296px'
         >
           <Heading pt={4} px={4} size='sm'>
-            <Icon icon={faTh} /> Access to
+            Access to
           </Heading>
 
           <Box px={4}>
@@ -199,17 +197,22 @@ export default function RegionalResults({analysis}) {
           )}
 
           {displayGrid && displayScale ? (
-            displayScale.breaks.length > 0 ? (
+            displayScale.error ? (
+              <Alert roundedBottom='md' status='warning'>
+                <AlertIcon />
+                Data not suitable for generating a color scale.
+              </Alert>
+            ) : displayScale.breaks.length === 0 ? (
+              <Alert roundedBottom='md' status='warning'>
+                <AlertIcon />
+                There is no data to show.
+              </Alert>
+            ) : (
               <Legend
                 breaks={displayScale.breaks}
                 min={displayGrid.min}
                 colors={displayScale.colorRange}
               />
-            ) : (
-              <Alert roundedBottom='md' status='warning'>
-                <AlertIcon />
-                There is no data to show.
-              </Alert>
             )
           ) : (
             <Text p={4}>Loading grids...</Text>

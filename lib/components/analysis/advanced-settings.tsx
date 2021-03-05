@@ -1,8 +1,9 @@
-import {Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/core'
+import {Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/react'
 import lonlat from '@conveyal/lonlat'
 import dynamic from 'next/dynamic'
 import {useState} from 'react'
 
+import {EditIcon, XIcon} from 'lib/components/icons'
 import message from 'lib/message'
 import R5Selector from 'lib/modules/r5-version/components/selector'
 
@@ -124,9 +125,9 @@ function CustomBoundsSelector({
               e.preventDefault()
               setEditingBounds(false)
             }}
-            rightIcon='small-close'
+            rightIcon={<XIcon />}
             size='xs'
-            variantColor='yellow'
+            colorScheme='yellow'
           >
             Stop editing
           </Button>
@@ -137,9 +138,9 @@ function CustomBoundsSelector({
               e.preventDefault()
               setEditingBounds(true)
             }}
-            rightIcon='edit'
+            rightIcon={<EditIcon />}
             size='xs'
-            variantColor='yellow'
+            colorScheme='yellow'
           >
             Set custom
           </Button>

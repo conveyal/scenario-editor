@@ -1,4 +1,4 @@
-import {FormControl, FormControlProps, FormLabel} from '@chakra-ui/core'
+import {FormControl, FormControlProps, FormLabel} from '@chakra-ui/react'
 import {memo} from 'react'
 import {Props} from 'react-select'
 

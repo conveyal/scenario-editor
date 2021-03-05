@@ -1,5 +1,4 @@
-import {Alert, AlertIcon, Box, Heading, PseudoBox, Stack} from '@chakra-ui/core'
-import {faServer} from '@fortawesome/free-solid-svg-icons'
+import {Alert, AlertIcon, Box, Heading, Stack} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import ms from 'ms'
@@ -13,7 +12,6 @@ import {
   loadActiveRegionalJobs
 } from 'lib/actions/analysis/regional'
 import {load as loadRegion} from 'lib/actions/region'
-import Icon from 'lib/components/icon'
 import InnerDock from 'lib/components/inner-dock'
 import Regional from 'lib/components/analysis/regional'
 import RunningJob from 'lib/components/running-analysis'
@@ -77,7 +75,7 @@ const RegionalPage = withInitialFetch(
         ) : (
           <Stack spacing={4} py={4}>
             <Heading size='md' px={4}>
-              <Icon icon={faServer} /> Regional Analyses
+              Regional Analyses
             </Heading>
 
             {allAnalyses.length === 0 && (
@@ -100,7 +98,7 @@ const RegionalPage = withInitialFetch(
             </Box>
             <Stack spacing={0}>
               {jobsWithAnalysis.map((job) => (
-                <PseudoBox
+                <Box
                   borderBottom='1px solid #e2e8f0'
                   _first={{
                     borderTop: '1px solid #e2e8f0'
@@ -108,7 +106,7 @@ const RegionalPage = withInitialFetch(
                   key={job.jobId}
                 >
                   <RunningJob job={job} />
-                </PseudoBox>
+                </Box>
               ))}
             </Stack>
           </Stack>

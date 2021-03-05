@@ -135,4 +135,57 @@ declare namespace CL {
     segments: ModificationSegment[]
     segmentSpeeds: SegmentSpeeds
   }
+
+  /**
+   * Spatial Datasets
+   */
+  export interface SpatialDataset extends IModel {
+    bucketName: string
+    format: string
+    sourceId: string
+    sourceName: string
+  }
+
+  /**
+   * Access Grids
+   */
+
+  export type GridHeader = {
+    zoom: number
+    west: number
+    north: number
+    width: number
+    height: number
+  }
+
+  export type AccessGridHeader = GridHeader & {
+    depth: number
+    version: number
+  }
+
+  export type AccessGridMetadata = Record<string, unknown>
+
+  export type AccessGrid = AccessGridHeader &
+    AccessGridMetadata & {
+      data: Int32Array
+      errors: unknown[]
+      warnings: any
+      contains(x: number, y: number, z: number): boolean
+      get(x: number, y: number, z: number): number
+    }
+
+  export type ParsedGrid = GridHeader & {
+    data: Int32Array
+    min: number
+    max: number
+    contains(x: number, y: number): boolean
+    getValue(x: number, y: number): number
+  }
+
+  export type RegionalGrid = ParsedGrid & {
+    analysisId: string
+    cutoff: number
+    percentile: number
+    pointSetId: string
+  }
 }

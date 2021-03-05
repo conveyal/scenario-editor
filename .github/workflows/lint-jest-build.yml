@@ -1,35 +1,38 @@
 name: 'Install, lint, unit test, build, run Cypress tests'
 
-on: [push]
+on: [pull_request]
 
 jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
       - uses: actions/checkout@v2
 
       # Install and cache the build
       - uses: bahmutov/npm-install@v1
+        env:
+          # Setting to 0 skips installing the binary
+          CYPRESS_INSTALL_BINARY: 0
 
       # Cache the entire working directory for subsequent steps
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
   typeCheck:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       - run: yarn tsc
@@ -38,12 +41,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       - run: yarn lint
@@ -53,12 +56,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       - run: yarn jest
@@ -70,16 +73,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       # Cache the next.js cache folder per os/dependency change
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-cache-${{ hashFiles('**/yarn.lock') }}
@@ -90,7 +93,7 @@ jobs:
           NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
 
       # Cache entire .next folder for subsequent steps
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
@@ -108,7 +111,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
       # Install / cache dependencies with Cypress to handle caching Cypress binary.
@@ -119,7 +122,7 @@ jobs:
           runTests: false
 
       # Restore entire .next folder from previous step
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
@@ -127,7 +130,7 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         id: jar-cache
         with:
           path: ${{ github.workspace }}/${{ matrix.backend }}.jar
@@ -136,6 +139,15 @@ jobs:
       - name: Download Analysis Backend
         if: steps.jar-cache.outputs.cache-hit != 'true'
         run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ github.workspace }}/${{ matrix.backend }}.jar
+
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+      # Install Cypress binary
+      - run: npx cypress install
 
       - uses: cypress-io/github-action@v2
         # env:

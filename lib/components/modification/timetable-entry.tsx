@@ -6,7 +6,7 @@ import {
   FormLabel,
   SimpleGrid,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import {useCallback} from 'react'
 import {useSelector} from 'react-redux'
 

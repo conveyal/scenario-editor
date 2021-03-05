@@ -9,7 +9,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import React, {useContext} from 'react'
 import useSWR from 'swr'
 
@@ -65,10 +65,10 @@ export default withAuth(function AdminDashboard() {
             </Tab>
           </TabList>
           <TabPanels>
-            <TabPanel>
+            <TabPanel p={0}>
               <JobDashboard jobs={jobs} workers={workers} />
             </TabPanel>
-            <TabPanel>
+            <TabPanel p={0}>
               <WorkerList workers={workers} />
             </TabPanel>
           </TabPanels>

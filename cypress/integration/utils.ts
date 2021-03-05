@@ -69,7 +69,7 @@ export function getDefaultRegion(): Region {
   )
 
   // Create a default opportunity dataset
-  defaultRegion.getOpportunityDataset(
+  defaultRegion.getSpatialDataset(
     scratchRegion.opportunities.grid.name,
     scratchRegion.opportunities.grid.file
   )

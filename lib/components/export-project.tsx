@@ -10,11 +10,11 @@ import {
   ModalHeader,
   Stack,
   SimpleGrid
-} from '@chakra-ui/core'
-import {faPrint} from '@fortawesome/free-solid-svg-icons'
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import {useSelector} from 'react-redux'
 
+import {DownloadIcon, PrintIcon} from 'lib/components/icons'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 import {
@@ -22,8 +22,6 @@ import {
   downloadScenario,
   downloadStops
 } from 'lib/utils/export-project'
-
-import Icon from './icon'
 
 const selectFeeds = fpGet('project.feeds')
 const selectModifications = fpGet('project.modifications')
@@ -88,27 +86,30 @@ function Variant({index, name, project}) {
       </Heading>
       <SimpleGrid columns={2} spacing={1}>
         <Button
-          leftIcon='download'
+          leftIcon={<DownloadIcon />}
           onClick={_downloadScenario}
-          variantColor='blue'
+          colorScheme='blue'
         >
           {message('variant.saveJson')}
         </Button>
-        <Button onClick={goToReport} variantColor='blue'>
-          <Icon icon={faPrint} />
-          &nbsp;&nbsp;{message('variant.print')}
+        <Button
+          leftIcon={<PrintIcon />}
+          onClick={goToReport}
+          colorScheme='blue'
+        >
+          {message('variant.print')}
         </Button>
         <Button
-          leftIcon='download'
+          leftIcon={<DownloadIcon />}
           onClick={_downloadLines}
-          variantColor='blue'
+          colorScheme='blue'
         >
           {message('variant.saveGeojson')}
         </Button>
         <Button
-          leftIcon='download'
+          leftIcon={<DownloadIcon />}
           onClick={_downloadStops}
-          variantColor='blue'
+          colorScheme='blue'
         >
           {message('variant.saveStops')}
         </Button>

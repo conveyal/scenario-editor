@@ -1,7 +1,9 @@
 import Document, {Html, Head, Main, NextScript} from 'next/document'
-import React from 'react'
 
 import {LOGO_URL} from 'lib/constants'
+
+const fontURL =
+  'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap'
 
 const Stylesheets = () => (
   <>
@@ -13,18 +15,21 @@ const Stylesheets = () => (
 )
 
 const Analytics = () => (
-  <>
-    {process.browser && (
-      // Render only in browser to prevent double tracking: https://github.com/vercel/next.js/issues/9070
-      <script
-        async
-        defer
-        data-domain='analysis.conveyal.com'
-        src='https://plausible.conveyal.com/js/index.js'
-      />
-    )}
-  </>
+  <script
+    async
+    defer
+    data-domain='analysis.conveyal.com'
+    src='https://plausible.conveyal.com/js/index.js'
+  />
 )
+
+const ZenDeskWidget = () =>
+  process.env.ZENDESK_KEY != null && (
+    <script
+      id='ze-snippet'
+      src={`https://static.zdassets.com/ekr/snippet.js?key=${process.env.ZENDESK_KEY}`}
+    />
+  )
 
 export default class extends Document {
   render() {
@@ -32,13 +37,16 @@ export default class extends Document {
       <Html lang='en'>
         <Head>
           <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600'
-            type='text/css'
+            rel='preconnect'
+            href='https://fonts.gstatic.com'
+            crossOrigin='anonymous'
           />
+          <link rel='preload' as='style' href={fontURL} />
+          <link rel='stylesheet' href={fontURL} type='text/css' />
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
           <Stylesheets />
           <Analytics />
+          <ZenDeskWidget />
         </Head>
         <body>
           <Main />

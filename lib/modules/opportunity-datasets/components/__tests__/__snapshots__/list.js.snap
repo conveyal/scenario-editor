@@ -2,266 +2,286 @@
 
 exports[`Opportunity Datasets > Components > List should render without errors 1`] = `
 <ListOpportunityDatasets>
-  <ForwardRef
+  <Stack
     spacing={5}
   >
-    <Flex
-      direction="column"
+    <Styled(div)
+      __css={
+        Object {
+          "& > *:not(style) ~ *:not(style)": Object {
+            "marginStart": 0,
+            "marginTop": 5,
+          },
+        }
+      }
+      className="chakra-stack"
+      display="flex"
+      flexDirection="column"
     >
-      <Box
-        display="flex"
-        flexDirection="column"
+      <div
+        className="chakra-stack css-ynqzo5"
       >
-        <div
-          className="css-j7qwjs"
+        <Stack
+          key=".2"
+          spacing={2}
         >
-          <ForwardRef
-            key=".2"
-            mb={5}
-            spacing={2}
+          <Styled(div)
+            __css={
+              Object {
+                "& > *:not(style) ~ *:not(style)": Object {
+                  "marginStart": 0,
+                  "marginTop": 2,
+                },
+              }
+            }
+            className="chakra-stack"
+            display="flex"
+            flexDirection="column"
           >
-            <Flex
-              direction="column"
-              mb={5}
+            <div
+              className="chakra-stack css-1pifhv5"
             >
-              <Box
-                display="flex"
-                flexDirection="column"
-                mb={5}
+              <InternalLink
+                key=".0"
+                query={
+                  Object {
+                    "regionId": undefined,
+                  }
+                }
+                to="opportunitiesUpload"
               >
-                <div
-                  className="css-1lkhj0t"
+                <Link
+                  href="/regions/undefined/opportunities/upload"
+                  passHref={true}
                 >
-                  <ForwardRef
-                    key=".0"
-                    leftIcon="small-add"
-                    mb={2}
-                    query={
-                      Object {
-                        "regionId": undefined,
-                      }
-                    }
-                    to="opportunitiesUpload"
-                    variantColor="green"
-                  >
-                    <InternalLink
-                      to="opportunitiesUpload"
-                    >
-                      <Link
-                        as="/regions/undefined/opportunities/upload"
-                        href={
-                          Object {
-                            "pathname": "/regions/[regionId]/opportunities/upload",
-                            "query": Object {},
-                          }
-                        }
-                        passHref={true}
-                      >
-                        <Button
-                          href="/regions/undefined/opportunities/upload"
-                          leftIcon="small-add"
-                          mb={2}
-                          onClick={[Function]}
-                          onMouseEnter={[Function]}
-                          variantColor="green"
-                        >
-                          <PseudoBox
-                            _active={
-                              Object {
-                                "bg": "green.700",
-                              }
-                            }
-                            _disabled={
-                              Object {
-                                "boxShadow": "none",
-                                "cursor": "not-allowed",
-                                "opacity": "40%",
-                              }
-                            }
-                            _focus={
-                              Object {
-                                "boxShadow": "outline",
-                              }
-                            }
-                            _hover={
-                              Object {
-                                "bg": "green.600",
-                              }
-                            }
-                            alignItems="center"
-                            appearance="none"
-                            as="button"
-                            bg="green.500"
-                            borderRadius="md"
-                            color="white"
-                            display="inline-flex"
-                            fontSize="md"
-                            fontWeight="semibold"
-                            height={10}
-                            href="/regions/undefined/opportunities/upload"
-                            justifyContent="center"
-                            lineHeight="1.2"
-                            mb={2}
-                            minWidth={10}
-                            onClick={[Function]}
-                            onMouseEnter={[Function]}
-                            outline="none"
-                            position="relative"
-                            px={4}
-                            transition="all 250ms"
-                            type="button"
-                            userSelect="none"
-                            verticalAlign="middle"
-                            whiteSpace="nowrap"
-                          >
-                            <button
-                              className="css-60g1fo"
-                              href="/regions/undefined/opportunities/upload"
-                              onClick={[Function]}
-                              onMouseEnter={[Function]}
-                              type="button"
-                            >
-                              <ButtonIcon
-                                icon="small-add"
-                                ml={-1}
-                                mr={2}
-                              >
-                                <Icon
-                                  aria-hidden="true"
-                                  color="currentColor"
-                                  focusable="false"
-                                  ml={-1}
-                                  mr={2}
-                                  name="small-add"
-                                >
-                                  <Styled(div)
-                                    aria-hidden="true"
-                                    as="svg"
-                                    color="currentColor"
-                                    display="inline-block"
-                                    focusable="false"
-                                    ml={-1}
-                                    mr={2}
-                                    role="presentation"
-                                    size="1em"
-                                    verticalAlign="middle"
-                                    viewBox="0 0 20 20"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      className="css-yxiis9"
-                                      focusable="false"
-                                      role="presentation"
-                                      viewBox="0 0 20 20"
-                                    >
-                                      <path
-                                        d="M14 9h-3V6c0-.55-.45-1-1-1s-1 .45-1 1v3H6c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1z"
-                                        fill="currentColor"
-                                        fillRule="evenodd"
-                                      />
-                                    </svg>
-                                  </Styled(div)>
-                                </Icon>
-                              </ButtonIcon>
-                              Upload a new dataset
-                            </button>
-                          </PseudoBox>
-                        </Button>
-                      </Link>
-                    </InternalLink>
-                  </ForwardRef>
                   <Button
-                    key=".1"
-                    mb={null}
+                    colorScheme="green"
+                    href="/regions/undefined/opportunities/upload"
+                    leftIcon={<FaPlus />}
                     onClick={[Function]}
-                    variantColor="blue"
+                    onMouseEnter={[Function]}
                   >
-                    <PseudoBox
-                      _active={
+                    <Styled(button)
+                      __css={
                         Object {
-                          "bg": "blue.700",
+                          "_active": Object {
+                            "bg": "green.700",
+                          },
+                          "_disabled": Object {
+                            "boxShadow": "none",
+                            "cursor": "not-allowed",
+                            "opacity": 0.4,
+                          },
+                          "_focus": Object {
+                            "boxShadow": "outline",
+                          },
+                          "_hover": Object {
+                            "_disabled": Object {
+                              "bg": "green.500",
+                            },
+                            "bg": "green.600",
+                          },
+                          "alignItems": "center",
+                          "appearance": "none",
+                          "bg": "green.500",
+                          "borderRadius": "md",
+                          "color": "white",
+                          "display": "inline-flex",
+                          "fontSize": "md",
+                          "fontWeight": "semibold",
+                          "h": 10,
+                          "justifyContent": "center",
+                          "lineHeight": "1.2",
+                          "minW": 10,
+                          "outline": "none",
+                          "position": "relative",
+                          "px": 4,
+                          "transition": "all 250ms",
+                          "userSelect": "none",
+                          "verticalAlign": "middle",
+                          "whiteSpace": "nowrap",
+                          "width": "auto",
                         }
                       }
-                      _disabled={
-                        Object {
-                          "boxShadow": "none",
-                          "cursor": "not-allowed",
-                          "opacity": "40%",
-                        }
-                      }
-                      _focus={
-                        Object {
-                          "boxShadow": "outline",
-                        }
-                      }
-                      _hover={
-                        Object {
-                          "bg": "blue.600",
-                        }
-                      }
-                      alignItems="center"
-                      appearance="none"
-                      as="button"
-                      bg="blue.500"
-                      borderRadius="md"
-                      color="white"
-                      display="inline-flex"
-                      fontSize="md"
-                      fontWeight="semibold"
-                      height={10}
-                      justifyContent="center"
-                      lineHeight="1.2"
-                      mb={null}
-                      minWidth={10}
+                      className="chakra-button"
+                      href="/regions/undefined/opportunities/upload"
                       onClick={[Function]}
-                      outline="none"
-                      position="relative"
-                      px={4}
-                      transition="all 250ms"
+                      onMouseEnter={[Function]}
                       type="button"
-                      userSelect="none"
-                      verticalAlign="middle"
-                      whiteSpace="nowrap"
                     >
                       <button
-                        className="css-1or62k6"
+                        className="chakra-button css-ywjnlx"
+                        href="/regions/undefined/opportunities/upload"
                         onClick={[Function]}
+                        onMouseEnter={[Function]}
                         type="button"
                       >
-                        Fetch LODES (2015)
+                        <ButtonIcon
+                          marginEnd="0.5rem"
+                        >
+                          <Styled(span)
+                            className="chakra-button__icon"
+                            marginEnd="0.5rem"
+                          >
+                            <span
+                              className="chakra-button__icon css-ktvjz1"
+                            >
+                              <FaPlus
+                                aria-hidden={true}
+                                focusable={false}
+                              >
+                                <IconBase
+                                  aria-hidden={true}
+                                  attr={
+                                    Object {
+                                      "viewBox": "0 0 448 512",
+                                    }
+                                  }
+                                  focusable={false}
+                                >
+                                  <svg
+                                    aria-hidden={true}
+                                    fill="currentColor"
+                                    focusable={false}
+                                    height="1em"
+                                    stroke="currentColor"
+                                    strokeWidth="0"
+                                    style={
+                                      Object {
+                                        "color": undefined,
+                                      }
+                                    }
+                                    viewBox="0 0 448 512"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                      key="0"
+                                    />
+                                  </svg>
+                                </IconBase>
+                              </FaPlus>
+                            </span>
+                          </Styled(span)>
+                        </ButtonIcon>
+                        Upload a new dataset
                       </button>
-                    </PseudoBox>
+                    </Styled(button)>
                   </Button>
-                </div>
-              </Box>
-            </Flex>
-          </ForwardRef>
-          <Box
-            key=".3"
-            mb={5}
-            textAlign="center"
-          >
-            <div
-              className="css-16uprxs"
-            >
-              <label
-                htmlFor="select-opportunity-dataset"
+                </Link>
+              </InternalLink>
+              <Button
+                colorScheme="blue"
+                key=".1"
+                onClick={[Function]}
               >
-                or select an existing one
-              </label>
+                <Styled(button)
+                  __css={
+                    Object {
+                      "_active": Object {
+                        "bg": "blue.700",
+                      },
+                      "_disabled": Object {
+                        "boxShadow": "none",
+                        "cursor": "not-allowed",
+                        "opacity": 0.4,
+                      },
+                      "_focus": Object {
+                        "boxShadow": "outline",
+                      },
+                      "_hover": Object {
+                        "_disabled": Object {
+                          "bg": "blue.500",
+                        },
+                        "bg": "blue.600",
+                      },
+                      "alignItems": "center",
+                      "appearance": "none",
+                      "bg": "blue.500",
+                      "borderRadius": "md",
+                      "color": "white",
+                      "display": "inline-flex",
+                      "fontSize": "md",
+                      "fontWeight": "semibold",
+                      "h": 10,
+                      "justifyContent": "center",
+                      "lineHeight": "1.2",
+                      "minW": 10,
+                      "outline": "none",
+                      "position": "relative",
+                      "px": 4,
+                      "transition": "all 250ms",
+                      "userSelect": "none",
+                      "verticalAlign": "middle",
+                      "whiteSpace": "nowrap",
+                      "width": "auto",
+                    }
+                  }
+                  className="chakra-button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <button
+                    className="chakra-button css-huwc4k"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Fetch LODES (2015)
+                  </button>
+                </Styled(button)>
+              </Button>
             </div>
-          </Box>
-          <Box
-            key=".4"
-            mb={null}
+          </Styled(div)>
+        </Stack>
+        <Box
+          key=".3"
+          textAlign="center"
+        >
+          <div
+            className="css-xi606m"
           >
-            <div
-              className="css-0"
+            <label
+              htmlFor="select-opportunity-dataset"
             >
-              <OpportunityDatasetSelector>
-                <ForwardRef
+              or select an existing layer
+            </label>
+          </div>
+        </Box>
+        <Box
+          key=".4"
+        >
+          <div
+            className="css-0"
+          >
+            <Memo(OpportunityDatasetSelector)>
+              <ForwardRef
+                getOptionLabel={[Function]}
+                getOptionValue={[Function]}
+                inputId="select-opportunity-dataset"
+                isClearable={true}
+                isDisabled={false}
+                isLoading={false}
+                name="select-opportunity-dataset"
+                onChange={[Function]}
+                options={
+                  Array [
+                    Object {
+                      "_id": "Workers_total",
+                      "name": "Workers total",
+                      "sourceName": "lodes-data-2014",
+                    },
+                  ]
+                }
+              >
+                <ReactSelect
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
+                  innerRef={
+                    Object {
+                      "current": undefined,
+                    }
+                  }
                   inputId="select-opportunity-dataset"
                   isClearable={true}
                   isDisabled={false}
@@ -277,49 +297,24 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                       },
                     ]
                   }
+                  styles={
+                    Object {
+                      "control": [Function],
+                      "menu": [Function],
+                      "option": [Function],
+                    }
+                  }
                 >
-                  <ReactSelect
-                    getOptionLabel={[Function]}
-                    getOptionValue={[Function]}
-                    innerRef={
-                      Object {
-                        "current": undefined,
-                      }
-                    }
-                    inputId="select-opportunity-dataset"
-                    isClearable={true}
-                    isDisabled={false}
-                    isLoading={false}
-                    name="select-opportunity-dataset"
-                    onChange={[Function]}
-                    options={
-                      Array [
-                        Object {
-                          "_id": "Workers_total",
-                          "name": "Workers total",
-                          "sourceName": "lodes-data-2014",
-                        },
-                      ]
-                    }
-                    styles={
-                      Object {
-                        "control": [Function],
-                        "menu": [Function],
-                        "option": [Function],
-                      }
-                    }
-                  >
-                    <div
-                      className="ReactSelectMock"
-                    />
-                  </ReactSelect>
-                </ForwardRef>
-              </OpportunityDatasetSelector>
-            </div>
-          </Box>
-        </div>
-      </Box>
-    </Flex>
-  </ForwardRef>
+                  <div
+                    className="ReactSelectMock"
+                  />
+                </ReactSelect>
+              </ForwardRef>
+            </Memo(OpportunityDatasetSelector)>
+          </div>
+        </Box>
+      </div>
+    </Styled(div)>
+  </Stack>
 </ListOpportunityDatasets>
 `;

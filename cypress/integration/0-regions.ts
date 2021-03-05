@@ -16,7 +16,7 @@ const getSearch = () => cy.get('#geocoder')
  */
 const regionData = {
   description: 'Cypress stratch testing region',
-  searchTerm: 'covington',
+  searchTerm: 'covington kentucky',
   foundName: 'Covington, Kentucky, United States',
   north: 39.1199,
   south: 38.9268,
@@ -101,19 +101,14 @@ describe('Regions', () => {
     // Test geocoder search
     const testLocations = [
       {
-        searchTerm: 'cincinnati',
+        searchTerm: 'cincinnati ohio usa',
         findText: /^Cincinnati, Ohio/,
         coord: [39.1, -84.5]
       },
       {
-        searchTerm: 'tulsa',
+        searchTerm: 'tulsa oklahoma usa',
         findText: /^Tulsa, Oklahoma/,
         coord: [36.1, -95.9]
-      },
-      {
-        searchTerm: 'greenwich',
-        findText: /^Greenwich,.* England/,
-        coord: [51.5, 0]
       }
     ]
     const maxOffset = 10000 // meters
@@ -191,7 +186,7 @@ describe('Regions', () => {
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
-    cy.get('#react-toast').findByRole('alert').should('not.exist')
+    cy.findToast().should('not.exist')
     cy.findButton(newName).should('not.exist')
   })
 })

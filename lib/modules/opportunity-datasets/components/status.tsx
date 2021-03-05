@@ -5,7 +5,7 @@ import {
   AlertTitle,
   CloseButton,
   Stack
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import distanceInWords from 'date-fns/formatDistanceToNow'
 
 import msg from 'lib/message'
@@ -44,7 +44,7 @@ export default function Status({
         </AlertTitle>
         {status === 'DONE' && (
           <AlertDescription>
-            {msg('opportunityDatasets.finishedUploading', {
+            {msg('spatialDatasets.finishedUploading', {
               total: `${totalGrids}`,
               completedAt: distanceInWords(completedAt)
             })}
@@ -52,7 +52,7 @@ export default function Status({
         )}
         {status === 'UPLOADING' && (
           <AlertDescription>
-            {msg('opportunityDatasets.uploadProgress', {
+            {msg('spatialDatasets.uploadProgress', {
               createdAt: distanceInWords(createdAt),
               completed: `${uploadedGrids}`,
               total: `${totalGrids}`
@@ -60,7 +60,9 @@ export default function Status({
           </AlertDescription>
         )}
         {message && message.length > 0 && (
-          <AlertDescription>{message}</AlertDescription>
+          <AlertDescription fontFamily='mono' wordBreak='break-all'>
+            {message}
+          </AlertDescription>
         )}
       </Stack>
 

@@ -4,7 +4,7 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
 <AnalysisTitle>
   <Flex
     align="center"
-    borderBottom="1px solid #E2E8F0"
+    borderBottomWidth="1px"
     justify="space-between"
     px={5}
     py={4}
@@ -23,13 +23,13 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
           "justifyContent": "space-between",
         }
       }
-      borderBottom="1px solid #E2E8F0"
+      borderBottomWidth="1px"
       px={5}
       py={4}
       width="640px"
     >
       <div
-        className="css-1qie67g"
+        className="css-w3zf6w"
       >
         <Heading
           alignItems="center"

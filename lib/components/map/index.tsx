@@ -15,6 +15,7 @@ import selectRegionBounds from 'lib/selectors/region-bounds'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
 import Geocoder from './geocoder'
+import {useColorModeValue} from '@chakra-ui/color-mode'
 
 const MapboxGLLayer = dynamic(() => import('./mapbox-gl'))
 
@@ -26,7 +27,14 @@ const DEFAULT_VIEWPORT: Viewport = {
   zoom: ZOOM
 }
 
+const lightStyle =
+  process.env.NEXT_PUBLIC_MAPBOX_STYLE ?? 'conveyal/cjwu7oipd0bf41cqqv15huoim'
+const darkStyle = 'conveyal/cklwkj6g529qi17nydq56jn9k'
+const getStyle = (style: string) => `mapbox://styles/${style}`
+
 export default function Map({children, setLeafletContext}) {
+  const style = useColorModeValue(lightStyle, darkStyle)
+  const backgroundColor = useColorModeValue('gray.50', 'gray.800')
   const leafletMapRef = useRef<LeafletMap>()
   const regionBounds = useSelector(selectRegionBounds)
   const [viewport, setViewport] = useState<Viewport>(() => ({
@@ -81,17 +89,22 @@ export default function Map({children, setLeafletContext}) {
     <>
       <LeafletMap
         attributionControl={false}
-        className={routeChanging || saveInProgress ? 'disableAndDim' : ''}
+        className={
+          routeChanging || saveInProgress
+            ? 'disableAndDim'
+            : 'conveyal-leaflet-map'
+        }
         minZoom={MIN_ZOOM}
         onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
         preferCanvas={true}
         ref={leafletMapRef}
+        style={{backgroundColor}}
         tap={false}
         viewport={viewport || DEFAULT_VIEWPORT}
         zoomControl={false}
       >
         {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
-          <MapboxGLLayer />
+          <MapboxGLLayer style={getStyle(style)} />
         )}
 
         <AttributionControl position='bottomright' prefix={false} />

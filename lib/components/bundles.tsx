@@ -9,7 +9,7 @@ import Link from './link'
 
 export default function Bundles({children, regionId}) {
   return (
-    <InnerDock style={{width: '640px'}}>
+    <InnerDock width={640}>
       <Stack spacing={8} p={8}>
         <Heading size='lg'>{message('nav.networkBundles')}</Heading>
         <Text>

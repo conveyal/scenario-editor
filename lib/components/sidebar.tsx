@@ -1,4 +1,11 @@
-import {Box, BoxProps, Center, Flex} from '@chakra-ui/react'
+import {
+  Box,
+  BoxProps,
+  Center,
+  Flex,
+  useColorMode,
+  useColorModeValue
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
 import {useRouter} from 'next/router'
@@ -19,13 +26,15 @@ import {
   EditIcon,
   InfoIcon,
   LoadingIcon,
+  MoonIcon,
   ProjectsIcon,
   RegionsIcon,
   ResourcesIcon,
   RegionalAnalysisIcon,
   SinglePointAnalysisIcon,
   SignOutIcon,
-  SpatialDatasetsIcon
+  SpatialDatasetsIcon,
+  SunIcon
 } from './icons'
 import SVGLogo from './logo.svg'
 import Tip from './tip'
@@ -77,10 +86,11 @@ type ItemLinkProps = {
 const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
   const isActive = useIsActive(to, params)
   const goToLink = useRouteTo(to, params)
+  const bg = useColorModeValue('white', 'gray.900')
 
   const navItemProps = isActive
     ? {
-        bg: '#fff',
+        bg,
         borderBottom: `2px solid ${CB_HEX}`
       }
     : {onClick: () => goToLink()}
@@ -106,10 +116,12 @@ export default function Sidebar() {
   const storeParams = useSelector(selectQueryString)
   const queryParams = {...router.query, ...storeParams}
   const regionOnly = {regionId: queryParams.regionId}
+  const bg = useColorModeValue('gray.200', 'gray.800')
+  const colorMode = useColorMode()
 
   return (
     <Flex
-      bg='#ddd'
+      bg={bg}
       direction='column'
       height='100vh'
       id='sidebar'
@@ -183,6 +195,9 @@ export default function Sidebar() {
       </div>
 
       <div>
+        <NavItemContents className='DEV' onClick={colorMode.toggleColorMode}>
+          {colorMode.colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+        </NavItemContents>
         {email && (
           <ItemLink
             label={

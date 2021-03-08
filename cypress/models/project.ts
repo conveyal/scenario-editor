@@ -22,7 +22,7 @@ export default class Project extends Model {
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()
     cy.findByText(/Delete project/i).click()
-    cy.findByRole('button', {name: /Confirm: Delete project/i}).click()
+    cy.findButton(/Confirm/).click()
   }
 
   deleteModification(modificationName: string) {
@@ -33,7 +33,7 @@ export default class Project extends Model {
       if (pb.length !== 0) {
         cy.wrap(pb.first()).click()
         cy.findByRole('button', {name: /Delete modification/}).click()
-        cy.findByRole('button', {name: /Confirm: Delete modification/}).click()
+        cy.findButton(/Confirm/).click()
         cy.navComplete()
       }
     })

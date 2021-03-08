@@ -2655,7 +2655,7 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                               <div
                                 className="css-k008qs"
                               >
-                                <IconButton
+                                <ForwardRef
                                   colorScheme="blue"
                                   isDisabled={false}
                                   label="Select from stop"
@@ -2673,7 +2673,6 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Select from stop"
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Select from stop"
                                           placement="auto"
                                           zIndex={1500}
@@ -2789,8 +2788,8 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                       </ForwardRef>
                                     </div>
                                   </Box>
-                                </IconButton>
-                                <IconButton
+                                </ForwardRef>
+                                <ForwardRef
                                   colorScheme="red"
                                   isDisabled={false}
                                   label="Clear from stop"
@@ -2808,7 +2807,6 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Clear from stop"
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Clear from stop"
                                           placement="auto"
                                           zIndex={1500}
@@ -2924,7 +2922,7 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                       </ForwardRef>
                                     </div>
                                   </Box>
-                                </IconButton>
+                                </ForwardRef>
                               </div>
                             </Styled(div)>
                           </Flex>
@@ -3040,7 +3038,7 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                               <div
                                 className="css-k008qs"
                               >
-                                <IconButton
+                                <ForwardRef
                                   colorScheme="blue"
                                   isDisabled={false}
                                   label="Select to stop"
@@ -3058,7 +3056,6 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Select to stop"
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Select to stop"
                                           placement="auto"
                                           zIndex={1500}
@@ -3174,8 +3171,8 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                       </ForwardRef>
                                     </div>
                                   </Box>
-                                </IconButton>
-                                <IconButton
+                                </ForwardRef>
+                                <ForwardRef
                                   colorScheme="red"
                                   isDisabled={false}
                                   label="Clear to stop"
@@ -3193,7 +3190,6 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Clear to stop"
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Clear to stop"
                                           placement="auto"
                                           zIndex={1500}
@@ -3309,7 +3305,7 @@ exports[`Component Reroute snapshot(mount) 1`] = `
                                       </ForwardRef>
                                     </div>
                                   </Box>
-                                </IconButton>
+                                </ForwardRef>
                               </div>
                             </Styled(div)>
                           </Flex>

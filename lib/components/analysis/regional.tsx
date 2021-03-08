@@ -3,7 +3,6 @@ import {
   Select,
   Stack,
   Flex,
-  useDisclosure,
   Menu,
   MenuButton,
   Button,
@@ -74,7 +73,6 @@ const csvResultsTypeToTitle = {
 }
 
 export default function Regional(p) {
-  const deleteDisclosure = useDisclosure()
   const isComplete = !p.job
   const analysis = useSelector(selectActiveAnalysis)
   const dispatch = useDispatch<any>()
@@ -157,15 +155,6 @@ export default function Regional(p) {
         </>
       )}
 
-      {deleteDisclosure.isOpen && (
-        <ConfirmDialog
-          action='Delete regional analysis'
-          description='Are you sure you would like to delete this analysis?'
-          onClose={deleteDisclosure.onClose}
-          onConfirm={_remove}
-        />
-      )}
-
       <Flex
         align='center'
         borderBottom='1px solid #E2E8F0'
@@ -191,13 +180,17 @@ export default function Regional(p) {
         </Box>
 
         <Flex>
-          <IconButton
-            label={message('analysis.deleteRegionalAnalysis')}
-            onClick={deleteDisclosure.onOpen}
-            colorScheme='red'
+          <ConfirmDialog
+            description='Are you sure you would like to delete this analysis?'
+            onConfirm={_remove}
           >
-            <DeleteIcon />
-          </IconButton>
+            <IconButton
+              label={message('analysis.deleteRegionalAnalysis')}
+              colorScheme='red'
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ConfirmDialog>
         </Flex>
       </Flex>
 

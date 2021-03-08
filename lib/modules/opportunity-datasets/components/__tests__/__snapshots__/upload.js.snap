@@ -754,7 +754,6 @@ exports[`upload should render without errors 1`] = `
                           <Tooltip
                             aria-label="Tooltip: View docs to learn more"
                             fontSize="md"
-                            hasArrow={true}
                             label="View docs to learn more"
                             zIndex={1500}
                           >

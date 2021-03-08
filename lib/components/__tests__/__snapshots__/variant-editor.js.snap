@@ -144,20 +144,33 @@ exports[`Component > VariantEditor renders correctly 1`] = `
         <InnerDock
           key=".2"
         >
+          <JSXStyle
+            id="33501251"
+          />
           <SimpleBar
-            className="InnerDock "
+            className=""
             style={
               Object {
                 "height": 768,
+                "overflowX": "hidden",
+                "overflowY": "auto",
+                "paddingBottom": "12px",
+                "position": "relative",
+                "width": 320,
               }
             }
           >
             <div
-              className="InnerDock "
+              className=""
               data-simplebar={true}
               style={
                 Object {
                   "height": 768,
+                  "overflowX": "hidden",
+                  "overflowY": "auto",
+                  "paddingBottom": "12px",
+                  "position": "relative",
+                  "width": 320,
                 }
               }
             >
@@ -256,7 +269,6 @@ exports[`Component > VariantEditor renders correctly 1`] = `
                                       <Tooltip
                                         aria-label="Tooltip: Baseline (empty scenario) cannot be modified"
                                         fontSize="md"
-                                        hasArrow={true}
                                         label="Baseline (empty scenario) cannot be modified"
                                         zIndex={1500}
                                       >

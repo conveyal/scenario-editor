@@ -27,7 +27,7 @@ export default class Modification extends Model {
 
   _delete() {
     cy.findByRole('button', {name: /Delete modification/}).click()
-    cy.findByRole('button', {name: /Confirm: Delete modification/}).click()
+    cy.findButton(/Confirm/).click()
   }
 
   findOrCreate() {

@@ -89,7 +89,6 @@ export default memo<Props>(function PresetChooser({
   const toast = useToast()
   const createPresetAction = useDisclosure()
   const editPresetAction = useDisclosure()
-  const removeAction = useDisclosure()
   const [selectedPreset, setSelectedPreset] = useState<CL.Preset>()
 
   // ID to differentiate between primary and comparison
@@ -126,7 +125,6 @@ export default memo<Props>(function PresetChooser({
     async (_id) => {
       const res = await presetsCollection.remove(_id)
       if (res.ok) {
-        removeAction.onClose()
         toast({
           title: 'Deleted selected preset',
           position: 'top',
@@ -143,7 +141,7 @@ export default memo<Props>(function PresetChooser({
         })
       }
     },
-    [presetsCollection, removeAction, toast]
+    [presetsCollection, toast]
   )
 
   return (
@@ -177,14 +175,18 @@ export default memo<Props>(function PresetChooser({
             </IconButton>
           )}
           {selectedPreset && (
-            <IconButton
-              label='Delete selected preset'
-              onClick={removeAction.onOpen}
-              size='xs'
-              colorScheme='red'
+            <ConfirmDialog
+              description='Are you sure you want to delete this preset?'
+              onConfirm={() => _removePreset(get(selectedPreset, '_id'))}
             >
-              <DeleteIcon />
-            </IconButton>
+              <IconButton
+                label='Delete selected preset'
+                size='xs'
+                colorScheme='red'
+              >
+                <DeleteIcon />
+              </IconButton>
+            </ConfirmDialog>
           )}
         </Stack>
       </Flex>
@@ -228,15 +230,6 @@ export default memo<Props>(function PresetChooser({
           onClose={editPresetAction.onClose}
           preset={selectedPreset}
           update={presetsCollection.update}
-        />
-      )}
-
-      {removeAction.isOpen && (
-        <ConfirmDialog
-          action='Delete preset'
-          description='Are you sure you want to delete this preset?'
-          onClose={removeAction.onClose}
-          onConfirm={() => _removePreset(get(selectedPreset, '_id'))}
         />
       )}
     </FormControl>

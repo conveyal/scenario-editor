@@ -12,7 +12,6 @@ import {
   TabPanel,
   TabPanels,
   Text,
-  useDisclosure,
   useToast,
   AlertDescription
 } from '@chakra-ui/react'
@@ -139,7 +138,6 @@ function ModificationEditor({
   const feedIsLoaded = useSelector(selectFeedIsLoaded)
   const saveInProgress = useSelector(selectSaveInProgress)
   const [isDeleting, setIsDeleting] = useState(false)
-  const deleteDisclosure = useDisclosure()
   const toast = useToast()
 
   const goToAllModifications = useRouteTo('modifications', {
@@ -233,18 +231,9 @@ function ModificationEditor({
     <>
       <AllModificationsMapDisplay isEditing={true} />
 
-      {deleteDisclosure.isOpen && (
-        <ConfirmDialog
-          action={message('modification.deleteModification')}
-          description={message('modification.deleteConfirmation')}
-          onClose={deleteDisclosure.onClose}
-          onConfirm={_remove}
-        />
-      )}
-
       <Flex
         align='center'
-        borderBottom='1px solid #E2E8F0'
+        borderBottomWidth='1px'
         className={saveInProgress ? 'disableAndDim' : ''}
         p={2}
         width='320px'
@@ -271,13 +260,17 @@ function ModificationEditor({
           >
             <CopyIcon />
           </IconButton>
-          <IconButton
-            label={message('modification.deleteModification')}
-            onClick={deleteDisclosure.onOpen}
-            colorScheme='red'
+          <ConfirmDialog
+            description={message('modification.deleteConfirmation')}
+            onConfirm={_remove}
           >
-            <DeleteIcon />
-          </IconButton>
+            <IconButton
+              label={message('modification.deleteModification')}
+              colorScheme='red'
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ConfirmDialog>
         </Flex>
       </Flex>
       <InnerDock className={saveInProgress ? 'disableAndDim' : ''}>

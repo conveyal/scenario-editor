@@ -16,7 +16,6 @@ const Tip = forwardRef<HTMLDivElement, TipProps>(
       <Tooltip
         aria-label={`Tooltip: ${label}`}
         fontSize='md'
-        hasArrow
         label={label}
         ref={ref}
         zIndex={zIndex}

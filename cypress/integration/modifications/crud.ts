@@ -361,7 +361,7 @@ function testConvertToFrequency() {
     .click({force: true})
     .type('Florence Mall{enter}')
   cy.findByRole('button', {name: 'Delete frequency entry'}).click()
-  cy.findByRole('button', {name: 'Confirm: Delete frequency entry'}).click()
+  cy.findButton(/Confirm/).click()
 }
 
 function testModifyStreets() {

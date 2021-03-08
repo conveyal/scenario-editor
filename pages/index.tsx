@@ -116,10 +116,11 @@ function RegionItem({region, ...p}: RegionItemProps) {
  * Comment out to disable. Page load should still work.
  */
 export const getServerSideProps = getServerSidePropsWithAuth(
-  async (_, user) => {
+  async (ctx, user) => {
     const regions = await AuthenticatedCollection.with('regions', user)
     return {
       props: {
+        cookies: ctx.req.headers.cookie ?? '',
         regions: regions.findJSON({}, {sort: {name: 1}})
       }
     }

@@ -14,7 +14,8 @@ import {
   TabPanels,
   Tabs,
   Text,
-  Textarea
+  Textarea,
+  useColorModeValue
 } from '@chakra-ui/react'
 import {dequal} from 'dequal/lite'
 import get from 'lodash/get'
@@ -102,6 +103,8 @@ export default function Settings({
   const variantIndex = useSelector((s) =>
     parseInt(get(s, 'analysis.requestsSettings[0].variantIndex', -1))
   )
+  const primaryBorder = useColorModeValue('blue.50', 'blue.900')
+  const comparisonBorderColor = useColorModeValue('red.100', 'red.900')
   const resultsSettings = useSelector((s) =>
     get(s, 'analysis.resultsSettings', [])
   )
@@ -240,9 +243,10 @@ export default function Settings({
   return (
     <>
       <Box
-        borderBottom='1px solid'
-        borderBottomColor='blue.50'
-        borderTop='1px solid #E2E8F0'
+        borderBottomWidth='1px'
+        borderTopWidth='1px'
+        borderBottomColor={primaryBorder}
+        borderTopColor={primaryBorder}
         id='PrimaryAnalysisSettings'
       >
         <RequestHeading
@@ -276,8 +280,8 @@ export default function Settings({
       </Box>
 
       <Box
-        borderBottom='1px solid'
-        borderBottomColor='red.100'
+        borderBottomWidth='1px'
+        borderBottomColor={comparisonBorderColor}
         id='ComparisonAnalysisSettings'
       >
         <RequestHeading

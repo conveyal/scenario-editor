@@ -28,7 +28,7 @@ Cypress.Commands.add('deleteModification', function (name) {
 Cypress.Commands.add('deleteThisModification', function () {
   // Delete an open modification
   cy.findButton('Delete modification').click()
-  cy.findButton('Confirm: Delete modification').click()
+  cy.findButton(/Confirm/).click()
   cy.findByRole('dialog').should('not.exist')
   cy.navComplete()
   cy.contains('Create a modification')

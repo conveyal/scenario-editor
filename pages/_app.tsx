@@ -1,22 +1,16 @@
 import {UserProvider} from '@auth0/nextjs-auth0'
-import {useToast} from '@chakra-ui/react'
-import fpHas from 'lodash/fp/has'
 import {NextComponentType} from 'next'
-import App from 'next/app'
+import {AppProps} from 'next/app'
 import Head from 'next/head'
-import React, {ComponentType, ErrorInfo} from 'react'
-import {SWRConfig} from 'swr'
+import {ComponentType} from 'react'
 
-import ChakraTheme from 'lib/chakra'
-import APIStatusBar from 'lib/components/api-status-bar'
-import ErrorModal from 'lib/components/error-modal'
 import {AUTH_DISABLED} from 'lib/constants'
-import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
-import LogRocket from 'lib/logrocket'
-import {swrFetcher} from 'lib/utils/safe-fetch'
 import {localUser} from 'lib/user'
 
-import 'simplebar/dist/simplebar.css'
+import ErrorHandler from 'lib/components/app-error-handler'
+import ChakraTheme from 'lib/config/chakra'
+import SWRWrapper from 'lib/config/swr'
+
 import '../styles.css'
 
 // Re-use for Component's without a Layout
@@ -27,83 +21,25 @@ type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
 }
 
-// Check if a component has a Layout
-const hasLayout = fpHas('Layout')
-
-// SWRConfig wrapper
-function SWRWrapper({children}) {
-  const toast = useToast()
+export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
+  const Layout = Object.prototype.hasOwnProperty.call(Component, 'Layout')
+    ? (Component as ComponentWithLayout).Layout
+    : EmptyLayout
+  const user = AUTH_DISABLED ? localUser : pageProps.user
   return (
-    <SWRConfig
-      value={{
-        fetcher: swrFetcher,
-        onError: (error) => {
-          if (error.description) {
-            toast({
-              title: 'Error',
-              description: error.description,
-              position: 'top',
-              status: 'error',
-              isClosable: true,
-              duration: null
-            })
-          }
-        }
-      }}
-    >
-      {children}
-    </SWRConfig>
+    <ChakraTheme cookies={pageProps.cookies}>
+      <ErrorHandler>
+        <UserProvider user={user}>
+          <SWRWrapper>
+            <Head>
+              <title>Conveyal Analysis</title>
+            </Head>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </SWRWrapper>
+        </UserProvider>
+      </ErrorHandler>
+    </ChakraTheme>
   )
-}
-
-function ErrorHandler({children}) {
-  useErrorHandlingToast()
-  return <>{children}</>
-}
-
-export default class ConveyalAnalysis extends App {
-  state = {
-    error: null
-  }
-
-  componentDidCatch(err: Error, info: ErrorInfo): void {
-    LogRocket.captureException(err, {extra: {...info}})
-  }
-
-  static getDerivedStateFromError(error: Error): {error: Error} {
-    return {error}
-  }
-
-  render(): JSX.Element {
-    const {Component, pageProps} = this.props
-    const user = AUTH_DISABLED ? localUser : pageProps.user
-    const Layout = hasLayout(Component)
-      ? (Component as ComponentWithLayout).Layout
-      : EmptyLayout
-    return (
-      <ChakraTheme>
-        <ErrorHandler>
-          <UserProvider user={user}>
-            <SWRWrapper>
-              <Head>
-                <title key='title'>Conveyal Analysis</title>
-              </Head>
-              <APIStatusBar />
-              {this.state.error ? (
-                <ErrorModal
-                  error={this.state.error}
-                  clear={() => this.setState({error: null})}
-                  title='Application error'
-                />
-              ) : (
-                <Layout>
-                  <Component {...pageProps} user={user} />
-                </Layout>
-              )}
-            </SWRWrapper>
-          </UserProvider>
-        </ErrorHandler>
-      </ChakraTheme>
-    )
-  }
 }

@@ -32,7 +32,7 @@ export default class RegionalAnalysis extends Model {
 
   _delete() {
     cy.findByRole('button', {name: /Delete/}).click()
-    cy.findByRole('button', {name: /Confirm: Delete regional analysis/}).click()
+    cy.findButton(/Confirm/).click()
   }
 
   findOrCreate() {

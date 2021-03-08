@@ -1,4 +1,4 @@
-import {Box, Flex} from '@chakra-ui/react'
+import {Box, Flex, useColorModeValue} from '@chakra-ui/react'
 import {useState} from 'react'
 
 import {CaretDown, CaretRight} from 'lib/components/icons'
@@ -29,8 +29,9 @@ export function Collapsible({defaultExpanded = true, children, heading}) {
 }
 
 export function Heading({children, ...p}) {
+  const bg = useColorModeValue('gray.50', 'gray.900')
   return (
-    <Flex role='button' bg='gray.50' justify='space-between' p={4} {...p}>
+    <Flex role='button' bg={bg} justify='space-between' p={4} {...p}>
       {children}
     </Flex>
   )

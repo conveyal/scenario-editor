@@ -1,19 +1,24 @@
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
   Button,
   ButtonProps,
-  useDisclosure
+  Popover,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverTrigger,
+  Portal,
+  PortalManager
 } from '@chakra-ui/react'
-import {useRef, useState} from 'react'
+import {ReactNode, useEffect, useRef, useState} from 'react'
 
-type ConfirmButtonProps = ButtonProps & {
+import {POPOVER_Z} from 'lib/constants/z-index'
+
+type ConfirmProps = {
+  children: ReactNode
   description: string
-  onConfirm: () => void
+  onConfirm: () => unknown | Promise<unknown>
 }
 
 /**
@@ -24,69 +29,64 @@ export default function ConfirmButton({
   description,
   onConfirm,
   ...p
-}: ConfirmButtonProps) {
-  const {isOpen, onOpen, onClose} = useDisclosure()
-
+}: ButtonProps & ConfirmProps) {
   return (
-    <>
-      <Button {...p} onClick={onOpen}>
-        {children}
-      </Button>
-
-      {isOpen && (
-        <ConfirmDialog
-          action={p.title || children}
-          description={description}
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />
-      )}
-    </>
+    <ConfirmDialog description={description} onConfirm={onConfirm}>
+      <Button {...p}>{children}</Button>
+    </ConfirmDialog>
   )
 }
 
-export function ConfirmDialog({action, description, onClose, onConfirm}) {
+export function ConfirmDialog({
+  children,
+  description,
+  onConfirm
+}: ConfirmProps) {
+  const isMounted = useRef(true)
   const [confirming, setConfirming] = useState(false)
-  const cancelRef = useRef()
 
-  function doAction() {
-    setConfirming(true)
-    onConfirm()
-  }
+  // Set to false on unmount
+  useEffect(
+    () => () => {
+      isMounted.current = false
+    },
+    []
+  )
 
   return (
-    <AlertDialog
-      isOpen
-      leastDestructiveRef={cancelRef}
-      onClose={onClose}
-      size='lg'
-    >
-      <AlertDialogOverlay />
-      <AlertDialogContent borderRadius='md'>
-        <AlertDialogHeader fontSize='xl' fontWeight='bold'>
-          Confirm
-        </AlertDialogHeader>
-        <AlertDialogBody fontSize='lg'>{description}</AlertDialogBody>
-        <AlertDialogFooter>
-          <Button
-            isDisabled={confirming}
-            onClick={onClose}
-            ref={cancelRef}
-            size='lg'
-          >
-            Cancel
-          </Button>
-          <Button
-            isLoading={confirming}
-            ml={3}
-            onClick={doAction}
-            size='lg'
-            colorScheme='red'
-          >
-            Confirm: {action}
-          </Button>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <PortalManager zIndex={POPOVER_Z}>
+      <Popover isLazy>
+        {({onClose}) => (
+          <>
+            <PopoverTrigger>{children}</PopoverTrigger>
+            <Portal>
+              <PopoverContent>
+                <PopoverHeader fontSize='lg' fontWeight='bold'>
+                  Confirm
+                </PopoverHeader>
+                <PopoverCloseButton />
+                <PopoverBody>{description}</PopoverBody>
+                <PopoverFooter textAlign='right'>
+                  <Button
+                    colorScheme='red'
+                    isLoading={confirming}
+                    onClick={async () => {
+                      setConfirming(true)
+                      await onConfirm()
+                      if (isMounted.current) {
+                        onClose()
+                      }
+                    }}
+                    size='lg'
+                  >
+                    Confirm
+                  </Button>
+                </PopoverFooter>
+              </PopoverContent>
+            </Portal>
+          </>
+        )}
+      </Popover>
+    </PortalManager>
   )
 }

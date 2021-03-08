@@ -27,19 +27,19 @@ export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
     : EmptyLayout
   const user = AUTH_DISABLED ? localUser : pageProps.user
   return (
-    <ChakraTheme cookies={pageProps.cookies}>
-      <ErrorHandler>
-        <UserProvider user={user}>
+    <UserProvider user={user}>
+      <ChakraTheme cookies={pageProps.cookies}>
+        <ErrorHandler>
           <SWRWrapper>
             <Head>
               <title>Conveyal Analysis</title>
             </Head>
             <Layout>
-              <Component {...pageProps} />
+              <Component {...pageProps} user={user} />
             </Layout>
           </SWRWrapper>
-        </UserProvider>
-      </ErrorHandler>
-    </ChakraTheme>
+        </ErrorHandler>
+      </ChakraTheme>
+    </UserProvider>
   )
 }

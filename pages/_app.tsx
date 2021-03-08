@@ -76,13 +76,14 @@ export default class ConveyalAnalysis extends App {
 
   render(): JSX.Element {
     const {Component, pageProps} = this.props
+    const user = AUTH_DISABLED ? localUser : pageProps.user
     const Layout = hasLayout(Component)
       ? (Component as ComponentWithLayout).Layout
       : EmptyLayout
     return (
       <ChakraTheme>
         <ErrorHandler>
-          <UserProvider user={AUTH_DISABLED ? localUser : pageProps.user}>
+          <UserProvider user={user}>
             <SWRWrapper>
               <Head>
                 <title key='title'>Conveyal Analysis</title>
@@ -96,7 +97,7 @@ export default class ConveyalAnalysis extends App {
                 />
               ) : (
                 <Layout>
-                  <Component {...pageProps} />
+                  <Component {...pageProps} user={user} />
                 </Layout>
               )}
             </SWRWrapper>

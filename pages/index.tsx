@@ -5,8 +5,8 @@ import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
+import {AUTH_DISABLED} from 'lib/constants'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
-import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
 import useLink from 'lib/hooks/use-link'
 import useRouteTo from 'lib/hooks/use-route-to'
@@ -81,7 +81,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
             ))}
           </Stack>
         )}
-        {process.env.NEXT_PUBLIC_AUTH_DISABLED !== 'true' && (
+        {!AUTH_DISABLED && (
           <Link href={logoutLink} passHref>
             <Button
               as='a'
@@ -117,15 +117,10 @@ function RegionItem({region, ...p}: RegionItemProps) {
  */
 export const getServerSideProps = getServerSidePropsWithAuth(
   async (_, user) => {
-    const collection = await AuthenticatedCollection.initFromUser(
-      'regions',
-      user
-    )
-    const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
-
+    const regions = await AuthenticatedCollection.with('regions', user)
     return {
       props: {
-        regions: serializeCollection(regions)
+        regions: regions.findJSON({}, {sort: {name: 1}})
       }
     }
   }

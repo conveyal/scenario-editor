@@ -19,6 +19,7 @@ export const CB_RGB = {r: 35, g: 137, b: 201}
 export const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api`
 
 export const API = {
+  Activity: `${API_URL}/activity`,
   Analysis: `${API_URL}/analysis`,
   Bundle: `${API_URL}/bundle`,
   GraphQL: `${API_URL}/graphql`,

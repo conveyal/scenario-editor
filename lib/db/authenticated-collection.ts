@@ -4,6 +4,7 @@ import fpOmit from 'lodash/fp/omit'
 import {IUser} from 'lib/user'
 
 import {connectToDatabase} from './connect'
+import {serializeCollectionResults} from './utils'
 
 /**
  * When the `adminTempAccessGroup` is set, use that instead.
@@ -35,8 +36,11 @@ const collections = {
   }
 }
 
+export type CollectionName = keyof typeof collections
+
 /**
  * Ensure that all operations are only performed if the user has access.
+ * TODO: Strongly type the schemas
  */
 export default class AuthenticatedCollection {
   accessGroup: string // If admin, this may be the `adminTempAccessGroup`
@@ -45,7 +49,7 @@ export default class AuthenticatedCollection {
   singularName: string
   user: IUser
 
-  static async initFromUser(collectionName: string, user: IUser) {
+  static async with(collectionName: CollectionName, user: IUser) {
     const {db} = await connectToDatabase()
     return new AuthenticatedCollection(
       collectionName,
@@ -109,6 +113,13 @@ export default class AuthenticatedCollection {
       },
       options
     )
+  }
+
+  /**
+   * Perform `findWhere`, convert `toArray` and `serializeCollectionResults`.
+   */
+  findJSON(query: FilterQuery<any> = {}, options?: FindOneOptions<any>) {
+    return serializeCollectionResults(this.findWhere(query, options).toArray())
   }
 
   remove(_id: string) {

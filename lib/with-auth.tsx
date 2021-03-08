@@ -12,6 +12,7 @@ import {AUTH_DISABLED} from 'lib/constants'
 
 import LoadingScreen from './components/loading-screen'
 import {IUser, localUser, storeUser, userFromSession} from './user'
+import useUser from './hooks/use-user'
 
 export interface IWithAuthProps {
   user?: IUser
@@ -24,13 +25,18 @@ const isAdmin = (user?: IUser) =>
 
 // DEV Bar Style
 const DevBar = () => (
-  <Box
-    bg='red.500'
-    height='1px'
-    position='absolute'
-    width='100vw'
-    zIndex={10000}
-  />
+  <>
+    <Box
+      bg='red.500'
+      height='1px'
+      position='absolute'
+      width='100vw'
+      zIndex={10000}
+    />
+    <Head>
+      <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
+    </Head>
+  </>
 )
 
 type SSPWithUser<T> = (
@@ -55,7 +61,19 @@ export function getServerSidePropsWithAuth<T>(
         }
       }
     }
-    return await fn(ctx, userFromSession(ctx.req, session))
+    const user = userFromSession(ctx.req, session)
+    const results = await fn(ctx, user)
+    if (Object.prototype.hasOwnProperty.call(results, 'props')) {
+      return {
+        ...results,
+        props: {
+          user,
+          ...results['props']
+        }
+      }
+    } else {
+      return results
+    }
   }
 }
 
@@ -63,22 +81,17 @@ export function getServerSidePropsWithAuth<T>(
  * Ensure that a Page component is authenticated before rendering.
  */
 export default function withAuth(PageComponent) {
-  function AuthenticatedComponent({user, ...p}: IWithAuthProps): JSX.Element {
+  function AuthenticatedComponent(p: IWithAuthProps): JSX.Element {
+    const user = useUser()
+
     useEffect(() => {
       if (user) storeUser(user)
     }, [user])
 
-    if (!user) return <LoadingScreen />
+    if (user == null) return <LoadingScreen />
     return (
       <>
-        {isAdmin(user) && (
-          <>
-            <DevBar />
-            <Head>
-              <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
-            </Head>
-          </>
-        )}
+        {isAdmin(user) && <DevBar />}
         <PageComponent user={user} {...p} />
       </>
     )
@@ -88,9 +101,6 @@ export default function withAuth(PageComponent) {
     return (
       <>
         <DevBar />
-        <Head>
-          <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
-        </Head>
         <PageComponent user={localUser} {...p} />
       </>
     )

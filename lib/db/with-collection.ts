@@ -5,7 +5,9 @@ import {AUTH_DISABLED} from 'lib/constants'
 import {localUser, userFromSession} from 'lib/user'
 import {errorToPOJO, getQueryAsString} from 'lib/utils/api'
 
-import AuthenticatedCollection from './authenticated-collection'
+import AuthenticatedCollection, {
+  CollectionName
+} from './authenticated-collection'
 
 type Handler = (
   req: NextApiRequest,
@@ -22,11 +24,8 @@ export default function withCollection(handler: Handler) {
   if (AUTH_DISABLED) {
     return async (req: NextApiRequest, res: NextApiResponse) => {
       try {
-        const name = getQueryAsString(req.query.collection)
-        const collection = await AuthenticatedCollection.initFromUser(
-          name,
-          localUser
-        )
+        const name = getQueryAsString(req.query.collection) as CollectionName
+        const collection = await AuthenticatedCollection.with(name, localUser)
         await handler(req, res, collection)
       } catch (e) {
         res.status(400).json(errorToPOJO(e))
@@ -38,11 +37,8 @@ export default function withCollection(handler: Handler) {
     async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         const user = userFromSession(req, getSession(req, res))
-        const name = getQueryAsString(req.query.collection)
-        const collection = await AuthenticatedCollection.initFromUser(
-          name,
-          user
-        )
+        const name = getQueryAsString(req.query.collection) as CollectionName
+        const collection = await AuthenticatedCollection.with(name, user)
         await handler(req, res, collection)
       } catch (e) {
         res.status(400).json(errorToPOJO(e))

@@ -1,7 +1,8 @@
 import {AlertIcon, AlertTitle, Box} from '@chakra-ui/react'
+import {useEffect, useState} from 'react'
+
 import useStatus from 'lib/hooks/use-status'
 import useIsOnline from 'lib/hooks/use-is-online'
-import {useEffect, useState} from 'react'
 
 import BannerAlert from './banner-alert'
 import Spinner from './spinner'

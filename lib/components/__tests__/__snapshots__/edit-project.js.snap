@@ -433,115 +433,538 @@ exports[`Component > EditProject 1`] = `
                           leftIcon={<FaTrash />}
                           onConfirm={[Function]}
                         >
-                          <Button
-                            colorScheme="red"
-                            leftIcon={<FaTrash />}
-                            onClick={[Function]}
+                          <ConfirmDialog
+                            description="Are you sure you would like to delete this project?"
+                            onConfirm={[Function]}
                           >
-                            <Styled(button)
-                              __css={
-                                Object {
-                                  "_active": Object {
-                                    "bg": "red.700",
-                                  },
-                                  "_disabled": Object {
-                                    "boxShadow": "none",
-                                    "cursor": "not-allowed",
-                                    "opacity": 0.4,
-                                  },
-                                  "_focus": Object {
-                                    "boxShadow": "outline",
-                                  },
-                                  "_hover": Object {
-                                    "_disabled": Object {
-                                      "bg": "red.500",
-                                    },
-                                    "bg": "red.600",
-                                  },
-                                  "alignItems": "center",
-                                  "appearance": "none",
-                                  "bg": "red.500",
-                                  "borderRadius": "md",
-                                  "color": "white",
-                                  "display": "inline-flex",
-                                  "fontSize": "md",
-                                  "fontWeight": "semibold",
-                                  "h": 10,
-                                  "justifyContent": "center",
-                                  "lineHeight": "1.2",
-                                  "minW": 10,
-                                  "outline": "none",
-                                  "position": "relative",
-                                  "px": 4,
-                                  "transition": "all 250ms",
-                                  "userSelect": "none",
-                                  "verticalAlign": "middle",
-                                  "whiteSpace": "nowrap",
-                                  "width": "auto",
-                                }
-                              }
-                              className="chakra-button"
-                              onClick={[Function]}
-                              type="button"
+                            <PortalManager
+                              zIndex={10000}
                             >
-                              <button
-                                className="chakra-button css-mdlog5"
-                                onClick={[Function]}
-                                type="button"
+                              <Popover
+                                isLazy={true}
                               >
-                                <ButtonIcon
-                                  marginEnd="0.5rem"
-                                >
-                                  <Styled(span)
-                                    className="chakra-button__icon"
-                                    marginEnd="0.5rem"
+                                <PopoverTrigger>
+                                  <Button
+                                    aria-controls="popover-content-3"
+                                    aria-expanded={false}
+                                    aria-haspopup="dialog"
+                                    colorScheme="red"
+                                    id="popover-trigger-3"
+                                    leftIcon={<FaTrash />}
+                                    onClick={[Function]}
                                   >
-                                    <span
-                                      className="chakra-button__icon css-ktvjz1"
+                                    <Styled(button)
+                                      __css={
+                                        Object {
+                                          "_active": Object {
+                                            "bg": "red.700",
+                                          },
+                                          "_disabled": Object {
+                                            "boxShadow": "none",
+                                            "cursor": "not-allowed",
+                                            "opacity": 0.4,
+                                          },
+                                          "_focus": Object {
+                                            "boxShadow": "outline",
+                                          },
+                                          "_hover": Object {
+                                            "_disabled": Object {
+                                              "bg": "red.500",
+                                            },
+                                            "bg": "red.600",
+                                          },
+                                          "alignItems": "center",
+                                          "appearance": "none",
+                                          "bg": "red.500",
+                                          "borderRadius": "md",
+                                          "color": "white",
+                                          "display": "inline-flex",
+                                          "fontSize": "md",
+                                          "fontWeight": "semibold",
+                                          "h": 10,
+                                          "justifyContent": "center",
+                                          "lineHeight": "1.2",
+                                          "minW": 10,
+                                          "outline": "none",
+                                          "position": "relative",
+                                          "px": 4,
+                                          "transition": "all 250ms",
+                                          "userSelect": "none",
+                                          "verticalAlign": "middle",
+                                          "whiteSpace": "nowrap",
+                                          "width": "auto",
+                                        }
+                                      }
+                                      aria-controls="popover-content-3"
+                                      aria-expanded={false}
+                                      aria-haspopup="dialog"
+                                      className="chakra-button"
+                                      id="popover-trigger-3"
+                                      onClick={[Function]}
+                                      type="button"
                                     >
-                                      <FaTrash
-                                        aria-hidden={true}
-                                        focusable={false}
+                                      <button
+                                        aria-controls="popover-content-3"
+                                        aria-expanded={false}
+                                        aria-haspopup="dialog"
+                                        className="chakra-button css-mdlog5"
+                                        id="popover-trigger-3"
+                                        onClick={[Function]}
+                                        type="button"
                                       >
-                                        <IconBase
-                                          aria-hidden={true}
-                                          attr={
+                                        <ButtonIcon
+                                          marginEnd="0.5rem"
+                                        >
+                                          <Styled(span)
+                                            className="chakra-button__icon"
+                                            marginEnd="0.5rem"
+                                          >
+                                            <span
+                                              className="chakra-button__icon css-ktvjz1"
+                                            >
+                                              <FaTrash
+                                                aria-hidden={true}
+                                                focusable={false}
+                                              >
+                                                <IconBase
+                                                  aria-hidden={true}
+                                                  attr={
+                                                    Object {
+                                                      "viewBox": "0 0 448 512",
+                                                    }
+                                                  }
+                                                  focusable={false}
+                                                >
+                                                  <svg
+                                                    aria-hidden={true}
+                                                    fill="currentColor"
+                                                    focusable={false}
+                                                    height="1em"
+                                                    stroke="currentColor"
+                                                    strokeWidth="0"
+                                                    style={
+                                                      Object {
+                                                        "color": undefined,
+                                                      }
+                                                    }
+                                                    viewBox="0 0 448 512"
+                                                    width="1em"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                  >
+                                                    <path
+                                                      d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                                                      key="0"
+                                                    />
+                                                  </svg>
+                                                </IconBase>
+                                              </FaTrash>
+                                            </span>
+                                          </Styled(span)>
+                                        </ButtonIcon>
+                                        Delete project
+                                      </button>
+                                    </Styled(button)>
+                                  </Button>
+                                </PopoverTrigger>
+                                <Portal
+                                  appendToParentPortal={true}
+                                >
+                                  <DefaultPortal
+                                    appendToParentPortal={true}
+                                  >
+                                    <Portal
+                                      containerInfo={
+                                        <div
+                                          class="chakra-portal"
+                                        >
+                                          <div
+                                            class="chakra-portal-zIndex"
+                                            style="position: absolute; z-index: 10000; top: 0px; left: 0px; right: 0px;"
+                                          >
+                                            <div
+                                              class="css-n0uled"
+                                              style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+                                            >
+                                              <section
+                                                class="chakra-popover__content css-xjibc0"
+                                                id="popover-content-3"
+                                                role="dialog"
+                                                style="transform-origin: top center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                                                tabindex="-1"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      }
+                                    >
+                                      <Container
+                                        zIndex={10000}
+                                      >
+                                        <div
+                                          className="chakra-portal-zIndex"
+                                          style={
                                             Object {
-                                              "viewBox": "0 0 448 512",
+                                              "left": 0,
+                                              "position": "absolute",
+                                              "right": 0,
+                                              "top": 0,
+                                              "zIndex": 10000,
                                             }
                                           }
-                                          focusable={false}
                                         >
-                                          <svg
-                                            aria-hidden={true}
-                                            fill="currentColor"
-                                            focusable={false}
-                                            height="1em"
-                                            stroke="currentColor"
-                                            strokeWidth="0"
-                                            style={
-                                              Object {
-                                                "color": undefined,
+                                          <PopoverContent>
+                                            <Styled(div)
+                                              __css={
+                                                Object {
+                                                  "maxW": "xs",
+                                                  "w": "100%",
+                                                  "zIndex": 10,
+                                                }
                                               }
-                                            }
-                                            viewBox="0 0 448 512"
-                                            width="1em"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
-                                              key="0"
-                                            />
-                                          </svg>
-                                        </IconBase>
-                                      </FaTrash>
-                                    </span>
-                                  </Styled(span)>
-                                </ButtonIcon>
-                                Delete project
-                              </button>
-                            </Styled(button)>
-                          </Button>
+                                              style={
+                                                Object {
+                                                  "left": "0",
+                                                  "position": "absolute",
+                                                  "top": "0",
+                                                  "visibility": "hidden",
+                                                }
+                                              }
+                                            >
+                                              <div
+                                                className="css-n0uled"
+                                                style={
+                                                  Object {
+                                                    "left": "0",
+                                                    "position": "absolute",
+                                                    "top": "0",
+                                                    "visibility": "hidden",
+                                                  }
+                                                }
+                                              >
+                                                <Styled(Component)
+                                                  __css={
+                                                    Object {
+                                                      "_focus": Object {
+                                                        "boxShadow": "outline",
+                                                        "outline": 0,
+                                                      },
+                                                      "bg": "white",
+                                                      "border": "1px solid",
+                                                      "borderColor": "inherit",
+                                                      "borderRadius": "md",
+                                                      "boxShadow": "sm",
+                                                      "display": "flex",
+                                                      "flexDirection": "column",
+                                                      "position": "relative",
+                                                      "zIndex": "inherit",
+                                                    }
+                                                  }
+                                                  animate="exit"
+                                                  className="chakra-popover__content"
+                                                  id="popover-content-3"
+                                                  initial={false}
+                                                  onBlur={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  onUpdate={[Function]}
+                                                  role="dialog"
+                                                  style={
+                                                    Object {
+                                                      "transformOrigin": "top center",
+                                                    }
+                                                  }
+                                                  tabIndex={-1}
+                                                  variants={
+                                                    Object {
+                                                      "enter": Object {
+                                                        "opacity": 1,
+                                                        "scale": 1,
+                                                        "transition": Object {
+                                                          "duration": 0.15,
+                                                          "ease": Array [
+                                                            0,
+                                                            0,
+                                                            0.2,
+                                                            1,
+                                                          ],
+                                                        },
+                                                        "visibility": "visible",
+                                                      },
+                                                      "exit": Object {
+                                                        "opacity": 0,
+                                                        "scale": 0.95,
+                                                        "transition": Object {
+                                                          "duration": 0.1,
+                                                          "ease": Array [
+                                                            0.4,
+                                                            0,
+                                                            1,
+                                                            1,
+                                                          ],
+                                                        },
+                                                        "transitionEnd": Object {
+                                                          "visibility": "hidden",
+                                                        },
+                                                      },
+                                                    }
+                                                  }
+                                                >
+                                                  <ForwardRef(MotionComponent)
+                                                    animate="exit"
+                                                    className="chakra-popover__content css-xjibc0"
+                                                    id="popover-content-3"
+                                                    initial={false}
+                                                    onBlur={[Function]}
+                                                    onKeyDown={[Function]}
+                                                    onUpdate={[Function]}
+                                                    role="dialog"
+                                                    style={
+                                                      Object {
+                                                        "transformOrigin": "top center",
+                                                      }
+                                                    }
+                                                    tabIndex={-1}
+                                                    variants={
+                                                      Object {
+                                                        "enter": Object {
+                                                          "opacity": 1,
+                                                          "scale": 1,
+                                                          "transition": Object {
+                                                            "duration": 0.15,
+                                                            "ease": Array [
+                                                              0,
+                                                              0,
+                                                              0.2,
+                                                              1,
+                                                            ],
+                                                          },
+                                                          "visibility": "visible",
+                                                        },
+                                                        "exit": Object {
+                                                          "opacity": 0,
+                                                          "scale": 0.95,
+                                                          "transition": Object {
+                                                            "duration": 0.1,
+                                                            "ease": Array [
+                                                              0.4,
+                                                              0,
+                                                              1,
+                                                              1,
+                                                            ],
+                                                          },
+                                                          "transitionEnd": Object {
+                                                            "visibility": "hidden",
+                                                          },
+                                                        },
+                                                      }
+                                                    }
+                                                  >
+                                                    <section
+                                                      className="chakra-popover__content css-xjibc0"
+                                                      id="popover-content-3"
+                                                      onBlur={[Function]}
+                                                      onKeyDown={[Function]}
+                                                      role="dialog"
+                                                      style={
+                                                        Object {
+                                                          "opacity": 0,
+                                                          "transform": "scale(0.95) translateZ(0)",
+                                                          "transformOrigin": "top center",
+                                                          "visibility": "hidden",
+                                                        }
+                                                      }
+                                                      tabIndex={-1}
+                                                    />
+                                                    <Component
+                                                      animate="exit"
+                                                      className="chakra-popover__content css-xjibc0"
+                                                      id="popover-content-3"
+                                                      initial={false}
+                                                      key="animation"
+                                                      onBlur={[Function]}
+                                                      onKeyDown={[Function]}
+                                                      onUpdate={[Function]}
+                                                      role="dialog"
+                                                      style={
+                                                        Object {
+                                                          "transformOrigin": "top center",
+                                                        }
+                                                      }
+                                                      tabIndex={-1}
+                                                      variants={
+                                                        Object {
+                                                          "enter": Object {
+                                                            "opacity": 1,
+                                                            "scale": 1,
+                                                            "transition": Object {
+                                                              "duration": 0.15,
+                                                              "ease": Array [
+                                                                0,
+                                                                0,
+                                                                0.2,
+                                                                1,
+                                                              ],
+                                                            },
+                                                            "visibility": "visible",
+                                                          },
+                                                          "exit": Object {
+                                                            "opacity": 0,
+                                                            "scale": 0.95,
+                                                            "transition": Object {
+                                                              "duration": 0.1,
+                                                              "ease": Array [
+                                                                0.4,
+                                                                0,
+                                                                1,
+                                                                1,
+                                                              ],
+                                                            },
+                                                            "transitionEnd": Object {
+                                                              "visibility": "hidden",
+                                                            },
+                                                          },
+                                                        }
+                                                      }
+                                                      visualElement={
+                                                        Object {
+                                                          "addChild": [Function],
+                                                          "addValue": [Function],
+                                                          "addVariantChild": [Function],
+                                                          "animationState": Object {
+                                                            "animateChanges": [Function],
+                                                            "getState": [Function],
+                                                            "isAnimated": [Function],
+                                                            "setActive": [Function],
+                                                            "setAnimateFunction": [Function],
+                                                          },
+                                                          "blockInitialAnimation": false,
+                                                          "build": [Function],
+                                                          "clearAllListeners": [Function],
+                                                          "clearState": [Function],
+                                                          "current": <section
+                                                            class="chakra-popover__content css-xjibc0"
+                                                            id="popover-content-3"
+                                                            role="dialog"
+                                                            style="transform-origin: top center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                                                            tabindex="-1"
+                                                          />,
+                                                          "depth": 0,
+                                                          "enableLayoutProjection": [Function],
+                                                          "forEachValue": [Function],
+                                                          "getBaseTarget": [Function],
+                                                          "getClosestVariantNode": [Function],
+                                                          "getDefaultTransition": [Function],
+                                                          "getInstance": [Function],
+                                                          "getLatestValues": [Function],
+                                                          "getLayoutId": [Function],
+                                                          "getLayoutState": [Function],
+                                                          "getProjectionAnimationProgress": [Function],
+                                                          "getProps": [Function],
+                                                          "getStaticValue": [Function],
+                                                          "getValue": [Function],
+                                                          "getVariant": [Function],
+                                                          "getVariantContext": [Function],
+                                                          "hasValue": [Function],
+                                                          "isHoverEventsEnabled": true,
+                                                          "isMounted": [Function],
+                                                          "isPresenceRoot": true,
+                                                          "isPresent": true,
+                                                          "isStatic": false,
+                                                          "isVisible": undefined,
+                                                          "lockProjectionTarget": [Function],
+                                                          "makeTargetAnimatable": [Function],
+                                                          "manuallyAnimateOnMount": false,
+                                                          "measureViewportBox": [Function],
+                                                          "notifyAnimationComplete": [Function],
+                                                          "notifyAnimationStart": [Function],
+                                                          "notifyBeforeLayoutMeasure": [Function],
+                                                          "notifyLayoutAnimationComplete": [Function],
+                                                          "notifyLayoutMeasure": [Function],
+                                                          "notifyLayoutReady": [Function],
+                                                          "notifyLayoutUpdate": [Function],
+                                                          "notifyRender": [Function],
+                                                          "notifySetAxisTarget": [Function],
+                                                          "notifyUpdate": [Function],
+                                                          "notifyViewportBoxUpdate": [Function],
+                                                          "onAnimationComplete": [Function],
+                                                          "onAnimationStart": [Function],
+                                                          "onBeforeLayoutMeasure": [Function],
+                                                          "onLayoutAnimationComplete": [Function],
+                                                          "onLayoutMeasure": [Function],
+                                                          "onLayoutUpdate": [Function],
+                                                          "onRender": [Function],
+                                                          "onSetAxisTarget": [Function],
+                                                          "onUpdate": [Function],
+                                                          "onViewportBoxUpdate": [Function],
+                                                          "path": Array [],
+                                                          "pointTo": [Function],
+                                                          "presence": 0,
+                                                          "presenceId": undefined,
+                                                          "projection": Object {
+                                                            "isEnabled": false,
+                                                            "isTargetLocked": false,
+                                                            "target": Object {
+                                                              "x": Object {
+                                                                "max": 1,
+                                                                "min": 0,
+                                                              },
+                                                              "y": Object {
+                                                                "max": 1,
+                                                                "min": 0,
+                                                              },
+                                                            },
+                                                            "targetFinal": Object {
+                                                              "x": Object {
+                                                                "max": 1,
+                                                                "min": 0,
+                                                              },
+                                                              "y": Object {
+                                                                "max": 1,
+                                                                "min": 0,
+                                                              },
+                                                            },
+                                                          },
+                                                          "readValue": [Function],
+                                                          "rebaseProjectionTarget": [Function],
+                                                          "ref": [Function],
+                                                          "removeValue": [Function],
+                                                          "resetTransform": [Function],
+                                                          "scheduleRender": [Function],
+                                                          "scheduleUpdateLayoutProjection": [Function],
+                                                          "setBaseTarget": [Function],
+                                                          "setCrossfader": [Function],
+                                                          "setProjectionTargetAxis": [Function],
+                                                          "setProps": [Function],
+                                                          "setStaticValue": [Function],
+                                                          "setVisibility": [Function],
+                                                          "snapshotViewportBox": [Function],
+                                                          "sortNodePosition": [Function],
+                                                          "startLayoutAnimation": [Function],
+                                                          "stopLayoutAnimation": [Function],
+                                                          "suspendHoverEvents": [Function],
+                                                          "syncRender": [Function],
+                                                          "treeType": "dom",
+                                                          "unlockProjectionTarget": [Function],
+                                                          "updateLayoutMeasurement": [Function],
+                                                          "updateLayoutProjection": [Function],
+                                                          "updatePropListeners": [Function],
+                                                          "variantChildren": Set {},
+                                                          "withoutTransform": [Function],
+                                                        }
+                                                      }
+                                                    />
+                                                  </ForwardRef(MotionComponent)>
+                                                </Styled(Component)>
+                                              </div>
+                                            </Styled(div)>
+                                          </PopoverContent>
+                                        </div>
+                                      </Container>
+                                    </Portal>
+                                  </DefaultPortal>
+                                </Portal>
+                              </Popover>
+                            </PortalManager>
+                          </ConfirmDialog>
                         </ConfirmButton>
                       </div>
                     </Styled(div)>

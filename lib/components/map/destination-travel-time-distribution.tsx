@@ -5,7 +5,9 @@ import {
   Flex,
   Heading,
   Stack,
-  Text
+  Text,
+  useColorModeValue,
+  useToken
 } from '@chakra-ui/react'
 import lonlat from '@conveyal/lonlat'
 import fpGet from 'lodash/fp/get'
@@ -76,6 +78,9 @@ const isValidTime = (m: number) => m >= 0 && m <= 120
  * @author mattwigway
  */
 export default memo(function DestinationTravelTimeDistribution() {
+  const bg = useColorModeValue('white', 'gray.900')
+  const markerColor = useColorModeValue('gray.900', 'gray.50')
+  const markerColorHex = useToken('colors', markerColor)
   const markerRef = useRef<CircleMarker>()
   const dispatch = useDispatch()
   const [mouseLatLng, setMouseLatLng] = useState<LatLng | null>(null)
@@ -161,7 +166,7 @@ export default memo(function DestinationTravelTimeDistribution() {
           {lockedLatLng !== false ? (
             <CircleMarker
               center={lockedLatLng}
-              color='#333'
+              color={markerColorHex}
               onclick={() => setLockedLatLng(false)}
               radius={5}
             />
@@ -177,7 +182,7 @@ export default memo(function DestinationTravelTimeDistribution() {
         </Pane>
       )}
       <MapControl position='bottomleft'>
-        <Stack backgroundColor='white' boxShadow='lg'>
+        <Stack bg={bg} boxShadow='lg'>
           <Flex alignItems='baseline' justify='space-between' pt={3} px={3}>
             <Heading size='sm'>Travel time distribution (minutes)</Heading>
             {latlng && distribution && (
@@ -223,7 +228,10 @@ export default memo(function DestinationTravelTimeDistribution() {
                   height={fullHeight}
                   style={{fontSize: FONT_SIZE}}
                 >
-                  <g transform={`translate(0 ${fullHeight})`}>
+                  <g
+                    transform={`translate(0 ${fullHeight})`}
+                    style={{fill: markerColorHex}}
+                  >
                     <MinuteTicks
                       label={false}
                       textHeight={FONT_SIZE}

@@ -7,7 +7,9 @@ import React, {ComponentType, ErrorInfo} from 'react'
 import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
+import APIStatusBar from 'lib/components/api-status-bar'
 import ErrorModal from 'lib/components/error-modal'
+
 import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
 import LogRocket from 'lib/logrocket'
 import {swrFetcher} from 'lib/utils/safe-fetch'
@@ -76,12 +78,13 @@ export default class ConveyalAnalysis extends App {
       ? (Component as ComponentWithLayout).Layout
       : EmptyLayout
     return (
-      <ChakraTheme>
+      <ChakraTheme cookies={pageProps.cookies}>
         <ErrorHandler>
           <SWRWrapper>
             <Head>
               <title key='title'>Conveyal Analysis</title>
             </Head>
+            <APIStatusBar />
             {this.state.error ? (
               <ErrorModal
                 error={this.state.error}

@@ -4,7 +4,9 @@ import {
   Progress,
   StackProps,
   HStack,
-  VStack
+  VStack,
+  useColorModeValue,
+  useToken
 } from '@chakra-ui/react'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
@@ -49,6 +51,8 @@ export default memo<Props & StackProps>(StackedPercentileSelector)
  * comparisons of said
  */
 function StackedPercentileSelector({disabled, stale, ...p}) {
+  const fontColor = useColorModeValue('gray.900', 'white')
+  const fontColorHex = useToken('colors', fontColor)
   const projectName = useSelector(selectDisplayedScenarioName)
   const comparisonProjectName = useSelector(
     selectDisplayedComparisonScenarioName
@@ -124,6 +128,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
         (comparisonPercentileCurves == null ? (
           <StackedPercentile
             cutoff={isochroneCutoff}
+            fontColorHex={fontColorHex}
             percentileCurves={percentileCurves}
             width={GRAPH_WIDTH}
             height={GRAPH_HEIGHT}
@@ -134,6 +139,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
         ) : (
           <StackedPercentileComparison
             cutoff={isochroneCutoff}
+            fontColorHex={fontColorHex}
             percentileCurves={percentileCurves}
             comparisonPercentileCurves={comparisonPercentileCurves}
             width={GRAPH_WIDTH}

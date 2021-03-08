@@ -61,7 +61,7 @@ function testInvalidCoordinates() {
 function deleteThisRegion() {
   // Delete region
   cy.findButton(/Delete this region/).click()
-  cy.findButton(/Confirm: Delete this region/).click()
+  cy.findButton(/Confirm/).click()
   cy.findByRole('dialog').should('not.exist')
 }
 

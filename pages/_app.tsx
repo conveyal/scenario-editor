@@ -7,7 +7,6 @@ import ErrorHandler from 'lib/components/app-error-handler'
 import ChakraTheme from 'lib/config/chakra'
 import SWRWrapper from 'lib/config/swr'
 
-import 'simplebar/dist/simplebar.css'
 import '../styles.css'
 
 // Re-use for Component's without a Layout

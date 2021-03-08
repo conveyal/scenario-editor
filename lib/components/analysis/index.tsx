@@ -155,7 +155,7 @@ export default function SinglePointAnalysis({
 
       <AnalysisTitle />
 
-      <InnerDock style={{width: '640px'}}>
+      <InnerDock width={640}>
         {scenarioWarnings != null && scenarioWarnings.length > 0 && (
           <Alert
             alignItems='flex-start'

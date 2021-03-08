@@ -30,7 +30,7 @@ const ConveyalTheme = extendTheme({
   },
   styles: {
     global: {
-      body: {
+      html: {
         fontSize: '12px'
       },
       a: {

@@ -159,7 +159,8 @@ function ModificationEditor({
     toast({
       position: 'top',
       title: `Modification "${modification.name}" deleted successfully`,
-      status: 'success'
+      status: 'success',
+      isClosable: true
     })
   }, [
     dispatch,

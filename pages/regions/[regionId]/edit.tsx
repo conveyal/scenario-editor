@@ -66,7 +66,8 @@ function EditRegion({region, remove, update}) {
         title: 'Region deleted',
         description: 'Region has been successfully deleted.',
         position: 'top',
-        status: 'success'
+        status: 'success',
+        isClosable: true
       })
     } else {
       toast({
@@ -107,7 +108,8 @@ function EditRegion({region, remove, update}) {
         title: 'Region updated',
         description: 'Your changes have been saved.',
         position: 'top',
-        status: 'success'
+        status: 'success',
+        isClosable: true
       })
     } else {
       toast({

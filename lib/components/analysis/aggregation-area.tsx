@@ -119,7 +119,8 @@ function UploadNewAggregationArea({onClose, regionId}) {
         position: 'top',
         status: 'success',
         title: 'Upload complete.',
-        description: 'Aggregation area(s) have been successfully created.'
+        description: 'Aggregation area(s) have been successfully created.',
+        isClosable: true
       })
 
       if (newAAs && newAAs.length > 0) {

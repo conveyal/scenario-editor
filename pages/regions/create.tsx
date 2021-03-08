@@ -69,7 +69,8 @@ export default function CreateRegionPage() {
       toast({
         title: 'Region created',
         position: 'top',
-        status: 'success'
+        status: 'success',
+        isClosable: true
       })
     } else {
       setUploading(false)

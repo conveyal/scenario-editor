@@ -73,20 +73,33 @@ exports[`Component > SelectProject 1`] = `
   }
 >
   <InnerDock>
+    <JSXStyle
+      id="33501251"
+    />
     <SimpleBar
-      className="InnerDock "
+      className=""
       style={
         Object {
           "height": 768,
+          "overflowX": "hidden",
+          "overflowY": "auto",
+          "paddingBottom": "12px",
+          "position": "relative",
+          "width": 320,
         }
       }
     >
       <div
-        className="InnerDock "
+        className=""
         data-simplebar={true}
         style={
           Object {
             "height": 768,
+            "overflowX": "hidden",
+            "overflowY": "auto",
+            "paddingBottom": "12px",
+            "position": "relative",
+            "width": 320,
           }
         }
       >

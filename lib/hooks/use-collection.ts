@@ -18,7 +18,7 @@ interface UseCollection extends ConfigInterface {
 }
 
 type UseCollectionResponse<T> = {
-  create: (properties: T) => Promise<SafeResponse<T>>
+  create: (properties: Partial<T>) => Promise<SafeResponse<T>>
   data: T[]
   error?: Error
   remove: (_id: string) => Promise<SafeResponse<T>>
@@ -86,9 +86,9 @@ export function createUseCollection<T extends CL.IModel>(
     // Helper function for creating new values and revalidating
     const create = useCallback(
       async (properties: T) => {
-        const res = await postJSON(`/api/db/${collectionName}`, properties)
+        const res = await postJSON<T>(`/api/db/${collectionName}`, properties)
         if (res.ok) {
-          revalidate()
+          await revalidate()
         }
         return res
       },

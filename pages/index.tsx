@@ -27,8 +27,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
     initialData: p.regions,
     options: {
       sort: {name: 1}
-    },
-    revalidateOnFocus: true
+    }
   })
   const {accessGroup, email} = p.user
   const goToRegionCreate = useRouteTo('regionCreate')

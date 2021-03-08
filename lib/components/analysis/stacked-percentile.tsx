@@ -108,6 +108,7 @@ export default memo<StackedPercentileProps>(
         <Boxplot
           color={color}
           positions={getBoxPlotPositions(percentileCurves, cutoff)}
+          positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
           scale={yScale}
           width={boxPlotWidth}
         />
@@ -198,6 +199,7 @@ export const StackedPercentileComparison = memo<
           <Boxplot
             color={color}
             positions={getBoxPlotPositions(percentileCurves, cutoff)}
+            positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
             scale={yScale}
             width={boxPlotWidth}
           />
@@ -206,6 +208,7 @@ export const StackedPercentileComparison = memo<
         <Boxplot
           color={comparisonColor}
           positions={getBoxPlotPositions(comparisonPercentileCurves, cutoff)}
+          positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
           scale={yScale}
           width={boxPlotWidth}
         />

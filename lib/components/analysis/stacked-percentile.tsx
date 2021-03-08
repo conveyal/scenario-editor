@@ -24,15 +24,14 @@ const BOX_PLOT_PERCENTILES = [95, 75, 50, 25, 5]
 const BOX_PLOT_ITEMS = BOX_PLOT_PERCENTILES.map((p) =>
   TRAVEL_TIME_PERCENTILES.indexOf(p)
 )
-const MEDIAN_POSITION = TRAVEL_TIME_PERCENTILES.indexOf(50)
 
 // Helper function. Pass results directly to a `BoxPlot`
 const getBoxPlotPositions = (percentileCurves, isochroneCutoff: number) =>
   BOX_PLOT_ITEMS.map((i) => percentileCurves[i][isochroneCutoff - 1])
 
 // The plot gets too busy if we overlay two four-band plots. Instead, use a
-// one-band plot (25th/75th pctiles)
-const COMPARISON_BAND_PERCENTILES = [75, 25]
+// one-band plot (5th/95th pctiles)
+const COMPARISON_BAND_PERCENTILES = [95, 5]
 const COMPARISON_BAND_ITEMS = COMPARISON_BAND_PERCENTILES.map((p) =>
   TRAVEL_TIME_PERCENTILES.indexOf(p)
 )
@@ -54,6 +53,7 @@ type StackedPercentileProps = {
   height: number
   maxAccessibility: number
   opportunityDatasetName: string
+  percentileIndex: number
   percentileCurves: number[][]
   width: number
 }
@@ -81,6 +81,7 @@ export default memo<StackedPercentileProps>(
     height,
     maxAccessibility,
     opportunityDatasetName,
+    percentileIndex,
     percentileCurves,
     width
   }) => {
@@ -120,7 +121,7 @@ export default memo<StackedPercentileProps>(
         />
         <CumulativeLine
           color={color}
-          curve={percentileCurves[MEDIAN_POSITION]}
+          curve={percentileCurves[percentileIndex]}
           xScale={xScale}
           yScale={yScale}
         />
@@ -168,6 +169,7 @@ export const StackedPercentileComparison = memo<
     maxAccessibility,
     opportunityDatasetName,
     percentileCurves,
+    percentileIndex,
     width
   }) => {
     const [xScale] = useState(() => createXScale(width)) // width never changes
@@ -225,13 +227,13 @@ export const StackedPercentileComparison = memo<
 
         <CumulativeLine
           color={color}
-          curve={percentileCurves[MEDIAN_POSITION]}
+          curve={percentileCurves[percentileIndex]}
           xScale={xScale}
           yScale={yScale}
         />
         <CumulativeLine
           color={comparisonColor}
-          curve={comparisonPercentileCurves[MEDIAN_POSITION]}
+          curve={comparisonPercentileCurves[percentileIndex]}
           xScale={xScale}
           yScale={yScale}
         />

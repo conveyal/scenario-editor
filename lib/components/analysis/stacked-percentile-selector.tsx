@@ -23,6 +23,7 @@ import selectAccessibility from 'lib/selectors/accessibility'
 import selectComparisonAccessibility from 'lib/selectors/comparison-accessibility'
 import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
+import selectPercentileIndex from 'lib/selectors/percentile-index'
 import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxAccessibility from 'lib/selectors/max-accessibility'
 
@@ -64,6 +65,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
     selectComparisonPercentileCurves
   )
   const isochroneCutoff = useSelector(selectMaxTripDurationMinutes)
+  const percentileIndex = useSelector(selectPercentileIndex)
   const percentileCurves = useSelector(selectPercentileCurves)
   const maxAccessibility = useSelector(selectMaxAccessibility)
   const opportunityDatasetName = opportunityDataset && opportunityDataset.name
@@ -130,6 +132,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             cutoff={isochroneCutoff}
             fontColorHex={fontColorHex}
             percentileCurves={percentileCurves}
+            percentileIndex={percentileIndex}
             width={GRAPH_WIDTH}
             height={GRAPH_HEIGHT}
             opportunityDatasetName={opportunityDatasetName}
@@ -141,6 +144,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             cutoff={isochroneCutoff}
             fontColorHex={fontColorHex}
             percentileCurves={percentileCurves}
+            percentileIndex={percentileIndex}
             comparisonPercentileCurves={comparisonPercentileCurves}
             width={GRAPH_WIDTH}
             height={GRAPH_HEIGHT}

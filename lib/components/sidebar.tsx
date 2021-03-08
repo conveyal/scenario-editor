@@ -1,9 +1,16 @@
-import {Box, BoxProps, Center, Flex} from '@chakra-ui/react'
+import {
+  Box,
+  BoxProps,
+  Center,
+  Flex,
+  useColorMode,
+  useColorModeValue
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
 import {useRouter} from 'next/router'
-import {memo, useContext, useEffect, useState} from 'react'
+import {memo, useContext, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
@@ -20,6 +27,7 @@ import {
   EditIcon,
   InfoIcon,
   LoadingIcon,
+  MoonIcon,
   ProjectsIcon,
   RegionsIcon,
   ResourcesIcon,
@@ -27,7 +35,7 @@ import {
   SinglePointAnalysisIcon,
   SignOutIcon,
   SpatialDatasetsIcon,
-  WifiIcon
+  SunIcon
 } from './icons'
 import SVGLogo from './logo.svg'
 import Tip from './tip'
@@ -79,10 +87,11 @@ type ItemLinkProps = {
 const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
   const isActive = useIsActive(to, params)
   const goToLink = useRouteTo(to, params)
+  const bg = useColorModeValue('white', 'gray.900')
 
   const navItemProps = isActive
     ? {
-        bg: '#fff',
+        bg,
         borderBottom: `2px solid ${CB_HEX}`
       }
     : {onClick: () => goToLink()}
@@ -108,10 +117,12 @@ export default function Sidebar() {
   const storeParams = useSelector(selectQueryString)
   const queryParams = {...router.query, ...storeParams}
   const regionOnly = {regionId: queryParams.regionId}
+  const bg = useColorModeValue('gray.200', 'gray.800')
+  const colorMode = useColorMode()
 
   return (
     <Flex
-      bg='#ddd'
+      bg={bg}
       direction='column'
       height='100vh'
       id='sidebar'
@@ -185,6 +196,9 @@ export default function Sidebar() {
       </div>
 
       <div>
+        <NavItemContents className='DEV' onClick={colorMode.toggleColorMode}>
+          {colorMode.colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+        </NavItemContents>
         {email && (
           <ItemLink
             label={
@@ -203,7 +217,6 @@ export default function Sidebar() {
         >
           <InfoIcon />
         </ExternalLink>
-        <OnlineIndicator />
       </div>
     </Flex>
   )
@@ -241,35 +254,6 @@ const LogoSpinner = memo(() => {
     <Box boxSize='21px'>
       <SVGLogo />
     </Box>
-  )
-})
-
-const isOnline = () => (isServer ? true : navigator.onLine)
-const OnlineIndicator = memo(() => {
-  const [online, setOnline] = useState(() => isOnline())
-
-  useEffect(() => {
-    const onOnline = () => setOnline(true)
-    const onOffline = () => setOnline(false)
-    // TODO: Check to see if it can communicate with the backend, not just the
-    // internet (for local development)
-    addListener('online', onOnline)
-    addListener('offline', onOffline)
-    return () => {
-      removeListener('online', onOnline)
-      removeListener('offline', onOffline)
-    }
-  }, [setOnline])
-
-  if (online) return null
-  return (
-    <Tip label={message('nav.notConnectedToInternet')}>
-      <div>
-        <NavItemContents color='red.500'>
-          <WifiIcon />
-        </NavItemContents>
-      </div>
-    </Tip>
   )
 })
 

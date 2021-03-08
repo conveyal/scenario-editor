@@ -188,4 +188,13 @@ declare namespace CL {
     percentile: number
     pointSetId: string
   }
+
+  /**
+   * Server Status
+   */
+  export type Status = {
+    branch: string
+    commit: string
+    version: string
+  }
 }

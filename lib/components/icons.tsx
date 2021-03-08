@@ -32,6 +32,7 @@ export {
   FaLock as LockIcon,
   FaMinus as MinusIcon,
   FaMinusSquare as MinusSquare,
+  FaMoon as MoonIcon,
   FaMousePointer as MouseIcon,
   FaParking as ParkingIcon,
   FaPlusSquare as PlusSquare,
@@ -50,10 +51,10 @@ export {
   FaChartArea as SinglePointAnalysisIcon,
   FaTh as SpatialDatasetsIcon,
   FaSubway as SubwayIcon,
+  FaSun as SunIcon,
   FaSyncAlt as SyncIcon,
   FaTrain as TrainIcon,
   FaUpload as UploadIcon,
   FaWalking as WalkerIcon,
-  FaWifi as WifiIcon,
   FaTimes as XIcon
 } from 'react-icons/fa'

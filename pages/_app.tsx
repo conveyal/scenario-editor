@@ -22,7 +22,7 @@ export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
     ? (Component as ComponentWithLayout).Layout
     : EmptyLayout
   return (
-    <ChakraTheme>
+    <ChakraTheme cookies={pageProps.cookies}>
       <ErrorHandler>
         <SWRWrapper>
           <Layout>

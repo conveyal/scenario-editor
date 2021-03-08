@@ -7,7 +7,7 @@ const TIME_LABELS = [15, 30, 45, 60, 75, 90, 105, 120]
 
 interface MinuteTicksProps {
   label?: boolean
-  scale: (number) => number
+  scale: (s: number) => number
   textHeight: number
 }
 

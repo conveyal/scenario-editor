@@ -17,12 +17,12 @@ interface UseCollection extends ConfigInterface {
 }
 
 type UseCollectionResponse<T> = {
-  create: (properties: T) => Promise<SafeResponse>
+  create: (properties: T) => Promise<SafeResponse<T>>
   data: T[]
   error?: Error
-  remove: (_id: string) => Promise<SafeResponse>
+  remove: (_id: string) => Promise<SafeResponse<T>>
   response: responseInterface<T[], ResponseError>
-  update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse>
+  update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse<T>>
 }
 
 const encode = (o: Record<string, unknown> | void) => {

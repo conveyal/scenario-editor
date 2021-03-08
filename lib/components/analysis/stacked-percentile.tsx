@@ -50,6 +50,7 @@ const Y_AXIS_EXPONENT = 0.5
 type StackedPercentileProps = {
   color: string
   cutoff: number
+  fontColorHex: string
   height: number
   maxAccessibility: number
   opportunityDatasetName: string
@@ -76,6 +77,7 @@ export default memo<StackedPercentileProps>(
   ({
     color,
     cutoff,
+    fontColorHex,
     height,
     maxAccessibility,
     opportunityDatasetName,
@@ -125,16 +127,22 @@ export default memo<StackedPercentileProps>(
 
         <YAxis
           datasetName={opportunityDatasetName}
+          fontColor={fontColorHex}
           height={height}
           width={width}
           yScale={yScale}
         />
 
-        <g transform={`translate(0 ${height})`}>
+        <g transform={`translate(0 ${height})`} style={{fill: fontColorHex}}>
           <MinuteTicks scale={xScale} textHeight={TEXT_HEIGHT} />
         </g>
 
-        <Legend color={color} height={height} width={width} />
+        <Legend
+          color={color}
+          fontColor={fontColorHex}
+          height={height}
+          width={width}
+        />
 
         <SliceLine cutoff={cutoff} height={height} xScale={xScale} />
       </svg>
@@ -154,6 +162,7 @@ export const StackedPercentileComparison = memo<
     comparisonLabel,
     comparisonPercentileCurves,
     cutoff,
+    fontColorHex,
     height,
     label,
     maxAccessibility,
@@ -229,12 +238,13 @@ export const StackedPercentileComparison = memo<
 
         <YAxis
           datasetName={opportunityDatasetName}
+          fontColor={fontColorHex}
           height={height}
           width={width}
           yScale={yScale}
         />
 
-        <g transform={`translate(0 ${height})`}>
+        <g transform={`translate(0 ${height})`} style={{fill: fontColorHex}}>
           <MinuteTicks scale={xScale} textHeight={TEXT_HEIGHT} />
         </g>
 
@@ -242,6 +252,7 @@ export const StackedPercentileComparison = memo<
           color={color}
           comparisonColor={comparisonColor}
           comparisonLabel={comparisonLabel}
+          fontColor={fontColorHex}
           height={height}
           label={label}
           width={width}
@@ -296,7 +307,7 @@ const Slices = memo<SlicesProps>(
   }
 )
 
-function YAxis({height, datasetName, width, yScale}) {
+function YAxis({fontColor, height, datasetName, width, yScale}) {
   const tickFormat = format('.3s')
 
   // make sure that the top tick is not off the screen
@@ -329,7 +340,10 @@ function YAxis({height, datasetName, width, yScale}) {
     >
       {toRender.map(([off, text], i) => (
         <text
-          style={{alignmentBaseline: i === 0 ? 'baseline' : 'middle'}}
+          style={{
+            alignmentBaseline: i === 0 ? 'baseline' : 'middle',
+            fill: fontColor
+          }}
           key={`y-tick-${text}`}
           y={off}
         >
@@ -373,13 +387,17 @@ function SliceLine({cutoff, height, xScale}) {
   )
 }
 
-function Legend({color, width, height}) {
+function Legend({color, fontColor, width, height}) {
   const squareSize = TEXT_HEIGHT * 1.5
   const textOffset = squareSize * 1.5
 
   return (
     <g transform={`translate(${width * 0.9} ${height * 0.6})`}>
-      <text x={textOffset + TEXT_HEIGHT * 2} y={0} style={{textAnchor: 'end'}}>
+      <text
+        x={textOffset + TEXT_HEIGHT * 2}
+        y={0}
+        style={{fill: fontColor, textAnchor: 'end'}}
+      >
         {message('analysis.percentileOfTravelTime')}
       </text>
       {/* Colors */}
@@ -403,7 +421,8 @@ function Legend({color, width, height}) {
           y={(a.length - 1 - i) * squareSize + TEXT_HEIGHT * 1.5}
           key={`legend-text-${i}`}
           style={{
-            alignmentBaseline: 'middle'
+            alignmentBaseline: 'middle',
+            fill: fontColor
           }}
         >
           {d}
@@ -415,6 +434,7 @@ function Legend({color, width, height}) {
 
 function ComparisonLegend({
   color,
+  fontColor,
   label,
   comparisonColor,
   comparisonLabel,
@@ -427,7 +447,11 @@ function ComparisonLegend({
 
   return (
     <g transform={`translate(${width * 0.9} ${height * 0.55})`}>
-      <text x={textOffset + TEXT_HEIGHT * 2} y={0} style={{textAnchor: 'end'}}>
+      <text
+        x={textOffset + TEXT_HEIGHT * 2}
+        y={0}
+        style={{fill: fontColor, textAnchor: 'end'}}
+      >
         {message('analysis.percentileOfTravelTime')}
       </text>
 
@@ -445,7 +469,7 @@ function ComparisonLegend({
       <text
         x={textOffset}
         y={titleOffset}
-        style={{alignmentBaseline: 'middle'}}
+        style={{alignmentBaseline: 'middle', fill: fontColor}}
       >
         {/* [1] because travel time percentiles are reversed in accessibility */}
         {COMPARISON_BAND_PERCENTILES[1]}
@@ -454,7 +478,7 @@ function ComparisonLegend({
       <text
         x={textOffset}
         y={titleOffset + squareSize}
-        style={{alignmentBaseline: 'middle'}}
+        style={{alignmentBaseline: 'middle', fill: fontColor}}
       >
         {/* [1] because travel time percentiles are reversed in accessibility */}
         {COMPARISON_BAND_PERCENTILES[0]}
@@ -466,6 +490,7 @@ function ComparisonLegend({
         y={titleOffset + squareSize / 2}
         style={{
           alignmentBaseline: 'middle',
+          fill: fontColor,
           textAnchor: 'end'
         }}
       >
@@ -486,7 +511,7 @@ function ComparisonLegend({
       <text
         x={textOffset}
         y={titleOffset + squareSize * 3}
-        style={{alignmentBaseline: 'middle'}}
+        style={{alignmentBaseline: 'middle', fill: fontColor}}
       >
         {/* [1] because travel time percentiles are reversed in accessibility */}
         {COMPARISON_BAND_PERCENTILES[1]}
@@ -495,7 +520,7 @@ function ComparisonLegend({
       <text
         x={textOffset}
         y={titleOffset + squareSize * 4}
-        style={{alignmentBaseline: 'middle'}}
+        style={{alignmentBaseline: 'middle', fill: fontColor}}
       >
         {/* [1] because travel time percentiles are reversed in accessibility */}
         {COMPARISON_BAND_PERCENTILES[0]}
@@ -507,6 +532,7 @@ function ComparisonLegend({
         y={titleOffset + squareSize * 3 + squareSize / 2}
         style={{
           alignmentBaseline: 'middle',
+          fill: fontColor,
           textAnchor: 'end'
         }}
       >

@@ -118,8 +118,9 @@ export default class AuthenticatedCollection {
   /**
    * Perform `findWhere`, convert `toArray` and `serializeCollectionResults`.
    */
-  findJSON(query: FilterQuery<any> = {}, options?: FindOneOptions<any>) {
-    return serializeCollectionResults(this.findWhere(query, options).toArray())
+  async findJSON(query: FilterQuery<any> = {}, options?: FindOneOptions<any>) {
+    const results = await this.findWhere(query, options).toArray()
+    return serializeCollectionResults(results)
   }
 
   remove(_id: string) {

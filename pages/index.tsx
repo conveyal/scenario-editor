@@ -121,7 +121,7 @@ export const getServerSideProps = getServerSidePropsWithAuth(
     return {
       props: {
         cookies: ctx.req.headers.cookie ?? '',
-        regions: regions.findJSON({}, {sort: {name: 1}})
+        regions: await regions.findJSON({}, {sort: {name: 1}})
       }
     }
   }

@@ -27,7 +27,8 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
     initialData: p.regions,
     options: {
       sort: {name: 1}
-    }
+    },
+    revalidateOnFocus: true
   })
   const {accessGroup, email} = p.user
   const goToRegionCreate = useRouteTo('regionCreate')
@@ -44,12 +45,14 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
         <Logo />
       </Box>
       <Stack spacing={4} width='320px'>
-        <Box textAlign='center'>
-          <span>signed in as </span>
-          <strong>
-            {email} ({accessGroup})
-          </strong>
-        </Box>
+        {!AUTH_DISABLED && (
+          <Box textAlign='center'>
+            <span>signed in as </span>
+            <strong>
+              {email} ({accessGroup})
+            </strong>
+          </Box>
+        )}
         <Alert status={alertStatus} borderRadius='md'>
           <Stack>
             <Box>

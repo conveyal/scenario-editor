@@ -1,4 +1,10 @@
-import {Box, Button, Stack, useDisclosure} from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Stack,
+  useColorModeValue,
+  useDisclosure
+} from '@chakra-ui/react'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import {useSelector} from 'react-redux'
@@ -147,7 +153,7 @@ export default function ProfileRequestDisplay({
         </tbody>
       </Box>
 
-      <Box borderBottom='1px solid #E2E8F0'>
+      <Box borderBottomWidth='1px'>
         <Button
           borderRadius='0'
           _focus={{
@@ -169,6 +175,7 @@ export default function ProfileRequestDisplay({
 }
 
 export function ObjectToTable({color = 'blue', object}) {
+  const bg = useColorModeValue(`${color}.50`, `${color}.900`)
   const keys = Object.keys(object)
   keys.sort()
   return (
@@ -183,13 +190,7 @@ export function ObjectToTable({color = 'blue', object}) {
     >
       <tbody>
         {keys.map((k) => (
-          <Box
-            as='tr'
-            key={k}
-            _odd={{
-              bg: `${color}.50`
-            }}
-          >
+          <Box as='tr' key={k} _odd={{bg}}>
             <TDTitle>{k}</TDTitle>
             <TDValue>
               <Box

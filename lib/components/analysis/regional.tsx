@@ -158,7 +158,7 @@ export default function Regional(p) {
 
       <Flex
         align='center'
-        borderBottom='1px solid #E2E8F0'
+        borderBottomWidth='1px'
         className={p.saveInProgress ? 'disableAndDim' : ''}
         p={2}
         width='320px'

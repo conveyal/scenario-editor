@@ -23,7 +23,7 @@ export default function Legend({breaks, colors, min}) {
   }))
 
   return (
-    <Stack borderTop='1px solid #E2E8F0' spacing={0}>
+    <Stack borderTopWidth='1px' spacing={0}>
       {reverse(breakProps).map((props, i) => (
         <Box
           _last={{

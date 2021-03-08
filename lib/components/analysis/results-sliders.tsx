@@ -1,13 +1,15 @@
 import {
   Box,
+  BoxProps,
   FormControl,
   FormLabel,
+  HStack,
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-  Stack,
-  FormControlProps
+  FormControlProps,
+  VStack
 } from '@chakra-ui/react'
 import {useCallback, memo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -17,57 +19,117 @@ import {
   setTravelTimePercentile
 } from 'lib/actions/analysis'
 import useInput from 'lib/hooks/use-controlled-input'
-import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
+import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
+
 import getNearestPercentileIndex from 'lib/selectors/nearest-percentile-index'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
+import message from 'lib/message'
 
-export function CutoffSlider({isDisabled, ...p}) {
+import InputWithUnits from '../input-with-units'
+import Tip from '../tip'
+
+const filterFreeform = (dataset: CL.SpatialDataset) =>
+  dataset.format !== 'FREEFORM'
+
+const parseCutoff = (v) => parseInt(v, 10)
+const cutoffIsValid = (v) => v && v >= 1 && v <= 120
+
+export default function ResultSliders({
+  defaultCutoff,
+  isDisabled,
+  isStale,
+  regionId,
+  ...p
+}) {
   const dispatch = useDispatch()
   const onChangeCutoff = useCallback(
-    (cutoff) => dispatch(setMaxTripDurationMinutes(cutoff)),
+    (cutoff: number) => {
+      if (cutoff >= 1 && cutoff <= 120) {
+        dispatch(setMaxTripDurationMinutes(cutoff))
+      }
+    },
     [dispatch]
   )
-  const cutoffSlider = useInput({
+  const cutoffInput = useInput({
+    parse: parseCutoff,
     onChange: onChangeCutoff,
-    value: useSelector(selectMaxTripDurationMinutes)
+    test: cutoffIsValid,
+    value: defaultCutoff
   })
-
+  const isDisabledOrStale = isDisabled || isStale
   return (
-    <FormControl isDisabled={isDisabled} {...p}>
-      <Stack align='center' isInline spacing={5}>
-        <FormLabel whiteSpace='nowrap' pb={0} id={cutoffSlider.id}>
-          Time cutoff
-        </FormLabel>
+    <VStack spacing={5} width='100%' {...p}>
+      <CutoffSlider
+        cutoff={cutoffInput.value}
+        isDisabled={isDisabledOrStale}
+        onChange={onChangeCutoff}
+      />
+      <HStack spacing={6} width='100%'>
+        <FormControl flex='1' isDisabled={isDisabled}>
+          <FormLabel htmlFor='select-opportunity-dataset'>
+            {message('analysis.grid')}
+          </FormLabel>
+          <OpportunityDatasetSelector
+            filter={filterFreeform}
+            isDisabled={isDisabled}
+            regionId={regionId}
+          />
+        </FormControl>
+        <FormControl flex='1' isDisabled={isDisabledOrStale}>
+          <FormLabel htmlFor={cutoffInput.id} whiteSpace='nowrap'>
+            Time cutoff
+          </FormLabel>
+          <Tip label='Between 1 and 120' placement='bottom'>
+            <InputWithUnits
+              {...cutoffInput}
+              maxLength={3}
+              type='number'
+              units='minutes'
+            />
+          </Tip>
+        </FormControl>
+
+        <PercentileSlider flex='1' isDisabled={isDisabledOrStale} />
+      </HStack>
+    </VStack>
+  )
+}
+
+type CutoffSliderProps = {
+  cutoff: number
+  isDisabled: boolean
+  onChange: (cutoff: number) => void
+}
+
+const CutoffSlider = memo<Omit<BoxProps, 'onChange'> & CutoffSliderProps>(
+  ({cutoff, isDisabled, onChange, ...p}) => {
+    return (
+      <Box pl='35px' pr='10px' width='100%' {...p}>
         <Slider
-          aria-labelledby={cutoffSlider.id}
+          focusThumbOnChange={false}
           isDisabled={isDisabled}
           min={1}
           max={120}
-          onChange={cutoffSlider.onChange}
-          value={cutoffSlider.value}
+          onChange={onChange}
+          value={cutoff}
         >
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
-          <SliderThumb ref={cutoffSlider.ref} boxSize='8'>
-            <Box fontSize='sm' fontWeight='bold'>
-              {cutoffSlider.value}
-            </Box>
-          </SliderThumb>
+          <SliderThumb bg='blue.500' />
         </Slider>
-        <FormLabel pb={0}>minute(s)</FormLabel>
-      </Stack>
-    </FormControl>
-  )
-}
+      </Box>
+    )
+  }
+)
 
 type PercentileSliderProps = {
   isDisabled: boolean
 }
 
-export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
+const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
   function PercentileSlider({isDisabled, ...p}) {
     const dispatch = useDispatch()
     const onChangePercentile = useCallback(
@@ -81,7 +143,7 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
     })
 
     return (
-      <FormControl isDisabled={isDisabled} {...p}>
+      <FormControl isDisabled={isDisabled} pr='10px' {...p}>
         <FormLabel id={percentileSlider.id}>Travel time percentile</FormLabel>
         <Slider
           aria-labelledby={percentileSlider.id}

@@ -41,7 +41,7 @@ describe('Analysis', () => {
 
   it('has all form elements', function () {
     // note that elements touched in beforeEach are neglected here
-    cy.findByRole('slider', {name: 'Time cutoff'})
+    cy.findByLabelText(/Time cutoff/)
     cy.findByRole('slider', {name: /Travel time percentile/i})
     cy.getPrimaryAnalysisSettings().within(() => {
       cy.findButton(
@@ -281,7 +281,7 @@ describe('Analysis', () => {
       cy.getPrimaryAnalysisSettings().within(() => {
         cy.findButton(/Delete selected preset/).click()
       })
-      cy.findButton(/Confirm: Delete preset/).click()
+      cy.findButton(/Confirm/).click()
       cy.findByRole('dialog').should('not.exist')
       cy.findByText(/Deleted selected preset/)
     })

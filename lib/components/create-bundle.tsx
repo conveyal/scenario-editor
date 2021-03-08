@@ -139,7 +139,7 @@ export default function CreateBundle() {
   }
 
   return (
-    <InnerDock style={{width: '640px'}}>
+    <InnerDock width={640}>
       <Stack p={8} spacing={8}>
         <Heading size='lg'>{message('bundle.create')}</Heading>
 

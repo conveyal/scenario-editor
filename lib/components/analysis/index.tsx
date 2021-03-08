@@ -4,8 +4,6 @@ import {
   AlertIcon,
   AlertTitle,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   List,
   ListItem,
@@ -24,16 +22,17 @@ import {
   fetchTravelTimeSurface
 } from 'lib/actions/analysis'
 import message from 'lib/message'
-import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
+
 import selectAnalysisBounds from 'lib/selectors/analysis-bounds'
 import selectCurrentProject from 'lib/selectors/current-project'
+import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
 
 import InnerDock from '../inner-dock'
 
 import AnalysisTitle from './title'
-import {CutoffSlider, PercentileSlider} from './results-sliders'
+import ResultsSliders from './results-sliders'
 import SinglePointSettings from './single-point-settings'
 import StackedPercentileSelector from './stacked-percentile-selector'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
@@ -155,7 +154,7 @@ export default function SinglePointAnalysis({
 
       <AnalysisTitle />
 
-      <InnerDock style={{width: '640px'}}>
+      <InnerDock width={640}>
         {scenarioWarnings != null && scenarioWarnings.length > 0 && (
           <Alert
             alignItems='flex-start'
@@ -209,9 +208,6 @@ export default function SinglePointAnalysis({
   )
 }
 
-const filterFreeform = (dataset: CL.SpatialDataset) =>
-  dataset.format !== 'FREEFORM'
-
 function Results({
   isDisabled,
   isStale, // are the results out of sync with the form?
@@ -221,7 +217,7 @@ function Results({
     get(s, 'analysis.resultsSettings', [])
   )
   const opportunityDataset = useSelector(activeOpportunityDataset)
-  const isDisabledOrStale = isDisabled || isStale
+  const defaultCutoff = useSelector(selectMaxTripDurationMinutes)
   return (
     <Stack spacing={P.md} p={P.md}>
       <Skeleton
@@ -232,22 +228,12 @@ function Results({
         <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
       </Skeleton>
 
-      <CutoffSlider isDisabled={isDisabledOrStale} />
-
-      <Stack isInline spacing={P.md}>
-        <FormControl flex='1' isDisabled={isDisabled}>
-          <FormLabel htmlFor='select-opportunity-dataset'>
-            {message('analysis.grid')}
-          </FormLabel>
-          <OpportunityDatasetSelector
-            filter={filterFreeform}
-            isDisabled={isDisabled}
-            regionId={region._id}
-          />
-        </FormControl>
-
-        <PercentileSlider flex='1' isDisabled={isDisabledOrStale} />
-      </Stack>
+      <ResultsSliders
+        defaultCutoff={defaultCutoff}
+        isDisabled={isDisabled}
+        isStale={isStale}
+        regionId={region._id}
+      />
     </Stack>
   )
 }

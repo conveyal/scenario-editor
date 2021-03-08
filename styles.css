@@ -1,22 +1,3 @@
-:root {
-  --sidebar-width: 40px;
-  --dock-width: 320px;
-  --wide-dock-width: 640px;
-}
-
-/** Font reset for specific things */
-html,
-body,
-#root,
-.tooltip {
-  font-size: 12px;
-}
-
-/** Custom cross platform scrollbar colors */
-.simplebar-scrollbar::before {
-  background-color: #ddd;
-}
-
 .DEV {
   outline: 0.5px solid rgba(255, 0, 0, 0.5);
   outline-offset: 4px;
@@ -37,35 +18,8 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.InnerDock {
-  position: relative; /* prevents overflow from react-select */
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: var(--dock-width);
-  padding-bottom: 12px;
-}
-
-.Analysis {
-  min-height: 500px;
-}
-
 .DirectionIcon {
   pointer-events: none;
-}
-
-.DaysOfService-active {
-  color: black;
-}
-
-.DaysOfService-inactive {
-  color: #ccc !important;
-  text-decoration: line-through;
-}
-
-.MiniMap-northArrow {
-  font-size: 18px;
-  position: absolute;
-  z-index: 10000;
 }
 
 /** Leaflet Tooltips */

@@ -4,13 +4,9 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
-  InputRightElement,
   Select,
   SimpleGrid,
-  Flex,
-  InputProps,
-  forwardRef
+  Flex
 } from '@chakra-ui/react'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
@@ -21,6 +17,7 @@ import message from 'lib/message'
 import {workerVersionTestOrInRange} from 'lib/modules/r5-version/utils'
 
 import DocsLink from '../docs-link'
+import InputWithUnits from '../input-with-units'
 import TimePicker from '../time-picker'
 import Tip from '../tip'
 
@@ -45,25 +42,6 @@ function bundleIsOutOfDate(bundle, dateString, project) {
     })
   }
 }
-
-const InputWithUnits = forwardRef<InputProps & {units: string}, typeof Input>(
-  (props, ref) => {
-    const {units, ...p} = props
-    return (
-      <InputGroup>
-        <Input {...p} ref={ref} />
-        <InputRightElement
-          color='gray.400'
-          userSelect='none'
-          width='unset'
-          mr={4}
-        >
-          {units}
-        </InputRightElement>
-      </InputGroup>
-    )
-  }
-)
 
 // Helper function for testing inputs
 const valueWithin = (min: number, max: number) => (v) => {

@@ -1,11 +1,16 @@
 import get from 'lodash/get'
-import React from 'react'
-import {Provider, useDispatch, useSelector} from 'react-redux'
+import fpGet from 'lodash/fp/get'
+import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
+import {useEffect} from 'react'
+import {Provider, useDispatch, useSelector} from 'react-redux'
 
 import {clearError, setQueryString} from './actions'
-import ErrorModal from './components/error-modal'
 import getOrInitializeStore from './store'
+
+const ErrorModal = dynamic(() => import('lib/components/error-modal'), {
+  ssr: false
+})
 
 function getMessageFromError(e) {
   let message = ''
@@ -20,21 +25,18 @@ function getMessageFromError(e) {
   return message
 }
 
+const selectError = fpGet('network.error')
+
 function ReduxErrorModal() {
   const dispatch = useDispatch()
-  const networkError = useSelector((s) => s.network.error)
+  const networkError = useSelector(selectError)
 
   if (!networkError) return null
 
   return (
     <ErrorModal
-      clear={() => dispatch(clearError())}
-      error={{
-        message: getMessageFromError(networkError),
-        stack: get(networkError, 'value.stackTrace'),
-        url: networkError.url
-      }}
-      title='Error while communicating with the server'
+      error={new Error(getMessageFromError(networkError))}
+      resetErrorBoundary={() => dispatch(clearError())}
     />
   )
 }
@@ -46,7 +48,7 @@ export default function withRedux(PageComponent) {
 
     // This does not watch for changes. Page components are passed the current query. It merely puts it in the store
     const {query} = router
-    React.useEffect(() => {
+    useEffect(() => {
       store.dispatch(setQueryString(query))
     }, [store, query])
 

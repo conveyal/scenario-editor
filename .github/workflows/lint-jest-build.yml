@@ -130,14 +130,8 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11
-      - uses: actions/cache@v2
-        id: jar-cache
-        with:
-          path: ${{ github.workspace }}/${{ matrix.backend }}.jar
-          key: analysis-backend-${{ matrix.backend }}
 
       - name: Download Analysis Backend
-        if: steps.jar-cache.outputs.cache-hit != 'true'
         run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ github.workspace }}/${{ matrix.backend }}.jar
 
       - name: Cache Cypress

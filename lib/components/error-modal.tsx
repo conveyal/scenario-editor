@@ -14,11 +14,12 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import get from 'lodash/get'
 import {useState} from 'react'
+import {FallbackProps} from 'react-error-boundary'
 
 import {ExternalLink} from 'lib/components/link'
-import message from 'lib/message'
+
+const title = 'Unfortunately it appears an error has occured..'
 
 function StackTrace({stackTrace, ...p}) {
   // Hide the stack trace in production
@@ -36,8 +37,8 @@ function StackTrace({stackTrace, ...p}) {
           overflowX='scroll'
           whiteSpace='pre'
           padding={2}
-          backgroundColor='#333'
-          color='#fff'
+          bg='gray.800'
+          color='white'
         >
           {stackTrace}
         </Box>
@@ -46,28 +47,15 @@ function StackTrace({stackTrace, ...p}) {
   )
 }
 
-function createMailToFromError(url, stack) {
-  let mailto = `mailto:${message(
-    'error.supportEmail'
-  )}?subject=Conveyal Error&body=`
-  mailto += encodeURIComponent(url || get(window, 'location.href'))
-  if (stack) mailto += encodeURIComponent(`${stack}`.substring(0, 350))
-  return mailto
-}
-
-export default function ErrorModal({
-  clear,
-  error,
-  title = message('error.title')
-}) {
+export default function ErrorModal({error, resetErrorBoundary}: FallbackProps) {
   const errorMessage = typeof error === 'string' ? error : error.message
   const stack = error.stack
 
   return (
     <Modal
       closeOnOverlayClick={false}
-      isOpen={error}
-      onClose={() => clear()}
+      isOpen={!!error}
+      onClose={() => resetErrorBoundary()}
       size='2xl'
     >
       <ModalOverlay />
@@ -77,14 +65,7 @@ export default function ErrorModal({
         <ModalBody>
           <Stack spacing={4}>
             <Text>{errorMessage}</Text>
-            {error.url && <Text>{error.url}</Text>}
             {stack && <StackTrace stackTrace={stack} />}
-            <Box>
-              {message('error.report') + ' '}
-              <ExternalLink href={createMailToFromError(error.url, stack)}>
-                {message('error.supportEmail')}.
-              </ExternalLink>
-            </Box>
             <List styleType='disc'>
               <ListItem>
                 <ExternalLink href='https://support.apple.com/en-us/HT201361'>
@@ -102,12 +83,12 @@ export default function ErrorModal({
         <ModalFooter>
           <Button
             onClick={() => {
+              resetErrorBoundary()
               window.history.back()
-              clear()
             }}
             colorScheme='yellow'
           >
-            {message('error.back')}
+            Go back
           </Button>
         </ModalFooter>
       </ModalContent>

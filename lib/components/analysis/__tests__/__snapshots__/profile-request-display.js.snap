@@ -232,7 +232,6 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                         <Tooltip
                           aria-label="Tooltip: Notice: project may have changed since the analysis was run."
                           fontSize="md"
-                          hasArrow={true}
                           label="Notice: project may have changed since the analysis was run."
                           zIndex={1500}
                         >
@@ -535,7 +534,6 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                                 <Tooltip
                                   aria-label="Tooltip: BUS, TRAM, RAIL, SUBWAY"
                                   fontSize="md"
-                                  hasArrow={true}
                                   label="BUS, TRAM, RAIL, SUBWAY"
                                   zIndex={1500}
                                 >
@@ -826,11 +824,11 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
           </table>
         </Box>
         <Box
-          borderBottom="1px solid #E2E8F0"
+          borderBottomWidth="1px"
           key=".1"
         >
           <div
-            className="css-p9uae9"
+            className="css-1exea8t"
           >
             <Button
               _focus={

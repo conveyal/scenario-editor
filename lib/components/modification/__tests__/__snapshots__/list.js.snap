@@ -211,10 +211,10 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                       "outline": "none",
                     }
                   }
-                  aria-controls="tabs-20--tabpanel-0"
+                  aria-controls="tabs-19--tabpanel-0"
                   aria-selected={true}
                   className="chakra-tabs__tab"
-                  id="tabs-20--tab-0"
+                  id="tabs-19--tab-0"
                   onClick={[Function]}
                   onFocus={[Function]}
                   role="tab"
@@ -222,10 +222,10 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                   type="button"
                 >
                   <button
-                    aria-controls="tabs-20--tabpanel-0"
+                    aria-controls="tabs-19--tabpanel-0"
                     aria-selected={true}
                     className="chakra-tabs__tab css-xokrno"
-                    id="tabs-20--tab-0"
+                    id="tabs-19--tab-0"
                     onClick={[Function]}
                     onFocus={[Function]}
                     role="tab"
@@ -309,10 +309,10 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                       "outline": "none",
                     }
                   }
-                  aria-controls="tabs-20--tabpanel-1"
+                  aria-controls="tabs-19--tabpanel-1"
                   aria-selected={false}
                   className="chakra-tabs__tab"
-                  id="tabs-20--tab-1"
+                  id="tabs-19--tab-1"
                   onClick={[Function]}
                   onFocus={[Function]}
                   role="tab"
@@ -320,10 +320,10 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                   type="button"
                 >
                   <button
-                    aria-controls="tabs-20--tabpanel-1"
+                    aria-controls="tabs-19--tabpanel-1"
                     aria-selected={false}
                     className="chakra-tabs__tab css-xokrno"
-                    id="tabs-20--tab-1"
+                    id="tabs-19--tab-1"
                     onClick={[Function]}
                     onFocus={[Function]}
                     role="tab"
@@ -346,8 +346,8 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
               className="chakra-tabs__tab-panels css-8atqhb"
             >
               <TabPanel
-                aria-labelledby="tabs-20--tab-0"
-                id="tabs-20--tabpanel-0"
+                aria-labelledby="tabs-19--tab-0"
+                id="tabs-19--tabpanel-0"
                 isSelected={true}
                 key=".0"
                 pt={2}
@@ -359,10 +359,10 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                       "p": 4,
                     }
                   }
-                  aria-labelledby="tabs-20--tab-0"
+                  aria-labelledby="tabs-19--tab-0"
                   className="chakra-tabs__tab-panel"
                   hidden={false}
-                  id="tabs-20--tabpanel-0"
+                  id="tabs-19--tabpanel-0"
                   outline="0"
                   pt={2}
                   px={0}
@@ -370,10 +370,10 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                   tabIndex={0}
                 >
                   <div
-                    aria-labelledby="tabs-20--tab-0"
+                    aria-labelledby="tabs-19--tab-0"
                     className="chakra-tabs__tab-panel css-1ckuqav"
                     hidden={false}
-                    id="tabs-20--tabpanel-0"
+                    id="tabs-19--tabpanel-0"
                     role="tabpanel"
                     tabIndex={0}
                   >
@@ -714,7 +714,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                               <div
                                 className="css-1az9m6y"
                               >
-                                <IconButton
+                                <ForwardRef
                                   label="Import modifications from another project"
                                   onClick={[Function]}
                                 >
@@ -729,7 +729,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Import modifications from another project"
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Import modifications from another project"
                                           placement="auto"
                                           zIndex={1500}
@@ -845,8 +844,8 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                       </ForwardRef>
                                     </div>
                                   </Box>
-                                </IconButton>
-                                <IconButton
+                                </ForwardRef>
+                                <ForwardRef
                                   label="Show all modifications"
                                   onClick={[Function]}
                                 >
@@ -861,7 +860,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Show all modifications"
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Show all modifications"
                                           placement="auto"
                                           zIndex={1500}
@@ -977,8 +975,8 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                       </ForwardRef>
                                     </div>
                                   </Box>
-                                </IconButton>
-                                <IconButton
+                                </ForwardRef>
+                                <ForwardRef
                                   label="Hide all modifications"
                                   onClick={[Function]}
                                 >
@@ -993,7 +991,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Hide all modifications"
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Hide all modifications"
                                           placement="auto"
                                           zIndex={1500}
@@ -1109,7 +1106,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                       </ForwardRef>
                                     </div>
                                   </Box>
-                                </IconButton>
+                                </ForwardRef>
                               </div>
                             </Styled(div)>
                           </Flex>
@@ -1117,20 +1114,33 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                       </Styled(div)>
                     </Flex>
                     <InnerDock>
+                      <JSXStyle
+                        id="33501251"
+                      />
                       <SimpleBar
-                        className="InnerDock "
+                        className=""
                         style={
                           Object {
                             "height": 768,
+                            "overflowX": "hidden",
+                            "overflowY": "auto",
+                            "paddingBottom": "12px",
+                            "position": "relative",
+                            "width": 320,
                           }
                         }
                       >
                         <div
-                          className="InnerDock "
+                          className=""
                           data-simplebar={true}
                           style={
                             Object {
                               "height": 768,
+                              "overflowX": "hidden",
+                              "overflowY": "auto",
+                              "paddingBottom": "12px",
+                              "position": "relative",
+                              "width": 320,
                             }
                           }
                         >
@@ -1665,7 +1675,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                                 </Button>
                                                                               </Link>
                                                                             </InternalLink>
-                                                                            <IconButton
+                                                                            <ForwardRef
                                                                               label="Show on map"
                                                                               onClick={[Function]}
                                                                             >
@@ -1680,7 +1690,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                                     <Tooltip
                                                                                       aria-label="Tooltip: Show on map"
                                                                                       fontSize="md"
-                                                                                      hasArrow={true}
                                                                                       label="Show on map"
                                                                                       placement="auto"
                                                                                       zIndex={1500}
@@ -1796,7 +1805,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                                   </ForwardRef>
                                                                                 </div>
                                                                               </Box>
-                                                                            </IconButton>
+                                                                            </ForwardRef>
                                                                           </div>
                                                                         </Styled(div)>
                                                                       </Flex>
@@ -2044,8 +2053,8 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                 </Styled(div)>
               </TabPanel>
               <TabPanel
-                aria-labelledby="tabs-20--tab-1"
-                id="tabs-20--tabpanel-1"
+                aria-labelledby="tabs-19--tab-1"
+                id="tabs-19--tabpanel-1"
                 isSelected={false}
                 key=".1"
                 p={0}
@@ -2056,20 +2065,20 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                       "p": 4,
                     }
                   }
-                  aria-labelledby="tabs-20--tab-1"
+                  aria-labelledby="tabs-19--tab-1"
                   className="chakra-tabs__tab-panel"
                   hidden={true}
-                  id="tabs-20--tabpanel-1"
+                  id="tabs-19--tabpanel-1"
                   outline="0"
                   p={0}
                   role="tabpanel"
                   tabIndex={0}
                 >
                   <div
-                    aria-labelledby="tabs-20--tab-1"
+                    aria-labelledby="tabs-19--tab-1"
                     className="chakra-tabs__tab-panel css-tiy5mv"
                     hidden={true}
-                    id="tabs-20--tabpanel-1"
+                    id="tabs-19--tabpanel-1"
                     role="tabpanel"
                     tabIndex={0}
                   >
@@ -2217,20 +2226,33 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                             <InnerDock
                               key=".2"
                             >
+                              <JSXStyle
+                                id="33501251"
+                              />
                               <SimpleBar
-                                className="InnerDock "
+                                className=""
                                 style={
                                   Object {
                                     "height": 768,
+                                    "overflowX": "hidden",
+                                    "overflowY": "auto",
+                                    "paddingBottom": "12px",
+                                    "position": "relative",
+                                    "width": 320,
                                   }
                                 }
                               >
                                 <div
-                                  className="InnerDock "
+                                  className=""
                                   data-simplebar={true}
                                   style={
                                     Object {
                                       "height": 768,
+                                      "overflowX": "hidden",
+                                      "overflowY": "auto",
+                                      "paddingBottom": "12px",
+                                      "position": "relative",
+                                      "width": 320,
                                     }
                                   }
                                 >
@@ -2329,7 +2351,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                           <Tooltip
                                                             aria-label="Tooltip: Baseline (empty scenario) cannot be modified"
                                                             fontSize="md"
-                                                            hasArrow={true}
                                                             label="Baseline (empty scenario) cannot be modified"
                                                             zIndex={1500}
                                                           >
@@ -2473,7 +2494,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                           <div
                                                                             className="css-r9c3yq"
                                                                           >
-                                                                            <IconButton
+                                                                            <ForwardRef
                                                                               label="Click to edit"
                                                                               onClick={[Function]}
                                                                             >
@@ -2488,7 +2509,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                                     <Tooltip
                                                                                       aria-label="Tooltip: Click to edit"
                                                                                       fontSize="md"
-                                                                                      hasArrow={true}
                                                                                       label="Click to edit"
                                                                                       placement="auto"
                                                                                       zIndex={1500}
@@ -2604,7 +2624,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                                   </ForwardRef>
                                                                                 </div>
                                                                               </Box>
-                                                                            </IconButton>
+                                                                            </ForwardRef>
                                                                           </div>
                                                                         </Box>
                                                                       </div>
@@ -2632,7 +2652,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                   <div
                                                                     className="chakra-stack css-15nnlkb"
                                                                   >
-                                                                    <IconButton
+                                                                    <ForwardRef
                                                                       key=".1"
                                                                       label="Copy scenario"
                                                                       onClick={[Function]}
@@ -2648,7 +2668,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                             <Tooltip
                                                                               aria-label="Tooltip: Copy scenario"
                                                                               fontSize="md"
-                                                                              hasArrow={true}
                                                                               label="Copy scenario"
                                                                               placement="auto"
                                                                               zIndex={1500}
@@ -2764,8 +2783,8 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                           </ForwardRef>
                                                                         </div>
                                                                       </Box>
-                                                                    </IconButton>
-                                                                    <IconButton
+                                                                    </ForwardRef>
+                                                                    <ForwardRef
                                                                       key=".2"
                                                                       label="Show modifications for this scenario on the map"
                                                                       onClick={[Function]}
@@ -2781,7 +2800,6 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                             <Tooltip
                                                                               aria-label="Tooltip: Show modifications for this scenario on the map"
                                                                               fontSize="md"
-                                                                              hasArrow={true}
                                                                               label="Show modifications for this scenario on the map"
                                                                               placement="auto"
                                                                               zIndex={1500}
@@ -2897,7 +2915,7 @@ exports[`Component ModificationsList snapshot(mount) 1`] = `
                                                                           </ForwardRef>
                                                                         </div>
                                                                       </Box>
-                                                                    </IconButton>
+                                                                    </ForwardRef>
                                                                   </div>
                                                                 </Styled(div)>
                                                               </Stack>

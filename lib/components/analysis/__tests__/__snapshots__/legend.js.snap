@@ -41,7 +41,7 @@ exports[`Components > Analysis > Regional > Legend should display 1`] = `
   min={0}
 >
   <Stack
-    borderTop="1px solid #E2E8F0"
+    borderTopWidth="1px"
     spacing={0}
   >
     <Styled(div)
@@ -53,13 +53,13 @@ exports[`Components > Analysis > Regional > Legend should display 1`] = `
           },
         }
       }
-      borderTop="1px solid #E2E8F0"
+      borderTopWidth="1px"
       className="chakra-stack"
       display="flex"
       flexDirection="column"
     >
       <div
-        className="chakra-stack css-zl0oze"
+        className="chakra-stack css-13clb6c"
       >
         <Box
           _last={

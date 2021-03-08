@@ -28,7 +28,7 @@ function createBundle(name: string, selectFilesFn: () => void) {
 
 function deleteThisBundle(bundleName: string) {
   cy.findByRole('button', {name: /Delete this network bundle/i}).click()
-  cy.findByRole('button', {name: /Confirm: Delete this network bundle/}).click()
+  cy.findButton(/Confirm/).click()
   cy.location('pathname').should('match', /.*\/bundles$/)
   cy.navComplete()
   cy.findByText(/Select.../).click()

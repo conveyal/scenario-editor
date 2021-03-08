@@ -57,7 +57,7 @@ describe('Projects', function () {
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()
     cy.findByText(/Delete project/i).click()
-    cy.findByRole('button', {name: /Confirm: Delete project/i}).click()
+    cy.findButton(/Confirm/i).click()
     cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     cy.findByText(projectName).should('not.exist')

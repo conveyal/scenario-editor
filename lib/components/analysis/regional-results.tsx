@@ -7,7 +7,8 @@ import {
   Heading,
   Select as ChakraSelect,
   Stack,
-  Text
+  Text,
+  useColorModeValue
 } from '@chakra-ui/react'
 import find from 'lodash/find'
 import get from 'lodash/get'
@@ -104,6 +105,7 @@ function useComparisonAccessibilityLabel(comparisonAnalysis) {
  */
 export default function RegionalResults({analysis}) {
   const dispatch = useDispatch()
+  const legendBackround = useColorModeValue('white', 'gray.900')
 
   const opportunityDataset = useSelector(activeOpportunityDataset)
   const aggregateAccessibility = useSelector(selectAggregateAccessibility)
@@ -172,7 +174,7 @@ export default function RegionalResults({analysis}) {
 
       <MapControl position='bottomleft'>
         <Stack
-          backgroundColor='white'
+          bg={legendBackround}
           boxShadow='lg'
           rounded='md'
           spacing={3}

@@ -36,7 +36,7 @@ export default class Region extends Model {
     cy.findButton(/Edit region settings/).click()
     // Delete region
     cy.findByText(/Delete this region/).click()
-    cy.findByText(/Confirm: Delete this region/).click()
+    cy.findButton(/Confirm/).click()
     cy.findByRole('dialog').should('not.exist')
   }
 
@@ -51,6 +51,10 @@ export default class Region extends Model {
     ;(spatialDataset ?? this.defaultSpatialDataset).select()
     cy.fetchResults()
 
+    return this.opportunitiesComparison()
+  }
+
+  opportunitiesComparison() {
     return cy
       .findByLabelText('Opportunities within isochrone')
       .itsNumericText()

@@ -570,7 +570,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                 position="bottomleft"
               >
                 <Stack
-                  backgroundColor="white"
+                  bg="white"
                   boxShadow="lg"
                   rounded="md"
                   spacing={3}
@@ -585,7 +585,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                         },
                       }
                     }
-                    backgroundColor="white"
+                    bg="white"
                     boxShadow="lg"
                     className="chakra-stack"
                     display="flex"
@@ -594,7 +594,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                     width="296px"
                   >
                     <div
-                      className="chakra-stack css-1bai58o"
+                      className="chakra-stack css-bo8igj"
                     >
                       <Heading
                         key=".0"
@@ -719,7 +719,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                         min={0}
                       >
                         <Stack
-                          borderTop="1px solid #E2E8F0"
+                          borderTopWidth="1px"
                           spacing={0}
                         >
                           <Styled(div)
@@ -731,13 +731,13 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                                 },
                               }
                             }
-                            borderTop="1px solid #E2E8F0"
+                            borderTopWidth="1px"
                             className="chakra-stack"
                             display="flex"
                             flexDirection="column"
                           >
                             <div
-                              className="chakra-stack css-zl0oze"
+                              className="chakra-stack css-13clb6c"
                             >
                               <Box
                                 _last={
@@ -2864,7 +2864,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                         <Tooltip
                                           aria-label="Tooltip: Notice: project may have changed since the analysis was run."
                                           fontSize="md"
-                                          hasArrow={true}
                                           label="Notice: project may have changed since the analysis was run."
                                           zIndex={1500}
                                         >
@@ -3167,7 +3166,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                 <Tooltip
                                                   aria-label="Tooltip: BUS, TRAM, RAIL, SUBWAY"
                                                   fontSize="md"
-                                                  hasArrow={true}
                                                   label="BUS, TRAM, RAIL, SUBWAY"
                                                   zIndex={1500}
                                                 >
@@ -3458,11 +3456,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                           </table>
                         </Box>
                         <Box
-                          borderBottom="1px solid #E2E8F0"
+                          borderBottomWidth="1px"
                           key=".1"
                         >
                           <div
-                            className="css-p9uae9"
+                            className="css-1exea8t"
                           >
                             <Button
                               _focus={
@@ -3582,7 +3580,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 position="bottomleft"
               >
                 <Stack
-                  backgroundColor="white"
+                  bg="white"
                   boxShadow="lg"
                   rounded="md"
                   spacing={3}
@@ -3597,7 +3595,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                         },
                       }
                     }
-                    backgroundColor="white"
+                    bg="white"
                     boxShadow="lg"
                     className="chakra-stack"
                     display="flex"
@@ -3606,7 +3604,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                     width="296px"
                   >
                     <div
-                      className="chakra-stack css-1bai58o"
+                      className="chakra-stack css-bo8igj"
                     >
                       <Heading
                         key=".0"
@@ -3825,7 +3823,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                         min={-1998}
                       >
                         <Stack
-                          borderTop="1px solid #E2E8F0"
+                          borderTopWidth="1px"
                           spacing={0}
                         >
                           <Styled(div)
@@ -3837,13 +3835,13 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                 },
                               }
                             }
-                            borderTop="1px solid #E2E8F0"
+                            borderTopWidth="1px"
                             className="chakra-stack"
                             display="flex"
                             flexDirection="column"
                           >
                             <div
-                              className="chakra-stack css-zl0oze"
+                              className="chakra-stack css-13clb6c"
                             >
                               <Box
                                 _last={

@@ -824,11 +824,11 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
           </table>
         </Box>
         <Box
-          borderBottom="1px solid #E2E8F0"
+          borderBottomWidth="1px"
           key=".1"
         >
           <div
-            className="css-p9uae9"
+            className="css-1exea8t"
           >
             <Button
               _focus={

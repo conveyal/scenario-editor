@@ -2,6 +2,7 @@ import {
   handleAuth,
   handleCallback,
   handleLogin,
+  handleLogout,
   Session
 } from '@auth0/nextjs-auth0'
 import {NextApiRequest, NextApiResponse} from 'next'
@@ -46,6 +47,15 @@ export default handleAuth({
           redirect_uri: `${getBaseURL(req)}/api/auth/callback`,
           scope
         }
+      })
+    } catch (e) {
+      res.status(400).json(errorToPOJO(e))
+    }
+  },
+  async logout(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      await handleLogout(req, res, {
+        returnTo: getBaseURL(req)
       })
     } catch (e) {
       res.status(400).json(errorToPOJO(e))

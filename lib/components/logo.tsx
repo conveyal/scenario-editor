@@ -13,7 +13,7 @@ export default function Logo() {
           fontSize='3rem'
           fontWeight='300'
           letterSpacing='-0.05rem'
-          mt='-0.25rem'
+          mt='-0.35rem'
         >
           conveyal
         </Box>

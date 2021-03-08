@@ -28,7 +28,7 @@ export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
   const user = AUTH_DISABLED ? localUser : pageProps.user
   return (
     <UserProvider user={user}>
-      <ChakraTheme cookies={pageProps.cookies}>
+      <ChakraTheme>
         <ErrorHandler>
           <SWRWrapper>
             <Head>

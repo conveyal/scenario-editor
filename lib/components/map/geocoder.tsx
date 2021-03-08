@@ -148,7 +148,12 @@ export default function GeocoderPopper({
         {({onClose}) => (
           <>
             <PopoverTrigger>
-              <Button colorScheme='blue' shadow='xl' isDisabled={isDisabled}>
+              <Button
+                colorScheme='blue'
+                isDisabled={isDisabled}
+                shadow='lg'
+                title='Search map'
+              >
                 <SearchIcon />
               </Button>
             </PopoverTrigger>

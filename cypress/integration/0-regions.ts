@@ -9,7 +9,7 @@ const getEast = () => cy.findByLabelText(/East bound/)
 const getWest = () => cy.findByLabelText(/West bound/)
 const getCreate = () => cy.findButton(/Set up a new region/)
 const getSave = () => cy.findButton(/Save changes/)
-const getSearch = () => cy.get('#geocoder')
+const getSearch = () => cy.findByTitle(/Search map/)
 
 /**
  * Scratch region
@@ -17,7 +17,7 @@ const getSearch = () => cy.get('#geocoder')
 const regionData = {
   description: 'Cypress stratch testing region',
   searchTerm: 'covington kentucky',
-  foundName: 'Covington, Kentucky, United States',
+  foundName: /^Covington$/,
   north: 39.1199,
   south: 38.9268,
   east: -84.3592,
@@ -102,19 +102,26 @@ describe('Regions', () => {
     const testLocations = [
       {
         searchTerm: 'cincinnati ohio usa',
-        findText: /^Cincinnati, Ohio/,
+        findText: /^Cincinnati$/,
         coord: [39.1, -84.5]
       },
       {
         searchTerm: 'tulsa oklahoma usa',
-        findText: /^Tulsa, Oklahoma/,
+        findText: /^Tulsa$/,
         coord: [36.1, -95.9]
       }
     ]
     const maxOffset = 10000 // meters
     testLocations.forEach((r) => {
-      getSearch().focus().clear().type(r.searchTerm)
-      cy.findByText(r.findText).click()
+      getSearch().click()
+
+      cy.findByPlaceholderText(/Search map/)
+        .click()
+        .focus()
+        .clear()
+        .type(r.searchTerm)
+
+      cy.findAllByText(r.findText).first().click()
       cy.mapCenteredOn(r.coord as L.LatLngTuple, maxOffset)
     })
 
@@ -124,8 +131,16 @@ describe('Regions', () => {
     getName().type(regionName)
     getDesc().type(regionData.description)
     // search for region by name
-    getSearch().focus().clear().type(regionData.searchTerm)
-    cy.findByText(regionData.foundName).click()
+    getSearch().click()
+
+    cy.findByPlaceholderText(/Search map/)
+      .click()
+      .focus()
+      .clear()
+      .type(regionData.searchTerm)
+
+    cy.findAllByText(regionData.foundName).first().click()
+
     cy.mapCenteredOn(regionData.center, 10000)
     // Enter exact coordinates
     getNorth()

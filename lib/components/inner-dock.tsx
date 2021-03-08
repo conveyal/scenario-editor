@@ -22,12 +22,12 @@ export default function InnerDock({
   className = '',
   width = defaultWidth
 }) {
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<any>()
   const windowSize = useWindowSize()
   const [height, setHeight] = useState<number | string>('100vh')
   useEffect(() => {
-    if (ref.current && windowSize.height) {
-      setHeight(windowSize.height - ref.current.offsetTop)
+    if (ref.current && ref.current.el && windowSize.height) {
+      setHeight(windowSize.height - ref.current.el.offsetTop)
     }
   }, [ref, windowSize])
 
@@ -40,7 +40,7 @@ export default function InnerDock({
       `}</style>
       <Simplebar
         className={className}
-        scrollableNodeProps={{ref}}
+        ref={ref}
         style={{...defaultStyle, height, width}}
       >
         {children}

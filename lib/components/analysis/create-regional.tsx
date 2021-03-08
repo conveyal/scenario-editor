@@ -29,6 +29,8 @@ import {useSelector} from 'react-redux'
 import {AddIcon} from 'lib/components/icons'
 import {API} from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
+import useRouteTo from 'lib/hooks/use-route-to'
+import useUser from 'lib/hooks/use-user'
 import message from 'lib/message'
 import {
   activeOpportunityDataset,
@@ -39,11 +41,10 @@ import selectCurrentRegionId from 'lib/selectors/current-region-id'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 import authenticatedFetch from 'lib/utils/auth-fetch'
+import calculateGridPoints from 'lib/utils/calculate-grid-points'
 
 import Select from '../select'
 import DocsLink from '../docs-link'
-import useRouteTo from 'lib/hooks/use-route-to'
-import calculateGridPoints from 'lib/utils/calculate-grid-points'
 
 // For react-select options
 const getId = fpGet('_id')
@@ -136,6 +137,7 @@ const defaultOriginPointSet = {
 
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const toast = useToast()
+  const user = useUser()
   const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
@@ -217,7 +219,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       variantIndex
     }
 
-    const response = await authenticatedFetch(API.Regional, {
+    const response = await authenticatedFetch(API.Regional, user, {
       method: 'POST',
       body: JSON.stringify(options)
     })

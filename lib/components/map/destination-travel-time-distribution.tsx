@@ -243,6 +243,7 @@ export default memo(function DestinationTravelTimeDistribution() {
                     <Boxplot
                       color={colors.PROJECT_PERCENTILE_COLOR}
                       positions={distribution}
+                      positionIndex={percentileIndex}
                       scale={SCALE}
                       strokeWidth={STROKE_WIDTH}
                       width={HEIGHT}
@@ -254,6 +255,7 @@ export default memo(function DestinationTravelTimeDistribution() {
                       <Boxplot
                         color={colors.COMPARISON_PERCENTILE_COLOR}
                         positions={comparisonDistribution}
+                        positionIndex={percentileIndex}
                         scale={SCALE}
                         strokeWidth={STROKE_WIDTH}
                         width={HEIGHT}

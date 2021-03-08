@@ -3,6 +3,7 @@ import {memo} from 'react'
 interface BoxplotProps {
   color: string
   positions: number[]
+  positionIndex: number
   scale: (number) => number
   strokeWidth?: number
   width: number
@@ -14,6 +15,7 @@ interface BoxplotProps {
 export default memo<BoxplotProps>(function Boxplot({
   color,
   positions,
+  positionIndex,
   scale,
   strokeWidth = 0.5,
   width
@@ -29,6 +31,19 @@ export default memo<BoxplotProps>(function Boxplot({
 
   return (
     <g style={{stroke, strokeWidth}}>
+      {/* halo for selected percentile */}
+      <line
+        x1={boxLeft}
+        x2={boxRight}
+        y1={scale(positions[positionIndex])}
+        y2={scale(positions[positionIndex])}
+        style={
+          {
+            strokeWidth: 3 * strokeWidth,
+            opacity: 0.4
+          }
+        }
+      />
       {/* top of top whisker */}
       <line
         x1={whiskerLeft}

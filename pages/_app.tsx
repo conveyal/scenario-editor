@@ -1,5 +1,6 @@
 import {NextComponentType} from 'next'
 import {AppProps} from 'next/app'
+import Head from 'next/head'
 import {ComponentType} from 'react'
 
 import ErrorHandler from 'lib/components/app-error-handler'
@@ -25,6 +26,9 @@ export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
     <ChakraTheme cookies={pageProps.cookies}>
       <ErrorHandler>
         <SWRWrapper>
+          <Head>
+            <title>Conveyal Analysis</title>
+          </Head>
           <Layout>
             <Component {...pageProps} />
           </Layout>

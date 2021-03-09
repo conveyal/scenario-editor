@@ -20,6 +20,9 @@ const omitImmutable = fpOmit(['_id', 'accessGroup', 'createdAt', 'createdBy'])
 
 // Enabled collections
 const collections = {
+  bundles: {
+    singular: 'bundle'
+  },
   presets: {
     // previously known as bookmarks
     singular: 'preset'

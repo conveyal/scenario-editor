@@ -146,6 +146,26 @@ declare namespace CL {
     sourceName: string
   }
 
+  export interface FeedSummary {
+    feedId: string
+    name: string
+  }
+
+  export interface Bundle extends IModel {
+    feedGroupId: string
+    feeds: FeedSummary[]
+    osmId: string
+    regionId: string
+    status: string
+    statusText: string
+  }
+
+  export interface Project extends IModel {
+    bundleId: string
+    regionId: string
+    variants: string[]
+  }
+
   /**
    * Access Grids
    */
@@ -196,5 +216,18 @@ declare namespace CL {
     branch: string
     commit: string
     version: string
+  }
+
+  /**
+   * Base page component
+   */
+  export interface Page<
+    T = Record<string, uknown>
+  > extends React.FunctionComponent<
+      T & {
+        query: Record<string, string>
+      }
+    > {
+    Layout?: React.FunctionComponent
   }
 }

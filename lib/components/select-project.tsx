@@ -8,7 +8,15 @@ import {ProjectIcon, SettingsIcon} from './icons'
 import InnerDock from './inner-dock'
 import ListGroupItem from './list-group-item'
 
-export default function SelectProject({bundles, projects, region}) {
+export default function SelectProject({
+  bundles,
+  projects,
+  region
+}: {
+  bundles: CL.Bundle[]
+  projects: CL.Project[]
+  region: CL.Region
+}) {
   const routeToBundleCreate = useRouteTo('bundleCreate', {regionId: region._id})
   const routeToProjectCreate = useRouteTo('projectCreate', {
     regionId: region._id

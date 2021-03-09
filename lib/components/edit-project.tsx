@@ -8,9 +8,7 @@ import {
   Stack
 } from '@chakra-ui/react'
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
-
-import {deleteProject, saveToServer} from 'lib/actions/project'
+import {useProject} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
@@ -19,24 +17,31 @@ import {DeleteIcon, EditIcon} from './icons'
 import InnerDock from './inner-dock'
 import {ALink} from './link'
 
-export default function EditProject({project, query}) {
-  const dispatch = useDispatch<any>()
+type EditProjectProps = {
+  project: CL.Project
+  query: Record<string, string>
+}
+
+export default function EditProject(p: EditProjectProps) {
+  const {data: project, remove, update} = useProject(p.project._id, {
+    initialData: p.project
+  })
   const [name, setName] = useState(project.name)
-  const {projectId, regionId} = query
+  const {projectId, regionId} = p.query
   const routeToProjects = useRouteTo('projects', {regionId})
   const routeToModifications = useRouteTo('modifications', {
     projectId,
     regionId
   })
 
-  function _deleteProject() {
-    dispatch(deleteProject(projectId)).then(() => routeToProjects())
+  async function _deleteProject() {
+    await remove()
+    routeToProjects()
   }
 
-  function _save() {
-    dispatch(saveToServer({...project, name})).then(() =>
-      routeToModifications()
-    )
+  async function _save() {
+    await update({...project, name})
+    routeToModifications()
   }
 
   return (

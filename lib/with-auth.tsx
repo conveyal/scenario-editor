@@ -28,7 +28,7 @@ const DevBar = () => (
  * Ensure that a Page component is authenticated before rendering.
  */
 export default function withAuth(PageComponent) {
-  return function AuthenticatedComponent(p: IWithAuthProps): JSX.Element {
+  return function AuthenticatedComponent(p) {
     const {user} = useFetchUser(p.user)
     if (!user) return <LoadingScreen />
     return (

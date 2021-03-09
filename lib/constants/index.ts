@@ -41,7 +41,6 @@ export const Pages = {
   regions: '/',
   regionCreate: '/regions/create',
   regionSettings: '/regions/[regionId]/edit',
-  project: '/regions/[regionId]/projects/[projectId]',
   projects: '/regions/[regionId]',
   projectCreate: '/regions/[regionId]/create-project',
   projectSettings: '/regions/[regionId]/projects/[projectId]/edit',

@@ -103,7 +103,10 @@ export function CreateProject({bundles, dispatch, query}) {
   )
 }
 
-export default function ConnectedCreateProject(p) {
+export default function ConnectedCreateProject(p: {
+  bundles: CL.Bundle[]
+  query: Record<string, string>
+}) {
   const dispatch = useDispatch()
   return <CreateProject {...p} dispatch={dispatch} />
 }

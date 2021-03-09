@@ -10,7 +10,7 @@ import {
 import get from 'lodash/fp/get'
 import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
 import {deleteBundle, saveBundle} from 'lib/actions'
 import useInput from 'lib/hooks/use-controlled-input'
@@ -48,14 +48,18 @@ function BundleNameInput({name, onChange, ...p}) {
   )
 }
 
+type EditBundleProps = {
+  bundleProjects: CL.Project[]
+  bundles: CL.Bundle[]
+}
+
 /**
  * Edit bundle is keyed by the bundle ID and will be completely unmounted and
  * recreated when that changes.
  */
-export default function EditBundle(p) {
-  const dispatch = useDispatch()
+export default function EditBundle({bundleProjects, bundles}: EditBundleProps) {
+  const dispatch = useDispatch<any>()
   const router = useRouter()
-  const bundles = useSelector(get('region.bundles'))
 
   const regionId = router.query.regionId as string
   const goToBundles = useRouteTo('bundles', {regionId})
@@ -70,7 +74,7 @@ export default function EditBundle(p) {
   )
 
   // If this bundle has project's associated with it. Disable deletion.
-  const disableDelete = p.bundleProjects.length > 0
+  const disableDelete = bundleProjects.length > 0
 
   async function _deleteBundle() {
     goToBundles()
@@ -87,7 +91,7 @@ export default function EditBundle(p) {
     goToBundleEdit({bundleId: result._id})
   }
 
-  function setFeedName(feedId, name) {
+  function setFeedName(feedId: string, name: string) {
     if (bundle) {
       setBundle({
         ...bundle,
@@ -108,11 +112,11 @@ export default function EditBundle(p) {
         <div>
           <Select
             inputId='selectBundle'
-            options={bundles}
+            options={bundles as any}
             getOptionLabel={getOptionLabel}
             getOptionValue={get('_id')}
             onChange={selectBundle}
-            value={bundles.find((b) => b._id === bundleId)}
+            value={bundles.find((b) => b._id === bundleId) as any}
           />
         </div>
       </FormControl>
@@ -158,7 +162,7 @@ export default function EditBundle(p) {
           {disableDelete ? (
             <Alert status='info'>
               {message('bundle.deleteDisabled', {
-                projects: p.bundleProjects.length
+                projects: bundleProjects.length
               })}
             </Alert>
           ) : (

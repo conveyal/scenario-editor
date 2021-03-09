@@ -4,6 +4,7 @@ import Head from 'next/head'
 import {ComponentType} from 'react'
 
 import ErrorHandler from 'lib/components/app-error-handler'
+import LoadingScreen from 'lib/components/loading-screen'
 import ChakraTheme from 'lib/config/chakra'
 import SWRWrapper from 'lib/config/swr'
 
@@ -17,7 +18,11 @@ type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
 }
 
-export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
+export default function ConveyalAnalysis({
+  Component,
+  pageProps,
+  router
+}: AppProps) {
   const Layout = Object.prototype.hasOwnProperty.call(Component, 'Layout')
     ? (Component as ComponentWithLayout).Layout
     : EmptyLayout
@@ -28,9 +33,13 @@ export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
           <Head>
             <title>Conveyal Analysis</title>
           </Head>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          {router.isReady ? (
+            <Layout>
+              <Component query={router.query} {...pageProps} />
+            </Layout>
+          ) : (
+            <LoadingScreen />
+          )}
         </SWRWrapper>
       </ErrorHandler>
     </ChakraTheme>

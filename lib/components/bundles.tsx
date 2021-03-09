@@ -1,5 +1,4 @@
 import {Button, Heading, Stack, Text} from '@chakra-ui/react'
-import React from 'react'
 
 import message from 'lib/message'
 

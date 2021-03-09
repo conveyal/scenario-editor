@@ -10,16 +10,16 @@ import {
   safeDelete,
   SafeResponse
 } from 'lib/utils/safe-fetch'
+import {UseDataResponse} from './use-data'
 
 interface UseCollection extends ConfigInterface {
   query?: Record<string, unknown>
   options?: Record<string, unknown>
 }
 
-type UseCollectionResponse<T> = {
+export type UseCollectionResponse<T> = UseDataResponse<T> & {
   create: (properties: T) => Promise<SafeResponse<T>>
   data: T[]
-  error?: Error
   remove: (_id: string) => Promise<SafeResponse<T>>
   response: responseInterface<T[], ResponseError>
   update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse<T>>
@@ -43,20 +43,26 @@ const configToQueryParams = (config?: UseCollection): string => {
   return params.join('&')
 }
 
+function useURL(baseURL: string, config?: UseCollection): string {
+  const parts = [baseURL]
+  const queryParams = configToQueryParams(config)
+  if (queryParams) parts.push(queryParams)
+  return parts.join('?')
+}
+
 /**
  * Factory function for creating a hook to use a collection.
  */
 export function createUseCollection<T extends CL.IModel>(
   collectionName: string
 ) {
+  const baseURL = `/api/db/${collectionName}`
   return function useCollection(
     config?: UseCollection
   ): UseCollectionResponse<T> {
     const user = useContext(UserContext)
-    const url = [`/api/db/${collectionName}`]
-    const queryParams = configToQueryParams(config)
-    if (queryParams) url.push(queryParams)
-    const response = useSWR<T[], ResponseError>([url.join('?'), user], config)
+    const url = useURL(baseURL, config)
+    const response = useSWR<T[], ResponseError>([url, user], config)
     const {mutate, revalidate} = response
     // Helper function for updating values when using a collection
     const update = useCallback(
@@ -64,7 +70,7 @@ export function createUseCollection<T extends CL.IModel>(
         try {
           const data = await mutate(async (data: T[]) => {
             const obj = data.find((d) => d._id === _id)
-            const res = await putJSON(`/api/db/${collectionName}/${_id}`, {
+            const res = await putJSON(`${baseURL}/${_id}`, {
               ...obj,
               ...newProperties
             })
@@ -85,7 +91,7 @@ export function createUseCollection<T extends CL.IModel>(
     // Helper function for creating new values and revalidating
     const create = useCallback(
       async (properties: T) => {
-        const res = await postJSON(`/api/db/${collectionName}`, properties)
+        const res = await postJSON(baseURL, properties)
         if (res.ok) {
           revalidate()
         }
@@ -97,7 +103,7 @@ export function createUseCollection<T extends CL.IModel>(
     // Helper function when removing values
     const remove = useCallback(
       async (_id) => {
-        const res = await safeDelete(`/api/db/${collectionName}/${_id}`)
+        const res = await safeDelete(`${baseURL}/${_id}`)
         if (res.ok) {
           revalidate()
         }
@@ -112,11 +118,14 @@ export function createUseCollection<T extends CL.IModel>(
       error: response.error?.error,
       remove,
       response,
-      update
+      update,
+      url
     }
   }
 }
 
 // Create an instance of each collection type
+export const useBundles = createUseCollection<CL.Bundle>('bundles')
+export const useProjects = createUseCollection<CL.Project>('projects')
 export const usePresets = createUseCollection<CL.Preset>('presets')
 export const useRegions = createUseCollection<CL.Region>('regions')

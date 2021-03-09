@@ -1,9 +1,11 @@
+import {useColorModeValue} from '@chakra-ui/color-mode'
+import {Map} from 'leaflet'
 import set from 'lodash/set'
 import dynamic from 'next/dynamic'
 import {useEffect, useRef, useState} from 'react'
 import {
   AttributionControl,
-  Map as LeafletMap,
+  Map as ReactMap,
   Viewport,
   ZoomControl
 } from 'react-leaflet'
@@ -15,7 +17,6 @@ import selectRegionBounds from 'lib/selectors/region-bounds'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
 import Geocoder from './geocoder'
-import {useColorModeValue} from '@chakra-ui/color-mode'
 
 const MapboxGLLayer = dynamic(() => import('./mapbox-gl'))
 
@@ -32,10 +33,21 @@ const lightStyle =
 const darkStyle = 'conveyal/cklwkj6g529qi17nydq56jn9k'
 const getStyle = (style: string) => `mapbox://styles/${style}`
 
-export default function Map({children, setLeafletContext}) {
+type MapProps = {
+  children?: React.ReactNode
+  setLeafletContext: ({
+    map,
+    layerContainer
+  }: {
+    map: Map
+    layerContainer: Map
+  }) => void
+}
+
+export default function BaseMap({children, setLeafletContext}: MapProps) {
   const style = useColorModeValue(lightStyle, darkStyle)
   const backgroundColor = useColorModeValue('gray.50', 'gray.800')
-  const leafletMapRef = useRef<LeafletMap>()
+  const leafletMapRef = useRef<ReactMap>()
   const regionBounds = useSelector(selectRegionBounds)
   const [viewport, setViewport] = useState<Viewport>(() => ({
     ...DEFAULT_VIEWPORT,
@@ -87,7 +99,7 @@ export default function Map({children, setLeafletContext}) {
 
   return (
     <>
-      <LeafletMap
+      <ReactMap
         attributionControl={false}
         className={
           routeChanging || saveInProgress
@@ -111,7 +123,7 @@ export default function Map({children, setLeafletContext}) {
         <ZoomControl position='topright' />
 
         {!routeChanging && children ? children : null}
-      </LeafletMap>
+      </ReactMap>
 
       <Geocoder
         isDisabled={routeChanging || saveInProgress}

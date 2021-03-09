@@ -50,7 +50,7 @@ export default withAuth(
             <FullSpinner />
           )}
         </Box>
-        <Box flexGrow='1' opacity={routeChanging ? 0.4 : 1} position='relative'>
+        <Box flexGrow={1} opacity={routeChanging ? 0.4 : 1} position='relative'>
           <Map setLeafletContext={setLeafletContext} />
         </Box>
       </Flex>

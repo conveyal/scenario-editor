@@ -1,18 +1,14 @@
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  Stack
-} from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import {FunctionComponent, useCallback} from 'react'
 import {useDispatch} from 'react-redux'
 
-import FullSpinner from './components/full-spinner'
-import {ExternalLink} from './components/link'
-import usePromise from './hooks/use-promise'
-import message from './message'
+import FullSpinner from 'lib/components/full-spinner'
+import usePromise from 'lib/hooks/use-promise'
+
+const ErrorAlert = dynamic(
+  () => import('lib/components/connection-error-alert')
+)
 
 interface LayoutComponent extends FunctionComponent {
   Layout?: FunctionComponent<any>
@@ -24,22 +20,6 @@ type InitialFetchFn = (dispatch, query) => Promise<any>
 // is working on a legitimate flag to replace this in the future.
 const routerQueryIsReady = (router) =>
   Object.keys(router.query).length !== 0 || !router.pathname.includes('[')
-
-const ShowError = ({children}) => (
-  <Alert status='error' m={4} width='320px'>
-    <AlertIcon />
-    <Stack>
-      <AlertTitle>Error loading data</AlertTitle>
-      <AlertDescription>{children}</AlertDescription>
-      <AlertDescription>
-        <>{message('error.report')} </>
-        <ExternalLink href='mailto:support@conveyal.com'>
-          support@conveyal.com
-        </ExternalLink>
-      </AlertDescription>
-    </Stack>
-  </Alert>
-)
 
 export default function withInitialFetch(
   PageComponent,
@@ -59,7 +39,7 @@ export default function withInitialFetch(
     )
     const [loading, error, results] = usePromise(getInitialFetch)
 
-    if (error) return <ShowError>{error}</ShowError>
+    if (error) return <ErrorAlert>{error}</ErrorAlert>
     if (loading) return <FullSpinner />
     if (results) return <PageComponent query={query} {...p} {...results} />
   }

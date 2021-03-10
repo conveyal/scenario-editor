@@ -1,4 +1,4 @@
-import useSWR, {ConfigInterface, responseInterface} from 'swr'
+import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
 import {useCallback} from 'react'
 
 import LogRocket from 'lib/logrocket'
@@ -13,7 +13,7 @@ import {UseDataResponse} from './use-data'
 
 import useUser from './use-user'
 
-interface UseCollection extends ConfigInterface {
+interface UseCollection extends SWRConfiguration {
   query?: Record<string, unknown>
   options?: Record<string, unknown>
 }
@@ -22,7 +22,7 @@ export type UseCollectionResponse<T> = UseDataResponse<T> & {
   create: (properties: Partial<T>) => Promise<SafeResponse<T>>
   data: T[]
   remove: (_id: string) => Promise<SafeResponse<T>>
-  response: responseInterface<T[], ResponseError>
+  response: SWRResponse<T[], ResponseError>
   update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse<T>>
 }
 
@@ -106,7 +106,7 @@ export function createUseCollection<T extends CL.IModel>(
       async (_id) => {
         const res = await safeDelete(`${baseURL}/${_id}`)
         if (res.ok) {
-          revalidate()
+          await revalidate()
         }
         return res
       },

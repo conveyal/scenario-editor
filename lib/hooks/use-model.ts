@@ -1,4 +1,4 @@
-import useSWR, {ConfigInterface, responseInterface} from 'swr'
+import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
 import {useCallback} from 'react'
 
 import {
@@ -14,12 +14,12 @@ import useUser from './use-user'
 export type UseModelResponse<T> = UseDataResponse<T> & {
   data?: T
   remove: () => Promise<SafeResponse<T>>
-  response: responseInterface<T, SafeResponse<T>>
+  response: SWRResponse<T, SafeResponse<T>>
   update: (newProperties: Partial<T>) => Promise<SafeResponse<T>>
 }
 
 export function createUseModel<T extends CL.IModel>(collectionName: string) {
-  const SWRConfigDefaults: ConfigInterface = {
+  const SWRConfigDefaults: SWRConfiguration = {
     // When using a model directly, there's a good chance we are editing it.
     // Revalidating on focus could overwrite local changes.
     revalidateOnFocus: false
@@ -27,7 +27,7 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
 
   return function useModel(
     _id: string,
-    config?: ConfigInterface
+    config?: SWRConfiguration
   ): UseModelResponse<T> {
     const user = useUser()
     const url = `/api/db/${collectionName}/${_id}`
@@ -40,14 +40,13 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
       async (newProperties: Partial<T>) => {
         try {
           const data = await mutate(async (data) => {
-            const res = await putJSON(url, {
+            const res = await putJSON<T>(url, {
               ...data,
               ...newProperties
             })
             // Update client with final result
             if (res.ok) {
-              // TODO schema check here?
-              return res.data as T
+              return res.data
             } else {
               throw res
             }

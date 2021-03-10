@@ -36,7 +36,7 @@ export default function CreateProject({bundles, query}) {
 
   async function _create() {
     setCreating(true)
-    const response = await postJSON(`/api/db/projects`, {
+    const response = await postJSON<CL.Project>(`/api/db/projects`, {
       bundleId,
       name: nameInput.value,
       regionId,

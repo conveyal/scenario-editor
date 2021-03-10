@@ -149,8 +149,8 @@ export function safeDelete(url: string) {
 /**
  * Simple GET
  */
-export function getJSON(url: string) {
-  return safeFetch(url, toJSON, {headers: defaultHeaders})
+export function getJSON<T>(url: string) {
+  return safeFetch<T>(url, toJSON, {headers: defaultHeaders})
 }
 
 /**
@@ -167,8 +167,8 @@ export function postJSON<T>(url: string, json: Partial<T>) {
 /**
  * Simple PUT
  */
-export function putJSON(url: string, json: unknown) {
-  return safeFetch(url, toJSON, {
+export function putJSON<T>(url: string, json: Partial<T>) {
+  return safeFetch<T>(url, toJSON, {
     body: JSON.stringify(json),
     headers: defaultHeaders,
     method: 'PUT'

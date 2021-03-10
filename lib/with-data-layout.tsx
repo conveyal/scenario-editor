@@ -1,10 +1,14 @@
-import {Alert, AlertDescription, AlertIcon} from '@chakra-ui/alert'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import {FunctionComponent} from 'react'
 
 import FullSpinner from 'lib/components/full-spinner'
 import {UseDataResponse} from 'lib/hooks/use-data'
 import DefaultLayout from 'lib/layouts/map'
+
+const ErrorAlert = dynamic(
+  () => import('lib/components/connection-error-alert')
+)
 
 type WithInitialDataProps<Props> = Partial<Props> & {
   query: Record<string, string>
@@ -64,6 +68,7 @@ export default function withDataLayout<Props>(
     const results = useData(props)
 
     // If any results are missing, show the spinner and add the preload tags (for SSR).
+    // Any page that does not preload data with `getServerSideProps` will show this on initial render.
     if (dataIsMissing(results)) {
       const urls = urlsFromResults(results)
       return (
@@ -80,13 +85,7 @@ export default function withDataLayout<Props>(
 
     // If any of the results contains an error, show the error
     const error = dataContainsError(results)
-    if (error)
-      return (
-        <Alert status='error'>
-          <AlertIcon />
-          <AlertDescription>{error.message}</AlertDescription>
-        </Alert>
-      )
+    if (error) return <ErrorAlert>{error.message}</ErrorAlert>
 
     // Convert the reponse objects to the data themselves and pass as props to the component
     return <PageComponent {...props} {...dataFromResults(results)} />

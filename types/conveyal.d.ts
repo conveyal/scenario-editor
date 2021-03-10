@@ -71,6 +71,7 @@ declare namespace CL {
    */
   export interface Region extends IModel {
     bounds: Bounds
+    description: string
   }
 
   /**

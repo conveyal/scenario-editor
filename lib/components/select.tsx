@@ -10,7 +10,7 @@ export const selectStyles = {
   }),
   option: (styles, state) => ({
     ...styles,
-    color: state.isSelected ? '#fff' : styles.color,
+    color: state.isSelected ? '#fff' : '#333',
     backgroundColor: state.isSelected ? CB_HEX : styles.backgroundColor,
     '&:hover': {
       color: '#fff',

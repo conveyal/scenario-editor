@@ -2,19 +2,20 @@ import {dequal} from 'dequal/lite'
 import useSWR, {responseInterface} from 'swr'
 import {useCallback, useState} from 'react'
 
-import {API_URL} from 'lib/constants'
+import {API} from 'lib/constants'
+import {IUser} from 'lib/user'
 import authFetch from 'lib/utils/auth-fetch'
 import {ResponseError} from 'lib/utils/safe-fetch'
+import useUser from './use-user'
 
 const MAX_REFRESH_INTERVAL_MS = 30_000
 const FAST_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 10
-const ACTIVITY_URL = API_URL + '/activity'
 
 /**
  * SWR expects errors to throw.
  */
-async function swrFetcher(url: string) {
-  const response = await authFetch<CL.Status>(url)
+async function swrFetcher(url: string, user: IUser) {
+  const response = await authFetch<CL.Status>(url, user)
   if (response.ok) return response.data
   throw response
 }
@@ -28,6 +29,7 @@ export default function useStatus(): responseInterface<
   CL.Status,
   ResponseError
 > {
+  const user = useUser()
   const [refreshInterval, setRefreshInterval] = useState(
     MAX_REFRESH_INTERVAL_MS
   )
@@ -48,7 +50,7 @@ export default function useStatus(): responseInterface<
     },
     [prevData]
   )
-  return useSWR<CL.Status, ResponseError>(ACTIVITY_URL, swrFetcher, {
+  return useSWR<CL.Status, ResponseError>([API.Activity, user], swrFetcher, {
     onSuccess,
     refreshInterval,
     refreshWhenOffline: true,

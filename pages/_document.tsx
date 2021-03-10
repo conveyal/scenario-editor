@@ -1,3 +1,4 @@
+import {ColorModeScript} from '@chakra-ui/color-mode'
 import Document, {Html, Head, Main, NextScript} from 'next/document'
 
 import {LOGO_URL} from 'lib/constants'
@@ -14,14 +15,15 @@ const Stylesheets = () => (
   </>
 )
 
-const Analytics = () => (
-  <script
-    async
-    defer
-    data-domain='analysis.conveyal.com'
-    src='https://plausible.conveyal.com/js/index.js'
-  />
-)
+const Analytics = () =>
+  process.env.NODE_ENV === 'production' && (
+    <script
+      async
+      defer
+      data-domain='analysis.conveyal.com'
+      src='https://plausible.conveyal.com/js/index.js'
+    />
+  )
 
 const ZenDeskWidget = () =>
   process.env.ZENDESK_KEY != null && (
@@ -49,6 +51,7 @@ export default class extends Document {
           <Stylesheets />
           <Analytics />
           <ZenDeskWidget />
+          <ColorModeScript />
         </Head>
         <body>
           <Main />

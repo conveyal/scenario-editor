@@ -3,6 +3,7 @@ import {RECOMMENDED_R5_VERSION} from 'lib/modules/r5-version/constants'
 export const ENV = process.env.NODE_ENV
 export const MB_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 export const isServer = typeof window === 'undefined'
+export const AUTH_DISABLED = process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true'
 
 /**
  * Logo
@@ -18,6 +19,7 @@ export const CB_RGB = {r: 35, g: 137, b: 201}
 export const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api`
 
 export const API = {
+  Activity: `${API_URL}/activity`,
   Analysis: `${API_URL}/analysis`,
   Bundle: `${API_URL}/bundle`,
   GraphQL: `${API_URL}/graphql`,

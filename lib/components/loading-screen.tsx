@@ -1,25 +1,17 @@
-import {Stack} from '@chakra-ui/react'
-import {CSSProperties} from 'react'
+import {Center, VStack} from '@chakra-ui/react'
 
 import Logo from './logo'
 import Spinner from './spinner'
 
-const style: CSSProperties = {
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  top: '50%',
-  marginTop: '-15%',
-  textAlign: 'center'
-}
-
 export default function LoadingScreen() {
   return (
-    <Stack alignItems='center' style={style}>
-      <Logo />
-      <h1 style={{color: '#2389c9', fontSize: '36px'}}>
-        <Spinner />
-      </h1>
-    </Stack>
+    <Center height='100vh'>
+      <VStack spacing={6} mt='-72px'>
+        <Logo />
+        <h1 style={{color: '#2389c9', fontSize: '36px'}}>
+          <Spinner />
+        </h1>
+      </VStack>
+    </Center>
   )
 }

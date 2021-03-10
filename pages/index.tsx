@@ -1,18 +1,16 @@
 import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
-import {GetServerSideProps} from 'next'
 import Link from 'next/link'
 
-import {getUser} from 'lib/auth0'
 import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
+import {AUTH_DISABLED} from 'lib/constants'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
-import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
 import useLink from 'lib/hooks/use-link'
 import useRouteTo from 'lib/hooks/use-route-to'
-import withAuth from 'lib/with-auth'
+import withAuth, {getServerSidePropsWithAuth} from 'lib/with-auth'
 import {IUser} from 'lib/user'
 
 const alertDate = 'February, 2021'
@@ -46,12 +44,14 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
         <Logo />
       </Box>
       <Stack spacing={4} width='320px'>
-        <Box textAlign='center'>
-          <span>signed in as </span>
-          <strong>
-            {email} ({accessGroup})
-          </strong>
-        </Box>
+        {!AUTH_DISABLED && (
+          <Box textAlign='center'>
+            <span>signed in as </span>
+            <strong>
+              {email} ({accessGroup})
+            </strong>
+          </Box>
+        )}
         <Alert status={alertStatus} borderRadius='md'>
           <Stack>
             <Box>
@@ -83,7 +83,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
             ))}
           </Stack>
         )}
-        {process.env.NEXT_PUBLIC_AUTH_DISABLED !== 'true' && (
+        {!AUTH_DISABLED && (
           <Link href={logoutLink} passHref>
             <Button
               as='a'
@@ -117,27 +117,13 @@ function RegionItem({region, ...p}: RegionItemProps) {
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
  */
-export const getServerSideProps: GetServerSideProps = async ({req}) => {
-  let user: IUser = null
-  try {
-    user = await getUser(req)
-  } catch (e) {
+export const getServerSideProps = getServerSidePropsWithAuth(
+  async (_, user) => {
+    const regions = await AuthenticatedCollection.with('regions', user)
     return {
-      redirect: {
-        permanent: false,
-        destination: '/api/login'
+      props: {
+        regions: await regions.findJSON({}, {sort: {name: 1}})
       }
     }
   }
-
-  const collection = await AuthenticatedCollection.initFromUser('regions', user)
-  const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
-
-  return {
-    props: {
-      cookies: req.headers.cookie ?? '',
-      regions: serializeCollection(regions),
-      user
-    }
-  }
-}
+)

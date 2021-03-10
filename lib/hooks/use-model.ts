@@ -1,5 +1,5 @@
 import useSWR, {ConfigInterface, responseInterface} from 'swr'
-import {useContext, useCallback} from 'react'
+import {useCallback} from 'react'
 
 import {
   putJSON,
@@ -8,8 +8,8 @@ import {
   SafeResponse
 } from 'lib/utils/safe-fetch'
 
-import {UserContext} from '../user'
 import {UseDataResponse} from './use-data'
+import useUser from './use-user'
 
 export type UseModelResponse<T> = UseDataResponse<T> & {
   data?: T
@@ -29,7 +29,7 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
     _id: string,
     config?: ConfigInterface
   ): UseModelResponse<T> {
-    const user = useContext(UserContext)
+    const user = useUser()
     const url = `/api/db/${collectionName}/${_id}`
     const response = useSWR<T, ResponseError>([url, user], {
       ...SWRConfigDefaults,

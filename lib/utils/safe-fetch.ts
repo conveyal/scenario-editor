@@ -156,8 +156,8 @@ export function getJSON(url: string) {
 /**
  * Simple POST
  */
-export function postJSON(url: string, json: unknown) {
-  return safeFetch(url, toJSON, {
+export function postJSON<T>(url: string, json: Partial<T>) {
+  return safeFetch<T>(url, toJSON, {
     body: JSON.stringify(json),
     headers: defaultHeaders,
     method: 'POST'

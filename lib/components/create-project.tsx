@@ -11,13 +11,11 @@ import {
 } from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
 
-import {create} from 'lib/actions/project'
 import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
-import LogRocket from 'lib/logrocket'
 import message from 'lib/message'
+import {postJSON} from 'lib/utils/safe-fetch'
 
 import ControlledSelect from './controlled-select'
 import InnerDock from './inner-dock'
@@ -27,31 +25,27 @@ const hasText = (s) => s && s.length > 0
 const getName = fpGet('name')
 const getId = fpGet('_id')
 
-export function CreateProject({bundles, dispatch, query}) {
+export default function CreateProject({bundles, query}) {
   const [bundleId, setBundleId] = useState(null)
   const [creating, setCreating] = useState(false)
   const nameInput = useInput({test: hasText, value: ''})
-  const routeToModifications = useRouteTo('modifications')
   const {regionId} = query
+  const routeToModifications = useRouteTo('modifications', {regionId})
 
   const readyToCreate = !nameInput.isInvalid && bundleId && bundleId.length > 0
 
   async function _create() {
     setCreating(true)
-    try {
-      const project = await dispatch(
-        create({
-          bundleId,
-          name: nameInput.value,
-          regionId
-        })
-      )
-      routeToModifications({
-        regionId: project.regionId,
-        projectId: project._id
-      })
-    } catch (e) {
-      LogRocket.captureException(e)
+    const response = await postJSON(`/api/db/projects`, {
+      bundleId,
+      name: nameInput.value,
+      regionId,
+      variants: ['Default']
+    })
+
+    if (response.ok) {
+      routeToModifications({projectId: response.data._id})
+    } else if (response.ok === false) {
       setCreating(false)
     }
   }
@@ -101,12 +95,4 @@ export function CreateProject({bundles, dispatch, query}) {
       </Stack>
     </InnerDock>
   )
-}
-
-export default function ConnectedCreateProject(p: {
-  bundles: CL.Bundle[]
-  query: Record<string, string>
-}) {
-  const dispatch = useDispatch()
-  return <CreateProject {...p} dispatch={dispatch} />
 }

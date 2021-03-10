@@ -15,33 +15,6 @@ import {loadBundle} from './'
 
 const PROJECT_URL = API.Project
 
-// project stuff
-const addProject = createAction('add project')
-export const create = ({bundleId, name, regionId}) =>
-  fetch({
-    url: PROJECT_URL,
-    options: {
-      body: {
-        bundleId,
-        name,
-        regionId,
-        variants: ['Default']
-      },
-      method: 'post'
-    },
-    next: (response) => addProject(response.value)
-  })
-
-const deleteLocally = createAction('delete project')
-export const deleteProject = (projectId) =>
-  fetch({
-    options: {
-      method: 'delete'
-    },
-    url: `${PROJECT_URL}/${projectId}`,
-    next: () => deleteLocally(projectId)
-  })
-
 export const loadProject = (_id: string) =>
   fetch({
     url: `${PROJECT_URL}/${_id}`,

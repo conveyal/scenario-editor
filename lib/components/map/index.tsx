@@ -1,4 +1,4 @@
-import {useColorModeValue} from '@chakra-ui/color-mode'
+import {Button, Stack, useColorModeValue} from '@chakra-ui/react'
 import {Map} from 'leaflet'
 import set from 'lodash/set'
 import dynamic from 'next/dynamic'
@@ -7,9 +7,10 @@ import {
   AttributionControl,
   Map as ReactMap,
   Viewport,
-  ZoomControl
+  useLeaflet
 } from 'react-leaflet'
 import {useSelector} from 'react-redux'
+import MapControl from 'react-leaflet-control'
 
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import selectModificationSaveInProgress from 'lib/selectors/modification-save-in-progress'
@@ -17,6 +18,7 @@ import selectRegionBounds from 'lib/selectors/region-bounds'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
 import Geocoder from './geocoder'
+import {AddIcon, MinusIcon} from '../icons'
 
 const MapboxGLLayer = dynamic(() => import('./mapbox-gl'))
 
@@ -42,6 +44,38 @@ type MapProps = {
     map: Map
     layerContainer: Map
   }) => void
+}
+
+function Controls({isDisabled}) {
+  const {map} = useLeaflet()
+
+  return (
+    <MapControl position='topright'>
+      <Stack>
+        <Stack spacing={0}>
+          <Button
+            colorScheme='blue'
+            isDisabled={isDisabled}
+            onClick={() => map.zoomIn()}
+            roundedBottom={0}
+            shadow='lg'
+          >
+            <AddIcon />
+          </Button>
+          <Button
+            colorScheme='blue'
+            isDisabled={isDisabled}
+            onClick={() => map.zoomOut()}
+            roundedTop={0}
+            shadow='lg'
+          >
+            <MinusIcon />
+          </Button>
+        </Stack>
+        <Geocoder isDisabled={isDisabled} />
+      </Stack>
+    </MapControl>
+  )
 }
 
 export default function BaseMap({children, setLeafletContext}: MapProps) {
@@ -98,37 +132,31 @@ export default function BaseMap({children, setLeafletContext}: MapProps) {
   }, [leafletMapRef, regionBounds, viewport])
 
   return (
-    <>
-      <ReactMap
-        attributionControl={false}
-        className={
-          routeChanging || saveInProgress
-            ? 'disableAndDim'
-            : 'conveyal-leaflet-map'
-        }
-        minZoom={MIN_ZOOM}
-        onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
-        preferCanvas={true}
-        ref={leafletMapRef}
-        style={{backgroundColor}}
-        tap={false}
-        viewport={viewport || DEFAULT_VIEWPORT}
-        zoomControl={false}
-      >
-        {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
-          <MapboxGLLayer style={getStyle(style)} />
-        )}
+    <ReactMap
+      attributionControl={false}
+      className={
+        routeChanging || saveInProgress
+          ? 'disableAndDim'
+          : 'conveyal-leaflet-map'
+      }
+      minZoom={MIN_ZOOM}
+      onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
+      preferCanvas={true}
+      ref={leafletMapRef}
+      style={{backgroundColor}}
+      tap={false}
+      viewport={viewport || DEFAULT_VIEWPORT}
+      zoomControl={false}
+    >
+      {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
+        <MapboxGLLayer style={getStyle(style)} />
+      )}
 
-        <AttributionControl position='bottomright' prefix={false} />
-        <ZoomControl position='topright' />
+      <AttributionControl position='bottomright' prefix={false} />
 
-        {!routeChanging && children ? children : null}
-      </ReactMap>
+      <Controls isDisabled={routeChanging || saveInProgress} />
 
-      <Geocoder
-        isDisabled={routeChanging || saveInProgress}
-        map={leafletMapRef.current?.leafletElement}
-      />
-    </>
+      {!routeChanging && children ? children : null}
+    </ReactMap>
   )
 }

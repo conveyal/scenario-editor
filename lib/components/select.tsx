@@ -34,6 +34,6 @@ const SelectWithForwardRef = forwardRef<typeof Select, Props>((p, ref) => (
 ))
 
 // NB: React enforces `memo(forwardRef(...))`
-const MemoedReactSelect = memo<Props>(SelectWithForwardRef)
+const MemoedReactSelect = memo<any>(SelectWithForwardRef)
 
 export default MemoedReactSelect

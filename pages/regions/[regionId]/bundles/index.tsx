@@ -1,5 +1,5 @@
 import Bundles from 'lib/components/bundles'
-import EditBundle from 'lib/components/edit-bundle'
+import SelectBundle from 'lib/components/select-bundle'
 import {useBundles} from 'lib/hooks/use-collection'
 import withDataLayout from 'lib/with-data-layout'
 
@@ -10,7 +10,7 @@ export default withDataLayout(
   }) {
     return (
       <Bundles regionId={p.query.regionId}>
-        <EditBundle bundleProjects={[]} bundles={p.bundles} />
+        <SelectBundle bundles={p.bundles} query={p.query} />
       </Bundles>
     )
   },

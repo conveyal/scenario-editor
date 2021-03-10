@@ -59,7 +59,7 @@ export default function EditBundle({
 }: EditBundleProps) {
   const dispatch = useDispatch<any>()
 
-  const {bundleId, regionId} = query
+  const {regionId} = query
   const goToBundles = useRouteTo('bundles', {regionId})
   const [editedBundle, setEditedBundle] = useState(bundle)
 
@@ -73,7 +73,7 @@ export default function EditBundle({
 
   async function _deleteBundle() {
     goToBundles()
-    dispatch(deleteBundle(bundleId))
+    dispatch(deleteBundle(bundle._id))
   }
 
   async function _saveBundle() {

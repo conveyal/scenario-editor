@@ -1,4 +1,4 @@
-import {Session, UserProfile} from '@auth0/nextjs-auth0'
+import {Session, UserProfile, UserProvider} from '@auth0/nextjs-auth0'
 import {parse} from 'cookie'
 import {IncomingMessage} from 'http'
 

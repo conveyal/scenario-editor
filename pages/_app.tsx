@@ -11,11 +11,9 @@ import ErrorHandler from 'lib/components/app-error-handler'
 import LoadingScreen from 'lib/components/loading-screen'
 import ChakraTheme from 'lib/config/chakra'
 import SWRWrapper from 'lib/config/swr'
+import EmptyLayout from 'lib/layouts/empty'
 
 import '../styles.css'
-
-// Re-use for Component's without a Layout
-const EmptyLayout = ({children}) => <>{children}</>
 
 // Components that have a layout
 type ComponentWithLayout = NextComponentType & {
@@ -39,13 +37,13 @@ export default function ConveyalAnalysis({
             <Head>
               <title>Conveyal Analysis</title>
             </Head>
-            {router.isReady ? (
-              <Layout>
+            <Layout>
+              {router.isReady ? (
                 <Component query={router.query} {...pageProps} />
-              </Layout>
-            ) : (
-              <LoadingScreen />
-            )}
+              ) : (
+                <LoadingScreen />
+              )}
+            </Layout>
           </SWRWrapper>
         </ErrorHandler>
       </ChakraTheme>

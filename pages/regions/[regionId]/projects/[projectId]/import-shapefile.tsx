@@ -4,11 +4,8 @@ import ImportShapefile from 'lib/components/import-shapefile'
 import {useProject} from 'lib/hooks/use-model'
 import withDataLayout from 'lib/with-data-layout'
 
-export default withDataLayout(
-  function ImportShapeFilePage(p: {
-    project: CL.Project
-    query: Record<string, string>
-  }) {
+export default withDataLayout<{project: CL.Project}>(
+  function ImportShapeFilePage(p) {
     return (
       <>
         <ProjectTitle project={p.project} />

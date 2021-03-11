@@ -10,44 +10,48 @@ const ErrorAlert = dynamic(
   () => import('lib/components/connection-error-alert')
 )
 
+interface IResults {
+  [key: string]: CL.IModel | CL.IModel[]
+}
+
 type WithInitialDataProps<Props> = Partial<Props> & {
   query: Record<string, string>
 }
 
-export type UseDataResults<Props> = {
-  [Property in keyof Omit<Props, 'query'>]: UseDataResponse<Props[Property]>
+export type UseDataResults<Results extends IResults> = {
+  [Property in keyof Results]: UseDataResponse<Results[Property]>
 }
 
-export type UseDataFn<Props> = (
+export type UseDataFn<Props extends IResults> = (
   p: WithInitialDataProps<Props>
 ) => UseDataResults<Props>
 
-function urlsFromResults<T>(results: UseDataResults<T>) {
+function urlsFromResults<T extends IResults>(results: UseDataResults<T>) {
   const urls: string[] = []
   for (const k in results) {
     urls.push(results[k].url)
   }
   return urls
 }
-function dataIsMissing<T>(results: UseDataResults<T>) {
+function dataIsMissing<T extends IResults>(results: UseDataResults<T>) {
   for (const k in results) {
     if (results[k].data == null) return true
   }
   return false
 }
-function dataContainsError<T>(results: UseDataResults<T>) {
+function dataContainsError<T extends IResults>(results: UseDataResults<T>) {
   for (const k in results) {
     if (results[k].error != null) return results[k].error
   }
   return false
 }
-function dataFromResults<Props>(results: UseDataResults<Props>): Props {
+function dataFromResults<T extends IResults>(results: UseDataResults<T>): T {
   // TODO, figure out how to use a real Type here
-  const returns: any = {}
+  const returns: IResults = {}
   for (const k in results) {
     returns[k] = results[k].data
   }
-  return returns as Props
+  return returns as T
 }
 
 /**
@@ -59,12 +63,12 @@ function dataFromResults<Props>(results: UseDataResults<Props>): Props {
  * @param Layout Optional layout to be used by _app.
  * @returns A React componenet ready to be used as a Next.js page.
  */
-export default function withDataLayout<Props>(
-  PageComponent: FunctionComponent<Props>,
-  useData: UseDataFn<Props>,
+export default function withDataLayout<Results extends IResults>(
+  PageComponent: FunctionComponent<Results & {query?: CL.Query}>,
+  useData: UseDataFn<Results>,
   Layout = DefaultLayout
-): CL.Page<Props> {
-  function DataLoader(props: WithInitialDataProps<Props>) {
+): CL.Page<WithInitialDataProps<Results>> {
+  function DataLoader(props: WithInitialDataProps<Results>) {
     const results = useData(props)
 
     // If any results are missing, show the spinner and add the preload tags (for SSR).

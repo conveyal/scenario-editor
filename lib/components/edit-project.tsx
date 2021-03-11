@@ -19,7 +19,7 @@ import {ALink} from './link'
 
 type EditProjectProps = {
   project: CL.Project
-  query: Record<string, string>
+  query: CL.Query
 }
 
 export default function EditProject(p: EditProjectProps) {

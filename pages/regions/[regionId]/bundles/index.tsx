@@ -3,11 +3,8 @@ import SelectBundle from 'lib/components/select-bundle'
 import {useBundles} from 'lib/hooks/use-collection'
 import withDataLayout from 'lib/with-data-layout'
 
-export default withDataLayout(
-  function BundlesPage(p: {
-    bundles: CL.Bundle[]
-    query: Record<string, string>
-  }) {
+export default withDataLayout<{bundles: CL.Bundle[]}>(
+  function BundlesPage(p) {
     return (
       <Bundles regionId={p.query.regionId}>
         <SelectBundle bundles={p.bundles} query={p.query} />

@@ -1,5 +1,5 @@
-export type UseDataResponse<T> = {
-  data: T[] | T
+export interface UseDataResponse<T> {
+  data?: T
   error?: Error
   url: string
 }

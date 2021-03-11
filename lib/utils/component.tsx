@@ -1,3 +1,4 @@
+import {UserProvider} from '@auth0/nextjs-auth0'
 import {ThemeProvider, extendTheme} from '@chakra-ui/react'
 import {expect} from '@jest/globals'
 import enzyme from 'enzyme'
@@ -6,6 +7,8 @@ import {RouterContext} from 'next/dist/next-server/lib/router-context'
 import React from 'react'
 import {Map} from 'react-leaflet'
 import {Provider} from 'react-redux'
+
+import {localUser} from 'lib/user'
 
 import {makeMockStore, mockStores} from './mock-data'
 
@@ -27,13 +30,15 @@ export function testComponent(
 ) {
   const store = makeMockStore(initialData)
   const Wrapping = (props) => (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <RouterContext.Provider value={router}>
-          {props.children}
-        </RouterContext.Provider>
-      </ThemeProvider>
-    </Provider>
+    <UserProvider user={localUser}>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <RouterContext.Provider value={router}>
+            {props.children}
+          </RouterContext.Provider>
+        </ThemeProvider>
+      </Provider>
+    </UserProvider>
   )
 
   const mount = () =>

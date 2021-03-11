@@ -162,7 +162,7 @@ describe('Regions', () => {
     cy.location('pathname').should('match', /regions\/.{24}$/)
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
-    cy.visitHome()
+    cy.navTo('regions')
     cy.findByText(regionName).click()
     cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)

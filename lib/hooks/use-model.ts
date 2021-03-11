@@ -1,4 +1,4 @@
-import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
+import useSWR, {cache, SWRConfiguration, SWRResponse} from 'swr'
 import {useCallback} from 'react'
 
 import {
@@ -11,20 +11,19 @@ import {
 import {UseDataResponse} from './use-data'
 import useUser from './use-user'
 
-export type UseModelResponse<T> = UseDataResponse<T> & {
-  data?: T
+export interface UseModelResponse<T> extends UseDataResponse<T> {
   remove: () => Promise<SafeResponse<T>>
   response: SWRResponse<T, SafeResponse<T>>
   update: (newProperties: Partial<T>) => Promise<SafeResponse<T>>
 }
 
-export function createUseModel<T extends CL.IModel>(collectionName: string) {
-  const SWRConfigDefaults: SWRConfiguration = {
-    // When using a model directly, there's a good chance we are editing it.
-    // Revalidating on focus could overwrite local changes.
-    revalidateOnFocus: false
-  }
+const SWRConfigDefaults: SWRConfiguration = {
+  // When using a model directly, there's a good chance we are editing it.
+  // Revalidating on focus could overwrite local changes.
+  revalidateOnFocus: false
+}
 
+export function createUseModel<T extends CL.IModel>(collectionName: string) {
   return function useModel(
     _id: string,
     config?: SWRConfiguration
@@ -60,7 +59,11 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
     )
 
     // Should never change
-    const remove = useCallback(() => safeDelete(url), [url])
+    const remove = useCallback(async () => {
+      const res = await safeDelete(url)
+      cache.clear()
+      return res
+    }, [url])
 
     return {
       data: response.data,

@@ -4,12 +4,11 @@ import SelectBundle from 'lib/components/select-bundle'
 import {useBundles, useProjects} from 'lib/hooks/use-collection'
 import withDataLayout from 'lib/with-data-layout'
 
-export default withDataLayout(
-  function BundleViewPage(p: {
-    bundles: CL.Bundle[]
-    projects: CL.Project[]
-    query: Record<string, string>
-  }) {
+export default withDataLayout<{
+  bundles: CL.Bundle[]
+  projects: CL.Project[]
+}>(
+  function BundleViewPage(p) {
     const bundle = p.bundles.find((b) => b._id === p.query.bundleId)
     return (
       <Bundles regionId={p.query.regionId}>

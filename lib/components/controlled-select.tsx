@@ -1,6 +1,5 @@
 import {FormControl, FormControlProps, FormLabel} from '@chakra-ui/react'
 import {memo} from 'react'
-import {Props} from 'react-select'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
 
@@ -9,11 +8,16 @@ import Select from './select'
 const defaultGetOptionLabel = (o: any) => o.label
 const defaultGetOptionValue = (o: any) => o.value
 
-type ControlledSelectProps = FormControlProps &
-  Props & {
-    id?: string
-    label: string
-  }
+interface ControlledSelectProps {
+  getOptionLabel?: (o: any) => string
+  getOptionValue?: (o: any) => string
+  id?: string
+  isClearable?: boolean
+  label: string
+  onChange: (o: any) => void
+  options: any[]
+  value: any
+}
 
 export default memo<ControlledSelectProps & FormControlProps>(
   function ControlledSelect({

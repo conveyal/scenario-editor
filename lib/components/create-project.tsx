@@ -25,7 +25,13 @@ const hasText = (s) => s && s.length > 0
 const getName = fpGet('name')
 const getId = fpGet('_id')
 
-export default function CreateProject({bundles, query}) {
+export default function CreateProject({
+  bundles,
+  query
+}: {
+  bundles: CL.Bundle[]
+  query: CL.Query
+}) {
   const [bundleId, setBundleId] = useState(null)
   const [creating, setCreating] = useState(false)
   const nameInput = useInput({test: hasText, value: ''})

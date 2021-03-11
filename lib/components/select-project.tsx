@@ -17,13 +17,10 @@ export default function SelectProject({
   projects: CL.Project[]
   region: CL.Region
 }) {
-  const routeToBundleCreate = useRouteTo('bundleCreate', {regionId: region._id})
-  const routeToProjectCreate = useRouteTo('projectCreate', {
-    regionId: region._id
-  })
-  const routeToRegionSettings = useRouteTo('regionSettings', {
-    regionId: region._id
-  })
+  const regionId = region._id
+  const routeToBundleCreate = useRouteTo('bundleCreate', {regionId})
+  const routeToProjectCreate = useRouteTo('projectCreate', {regionId})
+  const routeToRegionSettings = useRouteTo('regionSettings', {regionId})
 
   return (
     <InnerDock>

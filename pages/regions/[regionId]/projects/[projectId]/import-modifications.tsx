@@ -4,14 +4,8 @@ import ImportModifications from 'lib/components/import-modifications'
 import {useProjects} from 'lib/hooks/use-collection'
 import withDataLayout from 'lib/with-data-layout'
 
-export default withDataLayout(
-  function ImportModificationsPage({
-    projects,
-    query
-  }: {
-    projects: CL.Project[]
-    query: Record<string, string>
-  }) {
+export default withDataLayout<{projects: CL.Project[]}>(
+  function ImportModificationsPage({projects, query}) {
     return (
       <>
         <ProjectTitle

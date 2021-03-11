@@ -8,11 +8,11 @@ import {
 import Head from 'next/head'
 import {useEffect} from 'react'
 
+import LoadingScreen from 'lib/components/loading-screen'
 import {AUTH_DISABLED} from 'lib/constants'
+import useUser from 'lib/hooks/use-user'
 
-import LoadingScreen from './components/loading-screen'
 import {IUser, localUser, storeUser, userFromSession} from './user'
-import useUser from './hooks/use-user'
 
 export interface IWithAuthProps {
   user?: IUser

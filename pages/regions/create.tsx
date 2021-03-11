@@ -38,7 +38,7 @@ export default function CreateRegionPage() {
   const [uploading, setUploading] = useState(false)
   const [bounds, setBounds] = useState(DEFAULT_BOUNDS)
   const toast = useToast()
-  const regions = useRegions()
+  const regions = useRegions({options: {limit: 0}})
 
   const nameInput = useInput({test: testName, value: ''})
   const descriptionInput = useInput({value: ''})

@@ -220,15 +220,15 @@ declare namespace CL {
   }
 
   /**
+   * Router query string. Cast params to string instead of `string | string[]`
+   */
+  export type Query = Record<string, string>
+
+  /**
    * Base page component
    */
-  export interface Page<
-    T = Record<string, uknown>
-  > extends React.FunctionComponent<
-      T & {
-        query: Record<string, string>
-      }
-    > {
+  export interface Page<T>
+    extends React.FunctionComponent<T & {query: CL.Query}> {
     Layout?: React.FunctionComponent
   }
 }

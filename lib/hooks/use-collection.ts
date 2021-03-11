@@ -1,5 +1,6 @@
-import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
-import {useCallback} from 'react'
+import {FilterQuery, FindOneOptions} from 'mongodb'
+import useSWR, {cache, SWRConfiguration, SWRResponse} from 'swr'
+import {useCallback, useMemo} from 'react'
 
 import LogRocket from 'lib/logrocket'
 import {
@@ -9,24 +10,18 @@ import {
   safeDelete,
   SafeResponse
 } from 'lib/utils/safe-fetch'
-import {UseDataResponse} from './use-data'
 
+import {UseDataResponse} from './use-data'
 import useUser from './use-user'
 
-interface UseCollection extends SWRConfiguration {
-  query?: Record<string, unknown>
-  options?: Record<string, unknown>
-}
-
-export type UseCollectionResponse<T> = UseDataResponse<T> & {
-  create: (properties: Partial<T>) => Promise<SafeResponse<T>>
-  data: T[]
+export interface UseCollectionResponse<T> extends UseDataResponse<T[]> {
+  create: (params: Partial<T>) => Promise<SafeResponse<T>>
   remove: (_id: string) => Promise<SafeResponse<T>>
   response: SWRResponse<T[], ResponseError>
   update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse<T>>
 }
 
-const encode = (o: Record<string, unknown> | void) => {
+const encode = (o: unknown) => {
   if (o) {
     try {
       return encodeURIComponent(JSON.stringify(o) || '')
@@ -37,18 +32,101 @@ const encode = (o: Record<string, unknown> | void) => {
   }
 }
 
-const configToQueryParams = (config?: UseCollection): string => {
+function configToQueryParams<T>(
+  query?: FilterQuery<T>,
+  options?: FindOneOptions<T>
+): string {
   const params = []
-  if (config?.query) params.push(`query=${encode(config.query)}`)
-  if (config?.options) params.push(`options=${encode(config.options)}`)
+  if (query) params.push(`query=${encode(query)}`)
+  if (options) params.push(`options=${encode(options)}`)
   return params.join('&')
 }
 
-function useURL(baseURL: string, config?: UseCollection): string {
-  const parts = [baseURL]
-  const queryParams = configToQueryParams(config)
-  if (queryParams) parts.push(queryParams)
-  return parts.join('?')
+function useURL<T>(
+  baseURL: string,
+  query?: FilterQuery<T>,
+  options?: FindOneOptions<T>
+): string {
+  return useMemo(() => {
+    const parts = [baseURL]
+    const queryParams = configToQueryParams(query, options)
+    if (queryParams) parts.push(queryParams)
+    return parts.join('?')
+  }, [baseURL, query, options])
+}
+
+type UseCollection<T> = {
+  query?: FilterQuery<T>
+  options?: FindOneOptions<T>
+  config?: SWRConfiguration
+}
+
+export default function useCollection<T extends CL.IModel>(
+  collectionName: string,
+  {query, options, config}: UseCollection<T> = {}
+): UseCollectionResponse<T> {
+  const baseURL = `/api/db/${collectionName}`
+  const user = useUser()
+  const url = useURL(baseURL, query, options)
+  const response = useSWR<T[], ResponseError>([url, user], config)
+  const {mutate} = response
+  // Helper function for updating values when using a collection
+  const update = useCallback(
+    async (_id: string, newProperties: Partial<T>) => {
+      try {
+        const data = await mutate(async (data: T[]) => {
+          const obj = data.find((d) => d._id === _id)
+          const res = await putJSON(`${baseURL}/${_id}`, {
+            ...obj,
+            ...newProperties
+          })
+          if (res.ok) {
+            return data.map((d) => (d._id === _id ? (res.data as T) : d))
+          } else {
+            throw res
+          }
+        }, false)
+        return {ok: true, data}
+      } catch (res) {
+        return res
+      }
+    },
+    [baseURL, mutate]
+  )
+
+  // Helper function for creating new values and revalidating
+  const create = useCallback(
+    async (properties: T) => {
+      const res = await postJSON<T>(baseURL, properties)
+      if (res.ok) {
+        cache.clear()
+      }
+      return res
+    },
+    [baseURL]
+  )
+
+  // Helper function when removing values
+  const remove = useCallback(
+    async (_id) => {
+      const res = await safeDelete(`${baseURL}/${_id}`)
+      if (res.ok) {
+        cache.clear()
+      }
+      return res
+    },
+    [baseURL]
+  )
+
+  return {
+    create,
+    data: response.data,
+    error: response.error?.error,
+    remove,
+    response,
+    update,
+    url
+  }
 }
 
 /**
@@ -57,71 +135,8 @@ function useURL(baseURL: string, config?: UseCollection): string {
 export function createUseCollection<T extends CL.IModel>(
   collectionName: string
 ) {
-  const baseURL = `/api/db/${collectionName}`
-  return function useCollection(
-    config?: UseCollection
-  ): UseCollectionResponse<T> {
-    const user = useUser()
-    const url = useURL(baseURL, config)
-    const response = useSWR<T[], ResponseError>([url, user], config)
-    const {mutate, revalidate} = response
-    // Helper function for updating values when using a collection
-    const update = useCallback(
-      async (_id: string, newProperties: Partial<T>) => {
-        try {
-          const data = await mutate(async (data: T[]) => {
-            const obj = data.find((d) => d._id === _id)
-            const res = await putJSON(`${baseURL}/${_id}`, {
-              ...obj,
-              ...newProperties
-            })
-            if (res.ok) {
-              return data.map((d) => (d._id === _id ? (res.data as T) : d))
-            } else {
-              throw res
-            }
-          }, false)
-          return {ok: true, data}
-        } catch (res) {
-          return res
-        }
-      },
-      [mutate]
-    )
-
-    // Helper function for creating new values and revalidating
-    const create = useCallback(
-      async (properties: T) => {
-        const res = await postJSON<T>(baseURL, properties)
-        if (res.ok) {
-          await revalidate()
-        }
-        return res
-      },
-      [revalidate]
-    )
-
-    // Helper function when removing values
-    const remove = useCallback(
-      async (_id) => {
-        const res = await safeDelete(`${baseURL}/${_id}`)
-        if (res.ok) {
-          await revalidate()
-        }
-        return res
-      },
-      [revalidate]
-    )
-
-    return {
-      create,
-      data: response.data,
-      error: response.error?.error,
-      remove,
-      response,
-      update,
-      url
-    }
+  return function useCollectionType(params?: UseCollection<T>) {
+    return useCollection(collectionName, params)
   }
 }
 

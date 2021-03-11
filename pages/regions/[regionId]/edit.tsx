@@ -8,20 +8,18 @@ import {
   useToast
 } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
-import {useRouter} from 'next/router'
 import {useState, useCallback} from 'react'
 
 import ConfirmButton from 'lib/components/confirm-button'
 import EditBoundsForm from 'lib/components/edit-bounds-form'
-import FullSpinner from 'lib/components/full-spinner'
 import InnerDock from 'lib/components/inner-dock'
 import {SPACING_FORM} from 'lib/constants/chakra'
 import useInput from 'lib/hooks/use-controlled-input'
 import {useRegion} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
-import MapLayout from 'lib/layouts/map'
 import message from 'lib/message'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
+import withDataLayout from 'lib/with-data-layout'
 
 const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
   ssr: false
@@ -29,163 +27,162 @@ const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
 
 const hasLength = (s: void | string) => s && s.length > 0
 
-export default function LoadRegion() {
-  const router = useRouter()
-  const regionId = router.query.regionId as string
-  const {data: region, response, update, remove} = useRegion(regionId)
-  if (response.error && response.error.ok === false)
-    return <p>{response.error.error.message}</p>
-  if (!region) return <FullSpinner />
-  return <EditRegion region={region} remove={remove} update={update} />
-}
+export default withDataLayout(
+  function EditRegion({region}: {region: CL.Region}) {
+    const {remove, update} = useRegion(region._id)
+    const goToHome = useRouteTo('regions')
+    const [bounds, setBounds] = useState(region.bounds)
+    const [saving, setSaving] = useState(false)
+    const toast = useToast()
 
-// Add the MapLayout
-LoadRegion.Layout = MapLayout
+    const nameInput = useInput({
+      test: hasLength,
+      value: region.name
+    })
+    const descriptionInput = useInput({value: region.description})
 
-/**
- * Use a separate component for the form due for the input hooks.
- */
-function EditRegion({region, remove, update}) {
-  const goToHome = useRouteTo('regions')
-  const [bounds, setBounds] = useState(region.bounds)
-  const [saving, setSaving] = useState(false)
-  const toast = useToast()
-
-  const nameInput = useInput({
-    test: hasLength,
-    value: region.name
-  })
-  const descriptionInput = useInput({value: region.description})
-
-  // Delete region action
-  async function _delete() {
-    const res = await remove()
-    if (res.ok) {
-      goToHome()
-      toast({
-        title: 'Region deleted',
-        description: 'Region has been successfully deleted.',
-        position: 'top',
-        status: 'success',
-        isClosable: true
-      })
-    } else {
-      toast({
-        title: 'Error deleting region',
-        description: res.data.message,
-        position: 'top',
-        status: 'error',
-        isClosable: true,
-        duration: null
-      })
+    // Delete region action
+    async function _delete() {
+      const res = await remove()
+      if (res.ok) {
+        goToHome()
+        toast({
+          title: 'Region deleted',
+          description: 'Region has been successfully deleted.',
+          position: 'top',
+          status: 'success',
+          isClosable: true
+        })
+      } else if (res.ok === false) {
+        toast({
+          title: 'Error deleting region',
+          description: res.error.message,
+          position: 'top',
+          status: 'error',
+          isClosable: true,
+          duration: null
+        })
+      }
     }
-  }
 
-  // Save region action
-  async function _save() {
-    setSaving(true)
+    // Save region action
+    async function _save() {
+      setSaving(true)
 
-    // Save will redirect back to main region page when complete
-    const nw = reprojectCoordinates({
-      lat: bounds.north,
-      lon: bounds.west
-    })
-    const se = reprojectCoordinates({
-      lat: bounds.south,
-      lon: bounds.east
-    })
-    const newBounds = {north: nw.lat, west: nw.lon, south: se.lat, east: se.lon}
-
-    const res = await update({
-      bounds: newBounds,
-      name: nameInput.value,
-      description: descriptionInput.value
-    })
-
-    setSaving(false)
-    if (res.ok) {
-      toast({
-        title: 'Region updated',
-        description: 'Your changes have been saved.',
-        position: 'top',
-        status: 'success',
-        isClosable: true
+      // Save will redirect back to main region page when complete
+      const nw = reprojectCoordinates({
+        lat: bounds.north,
+        lon: bounds.west
       })
-    } else {
-      toast({
-        title: 'Error updating region',
-        description: res.data.message,
-        position: 'top',
-        status: 'error',
-        isClosable: true,
-        duration: null
+      const se = reprojectCoordinates({
+        lat: bounds.south,
+        lon: bounds.east
       })
+      const newBounds = {
+        north: nw.lat,
+        west: nw.lon,
+        south: se.lat,
+        east: se.lon
+      }
+
+      const res = await update({
+        bounds: newBounds,
+        name: nameInput.value,
+        description: descriptionInput.value
+      })
+
+      setSaving(false)
+      if (res.ok) {
+        toast({
+          title: 'Region updated',
+          description: 'Your changes have been saved.',
+          position: 'top',
+          status: 'success',
+          isClosable: true
+        })
+      } else if (res.ok === false) {
+        toast({
+          title: 'Error updating region',
+          description: res.error.message,
+          position: 'top',
+          status: 'error',
+          isClosable: true,
+          duration: null
+        })
+      }
     }
-  }
 
-  // Helper function to set a specific direction of the bounds
-  const setBoundsFor = useCallback(
-    (direction: string, newValue: number) => {
-      setBounds((bounds) => ({...bounds, [direction]: newValue}))
-    },
-    [setBounds]
-  )
+    // Helper function to set a specific direction of the bounds
+    const setBoundsFor = useCallback(
+      (direction: string, newValue: number) => {
+        setBounds((bounds) => ({...bounds, [direction]: newValue}))
+      },
+      [setBounds]
+    )
 
-  const isEqual =
-    region.bounds === bounds &&
-    region.name === nameInput.value &&
-    region.description === descriptionInput.value
+    const isEqual =
+      region.bounds === bounds &&
+      region.name === nameInput.value &&
+      region.description === descriptionInput.value
 
-  return (
-    <InnerDock>
-      <EditBounds bounds={bounds} save={(b) => setBounds(b)} />
+    return (
+      <InnerDock>
+        <EditBounds bounds={bounds} save={(b) => setBounds(b)} />
 
-      <Stack p={SPACING_FORM} spacing={SPACING_FORM}>
-        <Heading size='md'>{message('region.editTitle')}</Heading>
+        <Stack p={SPACING_FORM} spacing={SPACING_FORM}>
+          <Heading size='md'>{message('region.editTitle')}</Heading>
 
-        <FormControl isRequired isInvalid={nameInput.isInvalid}>
-          <FormLabel htmlFor={nameInput.id}>{message('region.name')}</FormLabel>
-          <Input {...nameInput} />
-        </FormControl>
+          <FormControl isRequired isInvalid={nameInput.isInvalid}>
+            <FormLabel htmlFor={nameInput.id}>
+              {message('region.name')}
+            </FormLabel>
+            <Input {...nameInput} />
+          </FormControl>
 
-        <FormControl>
-          <FormLabel htmlFor={descriptionInput.id}>
-            {message('region.description')}
-          </FormLabel>
-          <Input
-            {...descriptionInput}
-            placeholder={message('region.description')}
+          <FormControl>
+            <FormLabel htmlFor={descriptionInput.id}>
+              {message('region.description')}
+            </FormLabel>
+            <Input
+              {...descriptionInput}
+              placeholder={message('region.description')}
+            />
+          </FormControl>
+
+          <EditBoundsForm
+            bounds={bounds}
+            isDisabled={saving}
+            onChange={setBoundsFor}
           />
-        </FormControl>
 
-        <EditBoundsForm
-          bounds={bounds}
-          isDisabled={saving}
-          onChange={setBoundsFor}
-        />
+          <Button
+            isDisabled={isEqual}
+            isFullWidth
+            isLoading={saving}
+            onClick={_save}
+            loadingText={'Saving region'}
+            size='lg'
+            colorScheme='green'
+          >
+            {message('region.editAction')}
+          </Button>
 
-        <Button
-          isDisabled={isEqual}
-          isFullWidth
-          isLoading={saving}
-          onClick={_save}
-          loadingText={'Saving region'}
-          size='lg'
-          colorScheme='green'
-        >
-          {message('region.editAction')}
-        </Button>
-
-        <ConfirmButton
-          description={message('region.deleteConfirmation')}
-          isFullWidth
-          onConfirm={_delete}
-          size='lg'
-          colorScheme='red'
-        >
-          {message('region.deleteAction')}
-        </ConfirmButton>
-      </Stack>
-    </InnerDock>
-  )
-}
+          <ConfirmButton
+            description={message('region.deleteConfirmation')}
+            isFullWidth
+            onConfirm={_delete}
+            size='lg'
+            colorScheme='red'
+          >
+            {message('region.deleteAction')}
+          </ConfirmButton>
+        </Stack>
+      </InnerDock>
+    )
+  },
+  function useData(p) {
+    return {
+      region: useRegion(p.query.regionId)
+    }
+  }
+)

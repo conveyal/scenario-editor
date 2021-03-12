@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import {useCallback, useState} from 'react'
 import {useDispatch} from 'react-redux'
+import {cache} from 'swr'
 
 import {deleteBundle, saveBundle} from 'lib/actions'
 import useInput from 'lib/hooks/use-controlled-input'
@@ -72,8 +73,9 @@ export default function EditBundle({
   const disableDelete = bundleProjects.length > 0
 
   async function _deleteBundle() {
+    await dispatch(deleteBundle(bundle._id))
+    cache.clear()
     goToBundles()
-    dispatch(deleteBundle(bundle._id))
   }
 
   async function _saveBundle() {
@@ -117,7 +119,7 @@ export default function EditBundle({
             feed={feed}
             index={index}
             key={feed.feedId}
-            onChange={(name) => setFeedName(feed.feedId, name)}
+            onChange={(name: string) => setFeedName(feed.feedId, name)}
           />
         ))}
 

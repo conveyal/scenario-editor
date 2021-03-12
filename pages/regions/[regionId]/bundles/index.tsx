@@ -5,7 +5,6 @@ import withDataLayout from 'lib/with-data-layout'
 
 export default withDataLayout<{bundles: CL.Bundle[]}>(
   function BundlesPage(p) {
-    console.log('BundlePage', p.bundles)
     return (
       <Bundles regionId={p.query.regionId}>
         <SelectBundle
@@ -17,10 +16,8 @@ export default withDataLayout<{bundles: CL.Bundle[]}>(
     )
   },
   function useData(p) {
-    const bundles = useBundles({query: {regionId: p.query.regionId}})
-    console.log('useData', 'useBundles', bundles.response.isValidating)
     return {
-      bundles
+      bundles: useBundles({query: {regionId: p.query.regionId}})
     }
   }
 )

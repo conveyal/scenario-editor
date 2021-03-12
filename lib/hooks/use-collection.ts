@@ -1,5 +1,5 @@
 import {FilterQuery, FindOneOptions} from 'mongodb'
-import useSWR, {cache, SWRConfiguration, SWRResponse} from 'swr'
+import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
 import {useCallback, useMemo} from 'react'
 
 import LogRocket from 'lib/logrocket'
@@ -61,6 +61,10 @@ type UseCollection<T> = {
   config?: SWRConfiguration
 }
 
+const defaultConfig: SWRConfiguration = {
+  revalidateOnMount: true
+}
+
 export default function useCollection<T extends CL.IModel>(
   collectionName: string,
   {query, options, config}: UseCollection<T> = {}
@@ -68,8 +72,11 @@ export default function useCollection<T extends CL.IModel>(
   const baseURL = `/api/db/${collectionName}`
   const user = useUser()
   const url = useURL(baseURL, query, options)
-  const response = useSWR<T[], ResponseError>([url, user], config)
-  const {mutate} = response
+  const response = useSWR<T[], ResponseError>([url, user], {
+    ...defaultConfig,
+    ...config
+  })
+  const {mutate, revalidate} = response
   // Helper function for updating values when using a collection
   const update = useCallback(
     async (_id: string, newProperties: Partial<T>) => {
@@ -99,11 +106,11 @@ export default function useCollection<T extends CL.IModel>(
     async (properties: T) => {
       const res = await postJSON<T>(baseURL, properties)
       if (res.ok) {
-        cache.clear()
+        await revalidate()
       }
       return res
     },
-    [baseURL]
+    [baseURL, revalidate]
   )
 
   // Helper function when removing values
@@ -111,11 +118,11 @@ export default function useCollection<T extends CL.IModel>(
     async (_id) => {
       const res = await safeDelete(`${baseURL}/${_id}`)
       if (res.ok) {
-        cache.clear()
+        await revalidate()
       }
       return res
     },
-    [baseURL]
+    [baseURL, revalidate]
   )
 
   return {
@@ -136,7 +143,7 @@ export function createUseCollection<T extends CL.IModel>(
   collectionName: string
 ) {
   return function useCollectionType(params?: UseCollection<T>) {
-    return useCollection(collectionName, params)
+    return useCollection<T>(collectionName, params)
   }
 }
 

@@ -8,7 +8,6 @@ import {AUTH_DISABLED} from 'lib/constants'
 import {localUser} from 'lib/user'
 
 import ErrorHandler from 'lib/components/app-error-handler'
-import LoadingScreen from 'lib/components/loading-screen'
 import ChakraTheme from 'lib/config/chakra'
 import SWRWrapper from 'lib/config/swr'
 import EmptyLayout from 'lib/layouts/empty'
@@ -38,11 +37,7 @@ export default function ConveyalAnalysis({
               <title>Conveyal Analysis</title>
             </Head>
             <Layout>
-              {router.isReady ? (
-                <Component query={router.query} {...pageProps} />
-              ) : (
-                <LoadingScreen />
-              )}
+              <Component query={router.query} {...pageProps} />
             </Layout>
           </SWRWrapper>
         </ErrorHandler>

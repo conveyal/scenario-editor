@@ -9,9 +9,9 @@ import {
 } from '@chakra-ui/react'
 import {useCallback, useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {cache} from 'swr'
 
 import {deleteBundle, saveBundle} from 'lib/actions'
+import {useBundles} from 'lib/hooks/use-collection'
 import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
@@ -46,7 +46,8 @@ function BundleNameInput({name, onChange, ...p}) {
 type EditBundleProps = {
   bundleProjects: CL.Project[]
   bundle: CL.Bundle
-  query: Record<string, string>
+  bundles: CL.Bundle[]
+  query: CL.Query
 }
 
 /**
@@ -56,11 +57,14 @@ type EditBundleProps = {
 export default function EditBundle({
   bundleProjects,
   bundle,
+  bundles,
   query
 }: EditBundleProps) {
   const dispatch = useDispatch<any>()
-
   const {regionId} = query
+  const {
+    response: {revalidate}
+  } = useBundles({config: {initialData: bundles}, query: {regionId}})
   const goToBundles = useRouteTo('bundles', {regionId})
   const [editedBundle, setEditedBundle] = useState(bundle)
 
@@ -74,7 +78,7 @@ export default function EditBundle({
 
   async function _deleteBundle() {
     await dispatch(deleteBundle(bundle._id))
-    cache.clear()
+    revalidate()
     goToBundles()
   }
 

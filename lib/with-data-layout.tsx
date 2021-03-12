@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {FunctionComponent} from 'react'
 
@@ -26,13 +25,6 @@ export type UseDataFn<Props extends IResults> = (
   p: WithInitialDataProps<Props>
 ) => UseDataResults<Props>
 
-function urlsFromResults<T extends IResults>(results: UseDataResults<T>) {
-  const urls: string[] = []
-  for (const k in results) {
-    urls.push(results[k].url)
-  }
-  return urls
-}
 function dataIsMissing<T extends IResults>(results: UseDataResults<T>) {
   for (const k in results) {
     if (results[k].data == null) return true
@@ -71,20 +63,10 @@ export default function withDataLayout<Results extends IResults>(
   function DataLoader(props: WithInitialDataProps<Results>) {
     const results = useData(props)
 
-    // If any results are missing, show the spinner and add the preload tags (for SSR).
+    // If any results are missing, show the spinner.
     // Any page that does not preload data with `getServerSideProps` will show this on initial render.
     if (dataIsMissing(results)) {
-      const urls = urlsFromResults(results)
-      return (
-        <>
-          <Head>
-            {urls.map((url) => (
-              <link key={url} rel='preload' as='fetch' href={url} />
-            ))}
-          </Head>
-          <FullSpinner />
-        </>
-      )
+      return <FullSpinner />
     }
 
     // If any of the results contains an error, show the error

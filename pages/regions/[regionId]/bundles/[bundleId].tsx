@@ -16,6 +16,7 @@ export default withDataLayout<{
         {bundle && (
           <EditBundle
             bundle={bundle}
+            bundles={p.bundles}
             bundleProjects={p.projects}
             query={p.query}
           />

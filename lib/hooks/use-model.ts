@@ -30,10 +30,13 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
   ): UseModelResponse<T> {
     const user = useUser()
     const url = `/api/db/${collectionName}/${_id}`
-    const response = useSWR<T, ResponseError>([url, user], {
-      ...SWRConfigDefaults,
-      ...config
-    })
+    const response = useSWR<T, ResponseError>(
+      _id == null ? null : [url, user],
+      {
+        ...SWRConfigDefaults,
+        ...config
+      }
+    )
     const {mutate, revalidate} = response
     const update = useCallback(
       async (newProperties: Partial<T>) => {

@@ -1,4 +1,5 @@
 import {FilterQuery, FindOneOptions} from 'mongodb'
+import {useRouter} from 'next/router'
 import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
 import {useCallback, useMemo} from 'react'
 
@@ -69,13 +70,17 @@ export default function useCollection<T extends CL.IModel>(
   collectionName: string,
   {query, options, config}: UseCollection<T> = {}
 ): UseCollectionResponse<T> {
+  const router = useRouter()
   const baseURL = `/api/db/${collectionName}`
   const user = useUser()
   const url = useURL(baseURL, query, options)
-  const response = useSWR<T[], ResponseError>([url, user], {
-    ...defaultConfig,
-    ...config
-  })
+  const response = useSWR<T[], ResponseError>(
+    router.isReady ? [url, user] : null,
+    {
+      ...defaultConfig,
+      ...config
+    }
+  )
   const {mutate, revalidate} = response
   // Helper function for updating values when using a collection
   const update = useCallback(

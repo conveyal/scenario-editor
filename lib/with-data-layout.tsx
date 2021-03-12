@@ -64,10 +64,7 @@ export default function withDataLayout<Results extends IResults>(
     const results = useData(props)
 
     // If any results are missing, show the spinner.
-    // Any page that does not preload data with `getServerSideProps` will show this on initial render.
-    if (dataIsMissing(results)) {
-      return <FullSpinner />
-    }
+    if (dataIsMissing(results)) return <FullSpinner />
 
     // If any of the results contains an error, show the error
     const error = dataContainsError(results)

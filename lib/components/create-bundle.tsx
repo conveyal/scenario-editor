@@ -18,12 +18,14 @@ import {
   Text
 } from '@chakra-ui/react'
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import {addBundle} from 'lib/actions'
 import fetch from 'lib/actions/fetch'
 import {API} from 'lib/constants'
 import message from 'lib/message'
+import selectBundles from 'lib/selectors/bundles'
+import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
 import InnerDock from './inner-dock'
@@ -35,16 +37,13 @@ const POLL_TIMEOUT_MS = 10000
 const STATUS_DONE = 'DONE'
 const STATUS_ERROR = 'ERROR'
 
-type CreateBundleProps = {
-  bundles: CL.Bundle[]
-  region: CL.Region
-}
-
 /**
  * Create bundle form.
  */
-export default function CreateBundle({bundles, region}: CreateBundleProps) {
+export default function CreateBundle() {
   const dispatch = useDispatch<any>()
+  const bundles = useSelector(selectBundles)
+  const region = useSelector(selectCurrentRegion)
   const regionId = region._id
   const bounds = region.bounds
   const goToBundleEdit = useRouteTo('bundleEdit', {regionId})

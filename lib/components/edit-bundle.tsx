@@ -7,17 +7,22 @@ import {
   Input,
   Stack
 } from '@chakra-ui/react'
+import get from 'lodash/fp/get'
+import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import {deleteBundle, saveBundle} from 'lib/actions'
-import {useBundles} from 'lib/hooks/use-collection'
 import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
 import ConfirmButton from './confirm-button'
 import {DeleteIcon} from './icons'
+import Select from './select'
+
+const getOptionLabel = (b) =>
+  `${b.name}${b.status === 'DONE' ? '' : `: ${b.status}`}`
 
 const hasContent = (s) => s.length > 0
 
@@ -43,116 +48,131 @@ function BundleNameInput({name, onChange, ...p}) {
   )
 }
 
-type EditBundleProps = {
-  bundleProjects: CL.Project[]
-  bundle: CL.Bundle
-  bundles: CL.Bundle[]
-  query: CL.Query
-}
-
 /**
  * Edit bundle is keyed by the bundle ID and will be completely unmounted and
  * recreated when that changes.
  */
-export default function EditBundle({
-  bundleProjects,
-  bundle,
-  bundles,
-  query
-}: EditBundleProps) {
-  const dispatch = useDispatch<any>()
-  const {regionId} = query
-  const {
-    response: {revalidate}
-  } = useBundles({config: {initialData: bundles}, query: {regionId}})
+export default function EditBundle(p) {
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const bundles = useSelector(get('region.bundles'))
+
+  const regionId = router.query.regionId as string
   const goToBundles = useRouteTo('bundles', {regionId})
-  const [editedBundle, setEditedBundle] = useState(bundle)
+  const goToBundleEdit = useRouteTo('bundleEdit', {regionId})
+  const [bundleId, setBundleId] = useState(router.query.bundleId)
+  const originalBundle = bundles.find((b) => b._id === bundleId)
+  const [bundle, setBundle] = useState(originalBundle)
 
   const setName = useCallback(
-    (name) => setEditedBundle((bundle) => ({...bundle, name})),
-    [setEditedBundle]
+    (name) => setBundle((bundle) => ({...bundle, name})),
+    [setBundle]
   )
 
   // If this bundle has project's associated with it. Disable deletion.
-  const disableDelete = bundleProjects.length > 0
+  const disableDelete = p.bundleProjects.length > 0
 
   async function _deleteBundle() {
-    await dispatch(deleteBundle(bundle._id))
-    revalidate()
     goToBundles()
+    dispatch(deleteBundle(bundleId))
   }
 
   async function _saveBundle() {
-    const b = await dispatch(saveBundle(editedBundle))
-    setEditedBundle(b) // nonce update
+    const b = await dispatch(saveBundle(bundle))
+    setBundle(b) // nonce update
   }
 
-  function setFeedName(feedId: string, name: string) {
-    setEditedBundle({
-      ...editedBundle,
-      feeds: editedBundle.feeds.map((f) => {
-        if (f.feedId === feedId) {
-          return {...f, name}
-        }
-        return f
+  function selectBundle(result) {
+    setBundleId(result._id)
+    goToBundleEdit({bundleId: result._id})
+  }
+
+  function setFeedName(feedId, name) {
+    if (bundle) {
+      setBundle({
+        ...bundle,
+        feeds: bundle.feeds.map((f) => {
+          if (f.feedId === feedId) {
+            return {...f, name}
+          }
+          return f
+        })
       })
-    })
+    }
   }
 
   return (
-    <Stack spacing={4}>
-      <Heading size='md'>{message('bundle.edit')}</Heading>
-
-      {editedBundle.status === 'PROCESSING_GTFS' && (
-        <Alert status='info'>{message('bundle.processing')}</Alert>
-      )}
-
-      {editedBundle.status === 'ERROR' && (
-        <Alert status='error'>
-          {message('bundle.failure')}
-          <br />
-          {editedBundle.statusText}
-        </Alert>
-      )}
-
-      <BundleNameInput name={editedBundle.name} onChange={setName} />
-
-      {editedBundle.feeds &&
-        editedBundle.feeds.map((feed, index) => (
-          <FeedNameInput
-            feed={feed}
-            index={index}
-            key={feed.feedId}
-            onChange={(name: string) => setFeedName(feed.feedId, name)}
+    <Stack spacing={8}>
+      <FormControl>
+        <FormLabel htmlFor='selectBundle'>{message('bundle.select')}</FormLabel>
+        <div>
+          <Select
+            inputId='selectBundle'
+            options={bundles}
+            getOptionLabel={getOptionLabel}
+            getOptionValue={get('_id')}
+            onChange={selectBundle}
+            value={bundles.find((b) => b._id === bundleId)}
           />
-        ))}
+        </div>
+      </FormControl>
 
-      <Button
-        isDisabled={editedBundle === bundle}
-        onClick={_saveBundle}
-        size='lg'
-        title={message('bundle.save')}
-        colorScheme='yellow'
-      >
-        {message('bundle.save')}
-      </Button>
+      {bundle && bundleId === router.query.bundleId && (
+        <Stack spacing={4}>
+          <Heading size='md'>{message('bundle.edit')}</Heading>
 
-      {disableDelete ? (
-        <Alert status='info'>
-          {message('bundle.deleteDisabled', {
-            projects: bundleProjects.length
-          })}
-        </Alert>
-      ) : (
-        <ConfirmButton
-          description={message('bundle.deleteConfirmation')}
-          leftIcon={<DeleteIcon />}
-          onConfirm={_deleteBundle}
-          size='lg'
-          colorScheme='red'
-        >
-          {message('bundle.delete')}
-        </ConfirmButton>
+          {bundle.status === 'PROCESSING_GTFS' && (
+            <Alert status='info'>{message('bundle.processing')}</Alert>
+          )}
+
+          {bundle.status === 'ERROR' && (
+            <Alert status='error'>
+              {message('bundle.failure')}
+              <br />
+              {bundle.statusText}
+            </Alert>
+          )}
+
+          <BundleNameInput name={bundle.name} onChange={setName} />
+
+          {bundle.feeds &&
+            bundle.feeds.map((feed, index) => (
+              <FeedNameInput
+                feed={feed}
+                index={index}
+                key={feed.feedId}
+                onChange={(name) => setFeedName(feed.feedId, name)}
+              />
+            ))}
+
+          <Button
+            isDisabled={bundle === originalBundle}
+            onClick={_saveBundle}
+            size='lg'
+            title={message('bundle.save')}
+            colorScheme='yellow'
+          >
+            {message('bundle.save')}
+          </Button>
+
+          {disableDelete ? (
+            <Alert status='info'>
+              {message('bundle.deleteDisabled', {
+                projects: p.bundleProjects.length
+              })}
+            </Alert>
+          ) : (
+            <ConfirmButton
+              description={message('bundle.deleteConfirmation')}
+              leftIcon={<DeleteIcon />}
+              onConfirm={_deleteBundle}
+              size='lg'
+              colorScheme='red'
+            >
+              {message('bundle.delete')}
+            </ConfirmButton>
+          )}
+        </Stack>
       )}
     </Stack>
   )

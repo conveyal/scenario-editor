@@ -1,8 +1,9 @@
 import {Button, Heading, Stack, useDisclosure, useToast} from '@chakra-ui/react'
 import {DomEvent, LatLng, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
-import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
+import {Polyline, Popup, useLeaflet} from 'react-leaflet'
 
+import Marker from 'lib/components/map/marker'
 import {ADD_TRIP_PATTERN, MINIMUM_SNAP_STOP_ZOOM_LEVEL} from 'lib/constants'
 import colors from 'lib/constants/colors'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'

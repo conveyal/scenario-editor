@@ -1,6 +1,7 @@
 import lonlat from '@conveyal/lonlat'
-import {Marker, Tooltip, useLeaflet} from 'react-leaflet'
+import {Tooltip, useLeaflet} from 'react-leaflet'
 
+import Marker from 'lib/components/map/marker'
 import useOnMount from 'lib/hooks/use-on-mount'
 
 /**

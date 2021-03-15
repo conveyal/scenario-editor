@@ -7,18 +7,14 @@ import {
   ListItem,
   Stack
 } from '@chakra-ui/react'
-import React from 'react'
 import useSWR from 'swr'
 
 import {ALink, ExternalLink} from 'lib/components/link'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL + '/version'
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
-const swrOptions = {refreshInterval: 5000}
-
 export default function Status() {
-  const req = useSWR(API_URL, fetcher, swrOptions)
+  const req = useSWR(API_URL, {refreshInterval: 5000})
 
   const color = !req.data ? 'red.500' : 'green.500'
   const text = req.error ? 'ERROR' : req.data ? 'OK' : 'NOT FOUND'

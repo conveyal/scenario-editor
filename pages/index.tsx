@@ -20,12 +20,12 @@ const alertText = 'New options for spatial datasets'
 
 const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}
 
-export default function SelectRegionPage(p) {
+export default function SelectRegionPage(p: {regions: CL.Region[]}) {
   const {data: regions} = useRegions({
     config: {initialData: p.regions},
     options: findOptions
   })
-  const {accessGroup, email} = useUser()
+  const {accessGroup, email} = useUser() ?? {}
   const goToRegionCreate = useRouteTo('regionCreate')
   const logoutLink = useLink('logout')
   const goToRegion = useRouteTo('projects')

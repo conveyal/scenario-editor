@@ -1,4 +1,4 @@
-import {Marker} from 'react-leaflet'
+import {Marker, MarkerProps} from 'react-leaflet'
 import L from 'leaflet'
 
 delete L.Icon.Default.prototype['_getIconUrl']
@@ -9,6 +9,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: '/static/leaflet/dist/images/marker-shadow.png'
 })
 
-export default function CLMarker(p) {
+export default function CLMarker(p: MarkerProps) {
   return <Marker {...p} />
 }

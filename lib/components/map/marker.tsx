@@ -1,12 +1,14 @@
 import {Marker} from 'react-leaflet'
 import L from 'leaflet'
 
-const icon = L.icon({
-  iconRetinaUrl: '/static/leaflet/dist/images/marker-icon.png',
+delete L.Icon.Default.prototype['_getIconUrl']
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: '/static/leaflet/dist/images/marker-icon-2x.png',
   iconUrl: '/static/leaflet/dist/images/marker-icon.png',
   shadowUrl: '/static/leaflet/dist/images/marker-shadow.png'
 })
 
 export default function CLMarker(p) {
-  return <Marker {...p} icon={icon} />
+  return <Marker {...p} />
 }

@@ -1,9 +1,10 @@
 import L from 'leaflet'
 import {useCallback, useEffect, useRef, MutableRefObject} from 'react'
 import {FeatureGroup} from 'react-leaflet'
-import {EditControl} from 'react-leaflet-draw'
 
 import type {FeatureCollection, LineString} from 'geojson'
+
+import {EditControl} from 'lib/components/map/leaflet-draw'
 
 import StreetForm from './street-form'
 

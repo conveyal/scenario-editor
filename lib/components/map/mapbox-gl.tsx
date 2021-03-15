@@ -2,6 +2,7 @@ import L, {MapboxGL} from 'leaflet'
 import {MapLayer, MapLayerProps, withLeaflet} from 'react-leaflet'
 
 import 'mapbox-gl-leaflet'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 import {MB_TOKEN} from 'lib/constants'
 

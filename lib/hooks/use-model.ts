@@ -1,4 +1,4 @@
-import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
+import useSWR, {cache, SWRConfiguration, SWRResponse} from 'swr'
 import {useCallback} from 'react'
 
 import {
@@ -66,6 +66,7 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
       const res = await safeDelete(url)
       if (res.ok) {
         await revalidate()
+        cache.clear()
       }
       return res
     }, [revalidate, url])

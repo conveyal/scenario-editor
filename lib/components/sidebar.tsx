@@ -25,7 +25,6 @@ import {
   BundlesIcon,
   EditIcon,
   InfoIcon,
-  LoadingIcon,
   MoonIcon,
   ProjectsIcon,
   RegionsIcon,
@@ -38,6 +37,7 @@ import {
 } from './icons'
 import SVGLogo from './logo.svg'
 import Tip from './tip'
+import Spinner from './spinner'
 
 const sidebarWidth = '40px'
 
@@ -246,7 +246,7 @@ const LogoSpinner = memo(() => {
   }, [outstandingRequests])
 
   if (outstandingRequests || routeChanging) {
-    return <LoadingIcon className='fa-spin' id='sidebar-spinner' />
+    return <Spinner id='sidebar-spinner' />
   }
 
   return (

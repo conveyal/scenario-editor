@@ -1,4 +1,4 @@
-import useSWR, {cache, SWRConfiguration, SWRResponse} from 'swr'
+import useSWR, {SWRConfiguration, SWRResponse} from 'swr'
 import {useCallback} from 'react'
 
 import {
@@ -24,8 +24,13 @@ const SWRConfigDefaults: SWRConfiguration = {
 }
 
 export function createUseModel<T extends CL.IModel>(collectionName: string) {
+  /**
+   * _id may be `null` in cases where we are cascading fetches. Ex:
+   * const {data: project} = useProject(projectId)
+   * const {data: bundle} = useBundle(project?.bundleId)
+   */
   return function useModel(
-    _id: string,
+    _id?: string,
     config?: SWRConfiguration
   ): UseModelResponse<T> {
     const user = useUser()
@@ -37,7 +42,7 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
         ...config
       }
     )
-    const {mutate, revalidate} = response
+    const {mutate} = response
     const update = useCallback(
       async (newProperties: Partial<T>) => {
         try {
@@ -62,14 +67,7 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
     )
 
     // Should never change
-    const remove = useCallback(async () => {
-      const res = await safeDelete(url)
-      if (res.ok) {
-        await revalidate()
-        cache.clear()
-      }
-      return res
-    }, [revalidate, url])
+    const remove = useCallback(() => safeDelete(url), [url])
 
     return {
       data: response.data,

@@ -7,11 +7,9 @@ import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import {AUTH_DISABLED} from 'lib/constants'
-import AuthenticatedCollection from 'lib/db/authenticated-collection'
 import {useRegions} from 'lib/hooks/use-collection'
 import useLink from 'lib/hooks/use-link'
 import useRouteTo from 'lib/hooks/use-route-to'
-import {getServerSidePropsWithAuth} from 'lib/with-auth'
 import useUser from 'lib/hooks/use-user'
 
 const alertDate = 'February, 2021'
@@ -20,11 +18,8 @@ const alertText = 'New options for spatial datasets'
 
 const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}
 
-export default function SelectRegionPage(p: {regions: CL.Region[]}) {
-  const {data: regions} = useRegions({
-    config: {initialData: p.regions},
-    options: findOptions
-  })
+export default function SelectRegionPage() {
+  const {data: regions} = useRegions({options: findOptions})
   const {accessGroup, email} = useUser() ?? {}
   const goToRegionCreate = useRouteTo('regionCreate')
   const logoutLink = useLink('logout')
@@ -99,18 +94,3 @@ export default function SelectRegionPage(p: {regions: CL.Region[]}) {
     </Flex>
   )
 }
-
-/**
- * Take additional steps to attempt a fast page load since this is the first page most people will see.
- * Comment out to disable. Page load should still work.
- */
-export const getServerSideProps = getServerSidePropsWithAuth(
-  async (_, user) => {
-    const regions = await AuthenticatedCollection.with('regions', user)
-    return {
-      props: {
-        regions: await regions.findJSON({}, findOptions)
-      }
-    }
-  }
-)

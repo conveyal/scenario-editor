@@ -23,9 +23,7 @@ type EditProjectProps = {
 }
 
 export default function EditProject(p: EditProjectProps) {
-  const {data: project, remove, update} = useProject(p.project._id, {
-    initialData: p.project
-  })
+  const {data: project, remove, update} = useProject(p.project._id)
   const [name, setName] = useState(project.name)
   const {projectId, regionId} = p.query
   const routeToProjects = useRouteTo('projects', {regionId})

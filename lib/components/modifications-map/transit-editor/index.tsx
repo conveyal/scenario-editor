@@ -420,12 +420,12 @@ function AutoCreatedStops({onDragEnd, segments}) {
             draggable
             icon={newStopIcon}
             key={autoCreatedStopKey(index)}
-            onClick={(event: L.LeafletMouseEvent) => {
+            onclick={(event: L.LeafletMouseEvent) => {
               logDomEvent('AutoCreatedStop.onClick', event)
               DomEvent.stop(event)
               onDragEnd(stop.index, event.latlng)
             }}
-            onDragend={(event: L.DragEndEvent) => {
+            ondragend={(event: L.DragEndEvent) => {
               logDomEvent('AutoCreatedStop.onDragend', event)
               DomEvent.stop(event)
               onDragEnd(stop.index, (event.target as L.Marker).getLatLng())
@@ -586,7 +586,7 @@ function ControlPoints({
           draggable
           icon={controlPointIcon}
           key={`${controlPointKey(index)} ${zoom} ${cp.lng} ${cp.lat}`}
-          onDragend={(event: L.DragEndEvent) => {
+          ondragend={(event: L.DragEndEvent) => {
             logDomEvent('ControlPoint.onDragend', event)
             DomEvent.stop(event)
             onDragEnd(cp.index, (event.target as L.Marker).getLatLng())

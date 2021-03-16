@@ -28,7 +28,7 @@ export default function AnalysisMap({
     <Marker
       draggable={!isDisabled}
       opacity={isDisabled ? 0.5 : 1.0}
-      onDragEnd={(e) => setOrigin(lonlat(e.target.getLatLng()))}
+      ondragend={(e) => setOrigin(lonlat((e.target as L.Marker).getLatLng()))}
       position={markerPosition}
     >
       {markerTooltip && (

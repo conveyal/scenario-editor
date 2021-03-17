@@ -62,10 +62,6 @@ type UseCollection<T> = {
   config?: SWRConfiguration
 }
 
-const defaultConfig: SWRConfiguration = {
-  revalidateOnMount: true
-}
-
 export default function useCollection<T extends CL.IModel>(
   collectionName: string,
   {query, options, config}: UseCollection<T> = {}
@@ -76,10 +72,7 @@ export default function useCollection<T extends CL.IModel>(
   const url = useURL(baseURL, query, options)
   const response = useSWR<T[], ResponseError>(
     router.isReady ? [url, user] : null,
-    {
-      ...defaultConfig,
-      ...config
-    }
+    config
   )
   const {mutate, revalidate} = response
   // Helper function for updating values when using a collection

@@ -18,6 +18,7 @@ import {ALink} from './link'
 import useControlledInput from 'lib/hooks/use-controlled-input'
 
 type EditProjectProps = {
+  project: CL.Project
   query: CL.Query
 }
 

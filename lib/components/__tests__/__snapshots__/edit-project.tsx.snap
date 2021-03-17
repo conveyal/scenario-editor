@@ -1,26 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > EditProject 1`] = `
+exports[`Component EditProject snapshot(mount) 1`] = `
 <EditProject
-  bundleName="Mock Bundle"
-  project={
+  query={
     Object {
-      "_id": "1",
-      "accessGroup": "accessGroupName",
-      "bundleId": "1",
-      "createdAt": "2017-11-08T12:30:50.133Z",
-      "createdBy": "person@gmail.com",
-      "name": "Mock Project",
-      "nonce": "12345",
+      "projectId": "1",
       "regionId": "1",
-      "updatedAt": "2017-11-08T12:31:19.602Z",
-      "updatedBy": "person@gmail.com",
-      "variants": Array [
-        "Default",
-      ],
     }
   }
-  query={Object {}}
 >
   <InnerDock>
     <JSXStyle
@@ -121,7 +108,8 @@ exports[`Component > EditProject 1`] = `
                           </Styled(h2)>
                         </Heading>
                         <FormControl
-                          isInvalid={false}
+                          isInvalid={true}
+                          isRequired={true}
                           key=".1"
                         >
                           <Styled(div)
@@ -139,7 +127,7 @@ exports[`Component > EditProject 1`] = `
                               role="group"
                             >
                               <FormLabel
-                                htmlFor="projectName"
+                                htmlFor="00000000-0000-0000-0000-000000000000"
                               >
                                 <Styled(label)
                                   __css={
@@ -158,22 +146,46 @@ exports[`Component > EditProject 1`] = `
                                     }
                                   }
                                   className="chakra-form__label"
-                                  htmlFor="projectName"
+                                  data-invalid=""
+                                  htmlFor="00000000-0000-0000-0000-000000000000"
                                   id="field-1-label"
                                 >
                                   <label
                                     className="chakra-form__label css-1qqx8g3"
-                                    htmlFor="projectName"
+                                    data-invalid=""
+                                    htmlFor="00000000-0000-0000-0000-000000000000"
                                     id="field-1-label"
                                   >
                                     Project name
+                                    <RequiredIndicator>
+                                      <Styled(span)
+                                        __css={
+                                          Object {
+                                            "color": "red.500",
+                                            "ml": 1,
+                                          }
+                                        }
+                                        aria-hidden={true}
+                                        className="chakra-form__required-indicator"
+                                        role="presentation"
+                                      >
+                                        <span
+                                          aria-hidden={true}
+                                          className="chakra-form__required-indicator css-nnjw4v"
+                                          role="presentation"
+                                        >
+                                          *
+                                        </span>
+                                      </Styled(span)>
+                                    </RequiredIndicator>
                                   </label>
                                 </Styled(label)>
                               </FormLabel>
                               <Input
-                                id="projectName"
+                                id="00000000-0000-0000-0000-000000000000"
+                                isInvalid={true}
+                                isValid={false}
                                 onChange={[Function]}
-                                value="Mock Project"
                               >
                                 <Styled(input)
                                   __css={
@@ -213,26 +225,30 @@ exports[`Component > EditProject 1`] = `
                                       "width": "100%",
                                     }
                                   }
+                                  aria-invalid={true}
+                                  aria-required={true}
                                   className="chakra-input"
                                   disabled={false}
-                                  id="projectName"
+                                  id="00000000-0000-0000-0000-000000000000"
+                                  isValid={false}
                                   onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   readOnly={false}
-                                  required={false}
-                                  value="Mock Project"
+                                  required={true}
                                 >
                                   <input
+                                    aria-invalid={true}
+                                    aria-required={true}
                                     className="chakra-input css-18q2db8"
                                     disabled={false}
-                                    id="projectName"
+                                    id="00000000-0000-0000-0000-000000000000"
+                                    isValid={false}
                                     onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     readOnly={false}
-                                    required={false}
-                                    value="Mock Project"
+                                    required={true}
                                   />
                                 </Styled(input)>
                               </Input>
@@ -291,8 +307,8 @@ exports[`Component > EditProject 1`] = `
                                   <ALink
                                     query={
                                       Object {
-                                        "bundleId": "1",
-                                        "regionId": "1",
+                                        "bundleId": undefined,
+                                        "regionId": undefined,
                                       }
                                     }
                                     to="bundleEdit"
@@ -300,19 +316,19 @@ exports[`Component > EditProject 1`] = `
                                     <InternalLink
                                       query={
                                         Object {
-                                          "bundleId": "1",
-                                          "regionId": "1",
+                                          "bundleId": undefined,
+                                          "regionId": undefined,
                                         }
                                       }
                                       to="bundleEdit"
                                     >
                                       <Link
-                                        href="/regions/1/bundles/1"
+                                        href="/regions/undefined/bundles/undefined"
                                         passHref={true}
                                       >
                                         <a
                                           className=""
-                                          href="/regions/1/bundles/1"
+                                          href="/regions/undefined/bundles/undefined"
                                           onClick={[Function]}
                                           onMouseEnter={[Function]}
                                         >

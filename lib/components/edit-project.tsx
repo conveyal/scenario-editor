@@ -7,7 +7,6 @@ import {
   Input,
   Stack
 } from '@chakra-ui/react'
-import {useState} from 'react'
 import {useProject} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
@@ -16,16 +15,21 @@ import ConfirmButton from './confirm-button'
 import {DeleteIcon, EditIcon} from './icons'
 import InnerDock from './inner-dock'
 import {ALink} from './link'
+import useControlledInput from 'lib/hooks/use-controlled-input'
 
 type EditProjectProps = {
-  project: CL.Project
   query: CL.Query
 }
 
+const nameIsValid = (n?: string): boolean => n?.length > 0
+
 export default function EditProject(p: EditProjectProps) {
-  const {data: project, remove, update} = useProject(p.project._id)
-  const [name, setName] = useState(project.name)
   const {projectId, regionId} = p.query
+  const {data: project, remove, update} = useProject(projectId)
+  const nameInput = useControlledInput({
+    test: nameIsValid,
+    value: project?.name
+  })
   const routeToProjects = useRouteTo('projects', {regionId})
   const routeToModifications = useRouteTo('modifications', {
     projectId,
@@ -38,7 +42,7 @@ export default function EditProject(p: EditProjectProps) {
   }
 
   async function _save() {
-    await update({...project, name})
+    await update({name: nameInput.value})
     routeToModifications()
   }
 
@@ -48,13 +52,11 @@ export default function EditProject(p: EditProjectProps) {
         <Heading mb={4} size='md'>
           {message('project.editSettings')}
         </Heading>
-        <FormControl isInvalid={!name || name.length === 0}>
-          <FormLabel htmlFor='projectName'>{message('project.name')}</FormLabel>
-          <Input
-            id='projectName'
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
+        <FormControl isInvalid={nameInput.isInvalid} isRequired>
+          <FormLabel htmlFor={nameInput.id}>
+            {message('project.name')}
+          </FormLabel>
+          <Input {...nameInput} />
         </FormControl>
         <Stack spacing={2}>
           <Heading size='sm'>Bundle</Heading>
@@ -63,8 +65,8 @@ export default function EditProject(p: EditProjectProps) {
             <ALink
               to='bundleEdit'
               query={{
-                bundleId: project.bundleId,
-                regionId: project.regionId
+                bundleId: project?.bundleId,
+                regionId: project?.regionId
               }}
             >
               View bundle info here.
@@ -73,7 +75,7 @@ export default function EditProject(p: EditProjectProps) {
         </Stack>
         <Button
           leftIcon={<EditIcon />}
-          isDisabled={!name || project.name === name}
+          isDisabled={nameInput.isInvalid || project.name === nameInput.value}
           onClick={_save}
           colorScheme='green'
         >

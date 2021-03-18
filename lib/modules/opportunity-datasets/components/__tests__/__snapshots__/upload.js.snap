@@ -272,6 +272,7 @@ exports[`upload should render without errors 1`] = `
                   name="files"
                   onChange={[Function]}
                   type="file"
+                  value=""
                 >
                   <Styled(input)
                     __css={
@@ -324,6 +325,7 @@ exports[`upload should render without errors 1`] = `
                     readOnly={false}
                     required={true}
                     type="file"
+                    value=""
                   >
                     <input
                       aria-describedby="field-2-helptext"
@@ -339,6 +341,7 @@ exports[`upload should render without errors 1`] = `
                       readOnly={false}
                       required={true}
                       type="file"
+                      value=""
                     />
                   </Styled(input)>
                 </Input>

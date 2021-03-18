@@ -102,6 +102,7 @@ exports[`Component > ImportShapefile 1`] = `
                 id="fileInput"
                 onChange={[Function]}
                 type="file"
+                value=""
               >
                 <Styled(input)
                   __css={
@@ -151,6 +152,7 @@ exports[`Component > ImportShapefile 1`] = `
                   readOnly={false}
                   required={false}
                   type="file"
+                  value=""
                 >
                   <input
                     aria-describedby="field-1-helptext"
@@ -163,6 +165,7 @@ exports[`Component > ImportShapefile 1`] = `
                     readOnly={false}
                     required={false}
                     type="file"
+                    value=""
                   />
                 </Styled(input)>
               </Input>

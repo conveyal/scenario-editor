@@ -19,7 +19,7 @@ function getFileSizesAlert(
   totalMaxBytes: number
 ): string | void {
   if (totalSize > totalMaxBytes) return totalAlert(totalMaxBytes)
-  if (fileSizes.findIndex((s) => s >= 1) !== -1)
+  if (fileSizes.findIndex((s) => s >= fileMaxBytes) !== -1)
     return singleAlert(fileMaxBytes)
 }
 

@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
-import {Marker, Polyline} from 'react-leaflet'
+import {Polyline} from 'react-leaflet'
 
+import Marker from 'lib/components/map/marker'
 import {NEW_LINE_WEIGHT} from 'lib/constants'
 import colors from 'lib/constants/colors'
 import useLeafletZoom from 'lib/hooks/use-leaflet-zoom'

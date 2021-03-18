@@ -1,6 +1,7 @@
 import lonlat from '@conveyal/lonlat'
-import {Marker, Tooltip, useLeaflet} from 'react-leaflet'
+import {Tooltip, useLeaflet} from 'react-leaflet'
 
+import Marker from 'lib/components/map/marker'
 import useOnMount from 'lib/hooks/use-on-mount'
 
 /**
@@ -27,7 +28,7 @@ export default function AnalysisMap({
     <Marker
       draggable={!isDisabled}
       opacity={isDisabled ? 0.5 : 1.0}
-      onDragEnd={(e) => setOrigin(lonlat(e.target.getLatLng()))}
+      ondragend={(e) => setOrigin(lonlat((e.target as L.Marker).getLatLng()))}
       position={markerPosition}
     >
       {markerTooltip && (

@@ -20,6 +20,8 @@ import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 import Geocoder from './geocoder'
 import {AddIcon, MinusIcon} from '../icons'
 
+import 'leaflet/dist/leaflet.css'
+
 const MapboxGLLayer = dynamic(() => import('./mapbox-gl'))
 
 const VIEWPORT_KEY = 'analysis-map-viewport'

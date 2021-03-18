@@ -1,8 +1,9 @@
 import {Button, Heading, Stack, useDisclosure, useToast} from '@chakra-ui/react'
 import {DomEvent, LatLng, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
-import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
+import {Polyline, Popup, useLeaflet} from 'react-leaflet'
 
+import Marker from 'lib/components/map/marker'
 import {ADD_TRIP_PATTERN, MINIMUM_SNAP_STOP_ZOOM_LEVEL} from 'lib/constants'
 import colors from 'lib/constants/colors'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
@@ -419,12 +420,12 @@ function AutoCreatedStops({onDragEnd, segments}) {
             draggable
             icon={newStopIcon}
             key={autoCreatedStopKey(index)}
-            onClick={(event: L.LeafletMouseEvent) => {
+            onclick={(event: L.LeafletMouseEvent) => {
               logDomEvent('AutoCreatedStop.onClick', event)
               DomEvent.stop(event)
               onDragEnd(stop.index, event.latlng)
             }}
-            onDragend={(event: L.DragEndEvent) => {
+            ondragend={(event: L.DragEndEvent) => {
               logDomEvent('AutoCreatedStop.onDragend', event)
               DomEvent.stop(event)
               onDragEnd(stop.index, (event.target as L.Marker).getLatLng())
@@ -585,7 +586,7 @@ function ControlPoints({
           draggable
           icon={controlPointIcon}
           key={`${controlPointKey(index)} ${zoom} ${cp.lng} ${cp.lat}`}
-          onDragend={(event: L.DragEndEvent) => {
+          ondragend={(event: L.DragEndEvent) => {
             logDomEvent('ControlPoint.onDragend', event)
             DomEvent.stop(event)
             onDragEnd(cp.index, (event.target as L.Marker).getLatLng())

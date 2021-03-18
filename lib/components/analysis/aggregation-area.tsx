@@ -99,7 +99,7 @@ export default function AggregationArea({regionId}) {
 function UploadNewAggregationArea({onClose, regionId}) {
   const dispatch = useDispatch()
   const [union, setUnion] = useState(true)
-  const file = useFileInput()
+  const fileInput = useFileInput()
   const [uploading, setUploading] = useState(false)
   const toast = useToast()
 
@@ -113,7 +113,7 @@ function UploadNewAggregationArea({onClose, regionId}) {
     formData.append('name', nameInput.value)
     formData.append('nameProperty', attributeInput.value)
     formData.append('union', `${union}`)
-    ;[...files].forEach((file) => formData.append('files', file))
+    ;[...fileInput.files].forEach((file) => formData.append('files', file))
 
     try {
       const newAAs = await dispatch(uploadAggregationArea(formData, regionId))
@@ -150,9 +150,9 @@ function UploadNewAggregationArea({onClose, regionId}) {
         <Input
           id='aggregationAreaFiles'
           multiple
-          onChange={file.onChangeFiles}
+          onChange={fileInput.onChangeFiles}
           type='file'
-          value={file.value}
+          value={fileInput.value}
         />
         <FileSizeInputHelper />
       </FormControl>
@@ -179,7 +179,7 @@ function UploadNewAggregationArea({onClose, regionId}) {
 
       <Button
         isFullWidth
-        isDisabled={uploading || !nameInput.value || !files}
+        isDisabled={uploading || !nameInput.value || !fileInput.files}
         isLoading={uploading}
         loadingText='Creating aggregation area'
         onClick={upload}

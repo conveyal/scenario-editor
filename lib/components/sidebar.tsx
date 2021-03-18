@@ -6,27 +6,25 @@ import {
   useColorMode,
   useColorModeValue
 } from '@chakra-ui/react'
-import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
 import {useRouter} from 'next/router'
-import {memo, useContext, useEffect} from 'react'
+import {memo, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
 import {CREATING_ID} from 'lib/constants/region'
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import useRouteTo from 'lib/hooks/use-route-to'
+import useUser from 'lib/hooks/use-user'
 import message from 'lib/message'
 import {routeTo} from 'lib/router'
 import selectOutstandingRequests from 'lib/selectors/outstanding-requests'
-import {UserContext} from 'lib/user'
 
 import {
   BundlesIcon,
   EditIcon,
   InfoIcon,
-  LoadingIcon,
   MoonIcon,
   ProjectsIcon,
   RegionsIcon,
@@ -39,6 +37,7 @@ import {
 } from './icons'
 import SVGLogo from './logo.svg'
 import Tip from './tip'
+import Spinner from './spinner'
 
 const sidebarWidth = '40px'
 
@@ -112,8 +111,8 @@ const selectQueryString = fpGet('queryString')
 
 export default function Sidebar() {
   const router = useRouter()
-  const user = useContext(UserContext)
-  const email = get(user, 'email')
+  const user = useUser()
+  const email = user?.email
   const storeParams = useSelector(selectQueryString)
   const queryParams = {...router.query, ...storeParams}
   const regionOnly = {regionId: queryParams.regionId}
@@ -247,7 +246,7 @@ const LogoSpinner = memo(() => {
   }, [outstandingRequests])
 
   if (outstandingRequests || routeChanging) {
-    return <LoadingIcon className='fa-spin' id='sidebar-spinner' />
+    return <Spinner id='sidebar-spinner' />
   }
 
   return (

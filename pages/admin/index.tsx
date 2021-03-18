@@ -10,7 +10,6 @@ import {
   TabPanels,
   Tabs
 } from '@chakra-ui/react'
-import React, {useContext} from 'react'
 import useSWR from 'swr'
 
 import {API} from 'lib/constants'
@@ -18,7 +17,6 @@ import {API} from 'lib/constants'
 import JobDashboard from 'lib/components/admin-job-dashboard'
 import TextLink from 'lib/components/text-link'
 import WorkerList from 'lib/components/admin-worker-list'
-import {UserContext} from 'lib/user'
 import withAuth from 'lib/with-auth'
 
 // Refresh every five seconds
@@ -33,8 +31,7 @@ const fetcher = (url, user) =>
     }
   }).then((res) => res.json())
 
-export default withAuth(function AdminDashboard() {
-  const user = useContext(UserContext)
+export default withAuth(function AdminDashboard({user}) {
   const jobRequest = useSWR([API.Jobs, user], fetcher, {refreshInterval})
   const workerRequest = useSWR([API.Workers, user], fetcher, {refreshInterval})
 

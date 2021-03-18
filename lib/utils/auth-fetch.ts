@@ -1,4 +1,4 @@
-import {getUser} from '../user'
+import {IUser} from '../user'
 
 import {fetchData, SafeResponse} from './safe-fetch'
 
@@ -7,13 +7,13 @@ import {fetchData, SafeResponse} from './safe-fetch'
  */
 export default function authFetch<T>(
   url: string,
+  user?: IUser,
   options?: RequestInit
 ): Promise<SafeResponse<T>> {
-  const user = getUser()
   const headers = {
-    Authorization: `bearer ${user.idToken}`
+    Authorization: `bearer ${user?.idToken}`
   }
-  if (user.adminTempAccessGroup)
+  if (user?.adminTempAccessGroup)
     headers['X-Conveyal-Access-Group'] = user.adminTempAccessGroup
 
   return fetchData(url, {

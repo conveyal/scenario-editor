@@ -1,8 +1,7 @@
 import useSWR, {ConfigInterface, responseInterface} from 'swr'
-import {useCallback, useContext} from 'react'
+import {useCallback} from 'react'
 
 import LogRocket from 'lib/logrocket'
-import {UserContext} from 'lib/user'
 import {
   postJSON,
   putJSON,
@@ -11,13 +10,15 @@ import {
   SafeResponse
 } from 'lib/utils/safe-fetch'
 
+import useUser from './use-user'
+
 interface UseCollection extends ConfigInterface {
   query?: Record<string, unknown>
   options?: Record<string, unknown>
 }
 
 type UseCollectionResponse<T> = {
-  create: (properties: T) => Promise<SafeResponse<T>>
+  create: (properties: Partial<T>) => Promise<SafeResponse<T>>
   data: T[]
   error?: Error
   remove: (_id: string) => Promise<SafeResponse<T>>
@@ -52,7 +53,7 @@ export function createUseCollection<T extends CL.IModel>(
   return function useCollection(
     config?: UseCollection
   ): UseCollectionResponse<T> {
-    const user = useContext(UserContext)
+    const user = useUser()
     const url = [`/api/db/${collectionName}`]
     const queryParams = configToQueryParams(config)
     if (queryParams) url.push(queryParams)
@@ -85,9 +86,9 @@ export function createUseCollection<T extends CL.IModel>(
     // Helper function for creating new values and revalidating
     const create = useCallback(
       async (properties: T) => {
-        const res = await postJSON(`/api/db/${collectionName}`, properties)
+        const res = await postJSON<T>(`/api/db/${collectionName}`, properties)
         if (res.ok) {
-          revalidate()
+          await revalidate()
         }
         return res
       },

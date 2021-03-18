@@ -63,9 +63,9 @@ export const Pages = {
   analysis: '/regions/[regionId]/analysis',
   regionalAnalyses: '/regions/[regionId]/regional',
   regionalAnalysis: '/regions/[regionId]/regional/[analysisId]',
-  login: '/api/login',
-  logout: '/api/logout',
-  authCallback: '/api/callback',
+  login: '/api/auth/login',
+  logout: '/api/auth/logout',
+  authCallback: '/api/auth/callback',
   resources: '/regions/[regionId]/resources',
   resourceUpload: '/regions/[regionId]/resources/upload',
   resourceEdit: '/regions/[regionId]/resources/[resourceId]'

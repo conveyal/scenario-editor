@@ -99,7 +99,7 @@ export default function AggregationArea({regionId}) {
 function UploadNewAggregationArea({onClose, regionId}) {
   const dispatch = useDispatch()
   const [union, setUnion] = useState(true)
-  const {files, onChangeFiles} = useFileInput()
+  const file = useFileInput()
   const [uploading, setUploading] = useState(false)
   const toast = useToast()
 
@@ -150,8 +150,9 @@ function UploadNewAggregationArea({onClose, regionId}) {
         <Input
           id='aggregationAreaFiles'
           multiple
-          onChange={onChangeFiles}
+          onChange={file.onChangeFiles}
           type='file'
+          value={file.value}
         />
         <FileSizeInputHelper />
       </FormControl>

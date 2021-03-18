@@ -70,7 +70,7 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   const [error, setError] = useState<void | string>()
   const [properties, setProperties] = useState<string[]>([])
   const [uploading, setUploading] = useState(false)
-  const {files, onChangeFiles} = useFileInput()
+  const file = useFileInput()
 
   const routeToModifications = useRouteTo('modifications', {
     projectId,
@@ -108,12 +108,12 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   )
 
   useEffect(() => {
-    if (files && files[0]) {
+    if (file.files && file.files[0]) {
       const reader = new window.FileReader()
       reader.onloadend = readShapeFile
-      reader.readAsArrayBuffer(files[0])
+      reader.readAsArrayBuffer(file.files[0])
     }
-  }, [files, readShapeFile])
+  }, [file, readShapeFile])
 
   /** create and save modifications for each line */
   async function create() {
@@ -184,7 +184,12 @@ export default function ImportShapefile({projectId, regionId, variants}) {
         <FormLabel htmlFor='fileInput'>
           {message('shapefile.selectZipped')}
         </FormLabel>
-        <Input id='fileInput' onChange={onChangeFiles} type='file' />
+        <Input
+          id='fileInput'
+          onChange={file.onChangeFiles}
+          type='file'
+          value={file.value}
+        />
         <FileSizeInputHelper />
       </FormControl>
 

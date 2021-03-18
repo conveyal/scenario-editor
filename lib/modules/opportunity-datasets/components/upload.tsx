@@ -21,7 +21,7 @@ import {uploadOpportunityDataset} from '../actions'
 
 /** Create an opportunity dataset by uploading files */
 export default function UploadOpportunityDataset({regionId}) {
-  const {files, onChangeFiles} = useFileInput()
+  const fileInput = useFileInput()
   const [uploading, setUploading] = useState(false)
   const [freeform, setFreeForm] = useState(false)
   const [paired, setPaired] = useState(false)
@@ -45,7 +45,8 @@ export default function UploadOpportunityDataset({regionId}) {
 
   // Enable extra fields if it's a CSV file
   const isCSV =
-    files && files.length === 1 && files[0].name.toLowerCase().endsWith('.csv')
+    fileInput.files?.length === 1 &&
+    fileInput.files[0].name.toLowerCase().endsWith('.csv')
 
   return (
     <form onSubmit={submit}>
@@ -65,8 +66,9 @@ export default function UploadOpportunityDataset({regionId}) {
             id='files'
             name='files'
             multiple
-            onChange={onChangeFiles}
+            onChange={fileInput.onChangeFiles}
             type='file'
+            value={fileInput.value}
           />
           <FileSizeInputHelper />
         </FormControl>

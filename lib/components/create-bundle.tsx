@@ -264,6 +264,7 @@ export default function CreateBundle() {
                       name='osm'
                       type='file'
                       onChange={osm.onChangeFiles}
+                      value={osm.value}
                     />
                     <FileSizeInputHelper />
                   </FormControl>
@@ -325,6 +326,7 @@ export default function CreateBundle() {
                     name='feedGroup'
                     onChange={feedGroup.onChangeFiles}
                     type='file'
+                    value={feedGroup.value}
                   />
                   <FileSizeInputHelper />
                 </FormControl>

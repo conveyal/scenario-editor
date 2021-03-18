@@ -141,6 +141,7 @@ exports[`Component > ImportShapefile 1`] = `
                       "width": "100%",
                     }
                   }
+                  aria-describedby="field-1-helptext"
                   className="chakra-input"
                   disabled={false}
                   id="fileInput"
@@ -152,6 +153,7 @@ exports[`Component > ImportShapefile 1`] = `
                   type="file"
                 >
                   <input
+                    aria-describedby="field-1-helptext"
                     className="chakra-input css-18q2db8"
                     disabled={false}
                     id="fileInput"
@@ -164,6 +166,33 @@ exports[`Component > ImportShapefile 1`] = `
                   />
                 </Styled(input)>
               </Input>
+              <FileSizeInputHelper>
+                <FormHelperText>
+                  <Styled(div)
+                    __css={
+                      Object {
+                        "color": "gray.500",
+                        "fontSize": "sm",
+                        "lineHeight": "normal",
+                        "mt": 2,
+                      }
+                    }
+                    className="chakra-form__helper-text"
+                    id="field-1-helptext"
+                  >
+                    <div
+                      className="chakra-form__helper-text css-1qoocny"
+                      id="field-1-helptext"
+                    >
+                      Max file size is 
+                      500
+                       MB. Total size of all files must be less than 
+                      1000
+                      MB.
+                    </div>
+                  </Styled(div)>
+                </FormHelperText>
+              </FileSizeInputHelper>
             </div>
           </Styled(div)>
         </FormControl>

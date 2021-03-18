@@ -38,13 +38,16 @@ const POLL_TIMEOUT_MS = 10000
 const STATUS_DONE = 'DONE'
 const STATUS_ERROR = 'ERROR'
 
-const fileTooLarge = (file?: File): boolean =>
-  file?.size >= SERVER_MAX_FILE_SIZE_BYTES
-const filesTooLarge = (fileList?: FileList): boolean =>
-  Array.from(fileList || []).findIndex(fileTooLarge) > -1
+const fileSizesTooLarge = (files: File[]): boolean => {
+  const sizes = files.map((f) => f?.size)
+  const totalSize = sizes.reduce((v, s) => v + s, 0)
+  if (totalSize > SERVER_MAX_FILE_SIZE_BYTES * 2) return true
+  return sizes.findIndex((s) => s >= SERVER_MAX_FILE_SIZE_BYTES) === -1
+}
 const FileSizeError = (p) => (
   <FormErrorMessage {...p}>
-    File exceeds maximum limit of {SERVER_MAX_FILE_SIZE_BYTES / 1024 / 1024}MB.
+    Each file has a maximum limit of {SERVER_MAX_FILE_SIZE_BYTES / 1024 / 1024}
+    MB. Total upload size of all files must be less than 1GB.
   </FormErrorMessage>
 )
 
@@ -61,8 +64,8 @@ export default function CreateBundle() {
 
   const hasExistingBundles = bundles.length > 0
   const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
-  const [osm, setOsm] = useState<FileList | null>(null)
-  const [feedGroup, setFeedGroup] = useState<FileList | null>(null)
+  const [osm, setOsm] = useState<File[] | null>(null)
+  const [feedGroup, setFeedGroup] = useState<File[] | null>(null)
   const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | void>()
@@ -76,12 +79,14 @@ export default function CreateBundle() {
     setFormData((d) => ({...d, [propName]: value}))
   }
 
+  const invalidFileSizes = fileSizesTooLarge([...osm, ...feedGroup])
+
   const isValid = () =>
     formData.name &&
-    ((reuseOsm && formData.osmId) ||
-      (!reuseOsm && osm && !filesTooLarge(osm))) &&
+    !invalidFileSizes &&
+    ((reuseOsm && formData.osmId) || (!reuseOsm && osm?.length > 0)) &&
     ((reuseGtfs && formData.feedGroupId) ||
-      (!reuseGtfs && feedGroup && !filesTooLarge(feedGroup)))
+      (!reuseGtfs && feedGroup?.length > 0))
 
   /**
    * Check if the upload has completed
@@ -167,6 +172,8 @@ export default function CreateBundle() {
             {message('bundle.notice')}
           </Alert>
         )}
+
+        {invalidFileSizes && <FileSizeError />}
       </Stack>
 
       <Stack
@@ -191,7 +198,14 @@ export default function CreateBundle() {
         <Tabs
           defaultIndex={hasExistingBundles ? 0 : 1}
           isFitted
-          onChange={(i) => setReuseOsm(i === 0)}
+          onChange={(i) => {
+            if (i === 0) {
+              setReuseOsm(true)
+              setOsm(null)
+            } else {
+              setReuseOsm(false)
+            }
+          }}
         >
           <TabList>
             <Tab
@@ -256,7 +270,7 @@ export default function CreateBundle() {
                     })}
                   </Code>
 
-                  <FormControl isInvalid={filesTooLarge(osm)} isRequired>
+                  <FormControl isRequired>
                     <FormLabel htmlFor='osm'>
                       {message('bundle.osm.uploadNewLabel')}
                     </FormLabel>
@@ -266,10 +280,9 @@ export default function CreateBundle() {
                       name='osm'
                       type='file'
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setOsm(e.currentTarget.files)
+                        setOsm(Array.from(e.currentTarget.files))
                       }
                     />
-                    {filesTooLarge(osm) && <FileSizeError />}
                   </FormControl>
                 </Stack>
               )}
@@ -280,7 +293,14 @@ export default function CreateBundle() {
         <Tabs
           defaultIndex={hasExistingBundles ? 0 : 1}
           isFitted
-          onChange={(i) => setReuseGtfs(i === 0)}
+          onChange={(i) => {
+            if (i === 0) {
+              setReuseGtfs(true)
+              setFeedGroup(null)
+            } else {
+              setReuseGtfs(false)
+            }
+          }}
         >
           <TabList>
             <Tab
@@ -311,7 +331,7 @@ export default function CreateBundle() {
             </TabPanel>
             <TabPanel pt={4} px={0}>
               {!reuseGtfs && (
-                <FormControl isInvalid={filesTooLarge(feedGroup)} isRequired>
+                <FormControl isRequired>
                   <FormLabel htmlFor='feedGroup'>
                     {message('bundle.gtfs.uploadNewLabel')}
                   </FormLabel>
@@ -321,11 +341,10 @@ export default function CreateBundle() {
                     multiple
                     name='feedGroup'
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      setFeedGroup(e.currentTarget.files)
+                      setFeedGroup(Array.from(e.currentTarget.files))
                     }
                     type='file'
                   />
-                  {filesTooLarge(feedGroup) && <FileSizeError />}
                 </FormControl>
               )}
             </TabPanel>

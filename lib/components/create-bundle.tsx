@@ -5,7 +5,6 @@ import {
   AlertTitle,
   Button,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -23,12 +22,13 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import {addBundle} from 'lib/actions'
 import fetch from 'lib/actions/fetch'
-import {API, SERVER_MAX_FILE_SIZE_BYTES} from 'lib/constants'
+import {API} from 'lib/constants'
 import message from 'lib/message'
 import selectBundles from 'lib/selectors/bundles'
 import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
+import FileSizeAlert, {fileSizesTooLarge} from './file-size-alert'
 import InnerDock from './inner-dock'
 import DocsLink from './docs-link'
 import useRouteTo from 'lib/hooks/use-route-to'
@@ -37,19 +37,6 @@ import useRouteTo from 'lib/hooks/use-route-to'
 const POLL_TIMEOUT_MS = 10000
 const STATUS_DONE = 'DONE'
 const STATUS_ERROR = 'ERROR'
-
-const fileSizesTooLarge = (files: File[]): boolean => {
-  const sizes = files.map((f) => f?.size)
-  const totalSize = sizes.reduce((v, s) => v + s, 0)
-  if (totalSize > SERVER_MAX_FILE_SIZE_BYTES * 2) return true
-  return sizes.findIndex((s) => s >= SERVER_MAX_FILE_SIZE_BYTES) === -1
-}
-const FileSizeError = (p) => (
-  <FormErrorMessage {...p}>
-    Each file has a maximum limit of {SERVER_MAX_FILE_SIZE_BYTES / 1024 / 1024}
-    MB. Total upload size of all files must be less than 1GB.
-  </FormErrorMessage>
-)
 
 /**
  * Create bundle form.
@@ -79,11 +66,11 @@ export default function CreateBundle() {
     setFormData((d) => ({...d, [propName]: value}))
   }
 
-  const invalidFileSizes = fileSizesTooLarge([...osm, ...feedGroup])
+  const isInvalidFileSizes = fileSizesTooLarge([...osm, ...feedGroup])
 
   const isValid = () =>
     formData.name &&
-    !invalidFileSizes &&
+    !isInvalidFileSizes &&
     ((reuseOsm && formData.osmId) || (!reuseOsm && osm?.length > 0)) &&
     ((reuseGtfs && formData.feedGroupId) ||
       (!reuseGtfs && feedGroup?.length > 0))
@@ -173,7 +160,7 @@ export default function CreateBundle() {
           </Alert>
         )}
 
-        {invalidFileSizes && <FileSizeError />}
+        <FileSizeAlert isInvalid={isInvalidFileSizes} />
       </Stack>
 
       <Stack

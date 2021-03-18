@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
-import {useState} from 'react'
+import {ChangeEvent, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {
@@ -26,6 +26,7 @@ import message from 'lib/message'
 import OpportunityDatasets from 'lib/modules/opportunity-datasets'
 import selectActiveAggregationArea from 'lib/selectors/active-aggregation-area'
 
+import FileSizeAlert from '../file-size-alert'
 import Select from '../select'
 
 const selectAggregationAreas = fpGet('region.aggregationAreas')
@@ -97,7 +98,7 @@ export default function AggregationArea({regionId}) {
 function UploadNewAggregationArea({onClose, regionId}) {
   const dispatch = useDispatch()
   const [union, setUnion] = useState(true)
-  const [files, setFiles] = useState<any>()
+  const [files, setFiles] = useState<File[] | null>(null)
   const [uploading, setUploading] = useState(false)
   const toast = useToast()
 
@@ -134,6 +135,8 @@ function UploadNewAggregationArea({onClose, regionId}) {
 
   return (
     <Stack spacing={4}>
+      <FileSizeAlert files={files} />
+
       <FormControl isDisabled={uploading} isRequired>
         <FormLabel htmlFor={nameInput.id}>
           {message('analysis.aggregationAreaName')}
@@ -148,7 +151,9 @@ function UploadNewAggregationArea({onClose, regionId}) {
         <Input
           id='aggregationAreaFiles'
           multiple
-          onChange={(e) => setFiles(e.target.files)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setFiles(Array.from(e.currentTarget.files))
+          }
           type='file'
         />
       </FormControl>

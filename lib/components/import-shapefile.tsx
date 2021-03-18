@@ -12,8 +12,7 @@ import {
   Stack
 } from '@chakra-ui/react'
 import distance from '@turf/distance'
-import get from 'lodash/get'
-import {useState} from 'react'
+import {ChangeEvent, useState} from 'react'
 import {useDispatch} from 'react-redux'
 import shp from 'shpjs'
 
@@ -25,6 +24,7 @@ import message from 'lib/message'
 import {createAddTripPattern} from 'lib/utils/modification'
 import {create as createTimetable} from 'lib/utils/timetable'
 
+import FileSizeAlert from './file-size-alert'
 import NumberInput from './number-input'
 
 const hasOwnProperty = (o, p) => Object.prototype.hasOwnProperty.call(o, p)
@@ -69,6 +69,7 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   const [error, setError] = useState<void | string>()
   const [properties, setProperties] = useState<string[]>([])
   const [uploading, setUploading] = useState(false)
+  const [files, setFiles] = useState<File[] | null>(null)
 
   const routeToModifications = useRouteTo('modifications', {
     projectId,
@@ -100,13 +101,14 @@ export default function ImportShapefile({projectId, regionId, variants}) {
     setError()
   }
 
-  function selectShapeFile(e) {
+  function selectShapeFile(e: ChangeEvent<HTMLInputElement>) {
     // read the shapefile
-    const file = get(e.target, 'files[0]')
-    if (file) {
+    const files = e.currentTarget.files
+    setFiles(Array.from(files))
+    if (files && files[0]) {
       const reader = new window.FileReader()
       reader.onloadend = readShapeFile
-      reader.readAsArrayBuffer(e.target.files[0])
+      reader.readAsArrayBuffer(files[0])
     }
   }
 
@@ -174,6 +176,8 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   return (
     <Stack p={4} spacing={4}>
       <Heading size='md'>{message('modification.importFromShapefile')}</Heading>
+
+      <FileSizeAlert files={files} />
 
       <FormControl>
         <FormLabel htmlFor='fileInput'>

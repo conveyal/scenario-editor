@@ -14,13 +14,14 @@ import {useDispatch} from 'react-redux'
 import message from 'lib/message'
 
 import DocsLink from 'lib/components/docs-link'
+import FileSizeAlert from 'lib/components/file-size-alert'
 import {AddIcon} from 'lib/components/icons'
 
 import {uploadOpportunityDataset} from '../actions'
 
 /** Create an opportunity dataset by uploading files */
 export default function UploadOpportunityDataset({regionId}) {
-  const [files, setFiles] = useState<FileList | void>()
+  const [files, setFiles] = useState<File[] | null>(null)
   const [uploading, setUploading] = useState(false)
   const [freeform, setFreeForm] = useState(false)
   const [paired, setPaired] = useState(false)
@@ -58,6 +59,8 @@ export default function UploadOpportunityDataset({regionId}) {
           <Input name='Name' id='Name' />
         </FormControl>
 
+        <FileSizeAlert files={files} />
+
         <FormControl isRequired>
           <FormLabel htmlFor='files'>{message('analysis.gridFiles')}</FormLabel>
           <Input
@@ -65,7 +68,7 @@ export default function UploadOpportunityDataset({regionId}) {
             name='files'
             multiple
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setFiles(e.target.files)
+              setFiles(Array.from(e.target.files))
             }
             type='file'
           />
@@ -160,6 +163,7 @@ export default function UploadOpportunityDataset({regionId}) {
         </FormControl>
 
         <Button
+          isDisabled={invalidFileSizes}
           type='submit'
           leftIcon={<AddIcon />}
           isLoading={uploading}

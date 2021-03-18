@@ -8,20 +8,20 @@ import {
   Stack,
   Switch
 } from '@chakra-ui/react'
-import {ChangeEvent, FormEvent, useState} from 'react'
+import {FormEvent, useState} from 'react'
 import {useDispatch} from 'react-redux'
 
-import message from 'lib/message'
-
+import useFileInput from 'lib/hooks/use-file-input'
 import DocsLink from 'lib/components/docs-link'
-import FileSizeAlert from 'lib/components/file-size-alert'
+import FileSizeInputHelper from 'lib/components/file-size-input-helper'
 import {AddIcon} from 'lib/components/icons'
+import message from 'lib/message'
 
 import {uploadOpportunityDataset} from '../actions'
 
 /** Create an opportunity dataset by uploading files */
 export default function UploadOpportunityDataset({regionId}) {
-  const [files, setFiles] = useState<File[] | null>(null)
+  const {files, onChangeFiles} = useFileInput()
   const [uploading, setUploading] = useState(false)
   const [freeform, setFreeForm] = useState(false)
   const [paired, setPaired] = useState(false)
@@ -59,19 +59,16 @@ export default function UploadOpportunityDataset({regionId}) {
           <Input name='Name' id='Name' />
         </FormControl>
 
-        <FileSizeAlert files={files} />
-
         <FormControl isRequired>
           <FormLabel htmlFor='files'>{message('analysis.gridFiles')}</FormLabel>
           <Input
             id='files'
             name='files'
             multiple
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setFiles(Array.from(e.target.files))
-            }
+            onChange={onChangeFiles}
             type='file'
           />
+          <FileSizeInputHelper />
         </FormControl>
 
         <Heading size='sm'>CSV Options</Heading>
@@ -163,7 +160,6 @@ export default function UploadOpportunityDataset({regionId}) {
         </FormControl>
 
         <Button
-          isDisabled={invalidFileSizes}
           type='submit'
           leftIcon={<AddIcon />}
           isLoading={uploading}

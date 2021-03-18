@@ -17,21 +17,22 @@ import {
   TabPanels,
   Text
 } from '@chakra-ui/react'
-import {ChangeEvent, useState} from 'react'
+import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {addBundle} from 'lib/actions'
 import fetch from 'lib/actions/fetch'
-import {API} from 'lib/constants'
+import {API, SERVER_NGINX_MAX_CLIENT_BODY_SIZE} from 'lib/constants'
 import message from 'lib/message'
 import selectBundles from 'lib/selectors/bundles'
 import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
-import FileSizeAlert, {fileSizesTooLarge} from './file-size-alert'
+import FileSizeInputHelper from './file-size-input-helper'
 import InnerDock from './inner-dock'
 import DocsLink from './docs-link'
 import useRouteTo from 'lib/hooks/use-route-to'
+import useFileInput from 'lib/hooks/use-file-input'
 
 // how often to poll when waiting for a bundle to be read on the server.
 const POLL_TIMEOUT_MS = 10000
@@ -51,8 +52,8 @@ export default function CreateBundle() {
 
   const hasExistingBundles = bundles.length > 0
   const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
-  const [osm, setOsm] = useState<File[] | null>(null)
-  const [feedGroup, setFeedGroup] = useState<File[] | null>(null)
+  const osm = useFileInput()
+  const feedGroup = useFileInput()
   const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | void>()
@@ -66,14 +67,12 @@ export default function CreateBundle() {
     setFormData((d) => ({...d, [propName]: value}))
   }
 
-  const isInvalidFileSizes = fileSizesTooLarge([...osm, ...feedGroup])
-
   const isValid = () =>
     formData.name &&
-    !isInvalidFileSizes &&
-    ((reuseOsm && formData.osmId) || (!reuseOsm && osm?.length > 0)) &&
+    osm.totalSize + feedGroup.totalSize < SERVER_NGINX_MAX_CLIENT_BODY_SIZE &&
+    ((reuseOsm && formData.osmId) || (!reuseOsm && osm.files?.length > 0)) &&
     ((reuseGtfs && formData.feedGroupId) ||
-      (!reuseGtfs && feedGroup?.length > 0))
+      (!reuseGtfs && feedGroup.files?.length > 0))
 
   /**
    * Check if the upload has completed
@@ -159,8 +158,6 @@ export default function CreateBundle() {
             {message('bundle.notice')}
           </Alert>
         )}
-
-        <FileSizeAlert isInvalid={isInvalidFileSizes} />
       </Stack>
 
       <Stack
@@ -188,7 +185,7 @@ export default function CreateBundle() {
           onChange={(i) => {
             if (i === 0) {
               setReuseOsm(true)
-              setOsm(null)
+              osm.setFiles(null)
             } else {
               setReuseOsm(false)
             }
@@ -266,10 +263,9 @@ export default function CreateBundle() {
                       id='osm'
                       name='osm'
                       type='file'
-                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setOsm(Array.from(e.currentTarget.files))
-                      }
+                      onChange={osm.onChangeFiles}
                     />
+                    <FileSizeInputHelper />
                   </FormControl>
                 </Stack>
               )}
@@ -283,7 +279,7 @@ export default function CreateBundle() {
           onChange={(i) => {
             if (i === 0) {
               setReuseGtfs(true)
-              setFeedGroup(null)
+              feedGroup.setFiles(null)
             } else {
               setReuseGtfs(false)
             }
@@ -327,11 +323,10 @@ export default function CreateBundle() {
                     id='feedGroup'
                     multiple
                     name='feedGroup'
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      setFeedGroup(Array.from(e.currentTarget.files))
-                    }
+                    onChange={feedGroup.onChangeFiles}
                     type='file'
                   />
+                  <FileSizeInputHelper />
                 </FormControl>
               )}
             </TabPanel>

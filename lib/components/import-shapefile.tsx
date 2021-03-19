@@ -70,13 +70,17 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   const [error, setError] = useState<void | string>()
   const [properties, setProperties] = useState<string[]>([])
   const [uploading, setUploading] = useState(false)
-  const file = useFileInput()
+  const fileInput = useFileInput()
+  const {files} = fileInput
 
   const routeToModifications = useRouteTo('modifications', {
     projectId,
     regionId
   })
 
+  const onChangeName = nameInput.onChange
+  const onChangeFreq = freqInput.onChange
+  const onChangeSpeed = speedInput.onChange
   const readShapeFile = useCallback(
     async (e: ProgressEvent<FileReader>) => {
       if (e.target.result instanceof ArrayBuffer) {
@@ -98,24 +102,24 @@ export default function ImportShapefile({projectId, regionId, variants}) {
 
         setShapefile(shapefile)
         setProperties(properties)
-        nameInput.onChange(properties[0])
-        freqInput.onChange(properties[0])
-        speedInput.onChange(properties[0])
+        onChangeName(properties[0])
+        onChangeFreq(properties[0])
+        onChangeSpeed(properties[0])
         setError()
       }
     },
-    [freqInput, nameInput, speedInput]
+    [onChangeFreq, onChangeName, onChangeSpeed]
   )
 
   useEffect(() => {
-    if (file.files && file.files[0]) {
+    if (files && files[0]) {
       const reader = new window.FileReader()
       reader.onloadend = readShapeFile
-      reader.readAsArrayBuffer(file.files[0])
+      reader.readAsArrayBuffer(files[0])
     }
-  }, [file, readShapeFile])
+  }, [files, readShapeFile])
 
-  /** create and save modifications for each line */
+  // Create and save modifications for each line
   async function create() {
     setUploading(true)
     try {
@@ -186,9 +190,9 @@ export default function ImportShapefile({projectId, regionId, variants}) {
         </FormLabel>
         <Input
           id='fileInput'
-          onChange={file.onChangeFiles}
+          onChange={fileInput.onChangeFiles}
           type='file'
-          value={file.value}
+          value={fileInput.value}
         />
         <FileSizeInputHelper />
       </FormControl>

@@ -1,5 +1,11 @@
 import {useToast} from '@chakra-ui/toast'
-import {ChangeEvent, useCallback, useState} from 'react'
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useState
+} from 'react'
 
 import {
   SERVER_NGINX_MAX_CLIENT_BODY_SIZE,
@@ -8,8 +14,9 @@ import {
 
 const toMB = (b: number) => b / 1024 / 1024
 
-const singleAlert = (b) => `Each file has a maximum limit of ${toMB(b)}MB.`
-const totalAlert = (b) =>
+const singleAlert = (b: number) =>
+  `Each file has a maximum limit of ${toMB(b)}MB.`
+const totalAlert = (b: number) =>
   `Total size of all files must be less than ${toMB(b)}MB.`
 
 function getFileSizesAlert(
@@ -23,12 +30,21 @@ function getFileSizesAlert(
     return singleAlert(fileMaxBytes)
 }
 
+type FileInput = {
+  files: File[] | null
+  fileSizes: number[]
+  onChangeFiles: (e: ChangeEvent<HTMLInputElement>) => void
+  setFiles: Dispatch<SetStateAction<File[]>>
+  totalSize: number
+  value: string | string[]
+}
+
 export default function useFileInput(
   {fileMaxBytes, totalMaxBytes} = {
     fileMaxBytes: SERVER_MAX_FILE_SIZE_BYTES,
     totalMaxBytes: SERVER_NGINX_MAX_CLIENT_BODY_SIZE
   }
-) {
+): FileInput {
   const toast = useToast()
   const [files, setFiles] = useState<File[] | null>(null)
   const [fileSizes, setFileSizes] = useState<number[]>([])

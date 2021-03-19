@@ -299,7 +299,7 @@
     "select": "or select an existing layer",
     "delete": "Delete this layer",
     "deleteSource": "Delete all layers from dataset",
-    "downloadLODES": "Fetch LODES (2015)",
+    "downloadLODES": "Fetch LODES (2018)",
     "confirmLODES": "LEHD LODES data are only available for the United States.  Are you sure you want to fetch these data?",
     "downloadTiff": "Download as .tiff",
     "downloadGrid": "Download as .grid",

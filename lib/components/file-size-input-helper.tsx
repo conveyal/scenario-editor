@@ -5,7 +5,7 @@ import {
   SERVER_MAX_FILE_SIZE_BYTES
 } from 'lib/constants'
 
-const toMB = (b: number) => b / 1024 / 1024
+const toMB = (bytes: number) => bytes / 1024 / 1024
 
 export default function FileSizeInputHelper({
   maxSingleBytes = SERVER_MAX_FILE_SIZE_BYTES,

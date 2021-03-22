@@ -7,7 +7,7 @@ import Bolts from './worker-bolts'
 
 // Round everything above a million
 const toSI = format('.4~s')
-const roundToSI = (n) => (n < 1000000 ? n : toSI(n))
+const roundToSI = (n: number) => (n < 1000000 ? n : toSI(n))
 
 export default function RunningAnalysis({job, ...p}) {
   const complete = job.complete
@@ -18,9 +18,11 @@ export default function RunningAnalysis({job, ...p}) {
       <Flex align='flex-start' justify='space-between'>
         <Heading size='sm'>
           <ALink
-            analysisId={job.jobId}
-            regionId={job.regionalAnalysis.regionId}
             to='regionalAnalyses'
+            query={{
+              analysisId: job.jobId,
+              regionId: job.regionalAnalysis.regionId
+            }}
           >
             {job.regionalAnalysis.name}
           </ALink>

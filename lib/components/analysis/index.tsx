@@ -7,8 +7,7 @@ import {
   Heading,
   List,
   ListItem,
-  Stack,
-  Skeleton
+  Stack
 } from '@chakra-ui/react'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'

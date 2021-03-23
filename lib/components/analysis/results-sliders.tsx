@@ -9,8 +9,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-  FormControlProps,
-  VStack
+  FormControlProps
 } from '@chakra-ui/react'
 import {useCallback, memo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'

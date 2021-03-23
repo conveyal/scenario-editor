@@ -320,7 +320,7 @@ function YAxis({fontColor, height, yScale}) {
   // y scale
   const yTicks = trimmedYScale.ticks(5)
 
-  const toRender = yTicks.map((tick, i, arr) => {
+  const toRender = yTicks.map((tick) => {
     const yoff = yScale(tick)
 
     const tickText = tickFormat(tick)

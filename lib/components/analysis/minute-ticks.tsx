@@ -25,7 +25,7 @@ export default memo<MinuteTicksProps>(function MinuteTicks({
 }) {
   return (
     <>
-      {TIME_LABELS.map((v, i, arr) => (
+      {TIME_LABELS.map((v, i) => (
         <text
           x={i === 0 && label ? scale(v) - textHeight / 2 : scale(v)}
           y={0}

@@ -9,8 +9,7 @@ import {
   SliderThumb,
   SliderTrack,
   FormControlProps,
-  SliderProps,
-  useColorModeValue
+  SliderProps
 } from '@chakra-ui/react'
 import {useCallback, memo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'

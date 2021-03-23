@@ -64,6 +64,7 @@ export default function AnalysisTitle() {
           rightIcon={<XIcon />}
           onClick={abort}
           colorScheme='red'
+          key='abort'
           size='lg'
         >
           Abort

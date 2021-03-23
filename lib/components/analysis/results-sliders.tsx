@@ -4,6 +4,7 @@ import {
   FormControl,
   FormLabel,
   HStack,
+  Input,
   Slider,
   SliderFilledTrack,
   SliderThumb,
@@ -52,27 +53,30 @@ export default function ResultSliders({
   })
   const isDisabledOrStale = isDisabled || isStale
   return (
-    <HStack spacing={6} width='100%' {...p}>
-      <FormControl isDisabled={isDisabledOrStale} width='500px'>
-        <CutoffSlider
-          cutoff={cutoffInput.value}
+    <>
+      <HStack spacing={6} width='100%' {...p}>
+        <FormControl isDisabled={isDisabledOrStale} width='500px'>
+          <CutoffSlider
+            cutoff={cutoffInput.value}
+            isDisabled={isDisabledOrStale}
+            onChange={onChangeCutoff}
+          />
+          <FormLabel
+            htmlFor={cutoffInput.id}
+            textAlign='center'
+            whiteSpace='nowrap'
+          >
+            Travel time cutoff minutes
+          </FormLabel>
+        </FormControl>
+        <PercentileSlider
+          flex='0 0 95px'
+          alignItems='top'
           isDisabled={isDisabledOrStale}
-          onChange={onChangeCutoff}
         />
-        <FormLabel
-          htmlFor={cutoffInput.id}
-          textAlign='center'
-          whiteSpace='nowrap'
-        >
-          Travel time cutoff minutes
-        </FormLabel>
-      </FormControl>
-      <PercentileSlider
-        flex='0 0 95px'
-        alignItems='top'
-        isDisabled={isDisabledOrStale}
-      />
-    </HStack>
+      </HStack>
+      <input style={{height: 0, width: 0}} {...cutoffInput} />
+    </>
   )
 }
 

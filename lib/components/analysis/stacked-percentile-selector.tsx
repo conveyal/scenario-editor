@@ -86,6 +86,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
         <VStack flex='1' fontFamily='mono' fontWeight='bold' spacing={0}>
           <Tip label={PRIMARY_ACCESS_LABEL}>
             <Box
+              aria-label={PRIMARY_ACCESS_LABEL}
               borderWidth='1px'
               px={1}
               color={projectColor}
@@ -106,6 +107,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
           {typeof comparisonAccessibility === 'number' && (
             <Tip label={COMPARISON_ACCESS_LABEL}>
               <Box
+                aria-label={COMPARISON_ACCESS_LABEL}
                 color={comparisonColor}
                 borderWidth='1px'
                 borderTopWidth={0}

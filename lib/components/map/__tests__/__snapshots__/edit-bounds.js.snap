@@ -2,7 +2,7 @@
 
 exports[`Components > Map > Edit Bounds renders correctly 1`] = `
 <Fragment>
-  <ForwardRef(Leaflet(Marker))
+  <CLMarker
     draggable={true}
     onDragEnd={[Function]}
     position={
@@ -12,7 +12,7 @@ exports[`Components > Map > Edit Bounds renders correctly 1`] = `
       }
     }
   />
-  <ForwardRef(Leaflet(Marker))
+  <CLMarker
     draggable={true}
     onDragEnd={[Function]}
     position={
@@ -22,7 +22,7 @@ exports[`Components > Map > Edit Bounds renders correctly 1`] = `
       }
     }
   />
-  <ForwardRef(Leaflet(Marker))
+  <CLMarker
     draggable={true}
     onDragEnd={[Function]}
     position={
@@ -32,7 +32,7 @@ exports[`Components > Map > Edit Bounds renders correctly 1`] = `
       }
     }
   />
-  <ForwardRef(Leaflet(Marker))
+  <CLMarker
     draggable={true}
     onDragEnd={[Function]}
     position={

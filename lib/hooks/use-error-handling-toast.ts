@@ -30,7 +30,8 @@ export default function useErrorHandlingToast() {
           description,
           title,
           // Remove toast type from tracker
-          onCloseComplete: () => toastTracker.delete(slug)
+          onCloseComplete: () => toastTracker.delete(slug),
+          isClosable: true
         })
       }
     }

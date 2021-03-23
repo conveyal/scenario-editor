@@ -1,13 +1,15 @@
+import {Button, Stack, useColorModeValue} from '@chakra-ui/react'
 import set from 'lodash/set'
 import dynamic from 'next/dynamic'
 import {useEffect, useRef, useState} from 'react'
 import {
   AttributionControl,
   Map as LeafletMap,
-  Viewport,
-  ZoomControl
+  useLeaflet,
+  Viewport
 } from 'react-leaflet'
 import {useSelector} from 'react-redux'
+import MapControl from 'react-leaflet-control'
 
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import selectModificationSaveInProgress from 'lib/selectors/modification-save-in-progress'
@@ -15,7 +17,9 @@ import selectRegionBounds from 'lib/selectors/region-bounds'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
 import Geocoder from './geocoder'
-import {useColorModeValue} from '@chakra-ui/color-mode'
+import {AddIcon, MinusIcon} from '../icons'
+
+import 'leaflet/dist/leaflet.css'
 
 const MapboxGLLayer = dynamic(() => import('./mapbox-gl'))
 
@@ -31,6 +35,38 @@ const lightStyle =
   process.env.NEXT_PUBLIC_MAPBOX_STYLE ?? 'conveyal/cjwu7oipd0bf41cqqv15huoim'
 const darkStyle = 'conveyal/cklwkj6g529qi17nydq56jn9k'
 const getStyle = (style: string) => `mapbox://styles/${style}`
+
+function Controls({isDisabled}) {
+  const {map} = useLeaflet()
+
+  return (
+    <MapControl position='topright'>
+      <Stack>
+        <Stack spacing={0}>
+          <Button
+            colorScheme='blue'
+            isDisabled={isDisabled}
+            onClick={() => map.zoomIn()}
+            roundedBottom={0}
+            shadow='lg'
+          >
+            <AddIcon />
+          </Button>
+          <Button
+            colorScheme='blue'
+            isDisabled={isDisabled}
+            onClick={() => map.zoomOut()}
+            roundedTop={0}
+            shadow='lg'
+          >
+            <MinusIcon />
+          </Button>
+        </Stack>
+        <Geocoder isDisabled={isDisabled} />
+      </Stack>
+    </MapControl>
+  )
+}
 
 export default function Map({children, setLeafletContext}) {
   const style = useColorModeValue(lightStyle, darkStyle)
@@ -108,15 +144,11 @@ export default function Map({children, setLeafletContext}) {
         )}
 
         <AttributionControl position='bottomright' prefix={false} />
-        <ZoomControl position='topright' />
+
+        <Controls isDisabled={routeChanging || saveInProgress} />
 
         {!routeChanging && children ? children : null}
       </LeafletMap>
-
-      <Geocoder
-        isDisabled={routeChanging || saveInProgress}
-        map={leafletMapRef.current?.leafletElement}
-      />
     </>
   )
 }

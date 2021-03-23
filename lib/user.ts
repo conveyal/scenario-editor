@@ -1,17 +1,14 @@
-// TODO schedule session refresh
-import get from 'lodash/get'
-import {createContext, useEffect} from 'react'
-import useSWR from 'swr'
+import {Session, UserProfile} from '@auth0/nextjs-auth0'
+import {parse} from 'cookie'
+import {IncomingMessage} from 'http'
+
+import {AUTH_DISABLED} from 'lib/constants'
 
 import LogRocket from './logrocket'
 
-const isServer = typeof window === 'undefined'
-const isDisabled = process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true'
-
-export interface IUser {
+export interface IUser extends UserProfile {
   accessGroup: string
   adminTempAccessGroup?: string
-  email: string
   idToken?: string
 }
 
@@ -24,30 +21,46 @@ declare global {
 }
 
 // When auth is disabled, use a local user
-const localUser: IUser = {
+export const localUser: IUser = {
   accessGroup: 'local',
   adminTempAccessGroup: null,
-  email: 'local'
+  email: 'local',
+  idToken: 'idToken'
 }
 
-// Allow components to consume the user without needing to drill it down
-export const UserContext = createContext(null)
+// Get an IUser from a Session
+export function userFromSession(req: IncomingMessage, session: Session): IUser {
+  const user: IUser = {
+    ...session.user,
+    // This is a namespace for a custom claim. Not a URL: https://auth0.com/docs/tokens/guides/create-namespaced-custom-claims
+    accessGroup: session.user['http://conveyal/accessGroup'],
+    adminTempAccessGroup: null,
+    email: session.user.name,
+    idToken: session.idToken
+  }
+
+  if (user.accessGroup === process.env.NEXT_PUBLIC_ADMIN_ACCESS_GROUP) {
+    const adminTempAccessGroup = parse(req.headers.cookie || '')
+      .adminTempAccessGroup
+    if (adminTempAccessGroup) user.adminTempAccessGroup = adminTempAccessGroup
+  }
+
+  return user
+}
 
 // Helper functions to hide storage details
 // Store on `window` so that each new tab/window needs to check the session
 export function getUser(serverSideUser?: IUser): undefined | IUser {
-  if (isDisabled) return localUser
-  if (isServer) return serverSideUser
+  if (AUTH_DISABLED) return localUser
+  if (!process.browser) return serverSideUser
   return window.__user || serverSideUser
 }
 
-export function removeUser(): void {
-  if (isServer) return
-  delete window.__user
-}
-
 export function storeUser(user: IUser): void {
-  if (isServer) return
+  if (!process.browser || AUTH_DISABLED) return
+
+  // Store the user on window, requiring a new session on each tab/page
+  window.__user = user
 
   // Identify the user for LogRocket
   LogRocket.identify(user.email, {
@@ -65,51 +78,8 @@ export function storeUser(user: IUser): void {
       })
     })
   }
-
-  // Store the user on window, requiring a new session on each tab/page
-  window.__user = user
 }
 
 export function getIdToken(): string | void {
-  return get(getUser(), 'idToken')
-}
-
-/**
- * Client side redirect to login.
- */
-function goToLogin() {
-  if (isServer || isDisabled) return
-
-  const redirectTo = encodeURIComponent(
-    window.location.pathname + window.location.search
-  )
-  const loginHref = `/api/login?redirectTo=${redirectTo}`
-  window.location.href = loginHref
-}
-
-/**
- * Get the user. Checks if it's stored in the client or retrieves it by
- * making an API call. If authentication is disabled it short circuits the process
- * by returning a local user.
- */
-export function useFetchUser(
-  serverSideUser?: IUser
-): {
-  user: void | IUser
-  loading: boolean
-} {
-  const {data: user, error, isValidating} = useSWR('/api/session', {
-    initialData: getUser(serverSideUser)
-  })
-
-  if (error) {
-    removeUser()
-    goToLogin()
-  }
-
-  useEffect(() => {
-    if (user) storeUser(user)
-  }, [user])
-
-  return {user, loading: isValidating}
+  return getUser()?.idToken
 }

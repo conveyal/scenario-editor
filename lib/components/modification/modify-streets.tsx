@@ -1,10 +1,10 @@
 import L from 'leaflet'
 import {useRef, MutableRefObject, useEffect, useCallback} from 'react'
 import {FeatureGroup} from 'react-leaflet'
-import {EditControl} from 'react-leaflet-draw'
 
 import type {FeatureCollection, Polygon} from 'geojson'
 
+import {EditControl} from 'lib/components/map/leaflet-draw'
 import colors from 'lib/constants/colors'
 
 import StreetForm from './street-form'

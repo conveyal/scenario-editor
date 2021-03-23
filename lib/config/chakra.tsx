@@ -1,9 +1,4 @@
-import {
-  ChakraProvider,
-  cookieStorageManager,
-  extendTheme,
-  localStorageManager
-} from '@chakra-ui/react'
+import {ChakraProvider, extendTheme} from '@chakra-ui/react'
 
 const defaultFontFamily = `'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`
 
@@ -54,14 +49,6 @@ const ConveyalTheme = extendTheme({
   useSystemColorMode: false
 })
 
-export default function ChakraTheme({cookies, children}) {
-  const colorModeManager =
-    typeof cookies === 'string'
-      ? cookieStorageManager(cookies)
-      : localStorageManager
-  return (
-    <ChakraProvider colorModeManager={colorModeManager} theme={ConveyalTheme}>
-      {children}
-    </ChakraProvider>
-  )
+export default function ChakraTheme({children}) {
+  return <ChakraProvider theme={ConveyalTheme}>{children}</ChakraProvider>
 }

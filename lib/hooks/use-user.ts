@@ -1,17 +1,6 @@
-import get from 'lodash/get'
-import {useContext} from 'react'
+import {useUser} from '@auth0/nextjs-auth0'
 
-import {UserContext} from '../user'
+import {AUTH_DISABLED} from 'lib/constants'
+import {localUser, IUser} from 'lib/user'
 
-export default function useUser() {
-  const user = useContext(UserContext)
-  const accessGroup =
-    get(user, 'adminTempAccessGroup') || get(user, 'accessGroup')
-  const email = get(user, 'email')
-
-  return {
-    ...user,
-    accessGroup,
-    email
-  }
-}
+export default AUTH_DISABLED ? () => localUser : () => useUser()?.user as IUser

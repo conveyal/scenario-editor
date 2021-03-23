@@ -1,9 +1,9 @@
 import useSWR, {ConfigInterface, responseInterface} from 'swr'
-import {useContext, useCallback} from 'react'
+import {useCallback} from 'react'
 
 import {putJSON, safeDelete, SafeResponse} from 'lib/utils/safe-fetch'
 
-import {UserContext} from '../user'
+import useUser from './use-user'
 
 type UseModelResponse<T> = {
   data: T
@@ -23,7 +23,7 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
     _id: string,
     config?: ConfigInterface
   ): UseModelResponse<T> {
-    const user = useContext(UserContext)
+    const user = useUser()
     const url = `/api/db/${collectionName}/${_id}`
     const response = useSWR<T, SafeResponse<T>>([url, user], {
       ...SWRConfigDefaults,

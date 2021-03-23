@@ -128,7 +128,8 @@ export default memo<Props>(function PresetChooser({
         toast({
           title: 'Deleted selected preset',
           position: 'top',
-          status: 'success'
+          status: 'success',
+          isClosable: true
         })
       } else {
         toast({
@@ -258,7 +259,8 @@ function CreatePreset({create, currentSettings, onClose, regionId}) {
       toast({
         title: 'Created new preset',
         position: 'top',
-        status: 'success'
+        status: 'success',
+        isClosable: true
       })
       onClose()
     } else {
@@ -323,7 +325,8 @@ function EditPreset({preset, onClose, update}) {
       toast({
         title: 'Saved changes to preset',
         position: 'top',
-        status: 'success'
+        status: 'success',
+        isClosable: true
       })
       onClose()
     } else {

@@ -1,5 +1,4 @@
 import throttle from 'lodash/throttle'
-import get from 'lodash/get'
 import {stringify} from 'querystring'
 
 import {MB_TOKEN} from 'lib/constants'
@@ -10,12 +9,20 @@ const PATH = '/geocoding/v5/mapbox.places'
 const getURL = (s: string, q: string) =>
   `${BASE_URL}${PATH}/${encodeURIComponent(s)}.json?${q}`
 
+type Context = {
+  id: string
+  text: string
+}
+
 /**
  * Mapbox adds properties to a normal featuer.
  * https://docs.mapbox.com/api/search/#geocoding-response-object
  */
 export interface MapboxFeature extends GeoJSON.Feature {
   center: [number, number] // lon/lat
+  context: Context[]
+  place_name: string
+  text: string
 }
 
 type SearchCallback = (features: MapboxFeature[]) => void
@@ -28,7 +35,7 @@ export default throttle(function mapboxSearch(
   options = {},
   cb: SearchCallback
 ) {
-  if (get(s, 'length') < 3) return cb([])
+  if (s == null || s.length < 3) return cb([])
 
   const querystring = stringify({
     access_token: MB_TOKEN,

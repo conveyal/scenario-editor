@@ -15,11 +15,11 @@ import EditBoundsForm from 'lib/components/edit-bounds-form'
 import InnerDock from 'lib/components/inner-dock'
 import {SPACING_FORM} from 'lib/constants/chakra'
 import {DEFAULT_BOUNDS} from 'lib/constants/region'
+import {useRegions} from 'lib/hooks/use-collection'
 import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
 import MapLayout from 'lib/layouts/map'
 import message from 'lib/message'
-import {postJSON} from 'lib/utils/safe-fetch'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
 
 const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
@@ -38,6 +38,7 @@ export default function CreateRegionPage() {
   const [uploading, setUploading] = useState(false)
   const [bounds, setBounds] = useState(DEFAULT_BOUNDS)
   const toast = useToast()
+  const regions = useRegions()
 
   const nameInput = useInput({test: testName, value: ''})
   const descriptionInput = useInput({value: ''})
@@ -58,22 +59,23 @@ export default function CreateRegionPage() {
 
     setUploading(true)
 
-    const res = await postJSON('/api/db/regions', {
+    const res = await regions.create({
       name: nameInput.value,
       description: descriptionInput.value,
       bounds
     })
 
     if (res.ok) {
-      goToProjects({regionId: (res.data as CL.Region)._id})
+      goToProjects({regionId: res.data._id})
       toast({
         title: 'Region created',
         position: 'top',
-        status: 'success'
+        status: 'success',
+        isClosable: true
       })
-    } else {
+    } else if (res.ok === false) {
       setUploading(false)
-      setError((res.data as Error).message)
+      setError(res.error.message)
     }
   }
 

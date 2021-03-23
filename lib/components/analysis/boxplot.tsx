@@ -37,12 +37,10 @@ export default memo<BoxplotProps>(function Boxplot({
         x2={boxRight}
         y1={scale(positions[positionIndex])}
         y2={scale(positions[positionIndex])}
-        style={
-          {
-            strokeWidth: 3 * strokeWidth,
-            opacity: 0.4
-          }
-        }
+        style={{
+          strokeWidth: 3 * strokeWidth,
+          opacity: 0.4
+        }}
       />
       {/* top of top whisker */}
       <line

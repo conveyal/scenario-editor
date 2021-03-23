@@ -3,6 +3,7 @@
 exports[`Component undefined snapshot(mount) 1`] = `
 <Memo(OpportunityDatasetSelector)>
   <ForwardRef
+    aria-label="Destination opportunity layer"
     getOptionLabel={[Function]}
     getOptionValue={[Function]}
     inputId="select-opportunity-dataset"
@@ -20,8 +21,10 @@ exports[`Component undefined snapshot(mount) 1`] = `
         },
       ]
     }
+    placeholder="Select a destination opportunity layer"
   >
     <ReactSelect
+      aria-label="Destination opportunity layer"
       getOptionLabel={[Function]}
       getOptionValue={[Function]}
       innerRef={
@@ -44,6 +47,7 @@ exports[`Component undefined snapshot(mount) 1`] = `
           },
         ]
       }
+      placeholder="Select a destination opportunity layer"
       styles={
         Object {
           "control": [Function],

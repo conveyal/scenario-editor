@@ -256,6 +256,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
           >
             <Memo(OpportunityDatasetSelector)>
               <ForwardRef
+                aria-label="Destination opportunity layer"
                 getOptionLabel={[Function]}
                 getOptionValue={[Function]}
                 inputId="select-opportunity-dataset"
@@ -273,8 +274,10 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                     },
                   ]
                 }
+                placeholder="Select a destination opportunity layer"
               >
                 <ReactSelect
+                  aria-label="Destination opportunity layer"
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   innerRef={
@@ -297,6 +300,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                       },
                     ]
                   }
+                  placeholder="Select a destination opportunity layer"
                   styles={
                     Object {
                       "control": [Function],

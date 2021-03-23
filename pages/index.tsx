@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
-import {ALink} from 'lib/components/link'
+import {ExternalLink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import {AUTH_DISABLED} from 'lib/constants'
 import {useRegions} from 'lib/hooks/use-collection'
@@ -52,7 +52,9 @@ export default function SelectRegionPage() {
               <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
             </Box>
             <Box textAlign='center'>
-              <ALink to='changelog'>Click here to learn more.</ALink>
+              <ExternalLink href='https://docs.conveyal.com/changelog'>
+                Click here to learn more.
+              </ExternalLink>
             </Box>
           </Stack>
         </Alert>

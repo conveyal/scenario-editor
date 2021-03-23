@@ -1,8 +1,4 @@
-const withMDX = require('@zeit/next-mdx')({
-  extension: /\.mdx?$/
-})
-
-module.exports = withMDX({
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+module.exports = {
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   productionBrowserSourceMaps: true
-})
+}

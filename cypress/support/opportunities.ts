@@ -47,7 +47,7 @@ Cypress.Commands.add(
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // now grab the ID
-    cy.findByText(/Select\.\.\./)
+    cy.findByText(/Select a destination opportunity layer/)
       .click()
       .type(`${name} {enter}`)
     return cy

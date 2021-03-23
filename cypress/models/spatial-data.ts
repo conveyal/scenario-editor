@@ -20,7 +20,7 @@ export default class SpatialDataset extends Model {
   findOrCreate() {
     // Check for the existing ods
     cy.navTo('spatial datasets')
-    cy.findByText(/Select\.\.\./)
+    cy.findByText(/Select a destination opportunity layer/)
       .click()
       .type(`${this.name} {enter}`)
     cy.navComplete()

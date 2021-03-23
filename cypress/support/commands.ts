@@ -116,9 +116,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   // and wait until at least part of the page is loaded.
   const page = navToPages[title]
   // click the menu item
-  cy.get('#sidebar', unlog)
-    .findByRole('button', {name: RegExp(title, 'i')})
-    .click(unlog)
+  cy.get('#sidebar', unlog).findByLabelText(RegExp(title, 'i')).click(unlog)
   // Ensure the pathname has updated to the correct path
   cy.location('pathname', unlog).should('match', page.path, unlog)
   // check that page loads at least some content

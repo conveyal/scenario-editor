@@ -1,6 +1,5 @@
 import {
   Box,
-  BoxProps,
   Flex,
   FormControl,
   FormLabel,
@@ -9,7 +8,9 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-  FormControlProps
+  FormControlProps,
+  SliderProps,
+  useColorModeValue
 } from '@chakra-ui/react'
 import {useCallback, memo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -27,7 +28,7 @@ import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
 
 const parseCutoff = (v) => parseInt(v, 10)
-const cutoffIsValid = (v) => v && v >= 1 && v <= 120
+const cutoffIsValid = (v) => v && v >= 0 && v <= 120
 
 export default function ResultSliders({
   defaultCutoff,
@@ -38,7 +39,7 @@ export default function ResultSliders({
   const dispatch = useDispatch()
   const onChangeCutoff = useCallback(
     (cutoff: number) => {
-      if (cutoff >= 1 && cutoff <= 120) {
+      if (cutoff >= 0 && cutoff <= 120) {
         dispatch(setMaxTripDurationMinutes(cutoff))
       }
     },
@@ -53,19 +54,23 @@ export default function ResultSliders({
   const isDisabledOrStale = isDisabled || isStale
   return (
     <HStack spacing={6} width='100%' {...p}>
-      <FormControl alignContent={'top'} isDisabled={isDisabledOrStale}>
-        <FormLabel htmlFor={cutoffInput.id} whiteSpace='nowrap'>
-          Travel time: Cutoff (minutes)
-        </FormLabel>
+      <FormControl isDisabled={isDisabledOrStale} width='500px'>
         <CutoffSlider
           cutoff={cutoffInput.value}
           isDisabled={isDisabledOrStale}
           onChange={onChangeCutoff}
         />
+        <FormLabel
+          htmlFor={cutoffInput.id}
+          textAlign='center'
+          whiteSpace='nowrap'
+        >
+          Travel time cutoff minutes
+        </FormLabel>
       </FormControl>
       <PercentileSlider
         flex='0 0 95px'
-        alignItems={'top'}
+        alignItems='top'
         isDisabled={isDisabledOrStale}
       />
     </HStack>
@@ -78,28 +83,27 @@ type CutoffSliderProps = {
   onChange: (cutoff: number) => void
 }
 
-const CutoffSlider = memo<Omit<BoxProps, 'onChange'> & CutoffSliderProps>(
+const CutoffSlider = memo<SliderProps & CutoffSliderProps>(
   ({cutoff, isDisabled, onChange, ...p}) => {
     return (
-      <Box pl='4px' pr='2px' width='100%' {...p}>
-        <Slider
-          focusThumbOnChange={false}
-          isDisabled={isDisabled}
-          min={1}
-          max={120}
-          onChange={onChange}
-          value={cutoff}
-        >
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb boxSize='8'>
-            <Box fontSize='sm' fontWeight='bold'>
-              {cutoff}
-            </Box>
-          </SliderThumb>
-        </Slider>
-      </Box>
+      <Slider
+        focusThumbOnChange={false}
+        isDisabled={isDisabled}
+        min={0}
+        max={120}
+        onChange={onChange}
+        value={cutoff}
+        {...p}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb boxSize='8'>
+          <Box color='gray.900' fontSize='sm' fontWeight='bold'>
+            {cutoff}
+          </Box>
+        </SliderThumb>
+      </Slider>
     )
   }
 )
@@ -122,14 +126,8 @@ const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
     })
 
     return (
-      <FormControl pr='12px' pl='6px' isDisabled={isDisabled} {...p}>
+      <FormControl pl='6px' isDisabled={isDisabled} {...p}>
         <Box width='100%' {...p}>
-          <Flex justify='space-between'>
-            <FormLabel id={percentileSlider.id}>Percentile</FormLabel>
-            <div>
-              <DocsLink to='analysis/methodology#time-percentile' />
-            </div>
-          </Flex>
           <Slider
             aria-labelledby={percentileSlider.id}
             isDisabled={isDisabled}
@@ -142,12 +140,18 @@ const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
               <SliderFilledTrack />
             </SliderTrack>
             <SliderThumb ref={percentileSlider.ref} boxSize='8'>
-              <Box fontSize='sm' fontWeight='bold'>
+              <Box color='gray.900' fontSize='sm' fontWeight='bold'>
                 {TRAVEL_TIME_PERCENTILES[percentileSlider.value]}
               </Box>
             </SliderThumb>
           </Slider>
         </Box>
+        <Flex alignItems='center' justify='center'>
+          <FormLabel id={percentileSlider.id}>Percentile</FormLabel>
+          <div>
+            <DocsLink to='analysis/methodology#time-percentile' />
+          </div>
+        </Flex>
       </FormControl>
     )
   }

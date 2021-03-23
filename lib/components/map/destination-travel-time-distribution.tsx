@@ -232,12 +232,7 @@ export default memo(function DestinationTravelTimeDistribution() {
                     transform={`translate(0 ${fullHeight})`}
                     style={{fill: markerColorHex}}
                   >
-                    <MinuteTicks
-                      label={false}
-                      hanging={false}
-                      textHeight={FONT_SIZE}
-                      scale={SCALE}
-                    />
+                    <MinuteTicks scale={SCALE} />
                   </g>
 
                   <g transform={`translate(0 ${HEIGHT}) rotate(-90)`}>

@@ -1,24 +1,20 @@
 import {
   Box,
-  Flex,
   FormControl,
-  Spacer,
+  HStack,
   Stack,
   StackProps,
   useColorModeValue,
-  useToken
+  useToken,
+  VStack
 } from '@chakra-ui/react'
-import {color} from 'd3-color'
 import {format} from 'd3-format'
 import get from 'lodash/get'
 import {memo} from 'react'
 import {useSelector} from 'react-redux'
 
 import colors from 'lib/constants/colors'
-import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 
-import selectDisplayedComparisonScenarioName from 'lib/selectors/displayed-comparison-scenario-name'
-import selectDisplayedScenarioName from 'lib/selectors/displayed-scenario-name'
 import selectAccessibility from 'lib/selectors/accessibility'
 import selectComparisonAccessibility from 'lib/selectors/comparison-accessibility'
 import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
@@ -28,12 +24,12 @@ import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxAccessibility from 'lib/selectors/max-accessibility'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
 
-import StackedPercentile, {
-  StackedPercentileComparison
-} from './stacked-percentile'
+import Tip from '../tip'
 
-const GRAPH_HEIGHT = 225
-const GRAPH_WIDTH = 600
+import StackedPercentile, {
+  StackedPercentileComparison,
+  SliceLine
+} from './stacked-percentile'
 
 const PRIMARY_ACCESS_LABEL = 'Opportunities within isochrone'
 const COMPARISON_ACCESS_LABEL = 'Opportunities within comparison isochrone'
@@ -49,6 +45,9 @@ type Props = {
 // Use a memoized version by default
 export default memo<Props & StackProps>(StackedPercentileSelector)
 
+const filterFreeform = (dataset: CL.SpatialDataset) =>
+  dataset.format !== 'FREEFORM'
+
 /**
  * A component allowing toggling between up to two stacked percentile plots and
  * comparisons of said
@@ -56,11 +55,6 @@ export default memo<Props & StackProps>(StackedPercentileSelector)
 function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   const fontColor = useColorModeValue('gray.900', 'white')
   const fontColorHex = useToken('colors', fontColor)
-  const projectName = useSelector(selectDisplayedScenarioName)
-  const comparisonProjectName = useSelector(
-    selectDisplayedComparisonScenarioName
-  )
-  const opportunityDataset = useSelector(activeOpportunityDataset)
   const accessibility = useSelector(selectAccessibility)
   const comparisonAccessibility = useSelector(selectComparisonAccessibility)
   const comparisonPercentileCurves = useSelector(
@@ -70,7 +64,6 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   const percentileIndex = useSelector(selectPercentileIndex)
   const percentileCurves = useSelector(selectPercentileCurves)
   const maxAccessibility = useSelector(selectMaxAccessibility)
-  const opportunityDatasetName = opportunityDataset && opportunityDataset.name
 
   const disabledOrStale = disabled || stale
 
@@ -81,80 +74,79 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
     ? colors.STALE_PERCENTILE_COLOR
     : colors.COMPARISON_PERCENTILE_COLOR
 
-  const filterFreeform = (dataset: CL.SpatialDataset) =>
-    dataset.format !== 'FREEFORM'
-
-  const colorBar = color(projectColor)
-  colorBar.opacity = 0.5
-  const comparisonColorBar = color(comparisonColor)
-  comparisonColorBar.opacity = 0.5
-
   return (
-    <Stack {...p}>
-      <Flex>
-        <FormControl flex='0 1 500px' isDisabled={disabled}>
+    <Stack {...p} spacing={1}>
+      <HStack mb={4} justify='space-between' spacing={8} width='100%'>
+        <FormControl w='500px' isDisabled={disabled}>
           <OpportunityDatasetSelector
             filter={filterFreeform}
             regionId={regionId}
           />
         </FormControl>
-        <Spacer />
-        <Flex w='100px' flexDirection='column' alignItems='center'>
-          <Spacer />
-          {typeof accessibility === 'number' && (
+        <VStack flex='1' fontFamily='mono' fontWeight='bold' spacing={0}>
+          <Tip label={PRIMARY_ACCESS_LABEL}>
             <Box
+              borderWidth='1px'
+              px={1}
               color={projectColor}
-              aria-label={PRIMARY_ACCESS_LABEL}
-              fontWeight='500'
+              roundedTop='md'
+              roundedBottom={
+                typeof comparisonAccessibility === 'number' ? 'none' : 'md'
+              }
+              textAlign='right'
+              width='100%'
             >
-              {commaFormat(accessibility)}
+              {typeof accessibility === 'number' ? (
+                commaFormat(accessibility)
+              ) : (
+                <>&nbsp;</>
+              )}
             </Box>
-          )}
-          <Spacer />
-          {comparisonProjectName &&
-            typeof comparisonAccessibility === 'number' && (
+          </Tip>
+          {typeof comparisonAccessibility === 'number' && (
+            <Tip label={COMPARISON_ACCESS_LABEL}>
               <Box
                 color={comparisonColor}
-                aria-label={COMPARISON_ACCESS_LABEL}
+                borderWidth='1px'
+                borderTopWidth={0}
+                px={1}
+                roundedBottom='md'
                 textAlign='right'
-                fontWeight='500'
+                width='100%'
               >
                 {commaFormat(comparisonAccessibility)}
               </Box>
-            )}
-        </Flex>
-      </Flex>
+            </Tip>
+          )}
+        </VStack>
+      </HStack>
 
-      {get(percentileCurves, 'length') > 0 &&
-        (comparisonPercentileCurves == null ? (
-          <StackedPercentile
-            cutoff={isochroneCutoff}
-            fontColorHex={fontColorHex}
-            percentileCurves={percentileCurves}
-            percentileIndex={percentileIndex}
-            width={GRAPH_WIDTH}
-            height={GRAPH_HEIGHT}
-            opportunityDatasetName={opportunityDatasetName}
-            color={projectColor}
-            maxAccessibility={maxAccessibility}
-          />
-        ) : (
-          <StackedPercentileComparison
-            cutoff={isochroneCutoff}
-            fontColorHex={fontColorHex}
-            percentileCurves={percentileCurves}
-            percentileIndex={percentileIndex}
-            comparisonPercentileCurves={comparisonPercentileCurves}
-            width={GRAPH_WIDTH}
-            height={GRAPH_HEIGHT}
-            opportunityDatasetName={opportunityDatasetName}
-            color={projectColor}
-            comparisonColor={comparisonColor}
-            maxAccessibility={maxAccessibility}
-            label={projectName}
-            comparisonLabel={comparisonProjectName}
-          />
-        ))}
+      <Box fontFamily='mono'>
+        {get(percentileCurves, 'length') > 0 &&
+          (comparisonPercentileCurves == null ? (
+            <StackedPercentile
+              fontColorHex={fontColorHex}
+              percentileCurves={percentileCurves}
+              percentileIndex={percentileIndex}
+              color={projectColor}
+              maxAccessibility={maxAccessibility}
+            >
+              <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
+            </StackedPercentile>
+          ) : (
+            <StackedPercentileComparison
+              fontColorHex={fontColorHex}
+              percentileCurves={percentileCurves}
+              percentileIndex={percentileIndex}
+              comparisonPercentileCurves={comparisonPercentileCurves}
+              color={projectColor}
+              comparisonColor={comparisonColor}
+              maxAccessibility={maxAccessibility}
+            >
+              <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
+            </StackedPercentileComparison>
+          ))}
+      </Box>
     </Stack>
   )
 }

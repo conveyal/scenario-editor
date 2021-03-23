@@ -1,10 +1,13 @@
+import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import {memo} from 'react'
+import {useSelector} from 'react-redux'
 
 interface StackedBarProps {
+  boxPlotItems: number[]
   color: string
-  positions: number[]
+  percentileCurves: number[][]
   positionIndex: number
-  scale: (number) => number
+  scale: (n: number) => number
   strokeWidth?: number
   width: number
 }
@@ -13,24 +16,24 @@ interface StackedBarProps {
  * An svg stacked bar chart
  */
 export default memo<StackedBarProps>(function StackedBarProps({
+  boxPlotItems,
   color,
-  positions,
+  percentileCurves,
   positionIndex,
   scale,
   strokeWidth = 0.5,
   width
 }) {
+  const cutoff = useSelector(selectMaxTripDurationMinutes)
+  const positions = boxPlotItems.map((i) => percentileCurves[i][cutoff - 1])
   const MAX_OPACITY = 0.6
 
-  const barLeft = 0.1 * width
-  const barWidth = 0.8 * width
-
   return (
-    <g>
+    <>
       {positions.slice(1).map((v, i) => (
         <rect // first four bars
-          width={barWidth}
-          x={barLeft}
+          width={width}
+          x={0}
           y={scale(v)}
           height={scale(positions[i]) - scale(v)} // i is index into unsliced array
           opacity={MAX_OPACITY - (i + 1) * 0.1}
@@ -39,24 +42,24 @@ export default memo<StackedBarProps>(function StackedBarProps({
         />
       ))}
       <rect // last bar
-        width={barWidth}
-        x={barLeft}
+        width={width}
+        x={0}
         y={scale(positions[0])}
         height={scale(0) - scale(positions[0])}
         style={{opacity: MAX_OPACITY, fill: color}}
       />
       <rect // cumulative "halo" for selected percentile
-        width={barWidth}
-        x={barLeft}
+        width={width}
+        x={0}
         y={scale(positions[positionIndex])}
         height={scale(0) - scale(positions[positionIndex])}
         style={{
           stroke: color,
           strokeWidth: strokeWidth,
-          strokeOpacity: 0.9,
+          strokeOpacity: 0.75,
           fillOpacity: 0
         }}
       />
-    </g>
+    </>
   )
 })

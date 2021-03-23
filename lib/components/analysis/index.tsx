@@ -35,7 +35,6 @@ import AnalysisTitle from './title'
 import ResultsSliders from './results-sliders'
 import SinglePointSettings from './single-point-settings'
 import StackedPercentileSelector from './stacked-percentile-selector'
-import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 
 /**
  * Hide the loading text from map components because it is awkward.
@@ -213,26 +212,18 @@ function Results({
   isStale, // are the results out of sync with the form?
   region
 }) {
-  const resultsSettings = useSelector((s) =>
-    get(s, 'analysis.resultsSettings', [])
-  )
-  const opportunityDataset = useSelector(activeOpportunityDataset)
   const defaultCutoff = useSelector(selectMaxTripDurationMinutes)
   return (
-    <Stack spacing={P.md} p={P.md}>
-      <Skeleton
-        minHeight='20px'
-        isLoaded={resultsSettings.length > 0 && opportunityDataset}
-        speed={1000}
-      >
-        <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
-      </Skeleton>
-
+    <Stack p={P.md}>
+      <StackedPercentileSelector
+        disabled={isDisabled}
+        stale={isStale}
+        regionId={region._id}
+      />
       <ResultsSliders
         defaultCutoff={defaultCutoff}
         isDisabled={isDisabled}
         isStale={isStale}
-        regionId={region._id}
       />
     </Stack>
   )

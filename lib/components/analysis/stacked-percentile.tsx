@@ -3,17 +3,17 @@ import {scalePow, scaleLinear} from 'd3-scale'
 import {line, area} from 'd3-shape'
 import {memo, useEffect, useState} from 'react'
 
-import message from 'lib/message'
 import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
 
-import Boxplot from './boxplot'
+import StackedBar from './stacked-bar'
 import MinuteTicks from './minute-ticks'
 
 export const PROJECT = 'project'
 export const BASE = 'base'
 export const COMPARISON = 'comparison'
 
-const BOX_PLOT_WIDTH = 0.05
+const BARS_WIDTH_PX = 100
+
 // Reversed because 5th percentile travel time has the highest accessibility.
 // These are also used for the breaks when viewing a single project. We specify
 // the percentiles we wish to display, and then use indexOf to figure out which
@@ -37,7 +37,8 @@ const COMPARISON_BAND_ITEMS = COMPARISON_BAND_PERCENTILES.map((p) =>
 )
 
 const TEXT_HEIGHT = 10
-const MAX_OPACITY = 0.5
+const MAX_OPACITY = 0.6
+const STROKE_WIDTH = 1
 const MAX_TRIP_DURATION = 120
 
 // The exponent of the power scale on the Y axis. Set at 0.5 for a square root
@@ -80,7 +81,6 @@ export default memo<StackedPercentileProps>(
     fontColorHex,
     height,
     maxAccessibility,
-    opportunityDatasetName,
     percentileIndex,
     percentileCurves,
     width
@@ -94,8 +94,6 @@ export default memo<StackedPercentileProps>(
       setYScale(() => createYScale(height, maxAccessibility))
     }, [height, maxAccessibility])
 
-    const boxPlotWidth = BOX_PLOT_WIDTH * width
-
     if (percentileCurves == null) {
       console.error(
         'Percentile curves do not exist. Cannot render StackedPercentile graph.'
@@ -104,14 +102,17 @@ export default memo<StackedPercentileProps>(
     }
 
     return (
-      <svg id='results-chart' style={{width, height, margin: '10px 0'}}>
-        <Boxplot
-          color={color}
-          positions={getBoxPlotPositions(percentileCurves, cutoff)}
-          positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
-          scale={yScale}
-          width={boxPlotWidth}
-        />
+      <svg id='results-chart' style={{width, height, marginTop: '10px'}}>
+        <g transform={`translate(${width - BARS_WIDTH_PX / 2})`}>
+          <StackedBar
+            color={color}
+            positions={getBoxPlotPositions(percentileCurves, cutoff)}
+            positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
+            scale={yScale}
+            strokeWidth={STROKE_WIDTH}
+            width={1.5 * TEXT_HEIGHT}
+          />
+        </g>
 
         <Slices
           breaks={BOX_PLOT_ITEMS}
@@ -127,13 +128,7 @@ export default memo<StackedPercentileProps>(
           yScale={yScale}
         />
 
-        <YAxis
-          datasetName={opportunityDatasetName}
-          fontColor={fontColorHex}
-          height={height}
-          width={width}
-          yScale={yScale}
-        />
+        <YAxis fontColor={fontColorHex} height={height} yScale={yScale} />
 
         <g
           transform={`translate(0 ${height - TEXT_HEIGHT})`}
@@ -149,6 +144,8 @@ export default memo<StackedPercentileProps>(
 
         <Legend
           color={color}
+          comparisonColor={color}
+          comparison={false}
           fontColor={fontColorHex}
           height={height}
           width={width}
@@ -169,14 +166,11 @@ export const StackedPercentileComparison = memo<
   ({
     color,
     comparisonColor,
-    comparisonLabel,
     comparisonPercentileCurves,
     cutoff,
     fontColorHex,
     height,
-    label,
     maxAccessibility,
-    opportunityDatasetName,
     percentileCurves,
     percentileIndex,
     width
@@ -190,10 +184,6 @@ export const StackedPercentileComparison = memo<
       setYScale(() => createYScale(height, maxAccessibility))
     }, [height, maxAccessibility])
 
-    const boxPlotWidth = comparisonPercentileCurves
-      ? (BOX_PLOT_WIDTH * width) / 2
-      : BOX_PLOT_WIDTH * width
-
     if (percentileCurves == null || comparisonPercentileCurves == null) {
       console.error(
         'Percentile curves do not exist. Cannot render StackedPercentileComparison graph.'
@@ -202,24 +192,28 @@ export const StackedPercentileComparison = memo<
     }
 
     return (
-      <svg id='results-chart' style={{width, height, margin: '10px 0'}}>
-        <g transform={`translate(${boxPlotWidth})`}>
-          <Boxplot
+      <svg id='results-chart' style={{width, height, marginTop: '10px'}}>
+        <g transform={`translate(${width - 0.6 * BARS_WIDTH_PX})`}>
+          <StackedBar
             color={color}
             positions={getBoxPlotPositions(percentileCurves, cutoff)}
             positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
             scale={yScale}
-            width={boxPlotWidth}
+            strokeWidth={STROKE_WIDTH}
+            width={1.5 * TEXT_HEIGHT}
           />
         </g>
 
-        <Boxplot
-          color={comparisonColor}
-          positions={getBoxPlotPositions(comparisonPercentileCurves, cutoff)}
-          positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
-          scale={yScale}
-          width={boxPlotWidth}
-        />
+        <g transform={`translate(${width - 0.4 * BARS_WIDTH_PX})`}>
+          <StackedBar
+            color={comparisonColor}
+            positions={getBoxPlotPositions(comparisonPercentileCurves, cutoff)}
+            positionIndex={BOX_PLOT_PERCENTILES.length - 1 - percentileIndex}
+            scale={yScale}
+            strokeWidth={STROKE_WIDTH}
+            width={1.5 * TEXT_HEIGHT}
+          />
+        </g>
 
         <Slices
           breaks={COMPARISON_BAND_ITEMS}
@@ -249,25 +243,18 @@ export const StackedPercentileComparison = memo<
           yScale={yScale}
         />
 
-        <YAxis
-          datasetName={opportunityDatasetName}
-          fontColor={fontColorHex}
-          height={height}
-          width={width}
-          yScale={yScale}
-        />
+        <YAxis fontColor={fontColorHex} height={height} yScale={yScale} />
 
         <g transform={`translate(0 ${height})`} style={{fill: fontColorHex}}>
-          <MinuteTicks scale={xScale} textHeight={TEXT_HEIGHT} />
+          <MinuteTicks label={false} scale={xScale} textHeight={TEXT_HEIGHT} />
         </g>
 
-        <ComparisonLegend
+        <Legend
           color={color}
           comparisonColor={comparisonColor}
-          comparisonLabel={comparisonLabel}
+          comparison={true}
           fontColor={fontColorHex}
           height={height}
-          label={label}
           width={width}
         />
 
@@ -306,7 +293,7 @@ const Slices = memo<SlicesProps>(
     return (
       <>
         {slices.map((d, i, a) => {
-          const opacity = ((i + 1) * MAX_OPACITY) / (a.length + 1)
+          const opacity = ((i + 2) * MAX_OPACITY) / (a.length + 2)
           return (
             <path
               key={`slice-${i}`}
@@ -320,7 +307,7 @@ const Slices = memo<SlicesProps>(
   }
 )
 
-function YAxis({fontColor, height, datasetName, width, yScale}) {
+function YAxis({fontColor, height, yScale}) {
   const tickFormat = format('.3s')
 
   // make sure that the top tick is not off the screen
@@ -336,21 +323,13 @@ function YAxis({fontColor, height, datasetName, width, yScale}) {
   const toRender = yTicks.map((tick, i, arr) => {
     const yoff = yScale(tick)
 
-    const valueText = tickFormat(tick)
-
-    // highest valued tick gets label, move ticks down a little so the middle
-    // of the text is on the line.
-    const tickText =
-      i === arr.length - 1 ? `${valueText} ${datasetName}` : valueText
+    const tickText = tickFormat(tick)
 
     return [yoff, tickText]
   })
 
   return (
-    <g
-      transform={`translate(${BOX_PLOT_WIDTH * width})`}
-      style={{fontSize: TEXT_HEIGHT}}
-    >
+    <g style={{fontSize: TEXT_HEIGHT}}>
       {toRender.map(([off, text], i) => (
         <text
           style={{
@@ -400,33 +379,19 @@ function SliceLine({cutoff, height, xScale}) {
   )
 }
 
-function Legend({color, fontColor, width, height}) {
+function Legend({
+  color,
+  fontColor,
+  width,
+  height,
+  comparison,
+  comparisonColor
+}) {
   const squareSize = TEXT_HEIGHT * 1.5
-  const textOffset = squareSize * 1.5
+  const textOffset = squareSize * -0.1
 
   return (
-    <g transform={`translate(${width * 0.9} ${height * 0.6})`}>
-      <text
-        x={textOffset + TEXT_HEIGHT * 2}
-        y={0}
-        style={{fill: fontColor, textAnchor: 'end'}}
-      >
-        {message('analysis.percentileOfTravelTime')}
-      </text>
-      {/* Colors */}
-      {BOX_PLOT_PERCENTILES.slice(1).map((d, i, a) => (
-        <rect
-          x={0}
-          y={i * squareSize + TEXT_HEIGHT * 1.5}
-          width={squareSize}
-          height={squareSize}
-          key={`legend-${i}`}
-          style={{
-            fill: color,
-            fillOpacity: ((i + 1) * MAX_OPACITY) / (a.length + 1)
-          }}
-        />
-      ))}
+    <g transform={`translate(${width - BARS_WIDTH_PX} ${height * 0.6})`}>
       {/* Labels, subtract i from length because 95th percentile is at the bottom */}
       {BOX_PLOT_PERCENTILES.map((d, i, a) => (
         <text
@@ -435,122 +400,41 @@ function Legend({color, fontColor, width, height}) {
           key={`legend-text-${i}`}
           style={{
             alignmentBaseline: 'middle',
+            textAnchor: 'end',
             fill: fontColor
           }}
         >
           {d}
         </text>
       ))}
-    </g>
-  )
-}
-
-function ComparisonLegend({
-  color,
-  fontColor,
-  label,
-  comparisonColor,
-  comparisonLabel,
-  height,
-  width
-}) {
-  const squareSize = TEXT_HEIGHT * 1.5
-  const textOffset = squareSize * 1.5
-  const titleOffset = TEXT_HEIGHT * 1.5
-
-  return (
-    <g transform={`translate(${width * 0.9} ${height * 0.55})`}>
-      <text
-        x={textOffset + TEXT_HEIGHT * 2}
-        y={0}
-        style={{fill: fontColor, textAnchor: 'end'}}
-      >
-        {message('analysis.percentileOfTravelTime')}
-      </text>
-
-      <rect
-        x={0}
-        y={titleOffset}
-        width={squareSize}
-        height={squareSize}
-        style={{
-          fill: color,
-          fillOpacity: 0.5 * MAX_OPACITY // value when there is only one band
-        }}
-      />
-
-      <text
-        x={textOffset}
-        y={titleOffset}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[1]}
-      </text>
-
-      <text
-        x={textOffset}
-        y={titleOffset + squareSize}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[0]}
-      </text>
-
-      {/* variant label */}
-      <text
-        x={-1 * (textOffset - squareSize)}
-        y={titleOffset + squareSize / 2}
-        style={{
-          alignmentBaseline: 'middle',
-          fill: fontColor,
-          textAnchor: 'end'
-        }}
-      >
-        {label}
-      </text>
-
-      <rect
-        x={0}
-        y={titleOffset + squareSize * 3}
-        width={squareSize}
-        height={squareSize}
-        style={{
-          fill: comparisonColor,
-          fillOpacity: 0.5 * MAX_OPACITY // value when there is only one band
-        }}
-      />
-
-      <text
-        x={textOffset}
-        y={titleOffset + squareSize * 3}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[1]}
-      </text>
-
-      <text
-        x={textOffset}
-        y={titleOffset + squareSize * 4}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[0]}
-      </text>
-
-      {/* variant label */}
-      <text
-        x={-1 * (textOffset - squareSize)}
-        y={titleOffset + squareSize * 3 + squareSize / 2}
-        style={{
-          alignmentBaseline: 'middle',
-          fill: fontColor,
-          textAnchor: 'end'
-        }}
-      >
-        {comparisonLabel}
-      </text>
+      {/* Colors */}
+      {BOX_PLOT_PERCENTILES.map((d, i, a) => (
+        <rect
+          x={0}
+          y={i * squareSize + TEXT_HEIGHT * 0.5}
+          width={squareSize}
+          height={squareSize}
+          key={`legend-${i}`}
+          style={{
+            fill: color,
+            fillOpacity: ((i + 2) * MAX_OPACITY) / (a.length + 1)
+          }}
+        />
+      ))}
+      {comparison &&
+        BOX_PLOT_PERCENTILES.map((d, i, a) => (
+          <rect
+            x={squareSize * 1.1}
+            y={i * squareSize + TEXT_HEIGHT * 0.5}
+            width={squareSize}
+            height={squareSize}
+            key={`legend-${i}`}
+            style={{
+              fill: comparisonColor,
+              fillOpacity: ((i + 2) * MAX_OPACITY) / (a.length + 1)
+            }}
+          />
+        ))}
     </g>
   )
 }
@@ -559,11 +443,11 @@ function createYScale(height: number, maxAccessibility: number) {
   return scalePow()
     .exponent(Y_AXIS_EXPONENT)
     .domain([0, maxAccessibility])
-    .range([height, 0])
+    .range([height - TEXT_HEIGHT, 0])
 }
 
 function createXScale(width: number) {
   return scaleLinear()
     .domain([0, MAX_TRIP_DURATION])
-    .range([BOX_PLOT_WIDTH * width, width])
+    .range([0, width - BARS_WIDTH_PX - 5])
 }

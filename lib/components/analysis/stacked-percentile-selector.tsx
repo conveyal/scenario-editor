@@ -1,10 +1,10 @@
 import {
   Box,
+  Flex,
+  FormControl,
+  Spacer,
   Stack,
-  Progress,
   StackProps,
-  HStack,
-  VStack,
   useColorModeValue,
   useToken
 } from '@chakra-ui/react'
@@ -26,6 +26,7 @@ import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minute
 import selectPercentileIndex from 'lib/selectors/percentile-index'
 import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxAccessibility from 'lib/selectors/max-accessibility'
+import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
 
 import StackedPercentile, {
   StackedPercentileComparison
@@ -42,6 +43,7 @@ const commaFormat = format(',d')
 type Props = {
   disabled: boolean
   stale: boolean
+  regionId: string
 }
 
 // Use a memoized version by default
@@ -51,7 +53,7 @@ export default memo<Props & StackProps>(StackedPercentileSelector)
  * A component allowing toggling between up to two stacked percentile plots and
  * comparisons of said
  */
-function StackedPercentileSelector({disabled, stale, ...p}) {
+function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   const fontColor = useColorModeValue('gray.900', 'white')
   const fontColorHex = useToken('colors', fontColor)
   const projectName = useSelector(selectDisplayedScenarioName)
@@ -79,6 +81,9 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
     ? colors.STALE_PERCENTILE_COLOR
     : colors.COMPARISON_PERCENTILE_COLOR
 
+  const filterFreeform = (dataset: CL.SpatialDataset) =>
+    dataset.format !== 'FREEFORM'
+
   const colorBar = color(projectColor)
   colorBar.opacity = 0.5
   const comparisonColorBar = color(comparisonColor)
@@ -86,45 +91,39 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
 
   return (
     <Stack {...p}>
-      <VStack pl='35px' spacing={0}>
-        {typeof accessibility === 'number' && (
-          <HStack spacing={5} width='100%'>
-            <Progress
-              flex='10'
-              colorScheme={disabledOrStale ? 'gray' : 'blue'}
-              size='md'
-              value={((accessibility || 1) / maxAccessibility) * 100}
-            />
+      <Flex>
+        <FormControl flex='0 1 500px' isDisabled={disabled}>
+          <OpportunityDatasetSelector
+            filter={filterFreeform}
+            regionId={regionId}
+          />
+        </FormControl>
+        <Spacer />
+        <Flex w='100px' flexDirection='column' alignItems='center'>
+          <Spacer />
+          {typeof accessibility === 'number' && (
             <Box
+              color={projectColor}
               aria-label={PRIMARY_ACCESS_LABEL}
               fontWeight='500'
-              flex='1'
-              textAlign='left'
             >
               {commaFormat(accessibility)}
             </Box>
-          </HStack>
-        )}
-
-        {comparisonProjectName && typeof comparisonAccessibility === 'number' && (
-          <HStack spacing={5} width='100%'>
-            <Progress
-              flex='10'
-              colorScheme={disabledOrStale ? 'gray' : 'red'}
-              size='md'
-              value={((comparisonAccessibility || 1) / maxAccessibility) * 100}
-            />
-            <Box
-              aria-label={COMPARISON_ACCESS_LABEL}
-              fontWeight='500'
-              flex='1'
-              textAlign='left'
-            >
-              {commaFormat(comparisonAccessibility)}
-            </Box>
-          </HStack>
-        )}
-      </VStack>
+          )}
+          <Spacer />
+          {comparisonProjectName &&
+            typeof comparisonAccessibility === 'number' && (
+              <Box
+                color={comparisonColor}
+                aria-label={COMPARISON_ACCESS_LABEL}
+                textAlign='right'
+                fontWeight='500'
+              >
+                {commaFormat(comparisonAccessibility)}
+              </Box>
+            )}
+        </Flex>
+      </Flex>
 
       {get(percentileCurves, 'length') > 0 &&
         (comparisonPercentileCurves == null ? (

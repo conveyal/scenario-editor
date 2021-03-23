@@ -234,6 +234,7 @@ export default memo(function DestinationTravelTimeDistribution() {
                   >
                     <MinuteTicks
                       label={false}
+                      hanging={false}
                       textHeight={FONT_SIZE}
                       scale={SCALE}
                     />

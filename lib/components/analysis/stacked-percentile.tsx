@@ -135,8 +135,16 @@ export default memo<StackedPercentileProps>(
           yScale={yScale}
         />
 
-        <g transform={`translate(0 ${height})`} style={{fill: fontColorHex}}>
-          <MinuteTicks scale={xScale} textHeight={TEXT_HEIGHT} />
+        <g
+          transform={`translate(0 ${height - TEXT_HEIGHT})`}
+          style={{fill: fontColorHex}}
+        >
+          <MinuteTicks
+            label={false}
+            hanging={true}
+            scale={xScale}
+            textHeight={TEXT_HEIGHT}
+          />
         </g>
 
         <Legend

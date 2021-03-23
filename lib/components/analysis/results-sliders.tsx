@@ -4,7 +4,6 @@ import {
   FormControl,
   FormLabel,
   HStack,
-  Input,
   Slider,
   SliderFilledTrack,
   SliderThumb,

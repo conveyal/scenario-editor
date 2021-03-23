@@ -98,7 +98,7 @@ const ItemLink = memo<ItemLinkProps>(({children, label, to, params = {}}) => {
   return (
     <Tip isDisabled={isActive} label={label} placement='right'>
       <div>
-        <NavItemContents {...navItemProps} role='button'>
+        <NavItemContents {...navItemProps} aria-label={label} role='button'>
           {children}
         </NavItemContents>
       </div>

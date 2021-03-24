@@ -41,7 +41,7 @@ describe('Analysis', () => {
 
   it('has all form elements', function () {
     // note that elements touched in beforeEach are neglected here
-    cy.findByLabelText(/Time cutoff/)
+    cy.findByLabelText(/Travel time cutoff minutes/)
     cy.findByRole('slider', {name: /Travel time percentile/i})
     cy.getPrimaryAnalysisSettings().within(() => {
       cy.findButton(

@@ -1,7 +1,7 @@
 import {format} from 'd3-format'
 import {scalePow, scaleLinear, ScalePower} from 'd3-scale'
 import {line, area} from 'd3-shape'
-import {CSSProperties, memo, useEffect, useState} from 'react'
+import {CSSProperties, memo} from 'react'
 
 import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
 
@@ -23,14 +23,18 @@ const BOX_PLOT_ITEMS = BOX_PLOT_PERCENTILES.map((p) =>
   TRAVEL_TIME_PERCENTILES.indexOf(p)
 )
 
-export const GRAPH_HEIGHT = 225
-export const GRAPH_WIDTH = 600
+export const SVG_HEIGHT = 225
+export const SVG_WIDTH = 600
 const BARS_WIDTH_PX = 100
 const BAR_WIDTH = 25
+const CHART_WIDTH = SVG_WIDTH - BARS_WIDTH_PX
 const TEXT_HEIGHT = 10
+const TEXT_BUFFER = 10
+const CHART_HEIGHT = SVG_HEIGHT - (TEXT_HEIGHT + TEXT_BUFFER)
 const MAX_OPACITY = 0.6
 const STROKE_WIDTH = 1.5
 const MAX_TRIP_DURATION = 120
+const TIME_LABELS = [0, 15, 30, 45, 60, 75, 90, 105, 120]
 
 // The exponent of the power scale on the Y axis. Set at 0.5 for a square root
 // scale, which is kind of the "natural scale" for accessibility as it would
@@ -39,17 +43,16 @@ const MAX_TRIP_DURATION = 120
 const Y_AXIS_EXPONENT = 0.5
 
 // x scale never changes
-const xScale = scaleLinear()
+export const xScale = scaleLinear()
   .domain([0, MAX_TRIP_DURATION])
-  .range([0, GRAPH_WIDTH - BARS_WIDTH_PX])
+  .range([0, SVG_WIDTH - BARS_WIDTH_PX])
 
 type StackedPercentileProps = {
-  children: React.ReactNode
   color: string
   fontColorHex: string
-  maxAccessibility: number
   percentileIndex: number
   percentileCurves: number[][]
+  yScale: ScalePower<number, number, never>
 }
 
 type StackedPercentileComparisonProps = {
@@ -65,35 +68,36 @@ type SlicesProps = {
 }
 
 const svgStyle: CSSProperties = {
-  width: GRAPH_WIDTH,
-  height: GRAPH_HEIGHT
+  width: SVG_WIDTH,
+  height: SVG_HEIGHT
+}
+
+const gridLineStyle = {
+  stroke: '#E2E8F0',
+  strokeWidth: 0.5,
+  fill: 'none'
+}
+const tickFormat = format('.3~s')
+
+export function SVGWrapper({children}) {
+  return (
+    <svg id='results-chart' style={svgStyle}>
+      {children}
+    </svg>
+  )
 }
 
 export default memo<StackedPercentileProps>(
-  ({
-    color,
-    children,
-    fontColorHex,
-    maxAccessibility,
-    percentileIndex,
-    percentileCurves
-  }) => {
-    const [yScale, setYScale] = useState(() => createYScale(maxAccessibility))
-
-    useEffect(() => {
-      setYScale(() => createYScale(maxAccessibility))
-    }, [maxAccessibility])
-
-    if (percentileCurves == null) {
-      console.error(
-        'Percentile curves do not exist. Cannot render StackedPercentile graph.'
-      )
-      return null
-    }
-
+  ({color, fontColorHex, percentileIndex, percentileCurves, yScale}) => {
     return (
-      <svg id='results-chart' style={svgStyle}>
-        <g transform={`translate(${GRAPH_WIDTH - 1.9 * BAR_WIDTH})`}>
+      <>
+        <XAxis />
+
+        <g style={{fill: fontColorHex}}>
+          <YAxis yScale={yScale} />
+        </g>
+
+        <g transform={`translate(${SVG_WIDTH - 1.9 * BAR_WIDTH})`}>
           <StackedBar
             boxPlotItems={BOX_PLOT_ITEMS}
             color={color}
@@ -105,15 +109,11 @@ export default memo<StackedPercentileProps>(
           />
         </g>
 
-        <g style={{fill: fontColorHex}}>
-          <YAxis yScale={yScale} />
-        </g>
-
         <g
-          transform={`translate(0 ${GRAPH_HEIGHT - 3})`}
+          transform={`translate(0 ${SVG_HEIGHT - 3})`}
           style={{fill: fontColorHex}}
         >
-          <MinuteTicks scale={xScale} />
+          <MinuteTicks minutes={TIME_LABELS} scale={xScale} />
         </g>
 
         <Slices
@@ -127,9 +127,7 @@ export default memo<StackedPercentileProps>(
           curve={percentileCurves[percentileIndex]}
           yScale={yScale}
         />
-
-        {children}
-      </svg>
+      </>
     )
   }
 )
@@ -141,34 +139,22 @@ export const StackedPercentileComparison = memo<
   StackedPercentileComparisonProps & StackedPercentileProps
 >(
   ({
-    children,
     color,
     comparisonColor,
     comparisonPercentileCurves,
     fontColorHex,
-    maxAccessibility,
     percentileCurves,
-    percentileIndex
+    percentileIndex,
+    yScale
   }) => {
-    const [yScale, setYScale] = useState(() => createYScale(maxAccessibility))
-
-    useEffect(() => {
-      setYScale(() => createYScale(maxAccessibility))
-    }, [maxAccessibility])
-
-    if (percentileCurves == null || comparisonPercentileCurves == null) {
-      console.error(
-        'Percentile curves do not exist. Cannot render StackedPercentileComparison graph.'
-      )
-      return null
-    }
-
     return (
-      <svg
-        id='results-chart'
-        style={{width: GRAPH_WIDTH, height: GRAPH_HEIGHT}}
-      >
-        <g transform={`translate(${GRAPH_WIDTH - 2.5 * BAR_WIDTH})`}>
+      <>
+        <XAxis />
+
+        <g style={{fill: fontColorHex}}>
+          <YAxis yScale={yScale} />
+        </g>
+        <g transform={`translate(${SVG_WIDTH - 2 * BAR_WIDTH})`}>
           <StackedBar
             boxPlotItems={BOX_PLOT_ITEMS}
             color={color}
@@ -180,7 +166,7 @@ export const StackedPercentileComparison = memo<
           />
         </g>
 
-        <g transform={`translate(${GRAPH_WIDTH - 1.25 * BAR_WIDTH})`}>
+        <g transform={`translate(${SVG_WIDTH - BAR_WIDTH})`}>
           <StackedBar
             boxPlotItems={BOX_PLOT_ITEMS}
             color={comparisonColor}
@@ -192,15 +178,11 @@ export const StackedPercentileComparison = memo<
           />
         </g>
 
-        <g style={{fill: fontColorHex}}>
-          <YAxis yScale={yScale} />
-        </g>
-
         <g
-          transform={`translate(0 ${GRAPH_HEIGHT - 3})`}
+          transform={`translate(0 ${SVG_HEIGHT - 3})`}
           style={{fill: fontColorHex}}
         >
-          <MinuteTicks scale={xScale} />
+          <MinuteTicks minutes={TIME_LABELS} scale={xScale} />
         </g>
 
         <Slices
@@ -226,9 +208,7 @@ export const StackedPercentileComparison = memo<
           curve={comparisonPercentileCurves[percentileIndex]}
           yScale={yScale}
         />
-
-        {children}
-      </svg>
+      </>
     )
   }
 )
@@ -276,17 +256,27 @@ const Slices = memo<SlicesProps>(
   }
 )
 
-const tickFormat = format('.3~s')
-function YAxis({yScale}: {yScale: ScalePower<number, number, never>}) {
-  // make sure that the top tick is not off the screen
-  const maxYValueWithTextOnScreen = yScale.invert(TEXT_HEIGHT / 2)
-  const trimmedYScale = scalePow()
-    .exponent(Y_AXIS_EXPONENT)
-    .domain([0, maxYValueWithTextOnScreen])
-    .range([GRAPH_HEIGHT, TEXT_HEIGHT / 2])
+const XAxis = memo(() => (
+  <>
+    {TIME_LABELS.map((t) => (
+      <line
+        key={t}
+        x1={xScale(t)}
+        x2={xScale(t)}
+        y1={TEXT_BUFFER}
+        y2={CHART_HEIGHT}
+        style={gridLineStyle}
+      />
+    ))}
+  </>
+))
 
+type YAxisProps = {
+  yScale: ScalePower<number, number, never>
+}
+const YAxis = memo<YAxisProps>(({yScale}: YAxisProps) => {
   // y scale
-  const yTicks = trimmedYScale.ticks()
+  const yTicks = yScale.ticks(6)
 
   return (
     <g
@@ -294,23 +284,42 @@ function YAxis({yScale}: {yScale: ScalePower<number, number, never>}) {
         fontSize: TEXT_HEIGHT
       }}
     >
-      {yTicks.map((tick, i) => (
-        <text
-          style={{
-            alignmentBaseline: i === 0 ? 'baseline' : 'middle'
-          }}
-          key={`y-tick-${tick}`}
-          y={yScale(tick)}
-        >
-          {tickFormat(tick)}
-        </text>
-      ))}
+      {yTicks.map((tick) => {
+        const y = yScale(tick)
+        const yText = tickFormat(tick)
+        return (
+          <g key={`y-tick-${tick}`}>
+            <line x1={0} x2={SVG_WIDTH} y1={y} y2={y} style={gridLineStyle} />
+            <text
+              style={{
+                alignmentBaseline: 'middle',
+                stroke: '#fff',
+                strokeWidth: 2,
+                userSelect: 'none'
+              }}
+              x={CHART_WIDTH + TEXT_BUFFER}
+              y={y}
+            >
+              {yText}
+            </text>
+            <text
+              style={{
+                alignmentBaseline: 'middle',
+                userSelect: 'none'
+              }}
+              x={CHART_WIDTH + TEXT_BUFFER}
+              y={y}
+            >
+              {yText}
+            </text>
+          </g>
+        )
+      })}
     </g>
   )
-}
+})
 
 function CumulativeLine({color, curve, yScale}) {
-  console.log('curve', curve)
   const percentileLine = line()
     // add one for the reason described above
     .x((_, i) => xScale(i))
@@ -340,8 +349,8 @@ export function SliceLine({color, cutoff}) {
     <line
       x1={x}
       x2={x}
-      y1={0}
-      y2={GRAPH_HEIGHT}
+      y1={TEXT_BUFFER}
+      y2={CHART_HEIGHT}
       style={{
         ...sliceLineStyle,
         stroke: color
@@ -350,10 +359,10 @@ export function SliceLine({color, cutoff}) {
   )
 }
 
-function createYScale(maxAccessibility: number) {
+export function createYScale(maxAccessibility: number) {
   return scalePow()
     .exponent(Y_AXIS_EXPONENT)
     .domain([0, maxAccessibility])
-    .range([GRAPH_HEIGHT, 0])
+    .range([CHART_HEIGHT, TEXT_BUFFER])
     .nice()
 }

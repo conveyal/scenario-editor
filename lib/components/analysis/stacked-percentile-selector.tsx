@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import {format} from 'd3-format'
 import get from 'lodash/get'
-import {memo} from 'react'
+import {memo, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import colors from 'lib/constants/colors'
@@ -28,7 +28,10 @@ import Tip from '../tip'
 
 import StackedPercentile, {
   StackedPercentileComparison,
-  SliceLine
+  SliceLine,
+  createYScale,
+  xScale,
+  SVGWrapper
 } from './stacked-percentile'
 
 const PRIMARY_ACCESS_LABEL = 'Opportunities within isochrone'
@@ -65,6 +68,11 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   const percentileCurves = useSelector(selectPercentileCurves)
   const maxAccessibility = useSelector(selectMaxAccessibility)
 
+  const [yScale, setYScale] = useState(() => createYScale(maxAccessibility))
+  useEffect(() => {
+    setYScale(() => createYScale(maxAccessibility))
+  }, [maxAccessibility])
+
   const disabledOrStale = disabled || stale
 
   const projectColor = disabledOrStale
@@ -74,8 +82,10 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
     ? colors.STALE_PERCENTILE_COLOR
     : colors.COMPARISON_PERCENTILE_COLOR
 
+  const xPosition = xScale(isochroneCutoff)
+
   return (
-    <Stack {...p} spacing={1}>
+    <Stack {...p} spacing={0}>
       <HStack mb={4} justify='space-between' spacing={8} width='100%'>
         <FormControl w='500px' isDisabled={disabled}>
           <OpportunityDatasetSelector
@@ -126,29 +136,74 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
       <Box fontFamily='mono'>
         {get(percentileCurves, 'length') > 0 &&
           (comparisonPercentileCurves == null ? (
-            <StackedPercentile
-              fontColorHex={fontColorHex}
-              percentileCurves={percentileCurves}
-              percentileIndex={percentileIndex}
-              color={projectColor}
-              maxAccessibility={maxAccessibility}
-            >
+            <SVGWrapper>
+              <StackedPercentile
+                fontColorHex={fontColorHex}
+                percentileCurves={percentileCurves}
+                percentileIndex={percentileIndex}
+                color={projectColor}
+                yScale={yScale}
+              />
               <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
-            </StackedPercentile>
+              <circle
+                cx={xPosition}
+                cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
+                style={{
+                  stroke: projectColor,
+                  strokeWidth: 1.5,
+                  fill: 'none'
+                }}
+                r={3}
+              />
+            </SVGWrapper>
           ) : (
-            <StackedPercentileComparison
-              fontColorHex={fontColorHex}
-              percentileCurves={percentileCurves}
-              percentileIndex={percentileIndex}
-              comparisonPercentileCurves={comparisonPercentileCurves}
-              color={projectColor}
-              comparisonColor={comparisonColor}
-              maxAccessibility={maxAccessibility}
-            >
+            <SVGWrapper>
+              <StackedPercentileComparison
+                fontColorHex={fontColorHex}
+                percentileCurves={percentileCurves}
+                percentileIndex={percentileIndex}
+                comparisonPercentileCurves={comparisonPercentileCurves}
+                color={projectColor}
+                comparisonColor={comparisonColor}
+                yScale={yScale}
+              />
               <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
-            </StackedPercentileComparison>
+              <circle
+                cx={xPosition}
+                cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
+                style={{
+                  stroke: projectColor,
+                  strokeWidth: 1.5,
+                  fill: 'none'
+                }}
+                r={4}
+              />
+              <Triangle
+                color={comparisonColor}
+                x={xPosition}
+                y={yScale(
+                  comparisonPercentileCurves[percentileIndex][isochroneCutoff]
+                )}
+              />
+            </SVGWrapper>
           ))}
       </Box>
     </Stack>
+  )
+}
+
+const tSize = 4
+function Triangle({color, x, y}: {color: string; x: number; y: number}) {
+  return (
+    <polygon
+      points={`${x - tSize},${y - tSize} ${x},${y + tSize} ${x + tSize},${
+        y - tSize
+      }`}
+      style={{
+        stroke: color,
+        strokeWidth: 1.5,
+        fill: 'none'
+      }}
+    />
   )
 }

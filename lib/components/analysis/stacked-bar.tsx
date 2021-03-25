@@ -42,7 +42,6 @@ export default memo<StackedBarProps>(function StackedBarProps({
             width={width}
             x={0}
             y={scale(v)}
-            // i is index into unsliced array
             height={
               i === 0 ? scale(0) - scale(v) : scale(positions[i - 1]) - scale(v)
             }

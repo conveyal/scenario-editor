@@ -26,13 +26,14 @@ import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/compone
 
 import Tip from '../tip'
 
-import StackedPercentile, {
-  StackedPercentileComparison,
+import Chart, {
+  ComparisonChart,
   CutoffLine,
   createYScale,
   xScale,
   SVGWrapper,
-  STROKE_WIDTH
+  STROKE_WIDTH,
+  Labels
 } from './stacked-percentile'
 
 const PRIMARY_ACCESS_LABEL = 'Opportunities within isochrone'
@@ -139,9 +140,12 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
         {get(percentileCurves, 'length') > 0 &&
           (comparisonPercentileCurves == null ? (
             <SVGWrapper>
-              <StackedPercentile
+              <Labels
                 backgroundColorHex={backgroundColorHex}
                 fontColorHex={fontColorHex}
+                yScale={yScale}
+              />
+              <Chart
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}
                 yScale={yScale}
@@ -162,9 +166,12 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
             </SVGWrapper>
           ) : (
             <SVGWrapper>
-              <StackedPercentileComparison
+              <Labels
                 backgroundColorHex={backgroundColorHex}
                 fontColorHex={fontColorHex}
+                yScale={yScale}
+              />
+              <ComparisonChart
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}
                 comparisonPercentileCurves={comparisonPercentileCurves}

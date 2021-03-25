@@ -43,15 +43,19 @@ export const xScale = scaleLinear()
   .domain([0, MAX_TRIP_DURATION])
   .range([0, SVG_WIDTH - BARS_WIDTH_PX])
 
-interface StackedPercentileProps {
+interface ChartLabelsProps {
   backgroundColorHex: string
   fontColorHex: string
+  yScale: ScalePower<number, number, never>
+}
+
+interface StackedAreaChartProps {
   percentileIndex: number
   percentileCurves: number[][]
   yScale: ScalePower<number, number, never>
 }
 
-interface StackedPercentileComparisonProps extends StackedPercentileProps {
+interface ComparisonChartProps extends StackedAreaChartProps {
   comparisonPercentileCurves: number[][]
 }
 
@@ -82,7 +86,7 @@ export function SVGWrapper({children}) {
   )
 }
 
-export default memo<StackedPercentileProps>((p) => (
+export const Labels = memo<ChartLabelsProps>((p) => (
   <>
     <XAxis />
 
@@ -90,6 +94,17 @@ export default memo<StackedPercentileProps>((p) => (
       <YAxis backgroundColorHex={p.backgroundColorHex} yScale={p.yScale} />
     </g>
 
+    <g
+      transform={`translate(0 ${SVG_HEIGHT - 3})`}
+      style={{fill: p.fontColorHex}}
+    >
+      <MinuteTicks minutes={TIME_LABELS} scale={xScale} />
+    </g>
+  </>
+))
+
+const StackedAreaChart = memo<StackedAreaChartProps>((p) => (
+  <>
     <g transform={`translate(${SVG_WIDTH - 2 * BAR_WIDTH})`}>
       <StackedBar
         color={colors.PROJECT_PERCENTILE_COLOR}
@@ -100,13 +115,6 @@ export default memo<StackedPercentileProps>((p) => (
         strokeWidth={STROKE_WIDTH}
         width={BAR_WIDTH}
       />
-    </g>
-
-    <g
-      transform={`translate(0 ${SVG_HEIGHT - 3})`}
-      style={{fill: p.fontColorHex}}
-    >
-      <MinuteTicks minutes={TIME_LABELS} scale={xScale} />
     </g>
 
     <Slices
@@ -122,73 +130,60 @@ export default memo<StackedPercentileProps>((p) => (
   </>
 ))
 
+export default StackedAreaChart
+
 /**
- * Display a stacked percentile chart.
+ * Display a comparison chart.
  */
-export const StackedPercentileComparison = memo<StackedPercentileComparisonProps>(
-  (p) => (
-    <>
-      <XAxis />
-
-      <g style={{fill: p.fontColorHex}}>
-        <YAxis backgroundColorHex={p.backgroundColorHex} yScale={p.yScale} />
-      </g>
-
-      <g transform={`translate(${SVG_WIDTH - 2 * BAR_WIDTH})`}>
-        <StackedBar
-          color={colors.PROJECT_PERCENTILE_COLOR}
-          minOpacity={MIN_OPACITY}
-          percentileCurves={p.percentileCurves}
-          percentileIndex={p.percentileIndex}
-          scale={p.yScale}
-          strokeWidth={STROKE_WIDTH}
-          width={BAR_WIDTH}
-        />
-      </g>
-
-      <g transform={`translate(${SVG_WIDTH - BAR_WIDTH})`}>
-        <StackedBar
-          color={colors.COMPARISON_PERCENTILE_COLOR}
-          minOpacity={MIN_OPACITY}
-          percentileCurves={p.comparisonPercentileCurves}
-          percentileIndex={p.percentileIndex}
-          scale={p.yScale}
-          strokeWidth={STROKE_WIDTH}
-          width={BAR_WIDTH}
-        />
-      </g>
-
-      <g
-        transform={`translate(0 ${SVG_HEIGHT - 3})`}
-        style={{fill: p.fontColorHex}}
-      >
-        <MinuteTicks minutes={TIME_LABELS} scale={xScale} />
-      </g>
-
-      <Slices
-        color={colors.COMPARISON_PERCENTILE_COLOR}
-        percentileCurves={p.comparisonPercentileCurves}
-        yScale={p.yScale}
-      />
-      <Slices
+export const ComparisonChart = memo<ComparisonChartProps>((p) => (
+  <>
+    <g transform={`translate(${SVG_WIDTH - 2 * BAR_WIDTH})`}>
+      <StackedBar
         color={colors.PROJECT_PERCENTILE_COLOR}
+        minOpacity={MIN_OPACITY}
         percentileCurves={p.percentileCurves}
-        yScale={p.yScale}
+        percentileIndex={p.percentileIndex}
+        scale={p.yScale}
+        strokeWidth={STROKE_WIDTH}
+        width={BAR_WIDTH}
       />
+    </g>
 
-      <CumulativeLine
+    <g transform={`translate(${SVG_WIDTH - BAR_WIDTH})`}>
+      <StackedBar
         color={colors.COMPARISON_PERCENTILE_COLOR}
-        curve={p.comparisonPercentileCurves[p.percentileIndex]}
-        yScale={p.yScale}
+        minOpacity={MIN_OPACITY}
+        percentileCurves={p.comparisonPercentileCurves}
+        percentileIndex={p.percentileIndex}
+        scale={p.yScale}
+        strokeWidth={STROKE_WIDTH}
+        width={BAR_WIDTH}
       />
-      <CumulativeLine
-        color={colors.PROJECT_PERCENTILE_COLOR}
-        curve={p.percentileCurves[p.percentileIndex]}
-        yScale={p.yScale}
-      />
-    </>
-  )
-)
+    </g>
+
+    <Slices
+      color={colors.COMPARISON_PERCENTILE_COLOR}
+      percentileCurves={p.comparisonPercentileCurves}
+      yScale={p.yScale}
+    />
+    <Slices
+      color={colors.PROJECT_PERCENTILE_COLOR}
+      percentileCurves={p.percentileCurves}
+      yScale={p.yScale}
+    />
+
+    <CumulativeLine
+      color={colors.COMPARISON_PERCENTILE_COLOR}
+      curve={p.comparisonPercentileCurves[p.percentileIndex]}
+      yScale={p.yScale}
+    />
+    <CumulativeLine
+      color={colors.PROJECT_PERCENTILE_COLOR}
+      curve={p.percentileCurves[p.percentileIndex]}
+      yScale={p.yScale}
+    />
+  </>
+))
 
 /**
  * Boundaries are the boundaries between slices, as array indices in

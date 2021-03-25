@@ -1,7 +1,7 @@
 import {memo} from 'react'
 
 // The x axis labels for the plot
-const TIME_LABELS = [15, 30, 45, 60, 75, 90, 105, 120]
+const TIME_LABELS = [0, 15, 30, 45, 60, 75, 90, 105, 120]
 
 interface MinuteTicksProps {
   minutes?: number[]
@@ -26,7 +26,7 @@ export default memo<MinuteTicksProps>(function MinuteTicks({
           key={`x-tick-${v}`}
           style={{
             alignmentBaseline: 'baseline',
-            textAnchor: v === 0 ? 'start' : v === 120 ? 'end' : 'middle',
+            textAnchor: v === 0 ? 'start' : 'middle',
             userSelect: 'none'
           }}
         >

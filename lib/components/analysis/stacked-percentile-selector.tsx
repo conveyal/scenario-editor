@@ -28,14 +28,18 @@ import Tip from '../tip'
 
 import StackedPercentile, {
   StackedPercentileComparison,
-  SliceLine,
+  CutoffLine,
   createYScale,
   xScale,
-  SVGWrapper
+  SVGWrapper,
+  STROKE_WIDTH
 } from './stacked-percentile'
 
 const PRIMARY_ACCESS_LABEL = 'Opportunities within isochrone'
 const COMPARISON_ACCESS_LABEL = 'Opportunities within comparison isochrone'
+
+// Size of the circle and triangle symbols
+const SYMBOL_RADIUS = 5
 
 const commaFormat = format(',d')
 
@@ -84,7 +88,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
       spacing={0}
       className={disabledOrStale ? 'disableAndDim' : ''}
     >
-      <HStack mb={4} justify='space-between' spacing={8} width='100%'>
+      <HStack mb={4} justify='space-between' spacing={6} width='100%'>
         <FormControl w='500px' isDisabled={disabled}>
           <OpportunityDatasetSelector
             filter={filterFreeform}
@@ -142,16 +146,18 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
                 percentileIndex={percentileIndex}
                 yScale={yScale}
               />
-              <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
+              <g style={{stroke: fontColorHex}}>
+                <CutoffLine cutoff={xPosition} />
+              </g>
               <circle
                 cx={xPosition}
                 cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
                 style={{
                   stroke: colors.PROJECT_PERCENTILE_COLOR,
-                  strokeWidth: 1.5,
+                  strokeWidth: STROKE_WIDTH,
                   fill: 'none'
                 }}
-                r={5}
+                r={SYMBOL_RADIUS}
               />
             </SVGWrapper>
           ) : (
@@ -164,16 +170,18 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
                 comparisonPercentileCurves={comparisonPercentileCurves}
                 yScale={yScale}
               />
-              <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
+              <g style={{stroke: fontColorHex}}>
+                <CutoffLine cutoff={xPosition} />
+              </g>
               <circle
                 cx={xPosition}
                 cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
                 style={{
                   stroke: colors.PROJECT_PERCENTILE_COLOR,
-                  strokeWidth: 1.5,
+                  strokeWidth: STROKE_WIDTH,
                   fill: 'none'
                 }}
-                r={5}
+                r={SYMBOL_RADIUS}
               />
               <Triangle
                 color={colors.COMPARISON_PERCENTILE_COLOR}
@@ -189,16 +197,15 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   )
 }
 
-const tSize = 5
 function Triangle({color, x, y}: {color: string; x: number; y: number}) {
   return (
     <polygon
-      points={`${x - tSize},${y - tSize} ${x},${y + tSize} ${x + tSize},${
-        y - tSize
-      }`}
+      points={`${x - SYMBOL_RADIUS},${y - SYMBOL_RADIUS} ${x},${
+        y + SYMBOL_RADIUS
+      } ${x + SYMBOL_RADIUS},${y - SYMBOL_RADIUS}`}
       style={{
         stroke: color,
-        strokeWidth: 1.5,
+        strokeWidth: STROKE_WIDTH,
         fill: 'none'
       }}
     />

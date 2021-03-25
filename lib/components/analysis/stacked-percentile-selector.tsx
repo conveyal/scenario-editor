@@ -136,60 +136,42 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
         </VStack>
       </HStack>
 
-      <Box fontFamily='mono'>
-        {get(percentileCurves, 'length') > 0 &&
-          (comparisonPercentileCurves == null ? (
-            <SVGWrapper>
-              <Labels
-                backgroundColorHex={backgroundColorHex}
-                fontColorHex={fontColorHex}
-                yScale={yScale}
-              />
+      {get(percentileCurves, 'length') > 0 && (
+        <Box fontFamily='mono'>
+          <SVGWrapper>
+            <Labels
+              backgroundColorHex={backgroundColorHex}
+              fontColorHex={fontColorHex}
+              yScale={yScale}
+            />
+            {comparisonPercentileCurves == null ? (
               <Chart
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}
                 yScale={yScale}
               />
-              <g style={{stroke: fontColorHex}}>
-                <CutoffLine cutoff={xPosition} />
-              </g>
-              <circle
-                cx={xPosition}
-                cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
-                style={{
-                  stroke: colors.PROJECT_PERCENTILE_COLOR,
-                  strokeWidth: STROKE_WIDTH,
-                  fill: 'none'
-                }}
-                r={SYMBOL_RADIUS}
-              />
-            </SVGWrapper>
-          ) : (
-            <SVGWrapper>
-              <Labels
-                backgroundColorHex={backgroundColorHex}
-                fontColorHex={fontColorHex}
-                yScale={yScale}
-              />
+            ) : (
               <ComparisonChart
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}
                 comparisonPercentileCurves={comparisonPercentileCurves}
                 yScale={yScale}
               />
-              <g style={{stroke: fontColorHex}}>
-                <CutoffLine cutoff={xPosition} />
-              </g>
-              <circle
-                cx={xPosition}
-                cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
-                style={{
-                  stroke: colors.PROJECT_PERCENTILE_COLOR,
-                  strokeWidth: STROKE_WIDTH,
-                  fill: 'none'
-                }}
-                r={SYMBOL_RADIUS}
-              />
+            )}
+            <g style={{stroke: fontColorHex}}>
+              <CutoffLine cutoff={xPosition} />
+            </g>
+            <circle
+              cx={xPosition}
+              cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
+              style={{
+                stroke: colors.PROJECT_PERCENTILE_COLOR,
+                strokeWidth: STROKE_WIDTH,
+                fill: 'none'
+              }}
+              r={SYMBOL_RADIUS}
+            />
+            {comparisonPercentileCurves != null && (
               <Triangle
                 color={colors.COMPARISON_PERCENTILE_COLOR}
                 x={xPosition}
@@ -197,9 +179,10 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
                   comparisonPercentileCurves[percentileIndex][isochroneCutoff]
                 )}
               />
-            </SVGWrapper>
-          ))}
-      </Box>
+            )}
+          </SVGWrapper>
+        </Box>
+      )}
     </Stack>
   )
 }

@@ -58,6 +58,8 @@ const filterFreeform = (dataset: CL.SpatialDataset) =>
 function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   const fontColor = useColorModeValue('gray.900', 'white')
   const fontColorHex = useToken('colors', fontColor)
+  const backgroundColor = useColorModeValue('white', 'gray.900')
+  const backgroundColorHex = useToken('colors', backgroundColor)
   const accessibility = useSelector(selectAccessibility)
   const comparisonAccessibility = useSelector(selectComparisonAccessibility)
   const comparisonPercentileCurves = useSelector(
@@ -138,6 +140,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
           (comparisonPercentileCurves == null ? (
             <SVGWrapper>
               <StackedPercentile
+                backgroundColorHex={backgroundColorHex}
                 fontColorHex={fontColorHex}
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}
@@ -159,6 +162,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
           ) : (
             <SVGWrapper>
               <StackedPercentileComparison
+                backgroundColorHex={backgroundColorHex}
                 fontColorHex={fontColorHex}
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}

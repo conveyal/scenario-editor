@@ -48,6 +48,7 @@ export const xScale = scaleLinear()
   .range([0, SVG_WIDTH - BARS_WIDTH_PX])
 
 type StackedPercentileProps = {
+  backgroundColorHex: string
   color: string
   fontColorHex: string
   percentileIndex: number
@@ -88,13 +89,20 @@ export function SVGWrapper({children}) {
 }
 
 export default memo<StackedPercentileProps>(
-  ({color, fontColorHex, percentileIndex, percentileCurves, yScale}) => {
+  ({
+    backgroundColorHex,
+    color,
+    fontColorHex,
+    percentileIndex,
+    percentileCurves,
+    yScale
+  }) => {
     return (
       <>
         <XAxis />
 
         <g style={{fill: fontColorHex}}>
-          <YAxis yScale={yScale} />
+          <YAxis backgroundColorHex={backgroundColorHex} yScale={yScale} />
         </g>
 
         <g transform={`translate(${SVG_WIDTH - 1.9 * BAR_WIDTH})`}>
@@ -139,6 +147,7 @@ export const StackedPercentileComparison = memo<
   StackedPercentileComparisonProps & StackedPercentileProps
 >(
   ({
+    backgroundColorHex,
     color,
     comparisonColor,
     comparisonPercentileCurves,
@@ -152,7 +161,7 @@ export const StackedPercentileComparison = memo<
         <XAxis />
 
         <g style={{fill: fontColorHex}}>
-          <YAxis yScale={yScale} />
+          <YAxis backgroundColorHex={backgroundColorHex} yScale={yScale} />
         </g>
         <g transform={`translate(${SVG_WIDTH - 2 * BAR_WIDTH})`}>
           <StackedBar
@@ -272,9 +281,10 @@ const XAxis = memo(() => (
 ))
 
 type YAxisProps = {
+  backgroundColorHex: string
   yScale: ScalePower<number, number, never>
 }
-const YAxis = memo<YAxisProps>(({yScale}: YAxisProps) => {
+const YAxis = memo<YAxisProps>(({backgroundColorHex, yScale}: YAxisProps) => {
   // y scale
   const yTicks = yScale.ticks(6)
 
@@ -293,7 +303,7 @@ const YAxis = memo<YAxisProps>(({yScale}: YAxisProps) => {
             <text
               style={{
                 alignmentBaseline: 'middle',
-                stroke: '#fff',
+                stroke: backgroundColorHex,
                 strokeWidth: 2,
                 userSelect: 'none'
               }}

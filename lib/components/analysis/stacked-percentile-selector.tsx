@@ -76,18 +76,14 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   }, [maxAccessibility])
 
   const disabledOrStale = disabled || stale
-
-  const projectColor = disabledOrStale
-    ? colors.STALE_PERCENTILE_COLOR
-    : colors.PROJECT_PERCENTILE_COLOR
-  const comparisonColor = disabledOrStale
-    ? colors.STALE_PERCENTILE_COLOR
-    : colors.COMPARISON_PERCENTILE_COLOR
-
   const xPosition = xScale(isochroneCutoff)
 
   return (
-    <Stack {...p} spacing={0}>
+    <Stack
+      {...p}
+      spacing={0}
+      className={disabledOrStale ? 'disableAndDim' : ''}
+    >
       <HStack mb={4} justify='space-between' spacing={8} width='100%'>
         <FormControl w='500px' isDisabled={disabled}>
           <OpportunityDatasetSelector
@@ -101,7 +97,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
               aria-label={PRIMARY_ACCESS_LABEL}
               borderWidth='1px'
               px={1}
-              color={projectColor}
+              color={colors.PROJECT_PERCENTILE_COLOR}
               roundedTop='md'
               roundedBottom={
                 typeof comparisonAccessibility === 'number' ? 'none' : 'md'
@@ -120,7 +116,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
             <Tip label={COMPARISON_ACCESS_LABEL}>
               <Box
                 aria-label={COMPARISON_ACCESS_LABEL}
-                color={comparisonColor}
+                color={colors.COMPARISON_PERCENTILE_COLOR}
                 borderWidth='1px'
                 borderTopWidth={0}
                 px={1}
@@ -144,7 +140,6 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
                 fontColorHex={fontColorHex}
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}
-                color={projectColor}
                 yScale={yScale}
               />
               <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
@@ -152,11 +147,11 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
                 cx={xPosition}
                 cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
                 style={{
-                  stroke: projectColor,
+                  stroke: colors.PROJECT_PERCENTILE_COLOR,
                   strokeWidth: 1.5,
                   fill: 'none'
                 }}
-                r={3}
+                r={5}
               />
             </SVGWrapper>
           ) : (
@@ -167,8 +162,6 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
                 percentileCurves={percentileCurves}
                 percentileIndex={percentileIndex}
                 comparisonPercentileCurves={comparisonPercentileCurves}
-                color={projectColor}
-                comparisonColor={comparisonColor}
                 yScale={yScale}
               />
               <SliceLine color={fontColorHex} cutoff={isochroneCutoff} />
@@ -176,14 +169,14 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
                 cx={xPosition}
                 cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
                 style={{
-                  stroke: projectColor,
+                  stroke: colors.PROJECT_PERCENTILE_COLOR,
                   strokeWidth: 1.5,
                   fill: 'none'
                 }}
-                r={4}
+                r={5}
               />
               <Triangle
-                color={comparisonColor}
+                color={colors.COMPARISON_PERCENTILE_COLOR}
                 x={xPosition}
                 y={yScale(
                   comparisonPercentileCurves[percentileIndex][isochroneCutoff]
@@ -196,7 +189,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   )
 }
 
-const tSize = 4
+const tSize = 5
 function Triangle({color, x, y}: {color: string; x: number; y: number}) {
   return (
     <polygon

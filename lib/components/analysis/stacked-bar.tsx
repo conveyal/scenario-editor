@@ -3,10 +3,9 @@ import {memo} from 'react'
 import {useSelector} from 'react-redux'
 
 interface StackedBarProps {
-  boxPlotItems: number[]
   color: string
   percentileCurves: number[][]
-  positionIndex: number
+  percentileIndex: number
   scale: (n: number) => number
   strokeWidth?: number
   width: number
@@ -16,43 +15,40 @@ interface StackedBarProps {
  * An svg stacked bar chart
  */
 export default memo<StackedBarProps>(function StackedBarProps({
-  boxPlotItems,
   color,
   percentileCurves,
-  positionIndex,
+  percentileIndex,
   scale,
   strokeWidth = 0.5,
   width
 }) {
   const cutoff = useSelector(selectMaxTripDurationMinutes)
-  const positions = boxPlotItems.map((i) => percentileCurves[i][cutoff - 1])
-  const MAX_OPACITY = 0.6
+  const positions = percentileCurves.map((p) => p[cutoff]).reverse()
 
   return (
     <>
-      {positions.slice(1).map((v, i) => (
+      {positions.map((v, i) => (
         <rect // first four bars
           width={width}
           x={0}
           y={scale(v)}
-          height={scale(positions[i]) - scale(v)} // i is index into unsliced array
-          opacity={MAX_OPACITY - (i + 1) * 0.1}
-          style={{strokeWidth: 0, fill: color}}
+          // i is index into unsliced array
+          height={
+            i === 0 ? scale(0) - scale(v) : scale(positions[i - 1]) - scale(v)
+          }
+          style={{
+            strokeWidth: 0,
+            fill: color,
+            fillOpacity: (positions.length - i) * 0.03
+          }}
           key={`access-${i}`}
         />
       ))}
-      <rect // last bar
-        width={width}
-        x={0}
-        y={scale(positions[0])}
-        height={scale(0) - scale(positions[0])}
-        style={{opacity: MAX_OPACITY, fill: color}}
-      />
       <rect // cumulative "halo" for selected percentile
-        width={width}
-        x={0}
-        y={scale(positions[positionIndex])}
-        height={scale(0) - scale(positions[positionIndex])}
+        width={width - strokeWidth}
+        x={strokeWidth / 2}
+        y={scale(percentileCurves[percentileIndex][cutoff])}
+        height={scale(0) - scale(percentileCurves[percentileIndex][cutoff])}
         style={{
           stroke: color,
           strokeWidth: strokeWidth,

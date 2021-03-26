@@ -204,8 +204,8 @@ const Slices = memo<SlicesProps>(({color, percentileCurves, yScale}) => {
     slices.push(combinedValues)
   }
 
-  // Add the full area under
-  slices.push(percentileCurves[percentileCurves.length - 1].map((d) => [0, d]))
+  // Adds the full area under the curve
+  // slices.push(percentileCurves[percentileCurves.length - 1].map((d) => [0, d]))
 
   return (
     <>

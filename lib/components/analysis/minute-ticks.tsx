@@ -10,8 +10,7 @@ interface MinuteTicksProps {
 
 /**
  * Render the minute axis ticks - shared by stacked percentile curves plot and
- * travel time distribution plot. We don't explicitly center the '15 minutes'
- * text; fudge the left side a bit so that the 15 appears centered.
+ * travel time distribution plot.
  */
 export default memo<MinuteTicksProps>(function MinuteTicks({
   minutes = TIME_LABELS,

@@ -105,6 +105,7 @@ const CutoffSlider = memo<CutoffSliderProps>(
           color='gray.900'
           fontSize='sm'
           fontWeight='bold'
+          userSelect='none'
         >
           {cutoff}
         </SliderThumb>
@@ -150,6 +151,7 @@ const PercentileSlider = memo<PercentileSliderProps>(function PercentileSlider({
           color='gray.900'
           fontSize='sm'
           fontWeight='bold'
+          userSelect='none'
         >
           {TRAVEL_TIME_PERCENTILES[percentileSlider.value]}
         </SliderThumb>

@@ -264,6 +264,7 @@ const YAxis = memo<YAxisProps>(({backgroundColorHex, yScale}: YAxisProps) => {
             <text
               style={{
                 alignmentBaseline: 'middle',
+                pointerEvents: 'none',
                 stroke: backgroundColorHex,
                 strokeWidth: 2, // Adds an outline
                 userSelect: 'none'
@@ -276,6 +277,7 @@ const YAxis = memo<YAxisProps>(({backgroundColorHex, yScale}: YAxisProps) => {
             <text
               style={{
                 alignmentBaseline: 'middle',
+                pointerEvents: 'none',
                 userSelect: 'none'
               }}
               x={CHART_WIDTH + TEXT_BUFFER}

@@ -25,7 +25,7 @@ export default memo<MinuteTicksProps>(function MinuteTicks({
           y={0}
           key={`x-tick-${v}`}
           style={{
-            alignmentBaseline: 'baseline',
+            pointerEvents: 'none',
             textAnchor: v === 0 ? 'start' : 'middle',
             userSelect: 'none'
           }}

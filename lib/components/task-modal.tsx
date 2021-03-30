@@ -16,9 +16,21 @@ import dateFormat from 'date-fns/format'
 
 const formatTime = (t: number): string => dateFormat(new Date(t), 'HH:mm:ss')
 
-export default function TaskModal({clear, children, task}) {
+type TaskModalProps = {
+  clear: () => void
+  children: React.ReactNode
+  task: CL.Task
+}
+
+export default function TaskModal({clear, children, task}: TaskModalProps) {
   return (
-    <Modal closeOnOverlayClick={false} onClose={clear} isOpen={true} size='md'>
+    <Modal
+      closeOnEsc={false}
+      closeOnOverlayClick={false}
+      onClose={clear}
+      isOpen={true}
+      size='md'
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{task.tags.title}</ModalHeader>
@@ -26,7 +38,7 @@ export default function TaskModal({clear, children, task}) {
         <ModalBody>
           <Stack spacing={4}>
             <Stack fontFamily='mono'>
-              {task.log.map((l, i) => (
+              {task.log.map((l: CL.TaskLogEntry, i: number) => (
                 <HStack key={i}>
                   <Text color='gray.500'>[{formatTime(l.time)}]</Text>{' '}
                   <Text>{l.message}</Text>

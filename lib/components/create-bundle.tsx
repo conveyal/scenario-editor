@@ -15,7 +15,7 @@ import {
   TabPanels,
   Text
 } from '@chakra-ui/react'
-import {useCallback, useRef, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import fetch from 'lib/actions/fetch'
@@ -40,7 +40,13 @@ function ShowStatus({bundleId, clear, regionId}) {
     },
     [bundleId]
   )
-  const task = useTask(filter)
+  const [task, clearTask] = useTask(filter)
+
+  // Clear the task on unmount
+  useEffect(() => {
+    if (task) return () => clearTask()
+  }, [task, clearTask])
+
   if (!task) return null
   return (
     <TaskModal clear={clear} task={task}>
@@ -126,6 +132,7 @@ export default function CreateBundle() {
           <ShowStatus
             bundleId={bundleId}
             clear={() => {
+              console.log('CLEAR CALLED')
               formRef.current.reset()
               setBundleId(null)
               setUploading(false)

@@ -1,8 +1,6 @@
 import {
   Alert,
-  AlertDescription,
   AlertIcon,
-  AlertTitle,
   Button,
   FormControl,
   FormLabel,
@@ -17,25 +15,48 @@ import {
   TabPanels,
   Text
 } from '@chakra-ui/react'
-import {useState} from 'react'
+import {useCallback, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import {addBundle} from 'lib/actions'
 import fetch from 'lib/actions/fetch'
 import {API} from 'lib/constants'
+import useTask from 'lib/hooks/use-task'
 import message from 'lib/message'
 import selectBundles from 'lib/selectors/bundles'
 import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
 import InnerDock from './inner-dock'
+import Link from './link'
 import DocsLink from './docs-link'
-import useRouteTo from 'lib/hooks/use-route-to'
+import TaskModal from './task-modal'
 
-// how often to poll when waiting for a bundle to be read on the server.
-const POLL_TIMEOUT_MS = 10000
-const STATUS_DONE = 'DONE'
-const STATUS_ERROR = 'ERROR'
+function ShowStatus({bundleId, clear, regionId}) {
+  const filter = useCallback(
+    (tasks: CL.Task[]) => {
+      return tasks.find(
+        (t) => t.tags.category === 'bundles' && t.tags.bundleId === bundleId
+      )
+    },
+    [bundleId]
+  )
+  const task = useTask(filter)
+  if (!task) return null
+  return (
+    <TaskModal clear={clear} task={task}>
+      <Link to='bundleEdit' query={{bundleId, regionId}}>
+        <Button colorScheme='blue' isFullWidth mr={2} size='lg'>
+          View the bundle
+        </Button>
+      </Link>
+      <Link to='projectCreate' query={{regionId}}>
+        <Button colorScheme='green' isFullWidth size='lg'>
+          Create new project
+        </Button>
+      </Link>
+    </TaskModal>
+  )
+}
 
 /**
  * Create bundle form.
@@ -46,13 +67,13 @@ export default function CreateBundle() {
   const region = useSelector(selectCurrentRegion)
   const regionId = region._id
   const bounds = region.bounds
-  const goToBundleEdit = useRouteTo('bundleEdit', {regionId})
+  const formRef = useRef<HTMLFormElement>()
 
   const hasExistingBundles = bundles.length > 0
   const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
   const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
   const [uploading, setUploading] = useState(false)
-  const [error, setError] = useState<string | void>()
+  const [bundleId, setBundleId] = useState<string>(null)
   const [formData, setFormData] = useState<Record<string, string>>({
     name: ''
   })
@@ -68,32 +89,6 @@ export default function CreateBundle() {
     ((reuseOsm && formData.osmId) || (!reuseOsm && formData.osm)) &&
     ((reuseGtfs && formData.feedGroupId) || (!reuseGtfs && formData.feedGroup))
 
-  /**
-   * Check if the upload has completed
-   */
-  function checkUploadState(_id: string) {
-    dispatch(fetch({url: `${API.Bundle}/${_id}`}))
-      .then((bundle) => {
-        if (bundle.status === STATUS_DONE) {
-          // Add bundle to the store
-          dispatch(addBundle(bundle))
-
-          // Go to bundle list
-          goToBundleEdit({bundleId: _id})
-        } else if (bundle.status === STATUS_ERROR) {
-          setUploading(false)
-          setError(bundle.statusText)
-        } else {
-          setUploading(bundle.status)
-          setTimeout(() => checkUploadState(_id), POLL_TIMEOUT_MS)
-        }
-      })
-      .catch(() => {
-        // this request failing does not imply that the bundle failed to upload
-        setTimeout(() => checkUploadState(_id), POLL_TIMEOUT_MS)
-      })
-  }
-
   function submit(e) {
     // don't submit the form
     e.preventDefault()
@@ -108,18 +103,15 @@ export default function CreateBundle() {
 
     if (isValid()) {
       setUploading(true)
-      setError()
 
       dispatch(
         fetch({
           url: API.Bundle,
           options: {body, method: 'post'}
         })
-      )
-        .then((bundle) => {
-          setTimeout(() => checkUploadState(bundle._id), POLL_TIMEOUT_MS)
-        })
-        .catch(() => setUploading(false))
+      ).then((b) => {
+        setBundleId(b._id)
+      })
     }
   }
 
@@ -130,23 +122,19 @@ export default function CreateBundle() {
 
         <Text>{message('bundle.createDescription')}</Text>
 
-        {uploading && (
-          <Alert status='info'>
-            <AlertIcon />
-            <Stack spacing={2}>
-              <AlertTitle>{message('bundle.processing')}</AlertTitle>
-              <AlertDescription>{uploading}</AlertDescription>
-            </Stack>
-          </Alert>
+        {uploading && bundleId && (
+          <ShowStatus
+            bundleId={bundleId}
+            clear={() => {
+              formRef.current.reset()
+              setBundleId(null)
+              setUploading(false)
+            }}
+            regionId={regionId}
+          />
         )}
 
-        {error && (
-          <Alert status='error'>
-            <AlertIcon /> {error}
-          </Alert>
-        )}
-
-        {!uploading && !error && (
+        {!uploading && (
           <Alert status='info'>
             <AlertIcon />
             {message('bundle.notice')}
@@ -154,178 +142,178 @@ export default function CreateBundle() {
         )}
       </Stack>
 
-      <Stack
-        as='form'
-        onSubmit={submit}
-        opacity={uploading ? 0.4 : 1}
-        pointerEvents={uploading ? 'none' : 'auto'}
-        pl={8}
-        pr={8}
-        spacing={8}
-      >
-        <FormControl isRequired isInvalid={formData.name.length < 1}>
-          <FormLabel htmlFor='bundleName'>{message('bundle.name')}</FormLabel>
-          <Input
-            id='bundleName'
-            name='bundleName'
-            onChange={onChange('name')}
-            placeholder='Name'
-          />
-        </FormControl>
-
-        <Tabs
-          defaultIndex={hasExistingBundles ? 0 : 1}
-          isFitted
-          onChange={(i) => setReuseOsm(i === 0)}
+      <form ref={formRef} onSubmit={submit}>
+        <Stack
+          opacity={uploading ? 0.4 : 1}
+          pointerEvents={uploading ? 'none' : 'auto'}
+          pl={8}
+          pr={8}
+          spacing={8}
         >
-          <TabList>
-            <Tab
-              aria-disabled={!hasExistingBundles}
-              disabled={!hasExistingBundles}
-            >
-              {message('bundle.osm.existingTitle')}
-            </Tab>
-            <Tab>{message('bundle.osm.uploadNewTitle')}</Tab>
-          </TabList>
+          <FormControl isRequired isInvalid={formData.name.length < 1}>
+            <FormLabel htmlFor='bundleName'>{message('bundle.name')}</FormLabel>
+            <Input
+              id='bundleName'
+              name='bundleName'
+              onChange={onChange('name')}
+              placeholder='Name'
+            />
+          </FormControl>
 
-          <TabPanels>
-            <TabPanel pt={4} px={0}>
-              {reuseOsm && (
-                <Select
-                  id='osmId'
-                  name='osmId'
-                  onChange={onChange('osmId')}
-                  placeholder={message('bundle.osm.existingLabel')}
-                >
-                  {bundles.map((b) => (
-                    <option key={b._id} value={b.osmId}>
-                      {b.name}
-                    </option>
-                  ))}
-                </Select>
-              )}
-            </TabPanel>
-            <TabPanel p={0}>
-              {!reuseOsm && (
-                <Stack spacing={4} pt={4}>
-                  <Heading size='sm'>
-                    {message('bundle.osmconvertDescription')}
-                    <DocsLink
-                      ml={1}
-                      to='/prepare-inputs#preparing-the-osm-data'
-                    />
-                  </Heading>
+          <Tabs
+            defaultIndex={hasExistingBundles ? 0 : 1}
+            isFitted
+            onChange={(i) => setReuseOsm(i === 0)}
+          >
+            <TabList>
+              <Tab
+                aria-disabled={!hasExistingBundles}
+                disabled={!hasExistingBundles}
+              >
+                {message('bundle.osm.existingTitle')}
+              </Tab>
+              <Tab>{message('bundle.osm.uploadNewTitle')}</Tab>
+            </TabList>
 
-                  <Code>
-                    {message('bundle.osmConvertCommand', {
-                      north: bounds.north,
-                      south: bounds.south,
-                      east: bounds.east,
-                      west: bounds.west
-                    })}
-                  </Code>
+            <TabPanels>
+              <TabPanel pt={4} px={0}>
+                {reuseOsm && (
+                  <Select
+                    id='osmId'
+                    name='osmId'
+                    onChange={onChange('osmId')}
+                    placeholder={message('bundle.osm.existingLabel')}
+                  >
+                    {bundles.map((b) => (
+                      <option key={b._id} value={b.osmId}>
+                        {b.name}
+                      </option>
+                    ))}
+                  </Select>
+                )}
+              </TabPanel>
+              <TabPanel p={0}>
+                {!reuseOsm && (
+                  <Stack spacing={4} pt={4}>
+                    <Heading size='sm'>
+                      {message('bundle.osmconvertDescription')}
+                      <DocsLink
+                        ml={1}
+                        to='/prepare-inputs#preparing-the-osm-data'
+                      />
+                    </Heading>
 
-                  <Heading size='sm'>
-                    {message('bundle.osmosisDescription')}
-                    <DocsLink
-                      ml={1}
-                      to='/prepare-inputs#preparing-the-osm-data'
-                    />
-                  </Heading>
-                  <Code>
-                    {message('bundle.osmosisCommand', {
-                      north: bounds.north,
-                      south: bounds.south,
-                      east: bounds.east,
-                      west: bounds.west
-                    })}
-                  </Code>
+                    <Code>
+                      {message('bundle.osmConvertCommand', {
+                        north: bounds.north,
+                        south: bounds.south,
+                        east: bounds.east,
+                        west: bounds.west
+                      })}
+                    </Code>
 
+                    <Heading size='sm'>
+                      {message('bundle.osmosisDescription')}
+                      <DocsLink
+                        ml={1}
+                        to='/prepare-inputs#preparing-the-osm-data'
+                      />
+                    </Heading>
+                    <Code>
+                      {message('bundle.osmosisCommand', {
+                        north: bounds.north,
+                        south: bounds.south,
+                        east: bounds.east,
+                        west: bounds.west
+                      })}
+                    </Code>
+
+                    <FormControl isRequired>
+                      <FormLabel htmlFor='osm'>
+                        {message('bundle.osm.uploadNewLabel')}
+                      </FormLabel>
+                      <Input
+                        accept='.pbf'
+                        id='osm'
+                        name='osm'
+                        type='file'
+                        onChange={onChange('osm')}
+                      />
+                    </FormControl>
+                  </Stack>
+                )}
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+
+          <Tabs
+            defaultIndex={hasExistingBundles ? 0 : 1}
+            isFitted
+            onChange={(i) => setReuseGtfs(i === 0)}
+          >
+            <TabList>
+              <Tab
+                aria-disabled={!hasExistingBundles}
+                disabled={!hasExistingBundles}
+              >
+                {message('bundle.gtfs.existingTitle')}
+              </Tab>
+              <Tab>{message('bundle.gtfs.uploadNewTitle')}</Tab>
+            </TabList>
+
+            <TabPanels>
+              <TabPanel pt={4} px={0}>
+                {reuseGtfs && (
+                  <Select
+                    id='feedGroupId'
+                    name='feedGroupId'
+                    onChange={onChange('feedGroupId')}
+                    placeholder={message('bundle.gtfs.existingLabel')}
+                  >
+                    {bundles.map((b) => (
+                      <option key={b._id} value={b.feedGroupId}>
+                        {b.name}
+                      </option>
+                    ))}
+                  </Select>
+                )}
+              </TabPanel>
+              <TabPanel pt={4} px={0}>
+                {!reuseGtfs && (
                   <FormControl isRequired>
-                    <FormLabel htmlFor='osm'>
-                      {message('bundle.osm.uploadNewLabel')}
+                    <FormLabel htmlFor='feedGroup'>
+                      {message('bundle.gtfs.uploadNewLabel')}
                     </FormLabel>
                     <Input
-                      accept='.pbf'
-                      id='osm'
-                      name='osm'
+                      accept='.zip'
+                      id='feedGroup'
+                      multiple
+                      name='feedGroup'
+                      onChange={onChange('feedGroup')}
                       type='file'
-                      onChange={onChange('osm')}
                     />
                   </FormControl>
-                </Stack>
-              )}
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+                )}
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
 
-        <Tabs
-          defaultIndex={hasExistingBundles ? 0 : 1}
-          isFitted
-          onChange={(i) => setReuseGtfs(i === 0)}
-        >
-          <TabList>
-            <Tab
-              aria-disabled={!hasExistingBundles}
-              disabled={!hasExistingBundles}
+          <input type='hidden' name='regionId' value={regionId} />
+
+          <Stack spacing={4}>
+            <Button
+              isDisabled={!isValid()}
+              isLoading={uploading}
+              loadingText={message('common.processing')}
+              size='lg'
+              type='submit'
+              colorScheme='green'
             >
-              {message('bundle.gtfs.existingTitle')}
-            </Tab>
-            <Tab>{message('bundle.gtfs.uploadNewTitle')}</Tab>
-          </TabList>
-
-          <TabPanels>
-            <TabPanel pt={4} px={0}>
-              {reuseGtfs && (
-                <Select
-                  id='feedGroupId'
-                  name='feedGroupId'
-                  onChange={onChange('feedGroupId')}
-                  placeholder={message('bundle.gtfs.existingLabel')}
-                >
-                  {bundles.map((b) => (
-                    <option key={b._id} value={b.feedGroupId}>
-                      {b.name}
-                    </option>
-                  ))}
-                </Select>
-              )}
-            </TabPanel>
-            <TabPanel pt={4} px={0}>
-              {!reuseGtfs && (
-                <FormControl isRequired>
-                  <FormLabel htmlFor='feedGroup'>
-                    {message('bundle.gtfs.uploadNewLabel')}
-                  </FormLabel>
-                  <Input
-                    accept='.zip'
-                    id='feedGroup'
-                    multiple
-                    name='feedGroup'
-                    onChange={onChange('feedGroup')}
-                    type='file'
-                  />
-                </FormControl>
-              )}
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-
-        <input type='hidden' name='regionId' value={regionId} />
-
-        <Stack spacing={4}>
-          <Button
-            isDisabled={!isValid()}
-            isLoading={uploading}
-            loadingText={message('common.processing')}
-            size='lg'
-            type='submit'
-            colorScheme='green'
-          >
-            {message('common.create')}
-          </Button>
+              {message('common.create')}
+            </Button>
+          </Stack>
         </Stack>
-      </Stack>
+      </form>
     </InnerDock>
   )
 }

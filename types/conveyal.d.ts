@@ -219,6 +219,31 @@ declare namespace CL {
     version: string
   }
 
+  export type TaskState = 'QUEUED' | 'ACTIVE' | 'ERROR' | 'DONE'
+
+  export type TaskLogEntry = {
+    level: string
+    time: number
+    message: string
+  }
+
+  export type Task = {
+    id: string
+    log: TaskLogEntry[]
+    percentComplete: number
+    state: TaskState
+    tags: Record<string, string>
+  }
+
+  /**
+   * Server Activity
+   */
+  export type Activity = {
+    systemStatusMessages: unknown[]
+    taskBacklog: number
+    taskProgress: Task[]
+  }
+
   /**
    * Router query string. Cast params to string instead of `string | string[]`
    */

@@ -4,7 +4,8 @@ module.exports = {
   async redirects() {
     return [{
       source: '/changelog',
-      destination: 'https://docs.conveyal.com/changelog'
+      destination: 'https://docs.conveyal.com/changelog',
+      permanent: false
     }]
   }
 }

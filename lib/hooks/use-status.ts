@@ -9,7 +9,7 @@ import {ResponseError} from 'lib/utils/safe-fetch'
 import useUser from './use-user'
 
 const MAX_REFRESH_INTERVAL_MS = 30_000
-const FAST_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 10
+const FAST_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 30
 
 /**
  * SWR expects errors to throw.

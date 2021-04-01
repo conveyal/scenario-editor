@@ -15,7 +15,7 @@ import {
   TabPanels,
   Text
 } from '@chakra-ui/react'
-import {useCallback, useEffect, useRef, useState} from 'react'
+import {FormEvent, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import fetch from 'lib/actions/fetch'
@@ -31,32 +31,36 @@ import Link from './link'
 import DocsLink from './docs-link'
 import TaskModal from './task-modal'
 
-function ShowStatus({bundleId, clear, regionId}) {
-  const filter = useCallback(
-    (tasks: CL.Task[]) => {
-      return tasks.find(
-        (t) => t.tags.category === 'bundles' && t.tags.bundleId === bundleId
-      )
-    },
-    [bundleId]
-  )
-  const [task, clearTask] = useTask(filter)
-
-  // Clear the task on unmount
-  useEffect(() => {
-    if (task) return () => clearTask()
-  }, [task, clearTask])
+function ShowStatus({clear, regionId, taskId}) {
+  const [task, clearTask] = useTask(taskId)
 
   if (!task) return null
   return (
-    <TaskModal clear={clear} task={task}>
-      <Link to='bundleEdit' query={{bundleId, regionId}}>
-        <Button colorScheme='blue' isFullWidth mr={2} size='lg'>
+    <TaskModal
+      clear={() => {
+        clearTask()
+        clear()
+      }}
+      task={task}
+    >
+      <Link to='bundleEdit' query={{bundleId: task.tags.bundleId, regionId}}>
+        <Button
+          colorScheme='blue'
+          onClick={() => clearTask()}
+          isFullWidth
+          mr={2}
+          size='lg'
+        >
           View the bundle
         </Button>
       </Link>
       <Link to='projectCreate' query={{regionId}}>
-        <Button colorScheme='green' isFullWidth size='lg'>
+        <Button
+          colorScheme='green'
+          onClick={() => clearTask()}
+          isFullWidth
+          size='lg'
+        >
           Create new project
         </Button>
       </Link>
@@ -79,7 +83,7 @@ export default function CreateBundle() {
   const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
   const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
   const [uploading, setUploading] = useState(false)
-  const [bundleId, setBundleId] = useState<string>(null)
+  const [task, setTask] = useState<CL.Task>(null)
   const [formData, setFormData] = useState<Record<string, string>>({
     name: ''
   })
@@ -95,11 +99,11 @@ export default function CreateBundle() {
     ((reuseOsm && formData.osmId) || (!reuseOsm && formData.osm)) &&
     ((reuseGtfs && formData.feedGroupId) || (!reuseGtfs && formData.feedGroup))
 
-  function submit(e) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     // don't submit the form
     e.preventDefault()
 
-    const body = new window.FormData(e.target)
+    const body = new window.FormData(e.currentTarget)
 
     if (reuseGtfs) body.delete('feedGroup')
     else body.delete('feedGroupId')
@@ -110,14 +114,17 @@ export default function CreateBundle() {
     if (isValid()) {
       setUploading(true)
 
-      dispatch(
-        fetch({
-          url: API.Bundle,
-          options: {body, method: 'post'}
-        })
-      ).then((b) => {
-        setBundleId(b._id)
-      })
+      try {
+        const task = await dispatch(
+          fetch({
+            url: API.Bundle,
+            options: {body, method: 'post'}
+          })
+        )
+        setTask(task)
+      } catch (e) {
+        setUploading(false)
+      }
     }
   }
 
@@ -128,25 +135,22 @@ export default function CreateBundle() {
 
         <Text>{message('bundle.createDescription')}</Text>
 
-        {uploading && bundleId && (
+        {task && (
           <ShowStatus
-            bundleId={bundleId}
             clear={() => {
-              console.log('CLEAR CALLED')
               formRef.current.reset()
-              setBundleId(null)
+              setTask(null)
               setUploading(false)
             }}
             regionId={regionId}
+            taskId={task.id}
           />
         )}
 
-        {!uploading && (
-          <Alert status='info'>
-            <AlertIcon />
-            {message('bundle.notice')}
-          </Alert>
-        )}
+        <Alert status='info'>
+          <AlertIcon />
+          {message('bundle.notice')}
+        </Alert>
       </Stack>
 
       <form ref={formRef} onSubmit={submit}>

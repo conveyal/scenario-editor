@@ -21,8 +21,7 @@ import ConfirmButton from './confirm-button'
 import {DeleteIcon} from './icons'
 import Select from './select'
 
-const getOptionLabel = (b) =>
-  `${b.name}${b.status === 'DONE' ? '' : `: ${b.status}`}`
+const getOptionLabel = (b) => b.name
 
 const hasContent = (s) => s.length > 0
 

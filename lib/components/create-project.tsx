@@ -72,7 +72,7 @@ export default function CreateProject({
             label={message('project.bundle')}
             getOptionLabel={getName}
             getOptionValue={getId}
-            options={bundles.filter((b) => b.status === 'DONE')}
+            options={bundles}
             onChange={(b) => setBundleId(b._id)}
             placeholder={message('project.selectBundle')}
             value={bundles.find((b) => b._id === bundleId)}

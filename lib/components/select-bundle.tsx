@@ -7,8 +7,7 @@ import message from 'lib/message'
 
 import Select from './select'
 
-const getOptionLabel = (b: CL.Bundle) =>
-  `${b.name}${b.status === 'DONE' ? '' : `: ${b.status}`}`
+const getOptionLabel = (b: CL.Bundle) => b.name
 
 export default function SelectBundle({
   bundles,

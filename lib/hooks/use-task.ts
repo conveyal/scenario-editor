@@ -6,19 +6,16 @@ import {API} from 'lib/constants'
 import useStatus from './use-status'
 import useUser from './use-user'
 
-type FilterFn = (tasks: CL.Task[]) => null | CL.Task
-
-export default function useStatusMessage(
-  filter: FilterFn
+export default function useTaskUpdates(
+  taskId: string
 ): [null | CL.Task, () => void] {
   const {data} = useStatus()
   const user = useUser()
   const [task, setTask] = useState<null | CL.Task>(null)
-  const taskId = task?.id
 
   useEffect(() => {
-    setTask(filter(data.taskProgress))
-  }, [data, filter])
+    setTask(data.taskProgress.find((t) => t.id === taskId))
+  }, [data, taskId])
 
   const clearTask = useCallback(
     () => authFetch(`${API.Activity}/${taskId}`, user, {method: 'delete'}),

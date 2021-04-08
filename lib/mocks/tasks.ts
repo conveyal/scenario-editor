@@ -1,5 +1,5 @@
 const activeTask: CL.Task = {
-  description: 'Update for an active task',
+  detail: 'Update for an active task',
   id: '1',
   percentComplete: 50,
   state: 'ACTIVE',
@@ -9,7 +9,7 @@ const activeTask: CL.Task = {
 }
 
 const erroredTask: CL.Task = {
-  description: 'Error message from a task',
+  detail: 'Error message from a task',
   id: '2',
   percentComplete: 75,
   state: 'ERROR',
@@ -18,12 +18,13 @@ const erroredTask: CL.Task = {
   title: 'Errored Task',
   workProduct: {
     id: 'bundleId',
-    type: 'bundle'
+    region: 'regionId',
+    type: 'BUNDLE'
   }
 }
 
 const completedTask: CL.Task = {
-  description: 'This is a log message',
+  detail: 'This is a log message',
   id: '3',
   percentComplete: 100,
   state: 'DONE',
@@ -32,21 +33,23 @@ const completedTask: CL.Task = {
   title: 'Completed task',
   workProduct: {
     id: 'bundleId',
-    type: 'bundle'
+    region: 'regionId',
+    type: 'BUNDLE'
   }
 }
 
 const completedTask2: CL.Task = {
   id: '4',
   title: 'Completed task 2',
-  description: 'This is a description of a task.',
+  detail: 'This is a description of a task.',
   percentComplete: 100,
   state: 'DONE',
   timeBegan: Date.now() - 60_000,
   timeCompleted: Date.now(),
   workProduct: {
     id: 'bundleId',
-    type: 'bundle'
+    region: 'regionId',
+    type: 'BUNDLE'
   }
 }
 

@@ -236,7 +236,6 @@ declare namespace CL {
     id: string
     percentComplete: number
     state: TaskState
-    secondsExecuting: number
     timeBegan?: number
     timeCompleted?: number
     title: string

@@ -6,7 +6,7 @@ import {
   Stack,
   StackDivider
 } from '@chakra-ui/react'
-import formatDate from 'date-fns/format'
+import intervalToDuration from 'date-fns/intervalToDuration'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import {useEffect, useState} from 'react'
 
@@ -34,13 +34,18 @@ function getColor(task: CL.Task): string {
   }
 }
 
+function twoDigit(n: int): string {
+  let s = n.toString()
+  return s.length < 2 ? '0' + s : s
+}
+
+// Unfortunately date-fns doesn't seem to have a way to format durations (as opposed to zone-localized times).
+// This is also very sensitive to UI-server offset.
 function getTime(task: CL.Task): string {
   switch (task.state) {
     case 'ACTIVE':
-      return formatDate(
-        Date.now() - 1617850570880 /* TODO use task.timeBegan */,
-        'HH:mm:ss'
-      )
+      let d = intervalToDuration({start: task.timeBegan, end: Date.now()})
+      return [twoDigit(d.hours), twoDigit(d.minutes), twoDigit(d.seconds)].join(':')
     case 'QUEUED':
       return 'in queue'
     case 'DONE':

@@ -226,11 +226,17 @@ declare namespace CL {
   }
 
   export type Task = {
+    description: string
     id: string
-    log: TaskLogEntry[]
     percentComplete: number
     state: TaskState
-    tags: Record<string, string>
+    timeBegan: number
+    timeCompleted: number
+    title: string
+    workProduct?: {
+      id: string
+      type: 'bundle' | 'regionalAnalysis'
+    }
   }
 
   /**

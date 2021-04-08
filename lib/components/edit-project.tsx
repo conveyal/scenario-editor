@@ -64,7 +64,7 @@ export default function EditProject(p: EditProjectProps) {
           <Box>
             Bundle cannot be changed once a project is created.&nbsp;
             <ALink
-              to='bundleEdit'
+              to='bundle'
               query={{
                 bundleId: project?.bundleId,
                 regionId: project?.regionId

@@ -3,6 +3,11 @@ import {ErrorBoundary} from 'react-error-boundary'
 
 import LogRocket from 'lib/logrocket'
 
+const ActivityProvider = dynamic(
+  () => import('lib/components/activity-provider'),
+  {ssr: false}
+)
+
 const APIStatusBar = dynamic(() => import('lib/components/api-status-bar'), {
   ssr: false
 })
@@ -21,9 +26,11 @@ function onError(error: Error, info: {componentStack: string}) {
 export default function ErrorHandler({children}) {
   return (
     <ErrorBoundary FallbackComponent={ErrorModal} onError={onError}>
-      <APIStatusBar />
       <ErrorToaster />
-      {children}
+      <ActivityProvider>
+        <APIStatusBar />
+        {children}
+      </ActivityProvider>
     </ErrorBoundary>
   )
 }

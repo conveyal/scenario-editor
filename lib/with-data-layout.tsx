@@ -10,7 +10,7 @@ const ErrorAlert = dynamic(
 )
 
 interface IResults {
-  [key: string]: CL.IModel | CL.IModel[]
+  [key: string]: CL.IModel | CL.IModel[] | CL.Activity
 }
 
 type WithInitialDataProps<Props> = Partial<Props> & {

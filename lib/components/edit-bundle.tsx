@@ -58,7 +58,7 @@ export default function EditBundle(p) {
 
   const regionId = router.query.regionId as string
   const goToBundles = useRouteTo('bundles', {regionId})
-  const goToBundleEdit = useRouteTo('bundleEdit', {regionId})
+  const goToBundleEdit = useRouteTo('bundle', {regionId})
   const [bundleId, setBundleId] = useState(router.query.bundleId)
   const originalBundle = bundles.find((b) => b._id === bundleId)
   const [bundle, setBundle] = useState(originalBundle)

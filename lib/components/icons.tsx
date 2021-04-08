@@ -2,6 +2,7 @@
  * Co-locate and re-export Icons so that we can swap out an icon across the application without doing a find and replace.
  */
 export {
+  FaDotCircle as ActivityIcon,
   FaPlus as AddIcon,
   FaBicycle as BikeIcon,
   FaBolt as BoltIcon,

@@ -12,7 +12,7 @@ const localStorage =
         removeItem() {}
       }
 
-export function getParsedItem(key: string): Record<string, unknown> {
+export function getParsedItem(key: string) {
   try {
     const str = localStorage.getItem(key)
     return JSON.parse(str)
@@ -21,7 +21,7 @@ export function getParsedItem(key: string): Record<string, unknown> {
   }
 }
 
-export function stringifyAndSet(key, item) {
+export function stringifyAndSet(key: string, item) {
   localStorage.setItem(key, JSON.stringify(item))
 }
 

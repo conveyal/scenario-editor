@@ -90,7 +90,7 @@ export default function ProfileRequestDisplay({
               <TDTitle>Bundle</TDTitle>
               <TDValue>
                 <ALink
-                  to='bundleEdit'
+                  to='bundle'
                   query={{
                     bundleId: bundle._id,
                     regionId: bundle.regionId

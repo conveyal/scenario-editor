@@ -1,10 +1,18 @@
 import {
+  Badge,
   Box,
-  BoxProps,
   Center,
+  CenterProps,
   Flex,
+  Popover,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
+  useDisclosure
 } from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
@@ -12,8 +20,10 @@ import {useRouter} from 'next/router'
 import {memo, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 
-import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
+import {AUTH_DISABLED, CB_DARK, CB_HEX, PageKey} from 'lib/constants'
 import {CREATING_ID} from 'lib/constants/region'
+import {SIDEBAR_Z} from 'lib/constants/z-index'
+import useActivity from 'lib/hooks/use-activity'
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
@@ -22,6 +32,7 @@ import {routeTo} from 'lib/router'
 import selectOutstandingRequests from 'lib/selectors/outstanding-requests'
 
 import {
+  ActivityIcon,
   BundlesIcon,
   EditIcon,
   InfoIcon,
@@ -36,12 +47,13 @@ import {
   SunIcon
 } from './icons'
 import SVGLogo from './logo.svg'
-import Tip from './tip'
 import Spinner from './spinner'
+import TaskList from './task-list'
+import Tip from './tip'
 
 const sidebarWidth = '40px'
 
-const NavItemContents = memo<BoxProps>(({children, ...p}) => {
+const NavItemContents = memo<CenterProps>(({children, ...p}) => {
   return (
     <Center
       borderBottom='2px solid rgba(0, 0, 0, 0)'
@@ -127,7 +139,7 @@ export default function Sidebar() {
       id='sidebar'
       justify='space-between'
       width={sidebarWidth}
-      zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
+      zIndex={SIDEBAR_Z}
     >
       <div>
         <NavItemContents fontSize='22px' my={12}>
@@ -195,10 +207,13 @@ export default function Sidebar() {
       </div>
 
       <div>
+        <ActivityItem regionId={queryParams.regionId} />
+
         <NavItemContents className='DEV' onClick={colorMode.toggleColorMode}>
           {colorMode.colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
         </NavItemContents>
-        {email && (
+
+        {!AUTH_DISABLED && (
           <ItemLink
             label={
               message('authentication.logOut') +
@@ -210,6 +225,7 @@ export default function Sidebar() {
             <SignOutIcon />
           </ItemLink>
         )}
+
         <ExternalLink
           label={message('nav.help')}
           href='https://docs.conveyal.com'
@@ -218,6 +234,61 @@ export default function Sidebar() {
         </ExternalLink>
       </div>
     </Flex>
+  )
+}
+
+interface ActivityItemProps {
+  regionId: string
+}
+
+function ActivityItem({regionId}: ActivityItemProps) {
+  const {tasks} = useActivity()
+  const {isOpen, onClose, onOpen} = useDisclosure()
+  const hasActivity = tasks.length > 0
+  const hasError = !!tasks.find((p) => p.state === 'ERROR')
+
+  // If there is a task that began less than five seconds ago, trigger `onOpen`
+  useEffect(() => {
+    if (!isOpen && tasks.find((t) => t.timeBegan > Date.now() - 5_000)) {
+      onOpen()
+    }
+  }, [tasks, isOpen, onOpen])
+
+  return (
+    <Popover
+      closeDelay={500}
+      isLazy
+      isOpen={isOpen}
+      onClose={onClose}
+      onOpen={onOpen}
+      placement='right'
+      trigger='hover'
+    >
+      <PopoverTrigger>
+        <div>
+          <NavItemContents
+            color={hasError ? 'red.500' : hasActivity ? 'green.500' : CB_HEX}
+            _hover={{
+              color: hasError ? 'red.700' : hasActivity ? 'green.700' : CB_DARK
+            }}
+          >
+            <ActivityIcon />
+          </NavItemContents>
+        </div>
+      </PopoverTrigger>
+      <PopoverContent mb={3} width={hasActivity ? '600px' : 'inherit'}>
+        <PopoverHeader fontWeight='bold'>
+          <>Activity</>
+          <Badge fontSize='0.8em' ml={2}>
+            {tasks.length}
+          </Badge>
+        </PopoverHeader>
+        <PopoverCloseButton />
+        <PopoverBody p={0}>
+          <TaskList limit={3} regionId={regionId} />
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   )
 }
 

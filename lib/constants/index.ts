@@ -39,6 +39,7 @@ export const ANALYSIS_URL = `${API_URL}/analysis`
  * Pages
  */
 export const Pages = {
+  activity: '/regions/[regionId]/activity',
   changelog: '/changelog',
   regions: '/',
   regionCreate: '/regions/create',
@@ -48,9 +49,9 @@ export const Pages = {
   projectSettings: '/regions/[regionId]/projects/[projectId]/edit',
   projectSelect: '/regions/[regionId]/projects',
   report: '/report',
+  bundle: '/regions/[regionId]/bundles/[bundleId]',
   bundles: '/regions/[regionId]/bundles',
   bundleCreate: '/regions/[regionId]/bundles/create',
-  bundleEdit: '/regions/[regionId]/bundles/[bundleId]',
   opportunities: '/regions/[regionId]/opportunities',
   opportunitiesUpload: '/regions/[regionId]/opportunities/upload',
   importShapefile: '/regions/[regionId]/projects/[projectId]/import-shapefile',

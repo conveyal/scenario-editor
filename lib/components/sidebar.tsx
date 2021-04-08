@@ -209,9 +209,16 @@ export default function Sidebar() {
       <div>
         <ActivityItem regionId={queryParams.regionId} />
 
-        <NavItemContents className='DEV' onClick={colorMode.toggleColorMode}>
-          {colorMode.colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-        </NavItemContents>
+        <Tip label='Toggle color mode' placement='right'>
+          <div>
+            <NavItemContents
+              className='DEV'
+              onClick={colorMode.toggleColorMode}
+            >
+              {colorMode.colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            </NavItemContents>
+          </div>
+        </Tip>
 
         {!AUTH_DISABLED && (
           <ItemLink

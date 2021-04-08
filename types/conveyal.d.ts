@@ -217,12 +217,18 @@ declare namespace CL {
     version: string
   }
 
-  export type TaskState = 'QUEUED' | 'ACTIVE' | 'ERROR' | 'DONE'
+  export type TaskState = 'ACTIVE' | 'ERROR' | 'DONE'
 
   export type TaskLogEntry = {
     level: string
     time: number
     message: string
+  }
+
+  export type TaskWorkProduct = {
+    id: string
+    region: string
+    type: 'BUNDLE' | 'REGIONAL_ANALYSIS'
   }
 
   export type Task = {
@@ -231,13 +237,10 @@ declare namespace CL {
     percentComplete: number
     state: TaskState
     secondsExecuting: number
-    timeBegan: number
-    timeCompleted: number
+    timeBegan?: number
+    timeCompleted?: number
     title: string
-    workProduct?: {
-      id: string
-      type: 'bundle' | 'regionalAnalysis'
-    }
+    workProduct?: TaskWorkProduct
   }
 
   /**

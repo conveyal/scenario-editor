@@ -6,7 +6,6 @@ import {
   Stack,
   StackDivider
 } from '@chakra-ui/react'
-import intervalToDuration from 'date-fns/intervalToDuration'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import {useEffect, useState} from 'react'
 
@@ -14,8 +13,10 @@ import {CheckIcon, ErrorIcon, ExternalLinkIcon} from 'lib/components/icons'
 import IconButton from 'lib/components/icon-button'
 import {ALink} from 'lib/components/link'
 import useActivity from 'lib/hooks/use-activity'
-// import useRouteTo from 'lib/hooks/use-route-to'
+import useRouteTo from 'lib/hooks/use-route-to'
+import {secondsToHhMmSsString} from 'lib/utils/time'
 
+// Default paddings shared across components in the task list
 const px = 3
 const py = 4
 
@@ -25,8 +26,6 @@ function getColor(task: CL.Task): string {
   switch (task.state) {
     case 'ACTIVE':
       return 'green.500'
-    case 'QUEUED':
-      return 'inherit'
     case 'ERROR':
       return 'red.500'
     case 'DONE':
@@ -34,37 +33,79 @@ function getColor(task: CL.Task): string {
   }
 }
 
-function twoDigit(n: int): string {
-  let s = n.toString()
-  return s.length < 2 ? '0' + s : s
-}
-
-// Unfortunately date-fns doesn't seem to have a way to format durations (as opposed to zone-localized times).
-// This is also very sensitive to UI-server offset.
+/**
+ * Show `HH:mm:ss` for an active task and a "human" formatted time for finished tasks.
+ */
 function getTime(task: CL.Task): string {
   switch (task.state) {
     case 'ACTIVE':
-      let d = intervalToDuration({start: task.timeBegan, end: Date.now()})
-      return [twoDigit(d.hours), twoDigit(d.minutes), twoDigit(d.seconds)].join(':')
-    case 'QUEUED':
-      return 'in queue'
+      return task.timeBegan != null
+        ? secondsToHhMmSsString(
+            Math.floor((Date.now() - task.timeBegan) / 1_000)
+          )
+        : ''
     case 'DONE':
     case 'ERROR':
-      return formatDistanceToNow(task.timeCompleted || Date.now(), {
-        addSuffix: true
-      })
+      return task.timeCompleted != null
+        ? formatDistanceToNow(task.timeCompleted, {addSuffix: true})
+        : ''
   }
 }
 
+/**
+ * Simple component for displaying the time and updating it every second.
+ */
 function TaskTime({task}: {task: CL.Task}) {
   const [time, setTime] = useState(getTime(task))
 
   useEffect(() => {
-    const id = setInterval(() => setTime(getTime(task)), 1000)
+    const id = setInterval(() => setTime(getTime(task)), 1_000)
     return () => clearInterval(id)
   }, [task])
 
   return <>{time}</>
+}
+
+function getLinkKey(workProduct: CL.TaskWorkProduct) {
+  switch (workProduct.type) {
+    case 'BUNDLE':
+      return 'bundle'
+    case 'REGIONAL_ANALYSIS':
+      return 'regionalAnalysis'
+  }
+}
+
+function getLinkParams(workProduct: CL.TaskWorkProduct) {
+  switch (workProduct.type) {
+    case 'BUNDLE':
+      return {
+        bundleId: workProduct.id,
+        regionId: workProduct.region
+      }
+    case 'REGIONAL_ANALYSIS':
+      return {
+        regionalAnalysisId: workProduct.id,
+        regionId: workProduct.region
+      }
+  }
+}
+
+function LinkToWorkProduct({task}: {task: CL.Task}) {
+  const goToWorkProduct = useRouteTo(
+    getLinkKey(task.workProduct),
+    getLinkParams(task.workProduct)
+  )
+  return (
+    <IconButton
+      colorScheme={task.state === 'ERROR' ? 'red' : 'blue'}
+      label={
+        task.state === 'ERROR' ? 'View error details' : 'View work product'
+      }
+      onClick={() => goToWorkProduct()}
+    >
+      <ExternalLinkIcon />
+    </IconButton>
+  )
 }
 
 interface TaskProps {
@@ -73,7 +114,6 @@ interface TaskProps {
 }
 
 function Task({removeTask, task, ...p}: TaskProps) {
-  const goToWorkProduct = () => {}
   return (
     <Stack px={px} py={py} position='relative' spacing={1} {...p}>
       <HStack justify='space-between'>
@@ -92,18 +132,11 @@ function Task({removeTask, task, ...p}: TaskProps) {
           </Heading>
         </HStack>
         <HStack>
-          <IconButton
-            colorScheme={task.state === 'ERROR' ? 'red' : 'blue'}
-            visibility={taskIsFinished(task) ? 'inherit' : 'hidden'}
-            label={
-              task.state === 'ERROR'
-                ? 'View error details'
-                : 'View work product'
-            }
-            onClick={() => goToWorkProduct()}
-          >
-            <ExternalLinkIcon />
-          </IconButton>
+          {taskIsFinished(task) && task.workProduct && (
+            <Box>
+              <LinkToWorkProduct task={task} />
+            </Box>
+          )}
           <IconButton
             visibility={taskIsFinished(task) ? 'inherit' : 'hidden'}
             label='Done'

@@ -89,7 +89,7 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
         tasks: state.tasks.filter((t) => t.id !== action.taskId)
       })
     case 'local-storage-sync':
-      return locallyStore(action.state)
+      return locallyStore(action.state ?? initialState)
     case 'set-incoming-data':
       // Initialize with `null` to prevent speeding up refresh on initial load.
       if (state.previousData == null) {

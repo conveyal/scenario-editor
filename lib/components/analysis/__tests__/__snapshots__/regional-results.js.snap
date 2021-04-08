@@ -2790,7 +2790,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                             "regionId": "1",
                                           }
                                         }
-                                        to="bundleEdit"
+                                        to="bundle"
                                       >
                                         <InternalLink
                                           query={
@@ -2799,7 +2799,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                               "regionId": "1",
                                             }
                                           }
-                                          to="bundleEdit"
+                                          to="bundle"
                                         >
                                           <Link
                                             href="/regions/1/bundles/1"

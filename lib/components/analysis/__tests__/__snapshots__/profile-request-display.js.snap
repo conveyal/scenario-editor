@@ -158,7 +158,7 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                             "regionId": "1",
                           }
                         }
-                        to="bundleEdit"
+                        to="bundle"
                       >
                         <InternalLink
                           query={
@@ -167,7 +167,7 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                               "regionId": "1",
                             }
                           }
-                          to="bundleEdit"
+                          to="bundle"
                         >
                           <Link
                             href="/regions/1/bundles/1"

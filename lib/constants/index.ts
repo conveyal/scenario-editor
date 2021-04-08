@@ -14,6 +14,18 @@ export const CB_DARK = '#185c86'
 export const CB_RGB = {r: 35, g: 137, b: 201}
 
 /**
+ * Maximum upload sizes
+ */
+const mbToBytes = (b: number): number => b * 1024 * 1024
+// Java API
+// Dictated by the reverse proxy used on the server.
+export const SERVER_MAX_FILE_SIZE_BYTES = mbToBytes(500)
+export const SERVER_NGINX_MAX_CLIENT_BODY_SIZE = mbToBytes(1000)
+// JavaScript API
+// https://vercel.com/docs/platform/limits?query=limit#serverless-function-payload-size-limit
+export const VERCEL_MAX_FILE_SIZE_BYTES = mbToBytes(5)
+
+/**
  * API URLs
  */
 export const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api`

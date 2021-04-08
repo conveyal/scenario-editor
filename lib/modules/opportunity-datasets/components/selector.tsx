@@ -68,11 +68,13 @@ export default memo<SelectorProps>(function OpportunityDatasetSelector({
 
   return (
     <Select
+      aria-label='Destination opportunity layer'
       name='select-opportunity-dataset'
       inputId='select-opportunity-dataset'
       isClearable
       isDisabled={isDisabled || loading}
       isLoading={loading}
+      placeholder='Select a destination opportunity layer'
       ref={input.ref}
       options={allDatasets.filter(filter) as any}
       getOptionLabel={getOptionLabel}

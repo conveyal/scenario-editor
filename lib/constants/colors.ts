@@ -21,10 +21,10 @@ export default {
   HIGHLIGHT: '#c96323',
 
   /** The color of the isochrone */
-  PROJECT_ISOCHRONE_COLOR: '#2389c9',
+  PROJECT_ISOCHRONE_COLOR: '#3182CE',
 
   /** When performing a comparison, the color of the comparison isochrone */
-  COMPARISON_ISOCHRONE_COLOR: '#f42727',
+  COMPARISON_ISOCHRONE_COLOR: '#E53E3E',
 
   /** The color of stale isochrones (invalidated by parameter changes) */
   STALE_ISOCHRONE_COLOR: '#ababab',

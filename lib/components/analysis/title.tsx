@@ -60,7 +60,13 @@ export default function AnalysisTitle() {
         />
       </Heading>
       {isFetchingIsochrone ? (
-        <Button rightIcon={<XIcon />} onClick={abort} colorScheme='red'>
+        <Button
+          rightIcon={<XIcon />}
+          onClick={abort}
+          colorScheme='red'
+          key='abort'
+          size='lg'
+        >
           Abort
         </Button>
       ) : (
@@ -69,6 +75,7 @@ export default function AnalysisTitle() {
           rightIcon={<SyncIcon />}
           onClick={() => dispatch(fetchTravelTimeSurface())}
           colorScheme='blue'
+          size='lg'
           title={
             !currentProject
               ? message('analysis.disableFetch')

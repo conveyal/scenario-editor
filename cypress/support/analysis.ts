@@ -100,7 +100,10 @@ Cypress.Commands.add('fetchResults', () => {
 })
 
 Cypress.Commands.add('setTimeCutoff', (minutes: number) => {
-  cy.findByLabelText(/Time cutoff/).type(`{selectall}${minutes}`)
+  cy.findByLabelText(/Travel time cutoff minutes/).type(
+    `{selectall}${minutes}`,
+    {force: true}
+  )
 })
 
 Cypress.Commands.add('selectDefaultOpportunityDataset', () => {

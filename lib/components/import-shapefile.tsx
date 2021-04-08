@@ -12,13 +12,13 @@ import {
   Stack
 } from '@chakra-ui/react'
 import distance from '@turf/distance'
-import get from 'lodash/get'
-import {useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux'
 import shp from 'shpjs'
 
 import {createMultiple as createModifications} from 'lib/actions/modifications'
 import useInput from 'lib/hooks/use-controlled-input'
+import useFileInput from 'lib/hooks/use-file-input'
 import useRouteTo from 'lib/hooks/use-route-to'
 import logrocket from 'lib/logrocket'
 import message from 'lib/message'
@@ -26,6 +26,7 @@ import {createAddTripPattern} from 'lib/utils/modification'
 import {create as createTimetable} from 'lib/utils/timetable'
 
 import NumberInput from './number-input'
+import FileSizeInputHelper from './file-size-input-helper'
 
 const hasOwnProperty = (o, p) => Object.prototype.hasOwnProperty.call(o, p)
 
@@ -69,48 +70,56 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   const [error, setError] = useState<void | string>()
   const [properties, setProperties] = useState<string[]>([])
   const [uploading, setUploading] = useState(false)
+  const fileInput = useFileInput()
+  const {files} = fileInput
 
   const routeToModifications = useRouteTo('modifications', {
     projectId,
     regionId
   })
 
-  async function readShapeFile(e) {
-    const shapefiles = await shp.parseZip(e.target.result)
-    const properties = []
+  const onChangeName = nameInput.onChange
+  const onChangeFreq = freqInput.onChange
+  const onChangeSpeed = speedInput.onChange
+  const readShapeFile = useCallback(
+    async (e: ProgressEvent<FileReader>) => {
+      if (e.target.result instanceof ArrayBuffer) {
+        const shapefiles = await shp.parseZip(e.target.result)
+        const properties = []
 
-    // For TypeScript
-    const shapefile: shp.FeatureCollectionWithFilename = Array.isArray(
-      shapefiles
-    )
-      ? shapefiles[0]
-      : shapefiles
+        // For TypeScript
+        const shapefile: shp.FeatureCollectionWithFilename = Array.isArray(
+          shapefiles
+        )
+          ? shapefiles[0]
+          : shapefiles
 
-    for (const key in shapefile.features[0].properties) {
-      if (hasOwnProperty(shapefile.features[0].properties, key)) {
-        properties.push(key)
+        for (const key in shapefile.features[0].properties) {
+          if (hasOwnProperty(shapefile.features[0].properties, key)) {
+            properties.push(key)
+          }
+        }
+
+        setShapefile(shapefile)
+        setProperties(properties)
+        onChangeName(properties[0])
+        onChangeFreq(properties[0])
+        onChangeSpeed(properties[0])
+        setError()
       }
-    }
+    },
+    [onChangeFreq, onChangeName, onChangeSpeed]
+  )
 
-    setShapefile(shapefile)
-    setProperties(properties)
-    nameInput.onChange(properties[0])
-    freqInput.onChange(properties[0])
-    speedInput.onChange(properties[0])
-    setError()
-  }
-
-  function selectShapeFile(e) {
-    // read the shapefile
-    const file = get(e.target, 'files[0]')
-    if (file) {
+  useEffect(() => {
+    if (files && files[0]) {
       const reader = new window.FileReader()
       reader.onloadend = readShapeFile
-      reader.readAsArrayBuffer(e.target.files[0])
+      reader.readAsArrayBuffer(files[0])
     }
-  }
+  }, [files, readShapeFile])
 
-  /** create and save modifications for each line */
+  // Create and save modifications for each line
   async function create() {
     setUploading(true)
     try {
@@ -179,7 +188,13 @@ export default function ImportShapefile({projectId, regionId, variants}) {
         <FormLabel htmlFor='fileInput'>
           {message('shapefile.selectZipped')}
         </FormLabel>
-        <Input id='fileInput' onChange={selectShapeFile} type='file' />
+        <Input
+          id='fileInput'
+          onChange={fileInput.onChangeFiles}
+          type='file'
+          value={fileInput.value}
+        />
+        <FileSizeInputHelper />
       </FormControl>
 
       {error && (

@@ -1,157 +1,203 @@
 import {
   Box,
-  Stack,
-  Progress,
-  StackProps,
+  FormControl,
   HStack,
-  VStack,
+  Stack,
+  StackProps,
   useColorModeValue,
-  useToken
+  useToken,
+  VStack
 } from '@chakra-ui/react'
-import {color} from 'd3-color'
 import {format} from 'd3-format'
 import get from 'lodash/get'
-import {memo} from 'react'
+import {memo, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import colors from 'lib/constants/colors'
-import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 
-import selectDisplayedComparisonScenarioName from 'lib/selectors/displayed-comparison-scenario-name'
-import selectDisplayedScenarioName from 'lib/selectors/displayed-scenario-name'
 import selectAccessibility from 'lib/selectors/accessibility'
 import selectComparisonAccessibility from 'lib/selectors/comparison-accessibility'
 import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
+import selectPercentileIndex from 'lib/selectors/percentile-index'
 import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxAccessibility from 'lib/selectors/max-accessibility'
+import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
 
-import StackedPercentile, {
-  StackedPercentileComparison
+import Tip from '../tip'
+
+import Chart, {
+  ComparisonChart,
+  CutoffLine,
+  createYScale,
+  xScale,
+  SVGWrapper,
+  STROKE_WIDTH,
+  Labels
 } from './stacked-percentile'
-
-const GRAPH_HEIGHT = 225
-const GRAPH_WIDTH = 600
 
 const PRIMARY_ACCESS_LABEL = 'Opportunities within isochrone'
 const COMPARISON_ACCESS_LABEL = 'Opportunities within comparison isochrone'
+
+// Size of the circle and triangle symbols
+const SYMBOL_RADIUS = 5
 
 const commaFormat = format(',d')
 
 type Props = {
   disabled: boolean
   stale: boolean
+  regionId: string
 }
 
 // Use a memoized version by default
 export default memo<Props & StackProps>(StackedPercentileSelector)
 
+const filterFreeform = (dataset: CL.SpatialDataset) =>
+  dataset.format !== 'FREEFORM'
+
 /**
  * A component allowing toggling between up to two stacked percentile plots and
  * comparisons of said
  */
-function StackedPercentileSelector({disabled, stale, ...p}) {
+function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   const fontColor = useColorModeValue('gray.900', 'white')
   const fontColorHex = useToken('colors', fontColor)
-  const projectName = useSelector(selectDisplayedScenarioName)
-  const comparisonProjectName = useSelector(
-    selectDisplayedComparisonScenarioName
-  )
-  const opportunityDataset = useSelector(activeOpportunityDataset)
+  const backgroundColor = useColorModeValue('white', 'gray.900')
+  const backgroundColorHex = useToken('colors', backgroundColor)
   const accessibility = useSelector(selectAccessibility)
   const comparisonAccessibility = useSelector(selectComparisonAccessibility)
   const comparisonPercentileCurves = useSelector(
     selectComparisonPercentileCurves
   )
   const isochroneCutoff = useSelector(selectMaxTripDurationMinutes)
+  const percentileIndex = useSelector(selectPercentileIndex)
   const percentileCurves = useSelector(selectPercentileCurves)
   const maxAccessibility = useSelector(selectMaxAccessibility)
-  const opportunityDatasetName = opportunityDataset && opportunityDataset.name
+
+  const [yScale, setYScale] = useState(() => createYScale(maxAccessibility))
+  useEffect(() => {
+    setYScale(() => createYScale(maxAccessibility))
+  }, [maxAccessibility])
 
   const disabledOrStale = disabled || stale
-
-  const projectColor = disabledOrStale
-    ? colors.STALE_PERCENTILE_COLOR
-    : colors.PROJECT_PERCENTILE_COLOR
-  const comparisonColor = disabledOrStale
-    ? colors.STALE_PERCENTILE_COLOR
-    : colors.COMPARISON_PERCENTILE_COLOR
-
-  const colorBar = color(projectColor)
-  colorBar.opacity = 0.5
-  const comparisonColorBar = color(comparisonColor)
-  comparisonColorBar.opacity = 0.5
+  const xPosition = xScale(isochroneCutoff)
 
   return (
-    <Stack {...p}>
-      <VStack pl='35px' spacing={0}>
-        {typeof accessibility === 'number' && (
-          <HStack spacing={5} width='100%'>
-            <Progress
-              flex='10'
-              colorScheme={disabledOrStale ? 'gray' : 'blue'}
-              size='md'
-              value={((accessibility || 1) / maxAccessibility) * 100}
-            />
+    <Stack
+      {...p}
+      spacing={0}
+      className={disabledOrStale ? 'disableAndDim' : ''}
+    >
+      <HStack mb={4} justify='space-between' spacing={6} width='100%'>
+        <FormControl w='500px' isDisabled={disabled}>
+          <OpportunityDatasetSelector
+            filter={filterFreeform}
+            regionId={regionId}
+          />
+        </FormControl>
+        <VStack flex='1' fontFamily='mono' fontWeight='bold' spacing={0}>
+          <Tip label={PRIMARY_ACCESS_LABEL}>
             <Box
               aria-label={PRIMARY_ACCESS_LABEL}
-              fontWeight='500'
-              flex='1'
-              textAlign='left'
+              borderWidth='1px'
+              px={1}
+              color={colors.PROJECT_PERCENTILE_COLOR}
+              roundedTop='md'
+              roundedBottom={
+                typeof comparisonAccessibility === 'number' ? 'none' : 'md'
+              }
+              textAlign='right'
+              width='100%'
             >
-              {commaFormat(accessibility)}
+              {typeof accessibility === 'number' ? (
+                commaFormat(accessibility)
+              ) : (
+                <>&nbsp;</>
+              )}
             </Box>
-          </HStack>
-        )}
+          </Tip>
+          {typeof comparisonAccessibility === 'number' && (
+            <Tip label={COMPARISON_ACCESS_LABEL}>
+              <Box
+                aria-label={COMPARISON_ACCESS_LABEL}
+                color={colors.COMPARISON_PERCENTILE_COLOR}
+                borderWidth='1px'
+                borderTopWidth={0}
+                px={1}
+                roundedBottom='md'
+                textAlign='right'
+                width='100%'
+              >
+                {commaFormat(comparisonAccessibility)}
+              </Box>
+            </Tip>
+          )}
+        </VStack>
+      </HStack>
 
-        {comparisonProjectName && typeof comparisonAccessibility === 'number' && (
-          <HStack spacing={5} width='100%'>
-            <Progress
-              flex='10'
-              colorScheme={disabledOrStale ? 'gray' : 'red'}
-              size='md'
-              value={((comparisonAccessibility || 1) / maxAccessibility) * 100}
+      {get(percentileCurves, 'length') > 0 && (
+        <Box fontFamily='mono'>
+          <SVGWrapper>
+            <Labels
+              backgroundColorHex={backgroundColorHex}
+              fontColorHex={fontColorHex}
+              yScale={yScale}
             />
-            <Box
-              aria-label={COMPARISON_ACCESS_LABEL}
-              fontWeight='500'
-              flex='1'
-              textAlign='left'
-            >
-              {commaFormat(comparisonAccessibility)}
-            </Box>
-          </HStack>
-        )}
-      </VStack>
-
-      {get(percentileCurves, 'length') > 0 &&
-        (comparisonPercentileCurves == null ? (
-          <StackedPercentile
-            cutoff={isochroneCutoff}
-            fontColorHex={fontColorHex}
-            percentileCurves={percentileCurves}
-            width={GRAPH_WIDTH}
-            height={GRAPH_HEIGHT}
-            opportunityDatasetName={opportunityDatasetName}
-            color={projectColor}
-            maxAccessibility={maxAccessibility}
-          />
-        ) : (
-          <StackedPercentileComparison
-            cutoff={isochroneCutoff}
-            fontColorHex={fontColorHex}
-            percentileCurves={percentileCurves}
-            comparisonPercentileCurves={comparisonPercentileCurves}
-            width={GRAPH_WIDTH}
-            height={GRAPH_HEIGHT}
-            opportunityDatasetName={opportunityDatasetName}
-            color={projectColor}
-            comparisonColor={comparisonColor}
-            maxAccessibility={maxAccessibility}
-            label={projectName}
-            comparisonLabel={comparisonProjectName}
-          />
-        ))}
+            {comparisonPercentileCurves == null ? (
+              <Chart
+                percentileCurves={percentileCurves}
+                percentileIndex={percentileIndex}
+                yScale={yScale}
+              />
+            ) : (
+              <ComparisonChart
+                percentileCurves={percentileCurves}
+                percentileIndex={percentileIndex}
+                comparisonPercentileCurves={comparisonPercentileCurves}
+                yScale={yScale}
+              />
+            )}
+            <g style={{stroke: fontColorHex}}>
+              <CutoffLine cutoff={xPosition} />
+            </g>
+            <circle
+              cx={xPosition}
+              cy={yScale(percentileCurves[percentileIndex][isochroneCutoff])}
+              style={{
+                stroke: colors.PROJECT_PERCENTILE_COLOR,
+                strokeWidth: STROKE_WIDTH,
+                fill: 'none'
+              }}
+              r={SYMBOL_RADIUS}
+            />
+            {comparisonPercentileCurves != null && (
+              <Triangle
+                color={colors.COMPARISON_PERCENTILE_COLOR}
+                x={xPosition}
+                y={yScale(
+                  comparisonPercentileCurves[percentileIndex][isochroneCutoff]
+                )}
+              />
+            )}
+          </SVGWrapper>
+        </Box>
+      )}
     </Stack>
+  )
+}
+
+function Triangle({color, x, y}: {color: string; x: number; y: number}) {
+  return (
+    <polygon
+      points={`${x - SYMBOL_RADIUS},${y - SYMBOL_RADIUS} ${x},${
+        y + SYMBOL_RADIUS
+      } ${x + SYMBOL_RADIUS},${y - SYMBOL_RADIUS}`}
+      style={{
+        stroke: color,
+        strokeWidth: STROKE_WIDTH,
+        fill: 'none'
+      }}
+    />
   )
 }

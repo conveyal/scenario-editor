@@ -27,13 +27,39 @@ import Boxplot from '../analysis/boxplot'
 import MinuteTicks from '../analysis/minute-ticks'
 import Pane from '../map/pane'
 
+const TIME_LABELS = [0, 15, 30, 45, 60, 75, 90, 105, 120]
 const WIDTH = 300
 const HEIGHT = 15
-const MAX_TRIP_DURATION = 120
-const SCALE = scaleLinear().domain([0, MAX_TRIP_DURATION]).range([0, WIDTH])
-const PADDING = 4
 const FONT_SIZE = 10
+const MAX_TRIP_DURATION = 120
+const SCALE = scaleLinear()
+  .domain([0, MAX_TRIP_DURATION])
+  .range([0, WIDTH - FONT_SIZE])
+const PADDING = 4
 const STROKE_WIDTH = 1
+
+const gridLineStyle = {
+  stroke: '#E2E8F0',
+  strokeWidth: 0.5,
+  fill: 'none'
+}
+type XAxisProps = {
+  height: number
+}
+const XAxis = memo<XAxisProps>(({height}) => (
+  <>
+    {TIME_LABELS.map((t) => (
+      <line
+        key={t}
+        x1={SCALE(t)}
+        x2={SCALE(t)}
+        y1={0}
+        y2={height - FONT_SIZE - 2}
+        style={gridLineStyle}
+      />
+    ))}
+  </>
+))
 
 function createDistribution(
   latlng: LatLng,
@@ -228,21 +254,20 @@ export default memo(function DestinationTravelTimeDistribution() {
                   height={fullHeight}
                   style={{fontSize: FONT_SIZE}}
                 >
+                  <XAxis height={fullHeight} />
+
                   <g
                     transform={`translate(0 ${fullHeight})`}
                     style={{fill: markerColorHex}}
                   >
-                    <MinuteTicks
-                      label={false}
-                      textHeight={FONT_SIZE}
-                      scale={SCALE}
-                    />
+                    <MinuteTicks scale={SCALE} />
                   </g>
 
                   <g transform={`translate(0 ${HEIGHT}) rotate(-90)`}>
                     <Boxplot
                       color={colors.PROJECT_PERCENTILE_COLOR}
                       positions={distribution}
+                      positionIndex={percentileIndex}
                       scale={SCALE}
                       strokeWidth={STROKE_WIDTH}
                       width={HEIGHT}
@@ -254,6 +279,7 @@ export default memo(function DestinationTravelTimeDistribution() {
                       <Boxplot
                         color={colors.COMPARISON_PERCENTILE_COLOR}
                         positions={comparisonDistribution}
+                        positionIndex={percentileIndex}
                         scale={SCALE}
                         strokeWidth={STROKE_WIDTH}
                         width={HEIGHT}

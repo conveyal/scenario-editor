@@ -76,10 +76,12 @@ export default function useControlledInput({
       setIsValid(isValid)
       // Don't pass invalid changes through to the onChange function
       if (!isValid) return
+      // Don't fire onChange if the value has not changed
+      if (parsedValue === value) return
       // Allow the sync to occur before propogating the change
       await onChange(parsedValue)
     },
-    [onChange, parse, setInputValue, setIsValid, checkValid]
+    [onChange, parse, setInputValue, setIsValid, checkValid, value]
   )
 
   return {

@@ -11,6 +11,7 @@ import {useRegions} from 'lib/hooks/use-collection'
 import useLink from 'lib/hooks/use-link'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
+import withAuth from 'lib/with-auth'
 
 const alertDate = 'February, 2021'
 const alertStatus = 'info'
@@ -18,7 +19,7 @@ const alertText = 'New options for spatial datasets'
 
 const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}
 
-export default function SelectRegionPage() {
+export default withAuth(function SelectRegionPage() {
   const {data: regions} = useRegions({
     options: findOptions
   })
@@ -95,4 +96,4 @@ export default function SelectRegionPage() {
       </Stack>
     </Flex>
   )
-}
+})

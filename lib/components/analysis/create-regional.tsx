@@ -166,7 +166,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
   const onChangeDestinationPointSets = useCallback(
     (datasets) => {
-      if (!datasets || datasets.length > 6) return
+      if (!datasets || datasets.length > 12) return
       if (Array.isArray(datasets))
         setDestinationPointSets(datasets.map((d) => d._id))
       else setDestinationPointSets([datasets._id]) // single selection mode
@@ -340,7 +340,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 />
               </div>
               {workerVersionHandlesMultipleDimensions && (
-                <FormHelperText>Select up to 6 layers.</FormHelperText>
+                <FormHelperText>Select up to 12 layers.</FormHelperText>
               )}
             </FormControl>
 

@@ -20,13 +20,15 @@ import {FormEvent, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import fetch from 'lib/actions/fetch'
-import {API} from 'lib/constants'
+import {API, SERVER_NGINX_MAX_CLIENT_BODY_SIZE} from 'lib/constants'
 import useActivity from 'lib/hooks/use-activity'
+import useFileInput from 'lib/hooks/use-file-input'
 import message from 'lib/message'
 import selectBundles from 'lib/selectors/bundles'
 import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
+import FileSizeInputHelper from './file-size-input-helper'
 import InnerDock from './inner-dock'
 import DocsLink from './docs-link'
 
@@ -46,6 +48,8 @@ export default function CreateBundle() {
 
   const hasExistingBundles = bundles.length > 0
   const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
+  const osm = useFileInput()
+  const feedGroup = useFileInput()
   const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
   const [uploading, setUploading] = useState(false)
   const [formData, setFormData] = useState<Record<string, string>>({
@@ -60,8 +64,10 @@ export default function CreateBundle() {
 
   const isValid = () =>
     formData.name &&
-    ((reuseOsm && formData.osmId) || (!reuseOsm && formData.osm)) &&
-    ((reuseGtfs && formData.feedGroupId) || (!reuseGtfs && formData.feedGroup))
+    osm.totalSize + feedGroup.totalSize < SERVER_NGINX_MAX_CLIENT_BODY_SIZE &&
+    ((reuseOsm && formData.osmId) || (!reuseOsm && osm.files?.length > 0)) &&
+    ((reuseGtfs && formData.feedGroupId) ||
+      (!reuseGtfs && feedGroup.files?.length > 0))
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     // don't submit the form
@@ -136,7 +142,14 @@ export default function CreateBundle() {
           <Tabs
             defaultIndex={hasExistingBundles ? 0 : 1}
             isFitted
-            onChange={(i) => setReuseOsm(i === 0)}
+            onChange={(i) => {
+              if (i === 0) {
+                setReuseOsm(true)
+                osm.setFiles(null)
+              } else {
+                setReuseOsm(false)
+              }
+            }}
           >
             <TabList>
               <Tab
@@ -192,6 +205,7 @@ export default function CreateBundle() {
                         to='/prepare-inputs#preparing-the-osm-data'
                       />
                     </Heading>
+
                     <Code>
                       {message('bundle.osmosisCommand', {
                         north: bounds.north,
@@ -210,8 +224,10 @@ export default function CreateBundle() {
                         id='osm'
                         name='osm'
                         type='file'
-                        onChange={onChange('osm')}
+                        onChange={osm.onChangeFiles}
+                        value={osm.value}
                       />
+                      <FileSizeInputHelper />
                     </FormControl>
                   </Stack>
                 )}
@@ -222,7 +238,14 @@ export default function CreateBundle() {
           <Tabs
             defaultIndex={hasExistingBundles ? 0 : 1}
             isFitted
-            onChange={(i) => setReuseGtfs(i === 0)}
+            onChange={(i) => {
+              if (i === 0) {
+                setReuseGtfs(true)
+                feedGroup.setFiles(null)
+              } else {
+                setReuseGtfs(false)
+              }
+            }}
           >
             <TabList>
               <Tab
@@ -262,9 +285,11 @@ export default function CreateBundle() {
                       id='feedGroup'
                       multiple
                       name='feedGroup'
-                      onChange={onChange('feedGroup')}
                       type='file'
+                      onChange={feedGroup.onChangeFiles}
+                      value={feedGroup.value}
                     />
+                    <FileSizeInputHelper />
                   </FormControl>
                 )}
               </TabPanel>

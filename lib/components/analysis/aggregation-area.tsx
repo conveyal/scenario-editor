@@ -22,11 +22,13 @@ import {
 } from 'lib/actions/aggregation-areas'
 import {ChevronDown, ChevronUp} from 'lib/components/icons'
 import useInput from 'lib/hooks/use-controlled-input'
+import useFileInput from 'lib/hooks/use-file-input'
 import message from 'lib/message'
 import OpportunityDatasets from 'lib/modules/opportunity-datasets'
 import selectActiveAggregationArea from 'lib/selectors/active-aggregation-area'
 
 import Select from '../select'
+import FileSizeInputHelper from '../file-size-input-helper'
 
 const selectAggregationAreas = fpGet('region.aggregationAreas')
 
@@ -97,7 +99,7 @@ export default function AggregationArea({regionId}) {
 function UploadNewAggregationArea({onClose, regionId}) {
   const dispatch = useDispatch()
   const [union, setUnion] = useState(true)
-  const [files, setFiles] = useState<any>()
+  const fileInput = useFileInput()
   const [uploading, setUploading] = useState(false)
   const toast = useToast()
 
@@ -111,7 +113,7 @@ function UploadNewAggregationArea({onClose, regionId}) {
     formData.append('name', nameInput.value)
     formData.append('nameProperty', attributeInput.value)
     formData.append('union', `${union}`)
-    ;[...files].forEach((file) => formData.append('files', file))
+    ;[...fileInput.files].forEach((file) => formData.append('files', file))
 
     try {
       const newAAs = await dispatch(uploadAggregationArea(formData, regionId))
@@ -148,9 +150,11 @@ function UploadNewAggregationArea({onClose, regionId}) {
         <Input
           id='aggregationAreaFiles'
           multiple
-          onChange={(e) => setFiles(e.target.files)}
+          onChange={fileInput.onChangeFiles}
           type='file'
+          value={fileInput.value}
         />
+        <FileSizeInputHelper />
       </FormControl>
 
       <Checkbox
@@ -175,7 +179,7 @@ function UploadNewAggregationArea({onClose, regionId}) {
 
       <Button
         isFullWidth
-        isDisabled={uploading || !nameInput.value || !files}
+        isDisabled={uploading || !nameInput.value || !fileInput.files}
         isLoading={uploading}
         loadingText='Creating aggregation area'
         onClick={upload}

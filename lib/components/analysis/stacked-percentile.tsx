@@ -1,363 +1,300 @@
 import {format} from 'd3-format'
-import {scalePow, scaleLinear} from 'd3-scale'
+import {scaleSqrt, scaleLinear, ScalePower} from 'd3-scale'
 import {line, area} from 'd3-shape'
-import {memo, useEffect, useState} from 'react'
+import {CSSProperties, memo} from 'react'
 
-import message from 'lib/message'
-import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
+import colors from 'lib/constants/colors'
 
-import Boxplot from './boxplot'
+import StackedBar from './stacked-bar'
 import MinuteTicks from './minute-ticks'
 
 export const PROJECT = 'project'
 export const BASE = 'base'
 export const COMPARISON = 'comparison'
 
-const BOX_PLOT_WIDTH = 0.05
-// Reversed because 5th percentile travel time has the highest accessibility.
-// These are also used for the breaks when viewing a single project. We specify
-// the percentiles we wish to display, and then use indexOf to figure out which
-// items in the response correspond to the desired percentiles. For now, only
-// the percentiles we actually display are fetched, but in future we might need
-// to request additional percentiles.
-const BOX_PLOT_PERCENTILES = [95, 75, 50, 25, 5]
-const BOX_PLOT_ITEMS = BOX_PLOT_PERCENTILES.map((p) =>
-  TRAVEL_TIME_PERCENTILES.indexOf(p)
-)
-const MEDIAN_POSITION = TRAVEL_TIME_PERCENTILES.indexOf(50)
-
-// Helper function. Pass results directly to a `BoxPlot`
-const getBoxPlotPositions = (percentileCurves, isochroneCutoff: number) =>
-  BOX_PLOT_ITEMS.map((i) => percentileCurves[i][isochroneCutoff - 1])
-
-// The plot gets too busy if we overlay two four-band plots. Instead, use a
-// one-band plot (25th/75th pctiles)
-const COMPARISON_BAND_PERCENTILES = [75, 25]
-const COMPARISON_BAND_ITEMS = COMPARISON_BAND_PERCENTILES.map((p) =>
-  TRAVEL_TIME_PERCENTILES.indexOf(p)
-)
-
+export const SVG_HEIGHT = 225
+export const SVG_WIDTH = 600
+export const STROKE_WIDTH = 1.5
+const BARS_WIDTH_PX = 100
+const BAR_WIDTH = 30
+const CHART_WIDTH = SVG_WIDTH - BARS_WIDTH_PX
 const TEXT_HEIGHT = 10
-const MAX_OPACITY = 0.5
+const TEXT_BUFFER = 10
+const CHART_HEIGHT = SVG_HEIGHT - (TEXT_HEIGHT + TEXT_BUFFER)
 const MAX_TRIP_DURATION = 120
+const TIME_LABELS = [0, 15, 30, 45, 60, 75, 90, 105, 120]
+const MIN_OPACITY = 0.1
+const STROKE_OPACITY = 0.75
 
-// The exponent of the power scale on the Y axis. Set at 0.5 for a square root
-// scale, which is kind of the "natural scale" for accessibility as it would
-// yield a straight line under constant travel time and opportunity density in
-// all directions.
-const Y_AXIS_EXPONENT = 0.5
-
-type StackedPercentileProps = {
-  color: string
-  cutoff: number
-  fontColorHex: string
-  height: number
-  maxAccessibility: number
-  opportunityDatasetName: string
-  percentileCurves: number[][]
-  width: number
+/**
+ * Use a square root scale, which is kind of the "natural scale" for accessibility
+ * as it would yield a straight line under constant travel time and opportunity density in
+ * all directions.
+ */
+export function createYScale(maxAccessibility: number) {
+  return scaleSqrt()
+    .domain([0, maxAccessibility])
+    .range([CHART_HEIGHT, TEXT_BUFFER])
+    .nice()
 }
 
-type StackedPercentileComparisonProps = {
-  comparisonColor: string
-  comparisonLabel: string
+// x scale never changes
+export const xScale = scaleLinear()
+  .domain([0, MAX_TRIP_DURATION])
+  .range([0, SVG_WIDTH - BARS_WIDTH_PX])
+
+interface ChartLabelsProps {
+  backgroundColorHex: string
+  fontColorHex: string
+  yScale: ScalePower<number, number, never>
+}
+
+interface StackedAreaChartProps {
+  percentileIndex: number
+  percentileCurves: number[][]
+  yScale: ScalePower<number, number, never>
+}
+
+interface ComparisonChartProps extends StackedAreaChartProps {
   comparisonPercentileCurves: number[][]
-  label: string
 }
 
 type SlicesProps = {
-  breaks: number[]
   color: string
   percentileCurves: number[][]
-  xScale: (number) => number
-  yScale: (number) => number
+  yScale: (n: number) => number
 }
 
-export default memo<StackedPercentileProps>(
-  ({
-    color,
-    cutoff,
-    fontColorHex,
-    height,
-    maxAccessibility,
-    opportunityDatasetName,
-    percentileCurves,
-    width
-  }) => {
-    const [xScale] = useState(() => createXScale(width)) // width never changes
-    const [yScale, setYScale] = useState(() =>
-      createYScale(height, maxAccessibility)
-    )
+const svgStyle: CSSProperties = {
+  width: SVG_WIDTH,
+  height: SVG_HEIGHT
+}
 
-    useEffect(() => {
-      setYScale(() => createYScale(height, maxAccessibility))
-    }, [height, maxAccessibility])
+const gridLineStyle = {
+  stroke: '#E2E8F0', // Same as the default Chakra border color
+  strokeWidth: 0.5,
+  fill: 'none'
+}
 
-    const boxPlotWidth = BOX_PLOT_WIDTH * width
+const tickFormat = format('.3~s') // Format results in: 1M, 160k
 
-    if (percentileCurves == null) {
-      console.error(
-        'Percentile curves do not exist. Cannot render StackedPercentile graph.'
-      )
-      return null
-    }
+export function SVGWrapper({children}) {
+  return (
+    <svg id='results-chart' style={svgStyle}>
+      {children}
+    </svg>
+  )
+}
 
-    return (
-      <svg id='results-chart' style={{width, height, margin: '10px 0'}}>
-        <Boxplot
-          color={color}
-          positions={getBoxPlotPositions(percentileCurves, cutoff)}
-          scale={yScale}
-          width={boxPlotWidth}
-        />
+export const Labels = memo<ChartLabelsProps>((p) => (
+  <>
+    <XAxis />
 
-        <Slices
-          breaks={BOX_PLOT_ITEMS}
-          color={color}
-          percentileCurves={percentileCurves}
-          xScale={xScale}
-          yScale={yScale}
-        />
-        <CumulativeLine
-          color={color}
-          curve={percentileCurves[MEDIAN_POSITION]}
-          xScale={xScale}
-          yScale={yScale}
-        />
+    <g style={{fill: p.fontColorHex}}>
+      <YAxis backgroundColorHex={p.backgroundColorHex} yScale={p.yScale} />
+    </g>
 
-        <YAxis
-          datasetName={opportunityDatasetName}
-          fontColor={fontColorHex}
-          height={height}
-          width={width}
-          yScale={yScale}
-        />
+    <g
+      transform={`translate(0 ${SVG_HEIGHT - 3})`}
+      style={{fill: p.fontColorHex}}
+    >
+      <MinuteTicks minutes={TIME_LABELS} scale={xScale} />
+    </g>
+  </>
+))
 
-        <g transform={`translate(0 ${height})`} style={{fill: fontColorHex}}>
-          <MinuteTicks scale={xScale} textHeight={TEXT_HEIGHT} />
-        </g>
+const StackedAreaChart = memo<StackedAreaChartProps>((p) => (
+  <>
+    <g transform={`translate(${SVG_WIDTH - 2 * BAR_WIDTH})`}>
+      <StackedBar
+        color={colors.PROJECT_PERCENTILE_COLOR}
+        minOpacity={MIN_OPACITY}
+        percentileCurves={p.percentileCurves}
+        percentileIndex={p.percentileIndex}
+        scale={p.yScale}
+        strokeWidth={STROKE_WIDTH}
+        width={BAR_WIDTH}
+      />
+    </g>
 
-        <Legend
-          color={color}
-          fontColor={fontColorHex}
-          height={height}
-          width={width}
-        />
+    <Slices
+      color={colors.PROJECT_PERCENTILE_COLOR}
+      percentileCurves={p.percentileCurves}
+      yScale={p.yScale}
+    />
+    <CumulativeLine
+      color={colors.PROJECT_PERCENTILE_COLOR}
+      curve={p.percentileCurves[p.percentileIndex]}
+      yScale={p.yScale}
+    />
+  </>
+))
 
-        <SliceLine cutoff={cutoff} height={height} xScale={xScale} />
-      </svg>
-    )
-  }
-)
+export default StackedAreaChart
 
 /**
- * Display a stacked percentile chart.
+ * Display a comparison chart.
  */
-export const StackedPercentileComparison = memo<
-  StackedPercentileComparisonProps & StackedPercentileProps
->(
-  ({
-    color,
-    comparisonColor,
-    comparisonLabel,
-    comparisonPercentileCurves,
-    cutoff,
-    fontColorHex,
-    height,
-    label,
-    maxAccessibility,
-    opportunityDatasetName,
-    percentileCurves,
-    width
-  }) => {
-    const [xScale] = useState(() => createXScale(width)) // width never changes
-    const [yScale, setYScale] = useState(() =>
-      createYScale(height, maxAccessibility)
-    )
+export const ComparisonChart = memo<ComparisonChartProps>((p) => (
+  <>
+    <g transform={`translate(${SVG_WIDTH - 2 * BAR_WIDTH})`}>
+      <StackedBar
+        color={colors.PROJECT_PERCENTILE_COLOR}
+        minOpacity={MIN_OPACITY}
+        percentileCurves={p.percentileCurves}
+        percentileIndex={p.percentileIndex}
+        scale={p.yScale}
+        strokeWidth={STROKE_WIDTH}
+        width={BAR_WIDTH}
+      />
+    </g>
 
-    useEffect(() => {
-      setYScale(() => createYScale(height, maxAccessibility))
-    }, [height, maxAccessibility])
+    <g transform={`translate(${SVG_WIDTH - BAR_WIDTH})`}>
+      <StackedBar
+        color={colors.COMPARISON_PERCENTILE_COLOR}
+        minOpacity={MIN_OPACITY}
+        percentileCurves={p.comparisonPercentileCurves}
+        percentileIndex={p.percentileIndex}
+        scale={p.yScale}
+        strokeWidth={STROKE_WIDTH}
+        width={BAR_WIDTH}
+      />
+    </g>
 
-    const boxPlotWidth = comparisonPercentileCurves
-      ? (BOX_PLOT_WIDTH * width) / 2
-      : BOX_PLOT_WIDTH * width
+    <Slices
+      color={colors.COMPARISON_PERCENTILE_COLOR}
+      percentileCurves={p.comparisonPercentileCurves}
+      yScale={p.yScale}
+    />
+    <Slices
+      color={colors.PROJECT_PERCENTILE_COLOR}
+      percentileCurves={p.percentileCurves}
+      yScale={p.yScale}
+    />
 
-    if (percentileCurves == null || comparisonPercentileCurves == null) {
-      console.error(
-        'Percentile curves do not exist. Cannot render StackedPercentileComparison graph.'
-      )
-      return null
-    }
-
-    return (
-      <svg id='results-chart' style={{width, height, margin: '10px 0'}}>
-        <g transform={`translate(${boxPlotWidth})`}>
-          <Boxplot
-            color={color}
-            positions={getBoxPlotPositions(percentileCurves, cutoff)}
-            scale={yScale}
-            width={boxPlotWidth}
-          />
-        </g>
-
-        <Boxplot
-          color={comparisonColor}
-          positions={getBoxPlotPositions(comparisonPercentileCurves, cutoff)}
-          scale={yScale}
-          width={boxPlotWidth}
-        />
-
-        <Slices
-          breaks={COMPARISON_BAND_ITEMS}
-          color={color}
-          percentileCurves={percentileCurves}
-          xScale={xScale}
-          yScale={yScale}
-        />
-        <Slices
-          breaks={COMPARISON_BAND_ITEMS}
-          color={comparisonColor}
-          percentileCurves={comparisonPercentileCurves}
-          xScale={xScale}
-          yScale={yScale}
-        />
-
-        <CumulativeLine
-          color={color}
-          curve={percentileCurves[MEDIAN_POSITION]}
-          xScale={xScale}
-          yScale={yScale}
-        />
-        <CumulativeLine
-          color={comparisonColor}
-          curve={comparisonPercentileCurves[MEDIAN_POSITION]}
-          xScale={xScale}
-          yScale={yScale}
-        />
-
-        <YAxis
-          datasetName={opportunityDatasetName}
-          fontColor={fontColorHex}
-          height={height}
-          width={width}
-          yScale={yScale}
-        />
-
-        <g transform={`translate(0 ${height})`} style={{fill: fontColorHex}}>
-          <MinuteTicks scale={xScale} textHeight={TEXT_HEIGHT} />
-        </g>
-
-        <ComparisonLegend
-          color={color}
-          comparisonColor={comparisonColor}
-          comparisonLabel={comparisonLabel}
-          fontColor={fontColorHex}
-          height={height}
-          label={label}
-          width={width}
-        />
-
-        <SliceLine cutoff={cutoff} height={height} xScale={xScale} />
-      </svg>
-    )
-  }
-)
+    <CumulativeLine
+      color={colors.COMPARISON_PERCENTILE_COLOR}
+      curve={p.comparisonPercentileCurves[p.percentileIndex]}
+      yScale={p.yScale}
+    />
+    <CumulativeLine
+      color={colors.PROJECT_PERCENTILE_COLOR}
+      curve={p.percentileCurves[p.percentileIndex]}
+      yScale={p.yScale}
+    />
+  </>
+))
 
 /**
  * Boundaries are the boundaries between slices, as array indices in
  * percentileCurves.
  */
-const Slices = memo<SlicesProps>(
-  ({breaks, color, percentileCurves, xScale, yScale}) => {
-    // Add one to x value below to convert from 0-based array indices (index 0
-    // has accessibility from 0-1 minute) to 1-based.
-    const sliceArea = area()
-      .x1((d, i) => xScale(i + 1))
-      .x0((d, i) => xScale(i + 1))
-      .y0((d) => yScale(d[0]))
-      .y1((d) => yScale(d[1]))
+const Slices = memo<SlicesProps>(({color, percentileCurves, yScale}) => {
+  const sliceArea = area()
+    .x((_, i) => xScale(i))
+    .y0((d) => yScale(d[0]))
+    .y1((d) => yScale(d[1]))
 
-    // a "slice" is the segment between two percentile curves
-    const slices = []
-    for (let slice = breaks.length - 1; slice > 0; slice--) {
-      // Slice - 1 has a higher accessibility value because it is from a less
-      // reliable travel time.
-      const combinedValues = percentileCurves[breaks[slice]].map((d, i) => [
-        d,
-        percentileCurves[breaks[slice - 1]][i]
-      ])
-      slices.push(combinedValues)
-    }
-
-    return (
-      <>
-        {slices.map((d, i, a) => {
-          const opacity = ((i + 1) * MAX_OPACITY) / (a.length + 1)
-          return (
-            <path
-              key={`slice-${i}`}
-              d={sliceArea(d)}
-              style={{fill: color, fillOpacity: opacity}}
-            />
-          )
-        })}
-      </>
-    )
+  // a "slice" is the segment between two percentile curves
+  const slices: [number, number][][] = []
+  for (let slice = 1; slice < percentileCurves.length; slice++) {
+    const combinedValues: [number, number][] = percentileCurves[
+      slice
+    ].map((d, i) => [d, percentileCurves[slice - 1][i]])
+    slices.push(combinedValues)
   }
-)
 
-function YAxis({fontColor, height, datasetName, width, yScale}) {
-  const tickFormat = format('.3s')
+  // Adds the full area under the curve
+  // slices.push(percentileCurves[percentileCurves.length - 1].map((d) => [0, d]))
 
-  // make sure that the top tick is not off the screen
-  const maxYValueWithTextOnScreen = yScale.invert(TEXT_HEIGHT / 2)
-  const trimmedYScale = scalePow()
-    .exponent(Y_AXIS_EXPONENT)
-    .domain([0, maxYValueWithTextOnScreen])
-    .range([height, TEXT_HEIGHT / 2])
+  return (
+    <>
+      {slices.map((slice, i) => {
+        const opacity = (i + 1) * MIN_OPACITY
+        return (
+          <path
+            key={`slice-${i}`}
+            d={sliceArea(slice)}
+            style={{
+              fill: color,
+              fillOpacity: opacity
+            }}
+          />
+        )
+      })}
+    </>
+  )
+})
 
+const XAxis = memo(() => (
+  <>
+    {TIME_LABELS.map((t) => (
+      <line
+        key={t}
+        x1={xScale(t)}
+        x2={xScale(t)}
+        y1={TEXT_BUFFER}
+        y2={CHART_HEIGHT}
+        style={gridLineStyle}
+      />
+    ))}
+  </>
+))
+
+type YAxisProps = {
+  backgroundColorHex: string
+  yScale: ScalePower<number, number, never>
+}
+const YAxis = memo<YAxisProps>(({backgroundColorHex, yScale}: YAxisProps) => {
   // y scale
-  const yTicks = trimmedYScale.ticks(5)
-
-  const toRender = yTicks.map((tick, i, arr) => {
-    const yoff = yScale(tick)
-
-    const valueText = tickFormat(tick)
-
-    // highest valued tick gets label, move ticks down a little so the middle
-    // of the text is on the line.
-    const tickText =
-      i === arr.length - 1 ? `${valueText} ${datasetName}` : valueText
-
-    return [yoff, tickText]
-  })
+  const yTicks = yScale.ticks(6)
 
   return (
     <g
-      transform={`translate(${BOX_PLOT_WIDTH * width})`}
-      style={{fontSize: TEXT_HEIGHT}}
+      style={{
+        fontSize: TEXT_HEIGHT
+      }}
     >
-      {toRender.map(([off, text], i) => (
-        <text
-          style={{
-            alignmentBaseline: i === 0 ? 'baseline' : 'middle',
-            fill: fontColor
-          }}
-          key={`y-tick-${text}`}
-          y={off}
-        >
-          {text}
-        </text>
-      ))}
+      {yTicks.map((tick) => {
+        const y = yScale(tick)
+        const yText = tickFormat(tick)
+        return (
+          <g key={`y-tick-${tick}`}>
+            <line x1={0} x2={SVG_WIDTH} y1={y} y2={y} style={gridLineStyle} />
+            <text
+              style={{
+                alignmentBaseline: 'middle',
+                pointerEvents: 'none',
+                stroke: backgroundColorHex,
+                strokeWidth: 2, // Adds an outline
+                userSelect: 'none'
+              }}
+              x={CHART_WIDTH + TEXT_BUFFER}
+              y={y}
+            >
+              {yText}
+            </text>
+            <text
+              style={{
+                alignmentBaseline: 'middle',
+                pointerEvents: 'none',
+                userSelect: 'none'
+              }}
+              x={CHART_WIDTH + TEXT_BUFFER}
+              y={y}
+            >
+              {yText}
+            </text>
+          </g>
+        )
+      })}
     </g>
   )
-}
+})
 
-function CumulativeLine({color, curve, xScale, yScale}) {
+function CumulativeLine({color, curve, yScale}) {
   const percentileLine = line()
-    // add one for the reason described above
-    .x((d, i) => xScale(i + 1))
+    .x((_, i) => xScale(i))
     .y((d) => yScale(d))
 
   return (
@@ -365,192 +302,27 @@ function CumulativeLine({color, curve, xScale, yScale}) {
       d={percentileLine(curve)}
       style={{
         stroke: color,
-        strokeWidth: 0.5,
+        strokeOpacity: STROKE_OPACITY,
+        strokeWidth: STROKE_WIDTH,
         fill: 'none'
       }}
     />
   )
 }
 
-function SliceLine({cutoff, height, xScale}) {
+const cutoffLineStyle = {
+  strokeWidth: STROKE_WIDTH,
+  strokeOpacity: STROKE_OPACITY,
+  strokeDasharray: 4
+}
+export function CutoffLine({cutoff}: {cutoff: number}) {
   return (
     <line
-      x1={xScale(cutoff)}
-      x2={xScale(cutoff)}
-      y1={0}
-      y2={height}
-      style={{
-        stroke: '#333',
-        strokeWidth: 0.5
-      }}
+      x1={cutoff}
+      x2={cutoff}
+      y1={TEXT_BUFFER}
+      y2={CHART_HEIGHT}
+      style={cutoffLineStyle}
     />
   )
-}
-
-function Legend({color, fontColor, width, height}) {
-  const squareSize = TEXT_HEIGHT * 1.5
-  const textOffset = squareSize * 1.5
-
-  return (
-    <g transform={`translate(${width * 0.9} ${height * 0.6})`}>
-      <text
-        x={textOffset + TEXT_HEIGHT * 2}
-        y={0}
-        style={{fill: fontColor, textAnchor: 'end'}}
-      >
-        {message('analysis.percentileOfTravelTime')}
-      </text>
-      {/* Colors */}
-      {BOX_PLOT_PERCENTILES.slice(1).map((d, i, a) => (
-        <rect
-          x={0}
-          y={i * squareSize + TEXT_HEIGHT * 1.5}
-          width={squareSize}
-          height={squareSize}
-          key={`legend-${i}`}
-          style={{
-            fill: color,
-            fillOpacity: ((i + 1) * MAX_OPACITY) / (a.length + 1)
-          }}
-        />
-      ))}
-      {/* Labels, subtract i from length because 95th percentile is at the bottom */}
-      {BOX_PLOT_PERCENTILES.map((d, i, a) => (
-        <text
-          x={textOffset}
-          y={(a.length - 1 - i) * squareSize + TEXT_HEIGHT * 1.5}
-          key={`legend-text-${i}`}
-          style={{
-            alignmentBaseline: 'middle',
-            fill: fontColor
-          }}
-        >
-          {d}
-        </text>
-      ))}
-    </g>
-  )
-}
-
-function ComparisonLegend({
-  color,
-  fontColor,
-  label,
-  comparisonColor,
-  comparisonLabel,
-  height,
-  width
-}) {
-  const squareSize = TEXT_HEIGHT * 1.5
-  const textOffset = squareSize * 1.5
-  const titleOffset = TEXT_HEIGHT * 1.5
-
-  return (
-    <g transform={`translate(${width * 0.9} ${height * 0.55})`}>
-      <text
-        x={textOffset + TEXT_HEIGHT * 2}
-        y={0}
-        style={{fill: fontColor, textAnchor: 'end'}}
-      >
-        {message('analysis.percentileOfTravelTime')}
-      </text>
-
-      <rect
-        x={0}
-        y={titleOffset}
-        width={squareSize}
-        height={squareSize}
-        style={{
-          fill: color,
-          fillOpacity: 0.5 * MAX_OPACITY // value when there is only one band
-        }}
-      />
-
-      <text
-        x={textOffset}
-        y={titleOffset}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[1]}
-      </text>
-
-      <text
-        x={textOffset}
-        y={titleOffset + squareSize}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[0]}
-      </text>
-
-      {/* variant label */}
-      <text
-        x={-1 * (textOffset - squareSize)}
-        y={titleOffset + squareSize / 2}
-        style={{
-          alignmentBaseline: 'middle',
-          fill: fontColor,
-          textAnchor: 'end'
-        }}
-      >
-        {label}
-      </text>
-
-      <rect
-        x={0}
-        y={titleOffset + squareSize * 3}
-        width={squareSize}
-        height={squareSize}
-        style={{
-          fill: comparisonColor,
-          fillOpacity: 0.5 * MAX_OPACITY // value when there is only one band
-        }}
-      />
-
-      <text
-        x={textOffset}
-        y={titleOffset + squareSize * 3}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[1]}
-      </text>
-
-      <text
-        x={textOffset}
-        y={titleOffset + squareSize * 4}
-        style={{alignmentBaseline: 'middle', fill: fontColor}}
-      >
-        {/* [1] because travel time percentiles are reversed in accessibility */}
-        {COMPARISON_BAND_PERCENTILES[0]}
-      </text>
-
-      {/* variant label */}
-      <text
-        x={-1 * (textOffset - squareSize)}
-        y={titleOffset + squareSize * 3 + squareSize / 2}
-        style={{
-          alignmentBaseline: 'middle',
-          fill: fontColor,
-          textAnchor: 'end'
-        }}
-      >
-        {comparisonLabel}
-      </text>
-    </g>
-  )
-}
-
-function createYScale(height: number, maxAccessibility: number) {
-  return scalePow()
-    .exponent(Y_AXIS_EXPONENT)
-    .domain([0, maxAccessibility])
-    .range([height, 0])
-}
-
-function createXScale(width: number) {
-  return scaleLinear()
-    .domain([0, MAX_TRIP_DURATION])
-    .range([BOX_PLOT_WIDTH * width, width])
 }

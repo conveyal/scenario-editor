@@ -17,7 +17,7 @@ import {
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
 import {useRouter} from 'next/router'
-import {memo, useEffect} from 'react'
+import {memo, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import {AUTH_DISABLED, CB_DARK, CB_HEX, PageKey} from 'lib/constants'
@@ -244,19 +244,23 @@ interface ActivityItemProps {
 function ActivityItem({regionId}: ActivityItemProps) {
   const {tasks} = useActivity()
   const {isOpen, onClose, onOpen} = useDisclosure()
-  const hasActivity = tasks.length > 0
+  const hasActivity = tasks.find((p) => p.state === 'ACTIVE') !== undefined
   const hasError = !!tasks.find((p) => p.state === 'ERROR')
+  const [previousTasksLength, setPreviousTasksLength] = useState(tasks.length)
 
-  // If there is a task that began less than five seconds ago, trigger `onOpen`
+  // If there is a brand new task, open the popover.
   useEffect(() => {
-    if (!isOpen && tasks.find((t) => t.timeBegan > Date.now() - 5_000)) {
-      onOpen()
+    if (tasks.length !== previousTasksLength) {
+      setPreviousTasksLength(tasks.length)
+      if (!isOpen && tasks.length > previousTasksLength) {
+        onOpen()
+      }
     }
-  }, [tasks, isOpen, onOpen])
+  }, [tasks, previousTasksLength, isOpen, onOpen])
 
   return (
     <Popover
-      closeDelay={500}
+      closeDelay={1000}
       isLazy
       isOpen={isOpen}
       onClose={onClose}
@@ -276,7 +280,7 @@ function ActivityItem({regionId}: ActivityItemProps) {
           </NavItemContents>
         </div>
       </PopoverTrigger>
-      <PopoverContent mb={3} width={hasActivity ? '600px' : 'inherit'}>
+      <PopoverContent mb={3} width={tasks.length > 0 ? '600px' : 'inherit'}>
         <PopoverHeader fontWeight='bold'>
           <>Activity</>
           <Badge fontSize='0.8em' ml={2}>

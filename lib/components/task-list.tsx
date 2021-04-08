@@ -37,12 +37,17 @@ function getColor(task: CL.Task): string {
 function getTime(task: CL.Task): string {
   switch (task.state) {
     case 'ACTIVE':
-      return formatDate(Date.now() - task.timeBegan, 'HH:mm:ss')
+      return formatDate(
+        Date.now() - 1617850570880 /* TODO use task.timeBegan */,
+        'HH:mm:ss'
+      )
     case 'QUEUED':
       return 'in queue'
     case 'DONE':
     case 'ERROR':
-      return formatDistanceToNow(task.timeCompleted, {addSuffix: true})
+      return formatDistanceToNow(task.timeCompleted || Date.now(), {
+        addSuffix: true
+      })
   }
 }
 
@@ -112,7 +117,7 @@ function Task({removeTask, task, ...p}: TaskProps) {
             whiteSpace: 'normal'
           }}
         >
-          {task.description}
+          {task.detail}
         </Box>
         <Box fontFamily='mono' opacity={0.6} whiteSpace='nowrap'>
           <TaskTime task={task} />

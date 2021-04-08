@@ -226,10 +226,11 @@ declare namespace CL {
   }
 
   export type Task = {
-    description: string
+    detail: string
     id: string
     percentComplete: number
     state: TaskState
+    secondsExecuting: number
     timeBegan: number
     timeCompleted: number
     title: string

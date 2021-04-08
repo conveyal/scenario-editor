@@ -9,11 +9,10 @@ const activeTask: CL.Task = {
 }
 
 const erroredTask: CL.Task = {
+  ...activeTask,
   detail: 'Error message from a task',
   id: '2',
-  percentComplete: 75,
   state: 'ERROR',
-  timeBegan: Date.now() - 60_000,
   timeCompleted: Date.now(),
   title: 'Errored Task',
   workProduct: {
@@ -24,33 +23,18 @@ const erroredTask: CL.Task = {
 }
 
 const completedTask: CL.Task = {
+  ...erroredTask,
   detail: 'This is a log message',
   id: '3',
   percentComplete: 100,
   state: 'DONE',
-  timeBegan: Date.now() - 60_000,
-  timeCompleted: Date.now(),
-  title: 'Completed task',
-  workProduct: {
-    id: 'bundleId',
-    region: 'regionId',
-    type: 'BUNDLE'
-  }
+  title: 'Completed task'
 }
 
 const completedTask2: CL.Task = {
+  ...completedTask,
   id: '4',
-  title: 'Completed task 2',
-  detail: 'This is a description of a task.',
-  percentComplete: 100,
-  state: 'DONE',
-  timeBegan: Date.now() - 60_000,
-  timeCompleted: Date.now(),
-  workProduct: {
-    id: 'bundleId',
-    region: 'regionId',
-    type: 'BUNDLE'
-  }
+  title: 'Completed task 2'
 }
 
 const tasks: CL.Task[] = [

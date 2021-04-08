@@ -25,8 +25,8 @@ const unionById = unionBy<CL.Task>('id')
 const LOCAL_STORAGE_KEY = 'conveyal-activity'
 
 const MAX_REFRESH_INTERVAL_MS = 30_000
-const FAST_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 30
-const INITIAL_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 3
+const FAST_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 60
+const INITIAL_REFRESH_INTERVAL_MS = MAX_REFRESH_INTERVAL_MS / 8
 
 interface UseActivityResponse {
   removeTask: (taskId: string) => void
@@ -101,7 +101,6 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
           )
         })
       } else if (!dequal(state.previousData, action.data)) {
-        // Speed up the refresh interval when the data has changed
         return locallyStore({
           ...state,
           previousData: action.data,
@@ -109,17 +108,14 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
           tasks: unionById(action.data.taskProgress, state.tasks).filter(
             (t) => !state.hiddenTaskIds.includes(t.id)
           ),
+          // Speed up the refresh interval when the data has changed
           refreshInterval: FAST_REFRESH_INTERVAL_MS
         })
       } else if (state.refreshInterval < MAX_REFRESH_INTERVAL_MS) {
-        // Slow down the refresh interval if the data is the same
         return locallyStore({
           ...state,
-          refreshInterval:
-            state.refreshInterval +
-            (state.refreshInterval < MAX_REFRESH_INTERVAL_MS
-              ? FAST_REFRESH_INTERVAL_MS
-              : 0)
+          // Slow down the refresh interval if the data is the same
+          refreshInterval: state.refreshInterval * 2
         })
       }
       // No new data, no changes needed to refresh interval

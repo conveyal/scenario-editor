@@ -6,6 +6,7 @@ import {
   Stack,
   StackDivider
 } from '@chakra-ui/react'
+import dateSubtract from 'date-fns/sub'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import {useEffect, useState} from 'react'
 
@@ -39,16 +40,10 @@ function getColor(task: CL.Task): string {
 function getTime(task: CL.Task): string {
   switch (task.state) {
     case 'ACTIVE':
-      return task.timeBegan != null
-        ? secondsToHhMmSsString(
-            Math.floor((Date.now() - task.timeBegan) / 1_000)
-          )
-        : ''
+      return secondsToHhMmSsString(Math.floor((Date.now() - task.startTime) / 1_000))
     case 'DONE':
     case 'ERROR':
-      return task.timeCompleted != null
-        ? formatDistanceToNow(task.timeCompleted, {addSuffix: true})
-        : ''
+      return formatDistanceToNow(dateSubtract(Date.now(), {seconds: task.secondsComplete}), {addSuffix: true})
   }
 }
 
@@ -80,12 +75,12 @@ function getLinkParams(workProduct: CL.TaskWorkProduct) {
     case 'BUNDLE':
       return {
         bundleId: workProduct.id,
-        regionId: workProduct.region
+        regionId: workProduct.regionId
       }
     case 'REGIONAL_ANALYSIS':
       return {
         regionalAnalysisId: workProduct.id,
-        regionId: workProduct.region
+        regionId: workProduct.regionId
       }
   }
 }

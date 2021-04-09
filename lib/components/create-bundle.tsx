@@ -63,7 +63,6 @@ export default function CreateBundle() {
   }
 
   const isValid = () =>
-    formData.name &&
     osm.totalSize + feedGroup.totalSize < SERVER_NGINX_MAX_CLIENT_BODY_SIZE &&
     ((reuseOsm && formData.osmId) || (!reuseOsm && osm.files?.length > 0)) &&
     ((reuseGtfs && formData.feedGroupId) ||
@@ -103,7 +102,6 @@ export default function CreateBundle() {
         })
       } finally {
         setUploading(false)
-        formElement.reset()
       }
     }
   }
@@ -129,14 +127,9 @@ export default function CreateBundle() {
           pr={8}
           spacing={8}
         >
-          <FormControl isRequired isInvalid={formData.name.length < 1}>
+          <FormControl isRequired>
             <FormLabel htmlFor='bundleName'>{message('bundle.name')}</FormLabel>
-            <Input
-              id='bundleName'
-              name='bundleName'
-              onChange={onChange('name')}
-              placeholder='Name'
-            />
+            <Input id='bundleName' name='bundleName' placeholder='Name' />
           </FormControl>
 
           <Tabs

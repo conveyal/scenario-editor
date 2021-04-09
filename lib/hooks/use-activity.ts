@@ -74,13 +74,34 @@ type Actions =
   | {type: 'local-storage-sync'; state: State}
   | {type: 'set-incoming-data'; data: CL.Activity}
 
-// Sync with local store and
+// Retrieve the data from localStorage
+function initializeFromLocalStorage(arg: State): State {
+  const localState = getParsedItem(LOCAL_STORAGE_KEY)
+  if (localState != null) {
+    return localState as State
+  }
+  return arg
+}
+
+// Sync with local store
 function locallyStore(state: State): State {
   stringifyAndSet(LOCAL_STORAGE_KEY, state)
   return state
 }
 
+/**
+ * Calculates the timestamps locally to account for possible clock drift. Done once on new incoming tasks.
+ */
+function calculateTimestamps(task: CL.Task): CL.Task {
+  return {
+    ...task,
+    completionTime: Date.now() - task.secondsComplete * 1_000,
+    startTime: Date.now() - task.secondsActive * 1_000
+  }
+}
+
 const taskReducer: Reducer<State, Actions> = (state, action) => {
+  const filterHiddenTasks = (t) => !state.hiddenTaskIds.includes(t.id)
   switch (action.type) {
     case 'hide-task-id':
       return locallyStore({
@@ -96,22 +117,19 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
         return locallyStore({
           ...state,
           previousData: action.data,
-          tasks: action.data.taskProgress.filter(
-            (t) => !state.hiddenTaskIds.includes(t.id)
-          )
+          tasks: action.data.taskProgress
+            .filter(filterHiddenTasks)
+            .map(calculateTimestamps)
         })
       } else if (!dequal(state.previousData, action.data)) {
         return locallyStore({
           ...state,
           previousData: action.data,
           // TODO: filter out active tasks that no longer exist on the backend in case of an error.
-          tasks: unionById(action.data.taskProgress, state.tasks)
-            .filter((t) => !state.hiddenTaskIds.includes(t.id))
-            .map((t) => {
-              if (t.state != 'ACTIVE' || t.startTime) return t
-              else
-                return {...t, startTime: Date.now() - t.secondsActive * 1_000}
-            }),
+          tasks: unionById(
+            action.data.taskProgress.map(calculateTimestamps),
+            state.tasks
+          ).filter(filterHiddenTasks),
           // Speed up the refresh interval when the data has changed
           refreshInterval: FAST_REFRESH_INTERVAL_MS
         })
@@ -127,15 +145,6 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
   }
 }
 
-// Retrieve the data from localStorage
-function initializer(arg: State): State {
-  const localState = getParsedItem(LOCAL_STORAGE_KEY)
-  if (localState != null) {
-    return localState as State
-  }
-  return arg
-}
-
 /**
  * Fetch the activity from the API server. Use a default refresh interval that speeds up if
  * the data returned from the server has changed. If the data does not change, increase the interval
@@ -146,7 +155,11 @@ function initializer(arg: State): State {
  */
 export function useActivitySync(): UseActivityResponse {
   const user = useUser()
-  const [state, dispatch] = useReducer(taskReducer, initialState, initializer)
+  const [state, dispatch] = useReducer(
+    taskReducer,
+    initialState,
+    initializeFromLocalStorage
+  )
 
   // Handle localStorage syncing
   useEventListener('storage', (event: StorageEvent) => {

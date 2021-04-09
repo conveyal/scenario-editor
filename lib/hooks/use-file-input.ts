@@ -12,10 +12,9 @@ import {
   SERVER_MAX_FILE_SIZE_BYTES
 } from 'lib/constants'
 
-const toMB = (bytes: number) => bytes / 1024 / 1024
+const toMB = (bytes: number) => bytes / 1_000 / 1_000
 
-const singleAlert = (b: number) =>
-  `Each file has a maximum limit of ${toMB(b)}MB.`
+const singleAlert = (b: number) => `Each file is limited to ${toMB(b)}MB.`
 const totalAlert = (b: number) =>
   `Total size of all files must be less than ${toMB(b)}MB.`
 
@@ -69,7 +68,7 @@ export default function useFileInput(
         setTotalSize(0)
         setValue('')
         toast({
-          title: 'Invalid File Selected',
+          title: 'Selected file too large',
           description: alertText,
           position: 'top',
           isClosable: true,

@@ -106,13 +106,12 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
           previousData: action.data,
           // TODO: filter out active tasks that no longer exist on the backend in case of an error.
           tasks: unionById(action.data.taskProgress, state.tasks)
-                  .filter(
-                    (t) => !state.hiddenTaskIds.includes(t.id)
-                  )
-                  .map(t => {
-                      if (t.state != 'ACTIVE' || t.startTime) return t;
-                      else return { ...t, startTime: Date.now() - (t.secondsActive * 1_000) }
-                  }),
+            .filter((t) => !state.hiddenTaskIds.includes(t.id))
+            .map((t) => {
+              if (t.state != 'ACTIVE' || t.startTime) return t
+              else
+                return {...t, startTime: Date.now() - t.secondsActive * 1_000}
+            }),
           // Speed up the refresh interval when the data has changed
           refreshInterval: FAST_REFRESH_INTERVAL_MS
         })

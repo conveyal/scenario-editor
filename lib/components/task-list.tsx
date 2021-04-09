@@ -40,10 +40,15 @@ function getColor(task: CL.Task): string {
 function getTime(task: CL.Task): string {
   switch (task.state) {
     case 'ACTIVE':
-      return secondsToHhMmSsString(Math.floor((Date.now() - task.startTime) / 1_000))
+      return secondsToHhMmSsString(
+        Math.floor((Date.now() - task.startTime) / 1_000)
+      )
     case 'DONE':
     case 'ERROR':
-      return formatDistanceToNow(dateSubtract(Date.now(), {seconds: task.secondsComplete}), {addSuffix: true})
+      return formatDistanceToNow(
+        dateSubtract(Date.now(), {seconds: task.secondsComplete}),
+        {addSuffix: true}
+      )
   }
 }
 

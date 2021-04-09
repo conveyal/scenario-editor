@@ -3,8 +3,8 @@ const activeTask: CL.Task = {
   id: '1',
   percentComplete: 50,
   state: 'ACTIVE',
-  timeBegan: Date.now() - 60_000,
-  timeCompleted: -1,
+  secondsActive: 60,
+  secondsComplete: 0,
   title: 'Active task'
 }
 
@@ -13,11 +13,12 @@ const erroredTask: CL.Task = {
   detail: 'Error message from a task',
   id: '2',
   state: 'ERROR',
-  timeCompleted: Date.now(),
+  secondsActive: 30,
+  secondsComplete: 0,
   title: 'Errored Task',
   workProduct: {
     id: 'bundleId',
-    region: 'regionId',
+    regionId: 'regionId',
     type: 'BUNDLE'
   }
 }

@@ -227,7 +227,7 @@ declare namespace CL {
 
   export type TaskWorkProduct = {
     id: string
-    region: string
+    regionId: string
     type: 'BUNDLE' | 'REGIONAL_ANALYSIS'
   }
 
@@ -236,8 +236,9 @@ declare namespace CL {
     id: string
     percentComplete: number
     state: TaskState
-    timeBegan?: number
-    timeCompleted?: number
+    startTime?: number
+    secondsActive: number
+    secondsComplete: number
     title: string
     workProduct?: TaskWorkProduct
   }

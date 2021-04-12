@@ -89,19 +89,8 @@ function locallyStore(state: State): State {
   return state
 }
 
-/**
- * Calculates the timestamps locally to account for possible clock drift. Done once on new incoming tasks.
- */
-function calculateTimestamps(task: CL.Task): CL.Task {
-  return {
-    ...task,
-    completionTime: Date.now() - task.secondsComplete * 1_000,
-    startTime: Date.now() - task.secondsActive * 1_000
-  }
-}
-
 const taskReducer: Reducer<State, Actions> = (state, action) => {
-  const filterHiddenTasks = (t) => !state.hiddenTaskIds.includes(t.id)
+  const filterHiddenTasks = (t: CL.Task) => !state.hiddenTaskIds.includes(t.id)
   switch (action.type) {
     case 'hide-task-id':
       return locallyStore({
@@ -117,19 +106,16 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
         return locallyStore({
           ...state,
           previousData: action.data,
-          tasks: action.data.taskProgress
-            .filter(filterHiddenTasks)
-            .map(calculateTimestamps)
+          tasks: action.data.taskProgress.filter(filterHiddenTasks)
         })
       } else if (!dequal(state.previousData, action.data)) {
         return locallyStore({
           ...state,
           previousData: action.data,
-          // TODO: filter out active tasks that no longer exist on the backend in case of an error.
-          tasks: unionById(
-            action.data.taskProgress.map(calculateTimestamps),
-            state.tasks
-          ).filter(filterHiddenTasks),
+          // Merge local tasks with tasks from the server, overwriting the local ones.
+          tasks: unionById(action.data.taskProgress, state.tasks).filter(
+            filterHiddenTasks
+          ),
           // Speed up the refresh interval when the data has changed
           refreshInterval: FAST_REFRESH_INTERVAL_MS
         })

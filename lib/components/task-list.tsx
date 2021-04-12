@@ -33,35 +33,40 @@ function getColor(task: CL.Task): string {
   }
 }
 
-/**
- * Show `HH:mm:ss` for an active task and a "human" formatted time for finished tasks.
- */
-function getTime(task: CL.Task): string {
-  switch (task.state) {
-    case 'ACTIVE':
-      return secondsToHhMmSsString(
-        Math.floor((Date.now() - (task.startTime ?? 0)) / 1_000)
-      )
-    case 'DONE':
-    case 'ERROR':
-      return formatDistanceToNow(task.completionTime ?? Date.now(), {
-        addSuffix: true
-      })
-  }
-}
+const formatComplete = (secondsComplete: number): string =>
+  formatDistanceToNow(Date.now() - secondsComplete * 1_000, {addSuffix: true})
 
 /**
  * Simple component for displaying the time and updating it every second.
  */
 function TaskTime({task}: {task: CL.Task}) {
-  const [time, setTime] = useState(getTime(task))
+  const {secondsActive, secondsComplete, state} = task
+  const [taskState, setTaskState] = useState(task.state)
+  const [taskSeconds, setTaskSeconds] = useState(
+    taskState === 'ACTIVE' ? secondsActive : secondsComplete
+  )
 
+  // Always increment by 1 second
   useEffect(() => {
-    const id = setInterval(() => setTime(getTime(task)), 1_000)
+    const id = setInterval(() => setTaskSeconds((t) => t + 1), 1_000)
     return () => clearInterval(id)
-  }, [task])
+  }, [])
 
-  return <>{time}</>
+  // Change the base time if the state changes
+  useEffect(() => {
+    if (taskState !== state) {
+      setTaskState(state)
+      setTaskSeconds(secondsComplete)
+    }
+  }, [secondsComplete, state, taskState])
+
+  return (
+    <>
+      {taskState === 'ACTIVE'
+        ? secondsToHhMmSsString(taskSeconds)
+        : formatComplete(taskSeconds)}
+    </>
+  )
 }
 
 function getLinkKey(workProduct: CL.TaskWorkProduct) {

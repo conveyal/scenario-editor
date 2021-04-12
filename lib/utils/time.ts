@@ -1,4 +1,4 @@
-const pad0 = (t: number): string => (t >= 10 ? `${t}` : `0${t}`)
+const pad0 = (t: number): string => String(t).padStart(2, '0')
 
 /** Convert seconds since noon - 12h to HH:MM format, discarding fractional components */
 export function secondsToHhMmString(secs: number, padHours = true): string {

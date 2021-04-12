@@ -248,11 +248,17 @@ interface ActivityItemProps {
   regionId: string
 }
 
+function getActivityColor(tasks: CL.Task[]): string {
+  if (tasks.length === 0) return 'gray'
+  if (tasks.find((p) => p.state === 'ERROR')) return 'red'
+  if (tasks.find((p) => p.state === 'ACTIVE')) return 'green'
+  return 'blue'
+}
+
 function ActivityItem({regionId}: ActivityItemProps) {
   const {tasks} = useActivity()
   const {isOpen, onClose, onOpen} = useDisclosure()
-  const hasActivity = tasks.find((p) => p.state === 'ACTIVE') !== undefined
-  const hasError = !!tasks.find((p) => p.state === 'ERROR')
+  const activityColor = getActivityColor(tasks)
   const [previousTasksLength, setPreviousTasksLength] = useState(tasks.length)
 
   // If there is a brand new task, open the popover.
@@ -267,7 +273,7 @@ function ActivityItem({regionId}: ActivityItemProps) {
 
   return (
     <Popover
-      closeDelay={1000}
+      closeDelay={750}
       isLazy
       isOpen={isOpen}
       onClose={onClose}
@@ -278,16 +284,16 @@ function ActivityItem({regionId}: ActivityItemProps) {
       <PopoverTrigger>
         <div>
           <NavItemContents
-            color={hasError ? 'red.500' : hasActivity ? 'green.500' : CB_HEX}
+            color={`${activityColor}.500`}
             _hover={{
-              color: hasError ? 'red.700' : hasActivity ? 'green.700' : CB_DARK
+              color: `${activityColor}.700`
             }}
           >
             <ActivityIcon />
           </NavItemContents>
         </div>
       </PopoverTrigger>
-      <PopoverContent mb={3} width={tasks.length > 0 ? '600px' : 'inherit'}>
+      <PopoverContent mb={3} width='600px'>
         <PopoverHeader fontWeight='bold'>
           <>Activity</>
           <Badge fontSize='0.8em' ml={2}>

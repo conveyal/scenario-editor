@@ -14,18 +14,19 @@ import {
   TabPanel,
   TabPanels,
   Text,
-  useToast
+  useToast,
+  Skeleton
 } from '@chakra-ui/react'
 import {FormEvent, useRef, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
 import fetch from 'lib/actions/fetch'
 import {API, SERVER_NGINX_MAX_CLIENT_BODY_SIZE} from 'lib/constants'
 import useActivity from 'lib/hooks/use-activity'
+import {useBundles} from 'lib/hooks/use-collection'
 import useFileInput from 'lib/hooks/use-file-input'
+import {useRegion} from 'lib/hooks/use-model'
 import message from 'lib/message'
-import selectBundles from 'lib/selectors/bundles'
-import selectCurrentRegion from 'lib/selectors/current-region'
 
 import Code from './code'
 import FileSizeInputHelper from './file-size-input-helper'
@@ -35,22 +36,27 @@ import DocsLink from './docs-link'
 /**
  * Create bundle form.
  */
-export default function CreateBundle() {
-  const {response} = useActivity()
-  const {revalidate} = response
+export default function CreateBundle({query}: {query: CL.Query}) {
+  const {response: activityResponse} = useActivity()
   const dispatch = useDispatch<any>()
-  const bundles = useSelector(selectBundles)
-  const region = useSelector(selectCurrentRegion)
+  const {regionId} = query
+  const {data: bundles} = useBundles({query: {regionId}})
+  const {data: region} = useRegion(regionId)
   const toast = useToast()
-  const regionId = region._id
-  const bounds = region.bounds
+  const bounds = region?.bounds ?? {
+    north: 90,
+    south: -90,
+    east: 180,
+    west: -180
+  }
   const formRef = useRef<HTMLFormElement>()
 
-  const hasExistingBundles = bundles.length > 0
-  const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
+  const hasExistingBundles = bundles?.length > 0
+  const dataIsLoaded = Array.isArray(bundles) && !!region
+  const [reuseOsm, setReuseOsm] = useState(false)
   const osm = useFileInput()
   const feedGroup = useFileInput()
-  const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
+  const [reuseGtfs, setReuseGtfs] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [formData, setFormData] = useState<Record<string, string>>({
     name: ''
@@ -91,7 +97,7 @@ export default function CreateBundle() {
             options: {body, method: 'post'}
           })
         )
-        await revalidate()
+        await activityResponse.revalidate()
       } catch (e) {
         toast({
           title: 'Error creating bundle',
@@ -132,47 +138,31 @@ export default function CreateBundle() {
             <Input id='bundleName' name='bundleName' placeholder='Name' />
           </FormControl>
 
-          <Tabs
-            defaultIndex={hasExistingBundles ? 0 : 1}
-            isFitted
-            onChange={(i) => {
-              if (i === 0) {
-                setReuseOsm(true)
-                osm.setFiles(null)
-              } else {
-                setReuseOsm(false)
-              }
-            }}
-          >
-            <TabList>
-              <Tab
-                aria-disabled={!hasExistingBundles}
-                disabled={!hasExistingBundles}
-              >
-                {message('bundle.osm.existingTitle')}
-              </Tab>
-              <Tab>{message('bundle.osm.uploadNewTitle')}</Tab>
-            </TabList>
+          <Skeleton isLoaded={dataIsLoaded}>
+            <Tabs
+              isFitted
+              isLazy
+              onChange={(i) => {
+                if (i === 1) {
+                  setReuseOsm(true)
+                  osm.setFiles('')
+                } else {
+                  setReuseOsm(false)
+                }
+              }}
+            >
+              <TabList>
+                <Tab>{message('bundle.osm.uploadNewTitle')}</Tab>
+                <Tab
+                  aria-disabled={!hasExistingBundles}
+                  disabled={!hasExistingBundles}
+                >
+                  {message('bundle.osm.existingTitle')}
+                </Tab>
+              </TabList>
 
-            <TabPanels>
-              <TabPanel pt={4} px={0}>
-                {reuseOsm && (
-                  <Select
-                    id='osmId'
-                    name='osmId'
-                    onChange={onChange('osmId')}
-                    placeholder={message('bundle.osm.existingLabel')}
-                  >
-                    {bundles.map((b) => (
-                      <option key={b._id} value={b.osmId}>
-                        {b.name}
-                      </option>
-                    ))}
-                  </Select>
-                )}
-              </TabPanel>
-              <TabPanel p={0}>
-                {!reuseOsm && (
+              <TabPanels>
+                <TabPanel p={0}>
                   <Stack spacing={4} pt={4}>
                     <Heading size='sm'>
                       {message('bundle.osmconvertDescription')}
@@ -215,6 +205,7 @@ export default function CreateBundle() {
                       <Input
                         accept='.pbf'
                         id='osm'
+                        isRequired
                         name='osm'
                         type='file'
                         onChange={osm.onChangeFiles}
@@ -223,52 +214,51 @@ export default function CreateBundle() {
                       <FileSizeInputHelper />
                     </FormControl>
                   </Stack>
-                )}
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-
-          <Tabs
-            defaultIndex={hasExistingBundles ? 0 : 1}
-            isFitted
-            onChange={(i) => {
-              if (i === 0) {
-                setReuseGtfs(true)
-                feedGroup.setFiles(null)
-              } else {
-                setReuseGtfs(false)
-              }
-            }}
-          >
-            <TabList>
-              <Tab
-                aria-disabled={!hasExistingBundles}
-                disabled={!hasExistingBundles}
-              >
-                {message('bundle.gtfs.existingTitle')}
-              </Tab>
-              <Tab>{message('bundle.gtfs.uploadNewTitle')}</Tab>
-            </TabList>
-
-            <TabPanels>
-              <TabPanel pt={4} px={0}>
-                {reuseGtfs && (
+                </TabPanel>
+                <TabPanel pt={4} px={0}>
                   <Select
-                    id='feedGroupId'
-                    name='feedGroupId'
-                    onChange={onChange('feedGroupId')}
-                    placeholder={message('bundle.gtfs.existingLabel')}
+                    id='osmId'
+                    isRequired
+                    name='osmId'
+                    onChange={onChange('osmId')}
+                    placeholder={message('bundle.osm.existingLabel')}
                   >
-                    {bundles.map((b) => (
-                      <option key={b._id} value={b.feedGroupId}>
+                    {bundles?.map((b) => (
+                      <option key={b._id} value={b.osmId}>
                         {b.name}
                       </option>
                     ))}
                   </Select>
-                )}
-              </TabPanel>
-              <TabPanel pt={4} px={0}>
-                {!reuseGtfs && (
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Skeleton>
+
+          <Skeleton isLoaded={dataIsLoaded}>
+            <Tabs
+              isFitted
+              isLazy
+              onChange={(i) => {
+                if (i === 1) {
+                  setReuseGtfs(true)
+                  feedGroup.setFiles('')
+                } else {
+                  setReuseGtfs(false)
+                }
+              }}
+            >
+              <TabList>
+                <Tab>{message('bundle.gtfs.uploadNewTitle')}</Tab>
+                <Tab
+                  aria-disabled={!hasExistingBundles}
+                  disabled={!hasExistingBundles}
+                >
+                  {message('bundle.gtfs.existingTitle')}
+                </Tab>
+              </TabList>
+
+              <TabPanels>
+                <TabPanel pt={4} px={0}>
                   <FormControl isRequired>
                     <FormLabel htmlFor='feedGroup'>
                       {message('bundle.gtfs.uploadNewLabel')}
@@ -276,6 +266,7 @@ export default function CreateBundle() {
                     <Input
                       accept='.zip'
                       id='feedGroup'
+                      isRequired
                       multiple
                       name='feedGroup'
                       type='file'
@@ -284,10 +275,25 @@ export default function CreateBundle() {
                     />
                     <FileSizeInputHelper />
                   </FormControl>
-                )}
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+                </TabPanel>
+                <TabPanel pt={4} px={0}>
+                  <Select
+                    id='feedGroupId'
+                    isRequired
+                    name='feedGroupId'
+                    onChange={onChange('feedGroupId')}
+                    placeholder={message('bundle.gtfs.existingLabel')}
+                  >
+                    {bundles?.map((b) => (
+                      <option key={b._id} value={b.feedGroupId}>
+                        {b.name}
+                      </option>
+                    ))}
+                  </Select>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Skeleton>
 
           <input type='hidden' name='regionId' value={regionId} />
 

@@ -93,18 +93,24 @@ function getLinkParams(workProduct: CL.TaskWorkProduct) {
   }
 }
 
-function LinkToWorkProduct({task}: {task: CL.Task}) {
+function LinkToWorkProduct(p: {
+  removeTask: (id: string) => void
+  task: CL.Task
+}) {
   const goToWorkProduct = useRouteTo(
-    getLinkKey(task.workProduct),
-    getLinkParams(task.workProduct)
+    getLinkKey(p.task.workProduct),
+    getLinkParams(p.task.workProduct)
   )
   return (
     <IconButton
-      colorScheme={task.state === 'ERROR' ? 'red' : 'blue'}
+      colorScheme={p.task.state === 'ERROR' ? 'red' : 'blue'}
       label={
-        task.state === 'ERROR' ? 'View error details' : 'View work product'
+        p.task.state === 'ERROR' ? 'View error details' : 'View work product'
       }
-      onClick={() => goToWorkProduct()}
+      onClick={() => {
+        goToWorkProduct()
+        p.removeTask(p.task.id)
+      }}
     >
       <ExternalLinkIcon />
     </IconButton>
@@ -137,7 +143,7 @@ function Task({removeTask, task, ...p}: TaskProps) {
         <HStack>
           {taskIsFinished(task) && task.workProduct && (
             <Box>
-              <LinkToWorkProduct task={task} />
+              <LinkToWorkProduct removeTask={removeTask} task={task} />
             </Box>
           )}
           <IconButton

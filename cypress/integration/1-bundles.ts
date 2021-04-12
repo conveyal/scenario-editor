@@ -16,13 +16,19 @@ function createBundle(name: string, selectFilesFn: () => void) {
 
   selectFilesFn()
 
-  cy.findByRole('button', {name: /Create/})
+  cy.findButton(/Create/)
     .should('not.be.disabled')
     .click()
-    .contains('Processing')
-    .should('exist')
-    .contains('Processing', {timeout: processingTimeout})
-    .should('not.exist')
+
+  // Popover should show up
+  cy.findByText('Processing bundle ' + name).should('exist')
+
+  // Completed text should appear
+  cy.findByText('Completed.', {timeout: processingTimeout})
+
+  // Click "View work product" button
+  cy.findButton(/View work product/).click()
+
   cy.location('pathname').should('match', /\/bundles\/.{24}$/)
 }
 

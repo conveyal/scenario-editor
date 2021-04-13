@@ -5,11 +5,7 @@ import TaskList from 'lib/components/task-list'
 import useActivity from 'lib/hooks/use-activity'
 import withDataLayout from 'lib/with-data-layout'
 
-type UserActivityPage = {
-  query?: CL.Query
-}
-
-function UserActivityPage(p: UserActivityPage) {
+function UserActivityPage() {
   const {tasks} = useActivity()
   return (
     <InnerDock width={640}>
@@ -21,7 +17,7 @@ function UserActivityPage(p: UserActivityPage) {
           </Badge>
         </Heading>
         <Box>
-          <TaskList regionId={p.query?.regionId} />
+          <TaskList />
         </Box>
       </Stack>
     </InnerDock>

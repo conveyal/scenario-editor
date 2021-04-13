@@ -7,6 +7,7 @@ import {
   StackDivider
 } from '@chakra-ui/react'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 
 import {CheckIcon, ExternalLinkIcon} from 'lib/components/icons'
@@ -185,10 +186,13 @@ function Task({removeTask, task, ...p}: TaskProps) {
 
 interface TaskListProps {
   limit?: number
-  regionId: string
 }
 
-export default function TaskList({limit, regionId}: TaskListProps) {
+const queryAsString = (q: string | string[]): string =>
+  Array.isArray(q) ? q[0] : q
+
+export default function TaskList({limit}: TaskListProps) {
+  const router = useRouter()
   const {tasks, removeTask} = useActivity()
   return (
     <Stack divider={<StackDivider />} spacing={0}>
@@ -205,7 +209,10 @@ export default function TaskList({limit, regionId}: TaskListProps) {
       )}
       {limit < tasks.length && (
         <Box px={px} py={py}>
-          <ALink to='activity' query={{regionId}}>
+          <ALink
+            to='activity'
+            query={{regionId: queryAsString(router.query.regionId)}}
+          >
             View more tasks →
           </ALink>
         </Box>

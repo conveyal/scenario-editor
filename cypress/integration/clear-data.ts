@@ -1,8 +1,6 @@
-import {clearTemporaryData} from './utils'
-
 describe('Clear all test data', () => {
   before(() => {
-    clearTemporaryData()
+    cy.window().then((win) => win.localStorage.clear())
   })
 
   it('should have no data in local storage', () => {

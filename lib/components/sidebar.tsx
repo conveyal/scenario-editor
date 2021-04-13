@@ -207,7 +207,7 @@ export default function Sidebar() {
       </div>
 
       <div>
-        <ActivityItem regionId={queryParams.regionId} />
+        <ActivityItem />
 
         <Tip label='Toggle color mode' placement='right'>
           <div>
@@ -244,10 +244,6 @@ export default function Sidebar() {
   )
 }
 
-interface ActivityItemProps {
-  regionId: string
-}
-
 function getActivityColor(tasks: CL.Task[]): string {
   if (tasks.length === 0) return 'gray'
   if (tasks.find((p) => p.state === 'ERROR')) return 'red'
@@ -255,7 +251,7 @@ function getActivityColor(tasks: CL.Task[]): string {
   return 'blue'
 }
 
-function ActivityItem({regionId}: ActivityItemProps) {
+function ActivityItem() {
   const {tasks} = useActivity()
   const {isOpen, onClose, onOpen} = useDisclosure()
   const activityColor = getActivityColor(tasks)
@@ -271,11 +267,23 @@ function ActivityItem({regionId}: ActivityItemProps) {
     }
   }, [tasks, previousTasksLength, isOpen, onOpen])
 
+  if (tasks.length === 0) {
+    return (
+      <Tip label='No current activity' placement='right'>
+        <div>
+          <NavItemContents color='gray.500' _hover={{color: 'gray.600'}}>
+            <ActivityIcon />
+          </NavItemContents>
+        </div>
+      </Tip>
+    )
+  }
+
   return (
     <Popover
       closeDelay={750}
       isLazy
-      isOpen={tasks.length > 0 && isOpen}
+      isOpen={isOpen}
       onClose={onClose}
       onOpen={onOpen}
       placement='right'
@@ -286,7 +294,7 @@ function ActivityItem({regionId}: ActivityItemProps) {
           <NavItemContents
             color={`${activityColor}.500`}
             _hover={{
-              color: `${activityColor}.700`
+              color: `${activityColor}.600`
             }}
           >
             <ActivityIcon />
@@ -302,7 +310,7 @@ function ActivityItem({regionId}: ActivityItemProps) {
         </PopoverHeader>
         <PopoverCloseButton />
         <PopoverBody p={0}>
-          <TaskList limit={3} regionId={regionId} />
+          <TaskList limit={3} />
         </PopoverBody>
       </PopoverContent>
     </Popover>

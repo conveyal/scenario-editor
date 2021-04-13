@@ -21,12 +21,12 @@ function createBundle(name: string, selectFilesFn: () => void) {
     .click()
 
   // Popover should show up
-  cy.findByText('Processing bundle ' + name).should('exist')
+  cy.findByText('Processing bundle ' + name)
 
   // Completed text should appear
-  cy.findByText('Completed.', {timeout: processingTimeout})
+  cy.findByText(/Completed\./, {timeout: processingTimeout})
 
-  // Click "View work product" button
+  // Click "View work product" button (which also clears the task)
   cy.findButton(/View work product/).click()
 
   cy.location('pathname').should('match', /\/bundles\/.{24}$/)
@@ -101,16 +101,14 @@ describe('Network bundles', () => {
       encoding: 'base64',
       mimeType: 'application/octet-stream'
     })
-    cy.findByRole('button', {name: /Create/i}).click()
-    cy.findByText(/Wait until processing is complete/)
-    cy.findByText(/error/i, {timeout: processingTimeout}).should(
-      'have.attr',
-      'role',
-      'alert'
-    )
+    cy.findButton(/Create/i).click()
+    cy.findByText(/NoSuchElementException: No value present/, {
+      timeout: processingTimeout
+    })
+    cy.findButton(/View error details/).click()
     region.navTo('network bundles')
     // TODO need semantic selector for dropdown
-    cy.findByText('Select...').click().type('ERROR{enter}')
+    cy.findByText('Select...').click().type('Corrupt{enter}')
     cy.contains(names.corrupt)
     cy.findByRole('alert').contains(
       'Please upload valid OSM .pbf and GTFS .zip files.'

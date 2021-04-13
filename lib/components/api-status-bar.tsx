@@ -53,6 +53,6 @@ export default function APIStatusBar() {
   if (isOnline) {
     if (error) return <NoAPI />
     if (isValidating && showIsValidating) return <IsValidating />
-  } else if (error || isValidating) return <NotOnline />
+  } else if (error || showIsValidating) return <NotOnline />
   return null
 }

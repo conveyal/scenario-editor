@@ -9,7 +9,7 @@ import {
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import {useEffect, useState} from 'react'
 
-import {CheckIcon, ErrorIcon, ExternalLinkIcon} from 'lib/components/icons'
+import {CheckIcon, ExternalLinkIcon} from 'lib/components/icons'
 import IconButton from 'lib/components/icon-button'
 import {ALink} from 'lib/components/link'
 import useActivity from 'lib/hooks/use-activity'
@@ -126,20 +126,18 @@ function Task({removeTask, task, ...p}: TaskProps) {
   return (
     <Stack px={px} py={py} position='relative' spacing={1} {...p}>
       <HStack justify='space-between'>
-        <HStack color={getColor(task)}>
-          {task.state === 'ERROR' && <ErrorIcon />}
-          <Heading
-            size='sm'
-            textOverflow='ellipsis'
-            whiteSpace='nowrap'
-            overflow='hidden'
-            _hover={{
-              whiteSpace: 'normal'
-            }}
-          >
-            {task.title}
-          </Heading>
-        </HStack>
+        <Heading
+          color={getColor(task)}
+          overflow='hidden'
+          size='sm'
+          textOverflow='ellipsis'
+          whiteSpace='nowrap'
+          _hover={{
+            whiteSpace: 'normal'
+          }}
+        >
+          {task.title}
+        </Heading>
         <HStack>
           {taskIsFinished(task) && task.workProduct && (
             <Box>

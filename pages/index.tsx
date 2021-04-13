@@ -1,4 +1,4 @@
-import {Alert, Box, Button, Flex, Stack} from '@chakra-ui/react'
+import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
 import {FindOneOptions} from 'mongodb'
 import Link from 'next/link'
 
@@ -67,11 +67,15 @@ export default withAuth(function SelectRegionPage() {
         >
           Set up a new region
         </Button>
-        {(regions || []).length > 0 && (
+        {regions == null ? (
+          <Skeleton id='LoadingSkeleton' height='2px' />
+        ) : (
           <Stack spacing={4}>
-            <Box textAlign='center'>or go to an existing region</Box>
+            {regions.length > 0 && (
+              <Box textAlign='center'>or go to an existing region</Box>
+            )}
             <Stack spacing={0}>
-              {(regions || []).map((region) => (
+              {regions.map((region) => (
                 <ListGroupItem
                   key={region._id}
                   leftIcon={<RegionIcon />}

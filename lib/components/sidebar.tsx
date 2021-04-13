@@ -275,14 +275,14 @@ function ActivityItem({regionId}: ActivityItemProps) {
     <Popover
       closeDelay={750}
       isLazy
-      isOpen={isOpen}
+      isOpen={tasks.length > 0 && isOpen}
       onClose={onClose}
       onOpen={onOpen}
       placement='right'
       trigger='hover'
     >
       <PopoverTrigger>
-        <div>
+        <div aria-label='Activity'>
           <NavItemContents
             color={`${activityColor}.500`}
             _hover={{

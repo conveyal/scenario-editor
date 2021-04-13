@@ -113,7 +113,11 @@ function UploadNewAggregationArea({onClose, regionId}) {
     formData.append('name', nameInput.value)
     formData.append('nameProperty', attributeInput.value)
     formData.append('union', `${union}`)
-    ;[...fileInput.files].forEach((file) => formData.append('files', file))
+    if (Array.isArray(fileInput.files)) {
+      for (const file of fileInput.files) {
+        formData.append('files', file)
+      }
+    }
 
     try {
       const newAAs = await dispatch(uploadAggregationArea(formData, regionId))
@@ -179,7 +183,9 @@ function UploadNewAggregationArea({onClose, regionId}) {
 
       <Button
         isFullWidth
-        isDisabled={uploading || !nameInput.value || !fileInput.files}
+        isDisabled={
+          uploading || !nameInput.value || !Array.isArray(fileInput.files)
+        }
         isLoading={uploading}
         loadingText='Creating aggregation area'
         onClick={upload}

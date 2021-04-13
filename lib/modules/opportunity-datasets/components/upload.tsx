@@ -45,6 +45,7 @@ export default function UploadOpportunityDataset({regionId}) {
 
   // Enable extra fields if it's a CSV file
   const isCSV =
+    Array.isArray(fileInput.files) &&
     fileInput.files?.length === 1 &&
     fileInput.files[0].name.toLowerCase().endsWith('.csv')
 

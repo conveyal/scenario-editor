@@ -279,6 +279,22 @@ function ActivityItem() {
     )
   }
 
+  if (!isOpen) {
+    return (
+      <Tip label='View activity' placement='right'>
+        <div>
+          <NavItemContents
+            color={`${activityColor}.500`}
+            _hover={{color: `${activityColor}.600`}}
+            onClick={onOpen}
+          >
+            <ActivityIcon />
+          </NavItemContents>
+        </div>
+      </Tip>
+    )
+  }
+
   return (
     <Popover
       closeDelay={750}
@@ -287,19 +303,21 @@ function ActivityItem() {
       onClose={onClose}
       onOpen={onOpen}
       placement='right'
-      trigger='hover'
     >
       <PopoverTrigger>
-        <div aria-label='Activity'>
-          <NavItemContents
-            color={`${activityColor}.500`}
-            _hover={{
-              color: `${activityColor}.600`
-            }}
-          >
-            <ActivityIcon />
-          </NavItemContents>
-        </div>
+        {isOpen && (
+          <div>
+            <NavItemContents
+              color={`${activityColor}.500`}
+              _hover={{
+                color: `${activityColor}.600`
+              }}
+              onClick={onClose}
+            >
+              <ActivityIcon />
+            </NavItemContents>
+          </div>
+        )}
       </PopoverTrigger>
       <PopoverContent mb={3} width='600px'>
         <PopoverHeader fontWeight='bold'>

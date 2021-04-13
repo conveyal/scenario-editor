@@ -60,6 +60,9 @@ describe('Projects', function () {
     cy.findButton(/Confirm/i).click()
     cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)
+
+    // Page reload is necessary to pass in headless mode
+    cy.reload()
     cy.findByText(projectName).should('not.exist')
   })
 })

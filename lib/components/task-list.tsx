@@ -125,13 +125,14 @@ interface TaskProps {
 
 function Task({removeTask, task, ...p}: TaskProps) {
   return (
-    <Stack px={px} py={py} position='relative' spacing={1} {...p}>
+    <Stack id={task.id} px={px} py={py} position='relative' spacing={1} {...p}>
       <HStack justify='space-between'>
         <Heading
           color={getColor(task)}
           overflow='hidden'
           size='sm'
           textOverflow='ellipsis'
+          title={task.title}
           whiteSpace='nowrap'
           _hover={{
             whiteSpace: 'normal'
@@ -195,7 +196,7 @@ export default function TaskList({limit}: TaskListProps) {
   const router = useRouter()
   const {tasks, removeTask} = useActivity()
   return (
-    <Stack divider={<StackDivider />} spacing={0}>
+    <Stack divider={<StackDivider />} id='TaskList' spacing={0}>
       {tasks.length > 0 ? (
         tasks
           .slice(0, limit)

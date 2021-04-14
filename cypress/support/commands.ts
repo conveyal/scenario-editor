@@ -8,6 +8,11 @@ Cypress.Commands.add('findToast', () =>
   cy.get('#chakra-toast-portal').findByRole('alert')
 )
 
+// Get a task
+Cypress.Commands.add('findTask', (title: string) =>
+  cy.get('#TaskList').findByTitle(title).parent().parent()
+)
+
 // Load the home page. Wait for the "Skeleton" to disappear
 Cypress.Commands.add('visitHome', () => {
   cy.log('visitHome')

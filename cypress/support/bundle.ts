@@ -25,13 +25,15 @@ Cypress.Commands.add(
       mimeType: 'application/octet-stream'
     })
     cy.findByRole('button', {name: /Create/i}).click()
-    cy.findByText(/Processing/)
 
-    // Completed text should appear
-    cy.findByText(/Completed\./, {timeout: 240000})
+    // Popover should show up
+    cy.findTask('Processing bundle ' + name).within(() => {
+      // Completed text should appear
+      cy.findByText(/Completed\./, {timeout: 240000})
 
-    // Click "View work product" button (which also clears the task)
-    cy.findButton(/View work product/).click()
+      // Click "View work product" button (which also clears the task)
+      cy.findButton(/View work product/).click()
+    })
 
     // go back and grab the id
     cy.findByLabelText(/or select an existing one/)

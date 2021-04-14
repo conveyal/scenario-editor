@@ -20,14 +20,16 @@ function createBundle(name: string, selectFilesFn: () => void) {
     .should('not.be.disabled')
     .click()
 
+  const taskTitle = 'Processing bundle ' + name
+
   // Popover should show up
-  cy.findByText('Processing bundle ' + name)
+  cy.findTask(taskTitle).within(() => {
+    // Completed text should appear
+    cy.findByText(/Completed\./, {timeout: processingTimeout})
 
-  // Completed text should appear
-  cy.findByText(/Completed\./, {timeout: processingTimeout})
-
-  // Click "View work product" button (which also clears the task)
-  cy.findButton(/View work product/).click()
+    // Click "View work product" button (which also clears the task)
+    cy.findButton(/View work product/).click()
+  })
 
   cy.location('pathname').should('match', /\/bundles\/.{24}$/)
 }

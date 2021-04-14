@@ -10,7 +10,7 @@ Cypress.Commands.add('findToast', () =>
 
 // Get a task
 Cypress.Commands.add('findTask', (title: string) =>
-  cy.get('#TaskList').findByTitle(title, {timeout: 60_000}).parent().parent()
+  cy.get('#TaskList').findByTitle(title).parent().parent()
 )
 
 // Load the home page. Wait for the "Skeleton" to disappear

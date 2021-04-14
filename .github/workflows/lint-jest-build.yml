@@ -108,6 +108,7 @@ jobs:
           - 27017:27017
     # keep as a matrix strategy to test against an additional specific build later
     strategy:
+      fail-fast: false
       matrix:
         backend: [dev-latest, v6.2-11-ge8b0fcf]
 

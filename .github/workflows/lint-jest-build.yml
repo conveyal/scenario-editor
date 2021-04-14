@@ -106,9 +106,10 @@ jobs:
         image: mongo
         ports:
           - 27017:27017
+    # keep as a matrix strategy to test against an additional specific build later
     strategy:
       matrix:
-        backend: [dev-latest] # keep as a matrix strategy to test against an additional specific build later
+        backend: [dev-latest, v6.2-11-ge8b0fcf]
 
     runs-on: ubuntu-latest
     steps:

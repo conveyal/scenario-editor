@@ -106,11 +106,8 @@ jobs:
         image: mongo
         ports:
           - 27017:27017
-    # keep as a matrix strategy to test against an additional specific build later
-    strategy:
-      fail-fast: false
-      matrix:
-        backend: [dev-latest, v6.2-11-ge8b0fcf]
+    env:
+      r5Version: v6.2-11-ge8b0fcf
 
     runs-on: ubuntu-latest
     steps:
@@ -135,7 +132,7 @@ jobs:
           java-version: 11
 
       - name: Download Analysis Backend
-        run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ github.workspace }}/${{ matrix.backend }}.jar
+        run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ env.r5Version }}.jar --output ${{ github.workspace }}/${{ env.r5Version }}.jar
 
       - name: Cache Cypress
         id: cache-cypress

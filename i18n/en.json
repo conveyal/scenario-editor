@@ -53,7 +53,7 @@
     "deleteDisabled": "This network bundle cannot be deleted while projects are using it. Currently used by %(projects) project(s).",
     "processing": "Wait until processing is complete before leaving this page. This may take a few minutes.",
     "save": "Save renamed bundle/feed names",
-    "select": "or select an existing one",
+    "select": "or view an existing one",
     "notice": "After clicking \"Create\" you will need to wait a few minutes for new OSM and GTFS feeds to be processed.",
     "createDescription": "A Network Bundle requires both GTFS and OSM data. When creating a new Network Bundle you have the option of reusing data from previously created Network Bundles within this region.",
     "osm": {

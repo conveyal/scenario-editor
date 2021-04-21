@@ -8,8 +8,8 @@ export default function LabelHeading({
 } & HeadingProps) {
   return (
     <Heading
-      color='gray.500'
       fontWeight='normal'
+      opacity={0.5}
       size='md'
       style={{fontVariant: 'small-caps'}}
       {...p}

@@ -148,9 +148,9 @@ declare namespace CL {
   }
 
   export interface GTFSErrorSummary {
-    field: string
-    file: string
-    line: number
+    field?: string
+    file?: string
+    line?: number
     message: string
   }
 

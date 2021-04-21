@@ -1,11 +1,9 @@
 import {
   Alert,
   AlertProps,
-  AlertTitle,
   Badge,
   Box,
   Button,
-  Divider,
   Flex,
   FormControl,
   FormLabel,
@@ -13,7 +11,9 @@ import {
   Input,
   Stack,
   StackDivider,
-  Text
+  Text,
+  Collapse,
+  useDisclosure
 } from '@chakra-ui/react'
 import {useCallback, useState} from 'react'
 
@@ -23,8 +23,9 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
 import ConfirmButton from './confirm-button'
-import {DeleteIcon} from './icons'
+import {ChevronDown, ChevronUp, DeleteIcon} from './icons'
 import LabelHeading from './label-heading'
+import IconButton from './icon-button'
 
 const hasContent = (s: string) => s.length > 0
 
@@ -51,6 +52,8 @@ function DisplayFeed({
   index: number
   onChange: (name: string) => void
 }) {
+  const errors = feed.errors ?? []
+  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: true})
   const input = useInput({onChange, test: hasContent, value: feed.name})
   return (
     <Stack spacing={4}>
@@ -60,43 +63,80 @@ function DisplayFeed({
         </FormLabel>
         <Input {...input} placeholder='Feed name' />
       </FormControl>
-      {feed.errors?.length > 0 && <Heading size='sm'>Feed errors</Heading>}
-      {feed.errors?.map((typeSummary, index) => (
-        <Alert key={index} status={getSummaryStatus(typeSummary)}>
-          <Stack>
-            <AlertTitle>
-              {typeSummary.type}
-              <Badge ml={2}>{typeSummary.count}</Badge>
-            </AlertTitle>
+      {errors.length > 0 && (
+        <Stack spacing={2}>
+          <Flex justify='space-between'>
+            <Heading size='md'>Feed errors</Heading>
+            <IconButton
+              onClick={onToggle}
+              label={isOpen ? 'Hide errors' : 'Show errors'}
+            >
+              {isOpen ? <ChevronUp /> : <ChevronDown />}
+            </IconButton>
+          </Flex>
+          <Text>
+            Errors, warnings, and notices generated while processing this feed.
+          </Text>
+          <Collapse in={isOpen}>
+            {errors.map((typeSummary, index) => (
+              <Alert
+                alignItems='flex-start'
+                key={index}
+                flexDir='column'
+                status={getSummaryStatus(typeSummary)}
+              >
+                <Flex mb={2}>
+                  <Heading size='md'>{typeSummary.type}</Heading>
+                  <Text
+                    bg='gray.900'
+                    color='white'
+                    display='inline-block'
+                    fontSize='0.7em'
+                    fontWeight='bold'
+                    fontFamily='mono'
+                    opacity={0.7}
+                    px={2}
+                    py={1}
+                    ml={3}
+                    rounded='md'
+                  >
+                    {typeSummary.count}
+                  </Text>
+                </Flex>
 
-            <Stack divider={<StackDivider />}>
-              {typeSummary.someErrors.map((errorSummary, index) => (
-                <Stack key={index}>
-                  <Flex justify='space-between'>
-                    <Stack spacing={0}>
-                      <LabelHeading>file</LabelHeading>
-                      <Heading size='md'>{errorSummary.file}</Heading>
+                <Stack divider={<StackDivider />} width='100%'>
+                  {typeSummary.someErrors.map((errorSummary, index) => (
+                    <Stack key={index}>
+                      <Flex justify='space-between'>
+                        <Stack spacing={0}>
+                          <LabelHeading>file</LabelHeading>
+                          <Heading size='md'>{errorSummary.file}</Heading>
+                        </Stack>
+                        {errorSummary.line != null && (
+                          <Stack spacing={0}>
+                            <LabelHeading>line</LabelHeading>
+                            <Heading size='md'>{errorSummary.line}</Heading>
+                          </Stack>
+                        )}
+                        {errorSummary.field != null && (
+                          <Stack spacing={0}>
+                            <LabelHeading>field</LabelHeading>
+                            <Heading size='md'>{errorSummary.field}</Heading>
+                          </Stack>
+                        )}
+                      </Flex>
+                      <Stack spacing={0}>
+                        <LabelHeading>message</LabelHeading>
+                        <Heading size='md'>{errorSummary.message}</Heading>
+                      </Stack>
                     </Stack>
-                    {errorSummary.line != null && (
-                      <Stack spacing={0}>
-                        <LabelHeading>line</LabelHeading>
-                        <Heading size='md'>{errorSummary.line}</Heading>
-                      </Stack>
-                    )}
-                    {errorSummary.field != null && (
-                      <Stack spacing={0}>
-                        <LabelHeading>field</LabelHeading>
-                        <Heading size='md'>{errorSummary.field}</Heading>
-                      </Stack>
-                    )}
-                  </Flex>
-                  <Text fontFamily='mono'>{errorSummary.message}</Text>
+                  ))}
                 </Stack>
-              ))}
-            </Stack>
-          </Stack>
-        </Alert>
-      ))}
+              </Alert>
+            ))}
+          </Collapse>
+        </Stack>
+      )}
     </Stack>
   )
 }
@@ -166,7 +206,7 @@ export default function EditBundle({
 
   return (
     <Stack spacing={4}>
-      <Heading size='md'>{message('bundle.edit')}</Heading>
+      <Heading size='lg'>{message('bundle.edit')}</Heading>
 
       {bundle.status === 'ERROR' && (
         <Alert status='error'>

@@ -147,9 +147,26 @@ declare namespace CL {
     sourceName: string
   }
 
+  export interface GTFSErrorSummary {
+    field: string
+    file: string
+    line: number
+    message: string
+  }
+
+  export interface GTFSErrorTypeSummary {
+    count: number
+    priority: 'HIGH' | 'MEDIUM' | 'LOW' | 'UNKNOWN'
+    someErrors: GTFSErrorSummary[]
+    type: string
+  }
+
   export interface FeedSummary {
     feedId: string
     name: string
+    serviceStart: string
+    serviceEnd: string
+    errors: GTFSErrorTypeSummary[]
   }
 
   export interface Bundle extends IModel {

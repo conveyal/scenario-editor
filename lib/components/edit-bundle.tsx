@@ -1,11 +1,19 @@
 import {
   Alert,
+  AlertProps,
+  AlertTitle,
+  Badge,
+  Box,
   Button,
+  Divider,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  Stack
+  Stack,
+  StackDivider,
+  Text
 } from '@chakra-ui/react'
 import {useCallback, useState} from 'react'
 
@@ -16,25 +24,87 @@ import message from 'lib/message'
 
 import ConfirmButton from './confirm-button'
 import {DeleteIcon} from './icons'
+import LabelHeading from './label-heading'
 
-const hasContent = (s) => s.length > 0
+const hasContent = (s: string) => s.length > 0
 
-function FeedNameInput({feed, index, onChange, ...p}) {
+function getSummaryStatus(
+  summary: CL.GTFSErrorTypeSummary
+): AlertProps['status'] {
+  switch (summary.priority) {
+    case 'HIGH':
+      return 'error'
+    case 'MEDIUM':
+      return 'warning'
+    case 'LOW':
+    default:
+      return 'info'
+  }
+}
+
+function DisplayFeed({
+  feed,
+  index,
+  onChange
+}: {
+  feed: CL.FeedSummary
+  index: number
+  onChange: (name: string) => void
+}) {
   const input = useInput({onChange, test: hasContent, value: feed.name})
   return (
-    <FormControl {...p} isInvalid={input.isInvalid}>
-      <FormLabel htmlFor={input.id}>
-        {`${message('bundle.feed')} #${index + 1}`}
-      </FormLabel>
-      <Input {...input} placeholder='Feed name' />
-    </FormControl>
+    <Stack spacing={4}>
+      <FormControl isInvalid={input.isInvalid}>
+        <FormLabel htmlFor={input.id}>
+          {`${message('bundle.feed')} #${index + 1}`}
+        </FormLabel>
+        <Input {...input} placeholder='Feed name' />
+      </FormControl>
+      {feed.errors?.length > 0 && <Heading size='sm'>Feed errors</Heading>}
+      {feed.errors?.map((typeSummary, index) => (
+        <Alert key={index} status={getSummaryStatus(typeSummary)}>
+          <Stack>
+            <AlertTitle>
+              {typeSummary.type}
+              <Badge ml={2}>{typeSummary.count}</Badge>
+            </AlertTitle>
+
+            <Stack divider={<StackDivider />}>
+              {typeSummary.someErrors.map((errorSummary, index) => (
+                <Stack key={index}>
+                  <Flex justify='space-between'>
+                    <Stack spacing={0}>
+                      <LabelHeading>file</LabelHeading>
+                      <Heading size='md'>{errorSummary.file}</Heading>
+                    </Stack>
+                    {errorSummary.line != null && (
+                      <Stack spacing={0}>
+                        <LabelHeading>line</LabelHeading>
+                        <Heading size='md'>{errorSummary.line}</Heading>
+                      </Stack>
+                    )}
+                    {errorSummary.field != null && (
+                      <Stack spacing={0}>
+                        <LabelHeading>field</LabelHeading>
+                        <Heading size='md'>{errorSummary.field}</Heading>
+                      </Stack>
+                    )}
+                  </Flex>
+                  <Text fontFamily='mono'>{errorSummary.message}</Text>
+                </Stack>
+              ))}
+            </Stack>
+          </Stack>
+        </Alert>
+      ))}
+    </Stack>
   )
 }
 
-function BundleNameInput({name, onChange, ...p}) {
+function BundleNameInput({name, onChange}) {
   const input = useInput({onChange, test: hasContent, value: name})
   return (
-    <FormControl {...p} isInvalid={input.isInvalid}>
+    <FormControl isInvalid={input.isInvalid}>
       <FormLabel htmlFor={input.id}>{message('bundle.name')}</FormLabel>
       <Input {...input} placeholder='Network bundle name' />
     </FormControl>
@@ -106,16 +176,20 @@ export default function EditBundle({
         </Alert>
       )}
 
-      <BundleNameInput name={bundle.name} onChange={setName} />
+      <Box>
+        <BundleNameInput name={bundle.name} onChange={setName} />
+      </Box>
 
       {bundle.feeds &&
         bundle.feeds.map((feed, index) => (
-          <FeedNameInput
-            feed={feed}
-            index={index}
-            key={feed.feedId}
-            onChange={(name) => setFeedName(feed.feedId, name)}
-          />
+          <Box key={feed.feedId}>
+            <DisplayFeed
+              feed={feed}
+              index={index}
+              key={feed.feedId}
+              onChange={(name: string) => setFeedName(feed.feedId, name)}
+            />
+          </Box>
         ))}
 
       <Button

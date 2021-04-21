@@ -1,10 +1,14 @@
 import {FormControl, FormLabel} from '@chakra-ui/react'
+import fpGet from 'lodash/fp/get'
 import {useState} from 'react'
 
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
-import Combobox from './combobox'
+import Select from './select'
+
+const getLabel = fpGet('name')
+const getValue = fpGet('_id')
 
 export default function SelectBundle({
   bundles,
@@ -21,14 +25,16 @@ export default function SelectBundle({
         {message('bundle.select')}
       </FormLabel>
       <div>
-        <Combobox<CL.Bundle>
+        <Select
+          inputId='selectBundle'
+          options={bundles}
+          getOptionLabel={getLabel}
+          getOptionValue={getValue}
           onChange={(result: CL.Bundle) => {
             setBundleId(result._id)
             goToBundleEdit({bundleId: result._id})
           }}
-          options={bundles || []}
-          placeholder='Select an existing bundle'
-          value={bundles?.find((b) => b._id === bundleId)}
+          value={bundles.find((b) => b._id === bundleId)}
         />
       </div>
     </FormControl>

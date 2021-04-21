@@ -13,12 +13,14 @@ function BundleViewPage(p: {query: CL.Query}) {
     <Bundles regionId={p.query.regionId}>
       <Skeleton isLoaded={Array.isArray(bundles) && Array.isArray(projects)}>
         <Stack spacing={8} shouldWrapChildren>
-          <SelectBundle
-            bundles={bundles}
-            key={p.query.bundleId}
-            query={p.query}
-          />
-          {bundle && (
+          {bundles && (
+            <SelectBundle
+              bundles={bundles}
+              key={p.query.bundleId}
+              query={p.query}
+            />
+          )}
+          {bundle && projects && (
             <EditBundle
               bundleProjects={projects.filter((p) => p.bundleId === bundle._id)}
               key={p.query.bundleId}

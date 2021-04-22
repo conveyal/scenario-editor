@@ -15,6 +15,7 @@ import {
   useDisclosure,
   useColorModeValue
 } from '@chakra-ui/react'
+import startCase from 'lodash/startCase'
 import {useCallback, useState} from 'react'
 
 import {useBundles} from 'lib/hooks/use-collection'
@@ -41,6 +42,10 @@ function getSummaryStatus(
     default:
       return 'info'
   }
+}
+
+function formatType(errorType: string) {
+  return startCase(errorType.replace('Error', ''))
 }
 
 function DisplayFeed({
@@ -88,7 +93,7 @@ function DisplayFeed({
                 status={getSummaryStatus(typeSummary)}
               >
                 <Flex mb={1}>
-                  <Heading size='md'>{typeSummary.type}</Heading>
+                  <Heading size='md'>{formatType(typeSummary.type)}</Heading>
                   <Text
                     bg={badgeBg}
                     color={badgeColor}
@@ -111,7 +116,7 @@ function DisplayFeed({
                       <Flex justify='space-between'>
                         <Stack spacing={0}>
                           <LabelHeading>file</LabelHeading>
-                          <Heading size='md'>{errorSummary.file}</Heading>
+                          <Heading size='md'>{errorSummary.file}.txt</Heading>
                         </Stack>
                         {errorSummary.line != null && (
                           <Stack spacing={0}>

@@ -36,7 +36,7 @@ Cypress.Commands.add(
     })
 
     // go back and grab the id
-    cy.findByLabelText(/or select an existing one/)
+    cy.findByLabelText(/or view an existing one/)
       .click({force: true})
       .type(name + '{enter}')
 

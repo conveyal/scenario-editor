@@ -1,7 +1,6 @@
 import {
   Alert,
   AlertProps,
-  Badge,
   Box,
   Button,
   Flex,

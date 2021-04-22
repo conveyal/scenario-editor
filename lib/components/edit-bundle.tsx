@@ -13,7 +13,8 @@ import {
   StackDivider,
   Text,
   Collapse,
-  useDisclosure
+  useDisclosure,
+  useColorModeValue
 } from '@chakra-ui/react'
 import {useCallback, useState} from 'react'
 
@@ -55,6 +56,8 @@ function DisplayFeed({
   const errors = feed.errors ?? []
   const {isOpen, onToggle} = useDisclosure({defaultIsOpen: true})
   const input = useInput({onChange, test: hasContent, value: feed.name})
+  const badgeBg = useColorModeValue('gray.900', 'white')
+  const badgeColor = useColorModeValue('white', 'gray.900')
   return (
     <Stack spacing={4}>
       <FormControl isInvalid={input.isInvalid}>
@@ -85,15 +88,14 @@ function DisplayFeed({
                 flexDir='column'
                 status={getSummaryStatus(typeSummary)}
               >
-                <Flex mb={2}>
+                <Flex mb={1}>
                   <Heading size='md'>{typeSummary.type}</Heading>
                   <Text
-                    bg='gray.900'
-                    color='white'
+                    bg={badgeBg}
+                    color={badgeColor}
                     display='inline-block'
-                    fontSize='0.7em'
+                    fontSize='0.8em'
                     fontWeight='bold'
-                    fontFamily='mono'
                     opacity={0.7}
                     px={2}
                     py={1}

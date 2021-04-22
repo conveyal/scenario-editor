@@ -9,7 +9,7 @@ export default function LabelHeading({
   return (
     <Heading
       fontWeight='normal'
-      opacity={0.5}
+      opacity={0.6}
       size='md'
       style={{fontVariant: 'small-caps'}}
       {...p}

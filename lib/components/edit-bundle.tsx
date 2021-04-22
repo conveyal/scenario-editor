@@ -9,11 +9,12 @@ import {
   Heading,
   Input,
   Stack,
-  StackDivider,
   Text,
   Collapse,
   useDisclosure,
-  useColorModeValue
+  AlertTitle,
+  AlertIcon,
+  HStack
 } from '@chakra-ui/react'
 import startCase from 'lodash/startCase'
 import {useCallback, useState} from 'react'
@@ -45,7 +46,73 @@ function getSummaryStatus(
 }
 
 function formatType(errorType: string) {
-  return startCase(errorType.replace('Error', ''))
+  return startCase(errorType) + 's'
+}
+
+function ErrorType({error}: {error: CL.GTFSErrorTypeSummary}) {
+  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: true})
+  const name = formatType(error.type)
+  return (
+    <Alert
+      alignItems='flex-start'
+      flexDir='column'
+      status={getSummaryStatus(error)}
+    >
+      <Flex mb={isOpen ? 2 : 0} width='100%'>
+        <AlertIcon />
+        <AlertTitle flex='2' fontSize='xl'>
+          {name} ({error.count})
+        </AlertTitle>
+        <IconButton
+          onClick={onToggle}
+          label={isOpen ? `Hide ${name}` : `Show ${name}`}
+          position='absolute'
+          top='8px'
+          right='8px'
+        >
+          {isOpen ? <ChevronUp /> : <ChevronDown />}
+        </IconButton>
+      </Flex>
+
+      <Box width='100%' mb={4}>
+        <Collapse in={isOpen}>
+          <Stack spacing={6}>
+            {error.someErrors.map((errorSummary, index) => (
+              <HStack key={index} spacing={4} justify='space-between'>
+                <LabelHeading>#{index + 1}</LabelHeading>
+                <Stack flex='1' spacing={0}>
+                  <LabelHeading>file</LabelHeading>
+                  <Heading size='md'>{errorSummary.file}.txt</Heading>
+                </Stack>
+                {errorSummary.line != null && (
+                  <Stack flex='1' spacing={0}>
+                    <LabelHeading>line</LabelHeading>
+                    <Heading size='md'>{errorSummary.line}</Heading>
+                  </Stack>
+                )}
+                {errorSummary.field != null && (
+                  <Stack flex='1' spacing={0}>
+                    <LabelHeading>field</LabelHeading>
+                    <Heading size='md'>{errorSummary.field}</Heading>
+                  </Stack>
+                )}
+                <Stack flex='2' spacing={0}>
+                  <LabelHeading>message</LabelHeading>
+                  <Heading size='md'>{errorSummary.message}</Heading>
+                </Stack>
+              </HStack>
+            ))}
+          </Stack>
+        </Collapse>
+      </Box>
+
+      {error.count > 10 && (
+        <Text textAlign='center' fontStyle='italic' mt={2} width='100%'>
+          Note: only the first ten errors of each type are saved.
+        </Text>
+      )}
+    </Alert>
+  )
 }
 
 function DisplayFeed({
@@ -58,10 +125,7 @@ function DisplayFeed({
   onChange: (name: string) => void
 }) {
   const errors = feed.errors ?? []
-  const {isOpen, onToggle} = useDisclosure({defaultIsOpen: true})
   const input = useInput({onChange, test: hasContent, value: feed.name})
-  const badgeBg = useColorModeValue('gray.900', 'white')
-  const badgeColor = useColorModeValue('white', 'gray.900')
   return (
     <Stack spacing={4}>
       <FormControl isInvalid={input.isInvalid}>
@@ -71,76 +135,17 @@ function DisplayFeed({
         <Input {...input} placeholder='Feed name' />
       </FormControl>
       {errors.length > 0 && (
-        <Stack spacing={2}>
-          <Flex justify='space-between'>
+        <Stack spacing={4} shouldWrapChildren>
+          <Stack spacing={2}>
             <Heading size='md'>Feed errors</Heading>
-            <IconButton
-              onClick={onToggle}
-              label={isOpen ? 'Hide errors' : 'Show errors'}
-            >
-              {isOpen ? <ChevronUp /> : <ChevronDown />}
-            </IconButton>
-          </Flex>
-          <Text>
-            Errors, warnings, and notices generated while processing this feed.
-          </Text>
-          <Collapse in={isOpen}>
-            {errors.map((typeSummary, index) => (
-              <Alert
-                alignItems='flex-start'
-                key={index}
-                flexDir='column'
-                status={getSummaryStatus(typeSummary)}
-              >
-                <Flex mb={1}>
-                  <Heading size='md'>{formatType(typeSummary.type)}</Heading>
-                  <Text
-                    bg={badgeBg}
-                    color={badgeColor}
-                    display='inline-block'
-                    fontSize='0.8em'
-                    fontWeight='bold'
-                    opacity={0.7}
-                    px={2}
-                    py={1}
-                    ml={3}
-                    rounded='md'
-                  >
-                    {typeSummary.count}
-                  </Text>
-                </Flex>
-
-                <Stack divider={<StackDivider />} width='100%'>
-                  {typeSummary.someErrors.map((errorSummary, index) => (
-                    <Stack key={index}>
-                      <Flex justify='space-between'>
-                        <Stack spacing={0}>
-                          <LabelHeading>file</LabelHeading>
-                          <Heading size='md'>{errorSummary.file}.txt</Heading>
-                        </Stack>
-                        {errorSummary.line != null && (
-                          <Stack spacing={0}>
-                            <LabelHeading>line</LabelHeading>
-                            <Heading size='md'>{errorSummary.line}</Heading>
-                          </Stack>
-                        )}
-                        {errorSummary.field != null && (
-                          <Stack spacing={0}>
-                            <LabelHeading>field</LabelHeading>
-                            <Heading size='md'>{errorSummary.field}</Heading>
-                          </Stack>
-                        )}
-                      </Flex>
-                      <Stack spacing={0}>
-                        <LabelHeading>message</LabelHeading>
-                        <Heading size='md'>{errorSummary.message}</Heading>
-                      </Stack>
-                    </Stack>
-                  ))}
-                </Stack>
-              </Alert>
-            ))}
-          </Collapse>
+            <Text>
+              Errors, warnings, and notices generated while processing this
+              feed.
+            </Text>
+          </Stack>
+          {errors.map((typeSummary, index) => (
+            <ErrorType key={index} error={typeSummary} />
+          ))}
         </Stack>
       )}
     </Stack>

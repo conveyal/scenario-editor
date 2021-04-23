@@ -19,9 +19,10 @@ export default class Bundle extends Model {
   }
 
   _delete() {
-    cy.findByRole('button', {name: /Delete this network bundle/}).click()
+    cy.findButton(/Delete this network bundle/).click()
     cy.findButton(/Confirm/).click()
     cy.findByRole('alertdialog').should('not.exist')
+    cy.wait(1_000) // eslint-disable-line
   }
 
   findOrCreate() {

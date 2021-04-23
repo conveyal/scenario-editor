@@ -190,8 +190,8 @@ export default function EditBundle({
     bundleProjects?.filter((p) => p.bundleId === bundle._id).length ?? 0
 
   async function _deleteBundle() {
-    goToBundles()
     await remove(bundle._id)
+    goToBundles()
   }
 
   async function _saveBundle() {

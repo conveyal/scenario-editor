@@ -28,7 +28,7 @@ export default class Bundle extends Model {
   findOrCreate() {
     // Check for the existing bundle. If it does not exist, create one.
     cy.navTo('network bundles')
-    cy.findByLabelText(/or view an existing one/)
+    cy.findByLabelText(/or select an existing one/)
       .click({force: true})
       .type(this.name + '{enter}')
     cy.navComplete()

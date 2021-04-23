@@ -60,7 +60,7 @@ describe('Network bundles', () => {
     singleFeedBundle.navTo()
 
     // confirm that the bundle was saved
-    cy.contains('or view an existing one')
+    cy.contains('or select an existing one')
     cy.location('pathname').should('match', /.*bundles\/.{24}$/)
     cy.findByLabelText(/Network bundle name/i)
       .invoke('val')

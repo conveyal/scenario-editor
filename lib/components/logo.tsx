@@ -11,8 +11,8 @@ export default function Logo() {
       <Box>
         <Box
           fontSize='3rem'
-          fontWeight='300'
-          letterSpacing='-0.05rem'
+          fontWeight={300}
+          letterSpacing='-0.15rem'
           mt='-0.35rem'
         >
           conveyal

@@ -4,7 +4,7 @@ import {AppProps} from 'next/app'
 import Head from 'next/head'
 import {ComponentType} from 'react'
 
-import {AUTH_DISABLED} from 'lib/constants'
+import {AUTH_DISABLED, FONT_URL} from 'lib/constants'
 import {localUser} from 'lib/user'
 
 import ErrorHandler from 'lib/components/app-error-handler'
@@ -30,6 +30,18 @@ export default function ConveyalAnalysis({
   const user = AUTH_DISABLED ? localUser : pageProps.user
   return (
     <UserProvider user={user}>
+      <style jsx global>{`
+        @font-face {
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 100 900;
+          font-display: optional;
+          src: url(${FONT_URL}) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+            U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+            U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+      `}</style>
       <ChakraTheme>
         <ErrorHandler>
           <SWRWrapper>

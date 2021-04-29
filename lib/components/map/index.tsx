@@ -81,15 +81,36 @@ function Controls({isDisabled}) {
   )
 }
 
-export default function BaseMap({children, setLeafletContext}: MapProps) {
-  const style = useColorModeValue(lightStyle, darkStyle)
-  const backgroundColor = useColorModeValue('gray.50', 'gray.800')
-  const leafletMapRef = useRef<ReactMap>()
+function useRecenterOnRegionEffect(): Viewport {
   const region = useCurrentRegion()
   const [viewport, setViewport] = useState<Viewport>(() => ({
     ...DEFAULT_VIEWPORT,
     ...getParsedItem(VIEWPORT_KEY)
   }))
+
+  // If center is not within region bounds, reset to center
+  useEffect(() => {
+    if (region) {
+      const regionBounds = toLatLngBounds(region.bounds)
+      const center = viewport?.center
+      const regionCenter = regionBounds.getCenter()
+      if (!center || !regionBounds.contains(center)) {
+        setViewport({
+          center: [regionCenter.lat, regionCenter.lng],
+          zoom: ZOOM
+        })
+      }
+    }
+  }, [region, viewport])
+
+  return viewport
+}
+
+export default function BaseMap({children, setLeafletContext}: MapProps) {
+  const style = useColorModeValue(lightStyle, darkStyle)
+  const backgroundColor = useColorModeValue('gray.50', 'gray.800')
+  const leafletMapRef = useRef<ReactMap>()
+  const viewport = useRecenterOnRegionEffect()
   const saveInProgress = useSelector(selectModificationSaveInProgress)
   const [routeChanging] = useRouteChanging()
 
@@ -119,21 +140,6 @@ export default function BaseMap({children, setLeafletContext}: MapProps) {
       return () => clearTimeout(id)
     }
   }, [routeChanging, leafletMapRef])
-
-  // If center is not within region bounds, reset to center
-  useEffect(() => {
-    if (region) {
-      const regionBounds = toLatLngBounds(region.bounds)
-      const center = viewport?.center
-      const regionCenter = regionBounds.getCenter()
-      if (!center || !regionBounds.contains(center)) {
-        setViewport({
-          center: [regionCenter.lat, regionCenter.lng],
-          zoom: ZOOM
-        })
-      }
-    }
-  }, [leafletMapRef, region, viewport])
 
   return (
     <ReactMap

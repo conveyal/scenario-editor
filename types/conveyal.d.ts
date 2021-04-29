@@ -166,12 +166,12 @@ declare namespace CL {
     name: string
     serviceStart: string
     serviceEnd: string
-    errors: GTFSErrorTypeSummary[]
+    errors?: GTFSErrorTypeSummary[]
   }
 
   export interface Bundle extends IModel {
     feedGroupId: string
-    feeds: FeedSummary[]
+    feeds?: FeedSummary[]
     osmId: string
     regionId: string
     status: string

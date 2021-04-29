@@ -2,8 +2,6 @@ import {
   Box,
   Button,
   Collapse,
-  List,
-  ListItem,
   Modal,
   ModalBody,
   ModalOverlay,
@@ -16,8 +14,6 @@ import {
 } from '@chakra-ui/react'
 import {useState} from 'react'
 import {FallbackProps} from 'react-error-boundary'
-
-import {ExternalLink} from 'lib/components/link'
 
 const title = 'Unfortunately it appears an error has occured..'
 

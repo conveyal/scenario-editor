@@ -7,9 +7,7 @@ function BundlesPage(p: {query: CL.Query}) {
   const {data: bundles} = useBundles({query: {regionId: p.query.regionId}})
   return (
     <Bundles regionId={p.query.regionId}>
-      {bundles && bundles.length > 0 && (
-        <SelectBundle bundles={bundles} query={p.query} />
-      )}
+      <SelectBundle bundles={bundles ?? []} query={p.query} />
     </Bundles>
   )
 }

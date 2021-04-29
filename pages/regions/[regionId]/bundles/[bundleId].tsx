@@ -1,4 +1,4 @@
-import {Skeleton, Stack} from '@chakra-ui/react'
+import {Stack} from '@chakra-ui/react'
 import Bundles from 'lib/components/bundles'
 import EditBundle from 'lib/components/edit-bundle'
 import SelectBundle from 'lib/components/select-bundle'
@@ -11,25 +11,23 @@ function BundleViewPage(p: {query: CL.Query}) {
   const bundle = bundles?.find((b) => b._id === p.query.bundleId)
   return (
     <Bundles regionId={p.query.regionId}>
-      <Skeleton isLoaded={Array.isArray(bundles) && Array.isArray(projects)}>
-        <Stack spacing={8} shouldWrapChildren>
-          {bundles && (
-            <SelectBundle
-              bundles={bundles}
-              key={p.query.bundleId}
-              query={p.query}
-            />
-          )}
-          {bundle && projects && (
-            <EditBundle
-              bundleProjects={projects.filter((p) => p.bundleId === bundle._id)}
-              key={p.query.bundleId}
-              originalBundle={bundle}
-              regionId={p.query.regionId}
-            />
-          )}
-        </Stack>
-      </Skeleton>
+      <Stack spacing={8} shouldWrapChildren>
+        {bundles && (
+          <SelectBundle
+            bundles={bundles}
+            key={p.query.bundleId}
+            query={p.query}
+          />
+        )}
+        {bundle && projects && (
+          <EditBundle
+            bundleProjects={projects.filter((p) => p.bundleId === bundle._id)}
+            key={p.query.bundleId}
+            originalBundle={bundle}
+            regionId={p.query.regionId}
+          />
+        )}
+      </Stack>
     </Bundles>
   )
 }

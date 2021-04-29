@@ -15,7 +15,7 @@ declare namespace CL {
   /**
    * Commonly used bounds object
    */
-  export type Bounds = {
+  export interface Bounds {
     north: number
     south: number
     east: number

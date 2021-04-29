@@ -95,7 +95,7 @@ export default function SelectStops({modification, update}) {
               <ClearIcon />
             </IconButton>
           </Flex>
-          <Heading size='sm'>Selected stops</Heading>
+          <Heading size='sm'>Selected stops ({selectedStops?.length})</Heading>
           <SelectedStops selectedStops={selectedStops} />
         </Stack>
       )}
@@ -105,7 +105,7 @@ export default function SelectStops({modification, update}) {
 
 function SelectedStops({selectedStops}) {
   return (
-    <List styleType='disc'>
+    <List styleType='disc' pl={6}>
       {selectedStops.map((stop) => (
         <ListItem data-id={stop.stop_id} key={stop.stop_id}>
           {stop.stop_name}

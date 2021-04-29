@@ -6,6 +6,8 @@ import {
   forwardRef
 } from '@chakra-ui/react'
 
+import {inputPaddingX} from 'lib/config/chakra'
+
 const InputWithUnits = forwardRef<InputProps & {units?: string}, typeof Input>(
   (props, ref) => {
     const {units, ...p} = props
@@ -17,7 +19,7 @@ const InputWithUnits = forwardRef<InputProps & {units?: string}, typeof Input>(
             color='gray.400'
             userSelect='none'
             width='unset'
-            mr={2}
+            mr={inputPaddingX}
           >
             {units}
           </InputRightElement>

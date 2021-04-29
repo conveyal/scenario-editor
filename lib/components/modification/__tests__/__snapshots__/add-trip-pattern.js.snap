@@ -2177,143 +2177,156 @@ exports[`Component AddTripPattern snapshot(mount) 1`] = `
                             </label>
                           </Styled(label)>
                         </FormLabel>
-                        <InputGroup>
-                          <Styled(div)
-                            __css={
-                              Object {
-                                "display": "flex",
-                                "position": "relative",
-                                "width": "100%",
+                        <ForwardRef
+                          id="00000000-0000-0000-0000-000000000000"
+                          isInvalid={false}
+                          isValid={true}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          placeholder=""
+                          type="text"
+                          units="meters"
+                          value={3000}
+                        >
+                          <InputGroup>
+                            <Styled(div)
+                              __css={
+                                Object {
+                                  "display": "flex",
+                                  "position": "relative",
+                                  "width": "100%",
+                                }
                               }
-                            }
-                            className="chakra-input__group"
-                          >
-                            <div
-                              className="chakra-input__group css-4302v8"
+                              className="chakra-input__group"
                             >
-                              <Input
-                                id="00000000-0000-0000-0000-000000000000"
-                                isInvalid={false}
-                                isValid={true}
-                                key=".0"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onFocus={[Function]}
-                                paddingRight={10}
-                                placeholder=""
-                                type="text"
-                                value={3000}
+                              <div
+                                className="chakra-input__group css-4302v8"
                               >
-                                <Styled(input)
-                                  __css={
-                                    Object {
-                                      "_disabled": Object {
-                                        "cursor": "not-allowed",
-                                        "opacity": 0.4,
-                                      },
-                                      "_focus": Object {
-                                        "borderColor": "#3182ce",
-                                        "boxShadow": "0 0 0 1px #3182ce",
-                                        "zIndex": 1,
-                                      },
-                                      "_hover": Object {
-                                        "borderColor": "gray.300",
-                                      },
-                                      "_invalid": Object {
-                                        "borderColor": "#E53E3E",
-                                        "boxShadow": "0 0 0 1px #E53E3E",
-                                      },
-                                      "_readOnly": Object {
-                                        "boxShadow": "none !important",
-                                        "userSelect": "all",
-                                      },
-                                      "appearance": "none",
-                                      "bg": "inherit",
-                                      "border": "1px solid",
-                                      "borderColor": "inherit",
-                                      "borderRadius": "md",
-                                      "fontSize": "md",
-                                      "h": 10,
-                                      "minWidth": 0,
-                                      "outline": 0,
-                                      "position": "relative",
-                                      "px": 4,
-                                      "transition": "all 0.2s",
-                                      "width": "100%",
-                                    }
-                                  }
-                                  className="chakra-input"
-                                  disabled={false}
+                                <Input
                                   id="00000000-0000-0000-0000-000000000000"
+                                  isInvalid={false}
                                   isValid={true}
+                                  key=".0"
                                   onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   paddingRight={10}
                                   placeholder=""
-                                  readOnly={false}
-                                  required={false}
                                   type="text"
                                   value={3000}
                                 >
-                                  <input
-                                    className="chakra-input css-1hmrg96"
+                                  <Styled(input)
+                                    __css={
+                                      Object {
+                                        "_disabled": Object {
+                                          "cursor": "not-allowed",
+                                          "opacity": 0.4,
+                                        },
+                                        "_focus": Object {
+                                          "borderColor": "#3182ce",
+                                          "boxShadow": "0 0 0 1px #3182ce",
+                                          "zIndex": 1,
+                                        },
+                                        "_hover": Object {
+                                          "borderColor": "gray.300",
+                                        },
+                                        "_invalid": Object {
+                                          "borderColor": "#E53E3E",
+                                          "boxShadow": "0 0 0 1px #E53E3E",
+                                        },
+                                        "_readOnly": Object {
+                                          "boxShadow": "none !important",
+                                          "userSelect": "all",
+                                        },
+                                        "appearance": "none",
+                                        "bg": "inherit",
+                                        "border": "1px solid",
+                                        "borderColor": "inherit",
+                                        "borderRadius": "md",
+                                        "fontSize": "md",
+                                        "h": 10,
+                                        "minWidth": 0,
+                                        "outline": 0,
+                                        "position": "relative",
+                                        "px": 4,
+                                        "transition": "all 0.2s",
+                                        "width": "100%",
+                                      }
+                                    }
+                                    className="chakra-input"
                                     disabled={false}
                                     id="00000000-0000-0000-0000-000000000000"
                                     isValid={true}
                                     onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
+                                    paddingRight={10}
                                     placeholder=""
                                     readOnly={false}
                                     required={false}
                                     type="text"
                                     value={3000}
-                                  />
-                                </Styled(input)>
-                              </Input>
-                              <InputRightElement
-                                color="gray.400"
-                                key=".1"
-                                mr={4}
-                                userSelect="none"
-                                width="unset"
-                              >
-                                <InputElement
-                                  className="chakra-input__right-element"
+                                  >
+                                    <input
+                                      className="chakra-input css-1hmrg96"
+                                      disabled={false}
+                                      id="00000000-0000-0000-0000-000000000000"
+                                      isValid={true}
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder=""
+                                      readOnly={false}
+                                      required={false}
+                                      type="text"
+                                      value={3000}
+                                    />
+                                  </Styled(input)>
+                                </Input>
+                                <InputRightElement
                                   color="gray.400"
-                                  mr={4}
-                                  placement="right"
+                                  key=".1"
+                                  mr={3}
                                   userSelect="none"
                                   width="unset"
                                 >
-                                  <Styled(div)
-                                    __css={
-                                      Object {
-                                        "fontSize": "md",
-                                        "height": 10,
-                                        "paddingX": undefined,
-                                        "right": "0",
-                                        "width": 10,
-                                      }
-                                    }
+                                  <InputElement
                                     className="chakra-input__right-element"
                                     color="gray.400"
-                                    mr={4}
+                                    mr={3}
+                                    placement="right"
                                     userSelect="none"
                                     width="unset"
                                   >
-                                    <div
-                                      className="chakra-input__right-element css-6xo9tb"
+                                    <Styled(div)
+                                      __css={
+                                        Object {
+                                          "fontSize": "md",
+                                          "height": 10,
+                                          "paddingX": undefined,
+                                          "right": "0",
+                                          "width": 10,
+                                        }
+                                      }
+                                      className="chakra-input__right-element"
+                                      color="gray.400"
+                                      mr={3}
+                                      userSelect="none"
+                                      width="unset"
                                     >
-                                      meters
-                                    </div>
-                                  </Styled(div)>
-                                </InputElement>
-                              </InputRightElement>
-                            </div>
-                          </Styled(div)>
-                        </InputGroup>
+                                      <div
+                                        className="chakra-input__right-element css-luh23u"
+                                      >
+                                        meters
+                                      </div>
+                                    </Styled(div)>
+                                  </InputElement>
+                                </InputRightElement>
+                              </div>
+                            </Styled(div)>
+                          </InputGroup>
+                        </ForwardRef>
                       </div>
                     </Styled(div)>
                   </FormControl>

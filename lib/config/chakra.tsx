@@ -2,6 +2,8 @@ import {ChakraProvider, extendTheme} from '@chakra-ui/react'
 
 const defaultFontFamily = `'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`
 
+export const inputPaddingX = 3
+
 // Lighten font weight
 const Button = {
   baseStyle: {
@@ -16,10 +18,10 @@ const ConveyalTheme = extendTheme({
       sizes: {
         md: {
           field: {
-            px: 2
+            px: inputPaddingX
           },
           addon: {
-            px: 2
+            px: inputPaddingX
           }
         }
       }
@@ -28,10 +30,10 @@ const ConveyalTheme = extendTheme({
       sizes: {
         md: {
           field: {
-            px: 2
+            px: inputPaddingX
           },
           addon: {
-            px: 2
+            px: inputPaddingX
           }
         }
       }

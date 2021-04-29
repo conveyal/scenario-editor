@@ -11,7 +11,31 @@ const Button = {
 
 const ConveyalTheme = extendTheme({
   components: {
-    Button
+    Button,
+    Input: {
+      sizes: {
+        md: {
+          field: {
+            px: 2
+          },
+          addon: {
+            px: 2
+          }
+        }
+      }
+    },
+    Select: {
+      sizes: {
+        md: {
+          field: {
+            px: 2
+          },
+          addon: {
+            px: 2
+          }
+        }
+      }
+    }
   },
   fonts: {
     body: defaultFontFamily,

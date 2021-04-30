@@ -72,14 +72,14 @@ function ErrorType({error}: {error: CL.GTFSErrorTypeSummary}) {
           onClick={onToggle}
           label={isOpen ? `Hide ${name}` : `Show ${name}`}
           position='absolute'
-          top='8px'
+          top='6px'
           right='8px'
         >
           {isOpen ? <ChevronUp /> : <ChevronDown />}
         </IconButton>
       </Flex>
 
-      <Box width='100%' mb={4}>
+      <Box width='100%'>
         <Collapse in={isOpen}>
           <Stack spacing={6}>
             {error.someErrors.map((errorSummary, index) => (
@@ -107,15 +107,14 @@ function ErrorType({error}: {error: CL.GTFSErrorTypeSummary}) {
                 </Stack>
               </HStack>
             ))}
+            {error.count > 10 && (
+              <Text textAlign='center' fontStyle='italic' width='100%'>
+                plus {error.count - 10} more errors of this type.
+              </Text>
+            )}
           </Stack>
         </Collapse>
       </Box>
-
-      {error.count > 10 && (
-        <Text textAlign='center' fontStyle='italic' mt={2} width='100%'>
-          Note: only the first ten errors of each type are saved.
-        </Text>
-      )}
     </Alert>
   )
 }

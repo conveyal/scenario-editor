@@ -58,7 +58,12 @@ function ErrorType({error}: {error: CL.GTFSErrorTypeSummary}) {
       flexDir='column'
       status={getSummaryStatus(error)}
     >
-      <Flex mb={isOpen ? 2 : 0} width='100%'>
+      <Flex
+        cursor='pointer'
+        mb={isOpen ? 2 : 0}
+        onClick={onToggle}
+        width='100%'
+      >
         <AlertIcon />
         <AlertTitle flex='2' fontSize='xl'>
           {name} ({error.count})

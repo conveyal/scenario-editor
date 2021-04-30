@@ -331,7 +331,7 @@ const ModificationItem = memo<ModificationItemProps>(
           toggleMapDisplay(modification._id)
         }}
       >
-        {isDisplayed ? <HideIcon /> : <ShowIcon />}
+        {isDisplayed ? <ShowIcon /> : <HideIcon />}
       </IconButton>
     </Flex>
   )

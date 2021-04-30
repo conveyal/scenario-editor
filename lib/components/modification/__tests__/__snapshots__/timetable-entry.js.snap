@@ -6576,14 +6576,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                         <InputRightElement
                           color="gray.400"
                           key=".1"
-                          mr={3}
+                          mr={2}
                           userSelect="none"
                           width="unset"
                         >
                           <InputElement
                             className="chakra-input__right-element"
                             color="gray.400"
-                            mr={3}
+                            mr={2}
                             placement="right"
                             userSelect="none"
                             width="unset"
@@ -6600,12 +6600,12 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               }
                               className="chakra-input__right-element"
                               color="gray.400"
-                              mr={3}
+                              mr={2}
                               userSelect="none"
                               width="unset"
                             >
                               <div
-                                className="chakra-input__right-element css-luh23u"
+                                className="chakra-input__right-element css-15qe6bf"
                               >
                                 HH:mm:ss
                               </div>
@@ -6774,14 +6774,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                         <InputRightElement
                           color="gray.400"
                           key=".1"
-                          mr={3}
+                          mr={2}
                           userSelect="none"
                           width="unset"
                         >
                           <InputElement
                             className="chakra-input__right-element"
                             color="gray.400"
-                            mr={3}
+                            mr={2}
                             placement="right"
                             userSelect="none"
                             width="unset"
@@ -6798,12 +6798,12 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               }
                               className="chakra-input__right-element"
                               color="gray.400"
-                              mr={3}
+                              mr={2}
                               userSelect="none"
                               width="unset"
                             >
                               <div
-                                className="chakra-input__right-element css-luh23u"
+                                className="chakra-input__right-element css-15qe6bf"
                               >
                                 HH:mm
                               </div>
@@ -6972,14 +6972,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                         <InputRightElement
                           color="gray.400"
                           key=".1"
-                          mr={3}
+                          mr={2}
                           userSelect="none"
                           width="unset"
                         >
                           <InputElement
                             className="chakra-input__right-element"
                             color="gray.400"
-                            mr={3}
+                            mr={2}
                             placement="right"
                             userSelect="none"
                             width="unset"
@@ -6996,12 +6996,12 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               }
                               className="chakra-input__right-element"
                               color="gray.400"
-                              mr={3}
+                              mr={2}
                               userSelect="none"
                               width="unset"
                             >
                               <div
-                                className="chakra-input__right-element css-luh23u"
+                                className="chakra-input__right-element css-15qe6bf"
                               >
                                 HH:mm
                               </div>

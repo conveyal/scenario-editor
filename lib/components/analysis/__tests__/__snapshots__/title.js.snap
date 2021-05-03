@@ -81,7 +81,7 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
                       className="chakra-text css-0"
                     >
                        
-                      Compute travel time
+                      Ready to fetch results
                     </p>
                   </Styled(p)>
                 </Text>

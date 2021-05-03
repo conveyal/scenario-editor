@@ -92,6 +92,7 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
         <Button
           colorScheme="blue"
           isDisabled={false}
+          key="fetch-button"
           onClick={[Function]}
           rightIcon={<FaSyncAlt />}
           title="Fetch results"

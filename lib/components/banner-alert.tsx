@@ -7,8 +7,7 @@ export default function BannerAlert({children, ...p}: AlertProps) {
     <Alert
       alignItems='center'
       justifyContent='center'
-      maxWidth='100%'
-      width='100vw'
+      width='100%'
       zIndex={POPOVER_Z}
       {...p}
     >

@@ -3,7 +3,6 @@ import {
   Button,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Popover,
   PopoverBody,
@@ -90,12 +89,10 @@ export function GeocoderSearch({
   return (
     <Stack spacing={0}>
       <InputGroup>
-        <InputLeftElement mt={1}>
-          <SearchIcon />
-        </InputLeftElement>
         <Input
           onChange={(e) => setSearch(e.currentTarget.value)}
           placeholder='Search map'
+          pl={3}
           ref={inputRef}
           size='lg'
           value={search}

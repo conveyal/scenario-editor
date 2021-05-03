@@ -1749,85 +1749,82 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
                     </label>
                   </Styled(label)>
                 </FormLabel>
-                <InputGroup>
-                  <Styled(div)
-                    __css={
-                      Object {
-                        "display": "flex",
-                        "position": "relative",
-                        "width": "100%",
+                <ForwardRef
+                  id="00000000-0000-0000-0000-000000000000"
+                  isInvalid={true}
+                  isValid={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  placeholder=""
+                  type="text"
+                  units=""
+                >
+                  <InputGroup>
+                    <Styled(div)
+                      __css={
+                        Object {
+                          "display": "flex",
+                          "position": "relative",
+                          "width": "100%",
+                        }
                       }
-                    }
-                    className="chakra-input__group"
-                  >
-                    <div
-                      className="chakra-input__group css-4302v8"
+                      className="chakra-input__group"
                     >
-                      <Input
-                        id="00000000-0000-0000-0000-000000000000"
-                        isInvalid={true}
-                        isValid={false}
-                        key=".0"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        placeholder=""
-                        type="text"
+                      <div
+                        className="chakra-input__group css-4302v8"
                       >
-                        <Styled(input)
-                          __css={
-                            Object {
-                              "_disabled": Object {
-                                "cursor": "not-allowed",
-                                "opacity": 0.4,
-                              },
-                              "_focus": Object {
-                                "borderColor": "#3182ce",
-                                "boxShadow": "0 0 0 1px #3182ce",
-                                "zIndex": 1,
-                              },
-                              "_hover": Object {
-                                "borderColor": "gray.300",
-                              },
-                              "_invalid": Object {
-                                "borderColor": "#E53E3E",
-                                "boxShadow": "0 0 0 1px #E53E3E",
-                              },
-                              "_readOnly": Object {
-                                "boxShadow": "none !important",
-                                "userSelect": "all",
-                              },
-                              "appearance": "none",
-                              "bg": "inherit",
-                              "border": "1px solid",
-                              "borderColor": "inherit",
-                              "borderRadius": "md",
-                              "fontSize": "md",
-                              "h": 10,
-                              "minWidth": 0,
-                              "outline": 0,
-                              "position": "relative",
-                              "px": 4,
-                              "transition": "all 0.2s",
-                              "width": "100%",
-                            }
-                          }
-                          aria-invalid={true}
-                          className="chakra-input"
-                          disabled={false}
+                        <Input
                           id="00000000-0000-0000-0000-000000000000"
+                          isInvalid={true}
                           isValid={false}
+                          key=".0"
                           onBlur={[Function]}
                           onChange={[Function]}
                           onFocus={[Function]}
                           placeholder=""
-                          readOnly={false}
-                          required={false}
                           type="text"
                         >
-                          <input
+                          <Styled(input)
+                            __css={
+                              Object {
+                                "_disabled": Object {
+                                  "cursor": "not-allowed",
+                                  "opacity": 0.4,
+                                },
+                                "_focus": Object {
+                                  "borderColor": "#3182ce",
+                                  "boxShadow": "0 0 0 1px #3182ce",
+                                  "zIndex": 1,
+                                },
+                                "_hover": Object {
+                                  "borderColor": "gray.300",
+                                },
+                                "_invalid": Object {
+                                  "borderColor": "#E53E3E",
+                                  "boxShadow": "0 0 0 1px #E53E3E",
+                                },
+                                "_readOnly": Object {
+                                  "boxShadow": "none !important",
+                                  "userSelect": "all",
+                                },
+                                "appearance": "none",
+                                "bg": "inherit",
+                                "border": "1px solid",
+                                "borderColor": "inherit",
+                                "borderRadius": "md",
+                                "fontSize": "md",
+                                "h": 10,
+                                "minWidth": 0,
+                                "outline": 0,
+                                "position": "relative",
+                                "px": 4,
+                                "transition": "all 0.2s",
+                                "width": "100%",
+                              }
+                            }
                             aria-invalid={true}
-                            className="chakra-input css-18q2db8"
+                            className="chakra-input"
                             disabled={false}
                             id="00000000-0000-0000-0000-000000000000"
                             isValid={false}
@@ -1838,12 +1835,27 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
                             readOnly={false}
                             required={false}
                             type="text"
-                          />
-                        </Styled(input)>
-                      </Input>
-                    </div>
-                  </Styled(div)>
-                </InputGroup>
+                          >
+                            <input
+                              aria-invalid={true}
+                              className="chakra-input css-18q2db8"
+                              disabled={false}
+                              id="00000000-0000-0000-0000-000000000000"
+                              isValid={false}
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              placeholder=""
+                              readOnly={false}
+                              required={false}
+                              type="text"
+                            />
+                          </Styled(input)>
+                        </Input>
+                      </div>
+                    </Styled(div)>
+                  </InputGroup>
+                </ForwardRef>
               </div>
             </Styled(div)>
           </FormControl>

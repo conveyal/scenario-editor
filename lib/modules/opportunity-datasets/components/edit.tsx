@@ -18,7 +18,7 @@ function LabelHeading({children, ...p}) {
     <Heading
       color='gray.500'
       fontWeight='normal'
-      size='sm'
+      size='md'
       style={{fontVariant: 'small-caps'}}
       {...p}
     >

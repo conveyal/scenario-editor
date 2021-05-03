@@ -25,6 +25,20 @@ const hasText = (s) => s && s.length > 0
 const getName = fpGet('name')
 const getId = fpGet('_id')
 
+function filterInvalidBundles(bundles: CL.Bundle[]): CL.Bundle[] {
+  return bundles.filter((b) => {
+    return (
+      b.status === 'DONE' &&
+      b.feeds?.every(
+        (f) =>
+          // Before 20201-05 bundle feeds have no errors.
+          !Array.isArray(f.errors) ||
+          f.errors.every((e) => e.priority !== 'HIGH')
+      )
+    )
+  })
+}
+
 export default function CreateProject({
   bundles,
   query
@@ -72,7 +86,7 @@ export default function CreateProject({
             label={message('project.bundle')}
             getOptionLabel={getName}
             getOptionValue={getId}
-            options={bundles}
+            options={filterInvalidBundles(bundles)}
             onChange={(b) => setBundleId(b._id)}
             placeholder={message('project.selectBundle')}
             value={bundles.find((b) => b._id === bundleId)}

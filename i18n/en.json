@@ -381,9 +381,16 @@
       "carPark": "Automobile (park-and-ride)",
       "transit": "Transit"
     },
+    "status": {
+      "accessibilityLoaded": "Analysis complete for single origin",
+      "noProject": "No project selected",
+      "ready": "Ready to fetch results",
+      "travelTimeResults": "Displaying travel time results",
+      "updated": "Ready to fetch results with updated settings"
+    },
     "fetchStatus": {
       "LOADING_GRID": "Loading opportunity dataset…",
-      "PERFORMING_ANALYSIS": "Performing analysis…",
+      "PERFORMING_ANALYSIS": "Computing results…",
       "COMPUTING_ISOCHRONE": "Computing isochrone…",
       "INITIALIZING_CLUSTER": "Initializing compute cluster (may take several minutes)"
     },
@@ -397,6 +404,7 @@
     "weightedAverageAccessibility": "Weighted average accessibility: %(weightedAverage)",
     "weightedAverageAccessibilityWarning": "Weighted average accessibility may not be representative of the experience of users of the system; we recommend using the histogram and percentile measures above.",
     "refresh": "Fetch results",
+    "cancel": "Cancel",
     "disableFetch": "Select a project before fetching results",
     "regionalBounds": "Bounds of analysis",
     "regionalBoundsSame": "Same as %(name)",

@@ -15,7 +15,7 @@ declare namespace CL {
   /**
    * Commonly used bounds object
    */
-  export type Bounds = {
+  export interface Bounds {
     north: number
     south: number
     east: number
@@ -147,16 +147,35 @@ declare namespace CL {
     sourceName: string
   }
 
+  export interface GTFSErrorSummary {
+    field?: string
+    file?: string
+    line?: number
+    message: string
+  }
+
+  export interface GTFSErrorTypeSummary {
+    count: number
+    priority: 'HIGH' | 'MEDIUM' | 'LOW' | 'UNKNOWN'
+    someErrors: GTFSErrorSummary[]
+    type: string
+  }
+
   export interface FeedSummary {
     feedId: string
     name: string
+    serviceStart: string
+    serviceEnd: string
+    errors?: GTFSErrorTypeSummary[]
   }
 
   export interface Bundle extends IModel {
     feedGroupId: string
-    feeds: FeedSummary[]
+    feeds?: FeedSummary[]
     osmId: string
     regionId: string
+    status: string
+    statusText: string
   }
 
   export interface Project extends IModel {

@@ -1,15 +1,10 @@
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputRightElement,
-  FormControlProps
-} from '@chakra-ui/react'
+import {FormControl, FormLabel, FormControlProps} from '@chakra-ui/react'
 import {memo} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
 import {secondsToHhMmSsString} from 'lib/utils/time'
+
+import InputWithUnits from './input-with-units'
 
 const FORMAT = 'HH:mm:ss'
 
@@ -54,23 +49,14 @@ export default memo<Props & FormControlProps>(function MinutesSeconds({
   return (
     <FormControl isDisabled={disabled} isInvalid={input.isInvalid} {...p}>
       <FormLabel htmlFor={input.id}>{label}</FormLabel>
-      <InputGroup>
-        <Input
-          {...input}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          placeholder={placeholder}
-          type='text'
-        />
-        <InputRightElement
-          color='gray.400'
-          userSelect='none'
-          mr={4}
-          width='unset'
-        >
-          {FORMAT}
-        </InputRightElement>
-      </InputGroup>
+      <InputWithUnits
+        {...input}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        placeholder={placeholder}
+        type='text'
+        units={FORMAT}
+      />
     </FormControl>
   )
 })

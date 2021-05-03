@@ -2,8 +2,6 @@ import {
   Box,
   Button,
   Collapse,
-  List,
-  ListItem,
   Modal,
   ModalBody,
   ModalOverlay,
@@ -16,8 +14,6 @@ import {
 } from '@chakra-ui/react'
 import {useState} from 'react'
 import {FallbackProps} from 'react-error-boundary'
-
-import {ExternalLink} from 'lib/components/link'
 
 const title = 'Unfortunately it appears an error has occured..'
 
@@ -66,18 +62,6 @@ export default function ErrorModal({error, resetErrorBoundary}: FallbackProps) {
           <Stack spacing={4}>
             <Text>{errorMessage}</Text>
             {stack && <StackTrace stackTrace={stack} />}
-            <List styleType='disc'>
-              <ListItem>
-                <ExternalLink href='https://support.apple.com/en-us/HT201361'>
-                  How to take a screenshot on a Mac
-                </ExternalLink>
-              </ListItem>
-              <ListItem>
-                <ExternalLink href='https://www.howtogeek.com/226280/how-to-take-screenshots-in-windows-10/'>
-                  How to take a screenshot on a PC
-                </ExternalLink>
-              </ListItem>
-            </List>
           </Stack>
         </ModalBody>
         <ModalFooter>

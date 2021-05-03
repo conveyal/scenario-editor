@@ -216,7 +216,7 @@ describe('Analysis', () => {
       .should('be.disabled')
 
     cy.fetchResults()
-    cy.findByText(/Select a destination layer to see accessibility/)
+    cy.findByText(/Displaying travel time results/)
 
     // Should be enabled for >= v6
     cy.getPrimaryAnalysisSettings()
@@ -230,13 +230,13 @@ describe('Analysis', () => {
       .select('logistic')
 
     cy.fetchResults()
-    cy.findByText(/Select a destination layer to see accessibility/)
+    cy.findByText(/Displaying travel time results/)
     region.defaultSpatialDataset.select()
 
     // Logistic function should cause "out of sync" after dataset selected
-    cy.findByText(/Results are out of sync with settings/)
+    cy.findByText(/Ready to fetch results with updated settings/)
     cy.fetchResults()
-    cy.findByText(/Analyze results/)
+    cy.findByText(/Analysis complete for single origin/)
   })
 
   describe('presets', () => {

@@ -8,16 +8,12 @@ import reprojectCoordinates from './reproject-coordinates'
 const ANTIMERIDIAN_WARNING =
   'We do not currently support bounds that cross the antimeridian.'
 
-type Bounds = {
-  north: number
-  south: number
-  east: number
-  west: number
+interface ExtendedBounds extends CL.Bounds {
   toString: () => string
 }
 
 export function toLatLngBounds(
-  bounds: Bounds | L.LatLngBounds
+  bounds: ExtendedBounds | L.LatLngBounds
 ): L.LatLngBounds {
   // Check if it's already a leaflet bounds object
   if (bounds instanceof L.LatLngBounds) return bounds
@@ -30,7 +26,7 @@ export function toLatLngBounds(
 /**
  * NB: We do not currently support crossing the antimeridian.
  */
-export function fromLatLngBounds(bounds: L.LatLngBounds) {
+export function fromLatLngBounds(bounds: L.LatLngBounds): ExtendedBounds {
   // Don't change the original bounds object
   let b = new L.LatLngBounds(bounds.getSouthWest(), bounds.getNorthEast())
 
@@ -57,7 +53,7 @@ export function fromLatLngBounds(bounds: L.LatLngBounds) {
 /**
  * Reproject bounds to the grid size that we use.
  */
-export function reprojectBounds(bounds) {
+export function reprojectBounds(bounds: L.LatLngBounds): L.LatLngBounds {
   return new L.LatLngBounds(
     lonlat.toLeaflet(reprojectCoordinates(bounds.getSouthWest())),
     lonlat.toLeaflet(reprojectCoordinates(bounds.getNorthEast()))

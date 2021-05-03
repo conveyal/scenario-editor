@@ -3,16 +3,38 @@
 exports[`Component EditBundle snapshot(mount) 1`] = `
 <EditBundle
   bundleProjects={Array []}
+  originalBundle={
+    Object {
+      "_id": "1",
+      "accessGroup": "accessGroupName",
+      "centerLat": 38.90124,
+      "centerLon": -77.015615,
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "errorCode": "",
+      "feeds": Array [],
+      "name": "Mock Bundle",
+      "nonce": "12345",
+      "regionId": "1",
+      "serviceEnd": "2018-09-28",
+      "serviceStart": "2018-09-27",
+      "status": "DONE",
+      "totalFeeds": 0,
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+    }
+  }
+  regionId="1"
 >
   <Stack
-    spacing={8}
+    spacing={4}
   >
     <Styled(div)
       __css={
         Object {
           "& > *:not(style) ~ *:not(style)": Object {
             "marginStart": 0,
-            "marginTop": 8,
+            "marginTop": 4,
           },
         }
       }
@@ -21,133 +43,785 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
       flexDirection="column"
     >
       <div
-        className="chakra-stack css-15hkdey"
+        className="chakra-stack css-4daikc"
       >
-        <FormControl
+        <Heading
           key=".0"
+          size="lg"
         >
-          <Styled(div)
+          <Styled(h2)
             __css={
               Object {
-                "position": "relative",
-                "width": "100%",
+                "fontFamily": "heading",
+                "fontSize": Array [
+                  "2xl",
+                  null,
+                  "3xl",
+                ],
+                "fontWeight": "bold",
+                "lineHeight": Array [
+                  1.33,
+                  null,
+                  1.2,
+                ],
               }
             }
-            className="chakra-form-control"
-            role="group"
+            className="chakra-heading"
           >
-            <div
-              className="chakra-form-control css-1kxonj9"
-              role="group"
+            <h2
+              className="chakra-heading css-uv65y"
             >
-              <FormLabel
-                htmlFor="selectBundle"
+              Edit bundle
+            </h2>
+          </Styled(h2)>
+        </Heading>
+        <Box
+          key=".2"
+        >
+          <div
+            className="css-0"
+          >
+            <BundleNameInput
+              name="Mock Bundle"
+              onChange={[Function]}
+            >
+              <FormControl
+                isInvalid={false}
               >
-                <Styled(label)
+                <Styled(div)
                   __css={
                     Object {
-                      "_disabled": Object {
-                        "opacity": 0.4,
-                      },
-                      "display": "block",
-                      "fontSize": "md",
-                      "fontWeight": "medium",
-                      "marginEnd": 3,
-                      "mb": 2,
-                      "opacity": 1,
-                      "textAlign": "start",
-                      "transition": "all 0.2s",
+                      "position": "relative",
+                      "width": "100%",
                     }
                   }
-                  className="chakra-form__label"
-                  htmlFor="selectBundle"
-                  id="field-1-label"
+                  className="chakra-form-control"
+                  role="group"
                 >
-                  <label
-                    className="chakra-form__label css-1qqx8g3"
-                    htmlFor="selectBundle"
-                    id="field-1-label"
+                  <div
+                    className="chakra-form-control css-1kxonj9"
+                    role="group"
                   >
-                    or select an existing one
-                  </label>
-                </Styled(label)>
-              </FormLabel>
-              <div>
-                <ForwardRef
-                  getOptionLabel={[Function]}
-                  getOptionValue={[Function]}
-                  inputId="selectBundle"
-                  onChange={[Function]}
-                  options={
-                    Array [
-                      Object {
-                        "_id": "1",
-                        "accessGroup": "accessGroupName",
-                        "centerLat": 38.90124,
-                        "centerLon": -77.015615,
-                        "createdAt": "2017-11-08T12:30:50.133Z",
-                        "createdBy": "person@gmail.com",
-                        "errorCode": "",
-                        "feeds": Array [],
-                        "name": "Mock Bundle",
-                        "nonce": "12345",
-                        "regionId": "1",
-                        "serviceEnd": "2018-09-28",
-                        "serviceStart": "2018-09-27",
-                        "status": "DONE",
-                        "totalFeeds": 0,
-                        "updatedAt": "2017-11-08T12:31:19.602Z",
-                        "updatedBy": "person@gmail.com",
-                      },
-                    ]
-                  }
-                >
-                  <ReactSelect
-                    getOptionLabel={[Function]}
-                    getOptionValue={[Function]}
-                    innerRef={null}
-                    inputId="selectBundle"
-                    onChange={[Function]}
-                    options={
-                      Array [
+                    <FormLabel
+                      htmlFor="00000000-0000-0000-0000-000000000000"
+                    >
+                      <Styled(label)
+                        __css={
+                          Object {
+                            "_disabled": Object {
+                              "opacity": 0.4,
+                            },
+                            "display": "block",
+                            "fontSize": "md",
+                            "fontWeight": "medium",
+                            "marginEnd": 3,
+                            "mb": 2,
+                            "opacity": 1,
+                            "textAlign": "start",
+                            "transition": "all 0.2s",
+                          }
+                        }
+                        className="chakra-form__label"
+                        htmlFor="00000000-0000-0000-0000-000000000000"
+                        id="field-1-label"
+                      >
+                        <label
+                          className="chakra-form__label css-1qqx8g3"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
+                          id="field-1-label"
+                        >
+                          Network bundle name
+                        </label>
+                      </Styled(label)>
+                    </FormLabel>
+                    <Input
+                      id="00000000-0000-0000-0000-000000000000"
+                      isInvalid={false}
+                      isValid={true}
+                      onChange={[Function]}
+                      placeholder="Network bundle name"
+                      value="Mock Bundle"
+                    >
+                      <Styled(input)
+                        __css={
+                          Object {
+                            "_disabled": Object {
+                              "cursor": "not-allowed",
+                              "opacity": 0.4,
+                            },
+                            "_focus": Object {
+                              "borderColor": "#3182ce",
+                              "boxShadow": "0 0 0 1px #3182ce",
+                              "zIndex": 1,
+                            },
+                            "_hover": Object {
+                              "borderColor": "gray.300",
+                            },
+                            "_invalid": Object {
+                              "borderColor": "#E53E3E",
+                              "boxShadow": "0 0 0 1px #E53E3E",
+                            },
+                            "_readOnly": Object {
+                              "boxShadow": "none !important",
+                              "userSelect": "all",
+                            },
+                            "appearance": "none",
+                            "bg": "inherit",
+                            "border": "1px solid",
+                            "borderColor": "inherit",
+                            "borderRadius": "md",
+                            "fontSize": "md",
+                            "h": 10,
+                            "minWidth": 0,
+                            "outline": 0,
+                            "position": "relative",
+                            "px": 4,
+                            "transition": "all 0.2s",
+                            "width": "100%",
+                          }
+                        }
+                        className="chakra-input"
+                        disabled={false}
+                        id="00000000-0000-0000-0000-000000000000"
+                        isValid={true}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        placeholder="Network bundle name"
+                        readOnly={false}
+                        required={false}
+                        value="Mock Bundle"
+                      >
+                        <input
+                          className="chakra-input css-18q2db8"
+                          disabled={false}
+                          id="00000000-0000-0000-0000-000000000000"
+                          isValid={true}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          placeholder="Network bundle name"
+                          readOnly={false}
+                          required={false}
+                          value="Mock Bundle"
+                        />
+                      </Styled(input)>
+                    </Input>
+                  </div>
+                </Styled(div)>
+              </FormControl>
+            </BundleNameInput>
+          </div>
+        </Box>
+        <Button
+          colorScheme="yellow"
+          isDisabled={true}
+          key=".4"
+          onClick={[Function]}
+          size="lg"
+          title="Save renamed bundle/feed names"
+        >
+          <Styled(button)
+            __css={
+              Object {
+                "_active": Object {
+                  "bg": "yellow.600",
+                },
+                "_disabled": Object {
+                  "boxShadow": "none",
+                  "cursor": "not-allowed",
+                  "opacity": 0.4,
+                },
+                "_focus": Object {
+                  "boxShadow": "outline",
+                },
+                "_hover": Object {
+                  "_disabled": Object {
+                    "bg": "yellow.400",
+                  },
+                  "bg": "yellow.500",
+                },
+                "alignItems": "center",
+                "appearance": "none",
+                "bg": "yellow.400",
+                "borderRadius": "md",
+                "color": "black",
+                "display": "inline-flex",
+                "fontSize": "lg",
+                "fontWeight": "semibold",
+                "h": 12,
+                "justifyContent": "center",
+                "lineHeight": "1.2",
+                "minW": 12,
+                "outline": "none",
+                "position": "relative",
+                "px": 6,
+                "transition": "all 250ms",
+                "userSelect": "none",
+                "verticalAlign": "middle",
+                "whiteSpace": "nowrap",
+                "width": "auto",
+              }
+            }
+            className="chakra-button"
+            disabled={true}
+            onClick={[Function]}
+            title="Save renamed bundle/feed names"
+            type="button"
+          >
+            <button
+              className="chakra-button css-1fbzhv4"
+              disabled={true}
+              onClick={[Function]}
+              title="Save renamed bundle/feed names"
+              type="button"
+            >
+              Save renamed bundle/feed names
+            </button>
+          </Styled(button)>
+        </Button>
+        <ConfirmButton
+          colorScheme="red"
+          description="Are you sure you would like to delete this network bundle? Projects using this network bundle will no longer work."
+          key=".5"
+          leftIcon={<FaTrash />}
+          onConfirm={[Function]}
+          size="lg"
+        >
+          <ConfirmDialog
+            description="Are you sure you would like to delete this network bundle? Projects using this network bundle will no longer work."
+            onConfirm={[Function]}
+          >
+            <PortalManager
+              zIndex={10000}
+            >
+              <Popover
+                isLazy={true}
+              >
+                <PopoverTrigger>
+                  <Button
+                    aria-controls="popover-content-3"
+                    aria-expanded={false}
+                    aria-haspopup="dialog"
+                    colorScheme="red"
+                    id="popover-trigger-3"
+                    leftIcon={<FaTrash />}
+                    onClick={[Function]}
+                    size="lg"
+                  >
+                    <Styled(button)
+                      __css={
                         Object {
-                          "_id": "1",
-                          "accessGroup": "accessGroupName",
-                          "centerLat": 38.90124,
-                          "centerLon": -77.015615,
-                          "createdAt": "2017-11-08T12:30:50.133Z",
-                          "createdBy": "person@gmail.com",
-                          "errorCode": "",
-                          "feeds": Array [],
-                          "name": "Mock Bundle",
-                          "nonce": "12345",
-                          "regionId": "1",
-                          "serviceEnd": "2018-09-28",
-                          "serviceStart": "2018-09-27",
-                          "status": "DONE",
-                          "totalFeeds": 0,
-                          "updatedAt": "2017-11-08T12:31:19.602Z",
-                          "updatedBy": "person@gmail.com",
-                        },
-                      ]
-                    }
-                    styles={
-                      Object {
-                        "control": [Function],
-                        "menu": [Function],
-                        "option": [Function],
+                          "_active": Object {
+                            "bg": "red.700",
+                          },
+                          "_disabled": Object {
+                            "boxShadow": "none",
+                            "cursor": "not-allowed",
+                            "opacity": 0.4,
+                          },
+                          "_focus": Object {
+                            "boxShadow": "outline",
+                          },
+                          "_hover": Object {
+                            "_disabled": Object {
+                              "bg": "red.500",
+                            },
+                            "bg": "red.600",
+                          },
+                          "alignItems": "center",
+                          "appearance": "none",
+                          "bg": "red.500",
+                          "borderRadius": "md",
+                          "color": "white",
+                          "display": "inline-flex",
+                          "fontSize": "lg",
+                          "fontWeight": "semibold",
+                          "h": 12,
+                          "justifyContent": "center",
+                          "lineHeight": "1.2",
+                          "minW": 12,
+                          "outline": "none",
+                          "position": "relative",
+                          "px": 6,
+                          "transition": "all 250ms",
+                          "userSelect": "none",
+                          "verticalAlign": "middle",
+                          "whiteSpace": "nowrap",
+                          "width": "auto",
+                        }
                       }
-                    }
+                      aria-controls="popover-content-3"
+                      aria-expanded={false}
+                      aria-haspopup="dialog"
+                      className="chakra-button"
+                      id="popover-trigger-3"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      <button
+                        aria-controls="popover-content-3"
+                        aria-expanded={false}
+                        aria-haspopup="dialog"
+                        className="chakra-button css-1po5o27"
+                        id="popover-trigger-3"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <ButtonIcon
+                          marginEnd="0.5rem"
+                        >
+                          <Styled(span)
+                            className="chakra-button__icon"
+                            marginEnd="0.5rem"
+                          >
+                            <span
+                              className="chakra-button__icon css-ktvjz1"
+                            >
+                              <FaTrash
+                                aria-hidden={true}
+                                focusable={false}
+                              >
+                                <IconBase
+                                  aria-hidden={true}
+                                  attr={
+                                    Object {
+                                      "viewBox": "0 0 448 512",
+                                    }
+                                  }
+                                  focusable={false}
+                                >
+                                  <svg
+                                    aria-hidden={true}
+                                    fill="currentColor"
+                                    focusable={false}
+                                    height="1em"
+                                    stroke="currentColor"
+                                    strokeWidth="0"
+                                    style={
+                                      Object {
+                                        "color": undefined,
+                                      }
+                                    }
+                                    viewBox="0 0 448 512"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                                      key="0"
+                                    />
+                                  </svg>
+                                </IconBase>
+                              </FaTrash>
+                            </span>
+                          </Styled(span)>
+                        </ButtonIcon>
+                        Delete this network bundle
+                      </button>
+                    </Styled(button)>
+                  </Button>
+                </PopoverTrigger>
+                <Portal
+                  appendToParentPortal={true}
+                >
+                  <DefaultPortal
+                    appendToParentPortal={true}
                   >
-                    <div
-                      className="ReactSelectMock"
-                    />
-                  </ReactSelect>
-                </ForwardRef>
-              </div>
-            </div>
-          </Styled(div)>
-        </FormControl>
+                    <Portal
+                      containerInfo={
+                        <div
+                          class="chakra-portal"
+                        >
+                          <div
+                            class="chakra-portal-zIndex"
+                            style="position: absolute; z-index: 10000; top: 0px; left: 0px; right: 0px;"
+                          >
+                            <div
+                              class="css-n0uled"
+                              style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+                            >
+                              <section
+                                class="chakra-popover__content css-xjibc0"
+                                id="popover-content-3"
+                                role="dialog"
+                                style="transform-origin: top center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                                tabindex="-1"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    >
+                      <Container
+                        zIndex={10000}
+                      >
+                        <div
+                          className="chakra-portal-zIndex"
+                          style={
+                            Object {
+                              "left": 0,
+                              "position": "absolute",
+                              "right": 0,
+                              "top": 0,
+                              "zIndex": 10000,
+                            }
+                          }
+                        >
+                          <PopoverContent>
+                            <Styled(div)
+                              __css={
+                                Object {
+                                  "maxW": "xs",
+                                  "w": "100%",
+                                  "zIndex": 10,
+                                }
+                              }
+                              style={
+                                Object {
+                                  "left": "0",
+                                  "position": "absolute",
+                                  "top": "0",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              <div
+                                className="css-n0uled"
+                                style={
+                                  Object {
+                                    "left": "0",
+                                    "position": "absolute",
+                                    "top": "0",
+                                    "visibility": "hidden",
+                                  }
+                                }
+                              >
+                                <Styled(Component)
+                                  __css={
+                                    Object {
+                                      "_focus": Object {
+                                        "boxShadow": "outline",
+                                        "outline": 0,
+                                      },
+                                      "bg": "white",
+                                      "border": "1px solid",
+                                      "borderColor": "inherit",
+                                      "borderRadius": "md",
+                                      "boxShadow": "sm",
+                                      "display": "flex",
+                                      "flexDirection": "column",
+                                      "position": "relative",
+                                      "zIndex": "inherit",
+                                    }
+                                  }
+                                  animate="exit"
+                                  className="chakra-popover__content"
+                                  id="popover-content-3"
+                                  initial={false}
+                                  onBlur={[Function]}
+                                  onKeyDown={[Function]}
+                                  onUpdate={[Function]}
+                                  role="dialog"
+                                  style={
+                                    Object {
+                                      "transformOrigin": "top center",
+                                    }
+                                  }
+                                  tabIndex={-1}
+                                  variants={
+                                    Object {
+                                      "enter": Object {
+                                        "opacity": 1,
+                                        "scale": 1,
+                                        "transition": Object {
+                                          "duration": 0.15,
+                                          "ease": Array [
+                                            0,
+                                            0,
+                                            0.2,
+                                            1,
+                                          ],
+                                        },
+                                        "visibility": "visible",
+                                      },
+                                      "exit": Object {
+                                        "opacity": 0,
+                                        "scale": 0.95,
+                                        "transition": Object {
+                                          "duration": 0.1,
+                                          "ease": Array [
+                                            0.4,
+                                            0,
+                                            1,
+                                            1,
+                                          ],
+                                        },
+                                        "transitionEnd": Object {
+                                          "visibility": "hidden",
+                                        },
+                                      },
+                                    }
+                                  }
+                                >
+                                  <ForwardRef(MotionComponent)
+                                    animate="exit"
+                                    className="chakra-popover__content css-xjibc0"
+                                    id="popover-content-3"
+                                    initial={false}
+                                    onBlur={[Function]}
+                                    onKeyDown={[Function]}
+                                    onUpdate={[Function]}
+                                    role="dialog"
+                                    style={
+                                      Object {
+                                        "transformOrigin": "top center",
+                                      }
+                                    }
+                                    tabIndex={-1}
+                                    variants={
+                                      Object {
+                                        "enter": Object {
+                                          "opacity": 1,
+                                          "scale": 1,
+                                          "transition": Object {
+                                            "duration": 0.15,
+                                            "ease": Array [
+                                              0,
+                                              0,
+                                              0.2,
+                                              1,
+                                            ],
+                                          },
+                                          "visibility": "visible",
+                                        },
+                                        "exit": Object {
+                                          "opacity": 0,
+                                          "scale": 0.95,
+                                          "transition": Object {
+                                            "duration": 0.1,
+                                            "ease": Array [
+                                              0.4,
+                                              0,
+                                              1,
+                                              1,
+                                            ],
+                                          },
+                                          "transitionEnd": Object {
+                                            "visibility": "hidden",
+                                          },
+                                        },
+                                      }
+                                    }
+                                  >
+                                    <section
+                                      className="chakra-popover__content css-xjibc0"
+                                      id="popover-content-3"
+                                      onBlur={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="dialog"
+                                      style={
+                                        Object {
+                                          "opacity": 0,
+                                          "transform": "scale(0.95) translateZ(0)",
+                                          "transformOrigin": "top center",
+                                          "visibility": "hidden",
+                                        }
+                                      }
+                                      tabIndex={-1}
+                                    />
+                                    <Component
+                                      animate="exit"
+                                      className="chakra-popover__content css-xjibc0"
+                                      id="popover-content-3"
+                                      initial={false}
+                                      key="animation"
+                                      onBlur={[Function]}
+                                      onKeyDown={[Function]}
+                                      onUpdate={[Function]}
+                                      role="dialog"
+                                      style={
+                                        Object {
+                                          "transformOrigin": "top center",
+                                        }
+                                      }
+                                      tabIndex={-1}
+                                      variants={
+                                        Object {
+                                          "enter": Object {
+                                            "opacity": 1,
+                                            "scale": 1,
+                                            "transition": Object {
+                                              "duration": 0.15,
+                                              "ease": Array [
+                                                0,
+                                                0,
+                                                0.2,
+                                                1,
+                                              ],
+                                            },
+                                            "visibility": "visible",
+                                          },
+                                          "exit": Object {
+                                            "opacity": 0,
+                                            "scale": 0.95,
+                                            "transition": Object {
+                                              "duration": 0.1,
+                                              "ease": Array [
+                                                0.4,
+                                                0,
+                                                1,
+                                                1,
+                                              ],
+                                            },
+                                            "transitionEnd": Object {
+                                              "visibility": "hidden",
+                                            },
+                                          },
+                                        }
+                                      }
+                                      visualElement={
+                                        Object {
+                                          "addChild": [Function],
+                                          "addValue": [Function],
+                                          "addVariantChild": [Function],
+                                          "animationState": Object {
+                                            "animateChanges": [Function],
+                                            "getState": [Function],
+                                            "isAnimated": [Function],
+                                            "setActive": [Function],
+                                            "setAnimateFunction": [Function],
+                                          },
+                                          "blockInitialAnimation": false,
+                                          "build": [Function],
+                                          "clearAllListeners": [Function],
+                                          "clearState": [Function],
+                                          "current": <section
+                                            class="chakra-popover__content css-xjibc0"
+                                            id="popover-content-3"
+                                            role="dialog"
+                                            style="transform-origin: top center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                                            tabindex="-1"
+                                          />,
+                                          "depth": 0,
+                                          "enableLayoutProjection": [Function],
+                                          "forEachValue": [Function],
+                                          "getBaseTarget": [Function],
+                                          "getClosestVariantNode": [Function],
+                                          "getDefaultTransition": [Function],
+                                          "getInstance": [Function],
+                                          "getLatestValues": [Function],
+                                          "getLayoutId": [Function],
+                                          "getLayoutState": [Function],
+                                          "getProjectionAnimationProgress": [Function],
+                                          "getProps": [Function],
+                                          "getStaticValue": [Function],
+                                          "getValue": [Function],
+                                          "getVariant": [Function],
+                                          "getVariantContext": [Function],
+                                          "hasValue": [Function],
+                                          "isHoverEventsEnabled": true,
+                                          "isMounted": [Function],
+                                          "isPresenceRoot": true,
+                                          "isPresent": true,
+                                          "isStatic": false,
+                                          "isVisible": undefined,
+                                          "lockProjectionTarget": [Function],
+                                          "makeTargetAnimatable": [Function],
+                                          "manuallyAnimateOnMount": false,
+                                          "measureViewportBox": [Function],
+                                          "notifyAnimationComplete": [Function],
+                                          "notifyAnimationStart": [Function],
+                                          "notifyBeforeLayoutMeasure": [Function],
+                                          "notifyLayoutAnimationComplete": [Function],
+                                          "notifyLayoutMeasure": [Function],
+                                          "notifyLayoutReady": [Function],
+                                          "notifyLayoutUpdate": [Function],
+                                          "notifyRender": [Function],
+                                          "notifySetAxisTarget": [Function],
+                                          "notifyUpdate": [Function],
+                                          "notifyViewportBoxUpdate": [Function],
+                                          "onAnimationComplete": [Function],
+                                          "onAnimationStart": [Function],
+                                          "onBeforeLayoutMeasure": [Function],
+                                          "onLayoutAnimationComplete": [Function],
+                                          "onLayoutMeasure": [Function],
+                                          "onLayoutUpdate": [Function],
+                                          "onRender": [Function],
+                                          "onSetAxisTarget": [Function],
+                                          "onUpdate": [Function],
+                                          "onViewportBoxUpdate": [Function],
+                                          "path": Array [],
+                                          "pointTo": [Function],
+                                          "presence": 0,
+                                          "presenceId": undefined,
+                                          "projection": Object {
+                                            "isEnabled": false,
+                                            "isTargetLocked": false,
+                                            "target": Object {
+                                              "x": Object {
+                                                "max": 1,
+                                                "min": 0,
+                                              },
+                                              "y": Object {
+                                                "max": 1,
+                                                "min": 0,
+                                              },
+                                            },
+                                            "targetFinal": Object {
+                                              "x": Object {
+                                                "max": 1,
+                                                "min": 0,
+                                              },
+                                              "y": Object {
+                                                "max": 1,
+                                                "min": 0,
+                                              },
+                                            },
+                                          },
+                                          "readValue": [Function],
+                                          "rebaseProjectionTarget": [Function],
+                                          "ref": [Function],
+                                          "removeValue": [Function],
+                                          "resetTransform": [Function],
+                                          "scheduleRender": [Function],
+                                          "scheduleUpdateLayoutProjection": [Function],
+                                          "setBaseTarget": [Function],
+                                          "setCrossfader": [Function],
+                                          "setProjectionTargetAxis": [Function],
+                                          "setProps": [Function],
+                                          "setStaticValue": [Function],
+                                          "setVisibility": [Function],
+                                          "snapshotViewportBox": [Function],
+                                          "sortNodePosition": [Function],
+                                          "startLayoutAnimation": [Function],
+                                          "stopLayoutAnimation": [Function],
+                                          "suspendHoverEvents": [Function],
+                                          "syncRender": [Function],
+                                          "treeType": "dom",
+                                          "unlockProjectionTarget": [Function],
+                                          "updateLayoutMeasurement": [Function],
+                                          "updateLayoutProjection": [Function],
+                                          "updatePropListeners": [Function],
+                                          "variantChildren": Set {},
+                                          "withoutTransform": [Function],
+                                        }
+                                      }
+                                    />
+                                  </ForwardRef(MotionComponent)>
+                                </Styled(Component)>
+                              </div>
+                            </Styled(div)>
+                          </PopoverContent>
+                        </div>
+                      </Container>
+                    </Portal>
+                  </DefaultPortal>
+                </Portal>
+              </Popover>
+            </PortalManager>
+          </ConfirmDialog>
+        </ConfirmButton>
       </div>
     </Styled(div)>
   </Stack>

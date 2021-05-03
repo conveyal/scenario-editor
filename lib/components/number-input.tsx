@@ -1,13 +1,8 @@
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputRightElement
-} from '@chakra-ui/react'
+import {FormControl, FormLabel} from '@chakra-ui/react'
 import {FocusEvent} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
+import InputWithUnits from './input-with-units'
 
 const defaultTest = (parsed: number) => parsed >= 1
 const defaultParse = (targetValue: string) => parseFloat(targetValue)
@@ -48,25 +43,14 @@ export default function NumberInput({
   return (
     <FormControl isInvalid={input.isInvalid} {...p}>
       {label && <FormLabel htmlFor={input.id}>{label}</FormLabel>}
-      <InputGroup>
-        <Input
-          {...input}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          placeholder={placeholder}
-          type='text'
-        />
-        {units && (
-          <InputRightElement
-            color='gray.400'
-            userSelect='none'
-            mr={4}
-            width='unset'
-          >
-            {units}
-          </InputRightElement>
-        )}
-      </InputGroup>
+      <InputWithUnits
+        {...input}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        placeholder={placeholder}
+        type='text'
+        units={units}
+      />
     </FormControl>
   )
 }

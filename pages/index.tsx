@@ -2,7 +2,7 @@ import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
 import {FindOneOptions} from 'mongodb'
 import Link from 'next/link'
 
-import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
+import {AddIcon, GiftIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ExternalLink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
@@ -13,9 +13,9 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
 
-const alertDate = 'February, 2021'
-const alertStatus = 'info'
-const alertText = 'New options for spatial datasets'
+const alertDate = 'May, 2021'
+const alertStatus = 'warning'
+const alertText = 'New options for spatial datasets.'
 
 const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}
 
@@ -47,18 +47,27 @@ export default withAuth(function SelectRegionPage() {
             </strong>
           </Box>
         )}
-        <Alert status={alertStatus} borderRadius='md'>
-          <Stack>
-            <Box>
-              <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
-            </Box>
-            <Box textAlign='center'>
-              <ExternalLink href='https://docs.conveyal.com/changelog'>
-                Click here to learn more.
-              </ExternalLink>
-            </Box>
-          </Stack>
-        </Alert>
+        <Box>
+          <ExternalLink href='https://docs.conveyal.com/changelog'>
+            <Stack
+              alignItems='center'
+              borderWidth={1}
+              borderRadius='md'
+              isInline
+              px={5}
+              py={4}
+              spacing={6}
+            >
+              <Box>
+                <strong>{alertDate}</strong> — {alertText} Click here to learn
+                more.
+              </Box>
+              <Box fontSize='4xl' pb={1}>
+                <GiftIcon />
+              </Box>
+            </Stack>
+          </ExternalLink>
+        </Box>
         <Button
           isFullWidth
           leftIcon={<AddIcon />}

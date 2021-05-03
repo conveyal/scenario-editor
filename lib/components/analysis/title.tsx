@@ -64,18 +64,17 @@ export default function AnalysisTitle() {
           rightIcon={<XIcon />}
           onClick={abort}
           colorScheme='red'
-          key='abort'
-          size='lg'
+          key='abort-button'
         >
           Abort
         </Button>
       ) : (
         <Button
-          isDisabled={!currentProject}
-          rightIcon={<SyncIcon />}
-          onClick={() => dispatch(fetchTravelTimeSurface())}
           colorScheme='blue'
-          size='lg'
+          isDisabled={!currentProject}
+          key='fetch-button'
+          onClick={() => dispatch(fetchTravelTimeSurface())}
+          rightIcon={<SyncIcon />}
           title={
             !currentProject
               ? message('analysis.disableFetch')

@@ -92,9 +92,9 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
         <Button
           colorScheme="blue"
           isDisabled={false}
+          key="fetch-button"
           onClick={[Function]}
           rightIcon={<FaSyncAlt />}
-          size="lg"
           title="Fetch results"
         >
           <Styled(button)
@@ -123,15 +123,15 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
                 "borderRadius": "md",
                 "color": "white",
                 "display": "inline-flex",
-                "fontSize": "lg",
+                "fontSize": "md",
                 "fontWeight": "semibold",
-                "h": 12,
+                "h": 10,
                 "justifyContent": "center",
                 "lineHeight": "1.2",
-                "minW": 12,
+                "minW": 10,
                 "outline": "none",
                 "position": "relative",
-                "px": 6,
+                "px": 4,
                 "transition": "all 250ms",
                 "userSelect": "none",
                 "verticalAlign": "middle",
@@ -145,7 +145,7 @@ exports[`Component AnalysisTitle snapshot(mount) 1`] = `
             type="button"
           >
             <button
-              className="chakra-button css-1o5kwq4"
+              className="chakra-button css-huwc4k"
               onClick={[Function]}
               title="Fetch results"
               type="button"

@@ -20,14 +20,13 @@ function TitleMessage({fetchStatus, project}) {
   const isochrone = useSelector(selectIsochrone)
   const profileRequestHasChanged = useSelector(selectProfileRequestHasChanged)
 
-  let title = 'Analyze results'
+  let title = message('analysis.status.accessibilityLoaded')
   if (fetchStatus) title = fetchStatus
-  else if (!project) title = 'Select a project'
-  else if (!isochrone) title = 'Compute travel time'
-  else if (profileRequestHasChanged)
-    title = 'Results are out of sync with settings'
+  else if (!project) title = message('analysis.status.noProject')
+  else if (!isochrone) title = message('analysis.status.ready')
+  else if (profileRequestHasChanged) title = message('analysis.status.updated')
   else if (!opportunityDataset)
-    title = 'Select a destination layer to see accessibility'
+    title = message('analysis.status.travelTimeResults')
   return <Text> {title}</Text>
 }
 
@@ -65,9 +64,8 @@ export default function AnalysisTitle() {
           onClick={abort}
           colorScheme='red'
           key='abort'
-          size='lg'
         >
-          Abort
+          {message('analysis.cancel')}
         </Button>
       ) : (
         <Button
@@ -75,7 +73,6 @@ export default function AnalysisTitle() {
           rightIcon={<SyncIcon />}
           onClick={() => dispatch(fetchTravelTimeSurface())}
           colorScheme='blue'
-          size='lg'
           title={
             !currentProject
               ? message('analysis.disableFetch')

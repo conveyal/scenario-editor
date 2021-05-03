@@ -1,4 +1,4 @@
-import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
+import {Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
 import {FindOneOptions} from 'mongodb'
 import Link from 'next/link'
 
@@ -14,7 +14,6 @@ import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
 
 const alertDate = 'May, 2021'
-const alertStatus = 'warning'
 const alertText = 'New options for spatial datasets.'
 
 const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}

@@ -76,7 +76,7 @@ export default withAuth(function SelectRegionPage() {
           Set up a new region
         </Button>
         {regions == null ? (
-          <Skeleton id='LoadingSkeleton' height='2px' />
+          <Skeleton id='LoadingSkeleton' height='20px' />
         ) : (
           <Stack spacing={4}>
             {regions.length > 0 && (

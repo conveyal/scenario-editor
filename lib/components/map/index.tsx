@@ -1,17 +1,13 @@
-import {Button, Stack, useColorModeValue} from '@chakra-ui/react'
+import {Box, Button, Stack, useColorModeValue} from '@chakra-ui/react'
 import {Map} from 'leaflet'
 import set from 'lodash/set'
 import dynamic from 'next/dynamic'
 import {useEffect, useRef, useState} from 'react'
-import {
-  AttributionControl,
-  Map as ReactMap,
-  Viewport,
-  useLeaflet
-} from 'react-leaflet'
+import {Map as ReactMap, Viewport, useLeaflet} from 'react-leaflet'
 import {useSelector} from 'react-redux'
 import MapControl from 'react-leaflet-control'
 
+import useCurrentRegion from 'lib/hooks/use-current-region'
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import selectModificationSaveInProgress from 'lib/selectors/modification-save-in-progress'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
@@ -19,9 +15,9 @@ import {toLatLngBounds} from 'lib/utils/bounds'
 
 import Geocoder from './geocoder'
 import {AddIcon, MinusIcon} from '../icons'
+import {ExternalLink} from '../link'
 
 import 'leaflet/dist/leaflet.css'
-import useCurrentRegion from 'lib/hooks/use-current-region'
 
 const MapboxGLLayer = dynamic(() => import('./mapbox-gl'))
 
@@ -158,11 +154,22 @@ export default function BaseMap({children, setLeafletContext}: MapProps) {
       viewport={viewport || DEFAULT_VIEWPORT}
       zoomControl={false}
     >
+      <MapControl position='bottomright'>
+        <Box position='relative' marginBottom='-10px'>
+          ©{' '}
+          <ExternalLink href='https://www.mapbox.com/about/maps/'>
+            Mapbox
+          </ExternalLink>
+          &nbsp; ©{' '}
+          <ExternalLink href='http://www.openstreetmap.org/copyright'>
+            OpenStreetMap
+          </ExternalLink>
+        </Box>
+      </MapControl>
+
       {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
         <MapboxGLLayer style={getStyle(style)} />
       )}
-
-      <AttributionControl position='bottomright' prefix={false} />
 
       <Controls isDisabled={routeChanging || saveInProgress} />
 

@@ -24,8 +24,8 @@ import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
 
-const parseCutoff = (v) => parseInt(v, 10)
-const cutoffIsValid = (v) => v && v >= 0 && v <= 120
+const parseCutoff = (v: string) => parseInt(v, 10)
+const cutoffIsValid = (v: number) => v != null && v >= 0 && v <= 120
 
 export default function ResultSliders({
   defaultCutoff,

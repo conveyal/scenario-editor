@@ -409,13 +409,12 @@ function RequestHeading({
           opportunityDataset={opportunityDataset}
           projectId={get(project, '_id')}
           projectName={projectDownloadName}
-          requestsSettings={profileRequest}
           variantIndex={scenario}
         />
         <Box>
           <CreateRegional
+            isComparison={isComparison}
             isDisabled={!hasResults || settingsHaveChanged}
-            profileRequest={profileRequest}
             projectId={get(project, '_id')}
             variantIndex={scenario}
           />

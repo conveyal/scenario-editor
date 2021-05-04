@@ -14,7 +14,7 @@ import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
 
 const alertDate = 'May, 2021'
-const alertText = 'GTFS validation, clearer charts, improved performance, and more.'
+const alertText = 'GTFS validation, clearer charts, and more.'
 
 const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}
 
@@ -56,7 +56,7 @@ export default withAuth(function SelectRegionPage() {
               }
             >
               <div>
-                <strong>{alertDate}</strong> — {alertText} Click here for details.
+                <strong>{alertDate}</strong> — {alertText} Click for details.
               </div>
             </ListGroupItem>
           </ExternalLink>

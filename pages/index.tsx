@@ -48,23 +48,18 @@ export default withAuth(function SelectRegionPage() {
         )}
         <Box>
           <ExternalLink href='https://docs.conveyal.com/changelog'>
-            <Stack
-              alignItems='center'
-              borderWidth={1}
-              borderRadius='md'
-              isInline
-              px={5}
-              py={4}
-              spacing={6}
+            <ListGroupItem
+              rightIcon={
+                <Box fontSize='3xl' pb={1}>
+                  <GiftIcon />
+                </Box>
+              }
             >
-              <Box>
+              <div>
                 <strong>{alertDate}</strong> — {alertText} Click here to learn
                 more.
-              </Box>
-              <Box fontSize='4xl' pb={1}>
-                <GiftIcon />
-              </Box>
-            </Stack>
+              </div>
+            </ListGroupItem>
           </ExternalLink>
         </Box>
         <Button

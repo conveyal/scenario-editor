@@ -105,6 +105,7 @@ function useRecenterOnRegionEffect(): Viewport {
 export default function BaseMap({children, setLeafletContext}: MapProps) {
   const style = useColorModeValue(lightStyle, darkStyle)
   const backgroundColor = useColorModeValue('gray.50', 'gray.800')
+  const controlBg = useColorModeValue('whiteAlpha.400', 'blackAlpha.400')
   const leafletMapRef = useRef<ReactMap>()
   const viewport = useRecenterOnRegionEffect()
   const saveInProgress = useSelector(selectModificationSaveInProgress)
@@ -155,7 +156,13 @@ export default function BaseMap({children, setLeafletContext}: MapProps) {
       zoomControl={false}
     >
       <MapControl position='bottomright'>
-        <Box position='relative' marginBottom='-10px'>
+        <Box
+          backgroundColor={controlBg}
+          fontSize='sm'
+          marginBottom='-11px'
+          px={1}
+          pt={0.5}
+        >
           ©{' '}
           <ExternalLink href='https://www.mapbox.com/about/maps/'>
             Mapbox

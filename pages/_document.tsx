@@ -1,10 +1,7 @@
 import {ColorModeScript} from '@chakra-ui/color-mode'
 import Document, {Html, Head, Main, NextScript} from 'next/document'
 
-import {LOGO_URL} from 'lib/constants'
-
-const fontURL =
-  'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap'
+import {FONT_URL, LOGO_URL} from 'lib/constants'
 
 const Analytics = () =>
   process.env.NODE_ENV === 'production' && (
@@ -32,12 +29,12 @@ export default class extends Document {
       <Html lang='en'>
         <Head>
           <link
-            rel='preconnect'
-            href='https://fonts.gstatic.com'
+            rel='preload'
+            href={FONT_URL}
+            as='font'
+            type='font/woff2'
             crossOrigin='anonymous'
           />
-          <link rel='preload' as='style' href={fontURL} />
-          <link rel='stylesheet' href={fontURL} type='text/css' />
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
 
           <Analytics />

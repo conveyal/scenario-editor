@@ -44,6 +44,11 @@ const ConveyalTheme = extendTheme({
     body: defaultFontFamily,
     heading: defaultFontFamily
   },
+  fontWeights: {
+    medium: 450,
+    semibold: 500,
+    bold: 600
+  },
   initialColorMode: 'light',
   radii: {
     sm: '0.0625.rem',

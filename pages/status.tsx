@@ -25,7 +25,7 @@ export default function Status() {
       <Stack spacing={10} width='50rem'>
         <Flex justify='space-between'>
           <Heading size='2xl'>Status</Heading>
-          <Image display='inline-block' size='45px' src='/logo.svg' />
+          <Image display='inline-block' boxSize={45} src='/logo.svg' />
         </Flex>
         <ALink to='regions'>← Back to the application</ALink>
         <Divider />

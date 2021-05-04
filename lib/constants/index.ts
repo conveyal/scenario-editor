@@ -223,3 +223,9 @@ export const PROFILE_REQUEST_DEFAULTS = {
 }
 
 export const UNDEFINED_PROJECT_NAME = 'Not set'
+
+const fontPath = '/fonts/inter-var-latin.woff2'
+export const FONT_URL =
+  process.env.NODE_ENV === 'production'
+    ? `https://assets.conveyal.com${fontPath}`
+    : fontPath

@@ -141,7 +141,7 @@ function useProfileRequest(isComparison: boolean) {
     () =>
       get(
         store.getState(),
-        `analysis.requestSettings[${isComparison ? 1 : 0}]`
+        `analysis.requestsSettings[${isComparison ? 1 : 0}]`
       ),
     [isComparison, store]
   )

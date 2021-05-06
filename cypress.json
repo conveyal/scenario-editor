@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "https://analysis-emekmhs1y-conveyal.vercel.app",
   "chromeWebSecurity": false,
   "viewportWidth": 1280,
   "viewportHeight": 720,
@@ -18,7 +18,12 @@
     "auth0Domain": "conveyal.eu.auth0.com",
     "auth0Scope": "openid email profile id_token",
     "auth0SessionCookieName": "a0:session",
-    "auth0Username": "testing@conveyal.com"
+    "auth0Username": "testing@conveyal.com",
+
+    "auth0ClientId": "YOUR_CLIENT_ID",
+    "auth0ClientSecret": "YOUR_CLIENT_SECRET",
+    "auth0CookieSecret": "YOUR_COOKIE_SECRET",
+    "auth0Password": "YOUR_PASSWORD"
   },
   "projectId": "cvhnxt"
 }

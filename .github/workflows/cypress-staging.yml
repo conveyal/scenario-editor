@@ -16,7 +16,7 @@ jobs:
           node-version: '12'
       - uses: cypress-io/github-action@v2
         with:
-          config: baseUrl=https://analysis-czq1ob7yn-conveyal.vercel.app
+          config: baseUrl=https://analysis-emekmhs1y-conveyal.vercel.app
         env:
           CYPRESS_authEnabled: true
           CYPRESS_auth0ClientId: ${{ secrets.AUTH0_CLIENT_ID }}

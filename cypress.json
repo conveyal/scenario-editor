@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://conveyal.dev",
+  "baseUrl": "http://localhost:3000",
   "chromeWebSecurity": false,
   "viewportWidth": 1280,
   "viewportHeight": 720,
@@ -10,9 +10,15 @@
   "video": false,
   "env": {
     "accessGroup": "testing",
+    "dataPrefix": "CYP_",
     "failOnSnapshotDiff": true,
     "region": "scratch",
-    "dataPrefix": "CYP_"
+
+    "authEnabled": false,
+    "auth0Domain": "conveyal.eu.auth0.com",
+    "auth0Scope": "openid email profile id_token",
+    "auth0SessionCookieName": "a0:session",
+    "auth0Username": "testing@conveyal.com"
   },
   "projectId": "cvhnxt"
 }

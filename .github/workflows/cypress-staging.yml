@@ -1,0 +1,21 @@
+name: 'Run Cypress tests on staging'
+
+on:
+  pull_request:
+    branches:
+      - master
+      - dev
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cypress-io/github-action@v2
+        with:
+          config: baseUrl=https://analysis-czq1ob7yn-conveyal.vercel.app
+        env:
+          CYPRESS_authEnabled: true
+          CYPRESS_auth0ClientId: ${{ secrets.AUTH0_CLIENT_ID }}
+          CYPRESS_auth0ClientSecret: ${{ secrets.AUTH0_CLIENT_SECRET }}
+          CYPRESS_auth0CookieSecret: ${{ secrets.AUTH0_COOKIE_SECRET }}
+          CYPRESS_auth0Password: ${{ secrets.AUTH0_PASSWORD }}

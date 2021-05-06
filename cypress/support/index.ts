@@ -47,4 +47,14 @@ Cypress.on('uncaught:exception', (err) => {
   return false
 })
 
-before(() => cy.login())
+beforeEach(() => {
+  if (Cypress.env('authEnabled')) {
+    cy.login()
+
+    cy.visitHome()
+    cy.contains(Cypress.env('auth0Username'))
+    cy.contains(Cypress.env('accessGroup'))
+
+    cy.findByRole('alert').should('not.exist')
+  }
+})

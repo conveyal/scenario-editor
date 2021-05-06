@@ -134,6 +134,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
     .then(() => Cypress.log({displayName: 'navTo:complete', message: title}))
 })
 
+/*
 Cypress.Commands.add('login', function () {
   cy.getCookie('a0:state').then((cookie) => {
     // If the cookie already exists, skip the login
@@ -148,3 +149,4 @@ Cypress.Commands.add('login', function () {
     cy.findByText(new RegExp(Cypress.env('username')))
   })
 })
+*/

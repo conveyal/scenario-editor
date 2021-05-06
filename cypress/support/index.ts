@@ -10,6 +10,7 @@
 import '@testing-library/cypress/add-commands'
 import 'cypress-file-upload'
 import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
+import 'cypress-nextjs-auth0'
 import 'cypress-wait-until'
 
 import './analysis'
@@ -30,6 +31,7 @@ Cypress.Cookies.defaults({
     'a0:state',
     'a0:session',
     'a0:redirectTo',
+    'appSession',
     'adminTempAccessGroup',
     'cypressTestData'
   ]
@@ -44,3 +46,5 @@ Cypress.on('uncaught:exception', (err) => {
   // failing the test
   return false
 })
+
+before(() => cy.login())

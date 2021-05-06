@@ -1,18 +1,16 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "https://conveyal.dev",
+  "chromeWebSecurity": false,
   "viewportWidth": 1280,
   "viewportHeight": 720,
   "defaultCommandTimeout": 15000,
   "pageLoadTimeout": 120000,
+  "port": 3001,
   "retries": 0,
   "video": false,
   "env": {
     "accessGroup": "testing",
     "failOnSnapshotDiff": true,
-    "username": "testing@conveyal.com",
-    "password": "fakepassword",
-    "authZeroClientId": "",
-    "authZeroDomain": "",
     "region": "scratch",
     "dataPrefix": "CYP_"
   },

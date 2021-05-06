@@ -134,20 +134,3 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
     .navComplete()
     .then(() => Cypress.log({displayName: 'navTo:complete', message: title}))
 })
-
-/*
-Cypress.Commands.add('login', function () {
-  cy.getCookie('a0:state').then((cookie) => {
-    // If the cookie already exists, skip the login
-    if (cookie) return
-
-    cy.visit('/')
-    cy.findByLabelText('Email').type(Cypress.env('username'))
-    cy.findByLabelText('Password').type(Cypress.env('password'))
-    cy.findByRole('button', {name: 'Log In'}).click()
-
-    // Should show the home page
-    cy.findByText(new RegExp(Cypress.env('username')))
-  })
-})
-*/

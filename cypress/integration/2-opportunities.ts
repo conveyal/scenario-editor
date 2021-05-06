@@ -182,7 +182,7 @@ describe('Opportunity Datasets', function () {
         .then((href) => {
           const gridId = href.match(/\w{24}$/)[0]
           cy.request(
-            `http://localhost:7070/api/opportunities/${gridId}/grid`
+            `${Cypress.env('apiUrl')}/api/opportunities/${gridId}/grid`
           ).then((response) => {
             cy.request(response.body.url).then((response) => {
               cy.readFile(

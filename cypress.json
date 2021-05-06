@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "https://analysis-emekmhs1y-conveyal.vercel.app",
   "chromeWebSecurity": false,
   "viewportWidth": 1280,
   "viewportHeight": 720,

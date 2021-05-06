@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://analysis-emekmhs1y-conveyal.vercel.app",
+  "baseUrl": "http://localhost:3000",
   "chromeWebSecurity": false,
   "viewportWidth": 1280,
   "viewportHeight": 720,
@@ -17,7 +17,7 @@
     "authEnabled": false,
     "auth0Domain": "conveyal.eu.auth0.com",
     "auth0Scope": "openid email profile id_token",
-    "auth0SessionCookieName": "a0:session",
+    "auth0SessionCookieName": "appSession",
     "auth0Username": "testing@conveyal.com",
 
     "auth0ClientId": "YOUR_CLIENT_ID",

@@ -65,8 +65,8 @@ export default handleAuth({
   async profile(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     try {
       await handleProfile(req, res, {
-        afterRefetch: afterCallback,
-        refetch: true
+        // afterRefetch: afterCallback,
+        // refetch: true
       })
     } catch (e) {
       res.status(400).json(errorToPOJO(e))

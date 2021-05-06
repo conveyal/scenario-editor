@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - master
-      - dev
+      - dev # Remove before merge
 
 jobs:
   cypress:
@@ -23,3 +23,9 @@ jobs:
           CYPRESS_auth0ClientSecret: ${{ secrets.AUTH0_CLIENT_SECRET }}
           CYPRESS_auth0CookieSecret: ${{ secrets.AUTH0_COOKIE_SECRET }}
           CYPRESS_auth0Password: ${{ secrets.AUTH0_PASSWORD }}
+
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots

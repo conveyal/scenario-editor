@@ -47,7 +47,7 @@ Cypress.on('uncaught:exception', (err) => {
   return false
 })
 
-beforeEach(() => {
+before(() => {
   if (Cypress.env('authEnabled')) {
     cy.login().then(() => {
       cy.visitHome()

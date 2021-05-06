@@ -17,6 +17,7 @@ Cypress.Commands.add('findTask', (title: string) =>
 Cypress.Commands.add('visitHome', () => {
   cy.log('visitHome')
   cy.visit('/', {log: false})
+  cy.findButton(/Set up a new region/)
   cy.get('#LoadingSkeleton', {log: false}).should('not.exist')
 })
 

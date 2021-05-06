@@ -24,6 +24,9 @@ import downloadJson from 'lib/utils/download-json'
 const getIsochrone = (state, isComparison: boolean) =>
   isComparison ? selectComparisonIsochrone(state) : selectIsochrone(state)
 
+const getRequestSettings = (state, isComparison: boolean) =>
+  get(state, `analysis.requestsSettings[${isComparison ? 1 : 0}]`)
+
 const getPercentileCurves = (state, isComparison: boolean) =>
   isComparison
     ? selectComparisonPercentileCurves(state)
@@ -35,7 +38,6 @@ type DownloadMenuProps = MenuButtonProps & {
   opportunityDataset: CL.SpatialDataset
   projectId: string
   projectName: string
-  requestsSettings: Record<string, string>
   variantIndex: number
 }
 
@@ -45,7 +47,6 @@ const DownloadMenu = memo<DownloadMenuProps>(
     opportunityDataset,
     projectId,
     projectName,
-    requestsSettings,
     variantIndex,
     ...p
   }) => {
@@ -85,6 +86,10 @@ const DownloadMenu = memo<DownloadMenuProps>(
 
     // TODO don't dispatch an action, just fetch and show the button in a loading state
     function onClickDownloadGeoTIFF() {
+      const requestsSettings = getRequestSettings(
+        store.getState(),
+        isComparison
+      )
       return dispatch(
         fetchGeoTIFF(projectName, {
           projectId,
@@ -95,7 +100,7 @@ const DownloadMenu = memo<DownloadMenuProps>(
     }
 
     return (
-      <Menu>
+      <Menu isLazy>
         <MenuButton as={Button} {...p}>
           <DownloadIcon />
         </MenuButton>

@@ -27,6 +27,7 @@ export {
   FaExclamationCircle as ErrorIcon,
   FaExpand as ExpandIcon,
   FaExternalLinkAlt as ExternalLinkIcon,
+  FaGift as GiftIcon,
   FaEyeSlash as HideIcon,
   FaInfoCircle as InfoIcon,
   FaCompass as LoadingIcon,

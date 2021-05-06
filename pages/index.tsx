@@ -1,8 +1,8 @@
-import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
+import {Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
 import {FindOneOptions} from 'mongodb'
 import Link from 'next/link'
 
-import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
+import {AddIcon, GiftIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ExternalLink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
@@ -13,9 +13,8 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
 
-const alertDate = 'February, 2021'
-const alertStatus = 'info'
-const alertText = 'New options for spatial datasets'
+const alertDate = 'May, 2021'
+const alertText = 'GTFS validation, clearer charts, and more.'
 
 const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}
 
@@ -47,18 +46,21 @@ export default withAuth(function SelectRegionPage() {
             </strong>
           </Box>
         )}
-        <Alert status={alertStatus} borderRadius='md'>
-          <Stack>
-            <Box>
-              <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
-            </Box>
-            <Box textAlign='center'>
-              <ExternalLink href='https://docs.conveyal.com/changelog'>
-                Click here to learn more.
-              </ExternalLink>
-            </Box>
-          </Stack>
-        </Alert>
+        <Box>
+          <ExternalLink href='https://docs.conveyal.com/changelog'>
+            <ListGroupItem
+              rightIcon={
+                <Box fontSize='3xl' pb={1}>
+                  <GiftIcon />
+                </Box>
+              }
+            >
+              <div>
+                <strong>{alertDate}</strong> — {alertText} Click for details.
+              </div>
+            </ListGroupItem>
+          </ExternalLink>
+        </Box>
         <Button
           isFullWidth
           leftIcon={<AddIcon />}
@@ -68,7 +70,7 @@ export default withAuth(function SelectRegionPage() {
           Set up a new region
         </Button>
         {regions == null ? (
-          <Skeleton id='LoadingSkeleton' height='2px' />
+          <Skeleton id='LoadingSkeleton' height='20px' />
         ) : (
           <Stack spacing={4}>
             {regions.length > 0 && (

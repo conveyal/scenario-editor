@@ -1,6 +1,6 @@
-import {Button, useColorModeValue} from '@chakra-ui/react'
+import {Button, ButtonProps, useColorModeValue} from '@chakra-ui/react'
 
-export default function ListGroupItem({children, ...p}) {
+export default function ListGroupItem({children, ...p}: ButtonProps) {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   return (
     <Button

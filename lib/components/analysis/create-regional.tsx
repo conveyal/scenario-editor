@@ -23,8 +23,8 @@ import {
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
-import {useCallback, useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useCallback, useMemo, useState} from 'react'
+import {useSelector, useStore} from 'react-redux'
 
 import {AddIcon} from 'lib/components/icons'
 import {API} from 'lib/constants'
@@ -74,8 +74,8 @@ const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
 const disabledLabel = 'Fetch results with the current settings to enable button'
 
 export default function CreateRegional({
+  isComparison,
   isDisabled,
-  profileRequest,
   projectId,
   variantIndex
 }) {
@@ -93,8 +93,8 @@ export default function CreateRegional({
       </Button>
       {isOpen && (
         <CreateModal
+          isComparison={isComparison}
           onClose={onClose}
-          profileRequest={profileRequest}
           projectId={projectId}
           variantIndex={variantIndex}
         />
@@ -135,9 +135,23 @@ const defaultOriginPointSet = {
   value: 'rectangular-grid'
 }
 
-function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
+function useProfileRequest(isComparison: boolean) {
+  const store = useStore()
+  const profileRequest = useMemo(
+    () =>
+      get(
+        store.getState(),
+        `analysis.requestsSettings[${isComparison ? 1 : 0}]`
+      ),
+    [isComparison, store]
+  )
+  return profileRequest
+}
+
+function CreateModal({onClose, isComparison, projectId, variantIndex}) {
   const toast = useToast()
   const user = useUser()
+  const profileRequest = useProfileRequest(isComparison)
   const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)

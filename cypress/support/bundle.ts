@@ -38,11 +38,6 @@ Cypress.Commands.add(
       cy.navComplete()
     })
 
-    // go back and grab the id
-    cy.findByLabelText(/or select an existing one/)
-      .click({force: true})
-      .type(name + '{enter}')
-
     return cy
       .location('pathname')
       .should('match', /bundles\/\w{24}$/)

@@ -17,7 +17,7 @@ import {
   HStack
 } from '@chakra-ui/react'
 import startCase from 'lodash/startCase'
-import {useCallback, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 
 import {useBundles} from 'lib/hooks/use-collection'
 import useInput from 'lib/hooks/use-controlled-input'
@@ -179,7 +179,12 @@ export default function EditBundle({
   originalBundle: CL.Bundle
   regionId: string
 }) {
-  const {remove, update} = useBundles({query: {regionId}})
+  const {remove, update} = useBundles({
+    query: {regionId},
+    config: {
+      revalidateOnMount: true
+    }
+  })
   const goToBundles = useRouteTo('bundles', {regionId})
   const [bundle, setBundle] = useState(originalBundle)
   const goToCreateProject = useRouteTo('projectCreate', {
@@ -190,6 +195,11 @@ export default function EditBundle({
     (name) => setBundle((bundle) => ({...bundle, name})),
     [setBundle]
   )
+
+  // If the bundle gets updated externally (usually on creation, overwrite the data)
+  useEffect(() => {
+    setBundle(originalBundle)
+  }, [originalBundle])
 
   // If this bundle has project's associated with it. Disable deletion.
   const totalBundleProjects =

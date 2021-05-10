@@ -35,7 +35,7 @@ function ReduxErrorModal() {
 
   if (!networkError) return null
   const error = new Error(getMessageFromError(networkError))
-  error.stack = networkError.stackTrace
+  error.stack = networkError.stackTrace ?? networkError.stack
   return (
     <ErrorModal
       error={error}

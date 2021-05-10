@@ -1,12 +1,10 @@
 import {
   Alert,
-  AlertDescription,
   AlertIcon,
   AlertTitle,
+  Box,
   Flex,
   Heading,
-  List,
-  ListItem,
   Stack
 } from '@chakra-ui/react'
 import get from 'lodash/get'
@@ -165,9 +163,8 @@ export default function SinglePointAnalysis({
               <AlertIcon />
               <AlertTitle>{message('analysis.warningsInProject')}</AlertTitle>
             </Flex>
-            <AlertDescription pl={P.lg}>
-              <ScenarioApplicationErrors errors={scenarioWarnings} />
-            </AlertDescription>
+
+            <ScenarioApplicationErrors errors={scenarioWarnings} />
           </Alert>
         )}
 
@@ -183,9 +180,7 @@ export default function SinglePointAnalysis({
               <AlertIcon />
               <AlertTitle>{message('analysis.errorsInProject')}</AlertTitle>
             </Flex>
-            <AlertDescription pl={P.lg}>
-              <ScenarioApplicationErrors errors={scenarioErrors} />
-            </AlertDescription>
+            <ScenarioApplicationErrors errors={scenarioErrors} />
           </Alert>
         )}
 
@@ -231,17 +226,25 @@ function Results({
 function ScenarioApplicationErrors({errors, ...p}) {
   /** Render any errors that may have occurred applying the project */
   return (
-    <Stack spacing={P.md} {...p} maxHeight='200px' overflowY='scroll'>
+    <Stack spacing={P.md} {...p} width='100%'>
       {errors.map((err, idx) => (
         <Stack key={idx}>
           <Heading size='sm'>
-            {message('analysis.errorsInModification', {id: err.modificationId})}
+            {typeof err.modificationId === 'string'
+              ? message('analysis.errorsInModification', {
+                  id: err.modificationId
+                })
+              : err.title ?? 'Request Error'}
           </Heading>
-          <List styleType='disc' spacing={2}>
-            {err.messages.map((msg, idx) => (
-              <ListItem key={`message-${idx}`}>{msg}</ListItem>
+          <Box as='ul' pl={6}>
+            {err.messages.map((msg: string, idx: number) => (
+              <li key={`message-${idx}`}>
+                <Box as='pre' overflow='auto' maxHeight='200px'>
+                  {msg}
+                </Box>
+              </li>
             ))}
-          </List>
+          </Box>
         </Stack>
       ))}
     </Stack>

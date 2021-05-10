@@ -1,5 +1,6 @@
 import {
   Alert,
+  Box,
   Button,
   FormControl,
   FormLabel,
@@ -84,7 +85,7 @@ export default function CreateRegionPage() {
       <EditBounds bounds={bounds} save={setBounds} />
 
       <Stack as='form' p={SPACING_FORM} spacing={SPACING_FORM}>
-        <Heading size='md'>{message('region.createAction')}</Heading>
+        <Heading size='lg'>{message('region.createAction')}</Heading>
 
         {error && <Alert status='error'>{error}</Alert>}
 
@@ -107,11 +108,13 @@ export default function CreateRegionPage() {
           />
         </FormControl>
 
-        <EditBoundsForm
-          bounds={bounds}
-          isDisabled={uploading}
-          onChange={(d, v) => setBounds((b) => ({...b, [d]: v}))}
-        />
+        <Box>
+          <EditBoundsForm
+            bounds={bounds}
+            isDisabled={uploading}
+            onChange={(d, v) => setBounds((b) => ({...b, [d]: v}))}
+          />
+        </Box>
 
         <Button
           isFullWidth

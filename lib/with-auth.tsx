@@ -33,9 +33,6 @@ const DevBar = () => (
       width='100vw'
       zIndex={10000}
     />
-    <Head>
-      <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
-    </Head>
   </>
 )
 
@@ -91,7 +88,13 @@ export default function withAuth(PageComponent) {
     if (user == null) return <LoadingScreen />
     return (
       <>
-        {isAdmin(user) && <DevBar />}
+        {isAdmin(user) ? (
+          <DevBar />
+        ) : (
+          <Head>
+            <style id='DEVSTYLE'>{`.DEV{display: none !important;}`}</style>
+          </Head>
+        )}
         <PageComponent user={user} {...p} />
       </>
     )

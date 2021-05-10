@@ -39,6 +39,7 @@
     "@rehooks/component-size": "^1.0.3",
     "@rooks/use-key": "^4.11.0",
     "@testing-library/jest-dom": "^5.11.9",
+    "@turf/area": "^6.3.0",
     "@turf/bbox": "^6.3.0",
     "@turf/bbox-polygon": "^6.3.0",
     "@turf/bearing": "^6.3.0",

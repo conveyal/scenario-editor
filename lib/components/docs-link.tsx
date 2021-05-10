@@ -1,4 +1,4 @@
-import {Link} from '@chakra-ui/react'
+import {Link, LinkProps} from '@chakra-ui/react'
 
 import {InfoIcon} from './icons'
 import Tip from './tip'
@@ -6,7 +6,12 @@ import Tip from './tip'
 const docsBaseURL = 'https://docs.conveyal.com'
 const _hover = {color: 'blue.700'}
 
-export default function DocsLink({to, ...p}) {
+export default function DocsLink({
+  to,
+  ...p
+}: {
+  to: string
+} & LinkProps) {
   return (
     <Tip label='View docs to learn more'>
       <Link

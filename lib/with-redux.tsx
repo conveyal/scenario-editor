@@ -14,8 +14,10 @@ const ErrorModal = dynamic(() => import('lib/components/error-modal'), {
 
 function getMessageFromError(e) {
   let message = ''
-  if (e.status) message += e.status + ' '
-  if (e.statusText) message += e.statusText + ' '
+  if (e.message) message += e.message
+  else if (e.status) message += e.status + ' '
+  else if (e.statusText) message += e.statusText + ' '
+
   // Body text may be parsed
   if (
     e.value &&
@@ -32,10 +34,11 @@ function ReduxErrorModal() {
   const networkError = useSelector(selectError)
 
   if (!networkError) return null
-
+  const error = new Error(getMessageFromError(networkError))
+  error.stack = networkError.stackTrace
   return (
     <ErrorModal
-      error={new Error(getMessageFromError(networkError))}
+      error={error}
       resetErrorBoundary={() => dispatch(clearError())}
     />
   )

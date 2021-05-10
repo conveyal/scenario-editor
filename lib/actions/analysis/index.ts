@@ -231,7 +231,7 @@ export const handleSurface = (error, responses) => {
               stackTrace: error.value.message
             }
           : error
-      return setServerError(errorInfo)
+      return [setIsochroneFetchStatus(false), setServerError(errorInfo)]
     }
   } else if (get(responses, '[0].status') === 202) {
     // response timeout

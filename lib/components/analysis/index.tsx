@@ -150,40 +150,42 @@ export default function SinglePointAnalysis({
 
       <AnalysisTitle />
 
+      {scenarioErrors != null && scenarioErrors.length > 0 && (
+        <Alert
+          alignItems='flex-start'
+          flexDirection='column'
+          px={P.md}
+          py={P.md}
+          status='error'
+          width={640}
+        >
+          <Flex mb={P.md}>
+            <AlertIcon />
+            <AlertTitle>{message('analysis.errorsInProject')}</AlertTitle>
+          </Flex>
+          <ScenarioApplicationErrors errors={scenarioErrors} />
+        </Alert>
+      )}
+
+      {scenarioWarnings != null && scenarioWarnings.length > 0 && (
+        <Alert
+          alignItems='flex-start'
+          flexDirection='column'
+          px={P.md}
+          py={P.md}
+          status='warning'
+          width={640}
+        >
+          <Flex mb={P.md}>
+            <AlertIcon />
+            <AlertTitle>{message('analysis.warningsInProject')}</AlertTitle>
+          </Flex>
+
+          <ScenarioApplicationErrors errors={scenarioWarnings} />
+        </Alert>
+      )}
+
       <InnerDock width={640}>
-        {scenarioWarnings != null && scenarioWarnings.length > 0 && (
-          <Alert
-            alignItems='flex-start'
-            flexDirection='column'
-            px={P.md}
-            py={P.md}
-            status='warning'
-          >
-            <Flex mb={P.md}>
-              <AlertIcon />
-              <AlertTitle>{message('analysis.warningsInProject')}</AlertTitle>
-            </Flex>
-
-            <ScenarioApplicationErrors errors={scenarioWarnings} />
-          </Alert>
-        )}
-
-        {scenarioErrors != null && scenarioErrors.length > 0 && (
-          <Alert
-            alignItems='flex-start'
-            flexDirection='column'
-            px={P.md}
-            py={P.md}
-            status='error'
-          >
-            <Flex mb={P.md}>
-              <AlertIcon />
-              <AlertTitle>{message('analysis.errorsInProject')}</AlertTitle>
-            </Flex>
-            <ScenarioApplicationErrors errors={scenarioErrors} />
-          </Alert>
-        )}
-
         <Results
           isDisabled={disableInputs}
           isStale={profileRequestHasChanged}
@@ -226,7 +228,7 @@ function Results({
 function ScenarioApplicationErrors({errors, ...p}) {
   /** Render any errors that may have occurred applying the project */
   return (
-    <Stack spacing={P.md} {...p} width='100%'>
+    <Stack maxHeight='100px' overflow='auto' spacing={P.md} {...p} width='100%'>
       {errors.map((err, idx) => (
         <Stack key={idx}>
           <Heading size='sm'>
@@ -239,9 +241,7 @@ function ScenarioApplicationErrors({errors, ...p}) {
           <Box as='ul' pl={6}>
             {err.messages.map((msg: string, idx: number) => (
               <li key={`message-${idx}`}>
-                <Box as='pre' overflow='auto' maxHeight='200px'>
-                  {msg}
-                </Box>
+                <Box as='pre'>{msg}</Box>
               </li>
             ))}
           </Box>

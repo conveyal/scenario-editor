@@ -228,7 +228,7 @@ export const handleSurface = (error, responses) => {
         setIsochroneFetchStatus(false),
         setScenarioApplicationErrors([
           {
-            message: error.value.message
+            messages: [error.value.message]
           }
         ])
       ]

@@ -12,7 +12,6 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 
 import {CheckIcon, ExternalLinkIcon} from 'lib/components/icons'
-import IconButton from 'lib/components/icon-button'
 import {ALink} from 'lib/components/link'
 import useActivity from 'lib/hooks/use-activity'
 import useRouteTo from 'lib/hooks/use-route-to'

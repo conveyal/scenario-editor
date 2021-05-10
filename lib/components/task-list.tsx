@@ -111,8 +111,8 @@ function LinkToWorkProduct(p: {
         goToWorkProduct()
         p.removeTask(p.task.id)
       }}
+      px={3}
       rightIcon={<ExternalLinkIcon />}
-      size='sm'
       variant='ghost'
     >
       {text}
@@ -127,7 +127,7 @@ interface TaskProps {
 
 function Task({removeTask, task, ...p}: TaskProps) {
   return (
-    <Stack id={task.id} px={px} py={py} position='relative' spacing={1} {...p}>
+    <Stack id={task.id} pl={px} py={py} position='relative' spacing={1} {...p}>
       <HStack justify='space-between'>
         <Heading
           color={getColor(task)}
@@ -142,7 +142,7 @@ function Task({removeTask, task, ...p}: TaskProps) {
         >
           {task.title}
         </Heading>
-        <HStack>
+        <HStack spacing={1} pr={1}>
           {taskIsFinished(task) && task.workProduct && (
             <Box>
               <LinkToWorkProduct removeTask={removeTask} task={task} />
@@ -151,8 +151,8 @@ function Task({removeTask, task, ...p}: TaskProps) {
           <Button
             colorScheme='blue'
             onClick={() => removeTask(task.id)}
+            px={3}
             rightIcon={<CheckIcon />}
-            size='sm'
             variant='ghost'
             visibility={taskIsFinished(task) ? 'inherit' : 'hidden'}
           >
@@ -160,7 +160,7 @@ function Task({removeTask, task, ...p}: TaskProps) {
           </Button>
         </HStack>
       </HStack>
-      <HStack justify='space-between' spacing={6}>
+      <HStack justify='space-between' pr={px} spacing={6}>
         <Box
           textOverflow='ellipsis'
           whiteSpace='nowrap'

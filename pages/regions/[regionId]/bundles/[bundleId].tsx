@@ -6,7 +6,9 @@ import {useBundles, useProjects} from 'lib/hooks/use-collection'
 import MapLayout from 'lib/layouts/map'
 
 function BundleViewPage(p: {query: CL.Query}) {
-  const {data: bundles} = useBundles({query: {regionId: p.query.regionId}})
+  const {data: bundles} = useBundles({
+    query: {regionId: p.query.regionId}
+  })
   const {data: projects} = useProjects({query: {regionId: p.query.regionId}})
   const bundle = bundles?.find((b) => b._id === p.query.bundleId)
   return (

@@ -227,10 +227,8 @@ export const handleSurface = (error, responses) => {
         // that's cleaned up in R5, this makes things pretty for the error modal
         error.statusText && error.value.message && !error.value.stackTrace
           ? {
-              value: {
-                message: error.statusText,
-                stackTrace: error.value.message
-              }
+              message: error.statusText,
+              stackTrace: error.value.message
             }
           : error
       return setServerError(errorInfo)

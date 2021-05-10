@@ -140,7 +140,12 @@ export default function CreateBundle({query}: {query: CL.Query}) {
         >
           <FormControl isRequired>
             <FormLabel htmlFor='bundleName'>{message('bundle.name')}</FormLabel>
-            <Input id='bundleName' name='bundleName' placeholder='Name' />
+            <Input
+              autoFocus
+              id='bundleName'
+              name='bundleName'
+              placeholder='Name'
+            />
           </FormControl>
 
           <Skeleton isLoaded={dataIsLoaded}>

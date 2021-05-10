@@ -45,36 +45,168 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
       <div
         className="chakra-stack css-4daikc"
       >
-        <Heading
+        <Flex
+          justify="space-between"
           key=".0"
-          size="lg"
         >
-          <Styled(h2)
+          <Styled(div)
             __css={
               Object {
-                "fontFamily": "heading",
-                "fontSize": Array [
-                  "2xl",
-                  null,
-                  "3xl",
-                ],
-                "fontWeight": "bold",
-                "lineHeight": Array [
-                  1.33,
-                  null,
-                  1.2,
-                ],
+                "alignItems": undefined,
+                "display": "flex",
+                "flexBasis": undefined,
+                "flexDirection": undefined,
+                "flexGrow": undefined,
+                "flexShrink": undefined,
+                "flexWrap": undefined,
+                "justifyContent": "space-between",
               }
             }
-            className="chakra-heading"
           >
-            <h2
-              className="chakra-heading css-uv65y"
+            <div
+              className="css-gg4vpm"
             >
-              Edit bundle
-            </h2>
-          </Styled(h2)>
-        </Heading>
+              <Heading
+                size="lg"
+              >
+                <Styled(h2)
+                  __css={
+                    Object {
+                      "fontFamily": "heading",
+                      "fontSize": Array [
+                        "2xl",
+                        null,
+                        "3xl",
+                      ],
+                      "fontWeight": "bold",
+                      "lineHeight": Array [
+                        1.33,
+                        null,
+                        1.2,
+                      ],
+                    }
+                  }
+                  className="chakra-heading"
+                >
+                  <h2
+                    className="chakra-heading css-uv65y"
+                  >
+                    Edit bundle
+                  </h2>
+                </Styled(h2)>
+              </Heading>
+              <Button
+                colorScheme="green"
+                onClick={[Function]}
+                rightIcon={<FaPlus />}
+              >
+                <Styled(button)
+                  __css={
+                    Object {
+                      "_active": Object {
+                        "bg": "green.700",
+                      },
+                      "_disabled": Object {
+                        "boxShadow": "none",
+                        "cursor": "not-allowed",
+                        "opacity": 0.4,
+                      },
+                      "_focus": Object {
+                        "boxShadow": "outline",
+                      },
+                      "_hover": Object {
+                        "_disabled": Object {
+                          "bg": "green.500",
+                        },
+                        "bg": "green.600",
+                      },
+                      "alignItems": "center",
+                      "appearance": "none",
+                      "bg": "green.500",
+                      "borderRadius": "md",
+                      "color": "white",
+                      "display": "inline-flex",
+                      "fontSize": "md",
+                      "fontWeight": "semibold",
+                      "h": 10,
+                      "justifyContent": "center",
+                      "lineHeight": "1.2",
+                      "minW": 10,
+                      "outline": "none",
+                      "position": "relative",
+                      "px": 4,
+                      "transition": "all 250ms",
+                      "userSelect": "none",
+                      "verticalAlign": "middle",
+                      "whiteSpace": "nowrap",
+                      "width": "auto",
+                    }
+                  }
+                  className="chakra-button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <button
+                    className="chakra-button css-ywjnlx"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Create project using this bundle
+                    <ButtonIcon
+                      marginStart="0.5rem"
+                    >
+                      <Styled(span)
+                        className="chakra-button__icon"
+                        marginStart="0.5rem"
+                      >
+                        <span
+                          className="chakra-button__icon css-1oeb2oe"
+                        >
+                          <FaPlus
+                            aria-hidden={true}
+                            focusable={false}
+                          >
+                            <IconBase
+                              aria-hidden={true}
+                              attr={
+                                Object {
+                                  "viewBox": "0 0 448 512",
+                                }
+                              }
+                              focusable={false}
+                            >
+                              <svg
+                                aria-hidden={true}
+                                fill="currentColor"
+                                focusable={false}
+                                height="1em"
+                                stroke="currentColor"
+                                strokeWidth="0"
+                                style={
+                                  Object {
+                                    "color": undefined,
+                                  }
+                                }
+                                viewBox="0 0 448 512"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                  key="0"
+                                />
+                              </svg>
+                            </IconBase>
+                          </FaPlus>
+                        </span>
+                      </Styled(span)>
+                    </ButtonIcon>
+                  </button>
+                </Styled(button)>
+              </Button>
+            </div>
+          </Styled(div)>
+        </Flex>
         <Box
           key=".2"
         >

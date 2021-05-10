@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Heading,
   HStack,
   Progress,
@@ -102,19 +103,21 @@ function LinkToWorkProduct(p: {
     getLinkKey(p.task.workProduct),
     getLinkParams(p.task.workProduct)
   )
+  const text =
+    p.task.state === 'ERROR' ? 'View error details' : 'View work product'
   return (
-    <IconButton
+    <Button
       colorScheme={p.task.state === 'ERROR' ? 'red' : 'blue'}
-      label={
-        p.task.state === 'ERROR' ? 'View error details' : 'View work product'
-      }
       onClick={() => {
         goToWorkProduct()
         p.removeTask(p.task.id)
       }}
+      rightIcon={<ExternalLinkIcon />}
+      size='sm'
+      variant='ghost'
     >
-      <ExternalLinkIcon />
-    </IconButton>
+      {text}
+    </Button>
   )
 }
 
@@ -146,13 +149,16 @@ function Task({removeTask, task, ...p}: TaskProps) {
               <LinkToWorkProduct removeTask={removeTask} task={task} />
             </Box>
           )}
-          <IconButton
-            visibility={taskIsFinished(task) ? 'inherit' : 'hidden'}
-            label='Done'
+          <Button
+            colorScheme='blue'
             onClick={() => removeTask(task.id)}
+            rightIcon={<CheckIcon />}
+            size='sm'
+            variant='ghost'
+            visibility={taskIsFinished(task) ? 'inherit' : 'hidden'}
           >
-            <CheckIcon />
-          </IconButton>
+            Clear
+          </Button>
         </HStack>
       </HStack>
       <HStack justify='space-between' spacing={6}>

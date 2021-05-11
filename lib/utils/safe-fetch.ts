@@ -1,13 +1,13 @@
 import LogRocket from 'lib/logrocket'
 
-export type ResponseError = {
+export interface ResponseError {
   ok: false
   data?: unknown
   error: Error
   problem: string
 }
 
-export type ResponseOk<T> = Response & {
+export interface ResponseOk<T> extends Response {
   ok: true
   data: T
 }

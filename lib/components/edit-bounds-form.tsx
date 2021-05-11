@@ -148,7 +148,7 @@ export default function EditBoundsForm(p: {
           Must be between -180 and 180 degrees.
         </Text>
       </Stack>
-      <Size bounds={bounds} />
+      <Size bounds={p.bounds} />
     </Stack>
   )
 }
@@ -157,22 +157,26 @@ const formatLarge = format('.4s')
 const originsToStatus = (areaKm: number): AlertStatus =>
   areaKm >= 1_000_000 ? 'error' : areaKm >= 100_000 ? 'warning' : 'info'
 function Size({bounds}: {bounds: CL.Bounds}) {
-  const bbox = bboxPolygon([
-    bounds.west,
-    bounds.south,
-    bounds.east,
-    bounds.north
-  ])
-  const areaKm = Math.round(measureArea(bbox) / 1_000)
-  const originPoints = calculateGridPoints(bounds)
-  return (
-    <Alert className='DEV' status={originsToStatus(originPoints)}>
-      <AlertIcon />
-      <AlertDescription>
-        <strong>{formatLarge(areaKm)} </strong> kilometers squared
-        <br />
-        <strong>{formatLarge(originPoints)} </strong> origin points
-      </AlertDescription>
-    </Alert>
-  )
+  try {
+    const bbox = bboxPolygon([
+      bounds.west,
+      bounds.south,
+      bounds.east,
+      bounds.north
+    ])
+    const areaKm = Math.round(measureArea(bbox) / 1_000)
+    const originPoints = calculateGridPoints(bounds)
+    return (
+      <Alert className='DEV' status={originsToStatus(originPoints)}>
+        <AlertIcon />
+        <AlertDescription>
+          <strong>{formatLarge(areaKm)} </strong> kilometers squared
+          <br />
+          <strong>{formatLarge(originPoints)} </strong> origin points
+        </AlertDescription>
+      </Alert>
+    )
+  } catch (e) {
+    return null
+  }
 }

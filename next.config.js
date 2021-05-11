@@ -11,6 +11,15 @@ module.exports = {
             value: 'public, max-age=2592000, immutable'
           }
         ]
+      },
+      {
+        source: '/(img|static)/(.*).png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, immutable'
+          }
+        ]
       }
     ]
   },

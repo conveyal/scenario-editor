@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 
 import useActivity from 'lib/hooks/use-activity'
 import useIsOnline from 'lib/hooks/use-is-online'
+import useUser from 'lib/hooks/use-user'
 
 import BannerAlert from './banner-alert'
 import Spinner from './spinner'
@@ -35,10 +36,18 @@ const NotOnline = () => (
   </BannerAlert>
 )
 
+const Unauthorized = () => (
+  <BannerAlert status='error' variant='solid'>
+    <AlertIcon />
+    <AlertTitle>You must be logged in to use Conveyal.</AlertTitle>
+  </BannerAlert>
+)
+
 export default function APIStatusBar() {
   const [showIsValidating, setShowIsValidating] = useState(false)
   const isOnline = useIsOnline()
   const {response} = useActivity()
+  const user = useUser()
   const {error, isValidating} = response
 
   useEffect(() => {
@@ -51,6 +60,7 @@ export default function APIStatusBar() {
   }, [isValidating])
 
   if (isOnline) {
+    if (!user) return <Unauthorized />
     if (error) return <NoAPI />
     if (isValidating && showIsValidating) return <IsValidating />
   } else if (error || showIsValidating) return <NotOnline />

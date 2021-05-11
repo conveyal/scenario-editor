@@ -47,7 +47,7 @@ export default function APIStatusBar() {
   const [showIsValidating, setShowIsValidating] = useState(false)
   const isOnline = useIsOnline()
   const {response} = useActivity()
-  const user = useUser()
+  const userResponse = useUser()
   const {error, isValidating} = response
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function APIStatusBar() {
   }, [isValidating])
 
   if (isOnline) {
-    if (!user) return <Unauthorized />
+    if (!userResponse.isLoading && !userResponse.user) return <Unauthorized />
     if (error) return <NoAPI />
     if (isValidating && showIsValidating) return <IsValidating />
   } else if (error || showIsValidating) return <NotOnline />

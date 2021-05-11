@@ -82,13 +82,13 @@ export function getServerSidePropsWithAuth<T>(
  */
 export default function withAuth(PageComponent) {
   function AuthenticatedComponent(p: IWithAuthProps): JSX.Element {
-    const user = useUser()
+    const {isLoading, user} = useUser()
 
     useEffect(() => {
       if (user) storeUser(user)
     }, [user])
 
-    if (user == null) return <LoadingScreen />
+    if (isLoading || user == null) return <LoadingScreen />
     return (
       <>
         {isAdmin(user) && <DevBar />}

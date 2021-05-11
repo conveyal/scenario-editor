@@ -123,7 +123,7 @@ const selectQueryString = fpGet('queryString')
 
 export default function Sidebar() {
   const router = useRouter()
-  const user = useUser()
+  const {user} = useUser()
   const email = user?.email
   const storeParams = useSelector(selectQueryString)
   const queryParams = {...router.query, ...storeParams}

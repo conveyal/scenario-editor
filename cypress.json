@@ -10,21 +10,13 @@
   "video": false,
   "env": {
     "accessGroup": "testing",
-    "apiUrl": "https://localhost:7070",
+    "username": "testing@conveyal.com",
+    "apiUrl": "http://localhost:7070",
     "dataPrefix": "CYP_",
     "failOnSnapshotDiff": true,
     "region": "scratch",
 
-    "authEnabled": false,
-    "auth0Domain": "conveyal.eu.auth0.com",
-    "auth0Scope": "openid email profile id_token",
-    "auth0SessionCookieName": "appSession",
-    "auth0Username": "testing@conveyal.com",
-
-    "auth0ClientId": "YOUR_CLIENT_ID",
-    "auth0ClientSecret": "YOUR_CLIENT_SECRET",
-    "auth0CookieSecret": "YOUR_COOKIE_SECRET",
-    "auth0Password": "YOUR_PASSWORD"
+    "authEnabled": false
   },
   "projectId": "cvhnxt"
 }

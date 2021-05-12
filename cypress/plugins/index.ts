@@ -12,7 +12,6 @@
 // the project's config changing)
 
 import {addMatchImageSnapshotPlugin} from 'cypress-image-snapshot/plugin'
-import encrypt from 'cypress-nextjs-auth0/encrypt'
 import fs from 'fs'
 
 export default function initializePlugins(on, config) {
@@ -20,7 +19,6 @@ export default function initializePlugins(on, config) {
 
   // used to create the pseudoFixture file
   on('task', {
-    encrypt,
     ensureExists(filename: string, contents = '{}') {
       if (!fs.existsSync(filename)) {
         fs.writeFileSync(filename, contents)

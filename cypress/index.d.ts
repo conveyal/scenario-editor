@@ -207,6 +207,11 @@ declare namespace Cypress {
     loadingComplete(): Chainable<boolean>
 
     /**
+     * Set the cookies
+     */
+    login(): Chainable<void>
+
+    /**
      * Check if the map is centered on a set of coordinates.
      * @example cy.mapCenteredOn([50.5, 121.2], 5)
      */

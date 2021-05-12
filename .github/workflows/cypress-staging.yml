@@ -16,14 +16,11 @@ jobs:
           node-version: '12'
       - uses: cypress-io/github-action@v2
         with:
-          config: baseUrl=https://analysis-emekmhs1y-conveyal.vercel.app
-        env:
+          config: baseUrl=https://conveyal.dev
           CYPRESS_apiUrl: https://staging-api.conveyal.com
           CYPRESS_authEnabled: true
-          CYPRESS_auth0ClientId: ${{ secrets.AUTH0_CLIENT_ID }}
-          CYPRESS_auth0ClientSecret: ${{ secrets.AUTH0_CLIENT_SECRET }}
-          CYPRESS_auth0CookieSecret: ${{ secrets.AUTH0_COOKIE_SECRET }}
-          CYPRESS_auth0Password: ${{ secrets.AUTH0_PASSWORD }}
+          CYPRESS_appSession0: ${{ secrets.AUTH0_APP_SESSION_0 }}
+          CYPRESS_appSession1: ${{ secrets.AUTH0_APP_SESSION_1 }}
 
       - uses: actions/upload-artifact@v1
         if: failure()

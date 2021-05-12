@@ -10,7 +10,6 @@
 import '@testing-library/cypress/add-commands'
 import 'cypress-file-upload'
 import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
-import 'cypress-nextjs-auth0'
 import 'cypress-wait-until'
 
 import './analysis'
@@ -31,7 +30,8 @@ Cypress.Cookies.defaults({
     'a0:state',
     'a0:session',
     'a0:redirectTo',
-    'appSession',
+    'appSession.0',
+    'appSession.1',
     'adminTempAccessGroup',
     'cypressTestData'
   ]
@@ -47,25 +47,24 @@ Cypress.on('uncaught:exception', (err) => {
   return false
 })
 
-beforeEach(() => {
+Cypress.Commands.add('login', () => {
+  // Get the user from the cookie
+  return cy.getCookie('appSession.0').then((cookieValue) => {
+    /* Skip logging in again if session already exists */
+    if (cookieValue) return true
+    cy.setCookie('appSession.0', Cypress.env('appSession0'))
+    cy.setCookie('appSession.1', Cypress.env('appSession1'))
+  })
+})
+
+before(() => {
   if (Cypress.env('authEnabled')) {
-    cy.login().then(() => {
-      cy.visitHome()
+    cy.login()
+    cy.visitHome()
 
-      cy.contains(Cypress.env('auth0Username'))
-      cy.contains(Cypress.env('accessGroup'))
+    cy.contains(Cypress.env('username'))
+    cy.contains(Cypress.env('accessGroup'))
 
-      cy.findByRole('alert').should('not.exist')
-
-      // Override the user on the window object
-      cy.window().then((win) => {
-        win['__user'] = {
-          accessGroup: Cypress.env('accessGroup'),
-          adminTempAccessGroup: null,
-          email: Cypress.env('auth0Username'),
-          idToken: Cypress.env('auth0IdToken')
-        }
-      })
-    })
+    cy.findByRole('alert').should('not.exist')
   }
 })

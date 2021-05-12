@@ -222,18 +222,16 @@ export const handleSurface = (error, responses) => {
         )
       ]
     } else {
-      const errorInfo =
-        // R5 may print the stack trace of uncaught errors as a message. Until
-        // that's cleaned up in R5, this makes things pretty for the error modal
-        error.statusText && error.value.message && !error.value.stackTrace
-          ? {
-              value: {
-                message: error.statusText,
-                stackTrace: error.value.message
-              }
-            }
-          : error
-      return setServerError(errorInfo)
+      // R5 may print the stack trace of uncaught errors as a message. Until
+      // that's cleaned up in R5, this makes things pretty for the error modal
+      return [
+        setIsochroneFetchStatus(false),
+        setScenarioApplicationErrors([
+          {
+            messages: [error.value.message]
+          }
+        ])
+      ]
     }
   } else if (get(responses, '[0].status') === 202) {
     // response timeout

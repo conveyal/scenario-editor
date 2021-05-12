@@ -1,5 +1,6 @@
 import {
   Alert,
+  AlertDescription,
   AlertIcon,
   Box,
   Button,
@@ -39,6 +40,31 @@ function filterInvalidBundles(bundles: CL.Bundle[]): CL.Bundle[] {
   })
 }
 
+function countErrors(bundle?: CL.Bundle) {
+  const errors = {
+    HIGH: 0,
+    MEDIUM: 0,
+    LOW: 0,
+    UKNOWN: 0,
+    total: 0
+  }
+  if (bundle?.feeds?.length > 0) {
+    bundle.feeds.forEach((feed) => {
+      feed.errors?.forEach((e) => {
+        errors[e.priority]++
+        errors.total++
+      })
+    })
+  }
+  return errors
+}
+
+function getStatusFromErrors(errors) {
+  if (errors.HIGH > 0) return 'error'
+  if (errors.MEDIUM > 0) return 'warning'
+  if (errors.LOW > 0) return 'info'
+}
+
 export default function CreateProject({
   bundles,
   query
@@ -46,13 +72,15 @@ export default function CreateProject({
   bundles: CL.Bundle[]
   query: CL.Query
 }) {
-  const [bundleId, setBundleId] = useState(null)
+  const [bundleId, setBundleId] = useState(query.bundleId)
   const [creating, setCreating] = useState(false)
   const nameInput = useInput({test: hasText, value: ''})
   const {regionId} = query
   const routeToModifications = useRouteTo('modifications', {regionId})
-
   const readyToCreate = !nameInput.isInvalid && bundleId && bundleId.length > 0
+  const selectedBundle = bundles.find((b) => b._id === bundleId)
+  const errors = countErrors(selectedBundle)
+  const bundleStatus = getStatusFromErrors(errors)
 
   async function _create() {
     setCreating(true)
@@ -78,7 +106,7 @@ export default function CreateProject({
           <FormLabel htmlFor={nameInput.id}>
             {message('project.name')}
           </FormLabel>
-          <Input {...nameInput} />
+          <Input autoFocus {...nameInput} />
         </FormControl>
 
         {bundles.length > 0 ? (
@@ -89,16 +117,29 @@ export default function CreateProject({
             options={filterInvalidBundles(bundles)}
             onChange={(b) => setBundleId(b._id)}
             placeholder={message('project.selectBundle')}
-            value={bundles.find((b) => b._id === bundleId)}
+            value={selectedBundle}
           />
         ) : (
           <Stack spacing={4}>
             <Box>{message('project.noBundles')}</Box>
-            <Link to='bundleCreate' {...query}>
+            <Link to='bundleCreate' query={query}>
               <Button colorScheme='green'>{message('bundle.create')}</Button>
             </Link>
           </Stack>
         )}
+        {errors.total > 0 && (
+          <Alert status={bundleStatus}>
+            <AlertIcon />
+            <AlertDescription>
+              <strong>{errors.total}</strong> issues found while processing this
+              bundle.{' '}
+              <Link to='bundle' query={{bundleId, regionId}}>
+                View issues &rarr;
+              </Link>
+            </AlertDescription>
+          </Alert>
+        )}
+
         {!readyToCreate && (
           <Alert status='warning'>
             <AlertIcon /> {message('project.createActionTooltip')}

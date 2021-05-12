@@ -33,9 +33,6 @@ const DevBar = () => (
       width='100vw'
       zIndex={10000}
     />
-    <Head>
-      <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
-    </Head>
   </>
 )
 
@@ -82,16 +79,22 @@ export function getServerSidePropsWithAuth<T>(
  */
 export default function withAuth(PageComponent) {
   function AuthenticatedComponent(p: IWithAuthProps): JSX.Element {
-    const user = useUser()
+    const {isLoading, user} = useUser()
 
     useEffect(() => {
       if (user) storeUser(user)
     }, [user])
 
-    if (user == null) return <LoadingScreen />
+    if (isLoading || user == null) return <LoadingScreen />
     return (
       <>
-        {isAdmin(user) && <DevBar />}
+        {isAdmin(user) ? (
+          <DevBar />
+        ) : (
+          <Head>
+            <style id='DEVSTYLE'>{`.DEV{display: none !important;}`}</style>
+          </Head>
+        )}
         <PageComponent user={user} {...p} />
       </>
     )

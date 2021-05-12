@@ -17,7 +17,7 @@ import {
   HStack
 } from '@chakra-ui/react'
 import startCase from 'lodash/startCase'
-import {useCallback, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 
 import {useBundles} from 'lib/hooks/use-collection'
 import useInput from 'lib/hooks/use-controlled-input'
@@ -25,7 +25,7 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
 import ConfirmButton from './confirm-button'
-import {ChevronDown, ChevronUp, DeleteIcon} from './icons'
+import {AddIcon, ChevronDown, ChevronUp, DeleteIcon} from './icons'
 import LabelHeading from './label-heading'
 import IconButton from './icon-button'
 
@@ -179,15 +179,27 @@ export default function EditBundle({
   originalBundle: CL.Bundle
   regionId: string
 }) {
-  const {remove, update} = useBundles({query: {regionId}})
-
+  const {remove, update} = useBundles({
+    query: {regionId},
+    config: {
+      revalidateOnMount: true
+    }
+  })
   const goToBundles = useRouteTo('bundles', {regionId})
   const [bundle, setBundle] = useState(originalBundle)
-
+  const goToCreateProject = useRouteTo('projectCreate', {
+    bundleId: bundle._id,
+    regionId
+  })
   const setName = useCallback(
     (name) => setBundle((bundle) => ({...bundle, name})),
     [setBundle]
   )
+
+  // If the bundle gets updated externally (usually on creation, overwrite the data)
+  useEffect(() => {
+    setBundle(originalBundle)
+  }, [originalBundle])
 
   // If this bundle has project's associated with it. Disable deletion.
   const totalBundleProjects =
@@ -221,7 +233,16 @@ export default function EditBundle({
 
   return (
     <Stack spacing={4}>
-      <Heading size='lg'>{message('bundle.edit')}</Heading>
+      <Flex justify='space-between'>
+        <Heading size='lg'>{message('bundle.edit')}</Heading>
+        <Button
+          colorScheme='green'
+          onClick={goToCreateProject}
+          rightIcon={<AddIcon />}
+        >
+          Create project using this bundle
+        </Button>
+      </Flex>
 
       {bundle.status === 'ERROR' && (
         <Alert status='error'>

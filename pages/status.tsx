@@ -10,15 +10,26 @@ import {
 import useSWR from 'swr'
 
 import {ALink, ExternalLink} from 'lib/components/link'
+import {getJSON, ResponseError} from 'lib/utils/safe-fetch'
+
+type Version = Record<string, string>
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL + '/version'
+async function fetcher(url: string) {
+  const res = await getJSON<Version>(url)
+  if (!res.ok) throw res
+  return res.data
+}
 
 export default function Status() {
-  const req = useSWR(API_URL, {refreshInterval: 5000})
+  const {data, error, isValidating} = useSWR<Version, ResponseError>(
+    API_URL,
+    fetcher,
+    {refreshInterval: 5_000}
+  )
 
-  const color = !req.data ? 'red.500' : 'green.500'
-  const text = req.error ? 'ERROR' : req.data ? 'OK' : 'NOT FOUND'
-  const data = req.error || req.data || {}
+  const color = error ? 'red.500' : isValidating ? 'blue.500' : 'green.500'
+  const text = error ? error.problem : data ? 'OK' : 'WAITING'
 
   return (
     <Flex justify='center' mt={40}>
@@ -44,13 +55,16 @@ export default function Status() {
             </Heading>
           </Flex>
           <ExternalLink href={API_URL}>{API_URL}</ExternalLink>
-          <List styleType='disc'>
-            {Object.keys(data).map((k) => (
-              <ListItem key={k}>
-                {k}:&nbsp;<strong>{data[k]}</strong>
-              </ListItem>
-            ))}
-          </List>
+          {error && <p>{error.error.message}</p>}
+          {data && (
+            <List styleType='disc'>
+              {Object.keys(data).map((k) => (
+                <ListItem key={k}>
+                  {k}:&nbsp;<strong>{data[k]}</strong>
+                </ListItem>
+              ))}
+            </List>
+          )}
         </Stack>
       </Stack>
     </Flex>

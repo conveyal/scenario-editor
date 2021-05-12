@@ -26,6 +26,7 @@ import useActivity from 'lib/hooks/use-activity'
 import {useBundles} from 'lib/hooks/use-collection'
 import useFileInput from 'lib/hooks/use-file-input'
 import {useRegion} from 'lib/hooks/use-model'
+import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
 import Code from './code'
@@ -50,6 +51,7 @@ export default function CreateBundle({query}: {query: CL.Query}) {
     west: -180
   }
   const formRef = useRef<HTMLFormElement>()
+  const goToBundles = useRouteTo('bundles', {regionId})
 
   const hasExistingBundles = bundles?.length > 0
   const dataIsLoaded = Array.isArray(bundles) && !!region
@@ -97,7 +99,10 @@ export default function CreateBundle({query}: {query: CL.Query}) {
             options: {body, method: 'post'}
           })
         )
+        // Show the new activity
         await activityResponse.revalidate()
+        // Redirect to the bundles page
+        goToBundles()
       } catch (e) {
         toast({
           title: 'Error creating bundle',
@@ -135,7 +140,12 @@ export default function CreateBundle({query}: {query: CL.Query}) {
         >
           <FormControl isRequired>
             <FormLabel htmlFor='bundleName'>{message('bundle.name')}</FormLabel>
-            <Input id='bundleName' name='bundleName' placeholder='Name' />
+            <Input
+              autoFocus
+              id='bundleName'
+              name='bundleName'
+              placeholder='Name'
+            />
           </FormControl>
 
           <Skeleton isLoaded={dataIsLoaded}>

@@ -33,12 +33,10 @@ Cypress.Commands.add(
 
       // Click "View work product" button (which also clears the task)
       cy.findButton(/View work product/).click()
-    })
 
-    // go back and grab the id
-    cy.findByLabelText(/or select an existing one/)
-      .click({force: true})
-      .type(name + '{enter}')
+      // Wait for navigation to finish
+      cy.navComplete()
+    })
 
     return cy
       .location('pathname')

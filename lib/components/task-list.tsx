@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Heading,
   HStack,
   Progress,
@@ -11,7 +12,6 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 
 import {CheckIcon, ExternalLinkIcon} from 'lib/components/icons'
-import IconButton from 'lib/components/icon-button'
 import {ALink} from 'lib/components/link'
 import useActivity from 'lib/hooks/use-activity'
 import useRouteTo from 'lib/hooks/use-route-to'
@@ -102,19 +102,21 @@ function LinkToWorkProduct(p: {
     getLinkKey(p.task.workProduct),
     getLinkParams(p.task.workProduct)
   )
+  const text =
+    p.task.state === 'ERROR' ? 'View error details' : 'View work product'
   return (
-    <IconButton
+    <Button
       colorScheme={p.task.state === 'ERROR' ? 'red' : 'blue'}
-      label={
-        p.task.state === 'ERROR' ? 'View error details' : 'View work product'
-      }
       onClick={() => {
         goToWorkProduct()
         p.removeTask(p.task.id)
       }}
+      px={3}
+      rightIcon={<ExternalLinkIcon />}
+      variant='ghost'
     >
-      <ExternalLinkIcon />
-    </IconButton>
+      {text}
+    </Button>
   )
 }
 
@@ -125,7 +127,7 @@ interface TaskProps {
 
 function Task({removeTask, task, ...p}: TaskProps) {
   return (
-    <Stack id={task.id} px={px} py={py} position='relative' spacing={1} {...p}>
+    <Stack id={task.id} pl={px} py={py} position='relative' spacing={1} {...p}>
       <HStack justify='space-between'>
         <Heading
           color={getColor(task)}
@@ -140,22 +142,25 @@ function Task({removeTask, task, ...p}: TaskProps) {
         >
           {task.title}
         </Heading>
-        <HStack>
+        <HStack spacing={1} pr={1}>
           {taskIsFinished(task) && task.workProduct && (
             <Box>
               <LinkToWorkProduct removeTask={removeTask} task={task} />
             </Box>
           )}
-          <IconButton
-            visibility={taskIsFinished(task) ? 'inherit' : 'hidden'}
-            label='Done'
+          <Button
+            colorScheme='blue'
             onClick={() => removeTask(task.id)}
+            px={3}
+            rightIcon={<CheckIcon />}
+            variant='ghost'
+            visibility={taskIsFinished(task) ? 'inherit' : 'hidden'}
           >
-            <CheckIcon />
-          </IconButton>
+            Clear
+          </Button>
         </HStack>
       </HStack>
-      <HStack justify='space-between' spacing={6}>
+      <HStack justify='space-between' pr={px} spacing={6}>
         <Box
           textOverflow='ellipsis'
           whiteSpace='nowrap'

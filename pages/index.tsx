@@ -22,7 +22,8 @@ export default withAuth(function SelectRegionPage() {
   const {data: regions} = useRegions({
     options: findOptions
   })
-  const {accessGroup, email} = useUser() ?? {}
+  const {user} = useUser()
+  const {accessGroup, email} = user ?? {}
   const goToRegionCreate = useRouteTo('regionCreate')
   const logoutLink = useLink('logout')
   const goToRegion = useRouteTo('projects')

@@ -150,7 +150,7 @@ function useProfileRequest(isComparison: boolean) {
 
 function CreateModal({onClose, isComparison, projectId, variantIndex}) {
   const toast = useToast()
-  const user = useUser()
+  const {user} = useUser()
   const profileRequest = useProfileRequest(isComparison)
   const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)

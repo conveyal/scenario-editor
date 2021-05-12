@@ -47,8 +47,8 @@ export default function useActivity(): UseActivityResponse {
 /**
  * SWR expects errors to throw.
  */
-async function swrFetcher(url: string, user: IUser) {
-  const response = await authFetch<CL.Activity>(url, user)
+async function swrFetcher(user: IUser) {
+  const response = await authFetch<CL.Activity>(API.Activity, user)
   if (response.ok) return response.data
   throw response
 }
@@ -140,7 +140,7 @@ const taskReducer: Reducer<State, Actions> = (state, action) => {
  * other instances should use the default hook.
  */
 export function useActivitySync(): UseActivityResponse {
-  const user = useUser()
+  const {user} = useUser()
   const [state, dispatch] = useReducer(
     taskReducer,
     initialState,
@@ -171,7 +171,7 @@ export function useActivitySync(): UseActivityResponse {
 
   // Request activity on a specific interval
   const response = useSWR<CL.Activity, ResponseError>(
-    [API.Activity, user],
+    user ? [user] : null,
     swrFetcher,
     {
       onSuccess,

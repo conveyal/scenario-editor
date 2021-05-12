@@ -46,15 +46,9 @@ function deleteThisBundle(bundleName: string) {
 describe('Network bundles', () => {
   const region = getDefaultRegion()
 
-  const singleFeedBundle = region.getBundle(
-    'Temporary Single feed',
-    scratchRegion.GTFSfile,
-    scratchRegion.PBFfile
-  )
+  const singleFeedBundle = region.defaultBundle
 
   beforeEach(() => region.navTo('network bundles'))
-
-  after(() => singleFeedBundle.delete())
 
   it('with single feed can be uploaded and deleted', function () {
     singleFeedBundle.navTo()

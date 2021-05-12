@@ -174,27 +174,29 @@ describe('Opportunity Datasets', function () {
   })
 
   describe('can be downloaded', () => {
-    it('as .grid', () => {
-      importedWithGrid.navTo()
-      cy.contains(/\.grid/)
-      cy.location('href')
-        .should('match', /opportunityDatasetId=\w{24}$/)
-        .then((href) => {
-          const gridId = href.match(/\w{24}$/)[0]
-          cy.request(
-            `${Cypress.env('apiUrl')}/api/opportunities/${gridId}/grid`
-          ).then((response) => {
-            cy.request(response.body.url).then((response) => {
-              cy.readFile(
-                'cypress/fixtures/' + scratchRegion.opportunities.grid.file,
-                'utf8'
-              ).then((file) => {
-                expect(response.body).to.equal(file)
+    if (!Cypress.env('authEnabled')) {
+      it('as .grid', () => {
+        importedWithGrid.navTo()
+        cy.contains(/\.grid/)
+        cy.location('href')
+          .should('match', /opportunityDatasetId=\w{24}$/)
+          .then((href) => {
+            const gridId = href.match(/\w{24}$/)[0]
+            cy.request({
+              url: `${Cypress.env('apiUrl')}/api/opportunities/${gridId}/grid`
+            }).then((response) => {
+              cy.request(response.body.url).then((response) => {
+                cy.readFile(
+                  'cypress/fixtures/' + scratchRegion.opportunities.grid.file,
+                  'utf8'
+                ).then((file) => {
+                  expect(response.body).to.equal(file)
+                })
               })
             })
           })
-        })
-    })
+      })
+    }
 
     // This currently crahes Cypress
     it.skip('as TIFF', () => {

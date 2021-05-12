@@ -57,7 +57,12 @@ export function getUser(serverSideUser?: IUser): undefined | IUser {
 }
 
 export function storeUser(user: IUser): void {
-  if (!process.browser || AUTH_DISABLED) return
+  if (
+    !process.browser ||
+    AUTH_DISABLED ||
+    process.env.NEXT_PUBLIC_CYPRESS === 'true'
+  )
+    return
 
   // Store the user on window, requiring a new session on each tab/page
   window.__user = user

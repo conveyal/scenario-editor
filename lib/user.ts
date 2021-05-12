@@ -3,6 +3,7 @@ import {parse} from 'cookie'
 import {IncomingMessage} from 'http'
 
 import {AUTH_DISABLED} from 'lib/constants'
+import {getParsedItem} from 'lib/utils/local-storage'
 
 import LogRocket from './logrocket'
 
@@ -53,7 +54,7 @@ export function userFromSession(req: IncomingMessage, session: Session): IUser {
 export function getUser(serverSideUser?: IUser): undefined | IUser {
   if (AUTH_DISABLED) return localUser
   if (!process.browser) return serverSideUser
-  return window.__user || serverSideUser
+  return window.__user || getParsedItem('cypress:user') || serverSideUser
 }
 
 export function storeUser(user: IUser): void {

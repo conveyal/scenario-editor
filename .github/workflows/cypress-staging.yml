@@ -17,6 +17,7 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           config: baseUrl=https://conveyal.dev
+        env:
           CYPRESS_apiUrl: https://staging-api.conveyal.com
           CYPRESS_authEnabled: true
           CYPRESS_appSession0: ${{ secrets.AUTH0_APP_SESSION_0 }}

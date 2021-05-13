@@ -257,7 +257,7 @@
   },
   "analysis": {
     "cutoff": "Travel time: Cutoff (minutes)",
-    "percentileOfTravelTime": "Percentile",
+    "percentile": "Percentile",
     "accessibility": "Accessibility",
     "selectPercentileOfAccessibility": "Percentile of accessibility",
     "percentileOfAccessibility": "%(percentage)% of %(weightByName) can access at least %(accessibility) %(accessToName)",

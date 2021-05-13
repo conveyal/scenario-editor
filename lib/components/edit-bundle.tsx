@@ -14,7 +14,8 @@ import {
   useDisclosure,
   AlertTitle,
   AlertIcon,
-  HStack
+  HStack,
+  useToast
 } from '@chakra-ui/react'
 import startCase from 'lodash/startCase'
 import {useCallback, useEffect, useState} from 'react'
@@ -29,7 +30,7 @@ import {AddIcon, ChevronDown, ChevronUp, DeleteIcon} from './icons'
 import LabelHeading from './label-heading'
 import IconButton from './icon-button'
 
-const hasContent = (s: string) => s.length > 0
+const hasContent = (s: unknown) => typeof s === 'string' && s.length > 0
 
 function getSummaryStatus(
   summary: CL.GTFSErrorTypeSummary
@@ -195,6 +196,7 @@ export default function EditBundle({
     (name) => setBundle((bundle) => ({...bundle, name})),
     [setBundle]
   )
+  const toast = useToast({position: 'top', status: 'success'})
 
   // If the bundle gets updated externally (usually on creation, overwrite the data)
   useEffect(() => {
@@ -206,14 +208,34 @@ export default function EditBundle({
     bundleProjects?.filter((p) => p.bundleId === bundle._id).length ?? 0
 
   async function _deleteBundle() {
-    await remove(bundle._id)
-    goToBundles()
+    const res = await remove(bundle._id)
+    if (res.ok === false) {
+      toast({
+        status: 'error',
+        title: 'Failed to delete network bundle',
+        description: res.error.message
+      })
+    } else {
+      toast({
+        title: 'Network bundle deleted successfully'
+      })
+      goToBundles()
+    }
   }
 
   async function _saveBundle() {
     const res = await update(bundle._id, bundle)
-    if (res.ok) {
-      setBundle(res.data) // nonce update
+    if (res.ok === false) {
+      toast({
+        status: 'error',
+        title: 'Error while saving changes to bundle',
+        description: res.error.message
+      })
+    } else {
+      setBundle(res.data.find((b) => b._id === bundle._id)) // nonce update
+      toast({
+        title: 'Changes saved to network bundle'
+      })
     }
   }
 

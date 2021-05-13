@@ -44,8 +44,8 @@ import JSONEditor from './json-editor'
 import ModificationType from './type'
 import Variants from './variants'
 
-// Debounce the update function for five seconds
-const DEBOUNCE_MS = 10 * 1000
+// Debounce the update function for thirty seconds
+const DEBOUNCE_MS = 30_000
 
 // Shortened version
 const hasOwnProperty = (o, p) => Object.prototype.hasOwnProperty.call(o, p)

@@ -101,7 +101,7 @@ Cypress.Commands.add('fetchResults', () => {
 
 Cypress.Commands.add('setTimeCutoff', (minutes: number) => {
   cy.findByLabelText(
-    /Travel time: Cutoff (minutes)/
+    /Travel time: Cutoff \(minutes\)/i
   ).type(`{selectall}${minutes}`, {force: true})
 })
 

@@ -19,7 +19,7 @@ export interface UseCollectionResponse<T> extends UseDataResponse<T[]> {
   create: (params: Partial<T>) => Promise<SafeResponse<T>>
   remove: (_id: string) => Promise<SafeResponse<T>>
   response: SWRResponse<T[], ResponseError>
-  update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse<T>>
+  update: (_id: string, newProperties: Partial<T>) => Promise<SafeResponse<T[]>>
 }
 
 const encode = (o: unknown) => {

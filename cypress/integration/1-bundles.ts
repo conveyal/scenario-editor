@@ -35,8 +35,9 @@ function createBundle(name: string, selectFilesFn: () => void) {
 }
 
 function deleteThisBundle(bundleName: string) {
-  cy.findByRole('button', {name: /Delete this network bundle/i}).click()
+  cy.findButton(/Delete this network bundle/i).click()
   cy.findButton(/Confirm/).click()
+  cy.findToast().findByText(/Network bundle deleted successfully/)
   cy.location('pathname').should('match', /.*\/bundles$/)
   cy.navComplete()
   cy.findByText(/Select.../).click()
@@ -50,11 +51,10 @@ describe('Network bundles', () => {
 
   beforeEach(() => region.navTo('network bundles'))
 
-  it('with single feed can be uploaded and deleted', function () {
+  it('can be uploaded', function () {
     singleFeedBundle.navTo()
 
     // confirm that the bundle was saved
-    cy.contains('or select an existing one')
     cy.location('pathname').should('match', /.*bundles\/.{24}$/)
     cy.findByLabelText(/Network bundle name/i)
       .invoke('val')
@@ -65,7 +65,7 @@ describe('Network bundles', () => {
     cy.findByLabelText(/Feed #2/).should('not.exist')
   })
 
-  it('can reuse OSM and GTFS components', function () {
+  it('can reuse OSM and GTFS components and be edited', function () {
     createBundle(names.reuse, () => {
       cy.findByText(/Reuse existing OpenStreetMap/i).click()
       cy.findByText(/network bundle to reuse OSM from/i)
@@ -80,6 +80,18 @@ describe('Network bundles', () => {
     cy.findByLabelText(/Feed #1/)
       .invoke('val')
       .should('equal', scratchRegion.feedAgencyName)
+
+    const editedBundleName = names.reuse + ' Edited'
+    const editedFeedName = scratchRegion.feedAgencyName + ' Edited'
+
+    cy.findByLabelText(/Network bundle name/).type(editedBundleName)
+
+    cy.findByLabelText(/Feed #1/).type(editedFeedName)
+
+    cy.findButton(/Save renamed bundle\/feed names/).click()
+
+    // Reload the page
+    cy.findToast().findByText(/Changes saved to network bundle/)
 
     deleteThisBundle(names.reuse)
   })

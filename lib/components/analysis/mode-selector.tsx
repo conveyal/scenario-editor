@@ -94,7 +94,7 @@ export default function ModeSelector({
       />
       <FormControl>
         <FormLabel htmlFor='transitModes' textAlign='center'>
-          Transit modes
+          {message('mode.transit')}
         </FormLabel>
         <ButtonGroup isAttached id='transitModes'>
           <Button
@@ -104,7 +104,7 @@ export default function ModeSelector({
             variant={_hasAllTransit() ? 'solid' : 'ghost'}
             colorScheme={color}
           >
-            All
+            {message('mode.all')}
           </Button>
           <Button
             isDisabled={disabled}
@@ -187,7 +187,7 @@ export default function ModeSelector({
           textAlign='right'
           whiteSpace='nowrap'
         >
-          Egress mode
+          {message('mode.egress')}
         </FormLabel>
         <ButtonGroup id='egressMode' spacing={0}>
           <Button

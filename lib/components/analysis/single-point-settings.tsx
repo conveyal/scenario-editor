@@ -659,7 +659,7 @@ const JSONEditor = memo<{
         spellCheck={false}
       />
       <FormHelperText>
-        {message('analysis.customizeProfileRequest.description')}
+        {message('analysis.customizeRequest.description')}
       </FormHelperText>
     </FormControl>
   )

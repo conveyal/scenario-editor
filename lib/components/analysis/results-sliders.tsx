@@ -12,6 +12,7 @@ import {
 import {useCallback, memo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import DocsLink from '../docs-link'
+import message from 'lib/message'
 
 import {
   setMaxTripDurationMinutes,
@@ -63,7 +64,7 @@ export default function ResultSliders({
             textAlign='center'
             whiteSpace='nowrap'
           >
-            Travel time cutoff minutes
+            {message('analysis.cutoff')}
           </FormLabel>
         </FormControl>
         <Box pl={5} width='95px'>
@@ -157,7 +158,9 @@ const PercentileSlider = memo<PercentileSliderProps>(function PercentileSlider({
         </SliderThumb>
       </Slider>
       <Flex alignItems='center' justify='center'>
-        <FormLabel id={percentileSlider.id}>Percentile</FormLabel>
+        <FormLabel id={percentileSlider.id}>
+          {message('analysis.percentile')}
+        </FormLabel>
         <div>
           <DocsLink to='analysis/methodology#time-percentile' />
         </div>

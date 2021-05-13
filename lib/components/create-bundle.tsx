@@ -311,7 +311,7 @@ export default function CreateBundle({query}: {query: CL.Query}) {
             <Button
               isDisabled={!isValid()}
               isLoading={uploading}
-              loadingText={message('common.processing')}
+              loadingText={message('common.uploading')}
               size='lg'
               type='submit'
               colorScheme='green'

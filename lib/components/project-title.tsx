@@ -7,14 +7,14 @@ import ExportProject from './export-project'
 import IconButton from './icon-button'
 import {ChevronLeft, ExternalLinkIcon, SettingsIcon} from './icons'
 
-export default function ProjectTitle({project}) {
+export default function ProjectTitle({project}: {project: CL.Project}) {
   const exportSelect = useDisclosure()
   const goToAllProjects = useRouteTo('projects', {
-    regionId: project.regionId
+    regionId: project?.regionId
   })
   const goToProjectSettings = useRouteTo('projectSettings', {
-    regionId: project.regionId,
-    projectId: project._id
+    regionId: project?.regionId,
+    projectId: project?._id
   })
 
   const name = project ? project.name : 'Loading...'

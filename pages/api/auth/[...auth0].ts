@@ -3,7 +3,6 @@ import {
   handleCallback,
   handleLogin,
   handleLogout,
-  handleProfile,
   Session
 } from '@auth0/nextjs-auth0'
 import {NextApiRequest, NextApiResponse} from 'next'
@@ -57,16 +56,6 @@ export default handleAuth({
     try {
       await handleLogout(req, res, {
         returnTo: getBaseURL(req)
-      })
-    } catch (e) {
-      res.status(400).json(errorToPOJO(e))
-    }
-  },
-  async profile(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-    try {
-      await handleProfile(req, res, {
-        // afterRefetch: afterCallback,
-        // refetch: true
       })
     } catch (e) {
       res.status(400).json(errorToPOJO(e))

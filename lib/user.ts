@@ -3,7 +3,6 @@ import {parse} from 'cookie'
 import {IncomingMessage} from 'http'
 
 import {AUTH_DISABLED} from 'lib/constants'
-import {getParsedItem} from 'lib/utils/local-storage'
 
 import LogRocket from './logrocket'
 
@@ -54,16 +53,11 @@ export function userFromSession(req: IncomingMessage, session: Session): IUser {
 export function getUser(serverSideUser?: IUser): undefined | IUser {
   if (AUTH_DISABLED) return localUser
   if (!process.browser) return serverSideUser
-  return window.__user || getParsedItem('cypress:user') || serverSideUser
+  return window.__user || serverSideUser
 }
 
 export function storeUser(user: IUser): void {
-  if (
-    !process.browser ||
-    AUTH_DISABLED ||
-    process.env.NEXT_PUBLIC_CYPRESS === 'true'
-  )
-    return
+  if (!process.browser || AUTH_DISABLED) return
 
   // Store the user on window, requiring a new session on each tab/page
   window.__user = user

@@ -1,3 +1,5 @@
+import {RECOMMENDED_R5_VERSION} from '../../lib/modules/r5-version/constants'
+
 import {
   defaultAnalysisSettings,
   getDefaultRegion,
@@ -222,7 +224,7 @@ describe('Analysis', () => {
     cy.getPrimaryAnalysisSettings()
       .findByLabelText(/Routing engine/)
       .click({force: true})
-      .type('v6.0.0{enter}')
+      .type(`${RECOMMENDED_R5_VERSION}{enter}`)
 
     cy.getPrimaryAnalysisSettings()
       .findByLabelText(/Decay Function/i)

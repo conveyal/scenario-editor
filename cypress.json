@@ -3,7 +3,7 @@
   "chromeWebSecurity": false,
   "viewportWidth": 1280,
   "viewportHeight": 720,
-  "defaultCommandTimeout": 15000,
+  "defaultCommandTimeout": 30000,
   "pageLoadTimeout": 120000,
   "port": 3001,
   "retries": 0,

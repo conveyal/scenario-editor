@@ -47,7 +47,7 @@ export const defaultAnalysisSettings = {
   toTime: 32400,
   transitModes: 'BUS,TRAM,RAIL,SUBWAY,FERRY,CABLE_CAR,GONDOLA,FUNICULAR',
   walkSpeed: 1.3888888888888888,
-  workerVersion: 'v6.0.1',
+  workerVersion: 'v6.2',
   variantIndex: -1
 }
 

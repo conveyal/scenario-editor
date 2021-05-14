@@ -1737,7 +1737,7 @@ exports[`upload should render without errors 1`] = `
             isLoading={false}
             key=".c"
             leftIcon={<FaPlus />}
-            loadingText="uploading…"
+            loadingText="Uploading..."
             type="submit"
           >
             <Styled(button)

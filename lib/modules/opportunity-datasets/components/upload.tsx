@@ -166,7 +166,7 @@ export default function UploadOpportunityDataset({regionId}) {
           type='submit'
           leftIcon={<AddIcon />}
           isLoading={uploading}
-          loadingText={message('analysis.uploading')}
+          loadingText={message('common.uploading')}
           colorScheme='green'
         >
           {message('analysis.createGrid')}

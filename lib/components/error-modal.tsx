@@ -14,8 +14,9 @@ import {
 } from '@chakra-ui/react'
 import {useState} from 'react'
 import {FallbackProps} from 'react-error-boundary'
+import message from 'lib/message'
 
-const title = 'Unfortunately it appears an error has occured..'
+const title = message('error.title')
 
 function StackTrace({stackTrace, ...p}) {
   // Hide the stack trace in production
@@ -25,7 +26,7 @@ function StackTrace({stackTrace, ...p}) {
   return (
     <Stack spacing={4} {...p}>
       <Button onClick={handleToggle} colorScheme='blue'>
-        {show ? 'Hide' : 'Show'} stack trace
+        {show ? message('error.hide') : message('error.show')}
       </Button>
       <Collapse in={show}>
         <Box
@@ -72,7 +73,7 @@ export default function ErrorModal({error, resetErrorBoundary}: FallbackProps) {
             }}
             colorScheme='yellow'
           >
-            Go back
+            {message('error.back')}
           </Button>
         </ModalFooter>
       </ModalContent>

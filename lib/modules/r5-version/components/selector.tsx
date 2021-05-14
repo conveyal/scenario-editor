@@ -26,7 +26,9 @@ const _isValidNewOption = (newOption) => {
 }
 
 const _promptTextCreator = (label) =>
-  `Use "${label}" — WARNING: this will fail if this .jar does not exist on S3.`
+  message('r5Version.customWarningVersion', {
+    version: label
+  })
 
 // Wrap text in a span and style it with a line-through
 const lineThrough = (text) => (

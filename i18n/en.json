@@ -6,14 +6,8 @@
     "upload": "Upload",
     "delete": "Delete",
     "updated": "Updated",
-    "yes": "yes",
-    "no": "no",
-    "region": "Region",
     "project": "Project",
     "scenario": "Scenario",
-    "help": "help",
-    "true": true,
-    "false": false,
     "or": "or",
     "name": "Name",
     "select": "Select",
@@ -23,19 +17,17 @@
     "removeFrom": "Remove from",
     "route": "Route",
     "loading": "Loading...",
-    "processing": "Processing..."
+    "uploading": "Uploading..."
   },
   "error": {
     "back": "Go back",
-    "close": "Continue anyways",
-    "details": "Details",
-    "report": "Refreshing your browser may resolve the issue. If not, please take a screenshot of your browser window and email it along with the URL and a description of what you were doing to your support team or",
-    "script": "Refresh your browser to resolve this error...",
+    "hide": "Hide full details",
+    "show": "Show full details",
+    "report": "Refreshing your browser may resolve the issue. If not, please copy the expanded error message here and send it to your support team or",
     "supportEmail": "support@conveyal.com",
-    "title": "Unfortunately it appears an error has occured..."
+    "title": "Unfortunately it appears an error has occurred..."
   },
   "authentication": {
-    "logIn": "Log in",
     "logOut": "Log out",
     "username": "Logged in as %(username)"
   },
@@ -46,23 +38,16 @@
     "create": "Create a new network bundle",
     "failure": "Error processing. Please upload valid OSM .pbf and GTFS .zip files.",
     "feed": "Feed",
-    "files": "GTFS .zip files",
-    "feedGroupLabel": "or upload new GTFS collection",
     "delete": "Delete this network bundle",
     "deleteConfirmation": "Are you sure you would like to delete this network bundle? Projects using this network bundle will no longer work.",
     "deleteDisabled": "This network bundle cannot be deleted while projects are using it. Currently used by %(projects) project(s).",
-    "processing": "Wait until processing is complete before leaving this page. This may take a few minutes.",
     "save": "Save renamed bundle/feed names",
     "select": "or select an existing one",
     "notice": "After clicking \"Create\" you will need to wait a few minutes for new OSM and GTFS feeds to be processed.",
     "createDescription": "A Network Bundle requires both GTFS and OSM data. When creating a new Network Bundle you have the option of reusing data from previously created Network Bundles within this region.",
     "osm": {
-      "title": "OpenStreetMap",
-      "description": "Reuse existing OSM data from other bundles or upload new data.",
       "existingTitle": "Reuse existing OpenStreetMap",
       "existingLabel": "Select existing Network Bundle to reuse OSM from.",
-      "existingPlaceholder": "Select a Network Bundle",
-      "existingHelpText": "Older bundles using OSM uploaded to the region have been assigned that data directly.",
       "uploadNewTitle": "Upload new OpenStreetMap",
       "uploadNewLabel": "Select PBF file"
     },
@@ -71,22 +56,17 @@
     "osmosisDescription": "Crop and filter with osmosis",
     "osmosisCommand": "osmosis --read-pbf file.pbf --bounding-box left=%(west) bottom=%(south) right=%(east) top=%(north) --tf accept-ways highway=* public_transport=platform railway=platform park_ride=* --tf accept-relations type=restriction --used-node --write-pbf file-cropped.pbf",
     "gtfs": {
-      "title": "GTFS",
-      "description": "Reuse existing GTFS from other bundles or upload new GTFS.",
       "existingTitle": "Reuse existing GTFS",
       "existingLabel": "Select existing Network Bundle to reuse GTFS from.",
-      "existingPlaceholder": "Select a Network Bundle",
       "uploadNewTitle": "Upload new GTFS",
       "uploadNewLabel": "Select one or more .zip files containing valid GTFS"
     }
   },
-  "map": {
-    "northAbbr": "N"
-  },
   "mode": {
-    "all": "all",
+    "all": "All",
     "access": "Access mode",
     "direct": "Direct mode",
+    "egress": "Egress mode",
     "bus": "Bus",
     "tram": "Tram, Streetcar, Light rail",
     "subway": "Subway, Metro",
@@ -94,19 +74,16 @@
     "ferry": "Ferry, long-distance boat",
     "cableCar": "Cable car",
     "gondola": "Gondola",
-    "funicular": "Funicular"
+    "funicular": "Funicular",
+    "transit": "Transit modes"
   },
   "nav": {
-    "createBundle": "Create Bundle",
-    "selectBundle": "Select Bundle",
     "regions": "Regions",
-    "regionSettings": "Region Settings",
     "projects": "Projects",
     "networkBundles": "Network Bundles",
     "opportunityDatasets": "Spatial Datasets",
     "editModifications": "Edit Modifications",
     "analyze": "Analyze",
-    "notConnectedToInternet": "You are not connected to the internet",
     "unfinishedRequests": "You have unfinished requests. Are you sure you want to exit?",
     "help": "Help and Documentation",
     "resources": "Resources"
@@ -126,39 +103,19 @@
     "analysisVersionDifferent": "You have run regional analyses with a different routing engine version. If you want to compare scenarios, consider re-running them with the same version.",
     "comparisonIsDifferent": "WARNING! The analyses you are comparing ran on different routing engines. Changes in accessibility may be due to differences in the routing engines, rather than the transport scenarios.",
     "latestReleaseVersionNotSelected": "An updated version of the routing engine is available. Changing versions should improve performance but may change analysis results.",
-    "title": "Routing engine"
+    "title": "Routing engine",
+    "customVersionWarning": "Use custom version %(version): (must be a supported Conveyal routing engine version)"
   },
   "region": {
-    "welcome": "welcome",
     "createAction": "Set up a new region",
-    "goToExisting": "or go to an existing region",
-    "goToRegion": "Go to region",
     "name": "Region Name",
     "description": "Description",
-    "configure": "Configure shared settings for region",
     "deleteAction": "Delete this region",
     "deleteConfirmation": "Are you sure you would like to delete this region? This will delete all associated projects and modifications.",
     "editAction": "Save changes",
     "editTitle": "Edit region",
-    "versionOutdated": "An updated version of the Analysis backend is available. To avoid errors, please select the latest version in",
-    "editRegion": "settings for your region.",
-    "loadingRegion": "Loading region…",
     "bounds": "Analysis bounds",
-    "boundsNotice": "Bounds are snapped to points on our regular grid.",
-    "updatesDisabled": "OSM updates have been temporarily disabled and will be moved to the bundle management page.",
-    "r5Version": "Analysis backend version",
-    "statusCode": {
-      "STARTED": "Setting up region…",
-      "UPLOADING_OSM": "Uploading OpenStreetMap data…",
-      "DOWNLOADING_OSM": "Downloading OpenStreetMap data…",
-      "DOWNLOADING_CENSUS": "Downloading Census data…",
-      "EXTRACTING_CENSUS_COLUMNS": "Processing Census data…",
-      "PROJECTING_CENSUS": "Projecting Census data to project grid…",
-      "STORING_CENSUS": "Storing census data…",
-      "ERROR": "Error setting up region...",
-      "DONE": "Done"
-    },
-    "customOpenStreetMapData": "OpenStreetMap data in PBF format"
+    "boundsNotice": "Bounds are snapped to points on our regular grid."
   },
   "project": {
     "createAction": "Create new Project",
@@ -168,20 +125,13 @@
     "deleteConfirmation": "Are you sure you would like to delete this project?",
     "editAction": "Save project",
     "editSettings": "Edit project settings",
-    "importModifications": "Upload/import modifications",
     "importAction": "Import",
-    "loading": "Loading project…",
-    "loadingGTFS": "Loading network bundle & modifications…",
     "bundle": "Associated network bundle",
     "selectBundle": "Select a network bundle...",
     "noBundles": "To get started with projects in this region, first create a network bundle.",
-    "print": "Print a scenario from this project",
     "export": "Download or share this project",
-    "route": "Route",
     "uploadBundle": "Upload a new Network Bundle",
-    "uploadOpportunityDataset": "Upload a new Spatial Dataset",
     "goToExisting": "or go to an existing project",
-    "goToProject": "Go to project",
     "select": "Select a project…"
   },
   "variant": {
@@ -189,8 +139,6 @@
     "name": "Scenario",
     "baseline": "Baseline",
     "plural": "Scenarios",
-    "enterName": "Enter a name for your scenario:",
-    "editName": "Rename this scenario",
     "createAction": "Create a scenario",
     "showModifications": "Show modifications for this scenario on the map",
     "delete": "Delete this scenario",
@@ -231,13 +179,6 @@
     "invalidMultiLineString": "MultiLineString feature in input shapefile has disjoint segments, cannot process.",
     "invalidShapefileType": "Shapefile type must be LineString or MultiLineString",
     "selectZipped": "Select Shapefile (zipped):"
-  },
-  "network": {
-    "error": "Network error. Check your connection and reload the page?",
-    "serverError": "Server error, please reload the page and try again in a few minutes.",
-    "timeout": "Request timed out.",
-    "checkConnection": "Check your connection and reload the page?",
-    "saving": "Saving . . ."
   },
   "modification": {
     "deleteConfirmation": "Are you sure you would like to delete this modification? All external references (example: phasing) to this modification will also be cleared.",
@@ -315,22 +256,14 @@
     "paired": "Paired origin/destination file (experimental)"
   },
   "analysis": {
-    "mode": "Mode of travel",
-    "minutes": "%(minutes) minutes",
-    "squareRoot": "Square root scale",
-    "log": "Logarithmic scale",
-    "linear": "Linear scale",
-    "percentileOfTravelTime": "Travel time percentile",
+    "cutoff": "Travel time: Cutoff (minutes)",
+    "percentile": "Percentile",
     "accessibility": "Accessibility",
-    "accessibilityWithin": "%(name): %(number) %(indicator) within %(cutoff) minutes",
     "selectPercentileOfAccessibility": "Percentile of accessibility",
     "percentileOfAccessibility": "%(percentage)% of %(weightByName) can access at least %(accessibility) %(accessToName)",
     "createGrid": "Upload a new spatial dataset",
     "grid": "Destination opportunity layer",
     "createGridTooltip": "Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).",
-    "cutoff": "Travel time cutoff (minutes)",
-    "addGrid": "Add opportunity dataset",
-    "uploading": "uploading…",
     "gridName": "Spatial dataset",
     "gridFiles": "Select spatial dataset",
     "latField": "Latitude field",
@@ -338,11 +271,9 @@
     "idField": "ID field",
     "countField": "Opportunity count field",
     "travelTime": "Travel time",
-    "errorsInProject": "Errors were found in the project",
+    "errorsInProject": "Analysis error",
     "warningsInProject": "Warnings were found applying the project",
     "errorsInModification": "In modification %(id)",
-    "minimumImprovementProbability": "Minimum probability of change",
-    "probabilityImprovement": "Show areas with probability of change > %01.2f",
     "compare": "Compare to another project",
     "comparison": "Comparison",
     "baseline": "Baseline",
@@ -368,11 +299,8 @@
     "settingsFor": "%s settings",
     "accessModes": "Access modes",
     "gisExport": "Export to GIS",
-    "downloadRegional": "Download %(name)",
-    "downloadRegionalProbability": "Download probability of improvement",
     "bundleOutOfDate": "Selected date %(selectedDate) is out of service for project %(project). Its bundle %(bundle) only has service between %(serviceStart) and %(serviceEnd). There may also be days in between without service. Please be certain of your GTFS service dates and select an appropriate one.",
     "accessibilityTo": "Accessibility to",
-    "willUpdate": "Accessibility will update after fetching results.",
     "modes": {
       "walk": "Walk",
       "bicycle": "Bike",
@@ -410,16 +338,13 @@
     "regionalBoundsSame": "Same as %(name)",
     "regionalBoundsCustom": "Custom",
     "regionalBoundsRegion": "Entire region",
-    "bookmark": "Bookmark",
-    "createBookmark": "Create bookmark",
-    "bookmarkName": "Bookmark name",
     "selectComparisonProject": "Select comparison project…",
     "selectComparisonProjectVariant": "Select comparison scenario…",
-    "customizeProfileRequest": {
-      "label": "Customize Profile Request",
+    "customizeRequest": {
+      "label": "Customize Analysis Request",
       "description": "For advanced users only. Notice that \"percentiles\" cannot be changed here.",
       "error": "Not saved due to invalid JSON.",
-      "update": "Update Profile Request"
+      "update": "Update Analysis Request"
     }
   },
   "report": {

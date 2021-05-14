@@ -19,6 +19,7 @@ describe('Projects', function () {
     cy.navComplete()
 
     // make sure it's listed on the projects page
+    cy.visitHome()
     region.navTo('projects')
     cy.findAllByText(projectName).first().click()
     cy.findByLabelText('Edit project settings').click()

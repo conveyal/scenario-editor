@@ -34,8 +34,7 @@ Cypress.Cookies.defaults({
  */
 Cypress.on('uncaught:exception', (err) => {
   console.error(err)
-  // returning false here prevents Cypress from
-  // failing the test
+  // returning false here prevents Cypress from failing the test
   return false
 })
 

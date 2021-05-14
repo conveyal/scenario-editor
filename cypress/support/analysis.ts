@@ -94,7 +94,7 @@ Cypress.Commands.add('fetchResults', () => {
     .wait(200)
   // fetch results button usually disappears when clicked, but may not always
   // when it returns, we know the results have been fetched
-  cy.findByRole('button', {name: /^Fetch results$/i, timeout: 240000}).should(
+  cy.findByRole('button', {name: /^Fetch results$/i, timeout: 300_000}).should(
     'exist'
   )
 })

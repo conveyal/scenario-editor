@@ -26,15 +26,7 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  preserve: [
-    'a0:state',
-    'a0:session',
-    'a0:redirectTo',
-    'appSession.0',
-    'appSession.1',
-    'adminTempAccessGroup',
-    'cypressTestData'
-  ]
+  preserve: ['appSession.0', 'appSession.1']
 })
 
 /**
@@ -54,7 +46,7 @@ Cypress.Commands.add('login', () => {
   cy.setCookie('appSession.1', Cypress.env('appSession1'), {log: false})
 })
 
-beforeEach(() => {
+before(() => {
   if (Cypress.env('authEnabled')) {
     cy.login()
   }

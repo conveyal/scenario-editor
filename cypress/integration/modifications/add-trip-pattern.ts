@@ -51,9 +51,11 @@ describe('Add Trip Pattern', () => {
       cy.findByText(timetableName).click({force: true}) // hide panel
 
       // Copy the current modification and navigate to it by clicking the toast
-      cy.findByRole('button', {name: /Copy modification/i}).click()
+      cy.findButton(/Copy modification/i).click()
       cy.loadingComplete()
-      cy.findToast().click({force: true})
+      cy.findToast(
+        /Modification has been copied successfully\. Click here to go to the new copy/
+      ).click({force: true})
       cy.navComplete()
 
       cy.findByText(/Copy existing timetable/).click()
@@ -116,7 +118,7 @@ describe('Add Trip Pattern', () => {
       cy.clickMapAtCoord([39.08, -84.49])
       cy.findByLabelText(/^Extend$/).uncheck({force: true})
       cy.clickMapAtCoord([39.08, -84.5])
-      cy.findToast()
+      cy.findToast(/Click ignored/)
       cy.findByLabelText(/^Extend$/).check({force: true})
     })
 

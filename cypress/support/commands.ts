@@ -3,9 +3,12 @@ const unlog = {log: false}
 // Shortened helper for `findByRole('button', {name: /Name/})
 Cypress.Commands.add('findButton', (name) => cy.findByRole('button', {name}))
 
+// Get the toast portal
+Cypress.Commands.add('getToastPortal', () => cy.get('#chakra-toast-portal'))
+
 // Get a toast
-Cypress.Commands.add('findToast', () =>
-  cy.get('#chakra-toast-portal').findByRole('alert')
+Cypress.Commands.add('findToast', (name: string | RegExp) =>
+  cy.getToastPortal().findByText(name)
 )
 
 // Get a task

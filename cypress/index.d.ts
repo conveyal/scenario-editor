@@ -161,9 +161,14 @@ declare namespace Cypress {
     findTask(title: string): Chainable<JQuery<HTMLElement>>
 
     /**
+     * Get the Toast portal.
+     */
+    getToastPortal(): Chainable<JQuery<HTMLElement>>
+
+    /**
      * Get a Toast.
      */
-    findToast(): Chainable<JQuery<HTMLElement>>
+    findToast(name: string | RegExp): Chainable<JQuery<HTMLElement>>
 
     /**
      * Get the LeafletMap.

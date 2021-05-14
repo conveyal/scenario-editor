@@ -171,7 +171,9 @@ Cypress.Commands.add(
     cy.findByRole('button', {name: /Create/}).click()
 
     // Ensure the success toast is shown, and click on it
-    cy.findToast().click({force: true})
+    cy.findToast(
+      /Regional analysis has been created successfully\. Click here to view progress/
+    ).click({force: true})
 
     // Navigates to regional analysis page
     cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})

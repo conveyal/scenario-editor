@@ -46,7 +46,7 @@ describe('Modification drawing over anti-meridian', () => {
 
       cy.findByRole('button', {name: /Edit route geometry/i}).click()
       coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
-      cy.findToast() // Alert should pop up
+      cy.findToast(/Invalid coordinate/) // Alert should pop up
       cy.findByRole('button', {name: /Stop editing/i}).click()
 
       // Save and re-open
@@ -77,7 +77,7 @@ describe('Modification drawing over anti-meridian', () => {
 
       cy.findButton(/Edit route geometry/).click()
       coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
-      cy.findToast() // Alert should pop up
+      cy.findToast(/Invalid coordinate/) // Alert should pop up
       cy.findButton(/Stop editing/i).click()
 
       // Save and re-open

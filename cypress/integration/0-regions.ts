@@ -201,7 +201,6 @@ describe('Regions', () => {
     // Should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
-    cy.findToast().should('not.exist')
 
     // Page reload is necessary to pass in headless mode
     cy.reload()

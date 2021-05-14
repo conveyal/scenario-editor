@@ -37,7 +37,9 @@ function createBundle(name: string, selectFilesFn: () => void) {
 function deleteThisBundle(bundleName: string) {
   cy.findButton(/Delete this network bundle/i).click()
   cy.findButton(/Confirm/).click()
-  cy.findToast().findByText(/Network bundle deleted successfully/)
+
+  cy.findToast(/Network bundle deleted successfully/)
+
   cy.location('pathname').should('match', /.*\/bundles$/)
   cy.navComplete()
   cy.findByText(/Select.../).click()
@@ -91,7 +93,7 @@ describe('Network bundles', () => {
     cy.findButton(/Save renamed bundle\/feed names/).click()
 
     // Reload the page
-    cy.findToast().findByText(/Changes saved to network bundle/)
+    cy.findToast(/Changes saved to network bundle/)
 
     deleteThisBundle(names.reuse)
   })

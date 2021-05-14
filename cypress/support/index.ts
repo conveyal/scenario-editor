@@ -47,24 +47,15 @@ Cypress.on('uncaught:exception', (err) => {
   return false
 })
 
+// Login by storing the cookie data
 Cypress.Commands.add('login', () => {
-  // Get the user from the cookie
-  return cy.getCookie('appSession.0').then((cookieValue) => {
-    /* Skip logging in again if session already exists */
-    if (cookieValue) return true
-    cy.setCookie('appSession.0', Cypress.env('appSession0'))
-    cy.setCookie('appSession.1', Cypress.env('appSession1'))
-  })
+  cy.log('logging in')
+  cy.setCookie('appSession.0', Cypress.env('appSession0'), {log: false})
+  cy.setCookie('appSession.1', Cypress.env('appSession1'), {log: false})
 })
 
 beforeEach(() => {
   if (Cypress.env('authEnabled')) {
     cy.login()
-    cy.visitHome()
-
-    cy.contains(Cypress.env('username'))
-    cy.contains(Cypress.env('accessGroup'))
-
-    cy.findByRole('alert').should('not.exist')
   }
 })

@@ -1,7 +1,7 @@
 import {getDefaultRegion, scratchRegion} from './utils'
 
 // Bundles may take awhile to upload
-const processingTimeout = 240000
+const processingTimeout = 240_000
 
 // Bundle Names
 const names = {

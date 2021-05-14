@@ -29,7 +29,7 @@ Cypress.Commands.add(
     // Popover should show up
     cy.findTask('Processing bundle ' + name).within(() => {
       // Completed text should appear
-      cy.findByText(/Completed\./, {timeout: 240000})
+      cy.findByText(/Completed\./, {timeout: 240_000})
 
       // Click "View work product" button (which also clears the task)
       cy.findButton(/View work product/).click()

@@ -57,7 +57,7 @@ Cypress.Commands.add('login', () => {
   })
 })
 
-before(() => {
+beforeEach(() => {
   if (Cypress.env('authEnabled')) {
     cy.login()
     cy.visitHome()

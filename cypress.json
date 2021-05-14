@@ -8,6 +8,12 @@
   "port": 3001,
   "retries": 0,
   "video": false,
+  "blockHosts": [
+    "*lr-ingest.io",
+    "plausible.conveyal.com",
+    "*zendesk.com",
+    "*zdassets.com"
+  ],
   "env": {
     "accessGroup": "testing",
     "username": "testing@conveyal.com",

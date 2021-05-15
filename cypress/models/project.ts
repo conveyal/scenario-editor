@@ -94,21 +94,28 @@ export default class Project extends Model {
 
   // Helper for setting up a scenarios in this project.
   getScenarios(scenarios: string[]) {
-    before('getScenarios', () => {
+    before(() => {
+      cy.log('getScenarios(' + scenarios.join(', ') + ')')
       this.navTo()
-      cy.findByRole('tab', {name: 'Scenarios'}).click()
       scenarios.forEach((scenarioName) => {
+        cy.reload() // TODO this is a hack to get around a nonce error
+        cy.findByRole('tab', {name: 'Scenarios'}).click()
         cy.get('#scenarios').then((el) => {
           // create named scenario if it doesn't already exist
           if (!el.text().includes(scenarioName)) {
-            cy.findByRole('button', {name: 'Create a scenario'}).click()
-            cy.loadingComplete()
+            cy.findButton('Create a scenario').click()
+            // TODO this is a hack to get Cypress tests to pass
+            cy.reload()
+            cy.findByRole('tab', {name: 'Scenarios'}).click()
+
             // TODO there has GOT to be a better way...
             cy.get('#scenarios').findAllByRole('group').last().click()
+            cy.focused().clear().type(scenarioName)
 
-            cy.focused()
-              .clear()
-              .type(scenarioName + '{enter}')
+            cy.findButton(/Save/).click()
+            cy.getToastPortal()
+              .findByRole('alert', {timeout: 5_000})
+              .should('not.exist')
           }
         })
       })

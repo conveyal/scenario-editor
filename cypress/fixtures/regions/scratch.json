@@ -4,7 +4,7 @@
   "PBFfile": "regions/nky/streets.osm.pbf",
   "GTFSfile": "regions/nky/TANK-GTFS.zip",
   "corruptGTFSfile": "regions/nky/null-GTFS.zip",
-  "feedAgencyName": "Transit Authority of Northern Kentucky: 2019-10-31 to 2020-08-27",
+  "feedAgencyName": "TANK: 2019-10-31 to 2020-08-27",
   "sampleRouteName": "Southbank Shuttle",
   "searchTerm": "covington",
   "foundName": "Covington, Kentucky, United States",

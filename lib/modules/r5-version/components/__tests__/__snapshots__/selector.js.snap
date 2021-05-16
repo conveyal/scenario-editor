@@ -83,8 +83,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             options={
               Array [
                 Object {
-                  "label": "v6.2 (recommended)",
-                  "value": "v6.2",
+                  "label": "v6.3 (recommended)",
+                  "value": "v6.3",
                 },
               ]
             }
@@ -97,8 +97,8 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             }
             value={
               Object {
-                "label": "v6.2 (recommended)",
-                "value": "v6.2",
+                "label": "v6.3 (recommended)",
+                "value": "v6.3",
               }
             }
           >

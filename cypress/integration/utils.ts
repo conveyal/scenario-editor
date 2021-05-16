@@ -65,7 +65,7 @@ export function getDefaultRegion(): Region {
 
   // Create a default bundle
   defaultRegion.getBundle(
-    scratchRegion.feedAgencyName,
+    scratchRegion.bundleName,
     scratchRegion.GTFSfile,
     scratchRegion.PBFfile
   )

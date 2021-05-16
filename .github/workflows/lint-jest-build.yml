@@ -100,14 +100,14 @@ jobs:
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
   cypressIntegration:
-    needs: [nextjsBuild] # only run if these all pass
+    needs: [codeLinter, jestUnitTests, nextjsBuild, typeCheck] # only run if these all pass
     services:
       mongo:
         image: mongo
         ports:
           - 27017:27017
     env:
-      r5Version: edbae5ee16845bc479bc5f8fc256119882cef80c
+      r5Version: v6.2-11-ge8b0fcf
 
     runs-on: ubuntu-latest
     steps:
@@ -127,18 +127,12 @@ jobs:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
-      # Build .jar and copy to ./ui directory (along with config file)
-      - uses: actions/checkout@v2
-        with:
-          repository: conveyal/r5
-          path: r5
-          ref: dev
       - uses: actions/setup-java@v1
         with:
           java-version: 11
-      - run: gradle shadowJar -x test
-        working-directory: r5
-      - run: cp $(ls ./r5/build/libs/*-all.jar | head -n1) ./latest.jar
+
+      - name: Download Analysis Backend
+        run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ env.r5Version }}.jar --output ${{ github.workspace }}/${{ env.r5Version }}.jar
 
       - name: Cache Cypress
         id: cache-cypress

@@ -127,12 +127,19 @@ jobs:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
+      # Build .jar and copy to ./ui directory (along with config file)
+      - uses: actions/checkout@v2
+        with:
+          repository: conveyal/r5
+          fetch-depth: 0
+          path: r5
+          ref: ${{ env.r5Version }}
       - uses: actions/setup-java@v1
         with:
           java-version: 11
-
-      - name: Download Analysis Backend
-        run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ env.r5Version }}.jar --output ${{ github.workspace }}/${{ env.r5Version }}.jar
+      - run: gradle shadowJar -x test
+        working-directory: r5
+      - run: cp $(ls ./r5/build/libs/*-all.jar | head -n1) ./latest.jar
 
       - name: Cache Cypress
         id: cache-cypress

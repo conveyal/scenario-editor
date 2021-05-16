@@ -132,7 +132,7 @@ jobs:
         with:
           repository: conveyal/r5
           path: r5
-          ref: v6.3
+          ref: dev
       - uses: actions/setup-java@v1
         with:
           java-version: 11

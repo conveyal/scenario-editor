@@ -107,7 +107,7 @@ jobs:
         ports:
           - 27017:27017
     env:
-      r5Version: v6.3
+      r5Version: edbae5ee16845bc479bc5f8fc256119882cef80c
 
     runs-on: ubuntu-latest
     steps:

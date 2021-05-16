@@ -100,7 +100,7 @@ jobs:
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
   cypressIntegration:
-    needs: [codeLinter, jestUnitTests, nextjsBuild, typeCheck] # only run if these all pass
+    needs: [nextjsBuild] # only run if these all pass
     services:
       mongo:
         image: mongo

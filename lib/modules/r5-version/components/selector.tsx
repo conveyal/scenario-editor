@@ -26,7 +26,7 @@ const _isValidNewOption = (newOption) => {
 }
 
 const _promptTextCreator = (label) =>
-  message('r5Version.customWarningVersion', {
+  message('r5Version.customVersionWarning', {
     version: label
   })
 

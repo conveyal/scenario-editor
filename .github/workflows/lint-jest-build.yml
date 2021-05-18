@@ -107,7 +107,7 @@ jobs:
         ports:
           - 27017:27017
     env:
-      r5Version: v6.2-11-ge8b0fcf
+      R5_VERSION: v6.4
 
     runs-on: ubuntu-latest
     steps:
@@ -127,12 +127,18 @@ jobs:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
+      # Fetch R5 .jar file from Github Packages
+      # The setup-java action also creates a Maven settings.xml configured for Github packages.
+      # However, each GH repo has its own Maven repo, so we may need separate credentials to access R5 repo.
       - uses: actions/setup-java@v1
         with:
           java-version: 11
 
-      - name: Download Analysis Backend
-        run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ env.r5Version }}.jar --output ${{ github.workspace }}/${{ env.r5Version }}.jar
+      - run: |
+          mvn dependency:get -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -DremoteRepositories=https://maven.pkg.github.com/conveyal/r5
+          mvn dependency:copy -Dartifact=com.conveyal:r5:${R5_VERSION}:jar:all -DoutputDirectory=${{ github.workspace }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache Cypress
         id: cache-cypress

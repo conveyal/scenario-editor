@@ -138,7 +138,7 @@ jobs:
           mvn dependency:get -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -DremoteRepositories=https://maven.pkg.github.com/conveyal/r5
           mvn dependency:copy -Dartifact=com.conveyal:r5:${R5_VERSION}:jar:all -DoutputDirectory=${{ github.workspace }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHPR_TOKEN }}
 
       - name: Cache Cypress
         id: cache-cypress

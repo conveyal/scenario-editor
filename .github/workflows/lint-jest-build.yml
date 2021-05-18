@@ -122,11 +122,17 @@ jobs:
           # just perform install
           runTests: false
 
-      # Restore entire .next folder from previous step
+      # Restore entire .next folder from previous job
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
+
+      # Restore maven dependencies (including those used by dependency:get) from previous runs
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.m2/repository
+          key: ${{ runner.os }}-${{ github.sha }}-mavenrepo
 
       # Fetch R5 .jar file from Github Packages
       # The setup-java action also creates a Maven settings.xml configured for Github packages.
@@ -141,7 +147,7 @@ jobs:
 
       - run: |
           mvn dependency:get -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -DremoteRepositories=r5-ghpr::::https://maven.pkg.github.com/conveyal/r5
-          mvn dependency:copy -Dartifact=com.conveyal:r5:${R5_VERSION}:jar:all -DoutputDirectory=${{ github.workspace }}
+          mvn dependency:copy -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -DoutputDirectory=${{ github.workspace }}
         env:
           GHPR_USER: ${{ secrets.GHPR_USER }}
           GHPR_TOKEN: ${{ secrets.GHPR_TOKEN }}
@@ -152,6 +158,7 @@ jobs:
         with:
           path: ~/.cache/Cypress
           key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+
       # Install Cypress binary
       - run: npx cypress install
 

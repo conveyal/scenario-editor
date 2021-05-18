@@ -100,7 +100,8 @@ jobs:
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
   cypressIntegration:
-    needs: [codeLinter, jestUnitTests, nextjsBuild, typeCheck] # only run if these all pass
+    # needs: [codeLinter, jestUnitTests, nextjsBuild, typeCheck] # only run if these all pass
+    needs: install
     services:
       mongo:
         image: mongo
@@ -129,17 +130,21 @@ jobs:
 
       # Fetch R5 .jar file from Github Packages
       # The setup-java action also creates a Maven settings.xml configured for Github packages.
-      # However, each GH repo has its own Maven repo, so we may need separate credentials to access R5 repo.
+      # The GITHUB_TOKEN is scoped to only this repo, so does not allow access to R5 Github Packages.
+      # We replace the GITHUB_TOKEN environment variables with a custom generated token with wider scope.
       - uses: actions/setup-java@v1
         with:
           java-version: 11
+          server-id: r5-ghpr
+          server-username: GHPR_USER # name of env variable for server user
+          server-password: GHPR_TOKEN # name of env variable for server password
 
       - run: |
-          mvn dependency:get -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -DremoteRepositories=https://maven.pkg.github.com/conveyal/r5
+          mvn dependency:get -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -DremoteRepositories=r5-ghpr::::https://maven.pkg.github.com/conveyal/r5
           mvn dependency:copy -Dartifact=com.conveyal:r5:${R5_VERSION}:jar:all -DoutputDirectory=${{ github.workspace }}
         env:
-          GITHUB_ACTOR: ${{ secrets.GHPR_USER }}
-          GITHUB_TOKEN: ${{ secrets.GHPR_TOKEN }}
+          GHPR_USER: ${{ secrets.GHPR_USER }}
+          GHPR_TOKEN: ${{ secrets.GHPR_TOKEN }}
 
       - name: Cache Cypress
         id: cache-cypress

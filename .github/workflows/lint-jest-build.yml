@@ -11,7 +11,7 @@ jobs:
         ports:
           - 27017:27017
     env:
-      R5_VERSION: v6.4
+      r5version: v6.4
 
     runs-on: ubuntu-latest
     steps:
@@ -44,16 +44,18 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11
-          server-id: r5-ghpr
+          server-id: r5ghpr
           server-username: GHPR_USER # name of env variable for server user
           server-password: GHPR_TOKEN # name of env variable for server password
 
       - run: |
-          mvn dependency:get -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -Dtransitive=false -DremoteRepositories=r5-ghpr::::https://maven.pkg.github.com/conveyal/r5
-          mvn dependency:copy -Dartifact=com.conveyal:r5:$R5_VERSION:jar:all -DoutputDirectory=${{ github.workspace }}
+          mvn dependency:get $MVN_ARTIFACT $MVN_REPO 
+          mvn dependency:copy $MVN_ARTIFACT $MVN_REPO -DoutputDirectory=${{ github.workspace }}
         env:
           GHPR_USER: ${{ secrets.GHPR_USER }}
           GHPR_TOKEN: ${{ secrets.GHPR_TOKEN }}
+          MVN_ARTIFACT: -Dartifact=com.conveyal:r5:${{ env.r5version }}:jar:all -Dtransitive=false
+          MVN_REPO: -DremoteRepositories=r5ghpr::::https://maven.pkg.github.com/conveyal/r5
 
       - name: Cache Cypress
         id: cache-cypress

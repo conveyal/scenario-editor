@@ -1,0 +1,17 @@
+<!-- This Maven POM file is not used for building analysis-ui itself. -->
+<!-- It only specifies the repo where we will find jars used in testing. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.conveyal</groupId>
+  <artifactId>analysis-ui</artifactId>
+  <version>0.0</version>
+  <packaging>pom</packaging>
+  <repositories>
+    <repository>
+      <id>r5ghpr</id>
+      <name>Github Packages R5 Repo</name>
+      <url>https://maven.pkg.github.com/conveyal/r5</url>
+    </repository>
+  </repositories>
+</project>

@@ -41,6 +41,8 @@ jobs:
       # The setup-java action also creates a Maven settings.xml configured for Github packages.
       # The GITHUB_TOKEN is scoped to only this repo, so does not allow access to R5 Github Packages.
       # We replace the GITHUB_TOKEN environment variables with a custom generated token with wider scope.
+      # The repository URL is defined in a minimal POM file because dependency:get allows adding repositories
+      # on the command line, but dependency:copy does not and will fail to copy artifacts not from central.
       - uses: actions/setup-java@v1
         with:
           java-version: 11
@@ -48,14 +50,12 @@ jobs:
           server-username: GHPR_USER # name of env variable for server user
           server-password: GHPR_TOKEN # name of env variable for server password
 
-      - run: |
-          mvn dependency:get $MVN_ARTIFACT $MVN_REPO 
-          mvn dependency:copy $MVN_ARTIFACT $MVN_REPO -DoutputDirectory=${{ github.workspace }}
+      - name: Get r5 jar from GHPR
+        run: |
+          mvn dependency:copy -Dartifact=com.conveyal:r5:$r5version:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}
         env:
           GHPR_USER: ${{ secrets.GHPR_USER }}
           GHPR_TOKEN: ${{ secrets.GHPR_TOKEN }}
-          MVN_ARTIFACT: -Dartifact=com.conveyal:r5:${{ env.r5version }}:jar:all -Dtransitive=false
-          MVN_REPO: -DremoteRepositories=r5ghpr::::https://maven.pkg.github.com/conveyal/r5
 
       - name: Cache Cypress
         id: cache-cypress

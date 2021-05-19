@@ -112,24 +112,31 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - name: Set Up Node
+        uses: actions/setup-node@v2
         with:
           node-version: '12'
+      
       # Install / cache dependencies with Cypress to handle caching Cypress binary.
-      - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v2
+      - name: Check out analysis-ui
+        uses: actions/checkout@v2
+
+      - name: Install Cypress
+        uses: cypress-io/github-action@v2
         with:
           # just perform install
           runTests: false
 
       # Restore entire .next folder from previous job
-      - uses: actions/cache@v2
+      - name: Cache .next folder
+        uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
       # Restore maven dependencies (including those used by dependency:get) from previous runs
-      - uses: actions/cache@v2
+      - name: Cache local Maven repo
+        uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.m2/repository
           key: ${{ runner.os }}-${{ github.sha }}-mavenrepo
@@ -140,14 +147,15 @@ jobs:
       # We replace the GITHUB_TOKEN environment variables with a custom generated token with wider scope.
       # The repository URL is defined in a minimal POM file because dependency:get allows adding repositories
       # on the command line, but dependency:copy does not and will fail to copy artifacts not from central.
-      - uses: actions/setup-java@v1
+      - name: Set up Java (and Maven settings.xml)
+        uses: actions/setup-java@v1
         with:
           java-version: 11
           server-id: r5ghpr
           server-username: GHPR_USER # name of env variable for server user
           server-password: GHPR_TOKEN # name of env variable for server password
 
-      - name: Get r5 jar from GHPR
+      - name: Fetch r5 jar from GH Packages
         run: |
           mvn dependency:copy -Dartifact=com.conveyal:r5:$r5version:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}
         env:

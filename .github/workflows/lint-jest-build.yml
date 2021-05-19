@@ -17,7 +17,7 @@ jobs:
           # Setting to 0 skips installing the binary
           CYPRESS_INSTALL_BINARY: 0
 
-      # Cache the entire working directory for subsequent steps
+      # Cache the entire working directory for subsequent jobs
       - uses: actions/cache@v2
         with:
           path: ./*
@@ -68,7 +68,6 @@ jobs:
         env:
           CI: true
 
-  # Keep separate from
   nextjsBuild:
     runs-on: ubuntu-latest
     needs: install
@@ -93,7 +92,7 @@ jobs:
           NEXT_PUBLIC_CYPRESS: true
           NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
 
-      # Cache entire .next folder for subsequent steps
+      # Cache entire .next folder for subsequent jobs
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next
@@ -126,15 +125,14 @@ jobs:
           # just perform install
           runTests: false
 
-      # Restore entire .next folder from previous job
-      - name: Cache .next folder
+      - name: Restore .next folder from nextjsBuild
         uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
       # Restore maven dependencies (including those used by dependency:get) from previous runs
-      - name: Cache local Maven repo
+      - name: Restore local Maven repo
         uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.m2/repository
@@ -156,7 +154,7 @@ jobs:
 
       - name: Fetch r5 jar from GH Packages
         run: |
-          mvn dependency:copy -Dartifact=com.conveyal:r5:$r5version:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}
+          mvn dependency:copy -Dartifact=com.conveyal:r5:$r5version:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}/analysis-ui
         env:
           GHPR_USER: ${{ secrets.GHPR_USER }}
           GHPR_TOKEN: ${{ secrets.GHPR_TOKEN }}

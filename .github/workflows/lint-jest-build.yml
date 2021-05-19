@@ -100,8 +100,7 @@ jobs:
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
   cypressIntegration:
-    # needs: [codeLinter, jestUnitTests, nextjsBuild, typeCheck] # only run if these all pass
-    needs: install
+    needs: [codeLinter, jestUnitTests, nextjsBuild, typeCheck] # only run if these all pass
     services:
       mongo:
         image: mongo
@@ -116,7 +115,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12'
-      
+
       # Install / cache dependencies with Cypress to handle caching Cypress binary.
       - name: Check out analysis-ui
         uses: actions/checkout@v2

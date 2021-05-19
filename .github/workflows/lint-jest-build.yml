@@ -154,7 +154,7 @@ jobs:
 
       - name: Fetch r5 jar from GH Packages
         run: |
-          mvn dependency:copy -B -Dartifact=com.conveyal:r5:$r5version:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}/analysis-ui
+          mvn dependency:copy -B -Dartifact=com.conveyal:r5:$r5version:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}
         env:
           GHPR_USER: ${{ secrets.GHPR_USER }}
           GHPR_TOKEN: ${{ secrets.GHPR_TOKEN }}

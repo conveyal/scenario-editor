@@ -3,8 +3,105 @@ name: 'Install, lint, unit test, build, run Cypress tests'
 on: [pull_request]
 
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - uses: actions/checkout@v2
+
+      # Install and cache the build
+      - uses: bahmutov/npm-install@v1
+        env:
+          # Setting to 0 skips installing the binary
+          CYPRESS_INSTALL_BINARY: 0
+
+      # Cache the entire working directory for subsequent steps
+      - uses: actions/cache@v2
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+  typeCheck:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - uses: actions/cache@v2
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      - run: yarn tsc
+
+  codeLinter:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - uses: actions/cache@v2
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      - run: yarn lint
+      - run: yarn check-format
+
+  jestUnitTests:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - uses: actions/cache@v2
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      - run: yarn jest
+        env:
+          CI: true
+
+  # Keep separate from
+  nextjsBuild:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - uses: actions/cache@v2
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      # Cache the next.js cache folder per os/dependency change
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-cache-${{ hashFiles('**/yarn.lock') }}
+
+      - run: yarn build
+        env:
+          NEXT_PUBLIC_BASEMAP_DISABLED: true
+          NEXT_PUBLIC_CYPRESS: true
+          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+
+      # Cache entire .next folder for subsequent steps
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next
+          key: ${{ runner.os }}-${{ github.sha }}-nextjs
+
   cypressIntegration:
     # needs: [codeLinter, jestUnitTests, nextjsBuild, typeCheck] # only run if these all pass
+    needs: install
     services:
       mongo:
         image: mongo

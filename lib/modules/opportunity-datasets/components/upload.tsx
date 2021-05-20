@@ -32,6 +32,7 @@ export default function UploadOpportunityDataset({regionId}) {
     const body = new window.FormData(e.currentTarget)
     body.set('regionId', regionId)
     body.set('freeform', `${freeform}`)
+    body.set('zoom', '12')
     setUploading(true)
 
     // Remove count field if it's empty

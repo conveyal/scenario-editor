@@ -11,11 +11,11 @@ const TOTAL_CUTOFFS = MAX_TRIP_DURATION + 1
  * Calculate the accessibility for a given destination point set, travel time surface,
  * and percentile (index).
  */
-function computeAccessibilityForPercentile({
-  grid,
-  percentileIndex,
-  travelTimeSurface
-}): number[] {
+function computeAccessibilityForPercentile(
+  travelTimeSurface: CL.AccessGrid,
+  grid: CL.ParsedGrid,
+  percentileIndex: number
+): number[] {
   const dataThisPercentile = fill(Array(TOTAL_CUTOFFS), 0)
   const north = grid.north - travelTimeSurface.north
   const west = grid.west - travelTimeSurface.west
@@ -55,10 +55,10 @@ function computeAccessibilityForPercentile({
  * Percentile curves data is an array of cumulative accessibility curves for
  * different percentiles.
  */
-export function computeAccessibilityCurves({
-  travelTimeSurface,
-  grid
-}): number[][] {
+export function computeAccessibilityCurves(
+  travelTimeSurface: CL.AccessGrid,
+  grid: CL.ParsedGrid
+): number[][] {
   // If the accessbility was calculated on the server side this array will exist.
   if (Array.isArray(travelTimeSurface.accessibility)) {
     const destinationPointSetIndex = 0 // Only one destination point set is currently used.
@@ -66,11 +66,7 @@ export function computeAccessibilityCurves({
   }
 
   return times(travelTimeSurface.depth, (percentileIndex) =>
-    computeAccessibilityForPercentile({
-      grid,
-      percentileIndex,
-      travelTimeSurface
-    })
+    computeAccessibilityForPercentile(travelTimeSurface, grid, percentileIndex)
   )
 }
 
@@ -79,6 +75,6 @@ export default createSelector(
   activeOpportunityDatasetGrid,
   (travelTimeSurface, grid) =>
     travelTimeSurface && grid
-      ? computeAccessibilityCurves({grid, travelTimeSurface})
+      ? computeAccessibilityCurves(travelTimeSurface, grid)
       : undefined
 )

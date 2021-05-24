@@ -47,7 +47,7 @@ export function parseTimesData(ab: ArrayBuffer): CL.AccessGrid {
   const gridSize = header.width * header.height
 
   // skip the header
-  const data = new Int32Array(
+  const rawData = new Int32Array(
     ab,
     HEADER_LENGTH * Int32Array.BYTES_PER_ELEMENT,
     gridSize * header.depth
@@ -57,8 +57,8 @@ export function parseTimesData(ab: ArrayBuffer): CL.AccessGrid {
   for (let i = 0, position = 0; i < header.depth; i++) {
     let previous = 0
     for (let j = 0; j < gridSize; j++, position++) {
-      data[position] = data[position] + previous
-      previous = data[position]
+      rawData[position] = rawData[position] + previous
+      previous = rawData[position]
     }
   }
 
@@ -81,6 +81,11 @@ export function parseTimesData(ab: ArrayBuffer): CL.AccessGrid {
     )
   }
 
+  const data: Int32Array[] = []
+  for (let i = 0; i < header.depth; i++) {
+    data.push(rawData.slice(i * gridSize, (i + 1) * gridSize))
+  }
+
   return {
     ...header,
     ...metadata, // may contain accessibility
@@ -89,7 +94,7 @@ export function parseTimesData(ab: ArrayBuffer): CL.AccessGrid {
     warnings: metadata.scenarioApplicationWarnings || [],
     contains,
     get(x: number, y: number, z: number): number {
-      if (contains(x, y, z)) return data[z * gridSize + y * header.width + x]
+      if (contains(x, y, z)) return data[z][y * header.width + x]
       return Infinity
     }
   }

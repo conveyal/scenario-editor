@@ -12,6 +12,6 @@ export default createSelector(
   activeOpportunityDatasetGrid,
   (travelTimeSurface, grid) =>
     travelTimeSurface && grid
-      ? computeAccessibilityCurves({travelTimeSurface, grid})
+      ? computeAccessibilityCurves(travelTimeSurface, grid)
       : null
 )

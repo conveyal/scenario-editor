@@ -137,6 +137,8 @@ export default memo(function DestinationTravelTimeDistribution() {
     }
   })
 
+  console.log('distribution', distribution)
+
   // Calculate the distributions when the destination or surface changes
   useEffect(() => {
     if (latlng && surface) {

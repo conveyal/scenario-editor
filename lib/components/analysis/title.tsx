@@ -23,7 +23,8 @@ function TitleMessage({fetchStatus, project}) {
   let title = message('analysis.status.accessibilityLoaded')
   if (fetchStatus) title = fetchStatus
   else if (!project) title = message('analysis.status.noProject')
-  else if (!isochrone) title = message('analysis.status.ready')
+  else if (!isochrone || isochrone?.features.length === 0)
+    title = message('analysis.status.ready')
   else if (profileRequestHasChanged) title = message('analysis.status.updated')
   else if (!opportunityDataset)
     title = message('analysis.status.travelTimeResults')

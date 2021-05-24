@@ -2,7 +2,7 @@ import {expect} from '@jest/globals'
 import fs from 'fs'
 import jsolines, {getContour} from '../jsolines'
 
-const surface = new Uint8Array(
+const surface: any = new Uint8Array(
   fs.readFileSync(`${__dirname}/surface.dat`).buffer
 )
 

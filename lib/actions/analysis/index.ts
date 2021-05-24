@@ -258,8 +258,13 @@ export const handleSurface = (error, responses) => {
   ]
 }
 
+interface ErrorsAndWarnings {
+  errors: any[]
+  warnings: any[]
+}
+
 // exported for testing
-export function responseToSurface(response) {
+export function responseToSurface(response): ErrorsAndWarnings | CL.AccessGrid {
   if (!response) {
     return {
       errors: [{title: 'No response found!'}],

@@ -15,6 +15,16 @@ const MAX_COORDS = 20000
 // Previously we used `debug`
 const logError = createLogError()
 
+interface Jsolines {
+  cutoff: number
+  height: number
+  interpolation?: boolean
+  maxCoordinates?: number
+  project: (coord: GeoJSON.Position) => GeoJSON.Position
+  surface: Int32Array
+  width: number
+}
+
 /**
  * Create a JSON isoline. Surface is a (possibly typed) array, width and height
  * are its width and height, and cutoff is the cutoff. It is possible to disable
@@ -28,23 +38,23 @@ export default function jsolines({
   interpolation = true,
   surface,
   width
-}): GeoJSON.Feature<GeoJSON.MultiPolygon> {
+}: Jsolines): GeoJSON.Feature<GeoJSON.MultiPolygon> {
   // First, create the contour grid.
   const contour = getContour({surface, width, height, cutoff})
   const cWidth = width - 1
 
   // Store warnings
-  const warnings = []
+  const warnings: string[] = []
 
   // JavaScript does not have boolean arrays.
   const found = new Uint8Array((width - 1) * (height - 1))
 
   // DEBUG, comment out to save memory
-  const indices = []
+  const indices: number[] = []
 
   // We'll sort out what shell goes with what hole in a bit.
-  const shells = []
-  const holes = []
+  const shells: GeoJSON.Feature<GeoJSON.Polygon>[] = []
+  const holes: GeoJSON.Feature<GeoJSON.Polygon>[] = []
 
   // Find a cell that has a line in it, then follow that line, keeping filled
   // area to your left. This lets us use winding direction to determine holes.
@@ -69,7 +79,7 @@ export default function jsolines({
       // Track winding direction
       let direction = 0
 
-      const coords = []
+      const coords: GeoJSON.Position[] = []
 
       // Make sure we're not traveling in circles.
       // NB using index from _previous_ cell, we have not yet set an index for this cell
@@ -122,12 +132,13 @@ export default function jsolines({
           coords.push(coords[0]) // close the ring
 
           // make it a fully-fledged GeoJSON object
-          const geom = {
+          const geom: GeoJSON.Feature<GeoJSON.Polygon> = {
             type: 'Feature',
             geometry: {
               type: 'Polygon',
               coordinates: [coords]
-            }
+            },
+            properties: {}
           }
 
           // Check winding direction. Positive here means counter clockwise,
@@ -141,12 +152,14 @@ export default function jsolines({
 
       // Log error
       if (found[index] === 1) {
-        warnings.push([
-          `Ring crosses other ring (or possibly self) at ${pos[0]}, ${pos[1]} coming from case ${idx}`,
+        warnings.push(
+          `Ring crosses other ring (or possibly self) at ${pos[0]}, ${pos[1]} coming from case ${idx}`
+        )
+        warnings.push(
           `Last few indices: ${indices
             .slice(Math.max(0, indices.length - 10))
             .join(',')}`
-        ])
+        )
       }
     }
   }
@@ -252,7 +265,7 @@ function followLoop(
 }
 
 // Calculated fractions may not be numbers causing interpolation to fail.
-const ensureFractionIsNumber = (frac, direction) => {
+function ensureFractionIsNumber(frac: number, direction: string): number {
   if (isNaN(frac) || frac === Infinity) {
     logError(
       `Segment fraction from ${direction} is ${frac}; if this is at the edge of the query this is expected.`
@@ -265,7 +278,14 @@ const ensureFractionIsNumber = (frac, direction) => {
 /**
  * Do linear interpolation.
  */
-function interpolate([x, y], cutoff, [startx, starty], surface, width, height) {
+function interpolate(
+  [x, y]: [number, number],
+  cutoff: number,
+  [startx, starty]: [number, number],
+  surface,
+  width: number,
+  height: number
+): GeoJSON.Position {
   const index = y * width + x
   let topLeft = surface[index]
   let topRight = surface[index + 1]
@@ -307,7 +327,10 @@ function interpolate([x, y], cutoff, [startx, starty], surface, width, height) {
 /**
  * Used for testing.
  */
-function noInterpolate([x, y], [startx, starty]) {
+function noInterpolate(
+  [x, y]: [number, number],
+  [startx, starty]: [number, number]
+): GeoJSON.Position {
   // From left
   if (startx < x) return [x, y + 0.5]
   // From right
@@ -318,11 +341,18 @@ function noInterpolate([x, y], [startx, starty]) {
   if (starty < y) return [x + 0.5, y]
 }
 
+interface GetContour {
+  cutoff: number
+  height: number
+  surface: any
+  width: number
+}
+
 /**
  * Get a contouring grid. Exported for testing purposes, not generally used
  * outside jsolines testing
  */
-export function getContour({surface, width, height, cutoff}) {
+export function getContour({surface, width, height, cutoff}: GetContour) {
   const contour = new Uint8Array((width - 1) * (height - 1))
 
   // compute contour values for each cell

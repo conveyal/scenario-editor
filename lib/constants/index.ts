@@ -41,7 +41,7 @@ export const API = {
   Project: `${API_URL}/project`,
   Region: `${API_URL}/region`,
   Regional: `${API_URL}/regional`,
-  Resources: `${API_URL}/resources`,
+  Resources: `${API_URL}/files`,
   Timetables: `${API_URL}/timetables`,
   Workers: `${API_URL}/workers`
 }

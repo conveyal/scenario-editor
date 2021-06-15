@@ -194,7 +194,7 @@ export default function ResultsPage({
             <>
               <AggregationAreaOutline aggregationArea={activeAggregationArea} />
 
-              <FormControl>
+              <FormControl px={4}>
                 <FormLabel>{message('analysis.weightBy')}</FormLabel>
                 <Select
                   getOptionLabel={getName}

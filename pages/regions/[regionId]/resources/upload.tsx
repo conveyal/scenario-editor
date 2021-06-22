@@ -21,7 +21,7 @@ import InnerDock from 'lib/components/inner-dock'
 import MapLayout from 'lib/layouts/map'
 import useFileInput from 'lib/hooks/use-file-input'
 import fetch from 'lib/actions/fetch'
-import { API, SERVER_NGINX_MAX_CLIENT_BODY_SIZE } from 'lib/constants'
+import {API, SERVER_NGINX_MAX_CLIENT_BODY_SIZE} from 'lib/constants'
 import useActivity from 'lib/hooks/use-activity'
 import message from 'lib/message'
 
@@ -31,7 +31,7 @@ const TYPES = ['Lines', 'Points', 'Polygons']
 export default function UploadResource(p) {
   const {response: activityResponse} = useActivity()
   const dispatch = useDispatch<any>()
-  const [error, setError] = useState<void | string>()
+  const error = useState<void | string>()
   const [name, setName] = useState('')
   const toast = useToast()
   const resource = useFileInput()
@@ -76,7 +76,6 @@ export default function UploadResource(p) {
       }
     }
   }
-
 
   return (
     <InnerDock>
@@ -125,7 +124,10 @@ export default function UploadResource(p) {
           </FormControl>
           <FormControl>
             <FormLabel>Type</FormLabel>
-            <Select onChange={(e) => setType(e.currentTarget.value)} value={type}>
+            <Select
+              onChange={(e) => setType(e.currentTarget.value)}
+              value={type}
+            >
               {TYPES.map((t) => (
                 <option key={t} value={t}>
                   {t}

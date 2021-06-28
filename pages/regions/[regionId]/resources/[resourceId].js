@@ -6,6 +6,8 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
+  FormLabel,
+  FormControl,
   Heading,
   Stack,
   Stat,
@@ -13,7 +15,9 @@ import {
   StatLabel,
   StatNumber,
   StatHelpText,
-  Text
+  Switch,
+  Text,
+  Select
 } from '@chakra-ui/react'
 import format from 'date-fns/format'
 import dynamic from 'next/dynamic'
@@ -24,9 +28,11 @@ import {
   deleteResource,
   loadAllResources,
   loadResource,
-  loadResourceData
+  loadResourceData,
+  toAggregationArea
 } from 'lib/actions/resources'
 import SelectResource from 'lib/components/select-resource'
+import {SUPPORTED_ZOOM_LEVELS} from 'lib/constants'
 import msg from 'lib/message'
 import downloadData from 'lib/utils/download-data'
 import MapLayout from 'lib/layouts/map'
@@ -100,6 +106,17 @@ const EditResourcePage = withInitialFetch(
       }
     }, [dispatch, resource])
 
+    async function _aggregationArea() {
+      dispatch(toAggregationArea({resource, nameProperty, zoom}))
+      // TODO await activityResponse.revalidate()
+    }
+
+    const [zoom, setZoom] = React.useState(SUPPORTED_ZOOM_LEVELS[0])
+
+    const [dissolveAll, setDissolveAll] = React.useState(true)
+
+    const [nameProperty, setNameProperty] = React.useState()
+
     function _download() {
       downloadData(resourceData, resource.filename, resource.type)
     }
@@ -135,6 +152,68 @@ const EditResourcePage = withInitialFetch(
               <StatHelpText>{resource.updatedBy}</StatHelpText>
             </Stat>
           </StatGroup>
+          {resource.features.type == 'POLYGON' &&
+            resource.sourceFormat == 'SHP' && ( // TODO eventually enable GEOJSON
+              <Stack>
+                <Heading>Aggregation areas</Heading>
+                [Show existing aggregation areas here] Create New
+                <form onSubmit={_aggregationArea}>
+                  <FormControl
+                    display='flex'
+                    alignContent='left'
+                    justifyContent='left'
+                  >
+                    <FormLabel>Zoom</FormLabel>
+                    <Select
+                      onChange={(e) => setZoom(e.currentTarget.value)}
+                      value={zoom} //TODO default to zoom set at region level
+                    >
+                      {SUPPORTED_ZOOM_LEVELS.map((z) => (
+                        <option key={z} value={z}>
+                          {z}
+                        </option>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <FormControl
+                    display='flex'
+                    alignContent='center'
+                    justifyContent='center'
+                  >
+                    <FormLabel htmlFor='dissolveAll' mb={0}>
+                      Dissolve all features to single area
+                    </FormLabel>
+                    <Switch
+                      id='dissolveAll'
+                      isChecked={dissolveAll}
+                      onChange={(e) => setDissolveAll(e.currentTarget.value)}
+                    />
+                  </FormControl>
+                  <FormControl
+                    display='flex'
+                    alignContent='center'
+                    justifyContent='center'
+                  >
+                    <FormLabel>Area Name</FormLabel>
+                    <Select
+                      onChange={(e) => setNameProperty(e.currentTarget.value)}
+                      value={nameProperty}
+                    >
+                      {resource.attributes
+                        .filter((a) => a.type == 'TEXT')
+                        .map((a) => (
+                          <option key={a.name} value={a.name}>
+                            {a.label}
+                          </option>
+                        ))}
+                    </Select>
+                  </FormControl>
+                  <Button type='submit' colorScheme='green'>
+                    Process as aggregation area
+                  </Button>
+                </form>
+              </Stack>
+            )}
           <Button
             isDisabled={!resourceData}
             onClick={_download}

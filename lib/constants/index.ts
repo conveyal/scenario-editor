@@ -94,6 +94,7 @@ export const LS_MOM = 'modifications-on-map'
  * Map
  */
 export const PROJECTION_ZOOM_LEVEL = 9
+export const SUPPORTED_ZOOM_LEVELS = [9, 10, 11, 12]
 
 /**
  * Line Editing and display

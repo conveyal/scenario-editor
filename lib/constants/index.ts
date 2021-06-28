@@ -81,7 +81,7 @@ export const Pages = {
   authCallback: '/api/auth/callback',
   resources: '/regions/[regionId]/resources',
   resourceUpload: '/regions/[regionId]/resources/upload',
-  resourceEdit: '/regions/[regionId]/resources/[resourceId]'
+  resource: '/regions/[regionId]/resources/[resourceId]'
 }
 export type PageKey = keyof typeof Pages
 

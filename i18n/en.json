@@ -253,7 +253,8 @@
     "confirmDeleteSource": "Are you sure you would like to delete all layers from this dataset?",
     "sourceName": "dataset name",
     "freeform": "Process as freeform (non-grid) points (experimental)",
-    "paired": "Paired origin/destination file (experimental)"
+    "paired": "Paired origin/destination file (experimental)",
+    "featureSummary": "%(count) %(type)S from uploaded %(sourceFormat)"
   },
   "analysis": {
     "cutoff": "Travel time: Cutoff (minutes)",

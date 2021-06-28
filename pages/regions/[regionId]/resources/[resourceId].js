@@ -13,7 +13,6 @@ import {
   StatLabel,
   StatNumber,
   StatHelpText,
-  Tag,
   Text
 } from '@chakra-ui/react'
 import format from 'date-fns/format'
@@ -94,9 +93,11 @@ const EditResourcePage = withInitialFetch(
       regionId: resource.regionId
     })
 
-    // Load the resource data on client side mount
+    // Load GeoJSONs on client side mount
     React.useEffect(() => {
-      dispatch(loadResourceData(resource)).then(setResourceData)
+      if (resource.features.type == 'GEOJSON') {
+        dispatch(loadResourceData(resource)).then(setResourceData)
+      }
     }, [dispatch, resource])
 
     function _download() {
@@ -114,8 +115,13 @@ const EditResourcePage = withInitialFetch(
           <Heading size='lg'>{resource.name}</Heading>
           <Text fontSize='xl'>{resource.filename}</Text>
           <Stack isInline spacing={1}>
-            <Tag>{resource.type}</Tag>
-            <Tag>{resource.contentType}</Tag>
+            <Text>
+              {msg('spatialDatasets.featureSummary', {
+                count: resource.features.count,
+                type: resource.features.type,
+                sourceFormat: resource.sourceFormat
+              })}
+            </Text>
           </Stack>
           <StatGroup>
             <Stat>

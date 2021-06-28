@@ -76,6 +76,8 @@ function getLinkKey(workProduct: CL.TaskWorkProduct) {
       return 'bundle'
     case 'REGIONAL_ANALYSIS':
       return 'regionalAnalysis'
+    case 'RESOURCE':
+      return 'resource'
   }
 }
 
@@ -89,6 +91,11 @@ function getLinkParams(workProduct: CL.TaskWorkProduct) {
     case 'REGIONAL_ANALYSIS':
       return {
         regionalAnalysisId: workProduct.id,
+        regionId: workProduct.regionId
+      }
+    case 'RESOURCE':
+      return {
+        resourceId: workProduct.id,
         regionId: workProduct.regionId
       }
   }

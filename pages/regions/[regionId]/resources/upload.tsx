@@ -8,7 +8,6 @@ import {
   FormLabel,
   Heading,
   Input,
-  Select,
   Stack,
   useToast
 } from '@chakra-ui/react'
@@ -26,7 +25,6 @@ import useActivity from 'lib/hooks/use-activity'
 import message from 'lib/message'
 
 const EXTS = ['.geojson', '.json', '.shp', '.shx', '.prj', '.dbf', '.csv'] // later: pbf, zip
-const TYPES = ['Lines', 'Points', 'Polygons']
 
 export default function UploadResource(p) {
   const {response: activityResponse} = useActivity()
@@ -36,7 +34,6 @@ export default function UploadResource(p) {
   const toast = useToast()
   const resource = useFileInput()
   const [uploading, setUploading] = useState(false)
-  const [type, setType] = useState(TYPES[0])
 
   const isValid = () =>
     resource.totalSize < SERVER_NGINX_MAX_CLIENT_BODY_SIZE &&
@@ -122,20 +119,6 @@ export default function UploadResource(p) {
               value={resource.value}
             />
           </FormControl>
-          <FormControl>
-            <FormLabel>Type</FormLabel>
-            <Select
-              onChange={(e) => setType(e.currentTarget.value)}
-              value={type}
-            >
-              {TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-
           <Button
             isDisabled={uploading || !name || !isValid()}
             isLoading={uploading}

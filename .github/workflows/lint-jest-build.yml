@@ -2,13 +2,18 @@ name: 'Install, lint, unit test, build, run Cypress tests'
 
 on: [pull_request]
 
+env:
+  javaVersion: 11
+  nodeVersion: '12'
+  r5version: v6.4
+
 jobs:
   install:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: ${{ env.nodeVersion }}
       - uses: actions/checkout@v2
 
       # Install and cache the build
@@ -29,7 +34,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: ${{ env.nodeVersion }}
       - uses: actions/cache@v2
         with:
           path: ./*
@@ -43,7 +48,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: ${{ env.nodeVersion }}
       - uses: actions/cache@v2
         with:
           path: ./*
@@ -57,7 +62,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: ${{ env.nodeVersion }}
       - uses: actions/cache@v2
         with:
           path: ./*
@@ -71,7 +76,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: ${{ env.nodeVersion }}
       - uses: actions/cache@v2
         with:
           path: ./*
@@ -87,7 +92,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: ${{ env.nodeVersion }}
       - uses: actions/cache@v2
         with:
           path: ./*
@@ -111,41 +116,19 @@ jobs:
           path: ${{ github.workspace }}/.next
           key: ${{ runner.os }}-${{ github.sha }}-nextjs
 
-  cypressIntegration:
-    needs: [nextjsBuild] # only run if these all pass
-    services:
-      mongo:
-        image: mongo
-        ports:
-          - 27017:27017
-    env:
-      r5version: v6.4
-
+  setupBackendForCypress:
     runs-on: ubuntu-latest
     steps:
-      - name: Set Up Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-
-      # Install / cache dependencies with Cypress to handle caching Cypress binary.
-      - name: Check out analysis-ui
-        uses: actions/checkout@v2
-
-      - name: Install Cypress
-        uses: cypress-io/github-action@v2
-        with:
-          # just perform install
-          runTests: false
-
-      - name: Restore .next folder from nextjsBuild
+      - name: Cache .jar
+        id: cacheJar
         uses: actions/cache@v2
         with:
-          path: ${{ github.workspace }}/.next
-          key: ${{ runner.os }}-${{ github.sha }}-nextjs
+          path: ${{ github.workspace }}/${{ env.r5version }}.jar
+          key: ${{ env.javaVersion }}-${{ env.r5version }}
 
       # Restore maven dependencies (including those used by dependency:get) from previous runs
       - name: Restore local Maven repo
+        if: steps.cacheJar.outputs.cache-hit != 'true'
         uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.m2/repository
@@ -158,29 +141,69 @@ jobs:
       # The repository URL is defined in a minimal POM file because dependency:get allows adding repositories
       # on the command line, but dependency:copy does not and will fail to copy artifacts not from central.
       - name: Set up Java (and Maven settings.xml)
+        if: steps.cacheJar.outputs.cache-hit != 'true'
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: ${{ env.javaVersion }}
           server-id: r5ghpr
           server-username: GHPR_USER # name of env variable for server user
           server-password: GHPR_TOKEN # name of env variable for server password
 
       - name: Fetch r5 jar from GH Packages
+        if: steps.cacheJar.outputs.cache-hit != 'true'
         run: |
-          mvn dependency:copy -B -Dartifact=com.conveyal:r5:$r5version:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}
+          mvn dependency:copy -B -Dartifact=com.conveyal:r5:${{ env.r5version }}:jar:all -Dtransitive=false -DoutputDirectory=${{ github.workspace }}
         env:
           GHPR_USER: ${{ secrets.GHPR_USER }}
           GHPR_TOKEN: ${{ secrets.GHPR_TOKEN }}
 
-      - name: Cache Cypress
+  cypressIntegration:
+    needs: [nextjsBuild, setupBackendForCypress] # only run if these all pass
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.nodeVersion }}
+
+      # Install / cache dependencies with Cypress to handle caching Cypress binary.
+      - name: Check out analysis-ui
+        uses: actions/checkout@v2
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      - name: Restore .next folder from nextjsBuild
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next
+          key: ${{ runner.os }}-${{ github.sha }}-nextjs
+
+      - name: Cache Cypress binary
         id: cache-cypress
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cache/Cypress
           key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
 
       # Install Cypress binary
       - run: npx cypress install
+
+      # Restore the .jar created in a previous job
+      - name: Restore cached .jar
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/${{ env.r5version }}.jar
+          key: ${{ env.javaVersion }}-${{ env.r5version }}
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.javaVersion }}
 
       - uses: cypress-io/github-action@v2
         with:

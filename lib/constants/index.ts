@@ -41,7 +41,8 @@ export const API = {
   Project: `${API_URL}/project`,
   Region: `${API_URL}/region`,
   Regional: `${API_URL}/regional`,
-  Resources: `${API_URL}/resources`,
+  Resources: `${API_URL}/files`,
+  Spatial: `${API_URL}/spatial`,
   Timetables: `${API_URL}/timetables`,
   Workers: `${API_URL}/workers`
 }
@@ -80,7 +81,7 @@ export const Pages = {
   authCallback: '/api/auth/callback',
   resources: '/regions/[regionId]/resources',
   resourceUpload: '/regions/[regionId]/resources/upload',
-  resourceEdit: '/regions/[regionId]/resources/[resourceId]'
+  resource: '/regions/[regionId]/resources/[resourceId]'
 }
 export type PageKey = keyof typeof Pages
 
@@ -93,6 +94,7 @@ export const LS_MOM = 'modifications-on-map'
  * Map
  */
 export const PROJECTION_ZOOM_LEVEL = 9
+export const SUPPORTED_ZOOM_LEVELS = [9, 10, 11, 12]
 
 /**
  * Line Editing and display

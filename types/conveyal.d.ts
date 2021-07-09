@@ -327,7 +327,7 @@ declare global {
     export type TaskWorkProduct = {
       id: string
       regionId: string
-      type: 'BUNDLE' | 'REGIONAL_ANALYSIS'
+      type: 'BUNDLE' | 'REGIONAL_ANALYSIS' | 'RESOURCE'
     }
 
     export type Task = {

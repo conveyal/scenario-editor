@@ -4,6 +4,7 @@ import {useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import colors from 'lib/constants/colors'
+import {useRouteStops} from 'lib/gtfs/hooks'
 import message from 'lib/message'
 import * as reroute from 'lib/utils/update-add-stops-terminus'
 
@@ -35,11 +36,19 @@ import SegmentSpeeds from './segment-speeds'
  * the beginning of the baseline pattern. In both cases, allowExtend is true.
  */
 export default function Reroute({
+  bundle,
   modification,
-  selectedFeed,
-  update,
-  updateAndRetrieveFeedData
+  update
+}: {
+  bundle: CL.Bundle
+  modification: CL.Reroute
+  update: (updates: Partial<CL.Reroute>) => void
 }) {
+  const routeStops = useRouteStops(
+    bundle._id,
+    modification.feed,
+    get(modification, 'routes[0]')
+  )
   const stops = useSelector(selectStopsFromModification)
   const [selectStop, setSelectStop] = useState('none')
   const [isEditing, setIsEditing] = useState(false)
@@ -90,19 +99,12 @@ export default function Reroute({
   }
 
   const hasFeedRoutesAndTrips =
-    selectedFeed &&
     modification.routes &&
     (modification.trips === null || get(modification, 'trips.length') > 0)
-  const fromStopValue = get(
-    selectedFeed,
-    `stopsById[${modification.fromStop}].stop_name`,
-    '(none)'
-  )
-  const toStopValue = get(
-    selectedFeed,
-    `stopsById[${modification.toStop}].stop_name`,
-    '(none)'
-  )
+  const fromStopValue =
+    routeStops.find((s) => s.id === modification.fromStop)?.name ?? '(none)'
+  const toStopValue =
+    routeStops.find((s) => s.id === modification.toStop)?.name ?? '(none)'
 
   let numberOfStops = stops.length
 
@@ -113,14 +115,14 @@ export default function Reroute({
   return (
     <Stack spacing={4}>
       <RerouteLayer
-        feed={selectedFeed}
+        bundleId={bundle._id}
         isEditing={isEditing}
         modification={modification}
       />
 
       {selectStop !== 'none' && (
         <StopLayer
-          feed={selectedFeed}
+          bundleId={bundle._id}
           modification={modification}
           onSelect={onSelectStop}
           selectedColor={colors.ACTIVE}
@@ -129,9 +131,9 @@ export default function Reroute({
       )}
 
       <SelectFeedRouteAndPatterns
-        onChange={updateAndRetrieveFeedData}
-        routes={modification.routes}
-        trips={modification.trips}
+        bundle={bundle}
+        modification={modification}
+        onChange={update}
       />
 
       {hasFeedRoutesAndTrips && (
@@ -200,8 +202,10 @@ export default function Reroute({
 
           {modification.segments.length > 0 && (
             <EditAlignment
+              bundleId={bundle._id}
               isEditing={isEditing}
               modification={modification}
+              numberOfStops={numberOfStops}
               setIsEditing={setIsEditing}
               update={update}
             />

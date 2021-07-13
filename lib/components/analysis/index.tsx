@@ -18,11 +18,13 @@ import {
   clearResults,
   fetchTravelTimeSurface
 } from 'lib/actions/analysis'
+import {useCurrentProjectId} from 'lib/hooks/use-current-project'
+import useCurrentRegion, {
+  useCurrentRegionId
+} from 'lib/hooks/use-current-region'
 import message from 'lib/message'
 
 import selectAnalysisBounds from 'lib/selectors/analysis-bounds'
-import selectCurrentProject from 'lib/selectors/current-project'
-import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
 
@@ -32,6 +34,7 @@ import AnalysisTitle from './title'
 import ResultsSliders from './results-sliders'
 import SinglePointSettings from './single-point-settings'
 import StackedPercentileSelector from './stacked-percentile-selector'
+import {useProjects} from 'lib/hooks/use-collection'
 
 /**
  * Hide the loading text from map components because it is awkward.
@@ -63,9 +66,15 @@ const P = {
   lg: 6
 }
 
-export default function SinglePointAnalysis({bundles, projects, region}) {
+export default function SinglePointAnalysis() {
   const dispatch = useDispatch()
-  const currentProject = useSelector(selectCurrentProject)
+  const {data: projects} = useProjects({
+    query: {regionId: useCurrentRegionId()}
+  })
+  const currentProjectId = useCurrentProjectId()
+  const currentRegion = useCurrentRegion()
+  const currentProject = projects.find((p) => p._id === currentProjectId)
+
   const isochroneFetchStatus = useSelector((s) =>
     get(s, 'analysis.isochroneFetchStatus')
   )
@@ -128,7 +137,7 @@ export default function SinglePointAnalysis({bundles, projects, region}) {
         />
       )}
 
-      <ModificationsMap isEditing />
+      <ModificationsMap isEditingId={true} />
 
       <Isochrones isCurrent={displayedDataIsCurrent} />
 
@@ -180,42 +189,26 @@ export default function SinglePointAnalysis({bundles, projects, region}) {
         </Alert>
       )}
 
-      <InnerDock width={640}>
-        <Results
-          isDisabled={disableInputs}
-          isStale={profileRequestHasChanged}
-          region={region}
-        />
+      {currentRegion && (
+        <InnerDock width={640}>
+          <Stack p={P.md} shouldWrapChildren>
+            <StackedPercentileSelector
+              disabled={disableInputs}
+              stale={profileRequestHasChanged}
+            />
+            <ResultsSliders
+              isDisabled={disableInputs}
+              isStale={profileRequestHasChanged}
+            />
+          </Stack>
 
-        <SinglePointSettings
-          bundles={bundles}
-          projects={projects}
-          region={region}
-        />
-      </InnerDock>
+          <SinglePointSettings
+            currentProject={currentProject}
+            projects={projects}
+          />
+        </InnerDock>
+      )}
     </>
-  )
-}
-
-function Results({
-  isDisabled,
-  isStale, // are the results out of sync with the form?
-  region
-}) {
-  const defaultCutoff = useSelector(selectMaxTripDurationMinutes)
-  return (
-    <Stack p={P.md}>
-      <StackedPercentileSelector
-        disabled={isDisabled}
-        stale={isStale}
-        regionId={region._id}
-      />
-      <ResultsSliders
-        defaultCutoff={defaultCutoff}
-        isDisabled={isDisabled}
-        isStale={isStale}
-      />
-    </Stack>
   )
 }
 

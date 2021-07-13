@@ -3,14 +3,12 @@ import useRegionalAnalyses from 'lib/hooks/use-regional-analyses'
 import SelectPage from 'lib/regional/components/select-page'
 import useRegionalJobs from 'lib/regional/hooks/use-regional-jobs'
 
-import withDataLayout, {IResults} from 'lib/with-data-layout'
+import withDataLayout from 'lib/hocs/with-data-layout'
 
-interface PageProps extends IResults {
+export default withDataLayout<{
   allAnalyses: CL.RegionalAnalysis[]
   jobs: CL.RegionalJob[]
-}
-
-export default withDataLayout<PageProps>(
+}>(
   function RegionalPage(p) {
     return (
       <InnerDock>

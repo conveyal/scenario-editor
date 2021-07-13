@@ -1,43 +1,54 @@
-import {Alert, FormControl, FormLabel, Heading, Stack} from '@chakra-ui/react'
+import {
+  Alert,
+  Box,
+  FormControl,
+  FormLabel,
+  Heading,
+  Stack
+} from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
-import get from 'lodash/get'
-import React from 'react'
-import {useSelector} from 'react-redux'
 
+import {useModification} from 'lib/hooks/use-model'
 import message from 'lib/message'
-import selectPhaseFromTimetableStops from 'lib/selectors/all-phase-from-timetable-stops'
-import selectProjectTimetables from 'lib/selectors/project-timetables'
-import {toString as timetableToString} from 'lib/utils/timetable'
+import useAvailablePhaseStops from 'lib/modification/hooks/use-available-phase-stops'
+import usePhaseAvailableTimetables from 'lib/modification/hooks/use-phase-timetables'
 
 import Select from '../select'
 import MinutesSeconds from '../minutes-seconds'
 import DocsLink from '../docs-link'
 
-const getStopName = fpGet('stop_name')
-const getStopId = fpGet('stop_id')
+const getStopName = fpGet('stop.name')
+const getStopId = fpGet('scopedId')
 
 export default function Phase({
   disabled = false,
   modificationStops,
   timetable,
   update
+}: {
+  disabled?: boolean
+  modificationStops: GTFS.FeedScopedStop[]
+  timetable: CL.AbstractTimetable
+  update: (updates: Partial<CL.AbstractTimetable>) => void
 }) {
-  const allPhaseFromTimetableStops = useSelector(selectPhaseFromTimetableStops)
-  const projectTimetables = useSelector(selectProjectTimetables)
-  const selectedPhaseFromTimetableStops =
-    allPhaseFromTimetableStops[timetable.phaseFromTimetable]
-  const availableTimetables = projectTimetables.filter(
-    (tt) => tt._id !== timetable._id
+  const allPhaseOptions = usePhaseAvailableTimetables()
+  // Filter out the current timetable
+  const availablePhaseOptions = allPhaseOptions.filter(
+    (tt) => tt.timetable._id !== timetable._id
   )
-  const selectedTimetableId = (timetable.phaseFromTimetable || '').split(':')[1]
-  const selectedTimetable = availableTimetables.find(
-    (tt) => tt._id === selectedTimetableId
-  )
+
+  const [selectedModificationId, selectedTimetableId] = (
+    timetable.phaseFromTimetable || ''
+  ).split(':')
+  const selectedModification = useModification(selectedModificationId)
+  const selectedTimetable = availablePhaseOptions.find(
+    (tt) => tt.timetable._id === selectedTimetableId
+  )?.timetable
 
   function _setPhaseFromTimetable(tt) {
     update({
       phaseFromStop: null,
-      phaseFromTimetable: tt ? `${tt.modificationId}:${tt._id}` : null
+      phaseFromTimetable: tt ? tt.phaseId : null
     })
   }
 
@@ -56,11 +67,11 @@ export default function Phase({
           name={message('phasing.atStop')}
           getOptionLabel={getStopName}
           getOptionValue={getStopId}
-          onChange={(s) => update({phaseAtStop: get(s, 'stop_id')})}
+          onChange={(s) => update({phaseAtStop: s.scopedId})}
           options={modificationStops}
           placeholder={message('phasing.atStop')}
           value={modificationStops.find(
-            (s) => s.stop_id === timetable.phaseAtStop
+            (s) => s.scopedId === timetable.phaseAtStop
           )}
         />
       </FormControl>
@@ -76,62 +87,23 @@ export default function Phase({
               isClearable
               isDisabled={disabled}
               name={message('phasing.fromTimetable')}
-              getOptionLabel={(t) =>
-                `${get(t, 'modificationName')}: ${timetableToString(t)}`
-              }
-              getOptionValue={(t) =>
-                `${get(t, 'modificationId')}:${get(t, '_id')}`
-              }
+              getOptionLabel={(t) => t.phaseLabel}
+              getOptionValue={(t) => t.phaseId}
               onChange={_setPhaseFromTimetable}
-              options={availableTimetables}
+              options={availablePhaseOptions}
               placeholder={message('phasing.fromTimetable')}
               value={selectedTimetable}
             />
           </FormControl>
           {timetable.phaseFromTimetable &&
-            (selectedTimetable ? (
-              <Stack spacing={4}>
-                {selectedTimetable.headwaySecs !== timetable.headwaySecs && (
-                  <Alert status='error'>
-                    {message('phasing.headwayMismatchWarning', {
-                      selectedTimetableHeadway:
-                        selectedTimetable.headwaySecs / 60
-                    })}
-                  </Alert>
-                )}
-                {get(selectedPhaseFromTimetableStops, 'length') > 0 ? (
-                  <FormControl>
-                    <FormLabel htmlFor='phaseFromStop'>
-                      {message('phasing.fromStop')}
-                    </FormLabel>
-                    <Select
-                      inputId='phaseFromStop'
-                      getOptionLabel={getStopName}
-                      getOptionValue={getStopId}
-                      name={message('phasing.fromStop')}
-                      onChange={(s) =>
-                        update({phaseFromStop: get(s, 'stop_id')})
-                      }
-                      options={selectedPhaseFromTimetableStops}
-                      placeholder={message('phasing.fromStop')}
-                      value={selectedPhaseFromTimetableStops.find(
-                        (s) => s.stop_id === timetable.phaseFromStop
-                      )}
-                    />
-                  </FormControl>
-                ) : (
-                  <Alert status='error'>
-                    {message('phasing.noAvailableStopsWarning')}
-                  </Alert>
-                )}
-                {timetable.phaseFromStop && (
-                  <MinutesSeconds
-                    label={message('phasing.minutes')}
-                    onChange={(phaseSeconds) => update({phaseSeconds})}
-                    seconds={timetable.phaseSeconds}
-                  />
-                )}
-              </Stack>
+            (selectedTimetable && selectedModification ? (
+              <Box>
+                <PhaseAtTimetable
+                  selectedTimetable={selectedTimetable}
+                  timetable={timetable}
+                  update={update}
+                />
+              </Box>
             ) : (
               <Alert status='error'>
                 <strong>Selected timetable no longer exists.</strong> Please
@@ -140,6 +112,59 @@ export default function Phase({
               </Alert>
             ))}
         </Stack>
+      )}
+    </Stack>
+  )
+}
+
+function PhaseAtTimetable({
+  timetable,
+  selectedTimetable,
+  update
+}: {
+  timetable: CL.AbstractTimetable
+  selectedTimetable: CL.AbstractTimetable
+  update: (updates: Partial<CL.AbstractTimetable>) => void
+}) {
+  const availableStops = useAvailablePhaseStops(timetable.phaseFromTimetable)
+  return (
+    <Stack spacing={4}>
+      {selectedTimetable.headwaySecs !== timetable.headwaySecs && (
+        <Alert status='error'>
+          {message('phasing.headwayMismatchWarning', {
+            selectedTimetableHeadway: selectedTimetable.headwaySecs / 60
+          })}
+        </Alert>
+      )}
+      {availableStops?.length > 0 ? (
+        <FormControl>
+          <FormLabel htmlFor='phaseFromStop'>
+            {message('phasing.fromStop')}
+          </FormLabel>
+          <Select
+            inputId='phaseFromStop'
+            getOptionLabel={getStopName}
+            getOptionValue={getStopId}
+            name={message('phasing.fromStop')}
+            onChange={(s) => update({phaseFromStop: s.scopedId})}
+            options={availableStops}
+            placeholder={message('phasing.fromStop')}
+            value={availableStops.find(
+              (s) => s.scopedId === timetable.phaseFromStop
+            )}
+          />
+        </FormControl>
+      ) : (
+        <Alert status='error'>
+          {message('phasing.noAvailableStopsWarning')}
+        </Alert>
+      )}
+      {timetable.phaseFromStop && (
+        <MinutesSeconds
+          label={message('phasing.minutes')}
+          onChange={(phaseSeconds) => update({phaseSeconds})}
+          seconds={timetable.phaseSeconds}
+        />
       )}
     </Stack>
   )

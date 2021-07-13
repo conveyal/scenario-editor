@@ -15,6 +15,12 @@ export default function Timetables({
   numberOfStops,
   timetables,
   update
+}: {
+  modification: CL.AddTripPattern
+  modificationStops: GTFS.FeedScopedStop[]
+  numberOfStops: number
+  timetables: CL.Timetable[]
+  update: (updates: Partial<CL.AddTripPattern>) => void
 }) {
   const segmentDistances = useSelector(selectSegmentDistances)
 
@@ -77,6 +83,7 @@ export default function Timetables({
 
       {timetables.map((tt, i) => (
         <TimetableComponent
+          bidirectional={modification.bidirectional}
           key={`timetable-${i}`}
           modificationStops={modificationStops}
           numberOfStops={numberOfStops}

@@ -9,11 +9,11 @@ import {
   Stack,
   Heading
 } from '@chakra-ui/react'
-import {useState} from 'react'
-import {useSelector} from 'react-redux'
+import get from 'lodash/get'
+import {useMemo, useState} from 'react'
 
+import {useRouteStops} from 'lib/gtfs/hooks'
 import message from 'lib/message'
-import selectSelectedStops from 'lib/selectors/selected-stops'
 
 import IconButton from '../icon-button'
 import {ClearIcon, EditIcon, MinusSquare, PlusSquare, XIcon} from '../icons'
@@ -24,12 +24,29 @@ type Action = 'none' | 'new' | 'add' | 'remove'
 /**
  * Select stops on a particular route
  */
-export default function SelectStops({modification, update}) {
+export default function SelectStops({
+  bundleId,
+  modification,
+  update
+}: {
+  bundleId: string
+  modification: CL.StopModification
+  update: (stops: string[]) => void
+}) {
   const [action, setAction] = useState<Action>('none')
-  const selectedStops = useSelector(selectSelectedStops)
+  const routeStops = useRouteStops(
+    bundleId,
+    modification.feed,
+    get(modification, 'routes[0]')
+  )
+  const selectedStops = useMemo(() => {
+    return modification.routes
+      ?.map((id) => routeStops.find((s) => s.id === id))
+      .filter((s) => !!s)
+  }, [modification, routeStops])
 
   function onClear() {
-    update({stops: null})
+    update(null)
     setAction('none')
   }
 
@@ -40,8 +57,9 @@ export default function SelectStops({modification, update}) {
           <StopSelectPolygon
             action={action}
             currentStops={modification.stops}
-            update={(stops) => {
-              update({stops})
+            stops={routeStops}
+            update={(stops: string[]) => {
+              update(stops)
               setAction('none')
             }}
           />

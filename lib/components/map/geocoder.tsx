@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Input,
   InputGroup,
   InputRightElement,
@@ -23,6 +22,7 @@ import {POPOVER_Z} from 'lib/constants/z-index'
 import mapboxSearch, {MapboxFeature} from 'lib/utils/mapbox-search'
 
 import {SearchIcon} from '../icons'
+import IconButton from '../icon-button'
 
 type OnResultsFn = (r: MapboxFeature, map: Map) => void
 
@@ -145,14 +145,15 @@ export default function GeocoderPopper({
         {({onClose}) => (
           <>
             <PopoverTrigger>
-              <Button
-                colorScheme='blue'
+              <IconButton
                 isDisabled={isDisabled}
                 shadow='lg'
-                title='Search map'
+                label='Search map'
+                size='md'
+                variant='solid'
               >
                 <SearchIcon />
-              </Button>
+              </IconButton>
             </PopoverTrigger>
             <Portal>
               <PopoverContent shadow='lg'>

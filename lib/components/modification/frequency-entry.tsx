@@ -1,8 +1,9 @@
 import {Box, FormControl, FormLabel, Input, Stack} from '@chakra-ui/react'
-import get from 'lodash/get'
-import {useCallback} from 'react'
+import uniq from 'lodash/uniq'
+import {useCallback, useMemo} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
+import intersects from 'lib/utils/arrays-intersect'
 
 import ConfirmButton from '../confirm-button'
 import {CalendarIcon, DeleteIcon} from '../icons'
@@ -17,12 +18,20 @@ import SelectPatterns from './select-patterns'
  */
 export default function FrequencyEntry({
   entry,
-  feed,
-  modificationStops,
+  feedId,
+  remove,
   routePatterns,
-  routes,
-  update,
-  remove
+  routeStops,
+  routeTrips,
+  update
+}: {
+  entry: CL.FrequencyEntry
+  feedId: string
+  routePatterns: GTFS.Pattern[]
+  routeStops: GTFS.Stop[]
+  routeTrips: GTFS.Trip[]
+  update: (updates: Partial<CL.FrequencyEntry>) => void
+  remove: () => void
 }) {
   const _changeName = useCallback((name) => update({name}), [update])
   const nameInput = useInput({
@@ -30,25 +39,26 @@ export default function FrequencyEntry({
     value: entry.name
   })
 
-  const _changeTrip = (sourceTrip) => update({sourceTrip})
-  const _selectPattern = (trips) =>
-    update({patternTrips: trips, sourceTrip: trips[0]})
+  const _selectPattern = (patternTrips: string[]) =>
+    update({patternTrips, sourceTrip: patternTrips[0]})
 
-  const patternsWithTrips = routePatterns.filter(
-    (pattern) =>
-      !!pattern.trips.find(
-        (trip) => !!entry.patternTrips.includes(trip.trip_id)
-      )
-  )
-  const stopsInPatterns = modificationStops.filter(
-    (ms) =>
-      !!patternsWithTrips.find(
-        (pattern) =>
-          !!pattern.stops.find(
-            (stop) => stop.stop_id === ms.stop_id.split(':')[1]
-          )
-      )
-  )
+  const feedScopedModificationStops: GTFS.FeedScopedStop[] = useMemo(() => {
+    const patternStopIds = uniq(
+      routePatterns
+        .filter((pattern) =>
+          intersects(pattern.associatedTripIds, entry.patternTrips)
+        )
+        .flatMap((p) => p.orderedStopIds)
+    )
+    return patternStopIds.map((id) => {
+      const stop = routeStops.find((s) => s.id === id)
+      return {
+        feedId,
+        scopedId: `${feedId}:${stop.id}`,
+        ...stop
+      }
+    })
+  }, [entry.patternTrips, feedId, routePatterns, routeStops])
 
   return (
     <Panel.Collapsible
@@ -66,27 +76,25 @@ export default function FrequencyEntry({
             <Input {...nameInput} />
           </FormControl>
 
-          {routePatterns && (
-            <SelectPatterns
-              onChange={_selectPattern}
-              routePatterns={routePatterns}
-              trips={entry.patternTrips}
-            />
-          )}
+          <SelectPatterns
+            onChange={_selectPattern}
+            patterns={routePatterns}
+            trips={entry.patternTrips}
+          />
 
-          {get(entry, 'patternTrips.length') > 0 && (
+          {entry?.patternTrips?.length > 0 && (
             <SelectTrip
-              feed={feed}
-              onChange={_changeTrip}
-              patternTrips={entry.patternTrips}
-              routes={routes}
-              trip={entry.sourceTrip}
+              onChange={(t) => update({sourceTrip: t.id})}
+              sourceTrip={entry.sourceTrip}
+              trips={routeTrips.filter((t) =>
+                entry.patternTrips.includes(t.id)
+              )}
             />
           )}
 
           <Box>
             <TimetableEntry
-              modificationStops={stopsInPatterns}
+              modificationStops={feedScopedModificationStops}
               timetable={entry}
               update={update}
             />

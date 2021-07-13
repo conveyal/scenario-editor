@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react'
 import {Polyline} from 'react-leaflet'
 
 import Marker from 'lib/components/map/marker'
@@ -13,6 +12,7 @@ import {
   getSnappedStopIconForZoom
 } from '../map/circle-icons'
 import DirectionalMarkers from '../directional-markers'
+import {useMemo} from 'react'
 
 function getIconsForZoom(z) {
   return {
@@ -23,13 +23,7 @@ function getIconsForZoom(z) {
 
 function useIcons() {
   const zoom = useLeafletZoom()
-  const [icons, setIcons] = useState(() => getIconsForZoom(zoom))
-
-  useEffect(() => {
-    setIcons(getIconsForZoom(zoom))
-  }, [zoom])
-
-  return icons
+  return useMemo(() => getIconsForZoom(zoom), [zoom])
 }
 
 function parseSegments(segments: CL.ModificationSegment[]) {
@@ -49,11 +43,7 @@ function parseSegments(segments: CL.ModificationSegment[]) {
 }
 
 function useParsedSegments(segments) {
-  const [values, setValues] = useState(() => parseSegments(segments))
-  useEffect(() => {
-    setValues(parseSegments(segments))
-  }, [segments])
-  return values
+  return useMemo(() => parseSegments(segments), [segments])
 }
 
 type AddTripPatternLayerProps = {

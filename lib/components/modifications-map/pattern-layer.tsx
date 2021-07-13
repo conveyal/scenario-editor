@@ -1,8 +1,10 @@
 import {color as parseColor} from 'd3-color'
-import {useState, useEffect} from 'react'
+import get from 'lodash/get'
+import {useMemo} from 'react'
 
 import colors from 'lib/constants/colors'
-import {getPatternsForModification} from 'lib/utils/patterns'
+import {useRoutePatterns} from 'lib/gtfs/hooks'
+import arraysIntersect from 'lib/utils/arrays-intersect'
 
 import DirectionalMarkers from '../directional-markers'
 import PatternGeometry from '../map/geojson-patterns'
@@ -14,37 +16,42 @@ export default function PatternLayer({
   activeTrips = null,
   color = colors.NEUTRAL,
   dim = false,
-  feed,
+  bundleId,
   modification
+}: {
+  activeTrips?: string[]
+  color?: string
+  dim?: boolean
+  bundleId: string
+  modification: CL.FeedModification
 }) {
-  const [patterns, setPatterns] = useState(() =>
-    getPatternsForModification({
-      activeTrips,
-      dim,
-      feed,
-      modification
-    })
+  const patterns = useRoutePatterns(
+    bundleId,
+    modification.feed,
+    get(modification, 'routes[0]')
   )
 
-  useEffect(() => {
-    setPatterns(
-      getPatternsForModification({
-        activeTrips,
-        dim,
-        feed,
-        modification
-      })
-    )
-  }, [activeTrips, dim, feed, modification])
+  const filteredPatterns = useMemo(() => {
+    if (activeTrips != null) {
+      return patterns.filter((p) =>
+        arraysIntersect(p.associatedTripIds, activeTrips)
+      )
+    } else {
+      return patterns
+    }
+  }, [activeTrips, patterns])
 
   const parsedColor = parseColor(color)
   if (dim) parsedColor.opacity = 0.2
 
-  if (patterns && patterns.length > 0) {
+  if (filteredPatterns?.length > 0) {
     return (
       <>
-        <PatternGeometry color={parsedColor + ''} patterns={patterns} />
-        <DirectionalMarkers color={parsedColor + ''} patterns={patterns} />
+        <PatternGeometry color={parsedColor + ''} patterns={filteredPatterns} />
+        <DirectionalMarkers
+          color={parsedColor + ''}
+          patterns={filteredPatterns}
+        />
       </>
     )
   } else {

@@ -2,105 +2,57 @@ import {
   Alert,
   AlertIcon,
   Box,
-  Button,
-  Divider,
   Flex,
   Stack,
-  Tab,
-  Tabs,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Text,
   useToast,
-  AlertDescription
+  AlertDescription,
+  useDisclosure
 } from '@chakra-ui/react'
-import debounce from 'lodash/debounce'
+import {dequal} from 'dequal/lite'
 import get from 'lodash/get'
-import {Component, useCallback, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useCallback, useMemo, useState} from 'react'
 
-import {
-  copy as copyModification,
-  deleteModification,
-  updateModification as updateAndRetrieveFeedData
-} from 'lib/actions/modifications'
+import {useModification} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
-import selectModificationFeed from 'lib/selectors/modification-feed'
-import selectFeedIsLoaded from 'lib/selectors/modification-feed-is-loaded'
-import selectSaveInProgress from 'lib/selectors/modification-save-in-progress'
-import selectVariants from 'lib/selectors/variants'
+import copyModification from 'lib/modification/mutations/copy'
+import ScenariosSelector from 'lib/scenario/components/selector'
 
 import {ConfirmDialog} from '../confirm-button'
 import Editable from '../editable'
 import IconButton from '../icon-button'
-import {ChevronLeft, CodeIcon, CopyIcon, DeleteIcon, MouseIcon} from '../icons'
+import {
+  ChevronLeft,
+  CodeIcon,
+  CopyIcon,
+  DeleteIcon,
+  MouseIcon,
+  SaveIcon,
+  UndoIcon
+} from '../icons'
 import InnerDock from '../inner-dock'
 import AllModificationsMapDisplay from '../modifications-map/display-all'
 
 import FitBoundsButton from './fit-bounds'
 import JSONEditor from './json-editor'
 import ModificationType from './type'
-import Variants from './variants'
-
-// Debounce the update function for thirty seconds
-const DEBOUNCE_MS = 30_000
-
-// Shortened version
-const hasOwnProperty = (o, p) => Object.prototype.hasOwnProperty.call(o, p)
+import TipButton from '../tip-button'
 
 // Test modification name is valid
 const nameIsValid = (s) => s && s.length > 0
 
 /**
- * Use a wrapper class to handle debouncing the updates
- */
-export default class DebouncedUpdate extends Component<any> {
-  componentDidMount() {
-    window.addEventListener('beforeunload', this.debouncedSaveToServer.flush)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.debouncedSaveToServer.flush)
-    // Call any debounced updates
-    this.debouncedSaveToServer.flush()
-  }
-
-  /**
-   * Wait until changes have stopped to save to the server to prevent extra
-   * saves. Pass only the props in case the nonce was updated elsewhere.
-   */
-  debouncedSaveToServer = debounce((newProps) => {
-    this.props.update({...this.props.modification, ...newProps})
-  }, DEBOUNCE_MS)
-
-  updateLocally = (newProps) => {
-    // immediately
-    this.props.updateLocally({...this.props.modification, ...newProps})
-    // debounce until updates have stopped for a few seconds
-    this.debouncedSaveToServer(newProps)
-  }
-
-  render() {
-    return (
-      <ModificationEditor
-        debouncedSaveToServer={this.debouncedSaveToServer}
-        modification={this.props.modification}
-        query={this.props.query}
-        updateLocally={this.updateLocally}
-      />
-    )
-  }
-}
-
-/**
  * Show this toast when a modification has been copied.
  */
-function CopiedModificationToast({modification, onClose, regionId}) {
+function CopiedModificationToast({
+  modificationId,
+  onClose,
+  projectId,
+  regionId
+}) {
   const goToModificationEdit = useRouteTo('modificationEdit', {
-    modificationId: modification._id,
-    projectId: modification.projectId,
+    modificationId,
+    projectId,
     regionId
   })
 
@@ -126,136 +78,113 @@ function CopiedModificationToast({modification, onClose, regionId}) {
   )
 }
 
-function ModificationEditor({
-  debouncedSaveToServer,
-  modification,
-  query,
-  updateLocally
+export default function ModificationEditor(p: {
+  bundle: CL.Bundle
+  modification: CL.Modification
+  project: CL.Project
+  query: CL.Query
 }) {
-  const dispatch = useDispatch()
-  const allVariants = useSelector(selectVariants)
-  const feed = useSelector(selectModificationFeed)
-  const feedIsLoaded = useSelector(selectFeedIsLoaded)
-  const saveInProgress = useSelector(selectSaveInProgress)
-  const [isDeleting, setIsDeleting] = useState(false)
-  const toast = useToast()
+  const visualEditor = useDisclosure({defaultIsOpen: true})
+  const toast = useToast({position: 'top', isClosable: true, status: 'success'})
+  const {remove, update} = useModification(p.modification._id, {
+    initialData: p.modification
+  })
+  const [modification, setLocalModification] = useState(p.modification)
+  const unsavedChanges = useMemo<boolean>(
+    () => !dequal(modification, p.modification),
+    [modification, p.modification]
+  )
 
   const goToAllModifications = useRouteTo('modifications', {
-    regionId: query.regionId,
-    projectId: query.projectId
+    regionId: p.query.regionId,
+    projectId: p.query.projectId
   })
 
+  const updateLocally = useCallback(
+    (p) =>
+      setLocalModification((m) => ({
+        ...m,
+        ...p
+      })),
+    [setLocalModification]
+  )
+
+  const _save = useCallback(async () => {
+    const res = await update(modification)
+    if (res.ok === true) setLocalModification(res.data)
+  }, [modification, update])
+
   const _remove = useCallback(async () => {
-    setIsDeleting(true)
-    // Cancel any pending updates
-    debouncedSaveToServer.cancel()
     // Delete the modification
-    await dispatch(deleteModification(modification._id))
-    // Go to the all modifications page
-    goToAllModifications()
-    // Show a toast confirming deletion
-    toast({
-      position: 'top',
-      title: `Modification "${modification.name}" deleted successfully`,
-      status: 'success',
-      isClosable: true
-    })
-  }, [
-    dispatch,
-    debouncedSaveToServer,
-    modification,
-    goToAllModifications,
-    toast
-  ])
-
-  const _updateAndRetrieveFeedData = useCallback(
-    (properties) => {
-      dispatch(
-        updateAndRetrieveFeedData({
-          ...modification,
-          ...properties
-        })
-      )
-    },
-    [dispatch, modification]
-  )
-
-  const _removeFeed = useCallback(() => {
-    if (modification) {
-      const m = modification
-      const update = {feed: null}
-      if (hasOwnProperty(m, 'routes')) m.routes = null
-      if (hasOwnProperty(m, 'stops')) m.stops = null
-      if (hasOwnProperty(m, 'trips')) m.trips = null
-      if (hasOwnProperty(m, 'fromStop')) m.fromStop = null
-      if (hasOwnProperty(m, 'toStop')) m.toStop = null
-      _updateAndRetrieveFeedData(update)
-    }
-  }, [modification, _updateAndRetrieveFeedData])
-
-  const _setVariant = useCallback(
-    (variantIndex, active) => {
-      const variants = get(modification, 'variants', [])
-
-      // Could come from a bitset on the Java side so may be of varying length
-      for (let i = 0; i < variants.length; i++) {
-        if (variants[i] === undefined) variants[i] = false
-      }
-
-      variants[variantIndex] = active
-
-      updateLocally({
-        variants: [...variants]
+    const res = await remove()
+    if (res.ok === true) {
+      // Go to the all modifications page
+      goToAllModifications()
+      // Show a toast confirming deletion
+      toast({
+        title: `Modification "${modification.name}" deleted successfully`
       })
-    },
-    [modification, updateLocally]
-  )
+    }
+  }, [modification, goToAllModifications, remove, toast])
 
   const _copyModification = useCallback(async () => {
-    debouncedSaveToServer.flush()
-    const m = await dispatch(copyModification(modification._id))
-    toast({
-      position: 'top',
-      render: ({onClose}) => (
-        <CopiedModificationToast
-          modification={m}
-          onClose={onClose}
-          regionId={query.regionId}
-        />
-      )
-    })
-  }, [debouncedSaveToServer, dispatch, modification, query, toast])
-
-  if (isDeleting) return null
+    const res = await copyModification(modification._id)
+    if (res.ok) {
+      toast({
+        position: 'top',
+        render: ({onClose}) => (
+          <CopiedModificationToast
+            modificationId={res.data._id}
+            onClose={onClose}
+            projectId={p.query.projectId}
+            regionId={p.query.regionId}
+          />
+        )
+      })
+    }
+  }, [modification, p.query, toast])
 
   return (
     <>
-      <AllModificationsMapDisplay isEditing={true} />
+      <AllModificationsMapDisplay isEditingId={modification._id} />
 
-      <Flex
-        align='center'
-        borderBottomWidth='1px'
-        className={saveInProgress ? 'disableAndDim' : ''}
-        p={2}
-        width='320px'
-      >
-        <IconButton label='Modifications' onClick={goToAllModifications}>
+      <FitBoundsButton bundle={p.bundle} modification={modification} />
+
+      <Flex align='center' p={2} width='320px'>
+        <IconButton
+          isDisabled={unsavedChanges}
+          label='Modifications'
+          onClick={goToAllModifications}
+        >
           <ChevronLeft />
         </IconButton>
 
         <Box flex='1' fontSize='xl' fontWeight='bold' ml={2} overflow='hidden'>
           <Editable
             isValid={nameIsValid}
-            onChange={(name) => updateLocally({name})}
+            onChange={async (name) => updateLocally({name})}
             value={modification.name}
           />
         </Box>
 
         <Flex>
-          <div>
-            <FitBoundsButton />
-          </div>
+          {visualEditor.isOpen ? (
+            <IconButton
+              label='Edit JSON'
+              onClick={() => visualEditor.onClose()}
+            >
+              <CodeIcon />
+            </IconButton>
+          ) : (
+            <IconButton
+              label='Edit value'
+              onClick={() => visualEditor.onOpen()}
+            >
+              <MouseIcon />
+            </IconButton>
+          )}
           <IconButton
+            isDisabled={unsavedChanges}
             label={message('modification.copyModification')}
             onClick={() => _copyModification()}
           >
@@ -274,82 +203,91 @@ function ModificationEditor({
           </ConfirmDialog>
         </Flex>
       </Flex>
-      <InnerDock className={saveInProgress ? 'disableAndDim' : ''}>
-        {feedIsLoaded ? (
-          modification ? (
-            <Tabs align='end' p={4} variant='soft-rounded'>
-              <TabPanels>
-                <TabPanel p={0}>
-                  <Stack spacing={4}>
-                    <Box>
-                      <Editable
-                        onChange={(description) => updateLocally({description})}
-                        placeholder={message('modification.addDescription')}
-                        value={modification.description}
-                      />
-                    </Box>
+      {visualEditor.isOpen ? (
+        <VisualEditor
+          bundle={p.bundle}
+          modification={modification}
+          project={p.project}
+          save={_save}
+          saveDisabled={!unsavedChanges}
+          undo={() => setLocalModification(p.modification)}
+          updateLocally={updateLocally}
+        />
+      ) : (
+        <JSONEditor modification={modification} save={_save} />
+      )}
+    </>
+  )
+}
 
-                    {get(modification, 'routes.length') > 1 && (
-                      <Alert status='warning'>
-                        {message('modification.onlyOneRoute')}
-                      </Alert>
-                    )}
+function VisualEditor({
+  bundle,
+  modification,
+  project,
+  save,
+  saveDisabled,
+  undo,
+  updateLocally
+}: {
+  bundle: CL.Bundle
+  modification: CL.Modification
+  project: CL.Project
+  save: () => void
+  saveDisabled: boolean
+  undo: () => void
+  updateLocally: (updates: Partial<CL.Modification>) => void
+}) {
+  return (
+    <>
+      <Stack isInline spacing={0} width='100%'>
+        <TipButton
+          colorScheme='green'
+          onClick={save}
+          isDisabled={saveDisabled}
+          isFullWidth
+          label='Save changes'
+          leftIcon={<SaveIcon />}
+          rounded={0}
+        >
+          Save changes
+        </TipButton>
+        <TipButton
+          colorScheme='blue'
+          isDisabled={saveDisabled}
+          label='Undo changes'
+          onClick={undo}
+          rounded={0}
+        >
+          <UndoIcon />
+        </TipButton>
+      </Stack>
+      <InnerDock>
+        <Stack px={4} pt={4} spacing={2}>
+          <Box>
+            <Editable
+              onChange={async (description) => updateLocally({description})}
+              placeholder={message('modification.addDescription')}
+              value={modification.description}
+            />
+          </Box>
 
-                    <Box>
-                      <ModificationType
-                        modification={modification}
-                        selectedFeed={feed}
-                        type={modification.type}
-                        update={updateLocally}
-                        updateAndRetrieveFeedData={_updateAndRetrieveFeedData}
-                      />
-                    </Box>
+          {get(modification, 'routes.length') > 1 && (
+            <Alert status='warning'>
+              {message('modification.onlyOneRoute')}
+            </Alert>
+          )}
 
-                    <Box>
-                      <Variants
-                        activeVariants={modification.variants}
-                        allVariants={allVariants}
-                        setVariant={_setVariant}
-                      />
-                    </Box>
-                  </Stack>
-                </TabPanel>
-                <TabPanel p={0}>
-                  <JSONEditor
-                    modification={modification}
-                    save={updateLocally}
-                  />
-                </TabPanel>
-              </TabPanels>
+          <Box>
+            <ModificationType
+              bundle={bundle}
+              modification={modification}
+              update={updateLocally}
+              type={modification.type}
+            />
+          </Box>
 
-              <Divider my={4} />
-
-              <TabList>
-                <Tab aria-label='Edit value'>
-                  <MouseIcon />
-                </Tab>
-                <Tab aria-label='Edit JSON'>
-                  <CodeIcon />
-                </Tab>
-              </TabList>
-            </Tabs>
-          ) : (
-            <Text>Loading modification...</Text>
-          )
-        ) : (
-          <Stack spacing={4}>
-            <Text>Loading modification feed...</Text>
-            <Text>{message('modification.clearBundleInfo')}</Text>
-            <Button
-              isFullWidth
-              onClick={_removeFeed}
-              className='DEV'
-              colorScheme='yellow'
-            >
-              {message('modification.clearBundleConfirm')}
-            </Button>
-          </Stack>
-        )}
+          <ScenariosSelector modification={modification} project={project} />
+        </Stack>
       </InnerDock>
     </>
   )

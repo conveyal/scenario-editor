@@ -22,9 +22,7 @@ import {
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
 
-import {createModification} from 'lib/actions/modifications'
 import {AddIcon} from 'lib/components/icons'
 import {
   ADD_STREETS,
@@ -40,6 +38,8 @@ import {
 } from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
+import useRouterQuery from 'lib/hooks/use-router-query'
+import createModification from 'lib/modification/mutations/create-for-project'
 import message from 'lib/message'
 
 const testContent = (s) => s && s.length > 0
@@ -60,20 +60,14 @@ const streetModificationTypes = [ADD_STREETS, MODIFY_STREETS]
 /**
  * Modal for creating a modification.
  */
-export default function CreateModification({
-  feeds,
-  projectId,
-  regionId,
-  variants,
-  ...p
-}) {
-  const dispatch = useDispatch<any>()
+export default function CreateModification() {
   const [isCreating, setIsCreating] = useState(false)
   const {isOpen, onClose, onOpen} = useDisclosure()
   const [tabIndex, setTabIndex] = useState(0)
   const nameInput = useInput({test: testContent, value: ''})
   const transitTypeInput = useInput({value: transitModificationTypes[0]})
   const streetTypeInput = useInput({value: streetModificationTypes[0]})
+  const {projectId, regionId} = useRouterQuery()
   const goToModificationEdit = useRouteTo('modificationEdit', {
     regionId,
     projectId
@@ -82,16 +76,10 @@ export default function CreateModification({
   async function create() {
     setIsCreating(true)
     const type = tabIndex === 0 ? transitTypeInput.value : streetTypeInput.value
-    const m: CL.IModification = await dispatch(
-      createModification({
-        feedId: get(feeds, '[0].feedId'), // default to the first feed
-        name: nameInput.value,
-        projectId,
-        type,
-        variants: variants.map(() => true)
-      })
-    )
-    goToModificationEdit({modificationId: m?._id})
+    const res = await createModification(projectId, type, nameInput.value)
+    if (res.ok) {
+      goToModificationEdit({modificationId: res.data._id})
+    }
   }
 
   return (
@@ -101,7 +89,6 @@ export default function CreateModification({
         onClick={onOpen}
         leftIcon={<AddIcon />}
         colorScheme='green'
-        {...p}
       >
         {message('modification.create')}
       </Button>

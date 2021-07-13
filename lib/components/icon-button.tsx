@@ -1,8 +1,8 @@
-import {Box, BoxProps, Button, ButtonProps} from '@chakra-ui/react'
+import {Box, BoxProps, ButtonProps} from '@chakra-ui/react'
 import {Placement} from '@popperjs/core'
 import {forwardRef} from 'react'
 
-import Tip from './tip'
+import TipButton from './tip-button'
 
 type IconButtonProps = {
   children: JSX.Element
@@ -34,19 +34,18 @@ const IconButton = forwardRef<HTMLDivElement, IconButtonProps>(
   ) => {
     return (
       <Box ref={ref} {...p}>
-        <Tip label={label} placement={placement || 'auto'}>
-          <Button
-            aria-label={label}
-            isActive={isActive}
-            isDisabled={isDisabled}
-            onClick={onClick}
-            size={size}
-            variant={variant}
-            colorScheme={colorScheme}
-          >
-            {children}
-          </Button>
-        </Tip>
+        <TipButton
+          label={label}
+          placement={placement ?? 'auto'}
+          isActive={isActive}
+          isDisabled={isDisabled}
+          onClick={onClick}
+          size={size}
+          variant={variant}
+          colorScheme={colorScheme}
+        >
+          {children}
+        </TipButton>
       </Box>
     )
   }

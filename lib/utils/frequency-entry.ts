@@ -1,6 +1,6 @@
 import {v4 as uuidv4} from 'uuid'
 
-export function create(count) {
+export function create(count: number): CL.FrequencyEntry {
   return {
     _id: uuidv4(),
     name: `Frequency Entry ${count}`,
@@ -9,6 +9,7 @@ export function create(count) {
     patternTrips: [],
     startTime: 7 * 3600,
     endTime: 22 * 3600,
+    exactTimes: false,
 
     // active every day
     monday: true,

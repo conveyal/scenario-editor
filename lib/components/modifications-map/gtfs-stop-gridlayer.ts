@@ -1,5 +1,5 @@
 import lonlat from '@conveyal/lonlat'
-import {GridLayer as LeafletGridLayer} from 'leaflet'
+import {Coords, GridLayer as LeafletGridLayer, Point} from 'leaflet'
 import {GridLayer, GridLayerProps, withLeaflet} from 'react-leaflet'
 
 import {MINIMUM_SNAP_STOP_ZOOM_LEVEL} from 'lib/constants'
@@ -12,31 +12,26 @@ const TZ = 256 // size of a tile
 // Limit errors shown
 const logError = createLogError()
 
-type Stop = {
-  stop_lat: number
-  stop_lon: number
-}
-
 interface GTFSStopGridLayerProps extends GridLayerProps {
-  stops: Stop[]
+  stops: GTFS.Stop[]
 }
 
 class GTFSStopsGridLayer extends LeafletGridLayer {
-  stops: Stop[]
+  stops: GTFS.Stop[]
 
   constructor(options) {
     super(options)
     this.stops = options.stops
   }
 
-  createTile(coords) {
+  createTile(coords: Coords) {
     const canvas = document.createElement('canvas')
     canvas.width = canvas.height = TZ
     const ctx = canvas.getContext('2d')
     if (coords.z >= MINIMUM_SNAP_STOP_ZOOM_LEVEL && ctx) {
       ctx.strokeStyle = colors.NEUTRAL
       const SR = (getStopRadius(coords.z) * 2) / 3 // 2/3rds normal stops
-      drawStopsInTile(this.stops, coords, coords.z, (s) => {
+      drawStopsInTile(this.stops, coords, coords.z, (s: CL.Point) => {
         const offset = SR / 2
         ctx.beginPath()
         // In the current tile, so modulo by the tile size and center it
@@ -76,14 +71,19 @@ export class GTFSStops extends GridLayer<
 export default withLeaflet(GTFSStops)
 
 // Check if the stop has valid coordinates
-const isValidStop = (s) => s.stop_lat && s.stop_lon
+const isValidStop = (s: GTFS.Stop) => s.lat && s.lon
 
 /**
  * Convert stops to pixel coordinates, check if they are within the tile bounds
  * and then call the draw function on the stop. Created in this style for test.
  */
-export function drawStopsInTile(stops, tile, z, draw) {
-  const tileBounds = {
+export function drawStopsInTile(
+  stops: GTFS.Stop[],
+  tile: Point,
+  z: number,
+  draw: (sp: CL.Point) => void
+) {
+  const tileBounds: CL.Bounds = {
     north: tile.y * TZ,
     south: (tile.y + 1) * TZ,
     west: tile.x * TZ,
@@ -96,9 +96,9 @@ export function drawStopsInTile(stops, tile, z, draw) {
   }
 }
 
-export function stopToPixel(stop, z) {
+export function stopToPixel(stop: GTFS.Stop, z: number) {
   try {
-    return lonlat.toPixel([stop.stop_lon, stop.stop_lat], z)
+    return lonlat.toPixel([stop.lon, stop.lat], z)
   } catch (e) {
     logError(e)
   }
@@ -107,6 +107,6 @@ export function stopToPixel(stop, z) {
 /**
  * A tile's x increases to the right and y increases down.
  */
-export function stopInTile(s, tb) {
+export function stopInTile(s: CL.Point, tb: CL.Bounds) {
   return s.x > tb.west && s.x < tb.east && s.y > tb.north && s.y < tb.south
 }

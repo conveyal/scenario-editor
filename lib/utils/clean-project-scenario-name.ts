@@ -1,14 +1,19 @@
-//
 import message from 'lib/message'
 
 import {UNDEFINED_PROJECT_NAME} from '../constants'
 
-export default function cleanProjectScenarioName(project, scenarioIndex) {
+const baselineName: string = message('scenario.baseline')
+
+/**
+ * Remove special characters from the name in order to use as file names.
+ */
+export default function cleanProjectScenarioName(
+  project?: CL.Project,
+  scenarioName = baselineName
+) {
   if (!project) {
     return UNDEFINED_PROJECT_NAME
   }
-  const scenarioName =
-    project.variants[scenarioIndex] || message('variant.baseline')
   const description = `${project.name}-${scenarioName}`
   return description.replace(/[^a-zA-Z0-9]/, '-')
 }

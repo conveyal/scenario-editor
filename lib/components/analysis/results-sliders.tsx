@@ -19,7 +19,7 @@ import {
   setTravelTimePercentile
 } from 'lib/actions/analysis'
 import useInput from 'lib/hooks/use-controlled-input'
-
+import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import getNearestPercentileIndex from 'lib/selectors/nearest-percentile-index'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
@@ -29,12 +29,14 @@ const parseCutoff = (v: string) => parseInt(v, 10)
 const cutoffIsValid = (v: number) => v != null && v >= 0 && v <= 120
 
 export default function ResultSliders({
-  defaultCutoff,
   isDisabled,
-  isStale,
-  ...p
+  isStale
+}: {
+  isDisabled: boolean
+  isStale: boolean
 }) {
   const dispatch = useDispatch()
+  const defaultCutoff = useSelector(selectMaxTripDurationMinutes)
   const onChangeCutoff = useCallback(
     (cutoff: number) => {
       if (cutoff >= 0 && cutoff <= 120) {
@@ -52,7 +54,7 @@ export default function ResultSliders({
   const isDisabledOrStale = isDisabled || isStale
   return (
     <>
-      <HStack width='100%' {...p}>
+      <HStack width='100%'>
         <FormControl isDisabled={isDisabledOrStale} width='500px'>
           <CutoffSlider
             cutoff={cutoffInput.value}

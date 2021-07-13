@@ -25,10 +25,7 @@ export function useDownloadRequestJSON(analysis: CL.RegionalAnalysis) {
     const url = `${API.Regional}/${analysis._id}`
     const res = await authFetch(url, user)
     if (res.ok === false) throw res.error
-    downloadObjectAsJson({
-      data: res.data,
-      filename: analysis.name + '.json'
-    })
+    downloadObjectAsJson(res.data, analysis.name + '.json')
   }, [analysis, user])
 }
 

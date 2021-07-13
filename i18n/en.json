@@ -134,7 +134,7 @@
     "goToExisting": "or go to an existing project",
     "select": "Select a project…"
   },
-  "variant": {
+  "scenario": {
     "description": "A Scenario is a collection of modifications within a project.",
     "name": "Scenario",
     "baseline": "Baseline",
@@ -351,7 +351,7 @@
     "keepTripsOutside": "Existing trips outside modified windows are kept.",
     "removeTripsOutside": "All existing trips are removed.",
     "newFrequencies": "New frequencies",
-    "variant": "Scenario: %(variant)",
+    "scenario": "Scenario: %(scenario)",
     "bundle": "Using bundle: %(name)",
     "phasing": {
       "phaseFromSeconds": "Phase: %(time) from %(timetable)",

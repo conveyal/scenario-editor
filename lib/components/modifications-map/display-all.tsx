@@ -1,46 +1,53 @@
-import get from 'lodash/get'
 import dynamic from 'next/dynamic'
-import {useRouter} from 'next/router'
-import React from 'react'
-import {useSelector} from 'react-redux'
 
-import {LS_MOM} from 'lib/constants'
-import selectFeedsById from 'lib/selectors/feeds-by-id'
-import selectModifications from 'lib/selectors/modifications'
-import {getParsedItem} from 'lib/utils/local-storage'
+import useModificationsOnMap from 'lib/modification/hooks/use-modifications-on-map'
+import {useModifications} from 'lib/hooks/use-collection'
+import useCurrentBundle from 'lib/hooks/use-current-bundle'
+import useCurrentProject, {
+  useCurrentProjectId
+} from 'lib/hooks/use-current-project'
 
 const Display = dynamic(() => import('./display'), {ssr: false})
 
-export function DisplayAll({feedsById, isEditing = false, modifications}) {
-  return modifications.map((m) => (
-    <Display
-      dim={isEditing}
-      feed={feedsById[m.feed]}
-      key={m._id}
-      modification={m}
-    />
-  ))
+export function DisplayAll({
+  bundle,
+  isEditing = false,
+  modifications
+}: {
+  bundle: CL.Bundle
+  isEditing?: boolean
+  modifications: CL.Modification[]
+}) {
+  return (
+    <>
+      {modifications.map((m) => (
+        <Display dim={isEditing} bundle={bundle} key={m._id} modification={m} />
+      ))}
+    </>
+  )
 }
 
-export default function ConnectedDisplayAll(p) {
-  const router = useRouter()
-  const feedsById = useSelector(selectFeedsById)
-  const modifications = useSelector(selectModifications)
-  const modificationId = router.query.modificationId
+export default function ConnectedDisplayAll({
+  isEditingId
+}: {
+  isEditingId?: string | boolean
+}) {
+  const projectId = useCurrentProjectId()
+  const project = useCurrentProject()
+  const bundle = useCurrentBundle()
+  const {data: modifications} = useModifications({
+    query: {projectId: projectId}
+  })
+  const modificationsOnMap = useModificationsOnMap()
+  const ids = modificationsOnMap.state[projectId] ?? []
 
-  const modificationsOnMap = get(
-    getParsedItem(LS_MOM),
-    router.query.projectId,
-    []
-  )
-
-  return (
+  return bundle && project ? (
     <DisplayAll
-      feedsById={feedsById}
-      isEditing={p.isEditing}
+      bundle={bundle}
+      isEditing={!!isEditingId}
       modifications={modifications.filter(
-        (m) => m._id !== modificationId && modificationsOnMap.includes(m._id)
+        (m) => m._id !== isEditingId && ids.includes(m._id)
       )}
     />
-  )
+  ) : null
 }

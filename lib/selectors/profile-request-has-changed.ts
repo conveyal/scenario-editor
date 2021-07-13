@@ -46,7 +46,7 @@ export default createSelector(
         ...position,
         // even when copying comparison may have different project/scenario
         projectId: req2?.projectId,
-        variantIndex: req2?.variantIndex
+        scenarioId: req2?.scenarioId
       },
       res2
     )

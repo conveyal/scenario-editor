@@ -38,10 +38,10 @@ export function createUseModel<T extends CL.IModel>(
     _id?: string,
     config?: SWRConfiguration
   ): UseModelResponse<T> {
-    const {isLoading, user} = useUser()
+    const {user} = useUser()
     const url = useQueryURL(`/api/db/${collectionName}/${_id}`, null, options)
     const response = useSWR<T, ResponseError>(
-      _id == null || isLoading ? null : [url, user],
+      _id == null || user == null ? null : [url, user],
       {
         ...SWRConfigDefaults,
         ...config
@@ -86,6 +86,8 @@ export function createUseModel<T extends CL.IModel>(
 }
 
 export const useBundle = createUseModel<CL.Bundle>('bundles')
+export const useModification = createUseModel<CL.Modification>('modifications')
+export const usePreset = createUseModel<CL.Preset>('presets')
 export const useProject = createUseModel<CL.Project>('projects')
 export const useRegion = createUseModel<CL.Region>('regions')
-export const usePreset = createUseModel<CL.Preset>('presets')
+export const useScenario = createUseModel<CL.Scenario>('scenarios')

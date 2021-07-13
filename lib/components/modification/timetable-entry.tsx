@@ -8,10 +8,8 @@ import {
   Stack
 } from '@chakra-ui/react'
 import {useCallback} from 'react'
-import {useSelector} from 'react-redux'
 
 import message from 'lib/message'
-import selectActiveModification from 'lib/selectors/active-modification'
 
 import MinutesSeconds from '../minutes-seconds'
 import TimePicker from '../time-picker'
@@ -32,8 +30,17 @@ const DAYS = [
  * Superclass for both changing frequencies and creating patterntimetables for
  * new patterns
  */
-export default function TimetableEntry({modificationStops, timetable, update}) {
-  const modification = useSelector(selectActiveModification)
+export default function TimetableEntry({
+  disablePhasing = false,
+  modificationStops,
+  timetable,
+  update
+}: {
+  disablePhasing?: boolean
+  modificationStops: GTFS.FeedScopedStop[]
+  timetable: CL.AbstractTimetable
+  update: (updates: Partial<CL.AbstractTimetable>) => void
+}) {
   const {endTime, startTime} = timetable
 
   /** set the start time of this modification */
@@ -108,7 +115,7 @@ export default function TimetableEntry({modificationStops, timetable, update}) {
         <Divider />
       )}
       <Phase
-        disabled={!!(timetable.exactTimes || modification.bidirectional)}
+        disabled={!!(disablePhasing || timetable.exactTimes)}
         modificationStops={modificationStops}
         timetable={timetable}
         update={update}
@@ -117,7 +124,7 @@ export default function TimetableEntry({modificationStops, timetable, update}) {
   )
 }
 
-const modBy24hours = (time) => time % (60 * 60 * 24)
+const modBy24hours = (time: number) => time % (60 * 60 * 24)
 const add24hoursToEndIfLessThanStart = (start, end) =>
   end < start ? end + 60 * 60 * 24 : end
 

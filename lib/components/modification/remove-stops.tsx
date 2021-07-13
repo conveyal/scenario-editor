@@ -17,13 +17,16 @@ const testSeconds = (s) => s >= 0
  * Remove stops from a route
  */
 export default function RemoveStopsComponent({
+  bundle,
   modification,
-  selectedFeed,
-  update,
-  updateAndRetrieveFeedData
+  update
+}: {
+  bundle: CL.Bundle
+  modification: CL.RemoveStops
+  update: (updates: Partial<CL.RemoveStops>) => void
 }) {
   function onPatternSelectorChange({feed, routes, trips}) {
-    updateAndRetrieveFeedData({
+    update({
       feed,
       routes,
       trips,
@@ -42,22 +45,22 @@ export default function RemoveStopsComponent({
     <Stack spacing={4} mb={4}>
       <PatternLayer
         activeTrips={modification.trips}
+        bundleId={bundle._id}
         color={colors.NEUTRAL_LIGHT}
-        feed={selectedFeed}
         modification={modification}
       />
 
       <StopLayer
-        feed={selectedFeed}
+        bundleId={bundle._id}
         modification={modification}
         selectedColor={colors.REMOVED}
         unselectedColor={colors.NEUTRAL_LIGHT}
       />
 
       <SelectFeedRouteAndPatterns
+        bundle={bundle}
+        modification={modification}
         onChange={onPatternSelectorChange}
-        routes={modification.routes}
-        trips={modification.trips}
       />
 
       <NumberInput
@@ -68,9 +71,13 @@ export default function RemoveStopsComponent({
         value={modification.secondsSavedAtEachStop}
       />
 
-      {modification.routes && selectedFeed && (
+      {modification.routes?.length === 1 && (
         <Box>
-          <SelectStops modification={modification} update={update} />
+          <SelectStops
+            bundleId={bundle._id}
+            modification={modification}
+            update={(stops) => update({stops})}
+          />
         </Box>
       )}
     </Stack>

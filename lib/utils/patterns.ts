@@ -1,8 +1,8 @@
 // TODO: Should this be done as a selector?
 
 export function getPatternsForModification({
-  activeTrips,
-  dim,
+  activeTrips = [],
+  dim = false,
   feed,
   modification
 }) {

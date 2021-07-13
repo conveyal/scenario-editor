@@ -26,7 +26,7 @@ const coordsFromPatterns = (patterns: GTFS.Pattern[]) =>
   )
 
 function getCoordinatesFromModification(
-  m: CL.IModification,
+  m: CL.Modification,
   patterns: GTFS.Pattern[]
 ): LatLng[] {
   switch (m.type) {

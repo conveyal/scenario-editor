@@ -160,7 +160,7 @@ export const fetchTravelTimeSurface = () => (dispatch, getState) => {
         : [],
       percentiles: TRAVEL_TIME_PERCENTILES,
       projectId: requestsSettings[1].projectId,
-      variantIndex: requestsSettings[1].variantIndex
+      scenarioId: requestsSettings[1].scenarioId
     })
   }
 

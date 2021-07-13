@@ -87,8 +87,7 @@ export default function CreateProject({
     const response = await postJSON<CL.Project>(`/api/db/projects`, {
       bundleId,
       name: nameInput.value,
-      regionId,
-      variants: ['Default']
+      regionId
     })
 
     if (response.ok) {

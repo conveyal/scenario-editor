@@ -24,7 +24,13 @@ const isFeatureCollection = (fc: any): fc is FeatureCollection =>
 /**
  * Must be rendered in a MapLayout
  */
-export default function AddStreets({modification, update}) {
+export default function AddStreets({
+  modification,
+  update
+}: {
+  modification: CL.AddStreets
+  update: (updates: Partial<CL.AddStreets>) => void
+}) {
   const featureGroupRef: MutableRefObject<FeatureGroup> = useRef()
 
   // Add the existing layers to the map on initial load

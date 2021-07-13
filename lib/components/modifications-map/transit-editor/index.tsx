@@ -624,9 +624,9 @@ async function addStop(
   const segments = getSegments(modification)
 
   const coordinates: GeoJSON.Position = snapStop
-    ? [snapStop.stop_lon, snapStop.stop_lat]
+    ? [snapStop.lon, snapStop.lat]
     : [latlng.lng, latlng.lat]
-  const stopId: void | string = snapStop?.stop_id
+  const stopId: void | string = snapStop?.id
 
   let newSegments: CL.ModificationSegment[]
   if (segments.length > 0) {
@@ -720,9 +720,9 @@ async function onStopDragEnd(
   snapStop: null | GTFS.Stop
 ): Promise<CL.ModificationSegment[]> {
   const coordinates = snapStop
-    ? [snapStop.stop_lon, snapStop.stop_lat]
+    ? [snapStop.lon, snapStop.lat]
     : [latlng.lng, latlng.lat]
-  const newStopId = snapStop?.stop_id
+  const newStopId = snapStop?.id
 
   const isEnd = stopIndex === segments.length
   const isStart = stopIndex === 0
@@ -921,9 +921,9 @@ async function insertStop(
   snapStop: null | GTFS.Stop
 ): Promise<Partial<Modification>> {
   const coordinates = snapStop
-    ? [snapStop.stop_lon, snapStop.stop_lat]
+    ? [snapStop.lon, snapStop.lat]
     : [latlng.lng, latlng.lat]
-  const stopId = snapStop?.stop_id
+  const stopId = snapStop?.id
 
   const segments = getSegments(modification)
   const sourceSegment = segments[index]

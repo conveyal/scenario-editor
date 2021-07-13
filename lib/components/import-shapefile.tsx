@@ -9,21 +9,19 @@ import {
   Heading,
   Input,
   Select,
-  Stack
+  Stack,
+  useToast
 } from '@chakra-ui/react'
-import distance from '@turf/distance'
 import {useCallback, useEffect, useState} from 'react'
-import {useDispatch} from 'react-redux'
 import shp from 'shpjs'
 
-import {createMultiple as createModifications} from 'lib/actions/modifications'
 import useInput from 'lib/hooks/use-controlled-input'
 import useFileInput from 'lib/hooks/use-file-input'
 import useRouteTo from 'lib/hooks/use-route-to'
+import useRouterQuery from 'lib/hooks/use-router-query'
 import logrocket from 'lib/logrocket'
 import message from 'lib/message'
-import {createAddTripPattern} from 'lib/utils/modification'
-import {create as createTimetable} from 'lib/utils/timetable'
+import createModifications from 'lib/modification/mutations/create-from-shapefile'
 
 import NumberInput from './number-input'
 import FileSizeInputHelper from './file-size-input-helper'
@@ -31,46 +29,25 @@ import FileSizeInputHelper from './file-size-input-helper'
 const hasOwnProperty = (o, p) => Object.prototype.hasOwnProperty.call(o, p)
 
 /**
- * Make LineStrings look like MultiLineStrings.
- */
-function getCoordinatesFromFeature(
-  feature: GeoJSON.Feature
-): GeoJSON.Position[][] {
-  if (feature.geometry.type === 'LineString') {
-    return [(feature.geometry as GeoJSON.LineString).coordinates]
-  } else if (feature.geometry.type === 'MultiLineString') {
-    const coords = (feature.geometry as GeoJSON.MultiLineString).coordinates
-    for (let i = 1; i < coords.length; i++) {
-      // Ensure MultiLineStrings line up at the ends.
-      if (distance(coords[i - 1].slice(-1)[0], coords[i][0]) > 0.05) {
-        throw new Error(message('shapefile.invalidMultiLineString'))
-      }
-    }
-    return coords
-  } else {
-    throw new Error(message('shapefile.invalidShapefileType'))
-  }
-}
-
-/**
  * Import a shapefile. This more or less does what geom2gtfs used to.
  */
-export default function ImportShapefile({projectId, regionId, variants}) {
-  const dispatch = useDispatch()
+export default function ImportShapefile() {
   const [shapefile, setShapefile] =
-    useState<void | shp.FeatureCollectionWithFilename>()
+    useState<shp.FeatureCollectionWithFilename>(null)
   const [stopSpacingMeters, setStopSpacingMeters] = useState(400)
   const [bidirectional, setBidirectional] = useState(true)
   const [autoCreateStops, setAutoCreateStops] = useState(true)
   const nameInput = useInput({value: ''})
   const freqInput = useInput({value: ''})
   const speedInput = useInput({value: ''})
-  const [error, setError] = useState<void | string>()
+  const [error, setError] = useState<string>(null)
   const [properties, setProperties] = useState<string[]>([])
   const [uploading, setUploading] = useState(false)
   const fileInput = useFileInput()
+  const toast = useToast({position: 'top', status: 'success', isClosable: true})
   const {files} = fileInput
 
+  const {projectId, regionId} = useRouterQuery()
   const routeToModifications = useRouteTo('modifications', {
     projectId,
     regionId
@@ -103,7 +80,7 @@ export default function ImportShapefile({projectId, regionId, variants}) {
         onChangeName(properties[0])
         onChangeFreq(properties[0])
         onChangeSpeed(properties[0])
-        setError()
+        setError(null)
       }
     },
     [onChangeFreq, onChangeName, onChangeSpeed]
@@ -121,54 +98,22 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   async function create() {
     setUploading(true)
     try {
-      const variantsFlags = variants.map(() => true)
       if (shapefile) {
-        const mods = shapefile.features.map((feat) => {
-          const segments = []
-          const coords: GeoJSON.Position[][] = getCoordinatesFromFeature(feat)
-
-          // Make a segment from each LineString.
-          for (let i = 0; i < coords.length; i++) {
-            segments.push({
-              geometry: {
-                type: 'LineString',
-                coordinates: coords[i]
-              },
-              spacing: autoCreateStops ? stopSpacingMeters : 0,
-              stopAtStart: false,
-              stopAtEnd: false,
-              fromStopId: null,
-              toStopId: null
-            })
-          }
-
-          if (segments.length > 0) {
-            segments[0].stopAtStart = true
-            segments[segments.length - 1].stopAtEnd = true
-          }
-
-          const mod = createAddTripPattern({
-            name: feat.properties[nameInput.value] || 'Add Trip Pattern',
-            projectId,
-            variants: variantsFlags
-          })
-
-          const timetable = createTimetable(
-            segments.map(() => feat.properties[speedInput.value])
-          )
-          timetable.headwaySecs = feat.properties[freqInput.value] * 60
-
-          mod.bidirectional = bidirectional
-          mod.segments = segments
-          mod.timetables = [timetable]
-
-          return mod
-        })
-
-        // Create the modifications
-        await dispatch(createModifications(mods))
-
+        const res = await createModifications(
+          projectId,
+          shapefile,
+          autoCreateStops,
+          stopSpacingMeters,
+          bidirectional,
+          nameInput.value,
+          speedInput.value,
+          freqInput.value
+        )
+        if (res.ok === false) throw res.error
         // If it finishes without error, redirect to the modifications list
+        toast({
+          title: 'Import successful'
+        })
         routeToModifications()
       }
     } catch (e) {

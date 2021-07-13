@@ -2756,6 +2756,13 @@
   resolved "https://registry.yarnpkg.com/@types/tinycolor2/-/tinycolor2-1.4.2.tgz#721ca5c5d1a2988b4a886e35c2ffc5735b6afbdf"
   integrity sha512-PeHg/AtdW6aaIO2a+98Xj7rWY4KC1E6yOy7AFknJQ7VXUGNrMlyxDFxJo7HqLtjQms/ZhhQX52mLVW/EX3JGOw==
 
+"@types/use-persisted-state@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@types/use-persisted-state/-/use-persisted-state-0.3.0.tgz#23370e89bd6c8468afdb05dde2d1bab898128229"
+  integrity sha512-ZT98QuckR95qM7W97lGVqc7fFS9TT6f3txp7R40fl0zxa5BLm3GG7j0i51G12h8DkoJxFAf2oQyYKU99h0pxFA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/uuid@^8.3.0":
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
@@ -2861,6 +2868,11 @@
   dependencies:
     "@typescript-eslint/types" "4.26.0"
     eslint-visitor-keys "^2.0.0"
+
+"@use-it/event-listener@^0.1.2":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@use-it/event-listener/-/event-listener-0.1.6.tgz#5776274fec72f3f25af9ead1898e7f45bc435812"
+  integrity sha512-e6V7vbU8xpuqy4GZkTLExHffOFgxmGHo3kNWnlhzM/zcX2v+idbD/HaJ9sKdQMgTh+L7MIhdRDXGX3SdAViZzA==
 
 "@wojtekmaj/enzyme-adapter-react-17@^0.6.1":
   version "0.6.1"
@@ -9265,10 +9277,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-swr@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-0.5.6.tgz#70bfe9bc9d7ac49a064be4a0f4acf57982e55a31"
-  integrity sha512-Bmx3L4geMZjYT5S2Z6EE6/5Cx6v1Ka0LhqZKq8d6WL2eu9y6gHWz3dUzfIK/ymZVHVfwT/EweFXiYGgfifei3w==
+swr@1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-1.0.0-beta.8.tgz#a187cfb5fbc9817f58a3b905f40bcff6152a8c28"
+  integrity sha512-OoSuJ7UomJW9/zcSmrXSYjSOzmevSPCTfgw52xS17DxPNpOp5StiqotGZK+NP5QWGKr+10TKodlC0aADb0KuGw==
   dependencies:
     dequal "2.0.2"
 
@@ -9553,6 +9565,11 @@ type-fest@^0.8.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
+type-fest@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.2.2.tgz#1930bc36b2064f7ab4aa307a6d1b65965199c698"
+  integrity sha512-pfkPYCcuV0TJoo/jlsUeWNV8rk7uMU6ocnYNvca1Vu+pyKi8Rl8Zo2scPt9O72gCsXIm+dMxOOWuA3VFDSdzWA==
+
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
@@ -9647,6 +9664,13 @@ use-callback-ref@^1.2.1, use-callback-ref@^1.2.3:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.2.5.tgz#6115ed242cfbaed5915499c0a9842ca2912f38a5"
   integrity sha512-gN3vgMISAgacF7sqsLPByqoePooY3n2emTH59Ur5d/M8eg4WTWu1xp8i8DHjohftIyEx0S08RiYxbffr4j8Peg==
+
+use-persisted-state@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/use-persisted-state/-/use-persisted-state-0.3.3.tgz#5e0f2236967cec7c34de33abc07ae6818e7c7451"
+  integrity sha512-pCNlvYC8+XjRxwnIut4teGC9f2p9aD88R8OGseQGZa2dvqG/h1vEGk1vRE1IZG0Vf161UDpn+NlW4+UGubQflQ==
+  dependencies:
+    "@use-it/event-listener" "^0.1.2"
 
 use-sidecar@^1.0.1:
   version "1.0.5"

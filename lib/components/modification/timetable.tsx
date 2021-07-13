@@ -12,6 +12,7 @@ import TimetableEntry from './timetable-entry'
 
 /** Represents a PatternTimetable */
 export default function TimetableComponent({
+  bidirectional,
   modificationStops,
   numberOfStops,
   remove,
@@ -43,6 +44,7 @@ export default function TimetableComponent({
           </FormControl>
 
           <TimetableEntry
+            disablePhasing={bidirectional}
             modificationStops={modificationStops}
             timetable={timetable}
             update={update}

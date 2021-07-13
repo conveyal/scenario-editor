@@ -13,6 +13,7 @@ import toStartCase from 'lodash/startCase'
 import {useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
+import {useBundle} from 'lib/hooks/use-model'
 import message from 'lib/message'
 import {workerVersionTestOrInRange} from 'lib/modules/r5-version/utils'
 
@@ -76,13 +77,19 @@ const displayIf = (b: boolean) => (b ? 'inherit' : 'none')
  * Edit the parameters of a profile request.
  */
 export default function ProfileRequestEditor({
-  bundle,
   disabled,
   profileRequest,
   project,
   updateProfileRequest,
   ...p
+}: {
+  disabled: boolean
+  profileRequest: CL.ProfileRequest
+  project: CL.Project
+  updateProfileRequest: (u: Partial<CL.ProfileRequest>) => void
 }) {
+  // Fetch the current bundle
+  const bundle = useBundle(project.bundleId)
   // Keep times in order when setting.
   const setFromTime = useCallback(
     (timeString) => {
@@ -108,11 +115,8 @@ export default function ProfileRequestEditor({
   )
 
   const {fromTime, toTime} = profileRequest
-  const bundleOutOfDate = bundleIsOutOfDate(
-    bundle,
-    profileRequest.date,
-    project
-  )
+  const bundleOutOfDate =
+    bundle && bundleIsOutOfDate(bundle, profileRequest.date, project)
 
   const setDate = useCallback(
     (date) => updateProfileRequest({date}),

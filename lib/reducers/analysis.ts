@@ -41,7 +41,7 @@ export const reducers = {
         copyRequestSettings
           ? {
               ...rs[1],
-              ...omit(rs[0], ['projectId', 'variantIndex'])
+              ...omit(rs[0], ['projectId', 'scenarioId'])
             }
           : rs[1] // re-copy over the settings on switch
       ]
@@ -90,7 +90,7 @@ export const reducers = {
     if (state.copyRequestSettings && index === 0) {
       rs[1] = {
         ...rs[1],
-        ...omit(rs[0], ['projectId', 'variantIndex'])
+        ...omit(rs[0], ['projectId', 'scenarioId'])
       }
     }
     return {

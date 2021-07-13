@@ -1,21 +1,21 @@
 import {Box, Button, Checkbox, Stack} from '@chakra-ui/react'
 import {color as parseColor} from 'd3-color'
 import get from 'lodash/get'
-import {useSelector} from 'react-redux'
+import uniq from 'lodash/uniq'
+import {useMemo} from 'react'
 
 import {AddIcon} from 'lib/components/icons'
 import colors from 'lib/constants/colors'
-import selectFeedScopedModificationStops from 'lib/selectors/feed-scoped-modification-stops'
-import selectFrequencyEntryPatterns from 'lib/selectors/frequency-entry-patterns'
-import selectModificationFeed from 'lib/selectors/modification-feed'
-import selectRoutePatterns from 'lib/selectors/route-patterns'
+import {useRoutePatterns, useRouteStops} from 'lib/gtfs/hooks'
 import {create as createFrequencyEntry} from 'lib/utils/frequency-entry'
+import intersects from 'lib/utils/arrays-intersect'
 
 import DirectionalMarkers from '../directional-markers'
 import PatternGeometry from '../map/geojson-patterns'
 
 import SelectFeedAndRoutes from './select-feed-and-routes'
 import FrequencyEntry from './frequency-entry'
+import useRouteTrips from 'lib/gtfs/hooks/use-route-trips'
 
 // Parsed color as string
 const MAP_COLOR = parseColor(colors.MODIFIED) + ''
@@ -26,20 +26,32 @@ const MAP_COLOR = parseColor(colors.MODIFIED) + ''
  * @author mattwigway
  */
 export default function ConvertToFrequency({
+  bundle,
   modification,
-  update,
-  updateAndRetrieveFeedData
+  update
+}: {
+  bundle: CL.Bundle
+  modification: CL.ConvertToFrequency
+  update: (updates: Partial<CL.ConvertToFrequency>) => void
 }) {
-  const feedScopedModificationStops = useSelector(
-    selectFeedScopedModificationStops
-  )
-  const routePatterns = useSelector(selectRoutePatterns)
-  const selectedFeed = useSelector(selectModificationFeed)
-  const selectedPatterns = useSelector(selectFrequencyEntryPatterns)
+  const routeId = get(modification, 'routes[0]')
+  const routePatterns = useRoutePatterns(bundle._id, modification.feed, routeId)
+  const routeStops = useRouteStops(bundle._id, modification.feed, routeId)
+  const routeTrips = useRouteTrips(bundle._id, modification.feed, routeId)
+  const trips = useMemo(() => {
+    return uniq(modification.entries.flatMap((e) => e.patternTrips))
+  }, [modification.entries])
+  const filteredPatterns = useMemo(() => {
+    if (trips?.length > 0) {
+      return routePatterns.filter((p) => intersects(p.associatedTripIds, trips))
+    } else {
+      return routePatterns
+    }
+  }, [routePatterns, trips])
 
-  const _onRouteChange = ({feed, routes}) => {
-    updateAndRetrieveFeedData({
-      entries: (modification.entries || []).map((entry) => ({
+  const _onRouteChange = (feed: string, routes: string[]) => {
+    update({
+      entries: modification.entries.map((entry) => ({
         ...entry,
         sourceTrip: null,
         patternTrips: []
@@ -49,25 +61,25 @@ export default function ConvertToFrequency({
     })
   }
 
-  const _replaceEntry = (index) => (newEntryProps) => {
-    const entries = [...(modification.entries || [])]
-    entries[index] = {
-      ...entries[index],
-      ...newEntryProps
+  const _replaceEntry =
+    (index: number) => (newEntryProps: Partial<CL.FrequencyEntry>) => {
+      const entries = [...modification.entries]
+      entries[index] = {
+        ...entries[index],
+        ...newEntryProps
+      }
+      update({entries})
     }
-    update({entries})
-  }
 
-  const _removeEntry = (index) => () => {
-    const entries = [...(modification.entries || [])]
+  const _removeEntry = (index: number) => () => {
+    const entries = [...modification.entries]
     entries.splice(index, 1)
     update({entries})
   }
 
   const _newEntry = () => {
-    const entries = get(modification, 'entries', [])
-    const newEntry = createFrequencyEntry(entries.length)
-    update({entries: [...entries, newEntry]})
+    const newEntry = createFrequencyEntry(modification.entries.length)
+    update({entries: [...modification.entries, newEntry]})
   }
 
   const _setRetainTripsOutsideFrequencyEntries = (e) => {
@@ -78,20 +90,21 @@ export default function ConvertToFrequency({
 
   return (
     <Stack spacing={4}>
-      <PatternGeometry color={MAP_COLOR} patterns={selectedPatterns} />
-      <DirectionalMarkers color={MAP_COLOR} patterns={selectedPatterns} />
+      <PatternGeometry color={MAP_COLOR} patterns={filteredPatterns} />
+      <DirectionalMarkers color={MAP_COLOR} patterns={filteredPatterns} />
 
       <Box>
         <SelectFeedAndRoutes
+          bundle={bundle}
+          modification={modification}
           onChange={_onRouteChange}
-          selectedRouteIds={modification.routes}
         />
       </Box>
 
       <Checkbox
         fontWeight='normal'
         onChange={_setRetainTripsOutsideFrequencyEntries}
-        value={modification.retainTripsOutsideFrequencyEntries}
+        isChecked={modification.retainTripsOutsideFrequencyEntries}
       >
         Retain existing scheduled trips at times without new frequencies
         specified
@@ -108,19 +121,18 @@ export default function ConvertToFrequency({
         </Button>
       )}
 
-      {selectedFeed &&
-        get(modification, 'entries', []).map((entry, eidx) => (
-          <FrequencyEntry
-            entry={entry}
-            feed={selectedFeed}
-            key={eidx}
-            modificationStops={feedScopedModificationStops}
-            remove={_removeEntry(eidx)}
-            routePatterns={routePatterns}
-            routes={modification.routes}
-            update={_replaceEntry(eidx)}
-          />
-        ))}
+      {modification.entries?.map((entry, eidx) => (
+        <FrequencyEntry
+          entry={entry}
+          feedId={modification.feed}
+          key={eidx}
+          remove={_removeEntry(eidx)}
+          routePatterns={routePatterns}
+          routeStops={routeStops}
+          routeTrips={routeTrips}
+          update={_replaceEntry(eidx)}
+        />
+      ))}
     </Stack>
   )
 }

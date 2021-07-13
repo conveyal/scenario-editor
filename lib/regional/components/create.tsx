@@ -75,7 +75,7 @@ export default function CreateRegional({
   isComparison,
   isDisabled,
   projectId,
-  variantIndex
+  scenarioId
 }) {
   const {isOpen, onOpen, onClose} = useDisclosure()
   return (
@@ -94,7 +94,7 @@ export default function CreateRegional({
           isComparison={isComparison}
           onClose={onClose}
           projectId={projectId}
-          variantIndex={variantIndex}
+          scenarioId={scenarioId}
         />
       )}
     </>
@@ -148,7 +148,7 @@ function useProfileRequest(isComparison: boolean) {
   return profileRequest
 }
 
-function CreateModal({onClose, isComparison, projectId, variantIndex}) {
+function CreateModal({onClose, isComparison, projectId, scenarioId}) {
   const toast = useToast()
   const createRegionalAnalysis = useCreateRegionalAnalysis()
   const {regionId} = useRouterQuery()
@@ -234,7 +234,7 @@ function CreateModal({onClose, isComparison, projectId, variantIndex}) {
       name: nameInput.value,
       percentiles,
       projectId,
-      variantIndex
+      scenarioId
     }
 
     try {

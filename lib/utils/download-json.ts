@@ -1,5 +1,4 @@
-//
-export default function downloadObjectAsJson({data, filename}) {
+export default function downloadObjectAsJson(data: any, filename: string) {
   try {
     const out = JSON.stringify(data, null, '\t')
     const uri = `data:application/json;base64,${window.btoa(out)}`

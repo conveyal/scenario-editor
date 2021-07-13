@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import React from 'react'
 
-import {load} from 'lib/actions/region'
 import {
   checkUploadStatus,
   loadOpportunityDatasets,
@@ -33,8 +32,7 @@ const OpportunitiesPage = withInitialFetch(
     // Load all the data
     return Promise.all([
       dispatch(loadOpportunityDatasets(query.regionId)),
-      dispatch(checkUploadStatus(query.regionId)),
-      dispatch(load(query.regionId))
+      dispatch(checkUploadStatus(query.regionId))
     ])
   }
 )

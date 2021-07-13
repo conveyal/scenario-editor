@@ -45,6 +45,7 @@ export {
   FaMap as RegionIcon,
   FaGlobe as RegionsIcon,
   FaLayerGroup as ResourcesIcon,
+  FaSave as SaveIcon,
   FaSearch as SearchIcon,
   FaCog as SettingsIcon,
   FaShip as ShipIcon,
@@ -56,6 +57,7 @@ export {
   FaSun as SunIcon,
   FaSyncAlt as SyncIcon,
   FaTrain as TrainIcon,
+  FaUndo as UndoIcon,
   FaUpload as UploadIcon,
   FaWalking as WalkerIcon,
   FaTimes as XIcon

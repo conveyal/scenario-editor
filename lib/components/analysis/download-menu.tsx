@@ -38,32 +38,28 @@ type DownloadMenuProps = MenuButtonProps & {
   opportunityDataset: CL.SpatialDataset
   projectId: string
   projectName: string
-  variantIndex: number
+  scenarioId: string
 }
 
 const DownloadMenu = memo<DownloadMenuProps>(
   ({
     isComparison = false,
+    isDisabled = false,
     opportunityDataset,
     projectId,
     projectName,
-    variantIndex,
-    ...p
+    scenarioId
   }) => {
     const dispatch = useDispatch()
     const cutoff = useSelector(selectMaxTripDurationMinutes)
     const store = useStore()
 
     function downloadIsochrone() {
-      downloadJson({
-        data: {
-          ...getIsochrone(store.getState(), isComparison),
-          properties: {} // TODO set this in jsolines
-        },
-        filename:
-          snakeCase(`conveyal isochrone ${projectName} at ${cutoff} minutes`) +
+      downloadJson(
+        getIsochrone(store.getState(), isComparison),
+        snakeCase(`conveyal isochrone ${projectName} at ${cutoff} minutes`) +
           '.json'
-      })
+      )
     }
 
     function downloadOpportunitiesCSV() {
@@ -93,7 +89,7 @@ const DownloadMenu = memo<DownloadMenuProps>(
       return dispatch(
         fetchGeoTIFF(projectName, {
           projectId,
-          variantIndex,
+          scenarioId,
           ...requestsSettings
         })
       )
@@ -101,7 +97,7 @@ const DownloadMenu = memo<DownloadMenuProps>(
 
     return (
       <Menu isLazy>
-        <MenuButton as={Button} {...p}>
+        <MenuButton as={Button} isDisabled={isDisabled}>
           <DownloadIcon />
         </MenuButton>
         <MenuList>

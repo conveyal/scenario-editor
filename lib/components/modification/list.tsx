@@ -17,179 +17,64 @@ import {
   TabPanel,
   TabPanels
 } from '@chakra-ui/react'
-import fpGet from 'lodash/fp/get'
-import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
-import {memo, useCallback, useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {memo} from 'react'
 
-import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
-import {LS_MOM} from 'lib/constants'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
-import selectFeedsById from 'lib/selectors/feeds-by-id'
-import selectVariants from 'lib/selectors/variants'
-import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
+import useModificationsOnMap from 'lib/modification/hooks/use-modifications-on-map'
+import useFilteredModifications from 'lib/modification/hooks/use-filtered-modifications'
+import ScenariosEditor from 'lib/scenario/components/editor'
 
 import IconButton from '../icon-button'
 import {HideIcon, SearchIcon, ShowIcon, UploadIcon} from '../icons'
 import InnerDock from '../inner-dock'
 import Link from '../link'
 import {DisplayAll as ModificationsMap} from '../modifications-map/display-all'
-import VariantEditor from '../variant-editor'
 
 import CreateModification from './create'
 
-type Modification = {
-  _id: string
-  projectId: string
-  name: string
-}
-
-function filterModifications(
-  filter: string,
-  modifications: CL.IModification[],
-  projectId: string
-) {
-  const filterLcase = filter != null ? filter.toLowerCase() : ''
-  const filteredModificationsByType = {}
-
-  modifications
-    .filter((m) => m.projectId === projectId)
-    .filter(
-      (m) => filter === null || m.name?.toLowerCase().indexOf(filterLcase) > -1
-    )
-    .forEach((m) => {
-      filteredModificationsByType[m.type] = [
-        ...(filteredModificationsByType[m.type] || []),
-        m
-      ]
-    })
-
-  return filteredModificationsByType
-}
-
-const selectModifications = fpGet('project.modifications')
-
-export default function ModificationsList({bundle, project}) {
-  const dispatch = useDispatch()
-  const {_id: projectId, bundleId, regionId} = project
-  // Retrieve the modifications from the store. Filter out modifications that might be from another project
-  const modifications = useSelector(selectModifications)
-  const feedsById = useSelector(selectFeedsById)
-  const variants = useSelector(selectVariants)
+export default function ModificationsList({
+  bundle,
+  modifications,
+  project
+}: {
+  bundle: CL.Bundle
+  modifications: CL.Modification[]
+  project: CL.Project
+}) {
+  const modificationsOnMap = useModificationsOnMap()
+  const filter = useFilteredModifications(modifications, project._id)
   const goToModificationImport = useRouteTo('modificationImport', {
-    projectId,
-    regionId
+    projectId: project._id,
+    regionId: project.regionId
   })
-
-  // Array of ids for currently displayed modifications
-  const [modificationsOnMap, setModificationsOnMap] = useState<Modification[]>(
-    () => {
-      const _idsOnMap: string[] = get(
-        getParsedItem(LS_MOM),
-        projectId,
-        []
-      ) as string[]
-      return modifications.filter((m) => _idsOnMap.includes(m._id))
-    }
-  )
-
-  // Load the GTFS information for the modifications
-  useEffect(() => {
-    if (modificationsOnMap.length > 0) {
-      dispatch(
-        getFeedsRoutesAndStops({
-          bundleId,
-          forceCompleteUpdate: true,
-          modifications: modificationsOnMap
-        })
-      )
-    }
-  }, [bundleId, dispatch, modifications, modificationsOnMap])
-
-  // Set and store modifications on map
-  const setAndStoreMoM = useCallback(
-    (_idsOnMap) => {
-      const mom = getParsedItem(LS_MOM) || {}
-      mom[projectId] = _idsOnMap
-      stringifyAndSet(LS_MOM, mom)
-      setModificationsOnMap(
-        modifications.filter((m) => _idsOnMap.includes(m._id))
-      )
-    },
-    [modifications, projectId]
-  )
-
-  const [filter, setFilter] = useState('')
-  const [filteredModificationsByType, setFiltered] = useState(() =>
-    filterModifications(filter, modifications, projectId)
-  )
-
-  // Update filtered modifications when the filter changes
-  useEffect(() => {
-    setFiltered(filterModifications(filter, modifications, projectId))
-  }, [filter, modifications, projectId])
-
-  // Show a variant's modifications on the map
-  const showVariant = useCallback(
-    (index) => {
-      setAndStoreMoM(
-        modifications
-          .filter((m) => m.variants[index] === true)
-          .map((m) => m._id)
-      )
-    },
-    [modifications, setAndStoreMoM]
-  )
-
-  // Show/hide all modifications
-  const showAll = useCallback(() => {
-    setAndStoreMoM(modifications.map((m) => m._id))
-  }, [modifications, setAndStoreMoM])
-  const hideAll = useCallback(() => {
-    setAndStoreMoM([])
-  }, [setAndStoreMoM])
-
-  // Toggle map appearance
-  const toggleMapDisplay = useCallback(
-    (_id) => {
-      if (modificationsOnMap.find((m) => m._id === _id)) {
-        setAndStoreMoM(
-          modificationsOnMap.filter((m) => m._id !== _id).map((m) => m._id)
-        )
-      } else {
-        setAndStoreMoM([...modificationsOnMap.map((m) => m._id), _id])
-      }
-    },
-    [modificationsOnMap, setAndStoreMoM]
-  )
 
   return (
     <>
       <ModificationsMap
-        feedsById={feedsById}
-        modifications={modificationsOnMap}
+        bundle={bundle}
+        modifications={modifications.filter(
+          (m) =>
+            !!modificationsOnMap
+              .forProject(project._id)
+              .find((_id) => _id === m._id)
+        )}
       />
 
-      <Tabs isFitted width='320px'>
+      <Tabs isFitted isLazy width='320px'>
         <TabList>
           <Tab _focus={{outline: 'none'}}>
             {message('modification.plural')}{' '}
             <Badge ml={2}>{modifications.length}</Badge>
           </Tab>
-          <Tab _focus={{outline: 'none'}}>{message('variant.plural')}</Tab>
+          <Tab _focus={{outline: 'none'}}>{message('scenario.plural')}</Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel pt={2} px={0}>
             <Box px={2}>
-              <CreateModification
-                feeds={bundle.feeds}
-                projectId={projectId}
-                regionId={regionId}
-                variants={variants}
-              />
+              <CreateModification />
             </Box>
             <Flex align='center' justify='space-between' p={2}>
               <InputGroup flex='1' pl={2}>
@@ -198,9 +83,9 @@ export default function ModificationsList({bundle, project}) {
                 </InputLeftElement>
                 <Input
                   placeholder={message('modification.filter')}
-                  onChange={(e) => setFilter(e.target.value)}
+                  onChange={(e) => filter.set(e.target.value)}
                   type='text'
-                  value={filter}
+                  value={filter.value}
                   variant='flushed'
                 />
               </InputGroup>
@@ -211,10 +96,21 @@ export default function ModificationsList({bundle, project}) {
                 >
                   <UploadIcon />
                 </IconButton>
-                <IconButton label='Show all modifications' onClick={showAll}>
+                <IconButton
+                  label='Show all modifications'
+                  onClick={() =>
+                    modificationsOnMap.setAll(
+                      project._id,
+                      modifications.map((m) => m._id)
+                    )
+                  }
+                >
                   <ShowIcon />
                 </IconButton>
-                <IconButton label='Hide all modifications' onClick={hideAll}>
+                <IconButton
+                  label='Hide all modifications'
+                  onClick={() => modificationsOnMap.setAll(project._id, [])}
+                >
                   <HideIcon />
                 </IconButton>
               </Flex>
@@ -224,12 +120,12 @@ export default function ModificationsList({bundle, project}) {
               {modifications.length > 0 ? (
                 <Accordion
                   allowMultiple
-                  defaultIndex={Object.keys(filteredModificationsByType).map(
+                  defaultIndex={Object.keys(filter.modifications).map(
                     (_, i) => i
                   )}
                 >
-                  {Object.keys(filteredModificationsByType).map((type) => {
-                    const ms = filteredModificationsByType[type]
+                  {Object.keys(filter.modifications).map((type) => {
+                    const ms = filter.modifications[type]
                     return (
                       <ModificationType
                         key={type}
@@ -238,15 +134,16 @@ export default function ModificationsList({bundle, project}) {
                       >
                         {ms.map((m) => (
                           <ModificationItem
-                            isDisplayed={
-                              modificationsOnMap.find(
-                                (mom) => mom._id === m._id
-                              ) !== undefined
-                            }
+                            isDisplayed={modificationsOnMap.isOnMap(
+                              project._id,
+                              m._id
+                            )}
                             key={m._id}
                             modification={m}
-                            regionId={regionId}
-                            toggleMapDisplay={toggleMapDisplay}
+                            regionId={project.regionId}
+                            toggleMapDisplay={() =>
+                              modificationsOnMap.toggle(project._id, m._id)
+                            }
                           />
                         ))}
                       </ModificationType>
@@ -262,7 +159,7 @@ export default function ModificationsList({bundle, project}) {
           </TabPanel>
 
           <TabPanel p={0}>
-            <VariantEditor showVariant={showVariant} variants={variants} />
+            <ScenariosEditor projectId={project._id} />
           </TabPanel>
         </TabPanels>
       </Tabs>
@@ -294,7 +191,7 @@ function ModificationType({children, modificationCount, type}) {
 
 type ModificationItemProps = {
   isDisplayed: boolean
-  modification: Modification
+  modification: CL.Modification
   regionId: string
   toggleMapDisplay: (_id: string) => void
 }

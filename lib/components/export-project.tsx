@@ -11,10 +11,10 @@ import {
   Stack,
   SimpleGrid
 } from '@chakra-ui/react'
-import fpGet from 'lodash/fp/get'
-import {useSelector} from 'react-redux'
 
 import {DownloadIcon, PrintIcon} from 'lib/components/icons'
+import {useScenarios} from 'lib/hooks/use-collection'
+import {useBundle} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 import {
@@ -22,11 +22,18 @@ import {
   downloadScenario,
   downloadStops
 } from 'lib/utils/export-project'
+import useModificationsForScenario from 'lib/modification/hooks/use-modifications-for-scenario'
+import cleanProjectScenarioName from 'lib/utils/clean-project-scenario-name'
 
-const selectFeeds = fpGet('project.feeds')
-const selectModifications = fpGet('project.modifications')
-
-export default function ExportProject({onHide, project}) {
+export default function ExportProject({
+  onHide,
+  project
+}: {
+  onHide: () => void
+  project: CL.Project
+}) {
+  const {data: bundle} = useBundle(project.bundleId)
+  const {data: scenarios} = useScenarios({query: {projectId: project._id}})
   return (
     <Modal
       closeOnOverlayClick={false}
@@ -36,18 +43,18 @@ export default function ExportProject({onHide, project}) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{message('variant.export')}</ModalHeader>
+        <ModalHeader>{message('scenario.export')}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Stack spacing={4} pb={6}>
-            <Box>{message('variant.exportExplanation')}</Box>
-            {project.variants.map((name, index) => (
-              <Box key={index}>
+            <Box>{message('scenario.exportExplanation')}</Box>
+            {scenarios.map((scenario, index) => (
+              <Box key={scenario._id}>
                 <Variant
+                  bundle={bundle}
                   index={index}
-                  key={index}
-                  name={name}
                   project={project}
+                  scenario={scenario}
                 />
               </Box>
             ))}
@@ -58,31 +65,41 @@ export default function ExportProject({onHide, project}) {
   )
 }
 
-function Variant({index, name, project}) {
+function Variant({
+  bundle,
+  index,
+  project,
+  scenario
+}: {
+  bundle: CL.Bundle
+  index: number
+  project: CL.Project
+  scenario: CL.Scenario
+}) {
   const goToReport = useRouteTo('report', {
-    index,
     projectId: project._id,
-    regionId: project.regionId
+    regionId: project.regionId,
+    scenarioId: scenario._id
   })
-  const feeds = useSelector(selectFeeds)
-  const modifications = useSelector(selectModifications)
+  const modifications = useModificationsForScenario(scenario._id)
+  const cleanedName = cleanProjectScenarioName(project, scenario.name)
 
   function _downloadLines() {
-    downloadLines(project, modifications, index)
+    downloadLines(cleanedName, modifications)
   }
 
   function _downloadScenario() {
-    downloadScenario(project, feeds, modifications, index)
+    downloadScenario(cleanedName, bundle.feeds, modifications)
   }
 
   function _downloadStops() {
-    downloadStops(project, modifications, index)
+    downloadStops(cleanedName, modifications)
   }
 
   return (
     <Stack spacing={2}>
       <Heading size='sm'>
-        {index + 1}. {name}
+        {index + 1}. {scenario.name}
       </Heading>
       <SimpleGrid columns={2} spacing={1}>
         <Button
@@ -90,28 +107,28 @@ function Variant({index, name, project}) {
           onClick={_downloadScenario}
           colorScheme='blue'
         >
-          {message('variant.saveJson')}
+          {message('scenario.saveJson')}
         </Button>
         <Button
           leftIcon={<PrintIcon />}
           onClick={goToReport}
           colorScheme='blue'
         >
-          {message('variant.print')}
+          {message('scenario.print')}
         </Button>
         <Button
           leftIcon={<DownloadIcon />}
           onClick={_downloadLines}
           colorScheme='blue'
         >
-          {message('variant.saveGeojson')}
+          {message('scenario.saveGeojson')}
         </Button>
         <Button
           leftIcon={<DownloadIcon />}
           onClick={_downloadStops}
           colorScheme='blue'
         >
-          {message('variant.saveStops')}
+          {message('scenario.saveStops')}
         </Button>
       </SimpleGrid>
     </Stack>

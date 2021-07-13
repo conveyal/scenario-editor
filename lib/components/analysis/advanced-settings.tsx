@@ -1,4 +1,5 @@
 import {Box, Stack} from '@chakra-ui/react'
+import useCurrentRegion from 'lib/hooks/use-current-region'
 import useRegionalAnalyses from 'lib/hooks/use-regional-analyses'
 
 import R5Selector from 'lib/modules/r5-version/components/selector'
@@ -11,17 +12,14 @@ import CustomBoundsSelector from './custom-bounds-selector'
 export default function AdvancedSettings({
   disabled,
   profileRequest,
-  regionBounds,
-  regionId,
   updateProfileRequest
 }: {
   disabled: boolean
   profileRequest: CL.ProfileRequest
-  regionBounds: CL.Bounds
-  regionId: string
   updateProfileRequest: (profileRequest: Partial<CL.ProfileRequest>) => void
 }) {
-  const {data: regionalAnalyses} = useRegionalAnalyses(regionId)
+  const region = useCurrentRegion()
+  const {data: regionalAnalyses} = useRegionalAnalyses(region?._id)
   return (
     <Stack isInline spacing={5}>
       <Box flex='1'>
@@ -38,7 +36,7 @@ export default function AdvancedSettings({
           isDisabled={disabled}
           profileRequest={profileRequest}
           regionalAnalyses={regionalAnalyses}
-          regionBounds={regionBounds}
+          regionBounds={region.bounds}
           updateProfileRequest={updateProfileRequest}
         />
       </Box>

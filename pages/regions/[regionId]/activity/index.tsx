@@ -3,7 +3,7 @@ import {Badge, Box, Heading, Stack} from '@chakra-ui/react'
 import InnerDock from 'lib/components/inner-dock'
 import TaskList from 'lib/components/task-list'
 import useActivity from 'lib/hooks/use-activity'
-import withDataLayout from 'lib/with-data-layout'
+import withDataLayout from 'lib/hocs/with-data-layout'
 
 function UserActivityPage() {
   const {tasks} = useActivity()

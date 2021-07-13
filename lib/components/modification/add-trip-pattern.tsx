@@ -7,11 +7,11 @@ import {
   Stack
 } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
-import {useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useMemo, useState} from 'react'
 
-import selectAddTripsGTFSStops from 'lib/selectors/add-trips-gtfs-stops'
-import selectNumberOfStops from 'lib/selectors/number-of-stops'
+import {useBundleStops} from 'lib/gtfs/hooks'
+import useNumberOfStops from 'lib/modification/hooks/use-number-of-stops'
+import scopeAddTripPatternStops from 'lib/modification/scope-add-trip-pattern-stops'
 
 import TransitModeSelector from '../transit-mode-selector'
 
@@ -26,13 +26,28 @@ const blogLink =
   'https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177'
 const colorHelpText = `For display purposes (ex: with <a href="${blogLink}" target="_blank">Taui</a>). Must be a 6-digit hexadecimal number.`
 
+function useGTFSStops(bundleId: string, modification: CL.AddTripPattern) {
+  const allStops = useBundleStops(bundleId)
+  return useMemo(() => {
+    return scopeAddTripPatternStops(modification, allStops)
+  }, [modification, allStops])
+}
+
 /**
  * Display an add trip pattern modification
  */
-export default function AddTripPattern({modification, update}) {
+export default function AddTripPattern({
+  bundle,
+  modification,
+  update
+}: {
+  bundle: CL.Bundle
+  modification: CL.AddTripPattern
+  update: (updates: Partial<CL.AddTripPattern>) => void
+}) {
   const [isEditing, setIsEditing] = useState(false)
-  const gtfsStops = useSelector(selectAddTripsGTFSStops)
-  const numberOfStops = useSelector(selectNumberOfStops)
+  const gtfsStops = useGTFSStops(bundle._id, modification)
+  const numberOfStops = useNumberOfStops(modification)
 
   return (
     <>
@@ -61,6 +76,7 @@ export default function AddTripPattern({modification, update}) {
 
         <Box>
           <EditAlignment
+            bundleId={bundle._id}
             isEditing={isEditing}
             modification={modification}
             numberOfStops={numberOfStops}

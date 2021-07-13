@@ -12,23 +12,28 @@ const filterOutPatterns = fpOmit('patterns')
  * Select routes or trips to remove
  */
 export default function RemoveTrips({
+  bundle,
   modification,
-  selectedFeed,
-  updateAndRetrieveFeedData
+  update
+}: {
+  bundle: CL.Bundle
+  modification: CL.RemoveTrips
+  update: (updates: Partial<CL.RemoveTrips>) => void
 }) {
   return (
     <>
       <PatternLayer
+        activeTrips={modification.trips}
+        bundleId={bundle._id}
         color={colors.REMOVED}
-        feed={selectedFeed}
         modification={modification}
       />
 
       <SelectFeedRouteAndPatterns
         allowMultipleRoutes
-        onChange={(m) => updateAndRetrieveFeedData(filterOutPatterns(m))}
-        routes={modification.routes}
-        trips={modification.trips}
+        bundle={bundle}
+        modification={modification}
+        onChange={(m) => update(filterOutPatterns(m))}
       />
     </>
   )

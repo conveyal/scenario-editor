@@ -12,7 +12,7 @@ import {
   useVariant,
   variantIsCompatible
 } from 'lib/regional/utils'
-import withDataLayout from 'lib/with-data-layout'
+import withDataLayout from 'lib/hocs/with-data-layout'
 
 export default withDataLayout<{
   analysis: CL.RegionalAnalysis
@@ -45,7 +45,10 @@ export default withDataLayout<{
         <Heading analysis={p.analysis} />
 
         {activeJob ? (
-          <ActiveAnalysisPage activeJob={activeJob} analysis={p.analysis} />
+          <ActiveAnalysisPage
+            activeJob={activeJob}
+            analysisVariant={analysisVariant}
+          />
         ) : (
           <ResultsPage
             analysisVariant={analysisVariant}

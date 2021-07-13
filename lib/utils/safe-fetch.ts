@@ -71,7 +71,7 @@ async function parseErrorMessageFromResponse(
 
 const toArrayBuffer = (res: Response) => res.arrayBuffer()
 const toText = (res: Response) => res.text()
-const toJSON = (res: Response) => res.json()
+export const toJSON = (res: Response) => res.json()
 
 export function fetchText(url: string, options?: RequestInit) {
   return safeFetch<string>(url, toText, options)
@@ -160,8 +160,8 @@ export function getJSON<T>(url: string) {
 /**
  * Simple POST
  */
-export function postJSON<T>(url: string, json: Partial<T>) {
-  return safeFetch<T>(url, toJSON, {
+export function postJSON<T, R = T>(url: string, json: Partial<T>) {
+  return safeFetch<R>(url, toJSON, {
     body: JSON.stringify(json),
     headers: defaultHeaders,
     method: 'POST'

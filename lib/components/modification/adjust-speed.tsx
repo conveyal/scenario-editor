@@ -1,8 +1,7 @@
 import {Alert, AlertIcon, Stack, Flex, Button, Box} from '@chakra-ui/react'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
-import {useCallback, useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useCallback, useMemo, useState} from 'react'
 
 import {
   ClearIcon,
@@ -12,9 +11,7 @@ import {
 } from 'lib/components/icons'
 import colors from 'lib/constants/colors'
 import message from 'lib/message'
-import selectHopStops from 'lib/selectors/hop-stops'
-import selectModificationFeed from 'lib/selectors/modification-feed'
-import selectStopsFromAllFeeds from 'lib/selectors/stops-from-all-feeds'
+import intersects from 'lib/utils/arrays-intersect'
 
 import Pane from '../map/pane'
 import IconButton from '../icon-button'
@@ -22,6 +19,8 @@ import NumberInput from '../number-input'
 
 import SelectPatterns from './select-patterns'
 import SelectFeedAndRoutes from './select-feed-and-routes'
+import {useFeedStops, useRoutePatterns} from 'lib/gtfs/hooks'
+import useHopStops from 'lib/modification/hooks/use-hop-stops'
 
 const GTFSStopGridLayer = dynamic(
   () => import('../modifications-map/gtfs-stop-gridlayer'),
@@ -49,20 +48,38 @@ type Action = 'none' | 'new' | 'add' | 'remove'
  * Adjust speed on a route
  */
 export default function AdjustSpeedComponent({
+  bundle,
   modification,
-  update,
-  updateAndRetrieveFeedData
+  update
+}: {
+  bundle: CL.Bundle
+  modification: CL.AdjustSpeed
+  update: (updates: Partial<CL.AdjustSpeed>) => void
 }) {
-  const allStops = useSelector(selectStopsFromAllFeeds)
-  const feed = useSelector(selectModificationFeed)
-  const hopStops = useSelector(selectHopStops)
+  const selectedRouteId = get(modification, 'routes[0]')
+  const allStops = useFeedStops(bundle._id, modification.feed)
+  const routePatterns = useRoutePatterns(
+    bundle._id,
+    modification.feed,
+    selectedRouteId
+  )
+  const filteredPatterns = useMemo(() => {
+    if (modification.trips?.length > 0) {
+      return routePatterns.filter((p) =>
+        intersects(p.associatedTripIds, modification.trips)
+      )
+    } else {
+      return routePatterns
+    }
+  }, [routePatterns, modification.trips])
+  const hopStops = useHopStops(bundle._id, modification)
   const [action, setAction] = useState<Action>('none')
 
   /**
    * Set the factor by which we are scaling, or the speed which we are
    * replacing.
    */
-  const setScale = useCallback((scale) => update({scale}), [update])
+  const setScale = useCallback((scale: number) => update({scale}), [update])
 
   return (
     <Stack spacing={4} mb={4}>
@@ -71,8 +88,8 @@ export default function AdjustSpeedComponent({
       <Pane zIndex={500}>
         <PatternLayer
           activeTrips={modification.trips}
+          bundleId={bundle._id}
           color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
-          feed={feed}
           modification={modification}
         />
       </Pane>
@@ -81,9 +98,9 @@ export default function AdjustSpeedComponent({
         <Pane zIndex={501}>
           <HopLayer
             color={colors.MODIFIED}
-            feed={feed}
-            hopStops={hopStops}
-            modification={modification}
+            hops={modification.hops}
+            patterns={filteredPatterns}
+            stops={allStops}
           />
         </Pane>
       )}
@@ -91,7 +108,6 @@ export default function AdjustSpeedComponent({
       {action !== 'none' && (
         <HopSelectPolygon
           action={action}
-          allStops={allStops}
           currentHops={modification.hops}
           hopStops={hopStops}
           update={(hops) => {
@@ -104,17 +120,17 @@ export default function AdjustSpeedComponent({
       <Box>
         <SelectFeedAndRoutes
           allowMultipleRoutes
-          onChange={({feed, routes, trips}) =>
-            updateAndRetrieveFeedData({feed, routes, trips, hops: null})
-          }
-          selectedRouteIds={modification.routes}
+          bundle={bundle}
+          modification={modification}
+          onChange={(feed, routes) => update({feed, routes, hops: null})}
         />
       </Box>
 
       {get(modification, 'routes.length') === 1 && (
         <Stack spacing={4}>
           <SelectPatterns
-            onChange={(trips) => updateAndRetrieveFeedData({trips})}
+            patterns={routePatterns}
+            onChange={(trips) => update({trips})}
             trips={modification.trips}
           />
 

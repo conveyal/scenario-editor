@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import {getPatternsForModification} from 'lib/utils/patterns'
 
 export default function useModificationPatterns({
-  activeTrips,
+  activeTrips = [],
   dim = false,
   feed,
   modification

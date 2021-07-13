@@ -1,96 +1,93 @@
+import {feature as toFeature, featureCollection} from '@turf/helpers'
+
 import {ADD_TRIP_PATTERN, REROUTE} from 'lib/constants'
 
-import cleanProjectScenarioName from './clean-project-scenario-name'
 import downloadJson from './download-json'
 import getStops from './get-stops'
 
-export const downloadScenario = (project, feeds, modifications, index) => {
-  const description = cleanProjectScenarioName(project, index)
-  const feedChecksums = {}
-  feeds.forEach((f) => {
-    feedChecksums[f.id] = f.checksum
-  })
+export function downloadScenario(
+  description: string,
+  feeds: CL.FeedSummary[],
+  modifications: CL.Modification[]
+) {
+  const feedChecksums = Object.fromEntries(
+    feeds.map((feed) => [feed.feedId, feed.checksum])
+  )
 
-  downloadJson({
-    data: {
+  downloadJson(
+    {
       description,
       feedChecksums,
       _id: 0,
-      modifications: modifications.filter((m) => m.variants[index])
+      modifications
     },
-    filename: `${description}.json`
-  })
+    `${description}.json`
+  )
 }
 
-export const downloadLines = (project, modifications, index) => {
-  const file = cleanProjectScenarioName(project, index)
-  const features = []
+export function downloadLines(name: string, modifications: CL.Modification[]) {
+  const features: GeoJSON.Feature[] = []
 
-  modifications
-    .filter((m) => m.variants[index])
-    .forEach((mod) => {
-      if (mod.type === ADD_TRIP_PATTERN || mod.type === REROUTE) {
-        const f = {
-          type: 'Feature',
-          properties: {
-            name: mod.name,
-            bidirectional: mod.bidirectional,
-            timetables: mod.timetables
-          },
-          geometry: {
-            type: 'LineString',
-            coordinates: []
+  for (const mod of modifications) {
+    if (mod.type === ADD_TRIP_PATTERN || mod.type === REROUTE) {
+      const feature: GeoJSON.Feature<GeoJSON.LineString> = toFeature(
+        {
+          type: 'LineString',
+          coordinates: []
+        },
+        mod.type === ADD_TRIP_PATTERN
+          ? {
+              name: mod.name,
+              bidirectional: mod.bidirectional,
+              timetables: mod.timetables
+            }
+          : {
+              name: mod.name
+            }
+      )
+      if (mod.segments?.length > 0) {
+        const start = mod.segments[0]
+        if (start.geometry.type === 'LineString') {
+          const coord = start.geometry.coordinates[0]
+          feature.geometry.coordinates.push(coord)
+          for (const seg of mod.segments) {
+            if (seg.geometry.type === 'LineString') {
+              feature.geometry.coordinates.push(
+                ...seg.geometry.coordinates.slice(1)
+              )
+            }
           }
         }
-        if (mod.segments?.length > 0) {
-          const start = mod.segments[0]
-          const coord = start.geometry.coordinates[0]
-          f.geometry.coordinates.push(coord)
-          mod.segments.forEach((seg) =>
-            f.geometry.coordinates.push(...seg.geometry.coordinates.slice(1))
-          )
-        }
-        features.push(f)
       }
-    })
+      features.push(feature)
+    }
+  }
 
-  saveAsGeoJson(features, file + '-new-alignments.geojson')
+  downloadJson(featureCollection(features), name + '-new-alignments.geojson')
 }
 
-export const downloadStops = (project, modifications, index) => {
-  const file = cleanProjectScenarioName(project, index)
-  const features = []
+export function downloadStops(name: string, modifications: CL.Modification[]) {
+  const features: GeoJSON.Feature[] = []
 
-  modifications
-    .filter((m) => m.variants[index])
-    .forEach((mod) => {
-      if (mod.type === ADD_TRIP_PATTERN || mod.type === REROUTE) {
-        getStops(mod.segments).forEach((stop) => {
-          features.push({
-            type: 'Feature',
-            properties: {
+  for (const mod of modifications) {
+    if (mod.type === ADD_TRIP_PATTERN || mod.type === REROUTE) {
+      getStops(mod.segments).forEach((stop) => {
+        features.push(
+          toFeature(
+            {
+              type: 'Point',
+              coordinates: [stop.lng, stop.lat]
+            },
+            {
               name: mod.name,
               distanceFromStart: stop.distanceFromStart,
               stopId: stop.stopId
-            },
-            geometry: {
-              type: 'Point',
-              coordinates: [stop.lng, stop.lat]
             }
-          })
-        })
-      }
-    })
+          )
+        )
+      })
+    }
+  }
 
-  saveAsGeoJson(features, file + '-new-stops.geojson')
-}
-
-const saveAsGeoJson = (features, filename) => {
-  downloadJson({
-    data: {
-      type: 'FeatureCollection',
-      features
-    },
-    filename
-  })
+  downloadJson(featureCollection(features), name + '-new-stops.geojson')
 }

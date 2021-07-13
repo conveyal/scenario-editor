@@ -19,7 +19,7 @@ import {useRegion} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
-import withDataLayout from 'lib/with-data-layout'
+import withDataLayout from 'lib/hocs/with-data-layout'
 
 const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
   ssr: false

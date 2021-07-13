@@ -1,18 +1,18 @@
 import {expect} from '@jest/globals'
 import getStopNearPoint from '../get-stop-near-point'
 
-const stops = [
+const stops: GTFS.Stop[] = [
   {
-    stop_id: '1',
-    stop_name: '1',
-    stop_lat: 40,
-    stop_lon: -70
+    id: '1',
+    name: '1',
+    lat: 40,
+    lon: -70
   },
   {
-    stop_id: '2',
-    stop_name: '2',
-    stop_lat: 41,
-    stop_lon: -71
+    id: '2',
+    name: '2',
+    lat: 41,
+    lon: -71
   }
 ]
 

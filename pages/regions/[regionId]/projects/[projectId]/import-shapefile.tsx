@@ -2,7 +2,7 @@ import Dock from 'lib/components/inner-dock'
 import ProjectTitle from 'lib/components/project-title'
 import ImportShapefile from 'lib/components/import-shapefile'
 import {useProject} from 'lib/hooks/use-model'
-import withDataLayout from 'lib/with-data-layout'
+import withDataLayout from 'lib/hocs/with-data-layout'
 
 export default withDataLayout<{project: CL.Project}>(
   function ImportShapeFilePage(p) {
@@ -10,11 +10,7 @@ export default withDataLayout<{project: CL.Project}>(
       <>
         <ProjectTitle project={p.project} />
         <Dock>
-          <ImportShapefile
-            projectId={p.query.projectId}
-            regionId={p.query.regionId}
-            variants={p.project.variants}
-          />
+          <ImportShapefile />
         </Dock>
       </>
     )

@@ -37,11 +37,11 @@ export default function useCollection<T extends CL.IModel>(
   const {isLoading, user} = useUser()
   const url = useQueryURL(baseURL, query, options)
   const response = useSWR<T[], ResponseError>(
-    router.isReady && !isLoading ? [url, user] : null,
+    () => (router.isReady && !isLoading ? [url, user] : null),
     config
   )
   const emptyArray = useMemo<T[]>(() => [], [])
-  const {mutate, revalidate} = response
+  const {mutate} = response
   // Helper function for updating values when using a collection
   const update = useCallback(
     async (_id: string, newProperties: Partial<T>) => {
@@ -71,11 +71,11 @@ export default function useCollection<T extends CL.IModel>(
     async (properties: T) => {
       const res = await postJSON<T>(baseURL, properties)
       if (res.ok) {
-        await revalidate()
+        await mutate()
       }
       return res
     },
-    [baseURL, revalidate]
+    [baseURL, mutate]
   )
 
   // Helper function when removing values
@@ -83,11 +83,11 @@ export default function useCollection<T extends CL.IModel>(
     async (_id) => {
       const res = await safeDelete(`${baseURL}/${_id}`)
       if (res.ok) {
-        await revalidate()
+        await mutate()
       }
       return res
     },
-    [baseURL, revalidate]
+    [baseURL, mutate]
   )
 
   return {
@@ -116,9 +116,14 @@ export function createUseCollection<T extends CL.IModel>(
 export const useAggregationAreas =
   createUseCollection<CL.AggregationArea>('aggregationAreas')
 export const useBundles = createUseCollection<CL.Bundle>('bundles')
+export const useModifications =
+  createUseCollection<CL.Modification>('modifications')
 export const useSpatialDatasets = createUseCollection<CL.SpatialDataset>(
   'opportunityDatasets'
 )
 export const useProjects = createUseCollection<CL.Project>('projects')
 export const usePresets = createUseCollection<CL.Preset>('presets')
 export const useRegions = createUseCollection<CL.Region>('regions')
+export const useScenarios = createUseCollection<CL.Scenario>('scenarios')
+export const useScenariosModifications =
+  createUseCollection<CL.ScenariosModifications>('scenariosModifications')

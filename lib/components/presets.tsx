@@ -25,6 +25,7 @@ import {memo, useCallback, useEffect, useState} from 'react'
 
 import {usePresets} from 'lib/hooks/use-collection'
 import useInput from 'lib/hooks/use-controlled-input'
+import {useCurrentRegionId} from 'lib/hooks/use-current-region'
 
 import {ConfirmDialog} from './confirm-button'
 import IconButton from './icon-button'
@@ -68,7 +69,6 @@ type Props = {
   isDisabled: boolean
   isComparison?: boolean
   onChange: (preset: Record<string, unknown>) => void
-  regionId: string
 }
 
 /**
@@ -79,9 +79,9 @@ export default memo<Props>(function PresetChooser({
   currentLonLat,
   isDisabled,
   isComparison = false,
-  onChange,
-  regionId
+  onChange
 }) {
+  const regionId = useCurrentRegionId()
   const presetsCollection = usePresets({
     query: {regionId},
     options: {sort: {name: 1}}

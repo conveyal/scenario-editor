@@ -21,7 +21,6 @@ import {
 import colors from 'lib/constants/colors'
 import message from 'lib/message'
 import selectSegmentDistances from 'lib/selectors/segment-distances'
-import selectAllStops from 'lib/selectors/stops-from-all-feeds'
 import getExistingStopsAlongPattern from 'lib/utils/get-existing-stops-along-pattern'
 
 import {EditIcon} from '../icons'
@@ -29,17 +28,30 @@ import GTFSStopGridLayer from '../modifications-map/gtfs-stop-gridlayer'
 import TransitEditor from '../modifications-map/transit-editor'
 import NumberInput from '../number-input'
 import * as Panel from '../panel'
+import {useBundleStops} from 'lib/gtfs/hooks'
+import {useMemo} from 'react'
 
 const isValidStopSpacing = (s) => s >= MINIMUM_STOP_SPACING
 
 export default function EditAlignment({
+  bundleId,
   isEditing,
   modification,
   numberOfStops = 0,
   setIsEditing,
   update
+}: {
+  bundleId: string
+  isEditing: boolean
+  modification: CL.Reroute | CL.AddTripPattern
+  numberOfStops: number
+  setIsEditing: (isEditing: boolean) => void
+  update: (updates: Partial<CL.Reroute> | Partial<CL.AddTripPattern>) => void
 }) {
-  const allStops = useSelector(selectAllStops)
+  const allStops = useBundleStops(bundleId)
+  const gtfsStops = useMemo(() => {
+    return allStops.flatMap((a) => a.stops)
+  }, [allStops])
   const segmentDistances = useSelector(selectSegmentDistances)
   const [spacing, setSpacing] = useState(
     get(modification, 'segments[0].spacing', 0)
@@ -115,14 +127,14 @@ export default function EditAlignment({
     <>
       {isEditing && (
         <>
-          <GTFSStopGridLayer stops={allStops} />
+          <GTFSStopGridLayer stops={gtfsStops} />
           <TransitEditor
             allowExtend={
               modification.type === REROUTE
                 ? modification.toStop == null || modification.fromStop == null
                 : allowExtend
             }
-            allStops={allStops}
+            allStops={gtfsStops}
             extendFromEnd={extendFromEnd}
             followRoad={followRoad}
             modification={modification}

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-import {load} from 'lib/actions/region'
+import {loadRequestsSettings} from 'lib/actions/analysis/profile-request'
 import {
   setScenarioApplicationErrors,
   setScenarioApplicationWarnings
@@ -21,8 +21,9 @@ const AnalysisPage: any = withInitialFetch(
     dispatch(setActiveOpportunityDataset(query.opportunityDatasetId))
     dispatch(setScenarioApplicationWarnings(null))
     dispatch(setScenarioApplicationErrors(null))
+    dispatch(loadRequestsSettings(query.regionId))
 
-    return await dispatch(load(query.regionId))
+    return {}
   }
 )
 

@@ -44,7 +44,7 @@ declare global {
      */
     export type ModificationSegment = {
       fromStopId: void | string
-      geometry: GeoJSON.Point | GeoJSON.LineString
+      geometry: GeoJSON.LineString | GeoJSON.Point
       spacing: number
       stopAtEnd: boolean
       stopAtStart: boolean
@@ -74,8 +74,8 @@ declare global {
       accessGroup: string
       nonce: ObjectID
       name: string
-      createdAt: string
-      updatedAt: string
+      createdAt: string | Date
+      updatedAt: string | Date
     }
 
     /**
@@ -94,8 +94,48 @@ declare global {
       regionId: string
     }
 
-    export type Timetable = {
+    export interface AbstractTimetable {
+      _id: string
+      endTime: number
+      exactTimes: boolean
+      name: string
+      headwaySecs: number
+
+      startTime: number
+      phaseFromTimetable?: string
+      /**
+       * Prefixed with the feedId. `${feedId}:${stopId}`
+       */
+      phaseAtStop?: string
+      /**
+       * Prefixed with the feedId. `${feedId}:${stopId}`
+       */
+      phaseFromStop?: string
+      phaseSeconds?: number
+
+      // Days active
+      monday: boolean
+      tuesday: boolean
+      wednesday: boolean
+      thursday: boolean
+      friday: boolean
+      saturday: boolean
+      sunday: boolean
+    }
+
+    export interface PhasedAbstractTimetable extends AbstractTimetable {
+      modificationId: string
+    }
+
+    export interface Timetable extends AbstractTimetable {
+      dwellTime: number
+      dwellTimes: number[]
       segmentSpeeds: SegmentSpeeds
+    }
+
+    export interface FrequencyEntry extends AbstractTimetable {
+      patternTrips: string[]
+      sourceTrip?: string
     }
 
     /**
@@ -104,50 +144,135 @@ declare global {
     export type ModificationTypes =
       | 'add-streets'
       | 'add-trip-pattern'
+      | 'adjust-dwell-time'
+      | 'adjust-speed'
+      | 'convert-to-frequency'
+      | 'custom'
       | 'modify-streets'
+      | 'remove-stops'
+      | 'remove-trips'
       | 'reroute'
 
     /**
      * Base modification
      */
     export interface IModification extends IModel {
+      description: string
       projectId: string
-      type: ModificationTypes
+      type: CL.ModificationTypes
     }
 
     /**
-     *
+     * Modification that uses a feed
      */
+    export interface FeedModification {
+      feed: string
+      routes: string[]
+    }
+
+    /**
+     * Modification that specifies GTFS Trips
+     */
+    export interface TripsModification extends FeedModification {
+      trips: string[]
+    }
+
+    /**
+     * Modification that has selected stops
+     */
+    export interface StopModification extends FeedModification {
+      stops: string[]
+    }
+
+    /**
+     * Modification with segments.
+     */
+    export interface SegmentsModification {
+      segments: ModificationSegment[]
+    }
+
     export interface AddStreets extends IModification {
       type: 'add-streets'
       lineStrings: GeoJSON.Position[][]
     }
 
-    /**
-     *
-     */
+    export interface AddTripPattern
+      extends IModification,
+        SegmentsModification {
+      bidirectional: boolean
+      color: string
+      type: 'add-trip-pattern'
+      timetables: Timetable[]
+      transitMode: number
+    }
+
+    export interface AdjustDwellTime
+      extends IModification,
+        TripsModification,
+        StopModification {
+      type: 'adjust-dwell-time'
+      scale: boolean
+      value: number
+    }
+
+    export interface AdjustSpeed extends IModification, TripsModification {
+      type: 'adjust-speed'
+      hops: string[][]
+      scale: number
+    }
+
+    export interface ConvertToFrequency
+      extends IModification,
+        FeedModification {
+      type: 'convert-to-frequency'
+      entries: FrequencyEntry[]
+      retainTripsOutsideFrequencyEntries: boolean
+    }
+
+    export interface CustomModification extends IModification {
+      type: 'custom'
+    }
+
     export interface ModifyStreets extends IModification {
       type: 'modify-streets'
       polygons: GeoJSON.Position[][]
     }
 
-    /**
-     *
-     */
-    export interface AddTripPattern extends IModification {
-      type: 'add-trip-pattern'
-      segments: ModificationSegment[]
-      timetables: Timetable[]
+    export interface RemoveStops
+      extends IModification,
+        StopModification,
+        TripsModification {
+      type: 'remove-stops'
+      secondsSavedAtEachStop: number
     }
 
-    /**
-     *
-     */
-    export interface Reroute extends IModification {
+    export interface RemoveTrips extends IModification, TripsModification {
+      type: 'remove-trips'
+    }
+
+    export interface Reroute
+      extends IModification,
+        TripsModification,
+        SegmentsModification {
       type: 'reroute'
-      segments: ModificationSegment[]
+      fromStop?: string
+      toStop?: string
+      dwellTime: number
+      dwellTimes: number[]
       segmentSpeeds: SegmentSpeeds
     }
+
+    export type Modification =
+      | AddStreets
+      | AddTripPattern
+      | AdjustDwellTime
+      | AdjustSpeed
+      | ConvertToFrequency
+      | CustomModification
+      | ModifyStreets
+      | RemoveStops
+      | RemoveTrips
+      | Reroute
 
     /**
      * Spatial Datasets
@@ -174,6 +299,8 @@ declare global {
     }
 
     export interface FeedSummary {
+      bundleScopedFeedId: string
+      checksum: number
       feedId: string
       name: string
       serviceStart: string
@@ -193,7 +320,16 @@ declare global {
     export interface Project extends IModel {
       bundleId: string
       regionId: string
-      variants: string[]
+    }
+
+    export interface Scenario extends IModel {
+      projectId: string
+      name: string
+    }
+
+    export interface ScenariosModifications extends IModel {
+      modificationId: string
+      scenarioId: string
     }
 
     export interface RegionalAnalysis extends GridHeader, IModel {
@@ -365,11 +501,40 @@ declare global {
       Layout?: React.FunctionComponent
     }
 
+    export type DecayFunctionType =
+      | 'step'
+      | 'logistic'
+      | 'exponential'
+      | 'linear'
+
     /**
      * A "profile request" object
      */
     export interface ProfileRequest {
+      accessModes: string
+      bikeSpeed: number
+      bikeTrafficStress: number
       bounds: CL.Bounds
+      date: string
+      decayFunction: {
+        standardDeviationMinutes?: number
+        type: DecayFunctionType
+        widthMinutes?: number
+      }
+      destinationPointSetIds: string[]
+      directModes: string
+      egressModes: string
+      fromTime: number
+      maxBikeTime: number
+      maxRides: number
+      maxWalkTime: number
+      monteCarloDraws: number
+      percentiles: number[]
+      projectId: string
+      scenarioId: string
+      toTime: number
+      transitModes: string
+      walkSpeed: number
       workerVersion: string
     }
   }

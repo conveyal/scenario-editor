@@ -1,17 +1,22 @@
 import {useEffect, useState} from 'react'
 import {useLeaflet} from 'react-leaflet'
-import {useSelector} from 'react-redux'
+import MapControl from 'react-leaflet-control'
 
-import selectModificationBounds from 'lib/selectors/modification-bounds'
-
-import {ExpandIcon} from '../icons'
-import IconButton from '../icon-button'
+import {ExpandIcon} from 'lib/components/icons'
+import IconButton from 'lib/components/icon-button'
+import useModificationBounds from 'lib/modification/hooks/use-modification-bounds'
 
 const label = 'Fit map to modification extents'
 
-export default function FitBounds() {
+export default function FitBounds({
+  bundle,
+  modification
+}: {
+  bundle: CL.Bundle
+  modification: CL.Modification
+}) {
   const leaflet = useLeaflet()
-  const bounds = useSelector(selectModificationBounds)
+  const bounds = useModificationBounds(bundle, modification)
   const [trigger, setTrigger] = useState(0)
 
   // Zoom to bounds on a trigger or bounds change
@@ -23,9 +28,17 @@ export default function FitBounds() {
     }
   }, [bounds, leaflet, trigger])
 
-  return (
-    <IconButton label={label} onClick={() => setTrigger(Date.now())}>
-      <ExpandIcon />
-    </IconButton>
-  )
+  return bounds ? (
+    <MapControl position='topleft'>
+      <IconButton
+        label={label}
+        onClick={() => setTrigger(Date.now())}
+        shadow='lg'
+        size='md'
+        variant='solid'
+      >
+        <ExpandIcon />
+      </IconButton>
+    </MapControl>
+  ) : null
 }

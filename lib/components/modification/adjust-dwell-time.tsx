@@ -10,18 +10,22 @@ import SelectFeedRouteAndPatterns from './select-feed-route-and-patterns'
 import SelectStops from './select-stops'
 
 // Must be non-negative
-const testDwellTime = (s) => s >= 0
+const testDwellTime = (s: number) => s >= 0
 
 /**
  * Change dwell times
  */
-export default function AdjustDwellTimeComponent(p) {
+export default function AdjustDwellTimeComponent(p: {
+  bundle: CL.Bundle
+  modification: CL.AdjustDwellTime
+  update: (updates: Partial<CL.AdjustDwellTime>) => void
+}) {
   function _onPatternSelectorChange({feed, routes, trips}) {
-    p.updateAndRetrieveFeedData({feed, routes, trips, stops: null})
+    p.update({feed, routes, trips, stops: null})
   }
 
   // Set the factor by which we are scaling, or the speed which we are replacing.
-  function _setValue(value) {
+  function _setValue(value: number) {
     p.update({value})
   }
 
@@ -29,26 +33,30 @@ export default function AdjustDwellTimeComponent(p) {
     <Stack spacing={4}>
       <PatternLayer
         activeTrips={p.modification.trips}
+        bundleId={p.bundle._id}
         color={colors.NEUTRAL_LIGHT}
-        feed={p.selectedFeed}
         modification={p.modification}
       />
       <StopLayer
-        feed={p.selectedFeed}
+        bundleId={p.bundle._id}
         modification={p.modification}
         nullIsWildcard
         selectedColor={colors.MODIFIED}
       />
 
       <SelectFeedRouteAndPatterns
+        bundle={p.bundle}
+        modification={p.modification}
         onChange={_onPatternSelectorChange}
-        routes={p.modification.routes}
-        trips={p.modification.trips}
       />
 
       {p.modification.routes && (
         <Box>
-          <SelectStops modification={p.modification} update={p.update} />
+          <SelectStops
+            bundleId={p.bundle._id}
+            modification={p.modification}
+            update={(stops) => p.update({stops})}
+          />
         </Box>
       )}
 

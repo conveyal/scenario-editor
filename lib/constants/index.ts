@@ -114,7 +114,7 @@ export const MODIFY_STREETS = 'modify-streets'
 export const REMOVE_STOPS = 'remove-stops'
 export const REMOVE_TRIPS = 'remove-trips'
 export const REROUTE = 'reroute'
-export const MODIFICATION_TYPES = [
+export const MODIFICATION_TYPES: CL.ModificationTypes[] = [
   ADD_STREETS,
   ADD_TRIP_PATTERN,
   ADJUST_DWELL_TIME,
@@ -191,12 +191,22 @@ export const AUTOSAVE_EVERY_MS = 10 * 1000
 export const TRAVEL_TIME_PERCENTILES = [5, 25, 50, 75, 95]
 
 /**
+ * Baseline Scenario
+ */
+export const BASELINE_SCENARIO_ID = 'baseline'
+export const BASELINE_SCENARIO = {
+  _id: BASELINE_SCENARIO_ID,
+  name: 'Baseline'
+} as CL.Scenario
+
+/**
  * Default Profile Request object
  */
-export const PROFILE_REQUEST_DEFAULTS = {
+export const PROFILE_REQUEST_DEFAULTS: CL.ProfileRequest = {
   accessModes: 'WALK',
   bikeSpeed: 4.166666666666667,
   bikeTrafficStress: 4,
+  bounds: null,
   date:
     process.env.NODE_ENV === 'test'
       ? '2020-06-10'
@@ -215,11 +225,12 @@ export const PROFILE_REQUEST_DEFAULTS = {
   maxWalkTime: 20,
   monteCarloDraws: 200,
   percentiles: TRAVEL_TIME_PERCENTILES,
+  projectId: null,
+  scenarioId: BASELINE_SCENARIO_ID,
   toTime: 32400,
   transitModes: 'BUS,TRAM,RAIL,SUBWAY,FERRY,CABLE_CAR,GONDOLA,FUNICULAR',
   walkSpeed: 1.3888888888888888,
-  workerVersion: RECOMMENDED_R5_VERSION,
-  variantIndex: -1
+  workerVersion: RECOMMENDED_R5_VERSION
 }
 
 export const UNDEFINED_PROJECT_NAME = 'Not set'
@@ -229,3 +240,6 @@ export const FONT_URL =
   process.env.NODE_ENV === 'production'
     ? `https://assets.conveyal.com${fontPath}`
     : fontPath
+
+// Empty array is used as a default value so we can compare using `===`.
+export const EMPTY_ARRAY = []

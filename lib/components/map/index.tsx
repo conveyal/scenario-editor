@@ -4,12 +4,10 @@ import set from 'lodash/set'
 import dynamic from 'next/dynamic'
 import {useEffect, useRef, useState} from 'react'
 import {Map as ReactMap, Viewport, useLeaflet} from 'react-leaflet'
-import {useSelector} from 'react-redux'
 import MapControl from 'react-leaflet-control'
 
 import useCurrentRegion from 'lib/hooks/use-current-region'
 import useRouteChanging from 'lib/hooks/use-route-changing'
-import selectModificationSaveInProgress from 'lib/selectors/modification-save-in-progress'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 import {toLatLngBounds} from 'lib/utils/bounds'
 
@@ -19,7 +17,7 @@ import {ExternalLink} from '../link'
 
 import 'leaflet/dist/leaflet.css'
 
-const MapboxGLLayer = dynamic(() => import('./mapbox-gl'))
+const BaseMap = dynamic(() => import('./base-map'))
 
 const VIEWPORT_KEY = 'analysis-map-viewport'
 const ZOOM = 12
@@ -28,11 +26,6 @@ const DEFAULT_VIEWPORT: Viewport = {
   center: [38, -77],
   zoom: ZOOM
 }
-
-const lightStyle =
-  process.env.NEXT_PUBLIC_MAPBOX_STYLE ?? 'conveyal/cjwu7oipd0bf41cqqv15huoim'
-const darkStyle = 'conveyal/cklwkj6g529qi17nydq56jn9k'
-const getStyle = (style: string) => `mapbox://styles/${style}`
 
 type MapProps = {
   children?: React.ReactNode
@@ -102,13 +95,11 @@ function useRecenterOnRegionEffect(): Viewport {
   return viewport
 }
 
-export default function BaseMap({children, setLeafletContext}: MapProps) {
-  const style = useColorModeValue(lightStyle, darkStyle)
+export default function ConveyalMap({children, setLeafletContext}: MapProps) {
   const backgroundColor = useColorModeValue('gray.50', 'gray.800')
   const controlBg = useColorModeValue('whiteAlpha.400', 'blackAlpha.400')
   const leafletMapRef = useRef<ReactMap>()
   const viewport = useRecenterOnRegionEffect()
-  const saveInProgress = useSelector(selectModificationSaveInProgress)
   const [routeChanging] = useRouteChanging()
 
   // On mount, store the leaflet element
@@ -141,11 +132,7 @@ export default function BaseMap({children, setLeafletContext}: MapProps) {
   return (
     <ReactMap
       attributionControl={false}
-      className={
-        routeChanging || saveInProgress
-          ? 'disableAndDim'
-          : 'conveyal-leaflet-map'
-      }
+      className={routeChanging ? 'disableAndDim' : 'conveyal-leaflet-map'}
       minZoom={MIN_ZOOM}
       onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
       preferCanvas={true}
@@ -174,11 +161,9 @@ export default function BaseMap({children, setLeafletContext}: MapProps) {
         </Box>
       </MapControl>
 
-      {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
-        <MapboxGLLayer style={getStyle(style)} />
-      )}
+      {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && <BaseMap />}
 
-      <Controls isDisabled={routeChanging || saveInProgress} />
+      <Controls isDisabled={routeChanging} />
 
       {!routeChanging && children ? children : null}
     </ReactMap>

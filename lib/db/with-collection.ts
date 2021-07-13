@@ -1,8 +1,6 @@
-import {getSession, withApiAuthRequired} from '@auth0/nextjs-auth0'
 import {NextApiResponse, NextApiRequest} from 'next'
 
-import {AUTH_DISABLED} from 'lib/constants'
-import {localUser, userFromSession} from 'lib/user'
+import withApiAuthRequired from 'lib/auth/with-api-auth-required'
 import {errorToPOJO, getQueryAsString} from 'lib/utils/api'
 
 import AuthenticatedCollection, {
@@ -12,7 +10,8 @@ import AuthenticatedCollection, {
 type Handler = (
   req: NextApiRequest,
   res: NextApiResponse,
-  collection: AuthenticatedCollection
+  collection: AuthenticatedCollection,
+  user: CL.User
 ) => Promise<void>
 
 /**
@@ -20,29 +19,25 @@ type Handler = (
  * 1. Catch and handle errors that may occur during initialization.
  * 2. Ensure the user is authenticated.
  */
-export default function withCollection(handler: Handler) {
-  if (AUTH_DISABLED) {
-    return async (req: NextApiRequest, res: NextApiResponse) => {
-      try {
-        const name = getQueryAsString(req.query.collection) as CollectionName
-        const collection = await AuthenticatedCollection.with(name, localUser)
-        await handler(req, res, collection)
-      } catch (e) {
-        res.status(400).json(errorToPOJO(e))
-      }
+export default function withCollection(name: CollectionName, handler: Handler) {
+  return withApiAuthRequired(async (req, res, user) => {
+    try {
+      const collection = await AuthenticatedCollection.with(name, user)
+      await handler(req, res, collection, user)
+    } catch (e) {
+      res.status(400).json(errorToPOJO(e))
     }
-  }
+  })
+}
 
-  return withApiAuthRequired(
-    async (req: NextApiRequest, res: NextApiResponse) => {
-      try {
-        const user = userFromSession(req, getSession(req, res))
-        const name = getQueryAsString(req.query.collection) as CollectionName
-        const collection = await AuthenticatedCollection.with(name, user)
-        await handler(req, res, collection)
-      } catch (e) {
-        res.status(400).json(errorToPOJO(e))
-      }
+export function withCollectionFromQueryParameter(handler: Handler) {
+  return withApiAuthRequired(async (req, res, user) => {
+    try {
+      const name = getQueryAsString(req.query.collection) as CollectionName
+      const collection = await AuthenticatedCollection.with(name, user)
+      await handler(req, res, collection, user)
+    } catch (e) {
+      res.status(400).json(errorToPOJO(e))
     }
-  )
+  })
 }

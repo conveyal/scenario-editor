@@ -3,7 +3,6 @@ import {
   FormControl,
   HStack,
   Stack,
-  StackProps,
   useColorModeValue,
   useToken,
   VStack
@@ -14,7 +13,7 @@ import {memo, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import colors from 'lib/constants/colors'
-
+import {useCurrentRegionId} from 'lib/hooks/use-current-region'
 import selectAccessibility from 'lib/selectors/accessibility'
 import selectComparisonAccessibility from 'lib/selectors/comparison-accessibility'
 import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
@@ -47,11 +46,10 @@ const commaFormat = format(',d')
 type Props = {
   disabled: boolean
   stale: boolean
-  regionId: string
 }
 
 // Use a memoized version by default
-export default memo<Props & StackProps>(StackedPercentileSelector)
+export default memo<Props>(StackedPercentileSelector)
 
 const filterFreeform = (dataset: CL.SpatialDataset) =>
   dataset.format !== 'FREEFORM'
@@ -60,7 +58,8 @@ const filterFreeform = (dataset: CL.SpatialDataset) =>
  * A component allowing toggling between up to two stacked percentile plots and
  * comparisons of said
  */
-function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
+function StackedPercentileSelector({disabled, stale}) {
+  const regionId = useCurrentRegionId()
   const fontColor = useColorModeValue('gray.900', 'white')
   const fontColorHex = useToken('colors', fontColor)
   const backgroundColor = useColorModeValue('white', 'gray.900')
@@ -84,11 +83,7 @@ function StackedPercentileSelector({disabled, stale, regionId, ...p}) {
   const xPosition = xScale(isochroneCutoff)
 
   return (
-    <Stack
-      {...p}
-      spacing={0}
-      className={disabledOrStale ? 'disableAndDim' : ''}
-    >
+    <Stack spacing={0} className={disabledOrStale ? 'disableAndDim' : ''}>
       <HStack mb={4} justify='space-between' spacing={6} width='100%'>
         <FormControl w='500px' isDisabled={disabled}>
           <OpportunityDatasetSelector

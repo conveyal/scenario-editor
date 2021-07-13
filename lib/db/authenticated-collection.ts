@@ -43,6 +43,12 @@ const collections = {
   },
   'regional-analyses': {
     singular: 'regionalAnalysis'
+  },
+  scenarios: {
+    singular: 'scenario'
+  },
+  scenariosModifications: {
+    singular: 'scenario modification'
   }
 }
 
@@ -54,7 +60,7 @@ export type CollectionName = keyof typeof collections
  */
 export default class AuthenticatedCollection {
   accessGroup: string // If admin, this may be the `adminTempAccessGroup`
-  collection: Collection
+  collection: Collection<CL.IModel>
   name: string
   singularName: string
   user: CL.User
@@ -63,12 +69,12 @@ export default class AuthenticatedCollection {
     const {db} = await connectToDatabase()
     return new AuthenticatedCollection(
       collectionName,
-      db.collection(collectionName),
+      db.collection<CL.IModel>(collectionName),
       user
     )
   }
 
-  constructor(name: string, collection: Collection, user: CL.User) {
+  constructor(name: string, collection: Collection<CL.IModel>, user: CL.User) {
     if (collections[name] === undefined) {
       throw new Error(`Collection '${name}' is not enabled.`)
     }
@@ -92,6 +98,16 @@ export default class AuthenticatedCollection {
       updatedBy: this.user.email,
       updatedAt: new Date()
     })
+  }
+
+  createMany(docs: any[]) {
+    return this.collection.insertMany(
+      docs.map((d) => ({
+        ...d,
+        accessGroup: this.accessGroup,
+        createdBy: this.user
+      }))
+    )
   }
 
   findAll() {

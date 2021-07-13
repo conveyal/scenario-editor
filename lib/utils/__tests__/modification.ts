@@ -1,30 +1,8 @@
 import {expect} from '@jest/globals'
-import toStartCase from 'lodash/startCase'
-
-import {MODIFICATION_TYPES} from '../../constants'
-import {
-  create,
-  formatForServer,
-  isValid,
-  validateSegments
-} from '../modification'
+import {formatForServer, isValid, validateSegments} from '../modification'
 import {mockModification} from '../mock-data'
 
 describe('Utils > Modification', () => {
-  describe('create', () => {
-    MODIFICATION_TYPES.forEach((t) => {
-      it(`should create a modification of type ${t}`, () => {
-        const m = create({
-          type: t,
-          projectId: '1',
-          variants: []
-        })
-        expect(m.type).toBe(t)
-        expect(m.name).toBe(toStartCase(t))
-      })
-    })
-  })
-
   describe('formatForServer', () => {
     it('should convert feed, routes, stops, and trips to their ids', () => {
       const formatted = formatForServer({

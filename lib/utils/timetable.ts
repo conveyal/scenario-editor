@@ -2,7 +2,10 @@ import {v4 as uuidv4} from 'uuid'
 
 import {secondsToHhMmString} from './time'
 
-export function create(segmentSpeeds = [], count = 0) {
+export function create(
+  segmentSpeeds: CL.SegmentSpeeds = [],
+  count = 0
+): CL.Timetable {
   const timetable = {
     _id: uuidv4(),
     startTime: 7 * 3600,
@@ -44,7 +47,7 @@ export function getExactTimesFirstDepartures({
   return firstDepartures
 }
 
-export function toString(timetable) {
+export function toString(timetable: CL.AbstractTimetable) {
   const startTime = secondsToHhMmString(timetable.startTime)
   const endTime = secondsToHhMmString(timetable.endTime)
   const headway = secondsToHhMmString(timetable.headwaySecs)

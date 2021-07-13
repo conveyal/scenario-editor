@@ -76,6 +76,7 @@ declare global {
       name: string
       createdAt: string
       updatedAt: string
+      createdBy: string
     }
 
     /**
@@ -239,6 +240,14 @@ declare global {
       regionalAnalysis: RegionalAnalysis
       statusText?: string
       total: number
+    }
+
+    export interface RegionalWorker {
+      bundles: CL.Bundle[]
+      ec2instanceId: string
+      ec2region: string
+      scenarios: string[]
+      workerId: string
     }
 
     export interface RegionalDisplayScale {
